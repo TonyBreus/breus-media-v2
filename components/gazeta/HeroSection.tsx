@@ -16,12 +16,22 @@ export function HeroSection() {
     // The text moves up to become part of the header. The header is h-[56px]. The text starts centered. We will translate it up based on its height.
     const yTranslate = useTransform(scrollYProgress, [0, 0.5, 1], ["0vh", "-45vh", "-45vh"]);
 
-    // Fade out original opacity
-    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8], [1, 1, 0]);
+    // Fade out original opacity ONLY for the scroll indicator down arrow
+    const indicatorOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
     return (
         <DebugWrapper id={11} label="Hero Section">
             <section ref={containerRef} className="relative w-full h-[200vh]">
+                {/* Kinetic Text, moved out of sticky div to become global fixed */}
+                <DebugWrapper id={13} label="Kinetic Typography" className="fixed w-full h-screen flex items-center justify-center pt-20 z-[60] pointer-events-none top-0 left-0">
+                    <motion.h1
+                        style={{ scale, y: yTranslate }}
+                        className="text-[12vw] sm:text-[14vw] font-black leading-none tracking-tighter uppercase whitespace-nowrap font-sans mt-[30vh]"
+                    >
+                        Breus Media
+                    </motion.h1>
+                </DebugWrapper>
+
                 <div className="sticky top-0 w-full h-screen overflow-hidden flex items-end justify-center bg-zinc-950">
 
                     {/* Background Video */}
@@ -39,20 +49,10 @@ export function HeroSection() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                     </DebugWrapper>
 
-                    {/* Kinetic Text */}
-                    <DebugWrapper id={13} label="Kinetic Typography" className="w-full h-full flex items-center justify-center pt-20 z-10 pointer-events-none absolute top-0 left-0">
-                        <motion.h1
-                            style={{ scale, y: yTranslate, opacity }}
-                            className="text-[12vw] sm:text-[14vw] font-black leading-none tracking-tighter uppercase whitespace-nowrap font-sans mt-[30vh]"
-                        >
-                            Breus Media
-                        </motion.h1>
-                    </DebugWrapper>
-
                     {/* Scroll Down Indicator */}
                     <DebugWrapper id={14} label="Scroll Indicator" className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
                         <motion.div
-                            style={{ opacity }}
+                            style={{ opacity: indicatorOpacity }}
                             animate={{ y: [0, 10, 0] }}
                             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
                             className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md"
