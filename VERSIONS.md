@@ -8,3 +8,4 @@ If an update breaks the layout, the instructions to the AI are: `git reset --har
 - **v25.1** - Phase 1: Setup & Infrastructure (DebugWrapper, basic page route /gazeta, VERSIONS.md initialized)
 - **v25.2** - Phase 2: Smart Header (Scroll animations, Time Widget, Contact Dropdown)
 - **v25.3** - Phase 3: Hero Section (Video background, Kinetic Typography)
+- **v25.4** - Phase 4: Marquee Section (Infinite CSS scroll, newsprint border)
