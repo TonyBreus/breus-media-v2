@@ -6,3 +6,4 @@ If an update breaks the layout, the instructions to the AI are: `git reset --har
 ## Versions
 
 - **v25.1** - Phase 1: Setup & Infrastructure (DebugWrapper, basic page route /gazeta, VERSIONS.md initialized)
+- **v25.2** - Phase 2: Smart Header (Scroll animations, Time Widget, Contact Dropdown)
