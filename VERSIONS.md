@@ -12,3 +12,4 @@ If an update breaks the layout, the instructions to the AI are: `git reset --har
 - **v25.5** - Phase 5: Stacking Cards (8 Niches with sticky accordions effect)
 - **v25.6** - Phase 6: Final Form (Sticky overflow layer with inputs)
 - **v25.7** - Phase 7: Refinements & Debug Mode (Numeric IDs, SmartHeader Right Alignment)
+- **v25.8** - Phase 7: Debug Mode left cleanup, right alignment fix
