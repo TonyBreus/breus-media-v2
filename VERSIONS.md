@@ -13,3 +13,4 @@ If an update breaks the layout, the instructions to the AI are: `git reset --har
 - **v25.6** - Phase 6: Final Form (Sticky overflow layer with inputs)
 - **v25.7** - Phase 7: Refinements & Debug Mode (Numeric IDs, SmartHeader Right Alignment)
 - **v25.8** - Phase 7: Debug Mode left cleanup, right alignment fix
+- **v25.9** - Phase 8: Header Refinements & Scroll Effects (Scaling Hero text & Marquee, Green dot Time widget)

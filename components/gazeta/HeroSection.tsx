@@ -11,18 +11,17 @@ export function HeroSection() {
         offset: ["start start", "end start"],
     });
 
-    // Translates the text upwards faster than the scroll
-    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-150%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+    // Start shrinking text when scrolled 20% down hero 
+    const scale = useTransform(scrollYProgress, [0, 0.4, 1], [1, 0.5, 0.5]);
+    // The text moves up to become part of the header. The header is h-[56px]. The text starts centered. We will translate it up based on its height.
+    const yTranslate = useTransform(scrollYProgress, [0, 0.5, 1], ["0vh", "-45vh", "-45vh"]);
+
+    // Fade out original opacity
+    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8], [1, 1, 0]);
 
     return (
         <DebugWrapper id={11} label="Hero Section">
-            {/* 
-        h-[150vh] gives scrolling space for the hero effect to happen 
-        before the next section fully takes over. If we want standard sticky hero:
-        We make it h-[150vh] and make the inner content sticky top.
-      */}
-            <section ref={containerRef} className="relative w-full h-[120vh]">
+            <section ref={containerRef} className="relative w-full h-[200vh]">
                 <div className="sticky top-0 w-full h-screen overflow-hidden flex items-end justify-center bg-zinc-950">
 
                     {/* Background Video */}
@@ -41,10 +40,10 @@ export function HeroSection() {
                     </DebugWrapper>
 
                     {/* Kinetic Text */}
-                    <DebugWrapper id={13} label="Kinetic Typography" className="w-full px-4 pb-24 md:pb-32 flex justify-center z-10 pointer-events-none">
+                    <DebugWrapper id={13} label="Kinetic Typography" className="w-full h-full flex items-center justify-center pt-20 z-10 pointer-events-none absolute top-0 left-0">
                         <motion.h1
-                            style={{ y: textY, opacity }}
-                            className="text-[12vw] sm:text-[14vw] font-black leading-none tracking-tighter uppercase whitespace-nowrap font-sans"
+                            style={{ scale, y: yTranslate, opacity }}
+                            className="text-[12vw] sm:text-[14vw] font-black leading-none tracking-tighter uppercase whitespace-nowrap font-sans mt-[30vh]"
                         >
                             Breus Media
                         </motion.h1>
@@ -53,6 +52,7 @@ export function HeroSection() {
                     {/* Scroll Down Indicator */}
                     <DebugWrapper id={14} label="Scroll Indicator" className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
                         <motion.div
+                            style={{ opacity }}
                             animate={{ y: [0, 10, 0] }}
                             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
                             className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md"

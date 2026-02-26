@@ -22,7 +22,7 @@ export function TimeWidget() {
 
     // Use a fixed width or monospace font to prevent jumping
     return (
-        <span className="font-mono text-sm tracking-widest tabular-nums opacity-80">
+        <span className="font-mono text-[10px] tracking-widest tabular-nums leading-none">
             {time || "00:00:00"}
         </span>
     );
