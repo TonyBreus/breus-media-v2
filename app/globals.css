@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Brand Colors */
+  --color-brand: #3b82f6;
+  --color-brand-hover: #2563eb;
+  --color-brand-glow: rgba(59, 130, 246, 0.5);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Neon Colors (Real Estate) */
+  --color-neon-cyan: #00FFFF;
+  --color-neon-purple: #BD00FF;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Dark Theme Colors */
+  --color-dark: #0a0a0a;
+  --color-dark-surface: #171717;
+  --color-dark-border: #262626;
+  --color-dark-bg: #0a0a0a;
+
+  /* Animations */
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-shine: shine 2s linear infinite;
+  --animate-glow-pulse: glow-pulse 2s ease-in-out infinite alternate;
+
+  @keyframes shine {
+    from {
+      transform: translateX(-100%) skewX(12deg);
+    }
+
+    to {
+      transform: translateX(200%) skewX(12deg);
+    }
   }
+
+  @keyframes spin-around {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes slide {
+    to {
+      transform: translate(calc(100cqw - 100%), 0);
+    }
+  }
+
+  @keyframes border-beam {
+    100% {
+      offset-distance: 100%;
+    }
+  }
+
+  @keyframes glow-pulse {
+    from {
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 60px rgba(0, 255, 255, 0.1);
+    }
+
+    to {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), 0 0 80px rgba(0, 255, 255, 0.2);
+    }
+  }
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-shine: shine 2s linear infinite;
+  --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
+  --animate-slide: slide var(--speed) ease-in-out infinite alternate;
+  --animate-border-beam: border-beam calc(var(--duration)*1s) infinite linear;
+}
+
+/* Custom Utilities */
+@utility glass {
+  @apply bg-dark/80 backdrop-blur-md border border-white/5;
+}
+
+@utility text-glow {
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Base Styles */
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-dark text-gray-200 antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold text-white tracking-tight;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
