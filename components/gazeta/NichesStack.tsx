@@ -19,7 +19,7 @@ export function NichesStack() {
     // Header is ~80px. So top-20 (80px) is a good starting point for sticky.
 
     return (
-        <DebugWrapper id="niches-stack" label="Niches Stack Container">
+        <DebugWrapper id={31} label="Niches Stack Container">
             <div className="relative w-full bg-black">
                 {niches.map((niche, index) => {
                     // Each card's top position increases by the height of the header bar (e.g. 3rem or 48px)
@@ -28,7 +28,7 @@ export function NichesStack() {
                     const topOffset = 80 + index * 48; // in px
 
                     return (
-                        <DebugWrapper key={niche.id} id={`niche-card-${niche.id}`} label={`Card: ${niche.title}`}>
+                        <DebugWrapper key={niche.id} id={31 + index + 1} label={`Card: ${niche.title}`}>
                             <div
                                 className="sticky w-full h-screen flex flex-col overflow-hidden will-change-transform"
                                 style={{ top: `${topOffset}px` }}

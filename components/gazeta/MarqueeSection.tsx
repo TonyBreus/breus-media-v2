@@ -16,7 +16,7 @@ export function MarqueeSection() {
     const marqueeContent = [...items, ...items, ...items, ...items];
 
     return (
-        <DebugWrapper id="marquee" label="Separator Marquee">
+        <DebugWrapper id={21} label="Separator Marquee">
             <section className="relative w-full overflow-hidden bg-zinc-950 border-y-2 border-white py-4 md:py-6 flex items-center z-30">
                 <motion.div
                     className="flex whitespace-nowrap"

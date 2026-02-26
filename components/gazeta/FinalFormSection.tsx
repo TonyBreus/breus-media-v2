@@ -16,7 +16,7 @@ export function FinalFormSection() {
     const topOffset = 80 + 8 * 48; // match our NichesStack offset logic
 
     return (
-        <DebugWrapper id="final-form" label="Final Form Overlay">
+        <DebugWrapper id={41} label="Final Form Overlay">
             <section
                 className="sticky w-full min-h-screen flex flex-col bg-zinc-950 text-white will-change-transform z-20"
                 style={{ top: `${topOffset}px` }}
@@ -29,7 +29,7 @@ export function FinalFormSection() {
 
                 {/* Form Body */}
                 <div className="flex-1 overflow-y-auto px-6 py-12 md:px-12 md:py-20 max-w-5xl mx-auto w-full">
-                    <DebugWrapper id="form-title" label="Form Title">
+                    <DebugWrapper id={42} label="Form Title">
                         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-12">
                             Готов усилить <br className="hidden md:block" />
                             <span className="text-[#D4AF37]">цифровое</span> присутствие?
@@ -38,7 +38,7 @@ export function FinalFormSection() {
 
                     <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
 
-                        <DebugWrapper id="form-personal" label="Personal Info">
+                        <DebugWrapper id={43} label="Personal Info">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
                                     <label className="block text-xs uppercase tracking-widest text-white/50 mb-2">Ваше Имя *</label>
@@ -74,7 +74,7 @@ export function FinalFormSection() {
                             </div>
                         </DebugWrapper>
 
-                        <DebugWrapper id="form-services" label="Services Checkboxes">
+                        <DebugWrapper id={44} label="Services Checkboxes">
                             <div>
                                 <label className="block text-xs uppercase tracking-widest text-white/50 mb-4">Интересующие услуги</label>
                                 <div className="flex flex-wrap gap-3">
@@ -95,7 +95,7 @@ export function FinalFormSection() {
                             </div>
                         </DebugWrapper>
 
-                        <DebugWrapper id="form-niche" label="Niche Select">
+                        <DebugWrapper id={45} label="Niche Select">
                             <div>
                                 <label className="block text-xs uppercase tracking-widest text-white/50 mb-2">Ваша ниша</label>
                                 <select className="w-full bg-transparent border-b border-white/20 pb-2 focus:border-[#D4AF37] transition-colors outline-none font-medium appearance-none">
@@ -112,7 +112,7 @@ export function FinalFormSection() {
                             </div>
                         </DebugWrapper>
 
-                        <DebugWrapper id="form-task" label="Task Textarea">
+                        <DebugWrapper id={46} label="Task Textarea">
                             <div>
                                 <label className="block text-xs uppercase tracking-widest text-white/50 mb-2">Коротко о задаче</label>
                                 <textarea
@@ -123,7 +123,7 @@ export function FinalFormSection() {
                             </div>
                         </DebugWrapper>
 
-                        <DebugWrapper id="form-submit" label="Submit Actions">
+                        <DebugWrapper id={47} label="Submit Actions">
                             <div className="flex flex-col sm:flex-row gap-4 pt-6">
                                 <button type="submit" className="flex-1 bg-white text-black font-black uppercase tracking-widest py-4 px-8 flex justify-center items-center gap-2 hover:bg-[#D4AF37] transition-colors">
                                     <Send className="w-5 h-5" />

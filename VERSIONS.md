@@ -10,3 +10,5 @@ If an update breaks the layout, the instructions to the AI are: `git reset --har
 - **v25.3** - Phase 3: Hero Section (Video background, Kinetic Typography)
 - **v25.4** - Phase 4: Marquee Section (Infinite CSS scroll, newsprint border)
 - **v25.5** - Phase 5: Stacking Cards (8 Niches with sticky accordions effect)
+- **v25.6** - Phase 6: Final Form (Sticky overflow layer with inputs)
+- **v25.7** - Phase 7: Refinements & Debug Mode (Numeric IDs, SmartHeader Right Alignment)

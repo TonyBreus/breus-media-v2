@@ -26,16 +26,10 @@ export function SmartHeader() {
     ];
 
     return (
-        <DebugWrapper id="header" label="Smart Header">
-            {/* 
-        Header rests at the top, fixed. 
-        Using a subtle blur/bg when scrolled can be good, 
-        but reference says it should just be there.
-      */}
-            <header className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 transition-colors duration-300 ${isScrolled ? 'bg-black/50 backdrop-blur-md border-b border-white/10' : 'bg-transparent'}`}>
-
+        <DebugWrapper id={1} label="Smart Header">
+            <header className={`fixed top-0 left-0 w-full z-50 flex items-start justify-between px-6 py-4 transition-colors duration-300 ${isScrolled ? 'bg-black/50 backdrop-blur-md border-b border-white/10' : 'bg-transparent'}`}>
                 {/* LEFT SECTION */}
-                <DebugWrapper id="header-left" label="Left Section" className="flex-1">
+                <DebugWrapper id={2} label="Left Section" className="flex-1">
                     <div className="h-12 flex items-center relative">
                         <AnimatePresence mode="wait">
                             {!isScrolled ? (
@@ -71,15 +65,15 @@ export function SmartHeader() {
                 </DebugWrapper>
 
                 {/* CENTER SECTION */}
-                <DebugWrapper id="header-center" label="Center Section" className="flex-1 flex justify-center flex-col items-center">
+                <DebugWrapper id={3} label="Center Section" className="flex-1 flex justify-center flex-col items-center">
                     <span className="uppercase tracking-[0.2em] text-sm font-semibold">Tbilisi</span>
                     <TimeWidget />
                 </DebugWrapper>
 
                 {/* RIGHT SECTION */}
-                <DebugWrapper id="header-right" label="Right Section" className="flex-1 flex items-center justify-end gap-6 text-sm">
+                <DebugWrapper id={4} label="Right Section" className="flex-1 flex items-start justify-end gap-6 text-sm">
                     {/* Lang Switcher */}
-                    <div className="flex gap-2 text-xs font-semibold tracking-wider">
+                    <div className="flex gap-2 text-xs font-semibold tracking-wider pt-2.5">
                         {["RU", "EN", "GE"].map((l) => (
                             <button
                                 key={l}
@@ -91,7 +85,7 @@ export function SmartHeader() {
                         ))}
                     </div>
 
-                    <ContactDropdown />
+                    <div className="pt-1.5"><ContactDropdown /></div>
 
                     <a href="#contact" className="hidden sm:flex px-5 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-wider rounded border border-white hover:bg-black hover:text-white transition-colors">
                         Обсудить проект

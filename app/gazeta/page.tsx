@@ -25,7 +25,7 @@ export default function GazetaPage() {
             {/* Final Form Layer */}
             <FinalFormSection />
 
-            <DebugWrapper id="page-wrapper" label="Main Content Container">
+            <DebugWrapper id={100} label="Main Content Container">
                 <div className="hidden" />
             </DebugWrapper>
         </main>

@@ -16,7 +16,7 @@ export function HeroSection() {
     const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
     return (
-        <DebugWrapper id="hero" label="Hero Section">
+        <DebugWrapper id={11} label="Hero Section">
             {/* 
         h-[150vh] gives scrolling space for the hero effect to happen 
         before the next section fully takes over. If we want standard sticky hero:
@@ -26,7 +26,7 @@ export function HeroSection() {
                 <div className="sticky top-0 w-full h-screen overflow-hidden flex items-end justify-center bg-zinc-950">
 
                     {/* Background Video */}
-                    <DebugWrapper id="hero-bg" label="Video Background" className="absolute top-0 left-0 w-full h-full z-0">
+                    <DebugWrapper id={12} label="Video Background" className="absolute top-0 left-0 w-full h-full z-0">
                         {/* Placeholder highly optimized video for now */}
                         <video
                             autoPlay
@@ -41,7 +41,7 @@ export function HeroSection() {
                     </DebugWrapper>
 
                     {/* Kinetic Text */}
-                    <DebugWrapper id="hero-text" label="Kinetic Typography" className="w-full px-4 pb-24 md:pb-32 flex justify-center z-10 pointer-events-none">
+                    <DebugWrapper id={13} label="Kinetic Typography" className="w-full px-4 pb-24 md:pb-32 flex justify-center z-10 pointer-events-none">
                         <motion.h1
                             style={{ y: textY, opacity }}
                             className="text-[12vw] sm:text-[14vw] font-black leading-none tracking-tighter uppercase whitespace-nowrap font-sans"
@@ -51,7 +51,7 @@ export function HeroSection() {
                     </DebugWrapper>
 
                     {/* Scroll Down Indicator */}
-                    <DebugWrapper id="hero-scroll" label="Scroll Indicator" className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+                    <DebugWrapper id={14} label="Scroll Indicator" className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
                         <motion.div
                             animate={{ y: [0, 10, 0] }}
                             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
