@@ -12,9 +12,9 @@ export function HeroSection() {
     });
 
     // Start shrinking text when scrolled 20% down hero 
-    const scale = useTransform(scrollYProgress, [0, 0.4, 1], [1, 0.5, 0.5]);
-    // The text moves up to become part of the header. The header is h-[56px]. The text starts centered. We will translate it up based on its height.
-    const yTranslate = useTransform(scrollYProgress, [0, 0.5, 1], ["0vh", "-45vh", "-45vh"]);
+    const scale = useTransform(scrollYProgress, [0, 0.4, 1], [1, 0.4, 0.4]);
+    // Start at 40vh, move up by 36vh -> ends at 4vh (approx top of viewport)
+    const yTranslate = useTransform(scrollYProgress, [0, 0.4, 1], ["0vh", "-36vh", "-36vh"]);
 
     // Fade out original opacity ONLY for the scroll indicator down arrow
     const indicatorOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
@@ -23,10 +23,10 @@ export function HeroSection() {
         <DebugWrapper id={11} label="Hero Section">
             <section ref={containerRef} className="relative w-full h-[200vh]">
                 {/* Kinetic Text, moved out of sticky div to become global fixed */}
-                <DebugWrapper id={13} label="Kinetic Typography" className="fixed w-full h-screen flex items-center justify-center pt-20 z-[60] pointer-events-none top-0 left-0">
+                <DebugWrapper id={13} label="Kinetic Typography" className="fixed w-full flex justify-center z-[60] pointer-events-none top-[40vh] left-0 mt-4 md:mt-0">
                     <motion.h1
-                        style={{ scale, y: yTranslate }}
-                        className="text-[12vw] sm:text-[14vw] font-black leading-none tracking-tighter uppercase whitespace-nowrap font-sans mt-[30vh]"
+                        style={{ scale, y: yTranslate, transformOrigin: 'center' }}
+                        className="text-[12vw] sm:text-[14vw] font-black leading-none tracking-tighter uppercase whitespace-nowrap font-sans"
                     >
                         Breus Media
                     </motion.h1>

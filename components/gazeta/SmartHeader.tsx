@@ -30,39 +30,27 @@ export function SmartHeader() {
             <header className={`fixed top-0 left-0 w-full z-50 flex items-start justify-between px-6 py-4 transition-colors duration-300 ${isScrolled ? 'bg-black/50 backdrop-blur-md border-b border-white/10' : 'bg-transparent'}`}>
                 {/* LEFT SECTION */}
                 <DebugWrapper id={2} label="Left Section" className="flex-1">
-                    <div className="flex flex-col relative justify-center h-6">
-                        <AnimatePresence mode="wait">
-                            {!isScrolled ? (
-                                <motion.div
-                                    key="text"
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="flex flex-col -mt-1"
-                                >
-                                    <span className="font-serif text-[18px] md:text-2xl leading-none tracking-wide text-white">Агентство</span>
-                                    <span className="text-[#D4AF37] text-[8px] md:text-[10px] uppercase tracking-widest mt-0.5 whitespace-nowrap">
-                                        визуального продакшена и AI
-                                    </span>
-                                </motion.div>
-                            ) : (
-                                <motion.div
-                                    key="nav"
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="flex gap-4 uppercase text-[10px] tracking-widest font-bold"
-                                >
-                                    {links.map((link) => (
-                                        <a key={link.name} href={link.href} className="text-white/60 hover:text-white transition-colors">
-                                            {link.name}
-                                        </a>
-                                    ))}
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+                    <div className="relative h-6 flex items-center">
+                        {/* Agency Text */}
+                        <div
+                            className={`absolute inset-0 flex flex-col justify-center transition-all duration-300 ${isScrolled ? "opacity-0 pointer-events-none scale-95" : "opacity-100 scale-100"}`}
+                        >
+                            <span className="font-serif text-[18px] md:text-2xl leading-none tracking-wide text-white">Агентство</span>
+                            <span className="text-[#D4AF37] text-[8px] md:text-[10px] uppercase tracking-widest mt-0.5 whitespace-nowrap">
+                                визуального продакшена и AI
+                            </span>
+                        </div>
+
+                        {/* Navigation Links */}
+                        <div
+                            className={`absolute inset-0 flex items-center gap-4 transition-all duration-300 uppercase text-[10px] tracking-widest font-bold ${isScrolled ? "opacity-100 scale-100 delay-100" : "opacity-0 pointer-events-none scale-95"}`}
+                        >
+                            {links.map((link) => (
+                                <a key={link.name} href={link.href} className="text-white/60 hover:text-white transition-colors">
+                                    {link.name}
+                                </a>
+                            ))}
+                        </div>
                     </div>
                 </DebugWrapper>
 

@@ -15,3 +15,4 @@ If an update breaks the layout, the instructions to the AI are: `git reset --har
 - **v25.8** - Phase 7: Debug Mode left cleanup, right alignment fix
 - **v25.9** - Phase 8: Header Refinements & Scroll Effects (Scaling Hero text & Marquee, Green dot Time widget)
 - **v25.10** - Phase 9: Restoring Header Links & NichesStack Debug ID Split
+- **v25.11** - Phase 10: Permanent Sticky Header & Marquee Width Fixes
