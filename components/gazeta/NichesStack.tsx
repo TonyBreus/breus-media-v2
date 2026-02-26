@@ -28,19 +28,22 @@ export function NichesStack() {
                     const topOffset = 80 + index * 48; // in px
 
                     return (
-                        <DebugWrapper key={niche.id} id={31 + index + 1} label={`Card: ${niche.title}`}>
-                            <div
-                                className="sticky w-full h-screen flex flex-col overflow-hidden will-change-transform"
-                                style={{ top: `${topOffset}px` }}
-                            >
-                                {/* Card Header (Accordion Tab) */}
+                        <div
+                            key={niche.id}
+                            className="sticky w-full h-screen flex flex-col overflow-hidden will-change-transform"
+                            style={{ top: `${topOffset}px` }}
+                        >
+                            {/* Card Header (Accordion Tab) */}
+                            <DebugWrapper id={32 + index} label={`Tab: ${niche.title}`}>
                                 <div className="h-12 w-full bg-zinc-900 border-t border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold text-white z-10 shrink-0">
                                     <span className="text-[#D4AF37] mr-4">{niche.id}</span>
                                     <span>Индустрия: {niche.title}</span>
                                 </div>
+                            </DebugWrapper>
 
-                                {/* Card Body (Image) */}
-                                <div className="relative flex-1 w-full bg-zinc-800">
+                            {/* Card Body (Image) */}
+                            <div className="relative flex-1 w-full bg-zinc-800">
+                                <DebugWrapper id={100 + index} label={`Image: ${niche.title}`} className="absolute inset-0 z-0">
                                     <img
                                         src={niche.img}
                                         alt={niche.title}
@@ -48,16 +51,18 @@ export function NichesStack() {
                                     />
                                     {/* Dark Overlay for readability if we add content later */}
                                     <div className="absolute inset-0 bg-black/40" />
+                                </DebugWrapper>
 
-                                    {/* Huge Title in the center of the card */}
-                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                {/* Huge Title in the center of the card */}
+                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                                    <DebugWrapper id={200 + index} label={`Title: ${niche.title}`}>
                                         <h2 className="text-4xl md:text-7xl font-sans font-black tracking-tighter uppercase text-white drop-shadow-2xl">
                                             {niche.title}
                                         </h2>
-                                    </div>
+                                    </DebugWrapper>
                                 </div>
                             </div>
-                        </DebugWrapper>
+                        </div>
                     );
                 })}
             </div>
