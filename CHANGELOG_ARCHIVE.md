@@ -94,7 +94,7 @@ Append-only архив изменений. Старые записи не уда
 - Обновлены оба контекста: основной `/gazeta` (stack cards `00–08`) и внутренние `/gazeta/[slug]`.
 
 ### Commits
-- `N/A` — изменения подготовлены локально (без нового деплоя).
+- `1c7f85c` — feat(gazeta): sync 00-08 service cards with 5+1 cap
 
 ### Technical Notes
 - `components/gazeta/NichesStack.tsx`:
@@ -172,8 +172,8 @@ Append-only архив изменений. Старые записи не уда
 - `npm run build` — успешно.
 
 ### Release Notes
-- Статус: `local ready`.
-- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+- Статус: `deployed`.
+- Деплой: выполнен после явной команды `DEPLOY NOW` (push `main` -> Vercel auto deploy).
 
 ---
 
