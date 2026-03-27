@@ -71,7 +71,7 @@ export function MarqueeSection() {
     ) : null;
 
     const line1 = [
-        { text: "НЕДВИЖИМОСТЬ", link: "/v23/real-estate" },
+        { text: "НЕДВИЖИМОСТЬ", link: "/real-estate-service" },
         "АВТОБИЗНЕС", "ОТЕЛИ", "РЕСТОРАНЫ", "ТУРИЗМ", "КЛИНИКИ", "IT"
     ];
     const line2 = [
