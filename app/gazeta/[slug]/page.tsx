@@ -65,7 +65,7 @@ export default async function GazetaDirectionPage({ params }: CategoryPageProps)
             category: s.price,
             description: "",
             price: s.price,
-            image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=60",
+            image: s.image ?? "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=60",
             primaryHref: s.primaryHref,
         }));
     }

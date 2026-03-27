@@ -7,6 +7,7 @@ export type GazetaService = {
     title: string;
     price: string;
     primaryHref?: string;
+    image?: string;
 };
 
 export type GazetaCategoryPage = {

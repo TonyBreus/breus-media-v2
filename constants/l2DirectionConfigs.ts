@@ -839,7 +839,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     featured: true,
                     tag: 'HOT',
                     primaryHref: '/promo-video/promo-clinic',
-                    primaryCtaLabel: 'Страница услуги',
+                    primaryCtaLabel: 'Подробнее',
                 },
                 {
                     id: 2,
@@ -862,7 +862,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     price: 'Photo + Video · от 450 ₾',
                     image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&q=80',
                     primaryHref: '/promo-video/clinic-interior',
-                    primaryCtaLabel: 'Страница услуги',
+                    primaryCtaLabel: 'Подробнее',
                 },
                 {
                     id: 4,
@@ -884,6 +884,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description: 'Подходит для beauty/skin/dental/wellness направлений.',
                     price: 'Package · от 600 ₾',
                     image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80',
+                    primaryHref: '/promo-video/clinic-interior',
                 },
                 {
                     id: 6,
@@ -894,6 +895,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description: 'Описания, тексты и адаптация под digital-каналы.',
                     price: 'AI Content · от 300 ₾',
                     image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80',
+                    primaryHref: '/ai-content/hotel-ai-descriptions',
                 },
                 {
                     id: 7,
@@ -1452,7 +1454,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     price: 'Promo Video · по задаче',
                     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
                     primaryHref: '/promo-video/promo-real-estate',
-                    primaryCtaLabel: 'Страница услуги',
+                    primaryCtaLabel: 'Подробнее',
                     featured: true,
                     tag: 'HOT',
                 },
@@ -1490,7 +1492,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     price: 'Promo Video · по задаче',
                     image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80',
                     primaryHref: '/promo-video/promo-car-dealer',
-                    primaryCtaLabel: 'Страница услуги',
+                    primaryCtaLabel: 'Подробнее',
                 },
                 {
                     id: 5,
@@ -1515,7 +1517,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     price: 'Promo Video · по задаче',
                     image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80',
                     primaryHref: '/promo-video/promo-clinic',
-                    primaryCtaLabel: 'Страница услуги',
+                    primaryCtaLabel: 'Подробнее',
                 },
                 {
                     id: 7,
