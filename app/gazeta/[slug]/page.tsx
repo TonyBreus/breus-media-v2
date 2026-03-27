@@ -5,6 +5,7 @@ import { L2DirectionServices } from "@/components/l2-direction/L2DirectionSectio
 import { gazetaCategoryPagesBySlug } from "@/constants/gazetaRoutes";
 import { l2DirectionConfigs } from "@/constants/l2DirectionConfigs";
 import type { L2ServiceItem } from "@/components/l2-direction/types";
+import { realEstateServiceItems } from "@/components/real-estate-service/realEstateServicesData";
 
 type CategoryPageProps = {
     params: Promise<{
@@ -52,10 +53,30 @@ export default async function GazetaDirectionPage({ params }: CategoryPageProps)
     // Берём услуги из l2DirectionConfigs если есть маппинг, иначе fallback на page.services
     let l2Services: L2ServiceItem[] = [];
 
+    const realEstateServicesAsL2: L2ServiceItem[] = realEstateServiceItems
+        .slice()
+        .sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id))
+        .map((service) => ({
+            id: service.id,
+            order: service.order ?? service.id,
+            slug: service.slug,
+            title: service.title,
+            category: service.category,
+            description: service.description,
+            price: service.price,
+            image: service.image,
+            primaryHref: service.primaryHref,
+            primaryCtaLabel: service.primaryCtaLabel,
+            featured: service.featured,
+            tag: service.tag,
+        }));
+
     const l2Key = slugToL2Config[slug];
-    if (l2Key) {
+    if (slug === "real-estate") {
+        l2Services = realEstateServicesAsL2;
+    } else if (l2Key) {
         const config = l2DirectionConfigs[l2Key];
-        l2Services = config.data.services.slice(0, 6) as L2ServiceItem[];
+        l2Services = config.data.services as L2ServiceItem[];
     } else {
         l2Services = (page.services ?? []).map((s, idx) => ({
             id: idx + 1,

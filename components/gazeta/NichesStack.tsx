@@ -5,6 +5,10 @@ import { motion, useScroll, useTransform, AnimatePresence, MotionValue } from "f
 import { Send, MessageCircle, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { gazetaDetailRoutes, gazetaNicheLandingRoutes } from "@/constants/gazetaRoutes";
+import { l2DirectionConfigs } from "@/constants/l2DirectionConfigs";
+import type { L2ServiceItem } from "@/components/l2-direction/types";
+import { droneServiceItems, type DroneServiceItem } from "@/components/drone/droneServicesData";
+import { realEstateServiceItems, type RealEstateServiceItem } from "@/components/real-estate-service/realEstateServicesData";
 
 const {
     aiContent,
@@ -294,9 +298,11 @@ const STICKY_TOP = `${STICKY_TOP_PX}px`;
 const STICKY_HEIGHT = `calc(100vh - ${STICKY_TOP_PX}px)`;
 
 type ServiceItem = {
+    slug?: string;
     title?: string;
     tag?: string;
     tagAccent?: boolean;
+    featured?: boolean;
     variant?: "all-services";
     desc: string;
     link: string;
@@ -333,6 +339,75 @@ type StackCardProps = {
     scrollYProgress: MotionValue<number>;
     totalSteps: number;
 };
+
+const toStackServiceFromL2 = (service: L2ServiceItem, fallbackLink: string): ServiceItem => ({
+    slug: service.slug,
+    title: service.title,
+    desc: service.description,
+    link: service.primaryHref ?? fallbackLink,
+    img: service.image,
+    category: service.category,
+    price: service.price,
+    primaryCtaLabel: service.primaryCtaLabel,
+    cta: service.primaryCtaLabel,
+    tag: service.tag,
+    featured: service.featured,
+});
+
+const toStackServiceFromDrone = (service: DroneServiceItem): ServiceItem => ({
+    slug: service.slug,
+    title: service.title,
+    desc: service.description,
+    link: service.primaryHref,
+    img: service.image,
+    category: service.category,
+    price: service.price,
+    primaryCtaLabel: service.primaryCtaLabel,
+    cta: service.primaryCtaLabel,
+    tag: service.tag,
+    featured: service.featured,
+});
+
+const toStackServiceFromRealEstate = (service: RealEstateServiceItem): ServiceItem => ({
+    slug: service.slug,
+    title: service.title,
+    desc: service.description,
+    link: service.primaryHref ?? "/real-estate-service",
+    img: service.image,
+    category: service.category,
+    price: service.price,
+    primaryCtaLabel: service.primaryCtaLabel,
+    cta: service.primaryCtaLabel,
+    tag: service.tag,
+    featured: service.featured,
+});
+
+const l2NicheToConfigKey: Partial<Record<string, keyof typeof l2DirectionConfigs>> = {
+    "02": "hotelsService",
+    "03": "restaurantsService",
+    "04": "autoService",
+    "05": "tourismService",
+    "06": "clinicsService",
+    "07": "businessService",
+    "08": "businessService",
+};
+
+const canonicalServicesByNicheId: Partial<Record<string, ServiceItem[]>> = {
+    "00": [...droneServiceItems]
+        .sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id))
+        .map(toStackServiceFromDrone),
+    "01": [...realEstateServiceItems]
+        .sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id))
+        .map(toStackServiceFromRealEstate),
+};
+
+for (const [nicheId, l2Key] of Object.entries(l2NicheToConfigKey)) {
+    if (!l2Key) continue;
+    const fallbackLink = gazetaNicheLandingRoutes[nicheId] ?? "/gazeta";
+    canonicalServicesByNicheId[nicheId] = l2DirectionConfigs[l2Key].data.services.map((service) =>
+        toStackServiceFromL2(service, fallbackLink)
+    );
+}
 
 const MaybeDebugWrapper = ({
     enabled,
@@ -490,9 +565,11 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
     const showDebugOverlays = !isAerialScreen;
     const screenLink = gazetaNicheLandingRoutes[niche.id];
     const allServicesCard = buildAllServicesCard(niche);
+    const sourceServices = canonicalServicesByNicheId[niche.id] ?? niche.detailedContent?.services ?? [];
+    const limitedServices = sourceServices.slice(0, 5);
     const services = niche.detailedContent
         ? [
-            ...niche.detailedContent.services,
+            ...limitedServices,
             ...(allServicesCard ? [allServicesCard] : []),
         ]
         : [];
@@ -632,8 +709,8 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                                         const cardTag = svc.tag || suggestedCardDetails.tag;
                                         const cardTagAccent = svc.tagAccent ?? suggestedCardDetails.tagAccent ?? false;
                                         const cardImage = svc.img || niche.img;
-                                        const isClinicL2PreviewCard =
-                                            niche.id === "06" && svc.title === "Имиджевое видео клиники" && !isAllServicesCard;
+                                        const cardSlug = svc.slug || (svc.title ? svc.title.toLowerCase().replace(/[^a-zа-я0-9]+/gi, "-") : `card-${niche.id}-${i}`);
+                                        const isExternalServiceLink = isExternalHref(svc.link);
                                         const cardEyebrow = svc.eyebrow || suggestedCardDetails.eyebrow || niche.title;
                                         const cardMeta = svc.meta || suggestedCardDetails.meta || (isAllServicesCard ? "Вся страница направления" : "Форматы и детали");
                                         const cardCta = svc.cta || suggestedCardDetails.cta || (isAllServicesCard ? "Открыть страницу" : "Подробнее");
@@ -657,8 +734,6 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                                                 : "min-h-[220px] xl:min-h-[132px]"
                                             : "min-h-[220px] xl:min-h-[238px]";
                                         const cardClassName = `relative overflow-hidden border transition-all group backdrop-blur-md flex flex-col justify-between h-full hover:-translate-y-1 rounded-[24px] ${cardMinHeightClassName} ${cardGridClassName} ${cardSurfaceClassName} ${cardFrameClassName} hover:border-[#D4AF37]/85`;
-                                        const l2PreviewCardClassName =
-                                            "bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col h-full";
                                         const cardBody = (
                                             <>
                                                 {cardImage && (
@@ -704,18 +779,47 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                                                 </div>
                                             </>
                                         );
-                                        const l2PreviewCardBody = (
+                                        const servicePageParityCardClassName = `service-card-target scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col h-full ${svc.featured ? 'gold-glow border-[#D4A017]/50' : ''}`;
+                                        const servicePageParityCardStyle = svc.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : {};
+                                        const servicePageParityCardBody = (
                                             <>
                                                 <div className="h-40 bg-neutral-800 overflow-hidden relative">
-                                                    <img
-                                                        src={cardImage}
-                                                        alt={svc.title || niche.title}
-                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-50 group-hover:opacity-80"
-                                                    />
+                                                    {isExternalServiceLink ? (
+                                                        <a href={svc.link} target="_blank" rel="noreferrer" className="block h-full">
+                                                            <img
+                                                                src={cardImage}
+                                                                alt={svc.title || niche.title}
+                                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-50 group-hover:opacity-80"
+                                                            />
+                                                        </a>
+                                                    ) : (
+                                                        <Link href={svc.link} className="block h-full">
+                                                            <img
+                                                                src={cardImage}
+                                                                alt={svc.title || niche.title}
+                                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-50 group-hover:opacity-80"
+                                                            />
+                                                        </Link>
+                                                    )}
+                                                    {svc.tag && (
+                                                        <div className="absolute top-4 left-4 flex gap-2">
+                                                            <span className={`px-2 py-1 rounded text-[10px] font-bold ${svc.tag === 'HOT' ? 'bg-[#D4A017] text-black' : 'bg-black/50 text-white backdrop-blur'}`}>
+                                                                {svc.tag}
+                                                            </span>
+                                                        </div>
+                                                    )}
                                                 </div>
                                                 <div className="px-5 pt-5 pb-4 flex-grow flex flex-col">
-                                                    <h3 className="text-lg font-bold mb-1 text-[#D4A017]">
-                                                        {svc.title}
+                                                    <h3 className={`text-lg font-bold mb-1 ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`}>
+                                                        {isExternalServiceLink ? (
+                                                            <a href={svc.link} target="_blank" rel="noreferrer" className="hover:text-[#D4A017] transition-colors">
+                                                                {svc.title}
+                                                            </a>
+                                                        ) : (
+                                                            <Link href={svc.link} className="hover:text-[#D4A017] transition-colors">
+                                                                {svc.title}
+                                                            </Link>
+                                                        )}
                                                     </h3>
                                                     {svc.category ? (
                                                         <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-2">
@@ -730,12 +834,23 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                                                             </div>
                                                         ) : null}
                                                         <div className="flex gap-3">
-                                                            <Link
-                                                                href={svc.link}
-                                                                className="flex-1 py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center"
-                                                            >
-                                                                {svc.primaryCtaLabel ?? "Подробнее"}
-                                                            </Link>
+                                                            {isExternalServiceLink ? (
+                                                                <a
+                                                                    href={svc.link}
+                                                                    target="_blank"
+                                                                    rel="noreferrer"
+                                                                    className="flex-1 py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center"
+                                                                >
+                                                                    {svc.primaryCtaLabel ?? "Подробнее"}
+                                                                </a>
+                                                            ) : (
+                                                                <Link
+                                                                    href={svc.link}
+                                                                    className="flex-1 py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center"
+                                                                >
+                                                                    {svc.primaryCtaLabel ?? "Подробнее"}
+                                                                </Link>
+                                                            )}
                                                             <a
                                                                 href="#contact"
                                                                 className="flex-1 py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center"
@@ -748,10 +863,14 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                                             </>
                                         );
                                         return (
-                                            <MaybeDebugWrapper enabled={showDebugOverlays} key={svc.title || svc.tag} id={serviceId} label={`Service Card: ${svc.title || svc.tag}`} className={cardGridClassName || undefined}>
-                                                {isClinicL2PreviewCard ? (
-                                                    <article className={l2PreviewCardClassName}>
-                                                        {l2PreviewCardBody}
+                                            <MaybeDebugWrapper enabled={showDebugOverlays} key={cardSlug} id={serviceId} label={`Service Card: ${svc.title || svc.tag}`} className={cardGridClassName || undefined}>
+                                                {!isAllServicesCard ? (
+                                                    <article
+                                                        id={`service-${cardSlug}`}
+                                                        className={servicePageParityCardClassName}
+                                                        style={servicePageParityCardStyle}
+                                                    >
+                                                        {servicePageParityCardBody}
                                                     </article>
                                                 ) : isExternalHref(svc.link) ? (
                                                     <a href={svc.link} target="_blank" rel="noreferrer" className={cardClassName}>

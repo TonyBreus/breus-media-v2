@@ -7,7 +7,7 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: 03e19bc
+- Последний кодовый коммит: edb303d
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Цены — проверены, исправлены 3 нарушения матрицы  
@@ -26,6 +26,10 @@
 ✅ /gazeta: убрано перекрытие sticky-карточек под строкой `#209` (offset выровнен)
 ✅ /gazeta: добавлен жёсткий safeguard — `showTickers={false}` в `SmartHeader` на landing
 ✅ `DebugWrapper`: исправлен production-эффект — при `NEXT_PUBLIC_DEBUG_MODE=false` теперь сохраняются `className/style` (layout не “плывёт” относительно debug-режима)
+✅ /gazeta: карточки в `NichesStack` для `00–08` переключены на реальные источники L2/Drone/RealEstate (вместо ручного хаотичного массива)
+✅ /gazeta/[slug]: карточки для `real-estate` переключены на `realEstateServiceItems`; для L2-слуг убран лимит `slice(0, 6)`
+✅ /gazeta: введён лимит карточек в стеке — максимум `8` на секцию (`7` услуг + `Все услуги`)
+✅ /gazeta: для секции `01` (Недвижимость) карточки визуально приведены к дизайну `RealEstateServicesStitch`
 
 ## ВАЖНОЕ ТЕХСОСТОЯНИЕ НА СЕЙЧАС
 - Фиксы по `gazeta` подтверждены локально (build + визуальная проверка).
@@ -41,6 +45,25 @@
   - фикс: в non-debug режиме `DebugWrapper` рендерит обычный `<div>` при наличии `className/style`;
   - проверка: `NEXT_PUBLIC_DEBUG_MODE=false PORT=3011 npm run dev` + визуальная проверка `/gazeta`;
   - `npm run build` после фикса — OK.
+- Деплой 27.03.2026 выполнен после явной команды `DEPLOY NOW`:
+  - commit: `edb303d` (`fix(gazeta): preserve header layout in non-debug mode`);
+  - live `/gazeta` подтверждён с новым HTML-признаком: `<div class="flex-1"><a ...>` в левой секции header.
+- 27.03.2026: выполнена инициализация карточек Gazeta из настоящих источников:
+  - `00`: `droneServiceItems` (`components/drone/droneServicesData.ts`);
+  - `01`: `realEstateServiceItems` (`components/real-estate-service/realEstateServicesData.ts`);
+  - `02–08`: `l2DirectionConfigs` (`constants/l2DirectionConfigs.ts`);
+  - сборка `npm run build` после изменений — OK.
+- 27.03.2026: refinement по запросу UX:
+  - глобально ограничено количество карточек в `NichesStack` до `7 + 1` (all services);
+  - для `01` применён visual-parity с карточками из `RealEstateServicesStitch` (изображение, бейджи, типографика, CTA-блоки);
+  - быстрый HTML-check локально: `service-card-target` на `/gazeta` = `7` (реал-эстейт сервис-карточки без карточки “Все услуги”).
+- 27.03.2026: visual-parity расширен на все секции `00–08`:
+  - все сервисные карточки в `NichesStack` рендерятся в стиле service pages (`service-card-target`, image/header/category/description/price/CTA);
+  - лимит подтверждён по DOM-check (локально `/gazeta`):
+    - `00`: `7 + 1`, `01`: `7 + 1`, `02`: `6 + 1`, `03`: `7 + 1`, `04`: `7 + 1`, `05`: `7 + 1`, `06`: `7 + 1`, `07`: `6 + 1`, `08`: `6 + 1`.
+- 27.03.2026: финальный UX-лимит по карточкам на `/gazeta` изменён на `5 + 1` для всех секций `00–08`:
+  - `5` сервисных карточек (первые по порядку из source-of-truth) + `1` карточка `Все услуги`;
+  - DOM-check подтверждает по всем секциям: `serviceCards=5`, `totalItems=6`.
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 

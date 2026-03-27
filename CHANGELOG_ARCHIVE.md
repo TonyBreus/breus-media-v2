@@ -69,7 +69,7 @@ Append-only архив изменений. Старые записи не уда
 - Внесён точечный фикс, чтобы production-режим повторял корректный layout из debug-режима.
 
 ### Commits
-- `N/A` — изменения подготовлены локально (деплой не выполнялся).
+- `edb303d` — fix(gazeta): preserve header layout in non-debug mode
 
 ### Technical Notes
 - Корень проблемы: `DebugWrapper` в non-debug режиме возвращал `Fragment`, из-за чего терялись `className/style` у обёрток.
@@ -82,7 +82,127 @@ Append-only архив изменений. Старые записи не уда
   - `npm run build` — успешно.
 
 ### Release Notes
+- Статус: `deployed`.
+- Деплой: выполнен после команды `DEPLOY NOW` (push `main` -> Vercel auto deploy).
+- Post-deploy check: live `/gazeta` отдаёт обновлённый header markup с `flex-1` контейнером в левой секции.
+
+---
+
+## 2026-03-27 (Gazeta Cards -> L2 Source Of Truth)
+### Session Summary
+- Выполнена инициализация карточек Gazeta из реальных L2-источников вместо ручного/хаотичного массива.
+- Обновлены оба контекста: основной `/gazeta` (stack cards `00–08`) и внутренние `/gazeta/[slug]`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без нового деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлены адаптеры данных из:
+    - `droneServiceItems` для ниши `00`,
+    - `realEstateServiceItems` для ниши `01`,
+    - `l2DirectionConfigs` для ниш `02–08`;
+  - карточки в `Card` теперь берутся из `canonicalServicesByNicheId` (source of truth), а не из вручную вшитого массива.
+- `app/gazeta/[slug]/page.tsx`:
+  - для slug `real-estate` добавлен источник `realEstateServiceItems`,
+  - для L2-источников убран искусственный лимит `slice(0, 6)` — теперь рендерится полный набор доступных услуг.
+- `npm run build` — успешно.
+
+### Release Notes
 - Статус: `local fix ready`.
+- Деплой: не выполнялся в этой сессии (ожидается отдельная явная команда, если нужно выкатить).
+
+---
+
+## 2026-03-27 (Gazeta 01 Visual Parity + 7+1 Card Cap)
+### Session Summary
+- По запросу UX донастроен `NichesStack`: максимум 8 карточек на секцию (`7` услуг + `Все услуги`).
+- Для секции `01` (Недвижимость) перенесён визуальный паттерн карточек из `RealEstateServicesStitch`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без нового деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - `sourceServices.slice(0, 7)` перед добавлением карточки `Все услуги`;
+  - добавлен специализированный рендер карточки для `niche.id === "01"` с layout/className, повторяющими `RealEstateServicesStitch`:
+    - image block,
+    - badge/tag,
+    - title/category/description/price,
+    - CTA (`Подробнее` + `Заказать`).
+  - `ServiceItem` расширен полем `featured`; в адаптерах прокинуты `tag/featured`.
+- Проверки:
+  - `npm run build` — успешно;
+  - локальный HTML-check `/gazeta`: `service-card-target` = `7` (Real Estate сервисные карточки; 8-я карточка “Все услуги” отдельно).
+
+### Release Notes
+- Статус: `local refinement ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`, если нужно выкатывать).
+
+---
+
+## 2026-03-27 (Gazeta 00-08 Full Service-Card Parity)
+### Session Summary
+- Visual-parity карточек распространён с `01` на все секции `00–08` в `NichesStack`.
+- Сервисные карточки на Gazeta теперь повторяют структуру/визуал карточек service pages по всем нишам.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без нового деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - `ServiceItem` расширен полями `slug`, `featured`;
+  - адаптеры источников (`Drone`, `RealEstate`, `L2`) теперь прокидывают `slug/tag/featured`;
+  - для всех non-`all-services` карточек включён единый service-page parity рендер:
+    - `service-card-target` wrapper,
+    - image area + optional tag,
+    - title/category/description/price,
+    - CTA блок (`Подробнее` + `Заказать`),
+    - поддержка internal/external href.
+- DOM-check (`/gazeta`, local):
+  - `00`: service cards `7`, total `8`;
+  - `01`: service cards `7`, total `8`;
+  - `02`: service cards `6`, total `7`;
+  - `03`: service cards `7`, total `8`;
+  - `04`: service cards `7`, total `8`;
+  - `05`: service cards `7`, total `8`;
+  - `06`: service cards `7`, total `8`;
+  - `07`: service cards `6`, total `7`;
+  - `08`: service cards `6`, total `7`.
+- `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-27 (Gazeta Final Card Cap 5+1)
+### Session Summary
+- По финальному UX-решению ограничение карточек на `/gazeta` обновлено с `7+1` до `5+1` для всех секций `00–08`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без нового деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - лимит сервисных карточек изменён на `sourceServices.slice(0, 5)`;
+  - карточка `Все услуги` остаётся шестой.
+- Проверки:
+  - `npm run build` — успешно;
+  - Playwright DOM-check (`/gazeta`, local):
+    - `00`: `5 + 1`,
+    - `01`: `5 + 1`,
+    - `02`: `5 + 1`,
+    - `03`: `5 + 1`,
+    - `04`: `5 + 1`,
+    - `05`: `5 + 1`,
+    - `06`: `5 + 1`,
+    - `07`: `5 + 1`,
+    - `08`: `5 + 1`.
+
+### Release Notes
+- Статус: `local ready`.
 - Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
 
 ---
