@@ -1,8 +1,8 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DebugWrapper } from "../debug/DebugWrapper";
 import { motion, useScroll, useTransform, AnimatePresence, MotionValue } from "framer-motion";
-import { Send, MessageCircle, ArrowUpRight } from "lucide-react";
+import { Send, MessageCircle, ArrowUpRight, ArrowDown, ChevronUp, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { gazetaDetailRoutes, gazetaNicheLandingRoutes } from "@/constants/gazetaRoutes";
 import { l2DirectionConfigs } from "@/constants/l2DirectionConfigs";
@@ -295,6 +295,17 @@ const niches = [
     },
 ];
 
+type StackStepNavItem = {
+    id: string;
+    title: string;
+};
+
+const stackStepNavItems: StackStepNavItem[] = [
+    ...niches.map((niche) => ({ id: niche.id, title: niche.title })),
+    { id: "09", title: "Частые вопросы" },
+    { id: "10", title: "Форма связи" },
+];
+
 const DEFAULT_STICKY_TOP_PX = 184;
 const PORTRAIT_STICKY_TOP_PX = 104;
 const LANDSCAPE_STICKY_TOP_PX = 84;
@@ -344,6 +355,7 @@ type StackCardProps = {
     stickyHeight: string;
     isMobileLandscape: boolean;
     isMobilePortrait: boolean;
+    onNavigateToStep: (targetIndex: number) => void;
 };
 
 const toStackServiceFromL2 = (service: L2ServiceItem, fallbackLink: string): ServiceItem => ({
@@ -564,7 +576,7 @@ const isExternalHref = (href: string) =>
     href.startsWith("mailto:") ||
     href.startsWith("tel:");
 
-const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeight, isMobileLandscape, isMobilePortrait }: StackCardProps) => {
+const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeight, isMobileLandscape, isMobilePortrait, onNavigateToStep }: StackCardProps) => {
     const contentScrollRef = useRef<HTMLDivElement | null>(null);
     const lastTouchYRef = useRef<number | null>(null);
     const [innerScrollProgress, setInnerScrollProgress] = useState(0);
@@ -645,16 +657,20 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         ? "grid-cols-4 gap-2 md:grid-cols-4"
         : `grid-cols-2 gap-2 sm:grid-cols-2 ${servicesGridClassName}`;
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
-    const nextNiche = index < niches.length - 1 ? niches[index + 1] : null;
+    const prevStep = index > 0 ? stackStepNavItems[index - 1] : null;
+    const nextStep = stackStepNavItems[index + 1] ?? null;
     const sectionHeaderClassName = isMobileLandscape
         ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold text-white z-20 absolute top-0 left-0 shadow-lg"
         : isMobilePortrait
         ? "h-8 w-full bg-zinc-900 border-b border-white/20 flex items-center px-4 uppercase tracking-[0.18em] text-[10px] font-bold text-white z-20 absolute top-0 left-0 shadow-lg"
         : "h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold text-white z-20 absolute top-0 left-0 shadow-lg";
-    const sectionHeaderInteractiveClassName = `${sectionHeaderClassName} cursor-pointer hover:bg-zinc-800 transition-colors`;
+    const sectionHeaderLabelClassName = "min-w-0 flex items-center";
+    const sectionHeaderLabelInteractiveClassName = `${sectionHeaderLabelClassName} cursor-pointer hover:text-[#D4AF37] transition-colors`;
     const sectionBodyPaddingTopClassName = isMobileLandscape ? "pt-6" : isMobilePortrait ? "pt-8" : "pt-12";
     const sectionHeaderIndexClassName = isMobileCompactTop ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4";
-    const showNextIndustryHint = isMobileCompactTop && Boolean(nextNiche) && innerScrollProgress > 0.88;
+    const showTopBackButton = isMobileCompactTop && Boolean(prevStep);
+    const showBottomNextButton = isMobileCompactTop && Boolean(nextStep);
+    const topStaticNavOffsetClassName = isMobileLandscape ? "top-7" : "top-9";
 
     const syncInnerScrollProgress = (el: HTMLDivElement) => {
         const maxScrollTop = Math.max(0, el.scrollHeight - el.clientHeight);
@@ -729,8 +745,58 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         lastTouchYRef.current = null;
     };
 
+    useEffect(() => {
+        const el = contentScrollRef.current;
+        if (!el) return;
+        syncInnerScrollProgress(el);
+    }, [niche.id, isMobileCompactTop]);
+
+    const handlePreviousIndustryClick = () => {
+        if (!prevStep) return;
+        onNavigateToStep(index - 1);
+    };
+
+    const handleNextIndustryClick = () => {
+        if (!nextStep) return;
+        onNavigateToStep(index + 1);
+    };
+
+    const handleScrollControl = (direction: "up" | "down") => {
+        const el = contentScrollRef.current;
+        if (!el) return;
+
+        const maxScrollTop = Math.max(0, el.scrollHeight - el.clientHeight);
+        const step = isMobileLandscape ? 150 : 210;
+
+        if (direction === "up") {
+            if (el.scrollTop > 2) {
+                el.scrollTo({
+                    top: Math.max(0, el.scrollTop - step),
+                    behavior: "smooth",
+                });
+                syncInnerScrollProgress(el);
+                return;
+            }
+
+            handlePreviousIndustryClick();
+            return;
+        }
+
+        if (el.scrollTop < maxScrollTop - 2) {
+            el.scrollTo({
+                top: Math.min(maxScrollTop, el.scrollTop + step),
+                behavior: "smooth",
+            });
+            syncInnerScrollProgress(el);
+            return;
+        }
+
+        handleNextIndustryClick();
+    };
+
     return (
         <motion.div
+            id={`niche-step-${niche.id}`}
             style={{
                 y: index === 0 ? 0 : y,
                 zIndex: index,
@@ -741,19 +807,19 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         >
             {/* Card Header (Accordion Tab) */}
             <MaybeDebugWrapper enabled={showDebugOverlays} id={index === 0 ? 999 : 8000 + index} label={`Niche Header Row: ${niche.id}`}>
-                {screenLink ? (
-                    <Link href={screenLink}>
-                        <div className={sectionHeaderInteractiveClassName}>
+                <div className={sectionHeaderClassName}>
+                    {screenLink ? (
+                        <Link href={screenLink} className={sectionHeaderLabelInteractiveClassName}>
                             <span className={sectionHeaderIndexClassName}>{niche.id}</span>
-                            <span>{niche.title}</span>
+                            <span className="truncate">{niche.title}</span>
+                        </Link>
+                    ) : (
+                        <div className={sectionHeaderLabelClassName}>
+                            <span className={sectionHeaderIndexClassName}>{niche.id}</span>
+                            <span className="truncate">{niche.title}</span>
                         </div>
-                    </Link>
-                ) : (
-                    <div className={sectionHeaderClassName}>
-                        <span className={sectionHeaderIndexClassName}>{niche.id}</span>
-                        <span>{niche.title}</span>
-                    </div>
-                )}
+                    )}
+                </div>
             </MaybeDebugWrapper>
 
             {/* Card Body (Image) */}
@@ -770,6 +836,59 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/58 to-transparent" /> {/* Darkened background slightly for better text readability */}
                     </div>
                 </MaybeDebugWrapper>
+
+                {isMobileCompactTop && (
+                    <div className="absolute left-1 top-1/2 z-[72] -translate-y-1/2">
+                        <div className="flex flex-col items-center gap-2 rounded-full border border-white/25 bg-black/70 px-1.5 py-2 shadow-[0_10px_24px_rgba(0,0,0,0.35)] backdrop-blur-md">
+                            <button
+                                type="button"
+                                onClick={() => handleScrollControl("up")}
+                                className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 bg-zinc-900/80 text-white hover:border-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors"
+                                aria-label={`Прокрутить вверх в секции ${niche.id} ${niche.title}`}
+                            >
+                                <ChevronUp className="h-4 w-4" />
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => handleScrollControl("down")}
+                                className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 bg-zinc-900/80 text-white hover:border-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors"
+                                aria-label={`Прокрутить вниз в секции ${niche.id} ${niche.title}`}
+                            >
+                                <ChevronDown className="h-4 w-4" />
+                            </button>
+                        </div>
+                    </div>
+                )}
+                {showTopBackButton && prevStep && (
+                    <div className={`absolute ${topStaticNavOffsetClassName} left-0 right-0 z-[73] flex justify-center`}>
+                        <button
+                            type="button"
+                            onClick={handlePreviousIndustryClick}
+                            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
+                            aria-label={`Перейти к секции ${prevStep.id} ${prevStep.title}`}
+                        >
+                            <ArrowDown className="h-3 w-3 -rotate-180 text-[#D4AF37]" />
+                            <span className="text-white/60">Назад</span>
+                            <span className="text-[#D4AF37]">{prevStep.id}</span>
+                            <span className="text-white">{prevStep.title}</span>
+                        </button>
+                    </div>
+                )}
+                {showBottomNextButton && nextStep && (
+                    <div className="absolute bottom-2 left-0 right-0 z-[73] flex justify-center">
+                        <button
+                            type="button"
+                            onClick={handleNextIndustryClick}
+                            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
+                            aria-label={`Перейти к секции ${nextStep.id} ${nextStep.title}`}
+                        >
+                            <span className="text-white/60">Далее</span>
+                            <span className="text-[#D4AF37]">{nextStep.id}</span>
+                            <span className="text-white">{nextStep.title}</span>
+                            <ArrowDown className="h-3 w-3 text-[#D4AF37]" />
+                        </button>
+                    </div>
+                )}
 
                 {niche.detailedContent ? (
                     <div
@@ -890,11 +1009,11 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         const servicePageParityCardStyle = svc.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : {};
                                         const hideHighlightedPriceLine = serviceId === 8410 || serviceId === 8411;
                                         const servicePageImageHeightClassName = isMobileLandscape
-                                            ? "h-20"
-                                            : "h-28 sm:h-40";
+                                            ? "h-16"
+                                            : "h-24 sm:h-36";
                                         const servicePageBodyClassName = isMobileLandscape
-                                            ? "px-2.5 pt-2 pb-2 flex-grow flex flex-col"
-                                            : "px-3 pt-3 pb-3 sm:px-5 sm:pt-5 sm:pb-4 flex-grow flex flex-col";
+                                            ? "px-2 pt-1.5 pb-1.5 flex-grow flex flex-col"
+                                            : "px-2.5 pt-2.5 pb-2.5 sm:px-4 sm:pt-4 sm:pb-3.5 flex-grow flex flex-col";
                                         const servicePageTitleClassName = isMobileLandscape
                                             ? `text-[11px] font-bold leading-tight mb-1 ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`
                                             : `text-sm sm:text-lg font-bold mb-1 ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`;
@@ -1011,15 +1130,6 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                     })}
                                 </div>
 
-                                {showNextIndustryHint && nextNiche && (
-                                    <div className="pointer-events-none sticky bottom-1 z-30 mt-4 flex justify-center">
-                                        <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md">
-                                            <span className="text-white/60">Далее</span>
-                                            <span className="text-[#D4AF37]">{nextNiche.id}</span>
-                                            <span className="text-white">{nextNiche.title}</span>
-                                        </div>
-                                    </div>
-                                )}
                             </div>
                         </MaybeDebugWrapper>
                     </div>
@@ -1117,7 +1227,8 @@ const FAQCard = ({
     stickyTop,
     stickyHeight,
     isMobileLandscape,
-    isMobilePortrait
+    isMobilePortrait,
+    onNavigateToStep
 }: {
     index: number,
     scrollYProgress: MotionValue<number>,
@@ -1125,9 +1236,14 @@ const FAQCard = ({
     stickyTop: string,
     stickyHeight: string,
     isMobileLandscape: boolean,
-    isMobilePortrait: boolean
+    isMobilePortrait: boolean,
+    onNavigateToStep: (targetIndex: number) => void
 }) => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
+    const prevStep = index > 0 ? stackStepNavItems[index - 1] : null;
+    const nextStep = stackStepNavItems[index + 1] ?? null;
+    const topStaticNavOffsetClassName = isMobileLandscape ? "top-7" : "top-9";
 
     const stepSize = 1 / totalSteps;
     const start = index * stepSize;
@@ -1149,8 +1265,19 @@ const FAQCard = ({
         }))
     };
 
+    const handlePrevClick = () => {
+        if (!prevStep) return;
+        onNavigateToStep(index - 1);
+    };
+
+    const handleNextClick = () => {
+        if (!nextStep) return;
+        onNavigateToStep(index + 1);
+    };
+
     return (
         <motion.div
+            id="niche-step-09"
             style={{ y, zIndex: 90, top: stickyTop, height: stickyHeight }}
             className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
         >
@@ -1169,6 +1296,36 @@ const FAQCard = ({
                 <span className={isMobileLandscape || isMobilePortrait ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4"}>09</span>
                 <span>Частые вопросы</span>
             </div>
+            {isMobileCompactTop && prevStep && (
+                <div className={`absolute ${topStaticNavOffsetClassName} left-0 right-0 z-[73] flex justify-center`}>
+                    <button
+                        type="button"
+                        onClick={handlePrevClick}
+                        className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
+                        aria-label={`Перейти к секции ${prevStep.id} ${prevStep.title}`}
+                    >
+                        <ArrowDown className="h-3 w-3 -rotate-180 text-[#D4AF37]" />
+                        <span className="text-white/60">Назад</span>
+                        <span className="text-[#D4AF37]">{prevStep.id}</span>
+                        <span className="text-white">{prevStep.title}</span>
+                    </button>
+                </div>
+            )}
+            {isMobileCompactTop && nextStep && (
+                <div className="absolute bottom-2 left-0 right-0 z-[73] flex justify-center">
+                    <button
+                        type="button"
+                        onClick={handleNextClick}
+                        className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
+                        aria-label={`Перейти к секции ${nextStep.id} ${nextStep.title}`}
+                    >
+                        <span className="text-white/60">Далее</span>
+                        <span className="text-[#D4AF37]">{nextStep.id}</span>
+                        <span className="text-white">{nextStep.title}</span>
+                        <ArrowDown className="h-3 w-3 text-[#D4AF37]" />
+                    </button>
+                </div>
+            )}
 
             {/* FAQ Content */}
             <div className="flex-1 overflow-y-auto overscroll-y-contain touch-pan-y px-6 py-10 md:px-12 md:py-16 max-w-4xl mx-auto w-full custom-scrollbar">
@@ -1198,7 +1355,8 @@ const FormCard = ({
     stickyTop,
     stickyHeight,
     isMobileLandscape,
-    isMobilePortrait
+    isMobilePortrait,
+    onNavigateToStep
 }: {
     index: number,
     scrollYProgress: MotionValue<number>,
@@ -1206,10 +1364,14 @@ const FormCard = ({
     stickyTop: string,
     stickyHeight: string,
     isMobileLandscape: boolean,
-    isMobilePortrait: boolean
+    isMobilePortrait: boolean,
+    onNavigateToStep: (targetIndex: number) => void
 }) => {
     const [method, setMethod] = useState("Telegram");
     const [services, setServices] = useState<string[]>([]);
+    const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
+    const prevStep = index > 0 ? stackStepNavItems[index - 1] : null;
+    const topStaticNavOffsetClassName = isMobileLandscape ? "top-7" : "top-9";
 
     const stepSize = 1 / totalSteps;
     const start = index * stepSize;
@@ -1224,12 +1386,18 @@ const FormCard = ({
         );
     };
 
+    const handlePrevClick = () => {
+        if (!prevStep) return;
+        onNavigateToStep(index - 1);
+    };
+
     return (
         <motion.div
-            id="contact"
+            id="niche-step-10"
             style={{ y, zIndex: 100, top: stickyTop, height: stickyHeight }}
             className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
         >
+            <div id="contact" className="absolute top-0" />
             <div className={isMobileLandscape
                 ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold shrink-0 z-20"
                 : isMobilePortrait
@@ -1238,6 +1406,21 @@ const FormCard = ({
                 <span className={isMobileLandscape || isMobilePortrait ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4"}>10</span>
                 <span>Форма связи</span>
             </div>
+            {isMobileCompactTop && prevStep && (
+                <div className={`absolute ${topStaticNavOffsetClassName} left-0 right-0 z-[73] flex justify-center`}>
+                    <button
+                        type="button"
+                        onClick={handlePrevClick}
+                        className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
+                        aria-label={`Перейти к секции ${prevStep.id} ${prevStep.title}`}
+                    >
+                        <ArrowDown className="h-3 w-3 -rotate-180 text-[#D4AF37]" />
+                        <span className="text-white/60">Назад</span>
+                        <span className="text-[#D4AF37]">{prevStep.id}</span>
+                        <span className="text-white">{prevStep.title}</span>
+                    </button>
+                </div>
+            )}
 
             <div className="flex-1 overflow-y-auto overscroll-y-contain touch-pan-y px-6 py-12 md:px-12 md:py-16 max-w-5xl mx-auto w-full custom-scrollbar">
                 <DebugWrapper id={8942} label="Form Title">
@@ -1324,6 +1507,42 @@ export function NichesStack() {
         offset: ["start start", "end end"]
     });
 
+    const scrollToNicheStep = (targetIndex: number) => {
+        if (typeof window === "undefined") return;
+        const clampedIndex = Math.max(0, Math.min(totalSteps - 1, targetIndex));
+        const targetStep = stackStepNavItems[clampedIndex];
+        if (!targetStep) return;
+        const targetEl = document.getElementById(`niche-step-${targetStep.id}`);
+        const containerEl = containerRef.current;
+        if (!targetEl || !containerEl) return;
+
+        const alignToSticky = (behavior: ScrollBehavior) => {
+            const delta = targetEl.getBoundingClientRect().top - stickyTopPx;
+            if (Math.abs(delta) <= 1) return true;
+
+            window.scrollTo({
+                top: Math.max(0, window.scrollY + delta),
+                behavior,
+            });
+            return false;
+        };
+
+        const containerTop = containerEl.getBoundingClientRect().top + window.scrollY;
+        const coarseTargetY = containerTop + clampedIndex * window.innerHeight + 1;
+        window.scrollTo({
+            top: Math.max(0, coarseTargetY),
+            behavior: "smooth",
+        });
+
+        window.setTimeout(() => {
+            if (!alignToSticky("auto")) {
+                window.setTimeout(() => {
+                    alignToSticky("auto");
+                }, 80);
+            }
+        }, 420);
+    };
+
     return (
         <div ref={containerRef} className="relative w-full bg-black" style={{ height: `${totalSteps * 100}vh` }}>
             {niches.map((niche, index) => (
@@ -1337,6 +1556,7 @@ export function NichesStack() {
                     stickyHeight={stickyHeight}
                     isMobileLandscape={isMobileLandscape}
                     isMobilePortrait={isMobilePortrait}
+                    onNavigateToStep={scrollToNicheStep}
                 />
             ))}
             <FAQCard
@@ -1347,6 +1567,7 @@ export function NichesStack() {
                 stickyHeight={stickyHeight}
                 isMobileLandscape={isMobileLandscape}
                 isMobilePortrait={isMobilePortrait}
+                onNavigateToStep={scrollToNicheStep}
             />
             <FormCard
                 index={niches.length + 1}
@@ -1356,6 +1577,7 @@ export function NichesStack() {
                 stickyHeight={stickyHeight}
                 isMobileLandscape={isMobileLandscape}
                 isMobilePortrait={isMobilePortrait}
+                onNavigateToStep={scrollToNicheStep}
             />
         </div>
     );
