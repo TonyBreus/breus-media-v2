@@ -3,12 +3,28 @@ import { notFound } from "next/navigation";
 import { SmartHeader } from "@/components/gazeta/SmartHeader";
 import { L2DirectionServices } from "@/components/l2-direction/L2DirectionSections";
 import { gazetaCategoryPagesBySlug } from "@/constants/gazetaRoutes";
+import { l2DirectionConfigs } from "@/constants/l2DirectionConfigs";
 import type { L2ServiceItem } from "@/components/l2-direction/types";
 
 type CategoryPageProps = {
     params: Promise<{
         slug: string;
     }>;
+};
+
+// Маппинг gazeta slug → ключ в l2DirectionConfigs
+const slugToL2Config: Partial<Record<string, keyof typeof l2DirectionConfigs>> = {
+    hotels: "hotelsService",
+    restaurants: "restaurantsService",
+    tourism: "tourismService",
+    clinics: "clinicsService",
+    auto: "autoService",
+    it: "businessService",
+    "custom-business": "businessService",
+    "promo-video": "promoVideoService",
+    "ai-content": "aiVisualizationService",
+    reels: "reelsService",
+    "360-tours": "tours360Service",
 };
 
 export async function generateMetadata({ params }: CategoryPageProps) {
@@ -33,18 +49,26 @@ export default async function GazetaDirectionPage({ params }: CategoryPageProps)
         notFound();
     }
 
-    // Map GazetaService → L2ServiceItem (fill required fields with defaults)
-    const l2Services: L2ServiceItem[] = (page.services ?? []).map((s, idx) => ({
-        id: idx + 1,
-        order: idx + 1,
-        slug: s.title.toLowerCase().replace(/[^a-zа-я0-9]+/gi, "-"),
-        title: s.title,
-        category: s.price,
-        description: "",
-        price: s.price,
-        image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=60",
-        primaryHref: s.primaryHref,
-    }));
+    // Берём услуги из l2DirectionConfigs если есть маппинг, иначе fallback на page.services
+    let l2Services: L2ServiceItem[] = [];
+
+    const l2Key = slugToL2Config[slug];
+    if (l2Key) {
+        const config = l2DirectionConfigs[l2Key];
+        l2Services = config.data.services.slice(0, 6) as L2ServiceItem[];
+    } else {
+        l2Services = (page.services ?? []).map((s, idx) => ({
+            id: idx + 1,
+            order: idx + 1,
+            slug: s.title.toLowerCase().replace(/[^a-zа-я0-9]+/gi, "-"),
+            title: s.title,
+            category: s.price,
+            description: "",
+            price: s.price,
+            image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=60",
+            primaryHref: s.primaryHref,
+        }));
+    }
 
     return (
         <main className="min-h-screen bg-black text-white">
