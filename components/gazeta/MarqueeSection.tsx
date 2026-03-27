@@ -16,7 +16,7 @@ const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; 
     const shouldUseHoverPreview = text !== "360° Туры";
 
     const content = (
-        <DebugWrapper id={debugId ?? 0} label={text}>
+        <DebugWrapper id={debugId ?? 0} label={text} className="inline-flex items-center h-full shrink-0">
             <span
                 onMouseEnter={() => {
                     if (shouldUseHoverPreview) {
@@ -28,7 +28,7 @@ const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; 
                         setHoveredService(null);
                     }
                 }}
-                className={`cursor-pointer font-bold uppercase text-[#D4AF37]/70 hover:text-white transition-colors whitespace-nowrap ${compact
+                className={`inline-flex items-center leading-none shrink-0 cursor-pointer font-bold uppercase text-[#D4AF37]/70 hover:text-white transition-colors whitespace-nowrap ${compact
                     ? "px-2 text-[8px] tracking-[0.12em]"
                     : "px-4 md:px-8 text-xs md:text-sm tracking-widest"}`}
             >
@@ -37,7 +37,7 @@ const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; 
         </DebugWrapper>
     );
 
-    return isObj ? <Link href={item.link}>{content}</Link> : content;
+    return isObj ? <Link href={item.link} className="inline-flex items-center h-full shrink-0">{content}</Link> : content;
 };
 
 const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId, compact = false }: { items: TickerItemType[], direction?: "left" | "right", speed?: number, baseId?: number, compact?: boolean }) => {
@@ -47,7 +47,7 @@ const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId, comp
             <div className={`pointer-events-none absolute right-0 top-0 z-10 h-full bg-gradient-to-l from-zinc-950 to-transparent ${compact ? "w-8" : "w-12"}`} />
 
             <motion.div
-                className={`flex ${compact ? "py-0.5" : "py-3.5"}`}
+                className={`flex items-center ${compact ? "py-0.5 min-h-[18px]" : "py-3.5"}`}
                 animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
                 transition={{ repeat: Infinity, ease: "linear", duration: speed }}
             >

@@ -387,6 +387,104 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-27 (Gazeta Ticker Baseline + 209/00 Overlap Tuning)
+### Session Summary
+- Исправлены артефакты мобильного тикера: разная вертикаль текста в строке `#209` и наезд `00` под вторую бегущую строку.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/MarqueeSection.tsx`:
+  - элементы тикера и ссылки переведены в `inline-flex items-center`,
+  - добавлен `leading-none`, `shrink-0`, `items-center` для стабильной базовой линии текста.
+- `components/gazeta/SmartHeader.tsx`:
+  - аналогично выровнены ticker-элементы в шапке для консистентности.
+- `components/gazeta/NichesStack.tsx`:
+  - `PORTRAIT_STICKY_TOP_PX` увеличен до `104` для исключения наезда `00` под `209`.
+- `components/gazeta/FinalFormSection.tsx`:
+  - portrait offset синхронизирован до `104`.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-27 (Gazeta Mobile Step Navigation)
+### Session Summary
+- Для мобильной версии добавлена явная пошаговая навигация по стеку секций, чтобы упростить скролл UX.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен mobile-only навигационный контрол:
+    - `Назад`,
+    - индикатор текущего шага (`00/10 ...`),
+    - `Далее ↓`;
+  - реализован `scrollToStep(...)` с плавным переходом к следующему/предыдущему шагу;
+  - текущий шаг синхронизируется через `useMotionValueEvent(scrollYProgress, ...)`.
+- Цель:
+  - уменьшить фрустрацию от nested-scroll на телефонах,
+  - сохранить визуальный эффект стековых карточек, но добавить понятный способ перехода.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-27 (Gazeta Mobile Step Navigation Rollback)
+### Session Summary
+- По UX-обратной связи step navigation (`Назад / Далее`) отменён: ощущался сложнее и перегружал мобильный сценарий.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - удалены `useMotionValueEvent`-трекер шага, `scrollToStep(...)` и fixed mobile step-контрол.
+- Текущий подход:
+  - возвращён базовый “каскадный” стековый скролл без пошаговой панели.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-27 (Gazeta Mobile Hard Handoff + Inner Scroll Rail)
+### Session Summary
+- Внедрён более интуитивный mobile-скролл: сначала прокрутка контента внутри текущей секции, затем переход к следующей.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен hard handoff для mobile:
+    - `wheel/touch` внутри секции сначала прокручивают внутренний контейнер,
+    - внешний scroll пропускается только когда внутренняя секция дошла до границы;
+  - добавлена внутренняя “скролл-лента” справа (визуал прогресса секции);
+  - добавлен нижний маркер `Далее {id} {title}` при достижении конца внутреннего контента.
+- Цель:
+  - снизить конфликт nested-scroll,
+  - сделать явным, где пользователь сейчас скроллит (внутри секции или между секциями).
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
 ## 2026-03-27 (Gazeta Mobile UX Pack Deployed)
 ### Session Summary
 - Выполнен продакшн-деплой пакета мобильных UX-улучшений для `/gazeta`.
@@ -405,6 +503,29 @@ Append-only архив изменений. Старые записи не уда
 ### Release Notes
 - Статус: `deployed`.
 - Деплой: выполнен после явной команды `DEPLOY NOW` (push `main` -> Vercel auto deploy).
+
+---
+
+## 2026-03-27 (Gazeta Duplicate In-Section Label Cleanup)
+### Session Summary
+- Убрано дублирование названий ниш внутри контент-блоков секций `/gazeta` (пример: повтор `02 Отели` и `04 Автобизнес` внутри той же секции).
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - удалён fallback-показ внутреннего `eyebrow` вида `${niche.id} / ${niche.title}`;
+  - внутренний `eyebrow` теперь рендерится только при наличии `niche.detailedContent.eyebrow`.
+- Результат:
+  - убран визуальный дубль заголовков ниш внутри секции,
+  - освобождено вертикальное пространство для карточек и контента.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
 
 ---
 

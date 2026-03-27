@@ -12,7 +12,7 @@ export function FinalFormSection() {
     const containerRef = useRef<HTMLDivElement>(null);
     const isMobileLandscape = useMobileLandscape();
     const isMobilePortrait = useMobilePortrait();
-    const stickyTopPx = isMobileLandscape ? 84 : isMobilePortrait ? 96 : 160;
+    const stickyTopPx = isMobileLandscape ? 84 : isMobilePortrait ? 104 : 160;
     const stickyHeight = `calc(100vh - ${stickyTopPx}px)`;
 
     const toggleService = (s: string) => {

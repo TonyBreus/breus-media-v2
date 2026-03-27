@@ -296,7 +296,7 @@ const niches = [
 ];
 
 const DEFAULT_STICKY_TOP_PX = 184;
-const PORTRAIT_STICKY_TOP_PX = 96;
+const PORTRAIT_STICKY_TOP_PX = 104;
 const LANDSCAPE_STICKY_TOP_PX = 84;
 
 type ServiceItem = {
@@ -565,6 +565,9 @@ const isExternalHref = (href: string) =>
     href.startsWith("tel:");
 
 const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeight, isMobileLandscape, isMobilePortrait }: StackCardProps) => {
+    const contentScrollRef = useRef<HTMLDivElement | null>(null);
+    const lastTouchYRef = useRef<number | null>(null);
+    const [innerScrollProgress, setInnerScrollProgress] = useState(0);
     const isAerialScreen = niche.id === "00";
     const isAerialCompactScreen = niche.id === "00";
     const isCompactNicheScreen = niche.id !== "00";
@@ -642,6 +645,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         ? "grid-cols-4 gap-2 md:grid-cols-4"
         : `grid-cols-2 gap-2 sm:grid-cols-2 ${servicesGridClassName}`;
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
+    const nextNiche = index < niches.length - 1 ? niches[index + 1] : null;
     const sectionHeaderClassName = isMobileLandscape
         ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold text-white z-20 absolute top-0 left-0 shadow-lg"
         : isMobilePortrait
@@ -650,6 +654,80 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
     const sectionHeaderInteractiveClassName = `${sectionHeaderClassName} cursor-pointer hover:bg-zinc-800 transition-colors`;
     const sectionBodyPaddingTopClassName = isMobileLandscape ? "pt-6" : isMobilePortrait ? "pt-8" : "pt-12";
     const sectionHeaderIndexClassName = isMobileCompactTop ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4";
+    const showNextIndustryHint = isMobileCompactTop && Boolean(nextNiche) && innerScrollProgress > 0.88;
+
+    const syncInnerScrollProgress = (el: HTMLDivElement) => {
+        const maxScrollTop = Math.max(0, el.scrollHeight - el.clientHeight);
+        if (maxScrollTop <= 0) {
+            setInnerScrollProgress(1);
+            return;
+        }
+        const progress = Math.max(0, Math.min(1, el.scrollTop / maxScrollTop));
+        setInnerScrollProgress(progress);
+    };
+
+    const routeDeltaToInnerScroll = (
+        deltaY: number,
+        event: {
+            preventDefault: () => void;
+        }
+    ) => {
+        if (!isMobileCompactTop) return;
+
+        const el = contentScrollRef.current;
+        if (!el) return;
+
+        const maxScrollTop = Math.max(0, el.scrollHeight - el.clientHeight);
+        if (maxScrollTop <= 0) return;
+
+        if (deltaY > 0) {
+            if (el.scrollTop < maxScrollTop - 1) {
+                event.preventDefault();
+                el.scrollTop = Math.min(maxScrollTop, el.scrollTop + deltaY);
+                syncInnerScrollProgress(el);
+            }
+            return;
+        }
+
+        if (deltaY < 0 && el.scrollTop > 1) {
+            event.preventDefault();
+            el.scrollTop = Math.max(0, el.scrollTop + deltaY);
+            syncInnerScrollProgress(el);
+        }
+    };
+
+    const handleInnerScroll = (event: React.UIEvent<HTMLDivElement>) => {
+        syncInnerScrollProgress(event.currentTarget);
+    };
+
+    const handleInnerWheelCapture = (event: React.WheelEvent<HTMLDivElement>) => {
+        routeDeltaToInnerScroll(event.deltaY, event);
+    };
+
+    const handleInnerTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+        if (!isMobileCompactTop) return;
+        lastTouchYRef.current = event.touches[0]?.clientY ?? null;
+    };
+
+    const handleInnerTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+        if (!isMobileCompactTop) return;
+
+        const touchY = event.touches[0]?.clientY;
+        if (typeof touchY !== "number") return;
+
+        if (lastTouchYRef.current === null) {
+            lastTouchYRef.current = touchY;
+            return;
+        }
+
+        const deltaY = lastTouchYRef.current - touchY;
+        routeDeltaToInnerScroll(deltaY, event);
+        lastTouchYRef.current = touchY;
+    };
+
+    const handleInnerTouchEnd = () => {
+        lastTouchYRef.current = null;
+    };
 
     return (
         <motion.div
@@ -694,13 +772,31 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                 </MaybeDebugWrapper>
 
                 {niche.detailedContent ? (
-                    <div className={`absolute inset-0 z-10 text-white overflow-y-auto overscroll-y-contain touch-pan-y custom-scrollbar ${contentPaddingClassName}`}>
+                    <div
+                        ref={contentScrollRef}
+                        onScroll={handleInnerScroll}
+                        onWheelCapture={handleInnerWheelCapture}
+                        onTouchStart={handleInnerTouchStart}
+                        onTouchMove={handleInnerTouchMove}
+                        onTouchEnd={handleInnerTouchEnd}
+                        className={`absolute inset-0 z-10 text-white overflow-y-auto overscroll-y-contain touch-pan-y custom-scrollbar ${contentPaddingClassName}`}
+                    >
+                        {isMobileCompactTop && (
+                            <div className="pointer-events-none absolute right-1 top-12 bottom-6 z-30 flex items-end">
+                                <div className="relative h-full w-[2px] rounded-full bg-white/15 overflow-hidden">
+                                    <div
+                                        className="absolute left-0 right-0 bottom-0 bg-[#D4AF37] transition-[height] duration-150"
+                                        style={{ height: `${Math.max(8, innerScrollProgress * 100)}%` }}
+                                    />
+                                </div>
+                            </div>
+                        )}
                         <MaybeDebugWrapper enabled={showDebugOverlays} id={index === 0 ? 902 : 8300 + index} label={`Detailed Layout: ${niche.title}`}>
                             <div className={contentWrapperClassName}>
                                 <div className={headingBlockClassName}>
-                                    {(niche.detailedContent.eyebrow || !isAerialScreen) && (
+                                    {niche.detailedContent.eyebrow && (
                                         <p className="mb-3 text-[11px] md:text-xs uppercase tracking-[0.32em] text-[#D4AF37] font-semibold">
-                                            {niche.detailedContent.eyebrow || `${niche.id} / ${niche.title}`}
+                                            {niche.detailedContent.eyebrow}
                                         </p>
                                     )}
                                     <h2 className={headingClassName}>
@@ -732,12 +828,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         const cardEyebrow = svc.eyebrow || suggestedCardDetails.eyebrow || niche.title;
                                         const cardMeta = svc.meta || suggestedCardDetails.meta || (isAllServicesCard ? "Вся страница направления" : "Форматы и детали");
                                         const cardCta = svc.cta || suggestedCardDetails.cta || (isAllServicesCard ? "Открыть страницу" : "Подробнее");
-                                        const keepAllServicesAtBottom = niche.id === "06" && isAllServicesCard;
-                                        const cardGridClassName = isCompactAllServicesCard
-                                            ? keepAllServicesAtBottom
-                                                ? ""
-                                                : "sm:col-span-2 xl:col-span-1 xl:col-start-4 xl:row-start-1 xl:row-span-2"
-                                            : "";
+                                        const cardGridClassName = "";
                                         const cardSurfaceClassName = isCompactAllServicesCard || isAerialAllServicesCard
                                             ? "bg-[linear-gradient(135deg,rgba(16,16,18,0.94),rgba(28,28,32,0.9))] shadow-[0_26px_60px_rgba(0,0,0,0.38)]"
                                             : "bg-zinc-950/72 shadow-[0_20px_50px_rgba(0,0,0,0.32)]";
@@ -747,9 +838,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         const cardMinHeightClassName = isAerialCompactScreen
                                             ? "min-h-[150px] sm:min-h-[220px] xl:min-h-[126px]"
                                             : isCompactNicheScreen
-                                            ? isCompactAllServicesCard
-                                                ? "min-h-[150px] sm:min-h-[220px] xl:min-h-[278px]"
-                                                : "min-h-[150px] sm:min-h-[220px] xl:min-h-[132px]"
+                                            ? "min-h-[150px] sm:min-h-[220px] xl:min-h-[132px]"
                                             : "min-h-[150px] sm:min-h-[220px] xl:min-h-[238px]";
                                         const cardClassName = `relative overflow-hidden border transition-all group backdrop-blur-md flex flex-col justify-between h-full hover:-translate-y-1 rounded-[24px] ${cardMinHeightClassName} ${cardGridClassName} ${cardSurfaceClassName} ${cardFrameClassName} hover:border-[#D4AF37]/85`;
                                         const cardBody = (
@@ -895,12 +984,14 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                                                     {svc.primaryCtaLabel ?? "Подробнее"}
                                                                 </Link>
                                                             )}
-                                                            <a
-                                                                href="#contact"
-                                                                className={servicePageSecondaryActionClassName}
-                                                            >
-                                                                Заказать
-                                                            </a>
+                                                            {!isAllServicesCard ? (
+                                                                <a
+                                                                    href="#contact"
+                                                                    className={servicePageSecondaryActionClassName}
+                                                                >
+                                                                    Заказать
+                                                                </a>
+                                                            ) : null}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -908,27 +999,27 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         );
                                         return (
                                             <MaybeDebugWrapper enabled={showDebugOverlays} key={cardSlug} id={serviceId} label={`Service Card: ${svc.title || svc.tag}`} className={cardGridClassName || undefined}>
-                                                {!isAllServicesCard ? (
-                                                    <article
-                                                        id={`service-${cardSlug}`}
-                                                        className={servicePageParityCardClassName}
-                                                        style={servicePageParityCardStyle}
-                                                    >
-                                                        {servicePageParityCardBody}
-                                                    </article>
-                                                ) : isExternalHref(svc.link) ? (
-                                                    <a href={svc.link} target="_blank" rel="noreferrer" className={cardClassName}>
-                                                        {cardBody}
-                                                    </a>
-                                                ) : (
-                                                    <Link href={svc.link} className={cardClassName}>
-                                                        {cardBody}
-                                                    </Link>
-                                                )}
+                                                <article
+                                                    id={`service-${cardSlug}`}
+                                                    className={servicePageParityCardClassName}
+                                                    style={servicePageParityCardStyle}
+                                                >
+                                                    {servicePageParityCardBody}
+                                                </article>
                                             </MaybeDebugWrapper>
                                         );
                                     })}
                                 </div>
+
+                                {showNextIndustryHint && nextNiche && (
+                                    <div className="pointer-events-none sticky bottom-1 z-30 mt-4 flex justify-center">
+                                        <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md">
+                                            <span className="text-white/60">Далее</span>
+                                            <span className="text-[#D4AF37]">{nextNiche.id}</span>
+                                            <span className="text-white">{nextNiche.title}</span>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </MaybeDebugWrapper>
                     </div>
