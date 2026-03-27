@@ -144,7 +144,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     priceRange: '₾₾',
 };
 
@@ -153,7 +153,7 @@ export const metadata: Metadata = {
     description:
         'Интерактивный 360° тур для офисов, коворкингов и бизнес-пространств в Тбилиси. Арендатор или сотрудник осматривает пространство дистанционно. От 900 ₾.',
     alternates: {
-        canonical: 'https://breusmedia.com/360-tour-business',
+        canonical: 'https://breus.media/360-tour-business',
     },
 };
 

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
         'Имиджевые ролики, съёмка блюд, аэросъёмка и Reels для ресторанов и кафе в Тбилиси. Полный пакет для Google Maps, Wolt, delivery и Instagram.',
     alternates: {
-        canonical: 'https://breusmedia.com/restaurants-service',
+        canonical: 'https://breus.media/restaurants-service',
     },
 };
 

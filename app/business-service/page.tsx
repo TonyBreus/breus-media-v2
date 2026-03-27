@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
         'Видео, аэросъёмка, Reels, 360° туры и AI-визуал для бизнеса и коммерческих объектов в Тбилиси — полная digital-упаковка бренда для продаж и продвижения.',
     alternates: {
-        canonical: 'https://breusmedia.com/business-service',
+        canonical: 'https://breus.media/business-service',
     },
 };
 

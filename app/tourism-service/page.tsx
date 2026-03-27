@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
         'Видео, аэросъёмка и Reels для туристических маршрутов, туров и локаций в Грузии — контент для Viator, GetYourGuide, сайта и Instagram.',
     alternates: {
-        canonical: 'https://breusmedia.com/tourism-service',
+        canonical: 'https://breus.media/tourism-service',
     },
 };
 

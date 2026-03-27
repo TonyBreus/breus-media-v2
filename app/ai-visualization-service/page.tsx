@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
         'AI-рендеры, визуализация интерьеров и AI-контент для бизнеса в Тбилиси: недвижимость, авто, меню и бренды. Профессиональные изображения без фотографа.',
     alternates: {
-        canonical: 'https://breusmedia.com/ai-visualization-service',
+        canonical: 'https://breus.media/ai-visualization-service',
     },
 };
 

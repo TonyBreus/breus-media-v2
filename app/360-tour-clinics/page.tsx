@@ -143,7 +143,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     priceRange: '₾₾',
 };
 
@@ -151,7 +151,7 @@ export const metadata: Metadata = {
     title: '360° Виртуальный тур для клиник в Тбилиси | Breus Media',
     description: 'Интерактивный 360° тур для клиник и стоматологий в Тбилиси. Пациент видит оборудование и интерьер до записи. От 900 ₾. Съёмка 1–3 часа без остановки работы.',
     alternates: {
-        canonical: 'https://breusmedia.com/360-tour-clinics',
+        canonical: 'https://breus.media/360-tour-clinics',
     },
 };
 

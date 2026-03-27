@@ -143,7 +143,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     priceRange: '₾₾',
 };
 
@@ -152,7 +152,7 @@ export const metadata: Metadata = {
     description:
         'Интерактивный 360° тур для туристических объектов, музеев и локаций в Тбилиси и Грузии. Турист осматривает место до поездки. От 900 ₾. Съёмка без остановки работы.',
     alternates: {
-        canonical: 'https://breusmedia.com/360-tour-tourism',
+        canonical: 'https://breus.media/360-tour-tourism',
     },
 };
 

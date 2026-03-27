@@ -65,7 +65,7 @@ type NavLink = {
     href: string;
 };
 
-const CANONICAL_URL = 'https://breusmedia.ge/drone-services/drone-land-sale';
+const CANONICAL_URL = 'https://breus.media/drone-services/drone-land-sale';
 const PAGE_TITLE = 'Аэросъёмка земельных участков в Тбилиси | Breus Media';
 const PAGE_DESCRIPTION =
     'Дрон-видео и фото участков для продажи, инвесторов и девелоперов в Грузии. Пакеты от 390 ₾. Тбилиси, Кахетия, Батуми. Готовый материал за 3–5 дней.';
@@ -565,7 +565,7 @@ const serviceSchema = {
     provider: {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
-        url: 'https://breusmedia.ge',
+        url: 'https://breus.media',
         telephone: '+995574619393',
         address: {
             '@type': 'PostalAddress',
@@ -592,7 +592,7 @@ const localBusinessSchema = {
     '@type': 'LocalBusiness',
     name: 'Breus Media',
     description: 'Аэросъёмка, FPV-видео, 360° туры и визуальные решения для недвижимости и девелопмента в Грузии.',
-    url: 'https://breusmedia.ge',
+    url: 'https://breus.media',
     telephone: '+995574619393',
     address: {
         '@type': 'PostalAddress',

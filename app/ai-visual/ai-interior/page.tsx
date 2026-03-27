@@ -40,11 +40,11 @@ type GlossaryItem = {
     definition: string;
 };
 
-const CANONICAL_URL = 'https://breusmedia.com/ai-visual/ai-interior';
+const CANONICAL_URL = 'https://breus.media/ai-visual/ai-interior';
 const WHATSAPP_URL = 'https://wa.me/995574619393';
 const CONTACT_PHONE_DISPLAY = '+995 574 619 393';
 const CONTACT_PHONE_RAW = '+995574619393';
-const SITE_URL = 'https://breusmedia.com';
+const SITE_URL = 'https://breus.media';
 
 const heroSubtitle = 'Покажите, каким будет ваш отель, ресторан или офис — ещё до завершения ремонта.';
 

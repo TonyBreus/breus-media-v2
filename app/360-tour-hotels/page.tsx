@@ -144,7 +144,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     priceRange: '₾₾',
 };
 
@@ -152,7 +152,7 @@ export const metadata: Metadata = {
     title: '360° Виртуальный тур для отелей в Тбилиси | Breus Media',
     description: 'Интерактивный 360° тур для отелей и гостиниц в Тбилиси. Гость осматривает номер и территорию до бронирования. От 1 200 ₾ за объект. Съёмка за 3–5 рабочих дней.',
     alternates: {
-        canonical: 'https://breusmedia.com/360-tour-hotels',
+        canonical: 'https://breus.media/360-tour-hotels',
     },
 };
 

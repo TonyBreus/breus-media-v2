@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
         'Видеотуры, аэросъёмка, 360° туры и Reels для отелей в Тбилиси и Грузии — контент для Booking, сайта и соцсетей, который увеличивает бронирования.',
     alternates: {
-        canonical: 'https://breusmedia.com/hotels-service',
+        canonical: 'https://breus.media/hotels-service',
     },
 };
 

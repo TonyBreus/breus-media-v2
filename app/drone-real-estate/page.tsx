@@ -501,7 +501,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     priceRange: '₾₾',
 };
 
@@ -510,7 +510,7 @@ export const metadata: Metadata = {
     description:
         'Аэрофото и видео объектов недвижимости в Тбилиси. Инвесторы видят квартиру и район дистанционно. От 350 ₾. Доставка за 48 часов.',
     alternates: {
-        canonical: 'https://breusmedia.com/drone-real-estate',
+        canonical: 'https://breus.media/drone-real-estate',
     },
 };
 

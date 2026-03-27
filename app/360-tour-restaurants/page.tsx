@@ -143,7 +143,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     priceRange: '₾₾',
 };
 
@@ -151,7 +151,7 @@ export const metadata: Metadata = {
     title: '360° Виртуальный тур для ресторанов в Тбилиси | Breus Media',
     description: 'Интерактивный 360° тур для ресторанов и кафе в Тбилиси. Гость выбирает зал и атмосферу до визита. От 900 ₾ за объект. Съёмка за 1–2 часа без остановки заведения.',
     alternates: {
-        canonical: 'https://breusmedia.com/360-tour-restaurants',
+        canonical: 'https://breus.media/360-tour-restaurants',
     },
 };
 

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
         'Имиджевые ролики, обзоры авто, аэросъёмка и Reels для автосалонов, детейлинга и сервисов в Тбилиси. Контент для MyAuto, сайта и соцсетей.',
     alternates: {
-        canonical: 'https://breusmedia.com/auto-service',
+        canonical: 'https://breus.media/auto-service',
     },
 };
 

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description:
         'Интерактивные 360° туры для коммерческих объектов: офисы, торговые помещения и бизнес-пространства для удалённого предварительного просмотра.',
     alternates: {
-        canonical: 'https://breusmedia.com/360-tour-commercial-real-estate',
+        canonical: 'https://breus.media/360-tour-commercial-real-estate',
     },
 };
 

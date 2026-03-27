@@ -65,7 +65,7 @@ type NavLink = {
     href: string;
 };
 
-const CANONICAL_URL = 'https://breusmedia.com/drone-services/drone-territory';
+const CANONICAL_URL = 'https://breus.media/drone-services/drone-territory';
 const PAGE_TITLE = 'Мониторинг территорий дроном в Тбилиси | Breus Media';
 const PAGE_DESCRIPTION =
     'Регулярные аэрофото и отчёты о состоянии вашего объекта. Стройки, участки, склады — в Тбилиси и по всей Грузии. Разовый вылет от 450 ₾. Передача за 24–48 ч.';
@@ -579,7 +579,7 @@ const serviceSchema = {
     provider: {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
-        url: 'https://breusmedia.com',
+        url: 'https://breus.media',
         telephone: '+995574619393',
         address: {
             '@type': 'PostalAddress',
@@ -606,7 +606,7 @@ const localBusinessSchema = {
     '@type': 'LocalBusiness',
     name: 'Breus Media',
     description: 'Аэросъёмка, FPV-видео, 360° туры и визуальные решения для бизнеса в Грузии.',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     telephone: '+995574619393',
     address: {
         '@type': 'PostalAddress',

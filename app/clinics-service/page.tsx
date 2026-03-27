@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
         'Имиджевые ролики, интерьерная съёмка и Reels для клиник, стоматологий и эстетических центров в Тбилиси. Контент для сайта, Google Maps и соцсетей.',
     alternates: {
-        canonical: 'https://breusmedia.com/clinics-service',
+        canonical: 'https://breus.media/clinics-service',
     },
 };
 

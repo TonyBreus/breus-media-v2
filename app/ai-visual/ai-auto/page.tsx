@@ -41,14 +41,14 @@ type GlossaryItem = {
     definition: string;
 };
 
-const CANONICAL_URL = 'https://breusmedia.com/ai-visual/ai-auto';
+const CANONICAL_URL = 'https://breus.media/ai-visual/ai-auto';
 const PAGE_TITLE = 'AI-визуал для автобизнеса — подача авто и шоурума для продаж | Breus Media';
 const PAGE_DESCRIPTION =
     'AI-изображения автомобилей, шоурумов и детейлинга для MyAuto, объявлений и рекламы. Без студийной съёмки. От 150 ₾. Тбилиси, Грузия.';
 const CONTACT_PHONE = '+995 574 619 393';
 const CONTACT_PHONE_PLAIN = '+995574619393';
 const WHATSAPP_URL = 'https://wa.me/995574619393';
-const SITE_URL = 'https://breusmedia.com';
+const SITE_URL = 'https://breus.media';
 
 const serviceExplanation =
     'Вы присылаете нам фото автомобиля — с телефона или любой камеры. Мы с помощью AI меняем фон: убираем парковку, забор или улицу и ставим машину на нейтральный студийный фон, в красивую ночную сцену или в нужную рекламную атмосферу. Авто остаётся тем же — меняется подача. Результат — готовые изображения (JPG, PNG) для объявлений, сайта, Instagram и рекламы.';

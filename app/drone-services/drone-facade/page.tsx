@@ -65,7 +65,7 @@ type NavLink = {
     href: string;
 };
 
-const CANONICAL_URL = 'https://breusmedia.com/drone-services/drone-facade';
+const CANONICAL_URL = 'https://breus.media/drone-services/drone-facade';
 const PAGE_TITLE = 'Инспекция фасада дроном в Тбилиси | Breus Media';
 const PAGE_DESCRIPTION =
     'Визуальная инспекция фасадов зданий дроном в Тбилиси. Фотоотчёт по всем фасадам, видеообход здания, организованный пакет материалов. От 390 ₾. Breus Media.';
@@ -563,7 +563,7 @@ const serviceSchema = {
     provider: {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
-        url: 'https://breusmedia.com',
+        url: 'https://breus.media',
         telephone: '+995574619393',
         address: {
             '@type': 'PostalAddress',
@@ -590,7 +590,7 @@ const localBusinessSchema = {
     '@type': 'LocalBusiness',
     name: 'Breus Media',
     description: 'Аэросъёмка, FPV-видео, 360° туры и инспекционные съёмки для бизнеса в Тбилиси.',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     telephone: '+995574619393',
     address: {
         '@type': 'PostalAddress',

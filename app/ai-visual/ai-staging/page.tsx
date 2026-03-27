@@ -41,14 +41,14 @@ type GlossaryItem = {
     definition: string;
 };
 
-const CANONICAL_URL = 'https://breusmedia.com/ai-visual/ai-staging';
+const CANONICAL_URL = 'https://breus.media/ai-visual/ai-staging';
 const PAGE_TITLE = 'AI staging и виртуальная меблировка квартир — Тбилиси | Breus Media';
 const PAGE_DESCRIPTION =
     'Превращаем пустое пространство в продающий интерьер с помощью AI. Виртуальная меблировка без фотосессии. От 120 ₾. Тбилиси, Грузия.';
 const CONTACT_PHONE = '+995 574 619 393';
 const CONTACT_PHONE_PLAIN = '+995574619393';
 const WHATSAPP_URL = 'https://wa.me/995574619393';
-const SITE_URL = 'https://breusmedia.com';
+const SITE_URL = 'https://breus.media';
 
 const heroIntro =
     'Пустая квартира продаётся дольше и дешевле — это факт рынка. Покупатель смотрит на голые стены и не видит потенциала. AI staging — это создание изображений пространства с расставленной мебелью и декором, полностью через искусственный интеллект. Вы получаете не видеосъёмку и не фотосессию с настоящей мебелью — вы получаете готовые изображения, на которых квартира выглядит заселённой и привлекательной. Breus Media делает это за 24–48 часов, от 120 ₾.';

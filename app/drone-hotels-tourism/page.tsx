@@ -457,7 +457,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com/drone-hotels-tourism',
+    url: 'https://breus.media/drone-hotels-tourism',
     priceRange: '₾₾',
 };
 
@@ -466,7 +466,7 @@ export const metadata: Metadata = {
     description:
         'Кинематографичные аэрокадры и FPV-пролёты для отелей, курортов и туризма в Тбилиси и Грузии. Контент для сайта, Booking и соцсетей. От 450 ₾.',
     alternates: {
-        canonical: 'https://breusmedia.com/drone-hotels-tourism',
+        canonical: 'https://breus.media/drone-hotels-tourism',
     },
 };
 

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SmartHeader } from "@/components/gazeta/SmartHeader";
+import { L2DirectionServices } from "@/components/l2-direction/L2DirectionSections";
 import { gazetaCategoryPagesBySlug } from "@/constants/gazetaRoutes";
+import type { L2ServiceItem } from "@/components/l2-direction/types";
 
 type CategoryPageProps = {
     params: Promise<{
@@ -30,6 +32,19 @@ export default async function GazetaDirectionPage({ params }: CategoryPageProps)
     if (!page) {
         notFound();
     }
+
+    // Map GazetaService → L2ServiceItem (fill required fields with defaults)
+    const l2Services: L2ServiceItem[] = (page.services ?? []).map((s, idx) => ({
+        id: idx + 1,
+        order: idx + 1,
+        slug: s.title.toLowerCase().replace(/[^a-zа-я0-9]+/gi, "-"),
+        title: s.title,
+        category: s.price,
+        description: "",
+        price: s.price,
+        image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=60",
+        primaryHref: s.primaryHref,
+    }));
 
     return (
         <main className="min-h-screen bg-black text-white">
@@ -68,64 +83,47 @@ export default async function GazetaDirectionPage({ params }: CategoryPageProps)
                             ))}
                         </div>
                     </div>
-
-                    {/* Services grid */}
-                    {page.services && page.services.length > 0 && (
-                        <div className="mt-20">
-                            <p className="mb-8 text-[11px] font-semibold uppercase tracking-[0.32em] text-[#D4AF37]">
-                                Услуги
-                            </p>
-                            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-                                {page.services.map((service) => {
-                                    const card = (
-                                        <div className="group flex flex-col justify-between rounded-[20px] border border-[#2a2a2a] bg-[#141414] p-5 transition-colors hover:border-[#D4AF37]/40 hover:bg-[#1a1a1a]">
-                                            <p className="text-sm font-bold leading-snug text-white group-hover:text-white">
-                                                {service.title}
-                                            </p>
-                                            <p className="mt-3 text-[11px] font-semibold text-[#FFD23F]">
-                                                {service.price}
-                                            </p>
-                                        </div>
-                                    );
-
-                                    return service.primaryHref ? (
-                                        <Link key={service.title} href={service.primaryHref}>
-                                            {card}
-                                        </Link>
-                                    ) : (
-                                        <div key={service.title}>{card}</div>
-                                    );
-                                })}
-                            </div>
-
-                            {page.allServicesHref && (
-                                <Link
-                                    href={page.allServicesHref}
-                                    className="mt-6 flex w-full items-center justify-center rounded-full border border-white/20 bg-transparent px-6 py-4 text-xs font-black uppercase tracking-[0.24em] text-white transition-colors hover:border-[#D4AF37]/60 hover:text-[#D4AF37]"
-                                >
-                                    Все услуги →
-                                </Link>
-                            )}
-                        </div>
-                    )}
-
-                    {/* Bottom buttons */}
-                    <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-                        <Link
-                            href="/gazeta"
-                            className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-black uppercase tracking-[0.24em] text-black transition-colors hover:bg-[#D4AF37]"
-                        >
-                            Назад к Gazeta
-                        </Link>
-                        <Link
-                            href="/gazeta#contact"
-                            className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-6 py-3 text-xs font-black uppercase tracking-[0.24em] text-white transition-colors hover:border-[#D4AF37]/50 hover:text-[#D4AF37]"
-                        >
-                            Обсудить проект
-                        </Link>
-                    </div>
                 </div>
             </section>
+
+            {/* L2 Services grid */}
+            {l2Services.length > 0 && (
+                <>
+                    <L2DirectionServices
+                        heading={`Услуги — ${page.eyebrow}`}
+                        services={l2Services}
+                    />
+
+                    {page.allServicesHref && (
+                        <div className="mx-auto max-w-6xl px-6 pb-12 md:px-10">
+                            <Link
+                                href={page.allServicesHref}
+                                className="flex w-full items-center justify-center rounded-full border border-white/20 bg-transparent px-6 py-4 text-xs font-black uppercase tracking-[0.24em] text-white transition-colors hover:border-[#D4AF37]/60 hover:text-[#D4AF37]"
+                            >
+                                Все услуги →
+                            </Link>
+                        </div>
+                    )}
+                </>
+            )}
+
+            {/* Bottom buttons */}
+            <div className="mx-auto max-w-6xl px-6 pb-20 md:px-10">
+                <div className="flex flex-col gap-4 sm:flex-row">
+                    <Link
+                        href="/gazeta"
+                        className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-black uppercase tracking-[0.24em] text-black transition-colors hover:bg-[#D4AF37]"
+                    >
+                        Назад к Gazeta
+                    </Link>
+                    <Link
+                        href="/gazeta#contact"
+                        className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-6 py-3 text-xs font-black uppercase tracking-[0.24em] text-white transition-colors hover:border-[#D4AF37]/50 hover:text-[#D4AF37]"
+                    >
+                        Обсудить проект
+                    </Link>
+                </div>
+            </div>
         </main>
     );
 }

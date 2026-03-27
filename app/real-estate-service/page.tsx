@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description:
         'Видеотуры, аэросъёмка, 360° туры и мониторинг стройки для недвижимости в Тбилиси — контент для риелторов, застройщиков и отделов продаж.',
     alternates: {
-        canonical: 'https://breusmedia.com/real-estate-service',
+        canonical: 'https://breus.media/real-estate-service',
     },
 };
 

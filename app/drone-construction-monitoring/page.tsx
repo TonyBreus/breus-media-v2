@@ -482,7 +482,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     priceRange: '₾₾',
 };
 
@@ -491,7 +491,7 @@ export const metadata: Metadata = {
     description:
         'Еженедельный дрон-мониторинг стройки в Тбилиси: фото, 4K-видео, PDF-отчёты для инвесторов и банков. Разовый выезд от 250 ₾, пакеты от 900 ₾/мес.',
     alternates: {
-        canonical: 'https://breusmedia.com/drone-construction-monitoring',
+        canonical: 'https://breus.media/drone-construction-monitoring',
     },
 };
 

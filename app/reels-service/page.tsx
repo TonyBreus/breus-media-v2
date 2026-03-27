@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
         'Профессиональные Reels и короткие видео для бизнеса в Тбилиси: отели, рестораны, клиники, авто и туризм. Пакеты для Instagram, TikTok и YouTube Shorts.',
     alternates: {
-        canonical: 'https://breusmedia.com/reels-service',
+        canonical: 'https://breus.media/reels-service',
     },
 };
 

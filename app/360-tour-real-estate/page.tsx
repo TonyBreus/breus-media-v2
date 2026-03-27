@@ -144,7 +144,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     priceRange: '₾₾',
 };
 
@@ -153,7 +153,7 @@ export const metadata: Metadata = {
     description:
         'Интерактивный 360° тур для квартир и ЖК в Тбилиси. Покупатель осматривает объект дистанционно. От 800 ₾ за объект. Съёмка и передача за 3–5 рабочих дней.',
     alternates: {
-        canonical: 'https://breusmedia.com/360-tour-real-estate',
+        canonical: 'https://breus.media/360-tour-real-estate',
     },
 };
 

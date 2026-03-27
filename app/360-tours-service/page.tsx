@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
         'Интерактивные 360° туры для отелей, ресторанов, клиник, автосалонов и офисов в Тбилиси. Показывайте объект удалённо и конвертируйте интерес в визит.',
     alternates: {
-        canonical: 'https://breusmedia.com/360-tours-service',
+        canonical: 'https://breus.media/360-tours-service',
     },
 };
 

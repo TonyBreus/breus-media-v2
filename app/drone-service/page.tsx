@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description:
         'Профессиональная аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм и события. 4K, FPV, выезды по всей стране.',
     alternates: {
-        canonical: 'https://breusmedia.com/drone-service',
+        canonical: 'https://breus.media/drone-service',
     },
 };
 

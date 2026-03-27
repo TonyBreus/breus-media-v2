@@ -192,9 +192,9 @@ export default function HeaderV18() {
                                             <div className="h-px w-full bg-white/10 my-1" />
 
                                             {/* Email */}
-                                            <a href="mailto:info@breusmedia.com" className="flex items-center gap-3 px-2 group/mail">
+                                            <a href="mailto:info@breus.media" className="flex items-center gap-3 px-2 group/mail">
                                                 <Mail className="w-4 h-4 text-gray-500 group-hover/mail:text-white transition-colors" />
-                                                <span className="text-sm font-bold text-gray-400 group-hover/mail:text-white transition-colors">info@breusmedia.com</span>
+                                                <span className="text-sm font-bold text-gray-400 group-hover/mail:text-white transition-colors">info@breus.media</span>
                                             </a>
 
                                         </div>

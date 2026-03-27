@@ -64,7 +64,7 @@ type NavLink = {
     href: string;
 };
 
-const CANONICAL_URL = 'https://breusmedia.com/drone-services/drone-reporting';
+const CANONICAL_URL = 'https://breus.media/drone-services/drone-reporting';
 const PAGE_TITLE = 'Аэроотчёты для стройки и объектов — Тбилиси | Breus Media';
 const PAGE_DESCRIPTION =
     'Регулярная аэросъёмка объектов по расписанию: стройка, участки, инвестиционный контроль. Тбилиси и Грузия. Разовый выезд от 450 ₾, подписка от 900 ₾/мес.';
@@ -556,7 +556,7 @@ const serviceSchema = {
     provider: {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
-        url: 'https://breusmedia.com',
+        url: 'https://breus.media',
         telephone: '+995574619393',
         address: {
             '@type': 'PostalAddress',
@@ -583,7 +583,7 @@ const localBusinessSchema = {
     '@type': 'LocalBusiness',
     name: 'Breus Media',
     description: 'Аэросъёмка, аэроотчёты, FPV-видео и 360° туры для бизнеса в Тбилиси и по Грузии.',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     telephone: '+995574619393',
     address: {
         '@type': 'PostalAddress',

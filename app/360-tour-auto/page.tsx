@@ -144,7 +144,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     priceRange: '₾₾',
 };
 
@@ -153,7 +153,7 @@ export const metadata: Metadata = {
     description:
         'Интерактивный 360° тур для автосалонов и шоурумов в Тбилиси. Покупатель осматривает салон и автомобиль дистанционно. От 1 000 ₾. Съёмка 2–3 часа.',
     alternates: {
-        canonical: 'https://breusmedia.com/360-tour-auto',
+        canonical: 'https://breus.media/360-tour-auto',
     },
 };
 

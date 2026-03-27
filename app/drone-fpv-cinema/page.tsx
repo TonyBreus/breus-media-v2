@@ -444,7 +444,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com/drone-fpv-cinema',
+    url: 'https://breus.media/drone-fpv-cinema',
     priceRange: '₾₾',
 };
 
@@ -453,7 +453,7 @@ export const metadata: Metadata = {
     description:
         'FPV-пролёты и кинодроны для рекламы, ресторанов, отелей и продакшна в Тбилиси. DJI Avata 2 + Air 3S. От 400 ₾. Результат за 48 часов.',
     alternates: {
-        canonical: 'https://breusmedia.com/drone-fpv-cinema',
+        canonical: 'https://breus.media/drone-fpv-cinema',
     },
 };
 

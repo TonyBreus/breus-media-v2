@@ -41,8 +41,8 @@ type GlossaryItem = {
     definition: string;
 };
 
-const SITE_URL = 'https://breusmedia.com';
-const CANONICAL_URL = 'https://breusmedia.com/ai-visual/ai-real-estate';
+const SITE_URL = 'https://breus.media';
+const CANONICAL_URL = 'https://breus.media/ai-visual/ai-real-estate';
 const PAGE_TITLE = 'AI-визуализация недвижимости в Тбилиси — рендеры объектов | Breus Media';
 const PAGE_DESCRIPTION =
     'AI-изображения квартир, ЖК и объектов до завершения строительства. Быстро, без съёмки, готово для продаж. От 150 ₾. Тбилиси, Грузия.';

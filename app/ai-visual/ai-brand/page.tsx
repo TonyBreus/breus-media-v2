@@ -23,7 +23,7 @@ type PackagePlan = {
     items: string[];
 };
 
-const CANONICAL_URL = 'https://breusmedia.com/ai-visual/ai-brand';
+const CANONICAL_URL = 'https://breus.media/ai-visual/ai-brand';
 const WHATSAPP_URL = 'https://wa.me/995574619393';
 const CONTACT_PHONE_DISPLAY = '+995 574 619 393';
 const CONTACT_PHONE_RAW = '+995574619393';
@@ -455,13 +455,13 @@ const breadcrumbSchema = {
             '@type': 'ListItem',
             position: 1,
             name: 'Главная',
-            item: 'https://breusmedia.com',
+            item: 'https://breus.media',
         },
         {
             '@type': 'ListItem',
             position: 2,
             name: 'AI-визуализация',
-            item: 'https://breusmedia.com/ai-visualization-service',
+            item: 'https://breus.media/ai-visualization-service',
         },
         {
             '@type': 'ListItem',

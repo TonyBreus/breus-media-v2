@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
         'Имиджевые и промо-ролики для бизнеса в Тбилиси: врачи, отели, рестораны, автосалоны и ЖК. Готовый видеоконтент для сайта, рекламы и соцсетей.',
     alternates: {
-        canonical: 'https://breusmedia.com/promo-video-service',
+        canonical: 'https://breus.media/promo-video-service',
     },
 };
 

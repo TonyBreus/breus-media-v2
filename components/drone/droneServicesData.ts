@@ -1,5 +1,3 @@
-import { gazetaDetailRoutes } from '@/constants/gazetaRoutes';
-
 export type DroneServiceItem = {
     id: number;
     order: number;
@@ -16,11 +14,6 @@ export type DroneServiceItem = {
     tag?: string;
     featured?: boolean;
 };
-
-const {
-    tourism,
-    objectInspection,
-} = gazetaDetailRoutes;
 
 export const droneServiceItems: DroneServiceItem[] = [
     {
@@ -100,7 +93,7 @@ export const droneServiceItems: DroneServiceItem[] = [
         description: 'Горы и замки Грузии не продашь текстом — только видом с воздуха. Cinematic аэросъёмка.',
         price: '4K · Cinematic · Music',
         image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDgmImkuYQv-P5A9gQZbktMdvmOTHgj7uMKWyfvzDb1y0DVzxTp-VJpb79lKXoa_jPq8LzY1VFT_EeSrHNvR7Vb-c-WNEWeyvcJ_yu3MGQCDxX2XUKw-QwQ92aaKoxY_Ey7VMKblCicB0RUMEHrA_CsjmafaL4dZ6A3bdztSdq7QjzxB87wLC1WGtvkizcoDZ4zjbIbwESW39CqgHcZckSvDu-cJPGjnqrzmwMCiPJ55nV3A90l7BisyuZKew2CYH6jQu5fz8-bwT_I',
-        primaryHref: tourism,
+        primaryHref: '/drone-hotels-tourism',
         secondaryHref: '#service-turizm',
         secondaryCtaLabel: 'На странице',
     },
@@ -126,7 +119,7 @@ export const droneServiceItems: DroneServiceItem[] = [
         description: 'Дрон осматривает здание за 40 минут. Безопасно и точно.',
         price: 'Hi-Res · PDF-акт · Annotations',
         image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuANIoX83hfhNBGz1gGl0aBAGAE7Rl3qSAHirYm8KS8LQcbX_eLHeFYU2jhgeUdHX1XN6QVzevWxLwypi0V7lWsAKOkKYi_Qd7nh58mM5PfziCofpR8Jcl2z7eDkow1-0GxLckvFM8vlWoIZ0TCYOv1PMvL77q0PrBaxLRuomdHWSsnnWwI3tZYEymAUUQqmtYKshRNjJqo4koRCQU0iPI8MXEAI1QZ6oYqBgkcLeaCruAO_-H7t2iTArtbwAZ3yLuZYKWIXMOP2rsZL',
-        primaryHref: objectInspection,
+        primaryHref: '/drone-object-inspection',
         secondaryHref: '#service-inspekciya-obektov',
         secondaryCtaLabel: 'На странице',
     },
@@ -165,7 +158,7 @@ export const droneServiceItems: DroneServiceItem[] = [
         description: 'Масштабные планы футбольных полей и арен. Динамика и драйв для вашего спортивного объекта.',
         price: '4K · 60fps · Dynamic',
         image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBnuksVWeufIQzdLEth75uzPMH5yDohIX_DakkzV8oz3cfD70qhpXYZ-iqXKxRE-5tM8qQCwiFWzBkYSUFwHtpDCHVE0JQTo2fAfNWuZt_HpOOiUFlnYDD7A5vbruVqhQUv7p69FrxIIqasL5h9c3ZEFwvUZNepVMiXMpCWFNXf-HTeEBGnBlBLk-Emh3U8fQmSaJ6n0lNy1EnElk1WY5quKiA4Z-1strCBn4LoSKZaJzHZOWqIGzTZJqPcihmJ9a506PGpvBL7upwV',
-        primaryHref: '/drone-service',
+        primaryHref: '/drone-services/drone-sport',
         secondaryHref: '#service-sport-kompleksy',
         secondaryCtaLabel: 'На странице',
     },
@@ -217,7 +210,7 @@ export const droneServiceItems: DroneServiceItem[] = [
         description: 'Показываем границы, окружение, рельеф и доступность участка с воздуха.',
         price: '4K · LAND · OVERVIEW',
         image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80',
-        primaryHref: '/drone-service',
+        primaryHref: '/drone-services/drone-land-sale',
         secondaryHref: '#service-zemelnye-uchastki',
         secondaryCtaLabel: 'На странице',
     },
@@ -230,7 +223,7 @@ export const droneServiceItems: DroneServiceItem[] = [
         description: 'Быстрый осмотр кровли, покрытий и труднодоступных зон без подъёмной техники.',
         price: '4K · ROOF · INSPECTION',
         image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=1200&q=80',
-        primaryHref: '/drone-service',
+        primaryHref: '/drone-services/drone-facade',
         secondaryHref: '#service-inspekciya-krysh',
         secondaryCtaLabel: 'На странице',
     },
@@ -243,7 +236,7 @@ export const droneServiceItems: DroneServiceItem[] = [
         description: 'Визуальная проверка фасадов, стыков и внешних дефектов на высоте.',
         price: '4K · FACADE · INSPECTION',
         image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80',
-        primaryHref: '/drone-service',
+        primaryHref: '/drone-services/drone-facade',
         secondaryHref: '#service-inspekciya-fasadov',
         secondaryCtaLabel: 'На странице',
     },

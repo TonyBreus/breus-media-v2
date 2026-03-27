@@ -455,7 +455,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com/drone-weddings-events',
+    url: 'https://breus.media/drone-weddings-events',
     priceRange: '₾₾',
 };
 
@@ -464,7 +464,7 @@ export const metadata: Metadata = {
     description:
         'Кинематографичная дрон-съёмка свадеб, private events и selected corporate events в Тбилиси и по Грузии. Безопасный сценарий, aerial highlights, FPV по согласованию. От 450 ₾.',
     alternates: {
-        canonical: 'https://breusmedia.com/drone-weddings-events',
+        canonical: 'https://breus.media/drone-weddings-events',
     },
 };
 

@@ -579,7 +579,7 @@ const serviceSchema = {
     provider: {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
-        url: 'https://breusmedia.com',
+        url: 'https://breus.media',
         address: {
             '@type': 'PostalAddress',
             addressLocality: 'Тбилиси',
@@ -598,7 +598,7 @@ const serviceSchema = {
         offerCount: '3',
     },
     serviceType: 'Drone Photography and Videography',
-    url: 'https://breusmedia.com/drone-services/drone-restaurants',
+    url: 'https://breus.media/drone-services/drone-restaurants',
 };
 
 const localBusinessSchema = {
@@ -606,7 +606,7 @@ const localBusinessSchema = {
     '@type': 'LocalBusiness',
     name: 'Breus Media',
     description: 'Медиапродакшн в Тбилиси. Аэросъёмка, FPV-видео, 360° виртуальные туры, Reels и AI-визуализация для бизнеса.',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     telephone: '+995',
     address: {
         '@type': 'PostalAddress',
@@ -630,19 +630,19 @@ export const metadata: Metadata = {
     description:
         'Аэросъёмка и FPV-съёмка ресторанов в Тбилиси от 450 ₾. Покажите атмосферу, вход, террасу и зал так, чтобы гость захотел прийти. Результат за 3–7 дней.',
     alternates: {
-        canonical: 'https://breusmedia.com/drone-services/drone-restaurants',
+        canonical: 'https://breus.media/drone-services/drone-restaurants',
     },
     openGraph: {
         title: 'Аэросъёмка ресторана в Тбилиси | Breus Media',
         description:
             'Аэросъёмка и FPV-съёмка ресторанов в Тбилиси от 450 ₾. Покажите атмосферу, вход, террасу и зал так, чтобы гость захотел прийти.',
-        url: 'https://breusmedia.com/drone-services/drone-restaurants',
+        url: 'https://breus.media/drone-services/drone-restaurants',
         siteName: 'Breus Media',
         locale: 'ru_RU',
         type: 'website',
         images: [
             {
-                url: 'https://breusmedia.com/og/drone-restaurants.jpg',
+                url: 'https://breus.media/og/drone-restaurants.jpg',
                 width: 1200,
                 height: 630,
                 alt: 'Аэросъёмка ресторана в Тбилиси — Breus Media',

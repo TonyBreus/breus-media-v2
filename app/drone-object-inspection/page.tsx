@@ -482,7 +482,7 @@ const localBusinessSchema = {
         addressCountry: 'GE',
     },
     areaServed: 'Тбилиси, Грузия',
-    url: 'https://breusmedia.com',
+    url: 'https://breus.media',
     priceRange: '₾₾',
 };
 
@@ -491,7 +491,7 @@ export const metadata: Metadata = {
     description:
         'Инспекция фасадов, крыш и промобъектов в Тбилиси: фото, 4K-видео и PDF-отчёты за 24 часа. Разовый выезд от 250 ₾, пакеты от 900 ₾/мес.',
     alternates: {
-        canonical: 'https://breusmedia.com/drone-object-inspection',
+        canonical: 'https://breus.media/drone-object-inspection',
     },
 };
 
