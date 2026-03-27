@@ -289,7 +289,9 @@ const niches = [
     },
 ];
 
-const STICKY_TOP = "152px";
+const STICKY_TOP_PX = 184;
+const STICKY_TOP = `${STICKY_TOP_PX}px`;
+const STICKY_HEIGHT = `calc(100vh - ${STICKY_TOP_PX}px)`;
 
 type ServiceItem = {
     title?: string;
@@ -559,9 +561,10 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
             style={{
                 y: index === 0 ? 0 : y,
                 zIndex: index,
-                top: STICKY_TOP
+                top: STICKY_TOP,
+                height: STICKY_HEIGHT
             }}
-            className="sticky left-0 w-full h-[calc(100vh-152px)] overflow-hidden bg-black border-t border-white/20"
+            className="sticky left-0 w-full overflow-hidden bg-black border-t border-white/20"
         >
             {/* Card Header (Accordion Tab) */}
             <MaybeDebugWrapper enabled={showDebugOverlays} id={index === 0 ? 999 : 8000 + index} label={`Niche Header Row: ${niche.id}`}>
@@ -878,8 +881,8 @@ const FAQCard = ({ index, scrollYProgress, totalSteps }: { index: number, scroll
 
     return (
         <motion.div
-            style={{ y, zIndex: 90, top: STICKY_TOP }}
-            className="sticky left-0 w-full h-[calc(100vh-152px)] flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
+            style={{ y, zIndex: 90, top: STICKY_TOP, height: STICKY_HEIGHT }}
+            className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
         >
             {/* JSON-LD Schema */}
             <script
@@ -934,8 +937,8 @@ const FormCard = ({ index, scrollYProgress, totalSteps }: { index: number, scrol
     return (
         <motion.div
             id="contact"
-            style={{ y, zIndex: 100, top: STICKY_TOP }}
-            className="sticky left-0 w-full h-[calc(100vh-152px)] flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
+            style={{ y, zIndex: 100, top: STICKY_TOP, height: STICKY_HEIGHT }}
+            className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
         >
             <div className="h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold shrink-0 z-20">
                 <span className="text-[#D4AF37] mr-4">10</span>
