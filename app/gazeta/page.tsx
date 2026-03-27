@@ -13,7 +13,7 @@ export const metadata = {
 export default function GazetaPage() {
     return (
         <main className="bg-black text-white min-h-[100vh]">
-            <SmartHeader isLanding />
+            <SmartHeader isLanding showTickers={false} />
             <HeroSection />
 
             {/* Marquee appears right after Hero */}
