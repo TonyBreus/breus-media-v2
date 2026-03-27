@@ -19,6 +19,14 @@ export const DebugWrapper = ({
   const isDebugMode = process.env.NEXT_PUBLIC_DEBUG_MODE === "true";
 
   if (!isDebugMode) {
+    if (className || style) {
+      return (
+        <div className={className} style={style}>
+          {children}
+        </div>
+      );
+    }
+
     return <>{children}</>;
   }
 

@@ -25,12 +25,22 @@
 ✅ /gazeta: восстановлено scroll-поведение Hero/Marquee reveal  
 ✅ /gazeta: убрано перекрытие sticky-карточек под строкой `#209` (offset выровнен)
 ✅ /gazeta: добавлен жёсткий safeguard — `showTickers={false}` в `SmartHeader` на landing
+✅ `DebugWrapper`: исправлен production-эффект — при `NEXT_PUBLIC_DEBUG_MODE=false` теперь сохраняются `className/style` (layout не “плывёт” относительно debug-режима)
 
 ## ВАЖНОЕ ТЕХСОСТОЯНИЕ НА СЕЙЧАС
 - Фиксы по `gazeta` подтверждены локально (build + визуальная проверка).
 - `origin` настроен на GitHub, ветка `main` запушена.
 - Vercel подключен к GitHub-репозиторию; деплой ожидается от push в `main`.
 - Проверка live vs local по `/gazeta`: ключевая hero-анимация (`Breus Media` уезжает вверх) и marquee reveal ведут себя консистентно.
+- Повторная проверка 27.03.2026 (Playwright, viewport 1440×900):
+  - live и local стартуют с `Breus Media: translateY(65vh)`;
+  - после скролла ~950px: `translateY(-60vh) scale(0.25)` на обоих;
+  - количество бегущих строк в marquee: `2` на обоих (разделитель между ними: `1`).
+- 27.03.2026: подтверждён и исправлен источник расхождения “local vs live” в шапке `/gazeta`:
+  - причина: `DebugWrapper` при выключенном debug возвращал `Fragment`, из-за чего пропадали layout-классы у обёрток (`flex-1`, позиционирование);
+  - фикс: в non-debug режиме `DebugWrapper` рендерит обычный `<div>` при наличии `className/style`;
+  - проверка: `NEXT_PUBLIC_DEBUG_MODE=false PORT=3011 npm run dev` + визуальная проверка `/gazeta`;
+  - `npm run build` после фикса — OK.
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 

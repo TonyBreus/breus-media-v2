@@ -40,6 +40,53 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-27 (Live vs Local Recheck)
+### Session Summary
+- Прочитаны `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`, `DEPLOYMENT.md`.
+- Выполнено прицельное сравнение `/gazeta` на live и local по hero-анимации и количеству бегущих строк.
+
+### Commits
+- `N/A` — код не менялся, обновлена только документация handover/changelog.
+
+### Technical Notes
+- Замер выполнен через Playwright (viewport `1440x900`) с метриками до/после скролла.
+- Hero-анимация совпадает:
+  - до скролла: `transform: translateY(65vh)`;
+  - после скролла ~`950px`: `transform: translateY(-60vh) scale(0.25)`.
+- В marquee-блоке на live и local одинаково:
+  - бегущих строк: `2`;
+  - разделитель между строками: `1`.
+
+### Release Notes
+- Статус: `local verification only`.
+- Деплой: не выполнялся (команда `DEPLOY NOW` не поступала).
+
+---
+
+## 2026-03-27 (Header/DebugWrapper Production Parity Fix)
+### Session Summary
+- Подтверждена причина визуального расхождения `/gazeta` между localhost и live в верхней части страницы.
+- Внесён точечный фикс, чтобы production-режим повторял корректный layout из debug-режима.
+
+### Commits
+- `N/A` — изменения подготовлены локально (деплой не выполнялся).
+
+### Technical Notes
+- Корень проблемы: `DebugWrapper` в non-debug режиме возвращал `Fragment`, из-за чего терялись `className/style` у обёрток.
+- Это ломало layout в местах, где `DebugWrapper` использовался как структурный контейнер (например, `flex-1` в `SmartHeader`).
+- Фикс в `components/debug/DebugWrapper.tsx`:
+  - если debug выключен и есть `className/style`, рендерится обычный `<div className style>`;
+  - иначе остаётся `Fragment`.
+- Проверка:
+  - `NEXT_PUBLIC_DEBUG_MODE=false PORT=3011 npm run dev` — `/gazeta` визуально соответствует ожидаемой “локальной” верхушке;
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local fix ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary
