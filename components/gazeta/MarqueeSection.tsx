@@ -4,10 +4,12 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { DebugWrapper } from "../debug/DebugWrapper";
 import Link from "next/link";
 import { useHeroStore } from "@/store/useHeroStore";
+import { useMobileLandscape } from "@/hooks/useMobileLandscape";
+import { useMobilePortrait } from "@/hooks/useMobilePortrait";
 
 type TickerItemType = string | { text: string; link: string };
 
-const TickerItem = ({ item, debugId }: { item: TickerItemType; debugId?: number }) => {
+const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; debugId?: number; compact?: boolean }) => {
     const { setHoveredService } = useHeroStore();
     const isObj = typeof item === 'object';
     const text = isObj ? item.text : item;
@@ -26,7 +28,9 @@ const TickerItem = ({ item, debugId }: { item: TickerItemType; debugId?: number 
                         setHoveredService(null);
                     }
                 }}
-                className="cursor-pointer px-4 md:px-8 text-xs md:text-sm font-bold uppercase tracking-widest text-[#D4AF37]/70 hover:text-white transition-colors whitespace-nowrap"
+                className={`cursor-pointer font-bold uppercase text-[#D4AF37]/70 hover:text-white transition-colors whitespace-nowrap ${compact
+                    ? "px-2 text-[8px] tracking-[0.12em]"
+                    : "px-4 md:px-8 text-xs md:text-sm tracking-widest"}`}
             >
                 {text}
             </span>
@@ -36,14 +40,14 @@ const TickerItem = ({ item, debugId }: { item: TickerItemType; debugId?: number 
     return isObj ? <Link href={item.link}>{content}</Link> : content;
 };
 
-const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId }: { items: TickerItemType[], direction?: "left" | "right", speed?: number, baseId?: number }) => {
+const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId, compact = false }: { items: TickerItemType[], direction?: "left" | "right", speed?: number, baseId?: number, compact?: boolean }) => {
     return (
         <div className="flex overflow-hidden w-full relative group bg-zinc-950">
-            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-zinc-950 to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-zinc-950 to-transparent" />
+            <div className={`pointer-events-none absolute left-0 top-0 z-10 h-full bg-gradient-to-r from-zinc-950 to-transparent ${compact ? "w-8" : "w-12"}`} />
+            <div className={`pointer-events-none absolute right-0 top-0 z-10 h-full bg-gradient-to-l from-zinc-950 to-transparent ${compact ? "w-8" : "w-12"}`} />
 
             <motion.div
-                className="flex py-3.5"
+                className={`flex ${compact ? "py-0.5" : "py-3.5"}`}
                 animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
                 transition={{ repeat: Infinity, ease: "linear", duration: speed }}
             >
@@ -51,7 +55,7 @@ const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId }: { 
                     const idText = typeof item === 'object' ? item.text : item;
                     const itemIndex = i % items.length;
                     const debugId = baseId ? baseId + itemIndex + 1 : undefined;
-                    return <TickerItem key={`${idText}-${i}`} item={item} debugId={debugId} />;
+                    return <TickerItem key={`${idText}-${i}`} item={item} debugId={debugId} compact={compact} />;
                 })}
             </motion.div>
         </div>
@@ -62,6 +66,9 @@ import { tickerDataMapping } from "@/constants/tickerData";
 
 export function MarqueeSection() {
     const { hoveredService } = useHeroStore();
+    const isMobileLandscape = useMobileLandscape();
+    const isMobilePortrait = useMobilePortrait();
+    const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
 
     // Case-insensitive lookup for ticker details
     const tickerDetail = hoveredService ? (
@@ -81,7 +88,8 @@ export function MarqueeSection() {
 
     const { scrollY } = useScroll();
     const revealEndPx = 420;
-    const paddingY = useTransform(scrollY, [0, revealEndPx], ["0.5rem", "0rem"]);
+    const marqueeTopPx = isMobileLandscape ? 56 : isMobilePortrait ? 50 : 70;
+    const paddingY = useTransform(scrollY, [0, revealEndPx], [isMobileCompactTop ? "0rem" : "0.5rem", "0rem"]);
     const marqueeY = useTransform(scrollY, [0, revealEndPx], ["100vh", "0vh"]);
     const marqueeOpacity = useTransform(scrollY, [0, 80, revealEndPx], [0, 1, 1]);
 
@@ -163,21 +171,22 @@ export function MarqueeSection() {
                 {/* Marquee permanently FIXED top-[70px] so it never scrolls away. */}
                 <motion.div
                     style={{
+                        top: `${marqueeTopPx}px`,
                         paddingTop: paddingY,
                         paddingBottom: paddingY,
                         y: marqueeY,
                         opacity: marqueeOpacity
                     }}
-                    className="fixed top-[70px] left-0 w-full overflow-hidden bg-zinc-950 border-y border-white/20 z-[40] flex flex-col pointer-events-auto"
+                    className="fixed left-0 w-full overflow-hidden bg-zinc-950 border-y border-white/20 z-[40] flex flex-col pointer-events-auto"
                 >
                     {/* INTERACTIVE TICKERS */}
                     <div className="relative z-[50] w-full">
                         <DebugWrapper id={208} label="Running Text Line 1">
-                            <InteractiveTicker items={line1} direction="left" speed={60} baseId={2080} />
+                            <InteractiveTicker items={line1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
                         </DebugWrapper>
                         <div className="h-[1px] bg-white/10 w-full" />
                         <DebugWrapper id={209} label="Running Text Line 2">
-                            <InteractiveTicker items={line2} direction="right" speed={70} baseId={2090} />
+                            <InteractiveTicker items={line2} direction="right" speed={70} baseId={2090} compact={isMobileCompactTop} />
                         </DebugWrapper>
                     </div>
                 </motion.div>

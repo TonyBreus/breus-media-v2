@@ -207,6 +207,186 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-27 (Gazeta Mobile Landscape Top-Space Optimization)
+### Session Summary
+- Оптимизирована мобильная горизонтальная версия `/gazeta`: фиксированный верхний слой (header + marquee) стал компактнее и перестал занимать критично много экрана.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- Добавлен хук `hooks/useMobileLandscape.ts` для детекции mobile landscape (ориентация + короткий viewport).
+- `components/gazeta/SmartHeader.tsx`:
+  - высота header в mobile landscape уменьшена до `64px` (initial) / `56px` (scrolled);
+  - компактированы мобильные контролы (language/CTA/menu), а также ticker-типографика в режиме compact.
+- `components/gazeta/MarqueeSection.tsx`:
+  - верхний fixed-offset стал адаптивным (`56px` в mobile landscape);
+  - в mobile landscape показывается одна бегущая строка (вместо двух);
+  - уменьшены вертикальные отступы и размеры элементов бегущей строки.
+- `components/gazeta/NichesStack.tsx`:
+  - sticky-top/height переведены на динамический расчёт;
+  - для mobile landscape установлен top offset `108px` (вместо `184px`).
+- `components/gazeta/FinalFormSection.tsx`:
+  - offset/height синхронизированы с compact-top (`108px` в mobile landscape).
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-27 (Gazeta Landscape Fine-Tune: Return #209 + Smaller Rows)
+### Session Summary
+- По обратной связи в mobile landscape возвращена вторая бегущая строка `#209` и ещё сильнее ужаты фиксированные верхние элементы.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/MarqueeSection.tsx`:
+  - строка `#209` возвращена в landscape-режим;
+  - обе строки `#208/#209` уменьшены: типографика/горизонтальные и вертикальные отступы в compact-режиме.
+- `components/gazeta/NichesStack.tsx`:
+  - заголовочные строки секций `00–08` уменьшены в landscape примерно в 2 раза (`h-6` вместо `h-12`);
+  - аналогично уменьшены строки `09` (FAQ) и `10` (Form);
+  - отступ тела карточки синхронизирован с уменьшенной высотой строки (`pt-6`).
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-27 (Gazeta Mobile Card Grid 2/4 + Compact Cards)
+### Session Summary
+- По UX-запросу мобильные карточки в стеке `/gazeta` сделаны компактнее и перестроены в более плотную сетку.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - мобильная сетка карточек услуг:
+    - portrait mobile: `2` колонки,
+    - landscape mobile: `4` колонки;
+  - высота сервисных карточек уменьшена (включая image блок и внутренние отступы);
+  - уменьшены размеры текста, бейджей и CTA-кнопок на мобильных;
+  - высота карточек приведена к более компактному виду (ориентир ~30% меньше), без изменения desktop-layout.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-27 (Gazeta Real Estate 8410/8411 CTA + Price-Line Fix)
+### Session Summary
+- Точечно доработаны карточки `8410` и `8411` (секция `01` Недвижимость) и мобильный CTA layout.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - для карточек `8410`/`8411` отключён вывод жёлтой price-строки;
+  - в мобильных режимах CTA-блок перестроен в вертикальную последовательность:
+    - сначала `Подробнее`,
+    - затем `Заказать`;
+  - ширина кнопок переведена в `w-full`, чтобы исключить обрезание/уход `Заказать` за границы карточки.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-27 (Gazeta Nested Scroll Handoff UX)
+### Session Summary
+- Снижен конфликт между внутренним и внешним скроллом на `/gazeta` для более интуитивного поведения.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - для внутренних scroll-областей секций, FAQ и Form добавлены `overscroll-y-contain` + `touch-pan-y`.
+- `components/gazeta/FinalFormSection.tsx`:
+  - для внутренней scroll-области также добавлены `overscroll-y-contain` + `touch-pan-y`.
+- Эффект:
+  - уменьшается “двойной” скролл-сдвиг (внутри карточки + сразу к следующей секции),
+  - поведение передачи скролла между уровнями становится более последовательным.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-27 (Gazeta Portrait Top Compact ~30%)
+### Session Summary
+- Верхняя фиксированная зона (`header + marquee + top rows`) уменьшена и для мобильного вертикального режима.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- Добавлен хук `hooks/useMobilePortrait.ts`.
+- `components/gazeta/SmartHeader.tsx`:
+  - portrait mobile теперь использует compact-высоты хедера (`~64/52`) и уменьшенные размеры контролов.
+- `components/gazeta/MarqueeSection.tsx`:
+  - для portrait mobile уменьшен верхний offset и включён compact-рендер строк.
+- `components/gazeta/NichesStack.tsx`:
+  - sticky top для portrait mobile снижен (`128px` вместо `184px`);
+  - табы `00–08`/`09`/`10` в portrait стали ниже (`h-8`).
+- `components/gazeta/FinalFormSection.tsx`:
+  - portrait sticky top синхронизирован (`112px`) и header-строка уменьшена (`h-8`).
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-27 (Gazeta Gap Fix: #209 to #00)
+### Session Summary
+- Устранено заметное тёмное пространство между второй бегущей строкой (`#209`) и первой строкой стека (`#00 Аэросъёмка`).
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - скорректированы мобильные `stickyTop` offsets:
+    - landscape: `84px` (было `108px`),
+    - portrait: `96px` (было `128px`).
+- `components/gazeta/FinalFormSection.tsx`:
+  - синхронизирован `stickyTop`:
+    - landscape: `84px`,
+    - portrait: `96px`.
+- Результат:
+  - исчез зазор между `#209` и `#00`,
+  - верхняя часть выглядит цельно без “тёмной полосы”.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

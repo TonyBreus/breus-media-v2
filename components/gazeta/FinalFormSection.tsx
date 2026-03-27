@@ -3,11 +3,17 @@ import React, { useState, useRef } from "react";
 import { Send, MessageCircle } from "lucide-react";
 import { DebugWrapper } from "../debug/DebugWrapper";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useMobileLandscape } from "@/hooks/useMobileLandscape";
+import { useMobilePortrait } from "@/hooks/useMobilePortrait";
 
 export function FinalFormSection() {
     const [method, setMethod] = useState("Telegram");
     const [services, setServices] = useState<string[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
+    const isMobileLandscape = useMobileLandscape();
+    const isMobilePortrait = useMobilePortrait();
+    const stickyTopPx = isMobileLandscape ? 84 : isMobilePortrait ? 96 : 160;
+    const stickyHeight = `calc(100vh - ${stickyTopPx}px)`;
 
     const toggleService = (s: string) => {
         setServices((prev) =>
@@ -27,17 +33,21 @@ export function FinalFormSection() {
         <DebugWrapper id={41} label="Final Form Container">
             <div ref={containerRef} className="relative w-full h-[150vh] z-[100]">
                 <motion.section
-                    style={{ y, top: "160px" }}
-                    className="sticky left-0 w-full h-[calc(100vh-160px)] flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
+                    style={{ y, top: `${stickyTopPx}px`, height: stickyHeight }}
+                    className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
                 >
                     {/* Accordion Header */}
-                    <div className="h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold shrink-0 z-20">
-                        <span className="text-[#D4AF37] mr-4">09</span>
+                    <div className={isMobileLandscape
+                        ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold shrink-0 z-20"
+                        : isMobilePortrait
+                        ? "h-8 w-full bg-zinc-900 border-b border-white/20 flex items-center px-4 uppercase tracking-[0.18em] text-[10px] font-bold shrink-0 z-20"
+                        : "h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold shrink-0 z-20"}>
+                        <span className={isMobileLandscape || isMobilePortrait ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4"}>09</span>
                         <span>Форма связи</span>
                     </div>
 
                     {/* Form Body - Scrollable */}
-                    <div className="flex-1 overflow-y-auto px-6 py-12 md:px-12 md:py-16 max-w-5xl mx-auto w-full custom-scrollbar">
+                    <div className="flex-1 overflow-y-auto overscroll-y-contain touch-pan-y px-6 py-12 md:px-12 md:py-16 max-w-5xl mx-auto w-full custom-scrollbar">
                         <DebugWrapper id={42} label="Form Title">
                             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-12">
                                 Готов усилить <br className="hidden md:block" />
@@ -150,4 +160,3 @@ export function FinalFormSection() {
         </DebugWrapper>
     );
 }
-

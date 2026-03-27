@@ -7,12 +7,14 @@ import { useHeroStore } from "@/store/useHeroStore";
 import { gazetaDetailRoutes, gazetaIndustryNavItems, gazetaServiceNavItems, gazetaTickerLine1, gazetaTickerLine2 } from "@/constants/gazetaRoutes";
 import { ChevronDown, Globe, Phone, Mail, Send, MessageCircle, Menu, X } from "lucide-react";
 import { DebugWrapper } from "../debug/DebugWrapper";
+import { useMobileLandscape } from "@/hooks/useMobileLandscape";
+import { useMobilePortrait } from "@/hooks/useMobilePortrait";
 
 // --- Interactive Ticker Components ---
 type TickerItemType = string | { text: string; link: string };
 type HeaderSectionLink = { label: string; href: string };
 
-const TickerItem = ({ item, debugId }: { item: TickerItemType; debugId?: number }) => {
+const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; debugId?: number; compact?: boolean }) => {
     const { setHoveredService } = useHeroStore();
     const isObj = typeof item === 'object';
     const text = isObj ? item.text : item;
@@ -31,7 +33,9 @@ const TickerItem = ({ item, debugId }: { item: TickerItemType; debugId?: number 
                         setHoveredService(null);
                     }
                 }}
-                className="cursor-pointer px-4 md:px-8 text-xs md:text-sm font-bold uppercase tracking-widest text-[#D4AF37]/70 hover:text-white transition-colors whitespace-nowrap"
+                className={`cursor-pointer font-bold uppercase text-[#D4AF37]/70 hover:text-white transition-colors whitespace-nowrap ${compact
+                    ? "px-3 text-[10px] tracking-[0.16em]"
+                    : "px-4 md:px-8 text-xs md:text-sm tracking-widest"}`}
             >
                 {text}
             </span>
@@ -41,14 +45,14 @@ const TickerItem = ({ item, debugId }: { item: TickerItemType; debugId?: number 
     return isObj ? <Link href={item.link}>{content}</Link> : content;
 };
 
-const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId }: { items: TickerItemType[], direction?: "left" | "right", speed?: number, baseId?: number }) => {
+const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId, compact = false }: { items: TickerItemType[], direction?: "left" | "right", speed?: number, baseId?: number, compact?: boolean }) => {
     return (
         <div className="flex overflow-hidden w-full relative group bg-zinc-950/50 backdrop-blur-sm">
-            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-black to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-black to-transparent" />
+            <div className={`pointer-events-none absolute left-0 top-0 z-10 h-full bg-gradient-to-r from-black to-transparent ${compact ? "w-8" : "w-12"}`} />
+            <div className={`pointer-events-none absolute right-0 top-0 z-10 h-full bg-gradient-to-l from-black to-transparent ${compact ? "w-8" : "w-12"}`} />
 
             <motion.div
-                className="flex py-2"
+                className={`flex ${compact ? "py-1.5" : "py-2"}`}
                 animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
                 transition={{ repeat: Infinity, ease: "linear", duration: speed }}
             >
@@ -56,7 +60,7 @@ const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId }: { 
                     const idText = typeof item === 'object' ? item.text : item;
                     const itemIndex = i % items.length;
                     const debugId = baseId ? baseId + itemIndex + 1 : undefined;
-                    return <TickerItem key={`${idText}-${i}`} item={item} debugId={debugId} />;
+                    return <TickerItem key={`${idText}-${i}`} item={item} debugId={debugId} compact={compact} />;
                 })}
             </motion.div>
         </div>
@@ -87,7 +91,13 @@ export function SmartHeader({
     const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
     const [isContactOpen, setIsContactOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const isMobileLandscape = useMobileLandscape();
+    const isMobilePortrait = useMobilePortrait();
+    const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
     const shouldShowTickers = showTickers ?? !isLanding;
+    const headerExpandedHeight = isMobileLandscape ? 64 : isMobilePortrait ? 64 : 90;
+    const headerCompactHeight = isMobileLandscape ? 56 : isMobilePortrait ? 52 : 70;
+    const headerHeight = isScrolled ? headerCompactHeight : headerExpandedHeight;
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         // Switch state based on scroll
@@ -108,21 +118,22 @@ export function SmartHeader({
     return (
         <DebugWrapper id={1} label="GlobalHeader (Глобальная Шапка)">
             <header className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-300 ${isScrolled
-                ? 'bg-black/95 backdrop-blur-md shadow-2xl h-[70px] border-b border-white/10'
+                ? 'bg-black/95 backdrop-blur-md shadow-2xl border-b border-white/10'
                 : transparent
-                    ? 'bg-transparent h-[90px]'
-                    : 'bg-black/40 backdrop-blur-sm h-[90px]'}`}>
+                    ? 'bg-transparent'
+                    : 'bg-black/40 backdrop-blur-sm'}`}
+                style={{ height: `${headerHeight}px` }}>
 
                 {/* --- INITIAL VIEW (Not Scrolled) --- */}
-                <div className={`absolute inset-0 w-full h-full flex items-center px-6 transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none scale-95 delay-0' : 'opacity-100 scale-100 delay-100'}`}>
+                <div className={`absolute inset-0 w-full h-full flex items-center transition-all duration-300 ${isMobileCompactTop ? "px-3" : "px-6"} ${isScrolled ? 'opacity-0 pointer-events-none scale-95 delay-0' : 'opacity-100 scale-100 delay-100'}`}>
                     {/* LEFT SECTION */}
                     <DebugWrapper id={2} label="Left Section" className="flex-1">
                         {isLanding && (
-                            <Link href="/gazeta" className="relative h-6 flex items-center hover:opacity-85 transition-opacity">
+                            <Link href="/gazeta" className={`relative flex items-center hover:opacity-85 transition-opacity ${isMobileCompactTop ? "h-5" : "h-6"}`}>
                                 {/* Agency Text */}
                                 <div className="absolute inset-0 flex flex-col justify-center">
-                                    <span className="font-serif text-[18px] md:text-2xl leading-none tracking-wide text-white">Агентство</span>
-                                    <span className="text-[#D4AF37] text-[8px] md:text-[10px] uppercase tracking-widest mt-0.5 whitespace-nowrap">
+                                    <span className={`font-serif leading-none tracking-wide text-white ${isMobileCompactTop ? "text-[14px]" : "text-[18px] md:text-2xl"}`}>Агентство</span>
+                                    <span className={`text-[#D4AF37] uppercase mt-0.5 whitespace-nowrap ${isMobileCompactTop ? "text-[7px] tracking-[0.14em]" : "text-[8px] md:text-[10px] tracking-widest"}`}>
                                         визуального продакшена и AI
                                     </span>
                                 </div>
@@ -131,9 +142,9 @@ export function SmartHeader({
                     </DebugWrapper>
 
                     {/* CENTER SECTION */}
-                    <DebugWrapper id={3} label="Center Section" className="flex-1 flex justify-center items-start pt-1">
-                        <div className="flex items-center gap-2 leading-none">
-                            <span className="uppercase tracking-[0.2em] text-[10px] font-bold">Tbilisi</span>
+                    <DebugWrapper id={3} label="Center Section" className={`flex-1 flex justify-center items-start ${isMobileCompactTop ? "pt-0" : "pt-1"}`}>
+                        <div className={`flex items-center leading-none ${isMobileCompactTop ? "gap-1.5" : "gap-2"}`}>
+                            <span className={`uppercase font-bold ${isMobileCompactTop ? "tracking-[0.14em] text-[9px]" : "tracking-[0.2em] text-[10px]"}`}>Tbilisi</span>
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-[pulse_2s_ease-in-out_infinite]" />
                             <TimeWidget />
                         </div>
@@ -146,7 +157,9 @@ export function SmartHeader({
 
 
                 {/* --- V23 HEADER COMPONENT VIEW (Scrolled) --- */}
-                <div className={`w-full px-2 md:px-10 flex justify-between items-center transition-all duration-300 relative z-[300] h-[70px] ${isScrolled ? 'opacity-100 scale-100 delay-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
+                <div
+                    style={{ height: `${headerCompactHeight}px` }}
+                    className={`w-full px-2 md:px-10 flex justify-between items-center transition-all duration-300 relative z-[300] ${isScrolled ? 'opacity-100 scale-100 delay-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
 
                     {/* LEFT: Branding */}
                     <DebugWrapper id={200} label="Agency Branding">
@@ -227,11 +240,11 @@ export function SmartHeader({
                     </nav>
 
                     {/* RIGHT: Actions */}
-                    <div className="flex items-center gap-2 md:gap-4 lg:gap-6 flex-shrink-0 mt-2 relative z-[320]">
+                    <div className={`flex items-center flex-shrink-0 relative z-[320] ${isMobileCompactTop ? "gap-2 mt-1" : "gap-2 md:gap-4 lg:gap-6 mt-2"}`}>
                         {/* 1. Contact Dropdown (205) */}
                         <DebugWrapper id={205} label="Phone Connect">
                             <div className="relative group" onMouseEnter={() => setIsContactOpen(true)} onMouseLeave={() => setIsContactOpen(false)}>
-                                <button className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-full hover:bg-[#D4AF37] transition-colors border border-white/5 group-hover:border-[#D4AF37]/50">
+                                <button className={`flex items-center justify-center bg-white/10 rounded-full hover:bg-[#D4AF37] transition-colors border border-white/5 group-hover:border-[#D4AF37]/50 ${isMobileCompactTop ? "w-7 h-7" : "w-8 h-8 md:w-10 md:h-10"}`}>
                                     <Phone className="w-3.5 h-3.5 text-white" />
                                 </button>
 
@@ -284,7 +297,7 @@ export function SmartHeader({
                         {/* 2. Language Switcher (207) */}
                         <DebugWrapper id={207} label="Language Switcher">
                             <div className="group relative">
-                                <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 rounded-full border border-white/5 hover:bg-white/20 transition-colors text-[10px] md:text-xs font-bold text-white uppercase">
+                                <button className={`flex items-center gap-1.5 bg-white/10 rounded-full border border-white/5 hover:bg-white/20 transition-colors font-bold text-white uppercase ${isMobileCompactTop ? "px-2.5 py-1 text-[9px]" : "px-3 py-1.5 text-[10px] md:text-xs"}`}>
                                     <Globe className="w-3.5 h-3.5 text-[#D4AF37]" />
                                     <span>{lang}</span>
                                 </button>
@@ -298,7 +311,7 @@ export function SmartHeader({
 
                         {/* 3. CTA Buttons (206) - Shows different text for mobile/desktop */}
                         <DebugWrapper id={206} label="Button: Обсудить Задачу">
-                            <Link href={contactHref} className="flex items-center justify-center bg-white text-black px-4 py-1.5 md:px-6 md:py-2.5 rounded-full font-bold uppercase text-[9px] md:text-[10px] tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all whitespace-nowrap">
+                            <Link href={contactHref} className={`flex items-center justify-center bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all whitespace-nowrap ${isMobileCompactTop ? "px-3 py-1 text-[8px]" : "px-4 py-1.5 md:px-6 md:py-2.5 text-[9px] md:text-[10px]"}`}>
                                 <span className="md:hidden">Обсудить</span>
                                 <span className="hidden md:inline">Обсудить проект</span>
                             </Link>
@@ -306,7 +319,7 @@ export function SmartHeader({
 
                         {/* 4. Menu Icon (Mobile Only) */}
                         <button className="md:hidden text-white ml-1" onClick={() => setIsMobileMenuOpen(true)}>
-                            <Menu className="w-6 h-6" />
+                            <Menu className={isMobileCompactTop ? "w-5 h-5" : "w-6 h-6"} />
                         </button>
                     </div>
                 </div>
@@ -318,11 +331,11 @@ export function SmartHeader({
                             ? 'bg-transparent border-transparent'
                             : 'bg-zinc-950/40 backdrop-blur-sm'}`}>
                         <DebugWrapper id={208} label="Running Text Line 1">
-                            <InteractiveTicker items={gazetaTickerLine1} direction="left" speed={60} baseId={2080} />
+                            <InteractiveTicker items={gazetaTickerLine1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
                         </DebugWrapper>
                         <div className="h-[1px] bg-white/5 w-full" />
                         <DebugWrapper id={209} label="Running Text Line 2">
-                            <InteractiveTicker items={gazetaTickerLine2} direction="right" speed={70} baseId={2090} />
+                            <InteractiveTicker items={gazetaTickerLine2} direction="right" speed={70} baseId={2090} compact={isMobileCompactTop} />
                         </DebugWrapper>
                     </div>
                 )}

@@ -9,6 +9,8 @@ import { l2DirectionConfigs } from "@/constants/l2DirectionConfigs";
 import type { L2ServiceItem } from "@/components/l2-direction/types";
 import { droneServiceItems, type DroneServiceItem } from "@/components/drone/droneServicesData";
 import { realEstateServiceItems, type RealEstateServiceItem } from "@/components/real-estate-service/realEstateServicesData";
+import { useMobileLandscape } from "@/hooks/useMobileLandscape";
+import { useMobilePortrait } from "@/hooks/useMobilePortrait";
 
 const {
     aiContent,
@@ -293,9 +295,9 @@ const niches = [
     },
 ];
 
-const STICKY_TOP_PX = 184;
-const STICKY_TOP = `${STICKY_TOP_PX}px`;
-const STICKY_HEIGHT = `calc(100vh - ${STICKY_TOP_PX}px)`;
+const DEFAULT_STICKY_TOP_PX = 184;
+const PORTRAIT_STICKY_TOP_PX = 96;
+const LANDSCAPE_STICKY_TOP_PX = 84;
 
 type ServiceItem = {
     slug?: string;
@@ -338,6 +340,10 @@ type StackCardProps = {
     index: number;
     scrollYProgress: MotionValue<number>;
     totalSteps: number;
+    stickyTop: string;
+    stickyHeight: string;
+    isMobileLandscape: boolean;
+    isMobilePortrait: boolean;
 };
 
 const toStackServiceFromL2 = (service: L2ServiceItem, fallbackLink: string): ServiceItem => ({
@@ -558,7 +564,7 @@ const isExternalHref = (href: string) =>
     href.startsWith("mailto:") ||
     href.startsWith("tel:");
 
-const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => {
+const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeight, isMobileLandscape, isMobilePortrait }: StackCardProps) => {
     const isAerialScreen = niche.id === "00";
     const isAerialCompactScreen = niche.id === "00";
     const isCompactNicheScreen = niche.id !== "00";
@@ -632,14 +638,26 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
         : isCompactNicheScreen
             ? "md:grid-cols-2 xl:grid-cols-4 xl:grid-rows-2 gap-4 md:gap-4 xl:gap-3"
             : "xl:grid-cols-3 gap-4 md:gap-5 xl:gap-6";
+    const mobileServicesGridClassName = isMobileLandscape
+        ? "grid-cols-4 gap-2 md:grid-cols-4"
+        : `grid-cols-2 gap-2 sm:grid-cols-2 ${servicesGridClassName}`;
+    const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
+    const sectionHeaderClassName = isMobileLandscape
+        ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold text-white z-20 absolute top-0 left-0 shadow-lg"
+        : isMobilePortrait
+        ? "h-8 w-full bg-zinc-900 border-b border-white/20 flex items-center px-4 uppercase tracking-[0.18em] text-[10px] font-bold text-white z-20 absolute top-0 left-0 shadow-lg"
+        : "h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold text-white z-20 absolute top-0 left-0 shadow-lg";
+    const sectionHeaderInteractiveClassName = `${sectionHeaderClassName} cursor-pointer hover:bg-zinc-800 transition-colors`;
+    const sectionBodyPaddingTopClassName = isMobileLandscape ? "pt-6" : isMobilePortrait ? "pt-8" : "pt-12";
+    const sectionHeaderIndexClassName = isMobileCompactTop ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4";
 
     return (
         <motion.div
             style={{
                 y: index === 0 ? 0 : y,
                 zIndex: index,
-                top: STICKY_TOP,
-                height: STICKY_HEIGHT
+                top: stickyTop,
+                height: stickyHeight
             }}
             className="sticky left-0 w-full overflow-hidden bg-black border-t border-white/20"
         >
@@ -647,21 +665,21 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
             <MaybeDebugWrapper enabled={showDebugOverlays} id={index === 0 ? 999 : 8000 + index} label={`Niche Header Row: ${niche.id}`}>
                 {screenLink ? (
                     <Link href={screenLink}>
-                        <div className="h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold text-white z-20 absolute top-0 left-0 shadow-lg cursor-pointer hover:bg-zinc-800 transition-colors">
-                            <span className="text-[#D4AF37] mr-4">{niche.id}</span>
+                        <div className={sectionHeaderInteractiveClassName}>
+                            <span className={sectionHeaderIndexClassName}>{niche.id}</span>
                             <span>{niche.title}</span>
                         </div>
                     </Link>
                 ) : (
-                    <div className="h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold text-white z-20 absolute top-0 left-0 shadow-lg">
-                        <span className="text-[#D4AF37] mr-4">{niche.id}</span>
+                    <div className={sectionHeaderClassName}>
+                        <span className={sectionHeaderIndexClassName}>{niche.id}</span>
                         <span>{niche.title}</span>
                     </div>
                 )}
             </MaybeDebugWrapper>
 
             {/* Card Body (Image) */}
-            <div className="relative w-full h-full pt-12 bg-zinc-800">
+            <div className={`relative w-full h-full ${sectionBodyPaddingTopClassName} bg-zinc-800`}>
                 <MaybeDebugWrapper enabled={showDebugOverlays} id={index === 0 ? 900 : 8100 + index} label={`Niche Background: ${niche.id}`} className="absolute inset-0 z-0">
                     <div className="w-full h-full">
                         <img
@@ -676,7 +694,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                 </MaybeDebugWrapper>
 
                 {niche.detailedContent ? (
-                    <div className={`absolute inset-0 z-10 text-white overflow-y-auto custom-scrollbar ${contentPaddingClassName}`}>
+                    <div className={`absolute inset-0 z-10 text-white overflow-y-auto overscroll-y-contain touch-pan-y custom-scrollbar ${contentPaddingClassName}`}>
                         <MaybeDebugWrapper enabled={showDebugOverlays} id={index === 0 ? 902 : 8300 + index} label={`Detailed Layout: ${niche.title}`}>
                             <div className={contentWrapperClassName}>
                                 <div className={headingBlockClassName}>
@@ -698,7 +716,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                                     )}
                                 </div>
 
-                                <div className={`grid grid-cols-1 sm:grid-cols-2 ${servicesGridClassName}`}>
+                                <div className={`grid ${mobileServicesGridClassName}`}>
                                     {services.map((svc: ServiceItem, i: number) => {
                                         // Start unique IDs from 8400+ range, isolated by index (e.g., 8410, 8420)
                                         const serviceId = 8400 + (index * 10) + i;
@@ -727,12 +745,12 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                                             ? "border-[#D4AF37]/55 ring-1 ring-[#D4AF37]/30"
                                             : "border-white/12";
                                         const cardMinHeightClassName = isAerialCompactScreen
-                                            ? "min-h-[220px] xl:min-h-[126px]"
+                                            ? "min-h-[150px] sm:min-h-[220px] xl:min-h-[126px]"
                                             : isCompactNicheScreen
                                             ? isCompactAllServicesCard
-                                                ? "min-h-[220px] xl:min-h-[278px]"
-                                                : "min-h-[220px] xl:min-h-[132px]"
-                                            : "min-h-[220px] xl:min-h-[238px]";
+                                                ? "min-h-[150px] sm:min-h-[220px] xl:min-h-[278px]"
+                                                : "min-h-[150px] sm:min-h-[220px] xl:min-h-[132px]"
+                                            : "min-h-[150px] sm:min-h-[220px] xl:min-h-[238px]";
                                         const cardClassName = `relative overflow-hidden border transition-all group backdrop-blur-md flex flex-col justify-between h-full hover:-translate-y-1 rounded-[24px] ${cardMinHeightClassName} ${cardGridClassName} ${cardSurfaceClassName} ${cardFrameClassName} hover:border-[#D4AF37]/85`;
                                         const cardBody = (
                                             <>
@@ -781,9 +799,35 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                                         );
                                         const servicePageParityCardClassName = `service-card-target scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col h-full ${svc.featured ? 'gold-glow border-[#D4A017]/50' : ''}`;
                                         const servicePageParityCardStyle = svc.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : {};
+                                        const hideHighlightedPriceLine = serviceId === 8410 || serviceId === 8411;
+                                        const servicePageImageHeightClassName = isMobileLandscape
+                                            ? "h-20"
+                                            : "h-28 sm:h-40";
+                                        const servicePageBodyClassName = isMobileLandscape
+                                            ? "px-2.5 pt-2 pb-2 flex-grow flex flex-col"
+                                            : "px-3 pt-3 pb-3 sm:px-5 sm:pt-5 sm:pb-4 flex-grow flex flex-col";
+                                        const servicePageTitleClassName = isMobileLandscape
+                                            ? `text-[11px] font-bold leading-tight mb-1 ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`
+                                            : `text-sm sm:text-lg font-bold mb-1 ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`;
+                                        const servicePageCategoryClassName = isMobileLandscape
+                                            ? "text-[8px] text-gray-500 uppercase tracking-[0.12em] mb-1.5"
+                                            : "text-[10px] text-gray-500 uppercase tracking-wider mb-2";
+                                        const servicePageDescriptionClassName = isMobileLandscape
+                                            ? "text-[10px] text-gray-400 mb-2 leading-tight"
+                                            : "text-xs sm:text-sm text-gray-400 mb-3 leading-snug";
+                                        const servicePagePriceClassName = isMobileLandscape
+                                            ? "pt-2 border-t border-[#2a2a2a] text-[8px] text-[#D4A017] font-bold uppercase tracking-[0.12em] mb-2"
+                                            : "pt-3 border-t border-[#2a2a2a] text-[10px] text-[#D4A017] font-bold uppercase tracking-wider mb-4";
+                                        const servicePageActionsClassName = "flex flex-col gap-1.5 lg:flex-row lg:gap-3";
+                                        const servicePagePrimaryActionClassName = isMobileLandscape
+                                            ? "w-full py-1.5 px-1.5 border border-white/20 rounded-md text-[8px] font-bold uppercase tracking-[0.1em] text-white hover:bg-white hover:text-black transition-colors text-center"
+                                            : "w-full py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center";
+                                        const servicePageSecondaryActionClassName = isMobileLandscape
+                                            ? "w-full py-1.5 px-1.5 bg-[#D4A017] text-black rounded-md text-[8px] font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center"
+                                            : "w-full py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center";
                                         const servicePageParityCardBody = (
                                             <>
-                                                <div className="h-40 bg-neutral-800 overflow-hidden relative">
+                                                <div className={`${servicePageImageHeightClassName} bg-neutral-800 overflow-hidden relative`}>
                                                     {isExternalServiceLink ? (
                                                         <a href={svc.link} target="_blank" rel="noreferrer" className="block h-full">
                                                             <img
@@ -802,15 +846,15 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                                                         </Link>
                                                     )}
                                                     {svc.tag && (
-                                                        <div className="absolute top-4 left-4 flex gap-2">
-                                                            <span className={`px-2 py-1 rounded text-[10px] font-bold ${svc.tag === 'HOT' ? 'bg-[#D4A017] text-black' : 'bg-black/50 text-white backdrop-blur'}`}>
+                                                        <div className={`absolute ${isMobileLandscape ? "top-2 left-2" : "top-4 left-4"} flex gap-2`}>
+                                                            <span className={`px-2 py-1 rounded ${isMobileLandscape ? "text-[8px]" : "text-[10px]"} font-bold ${svc.tag === 'HOT' ? 'bg-[#D4A017] text-black' : 'bg-black/50 text-white backdrop-blur'}`}>
                                                                 {svc.tag}
                                                             </span>
                                                         </div>
                                                     )}
                                                 </div>
-                                                <div className="px-5 pt-5 pb-4 flex-grow flex flex-col">
-                                                    <h3 className={`text-lg font-bold mb-1 ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`}>
+                                                <div className={servicePageBodyClassName}>
+                                                    <h3 className={servicePageTitleClassName}>
                                                         {isExternalServiceLink ? (
                                                             <a href={svc.link} target="_blank" rel="noreferrer" className="hover:text-[#D4A017] transition-colors">
                                                                 {svc.title}
@@ -822,38 +866,38 @@ const Card = ({ niche, index, scrollYProgress, totalSteps }: StackCardProps) => 
                                                         )}
                                                     </h3>
                                                     {svc.category ? (
-                                                        <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-2">
+                                                        <div className={servicePageCategoryClassName}>
                                                             {svc.category}
                                                         </div>
                                                     ) : null}
-                                                    <p className="text-gray-400 text-sm mb-3 leading-snug">{svc.desc}</p>
+                                                    <p className={servicePageDescriptionClassName}>{svc.desc}</p>
                                                     <div className="mt-auto">
-                                                        {svc.price ? (
-                                                            <div className="pt-3 border-t border-[#2a2a2a] text-[10px] text-[#D4A017] font-bold uppercase tracking-wider mb-4">
+                                                        {svc.price && !hideHighlightedPriceLine ? (
+                                                            <div className={servicePagePriceClassName}>
                                                                 {svc.price}
                                                             </div>
                                                         ) : null}
-                                                        <div className="flex gap-3">
+                                                        <div className={servicePageActionsClassName}>
                                                             {isExternalServiceLink ? (
                                                                 <a
                                                                     href={svc.link}
                                                                     target="_blank"
                                                                     rel="noreferrer"
-                                                                    className="flex-1 py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center"
+                                                                    className={servicePagePrimaryActionClassName}
                                                                 >
                                                                     {svc.primaryCtaLabel ?? "Подробнее"}
                                                                 </a>
                                                             ) : (
                                                                 <Link
                                                                     href={svc.link}
-                                                                    className="flex-1 py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center"
+                                                                    className={servicePagePrimaryActionClassName}
                                                                 >
                                                                     {svc.primaryCtaLabel ?? "Подробнее"}
                                                                 </Link>
                                                             )}
                                                             <a
                                                                 href="#contact"
-                                                                className="flex-1 py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center"
+                                                                className={servicePageSecondaryActionClassName}
                                                             >
                                                                 Заказать
                                                             </a>
@@ -975,7 +1019,23 @@ const FAQAccordionItem = ({ item, isOpen, onToggle }: { item: { q: string; a: st
     </div>
 );
 
-const FAQCard = ({ index, scrollYProgress, totalSteps }: { index: number, scrollYProgress: MotionValue<number>, totalSteps: number }) => {
+const FAQCard = ({
+    index,
+    scrollYProgress,
+    totalSteps,
+    stickyTop,
+    stickyHeight,
+    isMobileLandscape,
+    isMobilePortrait
+}: {
+    index: number,
+    scrollYProgress: MotionValue<number>,
+    totalSteps: number,
+    stickyTop: string,
+    stickyHeight: string,
+    isMobileLandscape: boolean,
+    isMobilePortrait: boolean
+}) => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     const stepSize = 1 / totalSteps;
@@ -1000,7 +1060,7 @@ const FAQCard = ({ index, scrollYProgress, totalSteps }: { index: number, scroll
 
     return (
         <motion.div
-            style={{ y, zIndex: 90, top: STICKY_TOP, height: STICKY_HEIGHT }}
+            style={{ y, zIndex: 90, top: stickyTop, height: stickyHeight }}
             className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
         >
             {/* JSON-LD Schema */}
@@ -1010,13 +1070,17 @@ const FAQCard = ({ index, scrollYProgress, totalSteps }: { index: number, scroll
             />
 
             {/* Card Header */}
-            <div className="h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold shrink-0 z-20">
-                <span className="text-[#D4AF37] mr-4">09</span>
+            <div className={isMobileLandscape
+                ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold shrink-0 z-20"
+                : isMobilePortrait
+                ? "h-8 w-full bg-zinc-900 border-b border-white/20 flex items-center px-4 uppercase tracking-[0.18em] text-[10px] font-bold shrink-0 z-20"
+                : "h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold shrink-0 z-20"}>
+                <span className={isMobileLandscape || isMobilePortrait ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4"}>09</span>
                 <span>Частые вопросы</span>
             </div>
 
             {/* FAQ Content */}
-            <div className="flex-1 overflow-y-auto px-6 py-10 md:px-12 md:py-16 max-w-4xl mx-auto w-full custom-scrollbar">
+            <div className="flex-1 overflow-y-auto overscroll-y-contain touch-pan-y px-6 py-10 md:px-12 md:py-16 max-w-4xl mx-auto w-full custom-scrollbar">
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white mb-10 md:mb-14">
                     Частые <span className="text-[#D4AF37]">вопросы</span>
                 </h2>
@@ -1036,7 +1100,23 @@ const FAQCard = ({ index, scrollYProgress, totalSteps }: { index: number, scroll
     );
 };
 
-const FormCard = ({ index, scrollYProgress, totalSteps }: { index: number, scrollYProgress: MotionValue<number>, totalSteps: number }) => {
+const FormCard = ({
+    index,
+    scrollYProgress,
+    totalSteps,
+    stickyTop,
+    stickyHeight,
+    isMobileLandscape,
+    isMobilePortrait
+}: {
+    index: number,
+    scrollYProgress: MotionValue<number>,
+    totalSteps: number,
+    stickyTop: string,
+    stickyHeight: string,
+    isMobileLandscape: boolean,
+    isMobilePortrait: boolean
+}) => {
     const [method, setMethod] = useState("Telegram");
     const [services, setServices] = useState<string[]>([]);
 
@@ -1056,15 +1136,19 @@ const FormCard = ({ index, scrollYProgress, totalSteps }: { index: number, scrol
     return (
         <motion.div
             id="contact"
-            style={{ y, zIndex: 100, top: STICKY_TOP, height: STICKY_HEIGHT }}
+            style={{ y, zIndex: 100, top: stickyTop, height: stickyHeight }}
             className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
         >
-            <div className="h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold shrink-0 z-20">
-                <span className="text-[#D4AF37] mr-4">10</span>
+            <div className={isMobileLandscape
+                ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold shrink-0 z-20"
+                : isMobilePortrait
+                ? "h-8 w-full bg-zinc-900 border-b border-white/20 flex items-center px-4 uppercase tracking-[0.18em] text-[10px] font-bold shrink-0 z-20"
+                : "h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold shrink-0 z-20"}>
+                <span className={isMobileLandscape || isMobilePortrait ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4"}>10</span>
                 <span>Форма связи</span>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-6 py-12 md:px-12 md:py-16 max-w-5xl mx-auto w-full custom-scrollbar">
+            <div className="flex-1 overflow-y-auto overscroll-y-contain touch-pan-y px-6 py-12 md:px-12 md:py-16 max-w-5xl mx-auto w-full custom-scrollbar">
                 <DebugWrapper id={8942} label="Form Title">
                     <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-12">
                         Готов усилить <br className="hidden md:block" />
@@ -1134,6 +1218,15 @@ const FormCard = ({ index, scrollYProgress, totalSteps }: { index: number, scrol
 
 export function NichesStack() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const isMobileLandscape = useMobileLandscape();
+    const isMobilePortrait = useMobilePortrait();
+    const stickyTopPx = isMobileLandscape
+        ? LANDSCAPE_STICKY_TOP_PX
+        : isMobilePortrait
+        ? PORTRAIT_STICKY_TOP_PX
+        : DEFAULT_STICKY_TOP_PX;
+    const stickyTop = `${stickyTopPx}px`;
+    const stickyHeight = `calc(100vh - ${stickyTopPx}px)`;
     const totalSteps = niches.length + 2; // +1 Placeholder (09), +1 Form (10)
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -1149,17 +1242,29 @@ export function NichesStack() {
                     index={index}
                     scrollYProgress={scrollYProgress}
                     totalSteps={totalSteps}
+                    stickyTop={stickyTop}
+                    stickyHeight={stickyHeight}
+                    isMobileLandscape={isMobileLandscape}
+                    isMobilePortrait={isMobilePortrait}
                 />
             ))}
             <FAQCard
                 index={niches.length}
                 scrollYProgress={scrollYProgress}
                 totalSteps={totalSteps}
+                stickyTop={stickyTop}
+                stickyHeight={stickyHeight}
+                isMobileLandscape={isMobileLandscape}
+                isMobilePortrait={isMobilePortrait}
             />
             <FormCard
                 index={niches.length + 1}
                 scrollYProgress={scrollYProgress}
                 totalSteps={totalSteps}
+                stickyTop={stickyTop}
+                stickyHeight={stickyHeight}
+                isMobileLandscape={isMobileLandscape}
+                isMobilePortrait={isMobilePortrait}
             />
         </div>
     );
