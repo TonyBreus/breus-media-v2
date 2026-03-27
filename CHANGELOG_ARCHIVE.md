@@ -712,6 +712,29 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-27 (Gazeta Mobile Nav Controls Pack Deployed)
+### Session Summary
+- После команды `DEPLOY NOW` выкачен пакет мобильной навигации `/gazeta`: статичные `Назад/Далее`, расширение до шагов `09/10`, фиксы перехода вверх.
+
+### Commits
+- `08a3a05` — feat(gazeta): finalize static mobile nav controls and full 00-10 step flow
+
+### Technical Notes
+- В релиз вошли:
+  - перенос `Назад` из линии секции в отдельный статичный верхний блок;
+  - статичный нижний блок `Далее {id} {индустрия}`;
+  - расширение step-навигации до `09 (FAQ)` и `10 (Форма связи)`;
+  - унификация якорей `niche-step-00...10`;
+  - фикс no-op кейса на переходе вверх (`coarse-scroll + sticky auto-correction`).
+- Проверка перед релизом:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `deployed`.
+- Деплой: выполнен после явной команды `DEPLOY NOW` (push `main` -> Vercel auto deploy).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

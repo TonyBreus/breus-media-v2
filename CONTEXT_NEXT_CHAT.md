@@ -160,6 +160,10 @@
     - затем auto-коррекция до sticky-позиции целевой секции;
   - результат: кнопки `Назад` и левый `↑` корректно переводят на предыдущий шаг;
   - `npm run build` — OK.
+- 27.03.2026: деплой выполнен после команды `DEPLOY NOW`:
+  - commit: `08a3a05` (`feat(gazeta): finalize static mobile nav controls and full 00-10 step flow`);
+  - включает: статичные nav-кнопки `Назад/Далее`, полный step-flow `00..10`, кликабельный back, фикс перехода “вверх”;
+  - статус: pushed в `main`, Vercel auto-deploy запущен.
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 
