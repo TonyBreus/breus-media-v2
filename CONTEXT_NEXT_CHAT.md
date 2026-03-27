@@ -119,6 +119,10 @@
   - внутренний `eyebrow` теперь показывается только если явно задан в `detailedContent.eyebrow`;
   - цель: освободить вертикальное пространство и убрать визуальный дубль типа `02 Отели`/`04 Автобизнес` внутри секции;
   - `npm run build` — OK.
+- 27.03.2026: деплой выполнен после команды `DEPLOY NOW`:
+  - commit: `82c6e14` (`feat(gazeta): refine mobile scroll UX and remove duplicate niche labels`);
+  - включает: mobile scroll UX refinement, ticker/text baseline tuning, sticky offset sync (`209 -> 00`), cleanup дублей названий ниш внутри секций;
+  - статус: pushed в `main`, Vercel auto-deploy запущен.
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 

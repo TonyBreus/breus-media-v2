@@ -529,6 +529,27 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-27 (Gazeta Mobile Scroll + Label Cleanup Deployed)
+### Session Summary
+- После явной команды `DEPLOY NOW` изменения по мобильному UX `/gazeta` и очистке дублей заголовков внутри секций выведены в прод.
+
+### Commits
+- `82c6e14` — feat(gazeta): refine mobile scroll UX and remove duplicate niche labels
+
+### Technical Notes
+- В релиз вошли:
+  - уточнение mobile-scroll поведения в стеке секций,
+  - выравнивание визуала бегущих строк/оффсетов (`209 -> 00`),
+  - удаление дублирующих подписей ниш внутри контент-блока секций (`02/04` и аналогичные fallback-лейблы).
+- Проверка перед деплоем:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `deployed`.
+- Деплой: выполнен после явной команды `DEPLOY NOW` (push `main` -> Vercel auto deploy).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary
