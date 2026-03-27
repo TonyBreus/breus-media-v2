@@ -172,8 +172,8 @@ Append-only архив изменений. Старые записи не уда
 - `npm run build` — успешно.
 
 ### Release Notes
-- Статус: `deployed`.
-- Деплой: выполнен после явной команды `DEPLOY NOW` (push `main` -> Vercel auto deploy).
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
 
 ---
 
@@ -182,7 +182,7 @@ Append-only архив изменений. Старые записи не уда
 - По финальному UX-решению ограничение карточек на `/gazeta` обновлено с `7+1` до `5+1` для всех секций `00–08`.
 
 ### Commits
-- `N/A` — изменения подготовлены локально (без нового деплоя).
+- `1c7f85c` — feat(gazeta): sync 00-08 service cards with 5+1 cap
 
 ### Technical Notes
 - `components/gazeta/NichesStack.tsx`:
@@ -202,8 +202,8 @@ Append-only архив изменений. Старые записи не уда
     - `08`: `5 + 1`.
 
 ### Release Notes
-- Статус: `local ready`.
-- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+- Статус: `deployed`.
+- Деплой: выполнен после явной команды `DEPLOY NOW` (push `main` -> Vercel auto deploy).
 
 ---
 
