@@ -1,0 +1,83 @@
+[    4519ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0
+[ 1566902ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/360-tours?_rsc=qr0tz:0
+[ 1568167ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/real-estate?_rsc=qr0tz:0
+[ 1572357ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/drone-service?_rsc=qr0tz:0
+[ 1574273ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/auto?_rsc=qr0tz:0
+[ 1578763ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/reels?_rsc=qr0tz:0
+[ 1579352ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/hotels?_rsc=qr0tz:0
+[ 1582783ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/ai-content?_rsc=qr0tz:0
+[ 1582852ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/restaurants?_rsc=qr0tz:0
+[ 1587684ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/tourism?_rsc=qr0tz:0
+[ 1588605ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/events?_rsc=qr0tz:0
+[ 1591555ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/clinics?_rsc=qr0tz:0
+[ 1595276ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/promo-video?_rsc=qr0tz:0
+[ 1598162ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/real-estate?_rsc=qr0tz:0
+[ 1601907ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/360-tours?_rsc=qr0tz:0
+[ 1604272ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/auto?_rsc=qr0tz:0
+[ 1607353ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/drone-service?_rsc=qr0tz:0
+[ 1609354ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/hotels?_rsc=qr0tz:0
+[ 1612853ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/restaurants?_rsc=qr0tz:0
+[ 1613763ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/reels?_rsc=qr0tz:0
+[ 1613763ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/ai-content?_rsc=qr0tz:0
+[ 1613763ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/events?_rsc=qr0tz:0
+[ 1613763ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/promo-video?_rsc=qr0tz:0
+[ 1613764ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/360-tours?_rsc=qr0tz:0
+[ 1617685ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/tourism?_rsc=qr0tz:0
+[ 1621552ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/clinics?_rsc=qr0tz:0
+[ 1623763ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/restaurants?_rsc=qr0tz:0
+[ 1623764ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/hotels?_rsc=qr0tz:0
+[ 1623764ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/auto?_rsc=qr0tz:0
+[ 1623764ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/real-estate?_rsc=qr0tz:0
+[ 1623764ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/it?_rsc=qr0tz:0
+[ 1630273ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/promo-video?_rsc=qr0tz:0
+[ 1634274ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/auto?_rsc=qr0tz:0
+[ 1636886ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/real-estate?_rsc=qr0tz:0
+[ 1636909ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/360-tours?_rsc=qr0tz:0
+[ 1637782ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/drone-service/monitoring-stroiki?_rsc=1wl24:0
+[ 1637782ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/drone-service/monitoring-stroiki?_rsc=1lobl:0
+[ 1639021ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/restaurants?_rsc=qr0tz:0
+[ 1639022ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/drone-service?_rsc=qr0tz:0
+[ 1639022ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/hotels?_rsc=qr0tz:0
+[ 1639038ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/ai-content?_rsc=qr0tz:0
+[ 1639038ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/reels?_rsc=qr0tz:0
+[ 1642627ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/tourism?_rsc=qr0tz:0
+[ 1642658ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/promo-video?_rsc=qr0tz:0
+[ 1644557ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/auto?_rsc=qr0tz:0
+[ 1651554ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/clinics?_rsc=qr0tz:0
+[ 1652783ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/ai-content?_rsc=qr0tz:0
+[ 1655833ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/it?_rsc=qr0tz:0
+[ 1658166ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/real-estate?_rsc=qr0tz:0
+[ 1658603ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/events?_rsc=qr0tz:0
+[ 1664274ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/auto?_rsc=qr0tz:0
+[ 1665273ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/promo-video?_rsc=qr0tz:0
+[ 1669355ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/hotels?_rsc=qr0tz:0
+[ 1671905ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/360-tours?_rsc=qr0tz:0
+[ 1672854ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/restaurants?_rsc=qr0tz:0
+[ 1677359ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/drone-service?_rsc=qr0tz:0
+[ 1677683ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/tourism?_rsc=qr0tz:0
+[ 1681558ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/clinics?_rsc=qr0tz:0
+[ 1683763ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/reels?_rsc=qr0tz:0
+[ 1683764ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/ai-content?_rsc=qr0tz:0
+[ 1683764ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/events?_rsc=qr0tz:0
+[ 1683764ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/promo-video?_rsc=qr0tz:0
+[ 1683764ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/360-tours?_rsc=qr0tz:0
+[ 1683765ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/restaurants?_rsc=qr0tz:0
+[ 1683765ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/hotels?_rsc=qr0tz:0
+[ 1683766ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/auto?_rsc=qr0tz:0
+[ 1683766ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/real-estate?_rsc=qr0tz:0
+[ 1683766ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/it?_rsc=qr0tz:0
+[ 1694274ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/auto?_rsc=qr0tz:0
+[ 1699357ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/hotels?_rsc=qr0tz:0
+[ 1699736ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/tourism?_rsc=qr0tz:0
+[ 1700273ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/promo-video?_rsc=qr0tz:0
+[ 1702854ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/restaurants?_rsc=qr0tz:0
+[ 1705784ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/auto?_rsc=qr0tz:0
+[ 1706903ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3005/gazeta/360-tours?_rsc=qr0tz:0
+[ 1710069ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0
+[ 2619966ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0
+[ 2650679ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0
+[ 2650916ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0
+[ 2671438ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0
+[ 2673154ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0
+[ 3905074ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0
+[ 4246688ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0

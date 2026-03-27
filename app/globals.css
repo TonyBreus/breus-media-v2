@@ -119,3 +119,14 @@ h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Hidden scrollbar for card content areas */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+
+.custom-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

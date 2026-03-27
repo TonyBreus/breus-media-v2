@@ -1,0 +1,871 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic:
+      - generic: "#1"
+      - generic [ref=e3]:
+        - generic [ref=e4]:
+          - generic:
+            - generic: "#2"
+          - generic [ref=e5]:
+            - generic: "#3"
+            - generic [ref=e7]:
+              - generic [ref=e8]: Tbilisi
+              - generic [ref=e10]: 21:35:09
+        - generic:
+          - generic:
+            - generic: "#200"
+            - generic:
+              - generic:
+                - generic: АГЕНТСТВО
+                - generic:
+                  - generic:
+                    - link "Breus Media":
+                      - /url: /gazeta
+                - generic: Визуальный Продакшен & AI
+          - navigation:
+            - generic:
+              - generic: "#201"
+              - generic:
+                - link "О Нас":
+                  - /url: /gazeta#market-reality
+            - generic:
+              - generic: "#202"
+              - generic:
+                - generic:
+                  - button "Индустрии":
+                    - text: Индустрии
+                    - img
+            - generic:
+              - generic: "#203"
+              - generic:
+                - generic:
+                  - button "Услуги":
+                    - text: Услуги
+                    - img
+            - generic:
+              - generic: "#210"
+              - generic:
+                - link "Цены":
+                  - /url: "#pricing"
+            - generic:
+              - generic: "#211"
+              - generic:
+                - link "FAQ":
+                  - /url: "#faq"
+            - generic:
+              - generic: "#204"
+              - generic:
+                - link "AI Решения":
+                  - /url: /gazeta/ai-content
+          - generic:
+            - generic:
+              - generic: "#205"
+              - generic:
+                - generic:
+                  - button:
+                    - img
+            - generic:
+              - generic: "#207"
+              - generic:
+                - generic:
+                  - button "RU":
+                    - img
+                    - generic: RU
+            - generic:
+              - generic: "#206"
+              - generic:
+                - link "Обсудить проект":
+                  - /url: /gazeta#contact
+                  - generic: Обсудить проект
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - generic: "#208"
+            - generic [ref=e15]:
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e16] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e17]:
+                  - generic: "#2081"
+                  - generic [ref=e18]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e19] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e20]:
+                  - generic: "#2082"
+                  - generic [ref=e21]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e22] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e23]:
+                  - generic: "#2083"
+                  - generic [ref=e24]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e25] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e26]:
+                  - generic: "#2084"
+                  - generic [ref=e27]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e28] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e29]:
+                  - generic: "#2085"
+                  - generic [ref=e30]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e31] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e32]:
+                  - generic: "#2086"
+                  - generic [ref=e33]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e34] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e35]:
+                  - generic: "#2087"
+                  - generic [ref=e36]: ВАШ БИЗНЕС
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e37] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e38]:
+                  - generic: "#2081"
+                  - generic [ref=e39]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e40] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e41]:
+                  - generic: "#2082"
+                  - generic [ref=e42]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e43] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e44]:
+                  - generic: "#2083"
+                  - generic [ref=e45]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e46] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e47]:
+                  - generic: "#2084"
+                  - generic [ref=e48]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e49] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e50]:
+                  - generic: "#2085"
+                  - generic [ref=e51]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e52] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e53]:
+                  - generic: "#2086"
+                  - generic [ref=e54]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e55] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e56]:
+                  - generic: "#2087"
+                  - generic [ref=e57]: ВАШ БИЗНЕС
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e58] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e59]:
+                  - generic: "#2081"
+                  - generic [ref=e60]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e61] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e62]:
+                  - generic: "#2082"
+                  - generic [ref=e63]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e64] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e65]:
+                  - generic: "#2083"
+                  - generic [ref=e66]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e67] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e68]:
+                  - generic: "#2084"
+                  - generic [ref=e69]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e70] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e71]:
+                  - generic: "#2085"
+                  - generic [ref=e72]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e73] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e74]:
+                  - generic: "#2086"
+                  - generic [ref=e75]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e76] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e77]:
+                  - generic: "#2087"
+                  - generic [ref=e78]: ВАШ БИЗНЕС
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e79] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e80]:
+                  - generic: "#2081"
+                  - generic [ref=e81]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e82] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e83]:
+                  - generic: "#2082"
+                  - generic [ref=e84]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e85] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e86]:
+                  - generic: "#2083"
+                  - generic [ref=e87]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e88] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e89]:
+                  - generic: "#2084"
+                  - generic [ref=e90]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e91] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e92]:
+                  - generic: "#2085"
+                  - generic [ref=e93]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e94] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e95]:
+                  - generic: "#2086"
+                  - generic [ref=e96]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e97] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e98]:
+                  - generic: "#2087"
+                  - generic [ref=e99]: ВАШ БИЗНЕС
+          - generic [ref=e101]:
+            - generic: "#209"
+            - generic [ref=e104]:
+              - link "#2091 Аэросъёмка" [ref=e105] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e106]:
+                  - generic: "#2091"
+                  - generic [ref=e107]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e108] [cursor=pointer]:
+                - /url: /360-tours-service
+                - generic [ref=e109]:
+                  - generic: "#2092"
+                  - generic [ref=e110]: 360° Туры
+              - generic [ref=e111]:
+                - generic: "#2093"
+                - generic [ref=e112]: Промо Видео
+              - generic [ref=e113]:
+                - generic: "#2094"
+                - generic [ref=e114]: AI Content
+              - generic [ref=e115]:
+                - generic: "#2095"
+                - generic [ref=e116]: Reels
+              - link "#2091 Аэросъёмка" [ref=e117] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e118]:
+                  - generic: "#2091"
+                  - generic [ref=e119]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e120] [cursor=pointer]:
+                - /url: /360-tours-service
+                - generic [ref=e121]:
+                  - generic: "#2092"
+                  - generic [ref=e122]: 360° Туры
+              - generic [ref=e123]:
+                - generic: "#2093"
+                - generic [ref=e124]: Промо Видео
+              - generic [ref=e125]:
+                - generic: "#2094"
+                - generic [ref=e126]: AI Content
+              - generic [ref=e127]:
+                - generic: "#2095"
+                - generic [ref=e128]: Reels
+              - link "#2091 Аэросъёмка" [ref=e129] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e130]:
+                  - generic: "#2091"
+                  - generic [ref=e131]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e132] [cursor=pointer]:
+                - /url: /360-tours-service
+                - generic [ref=e133]:
+                  - generic: "#2092"
+                  - generic [ref=e134]: 360° Туры
+              - generic [ref=e135]:
+                - generic: "#2093"
+                - generic [ref=e136]: Промо Видео
+              - generic [ref=e137]:
+                - generic: "#2094"
+                - generic [ref=e138]: AI Content
+              - generic [ref=e139]:
+                - generic: "#2095"
+                - generic [ref=e140]: Reels
+              - link "#2091 Аэросъёмка" [ref=e141] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e142]:
+                  - generic: "#2091"
+                  - generic [ref=e143]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e144] [cursor=pointer]:
+                - /url: /360-tours-service
+                - generic [ref=e145]:
+                  - generic: "#2092"
+                  - generic [ref=e146]: 360° Туры
+              - generic [ref=e147]:
+                - generic: "#2093"
+                - generic [ref=e148]: Промо Видео
+              - generic [ref=e149]:
+                - generic: "#2094"
+                - generic [ref=e150]: AI Content
+              - generic [ref=e151]:
+                - generic: "#2095"
+                - generic [ref=e152]: Reels
+    - generic [ref=e153]:
+      - generic: "#10100"
+      - generic [ref=e155]:
+        - img "AI-визуализация недвижимости" [ref=e157]
+        - generic [ref=e163]:
+          - generic [ref=e164]:
+            - generic: "#10101"
+            - generic [ref=e166]: AI VISUALIZATION SERVICE
+          - generic [ref=e167]:
+            - generic: "#10110"
+            - heading "AI-визуализация для продаж и упаковки" [level=1] [ref=e169]
+          - generic [ref=e170]:
+            - generic: "#10102"
+            - generic [ref=e171]:
+              - paragraph [ref=e172]: Создаём AI-визуалы для объектов, пространств, товаров и брендов в Тбилиси + выезд по Грузии по согласованию.
+              - paragraph [ref=e173]: Показывайте то, что ещё не построено, не приехало, не снято или пока существует только как идея — так, чтобы это уже хотелось купить, забронировать или заказать.
+              - paragraph [ref=e174]: "В фокусе: AI-визуализация недвижимости"
+          - generic [ref=e175]:
+            - generic [ref=e176]:
+              - generic: "#10120"
+              - link "Подробнее" [ref=e178] [cursor=pointer]:
+                - /url: /real-estate-service
+            - generic [ref=e179]:
+              - generic: "#10121"
+              - link "Заказать" [ref=e181] [cursor=pointer]:
+                - /url: "#contact"
+        - generic:
+          - generic: "#10180"
+          - generic [ref=e182]:
+            - button "AI-визуал для брендов и маркетинга" [ref=e183]:
+              - generic [ref=e186]: AI-визуал для брендов и маркетинга
+            - button "AI-визуализация недвижимости" [ref=e187]:
+              - generic [ref=e190]: AI-визуализация недвижимости
+            - button "AI staging и меблировка" [ref=e191]:
+              - generic [ref=e194]: AI staging и меблировка
+            - button "AI-визуализация пространств и интерьеров" [ref=e195]:
+              - generic [ref=e198]: AI-визуализация пространств и интерьеров
+    - generic [ref=e199]:
+      - generic: "#10200"
+      - generic [ref=e203]:
+        - generic [ref=e204]:
+          - generic: "#10210"
+          - generic [ref=e206]:
+            - generic [ref=e207]: Fast
+            - generic [ref=e208]: Быстрый запуск визуалов до съёмки
+        - generic [ref=e209]:
+          - generic: "#10211"
+          - generic [ref=e211]:
+            - generic [ref=e212]: Multi
+            - generic [ref=e213]: Сценарии под разные аудитории и каналы
+        - generic [ref=e214]:
+          - generic: "#10212"
+          - generic [ref=e216]:
+            - generic [ref=e217]: AI
+            - generic [ref=e218]: Концепты до физической реализации
+        - generic [ref=e219]:
+          - generic: "#10213"
+          - generic [ref=e221]:
+            - generic [ref=e222]: Hub
+            - generic [ref=e223]: Единая service-category подача
+    - generic [ref=e224]:
+      - generic: "#10300"
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - generic: "#10301"
+          - heading "Выберите категорию AI-визуализации под вашу задачу" [level=2] [ref=e231]
+        - generic [ref=e233]:
+          - generic [ref=e234]:
+            - generic: "#10310"
+            - article [ref=e236]:
+              - generic [ref=e237]:
+                - img "AI-визуализация недвижимости" [ref=e238]
+                - generic [ref=e240]: HOT
+              - generic [ref=e241]:
+                - heading "AI-визуализация недвижимости" [level=3] [ref=e242]
+                - generic [ref=e243]: Дом · Квартира · ЖК · Коммерция
+                - paragraph [ref=e244]: Покажите дом, квартиру, ЖК или коммерческий объект так, как он может выглядеть после завершения, меблировки и благоустройства.
+                - generic [ref=e245]:
+                  - generic [ref=e246]: AI Visualization · по задаче
+                  - generic [ref=e247]:
+                    - link "Подробнее" [ref=e248] [cursor=pointer]:
+                      - /url: /real-estate-service
+                    - link "Заказать" [ref=e249] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e250]:
+            - generic: "#10311"
+            - article [ref=e252]:
+              - img "AI staging и меблировка" [ref=e254]
+              - generic [ref=e255]:
+                - heading "AI staging и меблировка" [level=3] [ref=e256]
+                - generic [ref=e257]: Сценарий · Интерьер · Презентация
+                - paragraph [ref=e258]: Превращаем пустые, черновые или незавершённые помещения в понятный и продающий интерьерный сценарий.
+                - generic [ref=e259]:
+                  - generic [ref=e260]: AI Staging · по задаче
+                  - generic [ref=e261]:
+                    - link "Подробнее" [ref=e262] [cursor=pointer]:
+                      - /url: /real-estate-service
+                    - link "Заказать" [ref=e263] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e264]:
+            - generic: "#10312"
+            - article [ref=e266]:
+              - img "AI-визуализация пространств и интерьеров" [ref=e268]
+              - generic [ref=e269]:
+                - heading "AI-визуализация пространств и интерьеров" [level=3] [ref=e270]
+                - generic [ref=e271]: Отели · Рестораны · Клиники · Офисы
+                - paragraph [ref=e272]: Подходит для отелей, ресторанов, клиник, офисов, салонов, шоурумов и коммерческих пространств, когда нужно заранее показать атмосферу и уровень среды.
+                - generic [ref=e273]:
+                  - generic [ref=e274]: AI Space Visuals · по задаче
+                  - generic [ref=e275]:
+                    - link "Подробнее" [ref=e276] [cursor=pointer]:
+                      - /url: /hotels-service
+                    - link "Заказать" [ref=e277] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e278]:
+            - generic: "#10313"
+            - article [ref=e280]:
+              - img "AI-продуктовый визуал" [ref=e282]
+              - generic [ref=e283]:
+                - heading "AI-продуктовый визуал" [level=3] [ref=e284]
+                - generic [ref=e285]: Карточки · Сцены · Реклама
+                - paragraph [ref=e286]: Создаём реалистичные продуктовые сцены, карточки и рекламные изображения без полной классической фотосессии.
+                - generic [ref=e287]:
+                  - generic [ref=e288]: AI Product Visuals · по задаче
+                  - generic [ref=e289]:
+                    - link "Подробнее" [ref=e290] [cursor=pointer]:
+                      - /url: /business-service
+                    - link "Заказать" [ref=e291] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e292]:
+            - generic: "#10314"
+            - article [ref=e294]:
+              - img "AI-визуал для автобизнеса" [ref=e296]
+              - generic [ref=e297]:
+                - heading "AI-визуал для автобизнеса" [level=3] [ref=e298]
+                - generic [ref=e299]: Авто · Шоурум · Запуск
+                - paragraph [ref=e300]: Помогаем показывать автомобили, шоурумы и автоплощадки так, как будто объект уже готов к продаже, презентации или запуску.
+                - generic [ref=e301]:
+                  - generic [ref=e302]: AI Auto Visuals · по задаче
+                  - generic [ref=e303]:
+                    - link "Подробнее" [ref=e304] [cursor=pointer]:
+                      - /url: /auto-service
+                    - link "Заказать" [ref=e305] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e306]:
+            - generic: "#10315"
+            - article [ref=e308]:
+              - img "AI-карточки, меню и delivery-упаковка" [ref=e310]
+              - generic [ref=e311]:
+                - heading "AI-карточки, меню и delivery-упаковка" [level=3] [ref=e312]
+                - generic [ref=e313]: Меню · Delivery · Каталоги
+                - paragraph [ref=e314]: Делаем сильные визуалы для меню, доставки, маркетплейсов, карточек услуг и digital-каталогов.
+                - generic [ref=e315]:
+                  - generic [ref=e316]: AI Cards/Menu · по задаче
+                  - generic [ref=e317]:
+                    - link "Подробнее" [ref=e318] [cursor=pointer]:
+                      - /url: /restaurants-service
+                    - link "Заказать" [ref=e319] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e320]:
+            - generic: "#10316"
+            - article [ref=e322]:
+              - img "AI-визуал для брендов и маркетинга" [ref=e324]
+              - generic [ref=e325]:
+                - heading "AI-визуал для брендов и маркетинга" [level=3] [ref=e326]
+                - generic [ref=e327]: Кампании · Ads · Лендинги
+                - paragraph [ref=e328]: Готовим визуалы для кампаний, рекламы, презентаций, лендингов и брендовых digital-материалов.
+                - generic [ref=e329]:
+                  - generic [ref=e330]: AI Brand Visuals · по задаче
+                  - generic [ref=e331]:
+                    - link "Подробнее" [ref=e332] [cursor=pointer]:
+                      - /url: /business-service
+                    - link "Заказать" [ref=e333] [cursor=pointer]:
+                      - /url: "#contact"
+    - generic [ref=e334]:
+      - generic: "#10500"
+      - generic [ref=e338]:
+        - generic [ref=e339]:
+          - generic: "#10510"
+          - generic [ref=e341]:
+            - generic [ref=e342]: "01"
+            - heading "Короткий бриф" [level=4] [ref=e343]
+            - paragraph [ref=e344]: Фиксируем задачу, тип визуализации, каналы размещения и ожидаемый коммерческий результат.
+        - generic [ref=e345]:
+          - generic: "#10511"
+          - generic [ref=e347]:
+            - generic [ref=e348]: "02"
+            - heading "Сбор материалов и референсов" [level=4] [ref=e349]
+            - paragraph [ref=e350]: Собираем исходники, референсы, стили и ограничения, чтобы задать точный вектор визуала.
+        - generic [ref=e351]:
+          - generic: "#10512"
+          - generic [ref=e353]:
+            - generic [ref=e354]: "03"
+            - heading "Создание визуальных концептов" [level=4] [ref=e355]
+            - paragraph [ref=e356]: Готовим несколько направлений и проверяем, какой вариант лучше работает под цель.
+        - generic [ref=e357]:
+          - generic: "#10513"
+          - generic [ref=e359]:
+            - generic [ref=e360]: "04"
+            - heading "Финальная упаковка" [level=4] [ref=e361]
+            - paragraph [ref=e362]: Передаём финальные AI-визуалы в форматах для сайта, объявлений, рекламы и презентации.
+    - generic [ref=e363]:
+      - generic: "#10400"
+      - generic [ref=e365]:
+        - generic: "#10400"
+        - generic [ref=e368]:
+          - paragraph [ref=e369]: AI-визуализация для разных категорий бизнеса
+          - generic [ref=e370]:
+            - generic [ref=e371]:
+              - generic: "#10410"
+              - generic [ref=e372]: Недвижимость
+            - generic [ref=e373]:
+              - generic: "#10411"
+              - generic [ref=e374]: Интерьеры
+            - generic [ref=e375]:
+              - generic: "#10412"
+              - generic [ref=e376]: Отель / ресторан
+            - generic [ref=e377]:
+              - generic: "#10413"
+              - generic [ref=e378]: Автобизнес
+            - generic [ref=e379]:
+              - generic: "#10414"
+              - generic [ref=e380]: Продукт
+            - generic [ref=e381]:
+              - generic: "#10415"
+              - generic [ref=e382]: Delivery / меню
+            - generic [ref=e383]:
+              - generic: "#10416"
+              - generic [ref=e384]: Бренд / маркетинг
+          - paragraph [ref=e385]: Тбилиси + выезд по Грузии по согласованию
+    - generic [ref=e386]:
+      - generic: "#10600"
+      - generic [ref=e389]:
+        - generic [ref=e390]:
+          - generic [ref=e391]:
+            - generic: "#10601"
+            - heading "География AI-визуализации" [level=2] [ref=e393]
+          - generic [ref=e394]:
+            - generic: "#10602"
+            - paragraph [ref=e396]: Создаём AI-визуалы для проектов в Тбилиси + выезд по Грузии по согласованию.
+          - generic [ref=e397]:
+            - generic [ref=e398]:
+              - generic: "#10610"
+              - generic [ref=e402]:
+                - heading "Тбилиси" [level=4] [ref=e403]
+                - paragraph [ref=e404]: Основная зона съёмок и продакшна в пределах города.
+            - generic [ref=e405]:
+              - generic: "#10611"
+              - generic [ref=e409]:
+                - heading "Выезд по Грузии" [level=4] [ref=e410]
+                - paragraph [ref=e411]: Выезд по Грузии по согласованию под задачу проекта.
+            - generic [ref=e412]:
+              - generic: "#10612"
+              - generic [ref=e416]:
+                - heading "Регионы Грузии" [level=4] [ref=e417]
+                - paragraph [ref=e418]: Кутаиси и другие регионы по согласованному графику.
+        - generic [ref=e419]:
+          - generic [ref=e420]:
+            - generic: "#10690"
+            - img "Georgia map with coverage areas" [ref=e422]
+          - generic [ref=e423]: AI Visualization Coverage v1
+    - generic [ref=e424]:
+      - generic: "#10700"
+      - generic [ref=e426]:
+        - generic [ref=e427]:
+          - generic [ref=e428]:
+            - generic: "#10701"
+            - heading "Что вы получаете на выходе" [level=2] [ref=e430]
+          - generic [ref=e431]:
+            - generic: "#10702"
+            - paragraph [ref=e433]: Пакеты AI-визуализации и digital-упаковки
+        - generic [ref=e434]:
+          - generic [ref=e435]:
+            - generic: "#10710"
+            - generic [ref=e437]:
+              - heading "Старт AI" [level=3] [ref=e438]
+              - generic [ref=e439]: от 300 ₾
+              - list [ref=e440]:
+                - listitem [ref=e441]:
+                  - generic [ref=e442]: •
+                  - text: Готовые AI-визуалы — изображения и серии сцен для продаж, рекламы и digital-упаковки.
+                - listitem [ref=e443]:
+                  - generic [ref=e444]: •
+                  - text: Концепт будущего результата — показывает, как может выглядеть объект, интерьер, товар или пространство до физической реализации.
+                - listitem [ref=e445]:
+                  - generic [ref=e446]: •
+                  - text: Быструю визуальную упаковку без полной съёмки — когда физической съёмки ещё нет или она невыгодна.
+              - link "Выбрать" [ref=e447] [cursor=pointer]:
+                - /url: "#contact"
+          - generic [ref=e448]:
+            - generic: "#10711"
+            - generic [ref=e450]:
+              - generic [ref=e451]: Популярно
+              - heading "Стандартный AI-пакет" [level=3] [ref=e452]
+              - generic [ref=e453]: от 650 ₾
+              - list [ref=e454]:
+                - listitem [ref=e455]:
+                  - generic [ref=e456]: •
+                  - text: Готовые AI-визуалы — базовый пакет сцен под основные точки контакта.
+                - listitem [ref=e457]:
+                  - generic [ref=e458]: •
+                  - text: Материалы для сайта и объявлений — лендинги, карточки объектов, каталоги, маркетплейсы и презентации.
+                - listitem [ref=e459]:
+                  - generic [ref=e460]: •
+                  - text: Варианты под разные стили и сценарии — один объект в нескольких форматах и под разные аудитории.
+              - link "Выбрать" [ref=e461] [cursor=pointer]:
+                - /url: "#contact"
+          - generic [ref=e462]:
+            - generic: "#10712"
+            - generic [ref=e464]:
+              - heading "Полный AI-пакет" [level=3] [ref=e465]
+              - generic [ref=e466]: от 950 ₾
+              - list [ref=e467]:
+                - listitem [ref=e468]:
+                  - generic [ref=e469]: •
+                  - text: Полный набор готовых AI-визуалов для рекламы, продаж и digital-материалов.
+                - listitem [ref=e470]:
+                  - generic [ref=e471]: •
+                  - text: Материалы для сайта и объявлений + дополнительные адаптации под кампании.
+                - listitem [ref=e472]:
+                  - generic [ref=e473]: •
+                  - text: Варианты под разные стили и сценарии с финальной упаковкой под каналы.
+                - listitem [ref=e474]:
+                  - generic [ref=e475]: •
+                  - text: Быструю визуальную упаковку без полной съёмки на старте проекта.
+              - link "Выбрать" [ref=e476] [cursor=pointer]:
+                - /url: "#contact"
+    - generic [ref=e477]:
+      - generic: "#10750"
+      - generic [ref=e480]:
+        - generic [ref=e481]:
+          - paragraph [ref=e482]: Боль и решение
+          - heading "Почему обычной съёмки и рендера уже недостаточно" [level=2] [ref=e483]
+          - paragraph [ref=e484]: Когда нужно продавать быстрее, тестировать идеи, показывать будущий результат или запускать материалы до полной готовности, AI-визуализация даёт бизнесу заметное преимущество.
+        - generic [ref=e485]:
+          - generic [ref=e486]:
+            - generic: "#10760"
+            - article [ref=e488]:
+              - heading "Объект или товар ещё не готов" [level=3] [ref=e489]
+              - paragraph [ref=e490]: Если дом строится, машина едет, меню обновляется или интерьер ещё не оформлен, показывать пока нечего.
+              - paragraph [ref=e491]: "Решение: AI-визуализация помогает продавать идею и будущий результат до полной готовности."
+          - generic [ref=e492]:
+            - generic: "#10761"
+            - article [ref=e494]:
+              - heading "Клиенту сложно представить итог" [level=3] [ref=e495]
+              - paragraph [ref=e496]: Планы, чертежи и обычные фото часто не дают ощущения, как это будет выглядеть в реальности.
+              - paragraph [ref=e497]: "Решение: создаём визуал, который помогает увидеть пространство, продукт или объект заранее."
+          - generic [ref=e498]:
+            - generic: "#10762"
+            - article [ref=e500]:
+              - heading "Классическая съёмка не всегда выгодна" [level=3] [ref=e501]
+              - paragraph [ref=e502]: Не каждый проект разумно тащить в полноценный продакшн на старте.
+              - paragraph [ref=e503]: "Решение: AI-визуалы помогают быстро собрать сильную упаковку без лишних затрат на первом этапе."
+          - generic [ref=e504]:
+            - generic: "#10763"
+            - article [ref=e506]:
+              - heading "Нужно много вариантов и гипотез" [level=3] [ref=e507]
+              - paragraph [ref=e508]: Разные стили, сценарии, аудитории и идеи сложно тестировать через обычную съёмку.
+              - paragraph [ref=e509]: "Решение: AI позволяет быстро создавать и сравнивать несколько визуальных направлений."
+    - generic [ref=e510]:
+      - generic: "#10800"
+      - generic [ref=e513]:
+        - generic [ref=e515]:
+          - generic: "#10801"
+          - heading "FAQ" [level=2] [ref=e517]
+        - generic [ref=e519]:
+          - generic [ref=e520]:
+            - generic: "#10810"
+            - group [ref=e522] [cursor=pointer]:
+              - generic "Чем AI-визуализация отличается от обычного рендера? ↓" [ref=e523]:
+                - text: Чем AI-визуализация отличается от обычного рендера?
+                - generic [ref=e524]: ↓
+          - generic [ref=e525]:
+            - generic: "#10811"
+            - group [ref=e527] [cursor=pointer]:
+              - generic "Можно ли использовать AI-визуалы для продажи ещё неготового объекта? ↓" [ref=e528]:
+                - text: Можно ли использовать AI-визуалы для продажи ещё неготового объекта?
+                - generic [ref=e529]: ↓
+          - generic [ref=e530]:
+            - generic: "#10812"
+            - group [ref=e532] [cursor=pointer]:
+              - generic "Можно ли сделать несколько стилей одного и того же пространства? ↓" [ref=e533]:
+                - text: Можно ли сделать несколько стилей одного и того же пространства?
+                - generic [ref=e534]: ↓
+          - generic [ref=e535]:
+            - generic: "#10813"
+            - group [ref=e537] [cursor=pointer]:
+              - generic "Подходит ли это для карточек товаров, меню и delivery? ↓" [ref=e538]:
+                - text: Подходит ли это для карточек товаров, меню и delivery?
+                - generic [ref=e539]: ↓
+          - generic [ref=e540]:
+            - generic: "#10814"
+            - group [ref=e542] [cursor=pointer]:
+              - generic "Можно ли сделать визуалы без полноценной фотосессии? ↓" [ref=e543]:
+                - text: Можно ли сделать визуалы без полноценной фотосессии?
+                - generic [ref=e544]: ↓
+          - generic [ref=e545]:
+            - generic: "#10815"
+            - group [ref=e547] [cursor=pointer]:
+              - generic "Где потом можно использовать эти материалы? ↓" [ref=e548]:
+                - text: Где потом можно использовать эти материалы?
+                - generic [ref=e549]: ↓
+          - generic [ref=e550]:
+            - generic: "#10816"
+            - group [ref=e552] [cursor=pointer]:
+              - generic "Можно ли обновлять и дорабатывать визуалы позже? ↓" [ref=e553]:
+                - text: Можно ли обновлять и дорабатывать визуалы позже?
+                - generic [ref=e554]: ↓
+    - generic [ref=e555]:
+      - generic: "#10850"
+      - generic [ref=e557]:
+        - generic: "#10850"
+        - generic [ref=e560]:
+          - generic [ref=e561]:
+            - paragraph [ref=e562]: Смежные направления
+            - heading "Что еще может подойти вашему объекту" [level=2] [ref=e563]
+          - generic [ref=e564]:
+            - generic [ref=e565]:
+              - generic: "#10860"
+              - link "Недвижимость Визуализация объектов и пространства под продажу и презентацию." [ref=e567] [cursor=pointer]:
+                - /url: /real-estate-service
+                - paragraph [ref=e568]: Недвижимость
+                - paragraph [ref=e569]: Визуализация объектов и пространства под продажу и презентацию.
+            - generic [ref=e570]:
+              - generic: "#10861"
+              - link "Отели Подача интерьеров и среды гостеприимства до фактической съёмки." [ref=e572] [cursor=pointer]:
+                - /url: /hotels-service
+                - paragraph [ref=e573]: Отели
+                - paragraph [ref=e574]: Подача интерьеров и среды гостеприимства до фактической съёмки.
+            - generic [ref=e575]:
+              - generic: "#10862"
+              - link "Рестораны Визуалы для меню, delivery и digital-материалов заведений." [ref=e577] [cursor=pointer]:
+                - /url: /restaurants-service
+                - paragraph [ref=e578]: Рестораны
+                - paragraph [ref=e579]: Визуалы для меню, delivery и digital-материалов заведений.
+            - generic [ref=e580]:
+              - generic: "#10863"
+              - link "Автобизнес Подача автомобилей, шоурумов и площадок для запуска продаж." [ref=e582] [cursor=pointer]:
+                - /url: /auto-service
+                - paragraph [ref=e583]: Автобизнес
+                - paragraph [ref=e584]: Подача автомобилей, шоурумов и площадок для запуска продаж.
+            - generic [ref=e585]:
+              - generic: "#10864"
+              - link "Ваш бизнес AI-визуал под коммерческую упаковку, рекламу и презентации." [ref=e587] [cursor=pointer]:
+                - /url: /business-service
+                - paragraph [ref=e588]: Ваш бизнес
+                - paragraph [ref=e589]: AI-визуал под коммерческую упаковку, рекламу и презентации.
+            - generic [ref=e590]:
+              - generic: "#10865"
+              - link "Промо-видео Видео-форматы для усиления AI-визуалов в коммуникации бренда." [ref=e592] [cursor=pointer]:
+                - /url: /promo-video-service
+                - paragraph [ref=e593]: Промо-видео
+                - paragraph [ref=e594]: Видео-форматы для усиления AI-визуалов в коммуникации бренда.
+            - generic [ref=e595]:
+              - generic: "#10866"
+              - link "360° туры Интерактивный показ пространства вместе с AI-подачей концепта." [ref=e597] [cursor=pointer]:
+                - /url: /360-tours-service
+                - paragraph [ref=e598]: 360° туры
+                - paragraph [ref=e599]: Интерактивный показ пространства вместе с AI-подачей концепта.
+    - generic [ref=e600]:
+      - generic: "#10900"
+      - generic [ref=e604]:
+        - generic [ref=e605]:
+          - generic: "#10901"
+          - heading "Обсудим AI-визуализацию для вашего проекта" [level=2] [ref=e607]
+        - generic [ref=e608]:
+          - generic: "#10902"
+          - paragraph [ref=e610]: "Подскажем, что лучше подойдёт: staging, визуализация объекта, продуктовые сцены или коммерческая упаковка под сайт, рекламу и продажи."
+        - generic [ref=e611]:
+          - generic [ref=e612]:
+            - generic [ref=e613]:
+              - generic [ref=e614]: Ваше имя *
+              - textbox "Иван Иванов" [ref=e615]
+            - generic [ref=e616]:
+              - generic [ref=e617]: Способ связи *
+              - generic [ref=e618]:
+                - button "Telegram" [ref=e619]
+                - button "WhatsApp" [ref=e620]
+                - button "Email" [ref=e621]
+              - textbox "@username" [ref=e622]
+          - generic [ref=e623]:
+            - generic [ref=e624]: Интересующие услуги
+            - generic [ref=e625]:
+              - button "Недвижимость" [ref=e626]
+              - button "Интерьеры" [ref=e627]
+              - button "Отель / ресторан" [ref=e628]
+              - button "Автобизнес" [ref=e629]
+              - button "Продукт" [ref=e630]
+              - button "Delivery / меню" [ref=e631]
+              - button "Бренд / маркетинг" [ref=e632]
+          - generic [ref=e633]:
+            - generic [ref=e634]: Коротко о задаче
+            - 'textbox "Например: AI staging квартиры + набор визуалов для карточек, сайта и рекламы." [ref=e635]'
+          - generic [ref=e636]:
+            - generic [ref=e637]:
+              - generic: "#10910"
+              - button "Отправить" [ref=e639]:
+                - img [ref=e640]
+                - text: Отправить
+            - generic [ref=e643]:
+              - generic: "#10911"
+              - link "WhatsApp" [ref=e645] [cursor=pointer]:
+                - /url: https://wa.me/995574619393
+                - img [ref=e646]
+                - text: WhatsApp
+          - paragraph [ref=e648]: Нажимая кнопку, вы соглашаетесь на обработку контактов для обратной связи.
+    - generic [ref=e649]:
+      - generic: "#11000"
+      - generic [ref=e651]:
+        - generic: "#11000"
+        - generic [ref=e653]:
+          - generic [ref=e654]:
+            - generic [ref=e655]:
+              - generic [ref=e656]:
+                - generic: "#11001"
+                - generic [ref=e658]:
+                  - generic [ref=e659]: ✈
+                  - text: BREUS MEDIA
+              - generic [ref=e660]:
+                - generic: "#11002"
+                - paragraph [ref=e662]: Профессиональная аэросъёмка и визуальные решения для бизнеса в Грузии. Тбилиси, Батуми, Кутаиси.
+              - generic [ref=e663]:
+                - generic [ref=e664]:
+                  - generic: "#11010"
+                  - link "IG" [ref=e666] [cursor=pointer]:
+                    - /url: "#"
+                - generic [ref=e667]:
+                  - generic: "#11011"
+                  - link "TG" [ref=e669] [cursor=pointer]:
+                    - /url: "#"
+                - generic [ref=e670]:
+                  - generic: "#11012"
+                  - link "YT" [ref=e672] [cursor=pointer]:
+                    - /url: "#"
+            - generic [ref=e674]:
+              - generic: "#11003"
+              - generic [ref=e675]:
+                - heading "Меню" [level=4] [ref=e676]
+                - list [ref=e677]:
+                  - listitem [ref=e678]:
+                    - generic [ref=e679]:
+                      - generic: "#11020"
+                      - link "Портфолио" [ref=e681] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e682]:
+                    - generic [ref=e683]:
+                      - generic: "#11021"
+                      - link "Оборудование" [ref=e685] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e686]:
+                    - generic [ref=e687]:
+                      - generic: "#11022"
+                      - link "Карта полетов" [ref=e689] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e690]:
+                    - generic [ref=e691]:
+                      - generic: "#11023"
+                      - link "Контакты" [ref=e693] [cursor=pointer]:
+                        - /url: "#"
+            - generic [ref=e695]:
+              - generic: "#11004"
+              - generic [ref=e696]:
+                - heading "Контакты" [level=4] [ref=e697]
+                - list [ref=e698]:
+                  - listitem [ref=e699]: Tbilisi, Georgia
+                  - listitem [ref=e700]: +995 5xx xxx xxx
+                  - listitem [ref=e701]: hello@breus.media
+          - generic [ref=e702]: © 2024 BREUS MEDIA PRODUCTION. ALL RIGHTS RESERVED.
+  - alert [ref=e703]

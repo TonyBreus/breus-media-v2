@@ -1,0 +1,869 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic:
+      - generic: "#1"
+      - generic [ref=e3]:
+        - generic [ref=e4]:
+          - generic:
+            - generic: "#2"
+          - generic [ref=e5]:
+            - generic: "#3"
+            - generic [ref=e7]:
+              - generic [ref=e8]: Tbilisi
+              - generic [ref=e10]: 14:40:42
+        - generic:
+          - generic:
+            - generic: "#200"
+            - generic:
+              - generic:
+                - generic: АГЕНТСТВО
+                - generic:
+                  - generic:
+                    - link "Breus Media":
+                      - /url: /gazeta
+                - generic: Визуальный Продакшен & AI
+          - navigation:
+            - generic:
+              - generic: "#201"
+              - generic:
+                - link "О Нас":
+                  - /url: /gazeta#market-reality
+            - generic:
+              - generic: "#202"
+              - generic:
+                - generic:
+                  - button "Индустрии":
+                    - text: Индустрии
+                    - img
+            - generic:
+              - generic: "#203"
+              - generic:
+                - generic:
+                  - button "Услуги":
+                    - text: Услуги
+                    - img
+            - generic:
+              - generic: "#210"
+              - generic:
+                - link "Цены":
+                  - /url: "#pricing"
+            - generic:
+              - generic: "#211"
+              - generic:
+                - link "FAQ":
+                  - /url: "#faq"
+            - generic:
+              - generic: "#204"
+              - generic:
+                - link "AI Решения":
+                  - /url: /gazeta/ai-content
+          - generic:
+            - generic:
+              - generic: "#205"
+              - generic:
+                - generic:
+                  - button:
+                    - img
+            - generic:
+              - generic: "#207"
+              - generic:
+                - generic:
+                  - button "RU":
+                    - img
+                    - generic: RU
+            - generic:
+              - generic: "#206"
+              - generic:
+                - link "Обсудить проект":
+                  - /url: /gazeta#contact
+                  - generic: Обсудить проект
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - generic: "#208"
+            - generic [ref=e15]:
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e16] [cursor=pointer]:
+                - /url: /gazeta/real-estate
+                - generic [ref=e17]:
+                  - generic: "#2081"
+                  - generic [ref=e18]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e19] [cursor=pointer]:
+                - /url: /gazeta/auto
+                - generic [ref=e20]:
+                  - generic: "#2082"
+                  - generic [ref=e21]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e22] [cursor=pointer]:
+                - /url: /gazeta/hotels
+                - generic [ref=e23]:
+                  - generic: "#2083"
+                  - generic [ref=e24]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e25] [cursor=pointer]:
+                - /url: /gazeta/restaurants
+                - generic [ref=e26]:
+                  - generic: "#2084"
+                  - generic [ref=e27]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e28] [cursor=pointer]:
+                - /url: /gazeta/tourism
+                - generic [ref=e29]:
+                  - generic: "#2085"
+                  - generic [ref=e30]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e31] [cursor=pointer]:
+                - /url: /gazeta/clinics
+                - generic [ref=e32]:
+                  - generic: "#2086"
+                  - generic [ref=e33]: КЛИНИКИ
+              - link "#2087 IT" [ref=e34] [cursor=pointer]:
+                - /url: /gazeta/it
+                - generic [ref=e35]:
+                  - generic: "#2087"
+                  - generic [ref=e36]: IT
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e37] [cursor=pointer]:
+                - /url: /gazeta/real-estate
+                - generic [ref=e38]:
+                  - generic: "#2081"
+                  - generic [ref=e39]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e40] [cursor=pointer]:
+                - /url: /gazeta/auto
+                - generic [ref=e41]:
+                  - generic: "#2082"
+                  - generic [ref=e42]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e43] [cursor=pointer]:
+                - /url: /gazeta/hotels
+                - generic [ref=e44]:
+                  - generic: "#2083"
+                  - generic [ref=e45]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e46] [cursor=pointer]:
+                - /url: /gazeta/restaurants
+                - generic [ref=e47]:
+                  - generic: "#2084"
+                  - generic [ref=e48]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e49] [cursor=pointer]:
+                - /url: /gazeta/tourism
+                - generic [ref=e50]:
+                  - generic: "#2085"
+                  - generic [ref=e51]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e52] [cursor=pointer]:
+                - /url: /gazeta/clinics
+                - generic [ref=e53]:
+                  - generic: "#2086"
+                  - generic [ref=e54]: КЛИНИКИ
+              - link "#2087 IT" [ref=e55] [cursor=pointer]:
+                - /url: /gazeta/it
+                - generic [ref=e56]:
+                  - generic: "#2087"
+                  - generic [ref=e57]: IT
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e58] [cursor=pointer]:
+                - /url: /gazeta/real-estate
+                - generic [ref=e59]:
+                  - generic: "#2081"
+                  - generic [ref=e60]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e61] [cursor=pointer]:
+                - /url: /gazeta/auto
+                - generic [ref=e62]:
+                  - generic: "#2082"
+                  - generic [ref=e63]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e64] [cursor=pointer]:
+                - /url: /gazeta/hotels
+                - generic [ref=e65]:
+                  - generic: "#2083"
+                  - generic [ref=e66]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e67] [cursor=pointer]:
+                - /url: /gazeta/restaurants
+                - generic [ref=e68]:
+                  - generic: "#2084"
+                  - generic [ref=e69]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e70] [cursor=pointer]:
+                - /url: /gazeta/tourism
+                - generic [ref=e71]:
+                  - generic: "#2085"
+                  - generic [ref=e72]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e73] [cursor=pointer]:
+                - /url: /gazeta/clinics
+                - generic [ref=e74]:
+                  - generic: "#2086"
+                  - generic [ref=e75]: КЛИНИКИ
+              - link "#2087 IT" [ref=e76] [cursor=pointer]:
+                - /url: /gazeta/it
+                - generic [ref=e77]:
+                  - generic: "#2087"
+                  - generic [ref=e78]: IT
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e79] [cursor=pointer]:
+                - /url: /gazeta/real-estate
+                - generic [ref=e80]:
+                  - generic: "#2081"
+                  - generic [ref=e81]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e82] [cursor=pointer]:
+                - /url: /gazeta/auto
+                - generic [ref=e83]:
+                  - generic: "#2082"
+                  - generic [ref=e84]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e85] [cursor=pointer]:
+                - /url: /gazeta/hotels
+                - generic [ref=e86]:
+                  - generic: "#2083"
+                  - generic [ref=e87]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e88] [cursor=pointer]:
+                - /url: /gazeta/restaurants
+                - generic [ref=e89]:
+                  - generic: "#2084"
+                  - generic [ref=e90]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e91] [cursor=pointer]:
+                - /url: /gazeta/tourism
+                - generic [ref=e92]:
+                  - generic: "#2085"
+                  - generic [ref=e93]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e94] [cursor=pointer]:
+                - /url: /gazeta/clinics
+                - generic [ref=e95]:
+                  - generic: "#2086"
+                  - generic [ref=e96]: КЛИНИКИ
+              - link "#2087 IT" [ref=e97] [cursor=pointer]:
+                - /url: /gazeta/it
+                - generic [ref=e98]:
+                  - generic: "#2087"
+                  - generic [ref=e99]: IT
+          - generic [ref=e101]:
+            - generic: "#209"
+            - generic [ref=e104]:
+              - link "#2091 Аэросъёмка" [ref=e105] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e106]:
+                  - generic: "#2091"
+                  - generic [ref=e107]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e108] [cursor=pointer]:
+                - /url: /gazeta/360-tours
+                - generic [ref=e109]:
+                  - generic: "#2092"
+                  - generic [ref=e110]: 360° Туры
+              - link "#2093 Промо Видео" [ref=e111] [cursor=pointer]:
+                - /url: /gazeta/promo-video
+                - generic [ref=e112]:
+                  - generic: "#2093"
+                  - generic [ref=e113]: Промо Видео
+              - link "#2094 Мероприятия" [ref=e114] [cursor=pointer]:
+                - /url: /gazeta/events
+                - generic [ref=e115]:
+                  - generic: "#2094"
+                  - generic [ref=e116]: Мероприятия
+              - link "#2095 AI Content" [ref=e117] [cursor=pointer]:
+                - /url: /gazeta/ai-content
+                - generic [ref=e118]:
+                  - generic: "#2095"
+                  - generic [ref=e119]: AI Content
+              - link "#2096 Reels" [ref=e120] [cursor=pointer]:
+                - /url: /gazeta/reels
+                - generic [ref=e121]:
+                  - generic: "#2096"
+                  - generic [ref=e122]: Reels
+              - link "#2091 Аэросъёмка" [ref=e123] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e124]:
+                  - generic: "#2091"
+                  - generic [ref=e125]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e126] [cursor=pointer]:
+                - /url: /gazeta/360-tours
+                - generic [ref=e127]:
+                  - generic: "#2092"
+                  - generic [ref=e128]: 360° Туры
+              - link "#2093 Промо Видео" [ref=e129] [cursor=pointer]:
+                - /url: /gazeta/promo-video
+                - generic [ref=e130]:
+                  - generic: "#2093"
+                  - generic [ref=e131]: Промо Видео
+              - link "#2094 Мероприятия" [ref=e132] [cursor=pointer]:
+                - /url: /gazeta/events
+                - generic [ref=e133]:
+                  - generic: "#2094"
+                  - generic [ref=e134]: Мероприятия
+              - link "#2095 AI Content" [ref=e135] [cursor=pointer]:
+                - /url: /gazeta/ai-content
+                - generic [ref=e136]:
+                  - generic: "#2095"
+                  - generic [ref=e137]: AI Content
+              - link "#2096 Reels" [ref=e138] [cursor=pointer]:
+                - /url: /gazeta/reels
+                - generic [ref=e139]:
+                  - generic: "#2096"
+                  - generic [ref=e140]: Reels
+              - link "#2091 Аэросъёмка" [ref=e141] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e142]:
+                  - generic: "#2091"
+                  - generic [ref=e143]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e144] [cursor=pointer]:
+                - /url: /gazeta/360-tours
+                - generic [ref=e145]:
+                  - generic: "#2092"
+                  - generic [ref=e146]: 360° Туры
+              - link "#2093 Промо Видео" [ref=e147] [cursor=pointer]:
+                - /url: /gazeta/promo-video
+                - generic [ref=e148]:
+                  - generic: "#2093"
+                  - generic [ref=e149]: Промо Видео
+              - link "#2094 Мероприятия" [ref=e150] [cursor=pointer]:
+                - /url: /gazeta/events
+                - generic [ref=e151]:
+                  - generic: "#2094"
+                  - generic [ref=e152]: Мероприятия
+              - link "#2095 AI Content" [ref=e153] [cursor=pointer]:
+                - /url: /gazeta/ai-content
+                - generic [ref=e154]:
+                  - generic: "#2095"
+                  - generic [ref=e155]: AI Content
+              - link "#2096 Reels" [ref=e156] [cursor=pointer]:
+                - /url: /gazeta/reels
+                - generic [ref=e157]:
+                  - generic: "#2096"
+                  - generic [ref=e158]: Reels
+              - link "#2091 Аэросъёмка" [ref=e159] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e160]:
+                  - generic: "#2091"
+                  - generic [ref=e161]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e162] [cursor=pointer]:
+                - /url: /gazeta/360-tours
+                - generic [ref=e163]:
+                  - generic: "#2092"
+                  - generic [ref=e164]: 360° Туры
+              - link "#2093 Промо Видео" [ref=e165] [cursor=pointer]:
+                - /url: /gazeta/promo-video
+                - generic [ref=e166]:
+                  - generic: "#2093"
+                  - generic [ref=e167]: Промо Видео
+              - link "#2094 Мероприятия" [ref=e168] [cursor=pointer]:
+                - /url: /gazeta/events
+                - generic [ref=e169]:
+                  - generic: "#2094"
+                  - generic [ref=e170]: Мероприятия
+              - link "#2095 AI Content" [ref=e171] [cursor=pointer]:
+                - /url: /gazeta/ai-content
+                - generic [ref=e172]:
+                  - generic: "#2095"
+                  - generic [ref=e173]: AI Content
+              - link "#2096 Reels" [ref=e174] [cursor=pointer]:
+                - /url: /gazeta/reels
+                - generic [ref=e175]:
+                  - generic: "#2096"
+                  - generic [ref=e176]: Reels
+    - generic [ref=e177]:
+      - generic: "#10100"
+      - generic [ref=e179]:
+        - img "Видеотур по отелю" [ref=e181]
+        - generic [ref=e187]:
+          - generic [ref=e188]:
+            - generic: "#10101"
+            - generic [ref=e190]: HOSPITALITY CONTENT
+          - generic [ref=e191]:
+            - generic: "#10110"
+            - heading "Контент для отелей и курортов" [level=1] [ref=e193]
+          - generic [ref=e194]:
+            - generic: "#10102"
+            - generic [ref=e195]:
+              - paragraph [ref=e196]: "Атмосферные видео, аэросъёмка, 360-туры и контент для гостиниц, апарт-отелей и курортных объектов: Тбилиси + выезд по Грузии по согласованию."
+              - paragraph [ref=e197]: Гость бронирует там, где он уже почувствовал место заранее.
+              - paragraph [ref=e198]: "В фокусе: Видеотур по отелю"
+          - generic [ref=e199]:
+            - generic [ref=e200]:
+              - generic: "#10120"
+              - link "Подробнее" [ref=e202] [cursor=pointer]:
+                - /url: /gazeta/promo-video
+            - generic [ref=e203]:
+              - generic: "#10121"
+              - link "Заказать" [ref=e205] [cursor=pointer]:
+                - /url: "#contact"
+        - generic:
+          - generic: "#10180"
+          - generic [ref=e206]:
+            - button "AI-описания и локализация" [ref=e207]:
+              - generic [ref=e210]: AI-описания и локализация
+            - button "Видеотур по отелю" [ref=e211]:
+              - generic [ref=e214]: Видеотур по отелю
+            - button "Аэросъёмка территории" [ref=e215]:
+              - generic [ref=e218]: Аэросъёмка территории
+            - button "360° тур по номерам" [ref=e219]:
+              - generic [ref=e222]: 360° тур по номерам
+    - generic [ref=e223]:
+      - generic: "#10200"
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - generic: "#10210"
+          - generic [ref=e230]:
+            - generic [ref=e231]: 2x
+            - generic [ref=e232]: Выше вовлеченность на карточках отеля
+        - generic [ref=e233]:
+          - generic: "#10211"
+          - generic [ref=e235]:
+            - generic [ref=e236]: 4K
+            - generic [ref=e237]: Качество для OTA, сайта и соцсетей
+        - generic [ref=e238]:
+          - generic: "#10212"
+          - generic [ref=e240]:
+            - generic [ref=e241]: 360°
+            - generic [ref=e242]: Формат для удаленного выбора номера
+        - generic [ref=e243]:
+          - generic: "#10213"
+          - generic [ref=e245]:
+            - generic [ref=e246]: 24h
+            - generic [ref=e247]: Черновой материал после съёмки
+    - generic [ref=e248]:
+      - generic: "#10300"
+      - generic [ref=e251]:
+        - generic [ref=e252]:
+          - generic: "#10301"
+          - heading "Услуги для отелей и курортов" [level=2] [ref=e255]
+        - generic [ref=e257]:
+          - generic [ref=e258]:
+            - generic: "#10310"
+            - article [ref=e260]:
+              - generic [ref=e261]:
+                - img "Видеотур по отелю" [ref=e262]
+                - generic [ref=e264]: HOT
+              - generic [ref=e265]:
+                - heading "Видеотур по отелю" [level=3] [ref=e266]
+                - generic [ref=e267]: Сайт · Booking · Соцсети
+                - paragraph [ref=e268]: Короткий cinematic-ролик для сайта, Booking и соцсетей.
+                - generic [ref=e269]:
+                  - generic [ref=e270]: Cinematic · от 350 ₾
+                  - generic [ref=e271]:
+                    - link "Подробнее" [ref=e272] [cursor=pointer]:
+                      - /url: /gazeta/promo-video
+                    - link "Заказать" [ref=e273] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e274]:
+            - generic: "#10311"
+            - article [ref=e276]:
+              - img "Аэросъёмка территории" [ref=e278]
+              - generic [ref=e279]:
+                - heading "Аэросъёмка территории" [level=3] [ref=e280]
+                - generic [ref=e281]: Локация · Масштаб · Вид
+                - paragraph [ref=e282]: Показывает локацию, масштаб, бассейн, парковку, вид и окружение.
+                - generic [ref=e283]:
+                  - generic [ref=e284]: Drone · от 400 ₾
+                  - generic [ref=e285]:
+                    - link "Подробнее" [ref=e286] [cursor=pointer]:
+                      - /url: /drone-service
+                    - link "Заказать" [ref=e287] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e288]:
+            - generic: "#10312"
+            - article [ref=e290]:
+              - img "360° тур по номерам" [ref=e292]
+              - generic [ref=e293]:
+                - heading "360° тур по номерам" [level=3] [ref=e294]
+                - generic [ref=e295]: Интерактив · Сайт · Презентация
+                - paragraph [ref=e296]: Интерактивный формат для сайта и презентации объекта.
+                - generic [ref=e297]:
+                  - generic [ref=e298]: 360° · от 500 ₾
+                  - generic [ref=e299]:
+                    - link "Подробнее" [ref=e300] [cursor=pointer]:
+                      - /url: /gazeta/360-tours
+                    - link "Заказать" [ref=e301] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e302]:
+            - generic: "#10313"
+            - article [ref=e304]:
+              - img "Reels и Shorts для отеля" [ref=e306]
+              - generic [ref=e307]:
+                - heading "Reels и Shorts для отеля" [level=3] [ref=e308]
+                - generic [ref=e309]: Instagram · TikTok · Ads
+                - paragraph [ref=e310]: Короткие ролики для Instagram, TikTok и рекламы.
+                - generic [ref=e311]:
+                  - generic [ref=e312]: Short-form · от 450 ₾
+                  - generic [ref=e313]:
+                    - link "Подробнее" [ref=e314] [cursor=pointer]:
+                      - /url: /gazeta/reels
+                    - link "Заказать" [ref=e315] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e316]:
+            - generic: "#10314"
+            - article [ref=e318]:
+              - img "Сезонный контент-пакет" [ref=e320]
+              - generic [ref=e321]:
+                - heading "Сезонный контент-пакет" [level=3] [ref=e322]
+                - generic [ref=e323]: Лето · Зима · Праздники
+                - paragraph [ref=e324]: Съёмка под лето, зиму, праздники и спецпредложения.
+                - generic [ref=e325]:
+                  - generic [ref=e326]: Пакет · от 650 ₾
+                  - generic [ref=e327]:
+                    - link "Подробнее" [ref=e328] [cursor=pointer]:
+                      - /url: /gazeta/hotels
+                    - link "Заказать" [ref=e329] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e330]:
+            - generic: "#10315"
+            - article [ref=e332]:
+              - img "AI-описания и локализация" [ref=e334]
+              - generic [ref=e335]:
+                - heading "AI-описания и локализация" [level=3] [ref=e336]
+                - generic [ref=e337]: Тексты · Мультиязычность · OTA
+                - paragraph [ref=e338]: Тексты и адаптация материалов под разные языки и площадки.
+                - generic [ref=e339]:
+                  - generic [ref=e340]: AI Content · от 300 ₾
+                  - generic [ref=e341]:
+                    - link "Подробнее" [ref=e342] [cursor=pointer]:
+                      - /url: /gazeta/ai-content
+                    - link "Заказать" [ref=e343] [cursor=pointer]:
+                      - /url: "#contact"
+    - generic [ref=e344]:
+      - generic: "#10500"
+      - generic [ref=e348]:
+        - generic [ref=e349]:
+          - generic: "#10510"
+          - generic [ref=e351]:
+            - generic [ref=e352]: "01"
+            - heading "БРИФ" [level=4] [ref=e353]
+            - paragraph [ref=e354]: Фиксируем цели для отеля или курортного объекта, каналы размещения и формат выдачи материалов.
+        - generic [ref=e355]:
+          - generic: "#10511"
+          - generic [ref=e357]:
+            - generic [ref=e358]: "02"
+            - heading "ПОДГОТОВКА" [level=4] [ref=e359]
+            - paragraph [ref=e360]: Планируем сцены, тайминг, маршрут съёмки и согласуем рабочие окна.
+        - generic [ref=e361]:
+          - generic: "#10512"
+          - generic [ref=e363]:
+            - generic [ref=e364]: "03"
+            - heading "СЪЁМКА" [level=4] [ref=e365]
+            - paragraph [ref=e366]: "Снимаем по согласованному сценарию: видео, aerial, short-form и дополнительные форматы."
+        - generic [ref=e367]:
+          - generic: "#10513"
+          - generic [ref=e369]:
+            - generic [ref=e370]: "04"
+            - heading "ГОТОВЫЙ ПАКЕТ" [level=4] [ref=e371]
+            - paragraph [ref=e372]: Передаём материалы в форматах для сайта, рекламы и соцсетей.
+    - generic [ref=e373]:
+      - generic: "#10400"
+      - generic [ref=e375]:
+        - generic: "#10400"
+        - generic [ref=e378]:
+          - paragraph [ref=e379]: Нам доверяют в hospitality
+          - generic [ref=e380]:
+            - generic [ref=e381]:
+              - generic: "#10410"
+              - generic [ref=e382]: Отели
+            - generic [ref=e383]:
+              - generic: "#10411"
+              - generic [ref=e384]: Курорты
+            - generic [ref=e385]:
+              - generic: "#10412"
+              - generic [ref=e386]: Апарт-отели
+            - generic [ref=e387]:
+              - generic: "#10413"
+              - generic [ref=e388]: Бутик-отели
+            - generic [ref=e389]:
+              - generic: "#10414"
+              - generic [ref=e390]: Управляющие компании
+            - generic [ref=e391]:
+              - generic: "#10415"
+              - generic [ref=e392]: Travel-бренды
+          - paragraph [ref=e393]: Тбилиси + выезд по Грузии по согласованию
+    - generic [ref=e394]:
+      - generic: "#10600"
+      - generic [ref=e397]:
+        - generic [ref=e398]:
+          - generic [ref=e399]:
+            - generic: "#10601"
+            - heading "География hospitality-проектов" [level=2] [ref=e401]
+          - generic [ref=e402]:
+            - generic: "#10602"
+            - paragraph [ref=e404]: "Тбилиси + выезд по Грузии по согласованию. Формируем съёмку под тип объекта: бутик-отель, апарт-отель, resort и загородные комплексы."
+          - generic [ref=e405]:
+            - generic [ref=e406]:
+              - generic: "#10610"
+              - generic [ref=e410]:
+                - heading "Тбилиси" [level=4] [ref=e411]
+                - paragraph [ref=e412]: Основная зона съёмок и продакшна в пределах города.
+            - generic [ref=e413]:
+              - generic: "#10611"
+              - generic [ref=e417]:
+                - heading "Выезд по Грузии" [level=4] [ref=e418]
+                - paragraph [ref=e419]: Выезд по Грузии по согласованию под задачу проекта.
+            - generic [ref=e420]:
+              - generic: "#10612"
+              - generic [ref=e424]:
+                - heading "Регионы Грузии" [level=4] [ref=e425]
+                - paragraph [ref=e426]: Кутаиси и другие регионы по согласованному графику.
+        - generic [ref=e427]:
+          - generic [ref=e428]:
+            - generic: "#10690"
+            - img "Georgia map with coverage areas" [ref=e430]
+          - generic [ref=e431]: Hotels Coverage v1
+    - generic [ref=e432]:
+      - generic: "#10700"
+      - generic [ref=e434]:
+        - generic [ref=e435]:
+          - generic [ref=e436]:
+            - generic: "#10701"
+            - heading "Тарифы" [level=2] [ref=e438]
+          - generic [ref=e439]:
+            - generic: "#10702"
+            - paragraph [ref=e441]: Пакеты для отелей и курортных объектов
+        - generic [ref=e442]:
+          - generic [ref=e443]:
+            - generic: "#10710"
+            - generic [ref=e445]:
+              - heading "Старт для отеля" [level=3] [ref=e446]
+              - generic [ref=e447]: от 350 ₾
+              - list [ref=e448]:
+                - listitem [ref=e449]:
+                  - generic [ref=e450]: •
+                  - text: Базовая съёмка ключевых зон
+                - listitem [ref=e451]:
+                  - generic [ref=e452]: •
+                  - text: Короткий ролик для сайта/соцсетей
+                - listitem [ref=e453]:
+                  - generic [ref=e454]: •
+                  - text: Обработка и экспорт под digital
+              - link "Выбрать" [ref=e455] [cursor=pointer]:
+                - /url: "#contact"
+          - generic [ref=e456]:
+            - generic: "#10711"
+            - generic [ref=e458]:
+              - generic [ref=e459]: Популярно
+              - heading "Контент-пакет для гостиницы" [level=3] [ref=e460]
+              - generic [ref=e461]: от 650 ₾
+              - list [ref=e462]:
+                - listitem [ref=e463]:
+                  - generic [ref=e464]: •
+                  - text: Видео + aerial + short-form набор
+                - listitem [ref=e465]:
+                  - generic [ref=e466]: •
+                  - text: Материалы для сайта, OTA и рекламы
+                - listitem [ref=e467]:
+                  - generic [ref=e468]: •
+                  - text: Подготовка вертикальных и горизонтальных версий
+              - link "Выбрать" [ref=e469] [cursor=pointer]:
+                - /url: "#contact"
+          - generic [ref=e470]:
+            - generic: "#10712"
+            - generic [ref=e472]:
+              - heading "Полный визуальный пакет" [level=3] [ref=e473]
+              - generic [ref=e474]: от 900 ₾
+              - list [ref=e475]:
+                - listitem [ref=e476]:
+                  - generic [ref=e477]: •
+                  - text: "Комплекс: видео, aerial, 360 и AI-упаковка"
+                - listitem [ref=e478]:
+                  - generic [ref=e479]: •
+                  - text: Сезонные сценарии и продакшн-план
+                - listitem [ref=e480]:
+                  - generic [ref=e481]: •
+                  - text: Передача пакета под все ключевые каналы
+              - link "Выбрать" [ref=e482] [cursor=pointer]:
+                - /url: "#contact"
+    - generic [ref=e483]:
+      - generic: "#10750"
+      - generic [ref=e486]:
+        - generic [ref=e487]:
+          - paragraph [ref=e488]: Боль и решение
+          - heading "Почему гость не доходит до бронирования" [level=2] [ref=e489]
+          - paragraph [ref=e490]: Гость сравнивает десятки вариантов за минуты. Если атмосфера не считывается сразу, объект теряет бронирование ещё до перехода в Booking.
+        - generic [ref=e491]:
+          - generic [ref=e492]:
+            - generic: "#10760"
+            - article [ref=e494]:
+              - heading "Не чувствуется атмосфера места" [level=3] [ref=e495]
+              - paragraph [ref=e496]: Фото показывают номер, но не передают ощущение отдыха.
+              - paragraph [ref=e497]: "Решение: видео, дрон и сценарный визуал создают эмоциональный вход в объект."
+          - generic [ref=e498]:
+            - generic: "#10761"
+            - article [ref=e500]:
+              - heading "Не видно территорию и окружение" [level=3] [ref=e501]
+              - paragraph [ref=e502]: Гостю важно понимать, где он окажется, что рядом и как выглядит объект целиком.
+              - paragraph [ref=e503]: "Решение: аэросъёмка даёт контекст, который не видно в обычной галерее."
+          - generic [ref=e504]:
+            - generic: "#10762"
+            - article [ref=e506]:
+              - heading "Контент быстро устаревает" [level=3] [ref=e507]
+              - paragraph [ref=e508]: Сезон меняется, предложения обновляются, а визуал остаётся старым.
+              - paragraph [ref=e509]: "Решение: пакетная съёмка и регулярное обновление материалов."
+          - generic [ref=e510]:
+            - generic: "#10763"
+            - article [ref=e512]:
+              - heading "Нет единой упаковки под площадки" [level=3] [ref=e513]
+              - paragraph [ref=e514]: Сайт, Booking, Instagram и реклама требуют разного формата.
+              - paragraph [ref=e515]: "Решение: один продакшн-пакет под все ключевые каналы."
+    - generic [ref=e516]:
+      - generic: "#10800"
+      - generic [ref=e519]:
+        - generic [ref=e521]:
+          - generic: "#10801"
+          - heading "Частые вопросы" [level=2] [ref=e523]
+        - generic [ref=e525]:
+          - generic [ref=e526]:
+            - generic: "#10810"
+            - group [ref=e528] [cursor=pointer]:
+              - generic "Можно ли снять только территорию и без номеров? ↓" [ref=e529]:
+                - text: Можно ли снять только территорию и без номеров?
+                - generic [ref=e530]: ↓
+          - generic [ref=e531]:
+            - generic: "#10811"
+            - group [ref=e533] [cursor=pointer]:
+              - generic "Делаете ли вы контент под Booking и соцсети одновременно? ↓" [ref=e534]:
+                - text: Делаете ли вы контент под Booking и соцсети одновременно?
+                - generic [ref=e535]: ↓
+          - generic [ref=e536]:
+            - generic: "#10812"
+            - group [ref=e538] [cursor=pointer]:
+              - generic "Можно ли собрать сезонный пакет съёмок? ↓" [ref=e539]:
+                - text: Можно ли собрать сезонный пакет съёмок?
+                - generic [ref=e540]: ↓
+          - generic [ref=e541]:
+            - generic: "#10813"
+            - group [ref=e543] [cursor=pointer]:
+              - generic "Сколько времени занимает съёмка отеля? ↓" [ref=e544]:
+                - text: Сколько времени занимает съёмка отеля?
+                - generic [ref=e545]: ↓
+          - generic [ref=e546]:
+            - generic: "#10814"
+            - group [ref=e548] [cursor=pointer]:
+              - generic "Можно ли сделать материалы на нескольких языках? ↓" [ref=e549]:
+                - text: Можно ли сделать материалы на нескольких языках?
+                - generic [ref=e550]: ↓
+    - generic [ref=e551]:
+      - generic: "#10850"
+      - generic [ref=e553]:
+        - generic: "#10850"
+        - generic [ref=e556]:
+          - generic [ref=e557]:
+            - paragraph [ref=e558]: Смежные направления
+            - heading "Что еще может подойти вашему объекту" [level=2] [ref=e559]
+          - generic [ref=e560]:
+            - generic [ref=e561]:
+              - generic: "#10860"
+              - link "Рестораны Контент для гастропространств и заведений." [ref=e563] [cursor=pointer]:
+                - /url: /restaurants-service
+                - paragraph [ref=e564]: Рестораны
+                - paragraph [ref=e565]: Контент для гастропространств и заведений.
+            - generic [ref=e566]:
+              - generic: "#10861"
+              - link "Туризм Маршруты, локации и travel-визуал." [ref=e568] [cursor=pointer]:
+                - /url: /tourism-service
+                - paragraph [ref=e569]: Туризм
+                - paragraph [ref=e570]: Маршруты, локации и travel-визуал.
+            - generic [ref=e571]:
+              - generic: "#10862"
+              - link "Бизнес Упаковка коммерческих объектов и брендов." [ref=e573] [cursor=pointer]:
+                - /url: /business-service
+                - paragraph [ref=e574]: Бизнес
+                - paragraph [ref=e575]: Упаковка коммерческих объектов и брендов.
+            - generic [ref=e576]:
+              - generic: "#10863"
+              - link "Аэросъёмка Каталог aerial-форматов Breus Media." [ref=e578] [cursor=pointer]:
+                - /url: /drone-service
+                - paragraph [ref=e579]: Аэросъёмка
+                - paragraph [ref=e580]: Каталог aerial-форматов Breus Media.
+            - generic [ref=e581]:
+              - generic: "#10864"
+              - link "Недвижимость L2-страница для real estate направления." [ref=e583] [cursor=pointer]:
+                - /url: /real-estate-service
+                - paragraph [ref=e584]: Недвижимость
+                - paragraph [ref=e585]: L2-страница для real estate направления.
+    - generic [ref=e586]:
+      - generic: "#10900"
+      - generic [ref=e590]:
+        - generic [ref=e591]:
+          - generic: "#10901"
+          - heading "ОБСУДИМ КОНТЕНТ ДЛЯ ВАШЕГО ОТЕЛЯ" [level=2] [ref=e593]
+        - generic [ref=e594]:
+          - generic: "#10902"
+          - paragraph [ref=e596]: Оставьте контакты и краткий бриф. Подберём оптимальный формат контента под бронирования и вернемся с расчетом в течение рабочего часа.
+        - generic [ref=e597]:
+          - generic [ref=e598]:
+            - generic [ref=e599]:
+              - generic [ref=e600]: Ваше имя *
+              - textbox "Иван Иванов" [ref=e601]
+            - generic [ref=e602]:
+              - generic [ref=e603]: Способ связи *
+              - generic [ref=e604]:
+                - button "Telegram" [ref=e605]
+                - button "WhatsApp" [ref=e606]
+                - button "Email" [ref=e607]
+              - textbox "@username" [ref=e608]
+          - generic [ref=e609]:
+            - generic [ref=e610]: Интересующие услуги
+            - generic [ref=e611]:
+              - button "Видеотур по отелю" [ref=e612]
+              - button "Аэросъёмка территории" [ref=e613]
+              - button "360° тур по номерам" [ref=e614]
+              - button "Reels и Shorts" [ref=e615]
+              - button "Сезонный пакет" [ref=e616]
+              - button "AI-локализация" [ref=e617]
+          - generic [ref=e618]:
+            - generic [ref=e619]: Коротко о задаче
+            - 'textbox "Например: видеотур + aerial территории и набор reels для Booking и Instagram." [ref=e620]'
+          - generic [ref=e621]:
+            - generic [ref=e622]:
+              - generic: "#10910"
+              - button "Отправить" [ref=e624]:
+                - img [ref=e625]
+                - text: Отправить
+            - generic [ref=e628]:
+              - generic: "#10911"
+              - link "WhatsApp" [ref=e630] [cursor=pointer]:
+                - /url: https://wa.me/995574619393
+                - img [ref=e631]
+                - text: WhatsApp
+          - paragraph [ref=e633]: Нажимая кнопку, вы соглашаетесь на обработку контактов для обратной связи.
+    - generic [ref=e634]:
+      - generic: "#11000"
+      - generic [ref=e636]:
+        - generic: "#11000"
+        - generic [ref=e638]:
+          - generic [ref=e639]:
+            - generic [ref=e640]:
+              - generic [ref=e641]:
+                - generic: "#11001"
+                - generic [ref=e643]:
+                  - generic [ref=e644]: ✈
+                  - text: BREUS MEDIA
+              - generic [ref=e645]:
+                - generic: "#11002"
+                - paragraph [ref=e647]: Профессиональная аэросъёмка и визуальные решения для бизнеса в Грузии. Тбилиси, Батуми, Кутаиси.
+              - generic [ref=e648]:
+                - generic [ref=e649]:
+                  - generic: "#11010"
+                  - link "IG" [ref=e651] [cursor=pointer]:
+                    - /url: "#"
+                - generic [ref=e652]:
+                  - generic: "#11011"
+                  - link "TG" [ref=e654] [cursor=pointer]:
+                    - /url: "#"
+                - generic [ref=e655]:
+                  - generic: "#11012"
+                  - link "YT" [ref=e657] [cursor=pointer]:
+                    - /url: "#"
+            - generic [ref=e659]:
+              - generic: "#11003"
+              - generic [ref=e660]:
+                - heading "Меню" [level=4] [ref=e661]
+                - list [ref=e662]:
+                  - listitem [ref=e663]:
+                    - generic [ref=e664]:
+                      - generic: "#11020"
+                      - link "Портфолио" [ref=e666] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e667]:
+                    - generic [ref=e668]:
+                      - generic: "#11021"
+                      - link "Оборудование" [ref=e670] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e671]:
+                    - generic [ref=e672]:
+                      - generic: "#11022"
+                      - link "Карта полетов" [ref=e674] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e675]:
+                    - generic [ref=e676]:
+                      - generic: "#11023"
+                      - link "Контакты" [ref=e678] [cursor=pointer]:
+                        - /url: "#"
+            - generic [ref=e680]:
+              - generic: "#11004"
+              - generic [ref=e681]:
+                - heading "Контакты" [level=4] [ref=e682]
+                - list [ref=e683]:
+                  - listitem [ref=e684]: Tbilisi, Georgia
+                  - listitem [ref=e685]: +995 5xx xxx xxx
+                  - listitem [ref=e686]: hello@breus.media
+          - generic [ref=e687]: © 2024 BREUS MEDIA PRODUCTION. ALL RIGHTS RESERVED.
+  - alert [ref=e688]

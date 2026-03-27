@@ -1,0 +1,1460 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - link "Агентство визуального продакшена и AI" [ref=e7] [cursor=pointer]:
+          - /url: /gazeta
+          - generic [ref=e8]:
+            - generic [ref=e9]: Агентство
+            - generic [ref=e10]: визуального продакшена и AI
+        - generic [ref=e13]:
+          - generic [ref=e14]: Tbilisi
+          - generic [ref=e16]: 18:42:28
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic: АГЕНТСТВО
+              - generic: Визуальный Продакшен & AI
+        - navigation:
+          - generic:
+            - generic:
+              - link "О Нас":
+                - /url: "#market-reality"
+          - generic:
+            - generic:
+              - generic:
+                - button "Индустрии":
+                  - text: Индустрии
+                  - img
+          - generic:
+            - generic:
+              - generic:
+                - button "Услуги":
+                  - text: Услуги
+                  - img
+          - generic:
+            - generic:
+              - link "AI Решения":
+                - /url: /gazeta/ai-content
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - button:
+                  - img
+          - generic:
+            - generic:
+              - generic:
+                - button "RU":
+                  - img
+                  - generic: RU
+          - generic:
+            - generic:
+              - link "Обсудить проект":
+                - /url: "#contact"
+                - generic: Обсудить проект
+      - generic [ref=e17]:
+        - generic [ref=e21]:
+          - link "НЕДВИЖИМОСТЬ" [ref=e22] [cursor=pointer]:
+            - /url: /real-estate-service
+            - generic [ref=e24]: НЕДВИЖИМОСТЬ
+          - link "АВТОБИЗНЕС" [ref=e25] [cursor=pointer]:
+            - /url: /auto-service
+            - generic [ref=e27]: АВТОБИЗНЕС
+          - link "ОТЕЛИ" [ref=e28] [cursor=pointer]:
+            - /url: /hotels-service
+            - generic [ref=e30]: ОТЕЛИ
+          - link "РЕСТОРАНЫ" [ref=e31] [cursor=pointer]:
+            - /url: /restaurants-service
+            - generic [ref=e33]: РЕСТОРАНЫ
+          - link "ТУРИЗМ" [ref=e34] [cursor=pointer]:
+            - /url: /tourism-service
+            - generic [ref=e36]: ТУРИЗМ
+          - link "КЛИНИКИ" [ref=e37] [cursor=pointer]:
+            - /url: /clinics-service
+            - generic [ref=e39]: КЛИНИКИ
+          - link "ВАШ БИЗНЕС" [ref=e40] [cursor=pointer]:
+            - /url: /business-service
+            - generic [ref=e42]: ВАШ БИЗНЕС
+          - link "НЕДВИЖИМОСТЬ" [ref=e43] [cursor=pointer]:
+            - /url: /real-estate-service
+            - generic [ref=e45]: НЕДВИЖИМОСТЬ
+          - link "АВТОБИЗНЕС" [ref=e46] [cursor=pointer]:
+            - /url: /auto-service
+            - generic [ref=e48]: АВТОБИЗНЕС
+          - link "ОТЕЛИ" [ref=e49] [cursor=pointer]:
+            - /url: /hotels-service
+            - generic [ref=e51]: ОТЕЛИ
+          - link "РЕСТОРАНЫ" [ref=e52] [cursor=pointer]:
+            - /url: /restaurants-service
+            - generic [ref=e54]: РЕСТОРАНЫ
+          - link "ТУРИЗМ" [ref=e55] [cursor=pointer]:
+            - /url: /tourism-service
+            - generic [ref=e57]: ТУРИЗМ
+          - link "КЛИНИКИ" [ref=e58] [cursor=pointer]:
+            - /url: /clinics-service
+            - generic [ref=e60]: КЛИНИКИ
+          - link "ВАШ БИЗНЕС" [ref=e61] [cursor=pointer]:
+            - /url: /business-service
+            - generic [ref=e63]: ВАШ БИЗНЕС
+          - link "НЕДВИЖИМОСТЬ" [ref=e64] [cursor=pointer]:
+            - /url: /real-estate-service
+            - generic [ref=e66]: НЕДВИЖИМОСТЬ
+          - link "АВТОБИЗНЕС" [ref=e67] [cursor=pointer]:
+            - /url: /auto-service
+            - generic [ref=e69]: АВТОБИЗНЕС
+          - link "ОТЕЛИ" [ref=e70] [cursor=pointer]:
+            - /url: /hotels-service
+            - generic [ref=e72]: ОТЕЛИ
+          - link "РЕСТОРАНЫ" [ref=e73] [cursor=pointer]:
+            - /url: /restaurants-service
+            - generic [ref=e75]: РЕСТОРАНЫ
+          - link "ТУРИЗМ" [ref=e76] [cursor=pointer]:
+            - /url: /tourism-service
+            - generic [ref=e78]: ТУРИЗМ
+          - link "КЛИНИКИ" [ref=e79] [cursor=pointer]:
+            - /url: /clinics-service
+            - generic [ref=e81]: КЛИНИКИ
+          - link "ВАШ БИЗНЕС" [ref=e82] [cursor=pointer]:
+            - /url: /business-service
+            - generic [ref=e84]: ВАШ БИЗНЕС
+          - link "НЕДВИЖИМОСТЬ" [ref=e85] [cursor=pointer]:
+            - /url: /real-estate-service
+            - generic [ref=e87]: НЕДВИЖИМОСТЬ
+          - link "АВТОБИЗНЕС" [ref=e88] [cursor=pointer]:
+            - /url: /auto-service
+            - generic [ref=e90]: АВТОБИЗНЕС
+          - link "ОТЕЛИ" [ref=e91] [cursor=pointer]:
+            - /url: /hotels-service
+            - generic [ref=e93]: ОТЕЛИ
+          - link "РЕСТОРАНЫ" [ref=e94] [cursor=pointer]:
+            - /url: /restaurants-service
+            - generic [ref=e96]: РЕСТОРАНЫ
+          - link "ТУРИЗМ" [ref=e97] [cursor=pointer]:
+            - /url: /tourism-service
+            - generic [ref=e99]: ТУРИЗМ
+          - link "КЛИНИКИ" [ref=e100] [cursor=pointer]:
+            - /url: /clinics-service
+            - generic [ref=e102]: КЛИНИКИ
+          - link "ВАШ БИЗНЕС" [ref=e103] [cursor=pointer]:
+            - /url: /business-service
+            - generic [ref=e105]: ВАШ БИЗНЕС
+        - generic [ref=e110]:
+          - link "Аэросъёмка" [ref=e111] [cursor=pointer]:
+            - /url: /drone-service
+            - generic [ref=e113]: Аэросъёмка
+          - link "360° Туры" [ref=e114] [cursor=pointer]:
+            - /url: /360-tours-service
+            - generic [ref=e116]: 360° Туры
+          - generic [ref=e118]: Промо Видео
+          - generic [ref=e120]: AI Content
+          - generic [ref=e122]: Reels
+          - link "Аэросъёмка" [ref=e123] [cursor=pointer]:
+            - /url: /drone-service
+            - generic [ref=e125]: Аэросъёмка
+          - link "360° Туры" [ref=e126] [cursor=pointer]:
+            - /url: /360-tours-service
+            - generic [ref=e128]: 360° Туры
+          - generic [ref=e130]: Промо Видео
+          - generic [ref=e132]: AI Content
+          - generic [ref=e134]: Reels
+          - link "Аэросъёмка" [ref=e135] [cursor=pointer]:
+            - /url: /drone-service
+            - generic [ref=e137]: Аэросъёмка
+          - link "360° Туры" [ref=e138] [cursor=pointer]:
+            - /url: /360-tours-service
+            - generic [ref=e140]: 360° Туры
+          - generic [ref=e142]: Промо Видео
+          - generic [ref=e144]: AI Content
+          - generic [ref=e146]: Reels
+          - link "Аэросъёмка" [ref=e147] [cursor=pointer]:
+            - /url: /drone-service
+            - generic [ref=e149]: Аэросъёмка
+          - link "360° Туры" [ref=e150] [cursor=pointer]:
+            - /url: /360-tours-service
+            - generic [ref=e152]: 360° Туры
+          - generic [ref=e154]: Промо Видео
+          - generic [ref=e156]: AI Content
+          - generic [ref=e158]: Reels
+    - generic [ref=e161]:
+      - generic:
+        - generic:
+          - heading "Breus Media" [level=1]
+      - generic [ref=e162]:
+        - generic:
+          - heading "Агентство визуального продакшена и AI-контента в Тбилиси" [level=1]:
+            - text: Агентство визуального продакшена
+            - text: и AI-контента в Тбилиси
+          - paragraph: Видео, аэросъёмка, 360-туры и AI-контент для недвижимости, отелей, ресторанов и брендов по всей Грузии
+          - link "Обсудить проект" [ref=e167] [cursor=pointer]:
+            - /url: "#contact"
+        - img [ref=e171]
+    - generic [ref=e176]:
+      - generic [ref=e177]: Реальность рынка 2026
+      - heading "Люди не идут туда, где не понимают, что их ждёт." [level=2] [ref=e178]:
+        - text: Люди не идут туда,
+        - text: где не понимают,
+        - text: что их ждёт.
+      - generic [ref=e179]:
+        - paragraph [ref=e180]: 93% клиентов изучают бизнес онлайн до первого визита
+        - paragraph [ref=e181]: Объекты с видео продаются на 68% быстрее
+        - paragraph [ref=e182]: Бизнес без визуала теряет до 70% клиентов на этапе выбора
+    - generic [ref=e183]:
+      - generic [ref=e184]:
+        - link "00 АЭРОСЪЁМКА":
+          - /url: /drone-service
+          - generic [ref=e185] [cursor=pointer]:
+            - generic [ref=e186]: "00"
+            - generic [ref=e187]: АЭРОСЪЁМКА
+        - generic [ref=e188]:
+          - img "АЭРОСЪЁМКА" [ref=e190]
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - paragraph [ref=e197]: Тбилиси • Батуми • Вся Грузия
+              - heading "УСЛУГИ АЭРОСЪЁМКИ" [level=2] [ref=e198]
+              - paragraph [ref=e199]: Комплексные решения аэросъёмки для бизнеса и частных лиц. Тбилиси, Батуми и вся Грузия.
+              - paragraph [ref=e200]: "10 форматов съёмки: продажи, мониторинг, inspection, hospitality, туризм и events."
+            - generic [ref=e201]:
+              - link "VIDEO Продажи объектов 00 Недвижимость Аэрофото и видео для листингов, инвест-презентаций и продаж. Объекты с аэровидео продаются на 68% быстрее. Фото, видео и вид на район Смотреть формат" [ref=e202] [cursor=pointer]:
+                - /url: /gazeta/real-estate
+                - img [ref=e203]
+                - generic [ref=e206]:
+                  - generic [ref=e207]:
+                    - generic [ref=e208]:
+                      - generic [ref=e209]: VIDEO
+                      - generic [ref=e210]: Продажи объектов
+                    - generic [ref=e211]: "00"
+                  - heading "Недвижимость" [level=3] [ref=e212]
+                  - paragraph [ref=e213]: Аэрофото и видео для листингов, инвест-презентаций и продаж. Объекты с аэровидео продаются на 68% быстрее.
+                  - generic [ref=e214]:
+                    - generic [ref=e215]: Фото, видео и вид на район
+                    - generic [ref=e216]:
+                      - generic [ref=e217]: Смотреть формат
+                      - img [ref=e218]
+              - link "PROGRESS Стройка и девелопмент 00 Мониторинг стройки Еженедельные облёты с GPS-привязкой. PDF-отчёты о прогрессе для инвесторов без выезда на площадку. Регулярные облёты + PDF Открыть решение" [ref=e221] [cursor=pointer]:
+                - /url: /drone-service/monitoring-stroiki
+                - img [ref=e222]
+                - generic [ref=e225]:
+                  - generic [ref=e226]:
+                    - generic [ref=e227]:
+                      - generic [ref=e228]: PROGRESS
+                      - generic [ref=e229]: Стройка и девелопмент
+                    - generic [ref=e230]: "00"
+                  - heading "Мониторинг стройки" [level=3] [ref=e231]
+                  - paragraph [ref=e232]: Еженедельные облёты с GPS-привязкой. PDF-отчёты о прогрессе для инвесторов без выезда на площадку.
+                  - generic [ref=e233]:
+                    - generic [ref=e234]: Регулярные облёты + PDF
+                    - generic [ref=e235]:
+                      - generic [ref=e236]: Открыть решение
+                      - img [ref=e237]
+              - link "Технические осмотры 00 Инспекция объектов Визуальная диагностика без лесов и промальпинистов. Быстрее, безопаснее и дешевле проверки людьми. Без лесов и лишнего риска Подробнее" [ref=e240] [cursor=pointer]:
+                - /url: /drone-service
+                - img [ref=e241]
+                - generic [ref=e244]:
+                  - generic [ref=e245]:
+                    - generic [ref=e247]: Технические осмотры
+                    - generic [ref=e248]: "00"
+                  - heading "Инспекция объектов" [level=3] [ref=e249]
+                  - paragraph [ref=e250]: Визуальная диагностика без лесов и промальпинистов. Быстрее, безопаснее и дешевле проверки людьми.
+                  - generic [ref=e251]:
+                    - generic [ref=e252]: Без лесов и лишнего риска
+                    - generic [ref=e253]:
+                      - generic [ref=e254]: Подробнее
+                      - img [ref=e255]
+              - link "VIDEO Hospitality 00 Отели и курорты Hero-ролики территории и номеров для сайта, Booking и соцсетей. Гости бронируют там, где видят атмосферу. Hero-ролик территории Смотреть кейс" [ref=e258] [cursor=pointer]:
+                - /url: /gazeta/hotels
+                - img [ref=e259]
+                - generic [ref=e262]:
+                  - generic [ref=e263]:
+                    - generic [ref=e264]:
+                      - generic [ref=e265]: VIDEO
+                      - generic [ref=e266]: Hospitality
+                    - generic [ref=e267]: "00"
+                  - heading "Отели и курорты" [level=3] [ref=e268]
+                  - paragraph [ref=e269]: Hero-ролики территории и номеров для сайта, Booking и соцсетей. Гости бронируют там, где видят атмосферу.
+                  - generic [ref=e270]:
+                    - generic [ref=e271]: Hero-ролик территории
+                    - generic [ref=e272]:
+                      - generic [ref=e273]: Смотреть кейс
+                      - img [ref=e274]
+              - link "DRONE HoReCa 00 Рестораны Аэросъёмка открытых террас, ресторанов на крышах и за городом. Контент, который приводит гостей. Терраса, крыша, локация Посмотреть формат" [ref=e277] [cursor=pointer]:
+                - /url: /gazeta/restaurants
+                - img [ref=e278]
+                - generic [ref=e281]:
+                  - generic [ref=e282]:
+                    - generic [ref=e283]:
+                      - generic [ref=e284]: DRONE
+                      - generic [ref=e285]: HoReCa
+                    - generic [ref=e286]: "00"
+                  - heading "Рестораны" [level=3] [ref=e287]
+                  - paragraph [ref=e288]: Аэросъёмка открытых террас, ресторанов на крышах и за городом. Контент, который приводит гостей.
+                  - generic [ref=e289]:
+                    - generic [ref=e290]: Терраса, крыша, локация
+                    - generic [ref=e291]:
+                      - generic [ref=e292]: Посмотреть формат
+                      - img [ref=e293]
+              - link "FPV-СЪЁМКА Внутри и снаружи 00 FPV-пролёты Cinematic пролёты изнутри и снаружи. FPV-дрон там, где обычный не пролетит — залы, арки, цеха. Один непрерывный проход Открыть FPV" [ref=e296] [cursor=pointer]:
+                - /url: /drone-service
+                - img [ref=e297]
+                - generic [ref=e300]:
+                  - generic [ref=e301]:
+                    - generic [ref=e302]:
+                      - generic [ref=e303]: FPV-СЪЁМКА
+                      - generic [ref=e304]: Внутри и снаружи
+                    - generic [ref=e305]: "00"
+                  - heading "FPV-пролёты" [level=3] [ref=e306]
+                  - paragraph [ref=e307]: Cinematic пролёты изнутри и снаружи. FPV-дрон там, где обычный не пролетит — залы, арки, цеха.
+                  - generic [ref=e308]:
+                    - generic [ref=e309]: Один непрерывный проход
+                    - generic [ref=e310]:
+                      - generic [ref=e311]: Открыть FPV
+                      - img [ref=e312]
+              - link "VIDEO Бренд-контент 00 Реклама и ролики Рекламные ролики, брендовый контент и корпоративное видео с воздуха для сайта и соцсетей. Реклама для сайта и соцсетей Смотреть решение" [ref=e315] [cursor=pointer]:
+                - /url: /gazeta/promo-video
+                - img [ref=e316]
+                - generic [ref=e319]:
+                  - generic [ref=e320]:
+                    - generic [ref=e321]:
+                      - generic [ref=e322]: VIDEO
+                      - generic [ref=e323]: Бренд-контент
+                    - generic [ref=e324]: "00"
+                  - heading "Реклама и ролики" [level=3] [ref=e325]
+                  - paragraph [ref=e326]: Рекламные ролики, брендовый контент и корпоративное видео с воздуха для сайта и соцсетей.
+                  - generic [ref=e327]:
+                    - generic [ref=e328]: Реклама для сайта и соцсетей
+                    - generic [ref=e329]:
+                      - generic [ref=e330]: Смотреть решение
+                      - img [ref=e331]
+              - link "DRONE Travel 00 Туризм Cinematic аэросъёмка локаций Грузии. Горы, ущелья, замки — контент, который продаёт маршруты. Локации, маршруты, атмосфера Посмотреть формат" [ref=e334] [cursor=pointer]:
+                - /url: /gazeta/tourism
+                - img [ref=e335]
+                - generic [ref=e338]:
+                  - generic [ref=e339]:
+                    - generic [ref=e340]:
+                      - generic [ref=e341]: DRONE
+                      - generic [ref=e342]: Travel
+                    - generic [ref=e343]: "00"
+                  - heading "Туризм" [level=3] [ref=e344]
+                  - paragraph [ref=e345]: Cinematic аэросъёмка локаций Грузии. Горы, ущелья, замки — контент, который продаёт маршруты.
+                  - generic [ref=e346]:
+                    - generic [ref=e347]: Локации, маршруты, атмосфера
+                    - generic [ref=e348]:
+                      - generic [ref=e349]: Посмотреть формат
+                      - img [ref=e350]
+              - link "DRONE Events 00 Мероприятия Аэросъёмка открытий, корпоративов, спортивных соревнований и фестивалей на открытом воздухе. Фестивали, спорт, открытия Подробнее" [ref=e353] [cursor=pointer]:
+                - /url: /gazeta/events
+                - img [ref=e354]
+                - generic [ref=e357]:
+                  - generic [ref=e358]:
+                    - generic [ref=e359]:
+                      - generic [ref=e360]: DRONE
+                      - generic [ref=e361]: Events
+                    - generic [ref=e362]: "00"
+                  - heading "Мероприятия" [level=3] [ref=e363]
+                  - paragraph [ref=e364]: Аэросъёмка открытий, корпоративов, спортивных соревнований и фестивалей на открытом воздухе.
+                  - generic [ref=e365]:
+                    - generic [ref=e366]: Фестивали, спорт, открытия
+                    - generic [ref=e367]:
+                      - generic [ref=e368]: Подробнее
+                      - img [ref=e369]
+              - 'link "Подбор решения 00 Все услуги Откройте страницу аэросъёмки, чтобы увидеть все форматы: недвижимость, мониторинг, inspection, FPV, туризм, мероприятия и другие задачи. Все форматы аэросъёмки Открыть услуги" [ref=e372] [cursor=pointer]':
+                - /url: /drone-service
+                - img [ref=e373]
+                - generic [ref=e376]:
+                  - generic [ref=e377]:
+                    - generic [ref=e379]: Подбор решения
+                    - generic [ref=e380]: "00"
+                  - heading "Все услуги" [level=3] [ref=e381]
+                  - paragraph [ref=e382]: "Откройте страницу аэросъёмки, чтобы увидеть все форматы: недвижимость, мониторинг, inspection, FPV, туризм, мероприятия и другие задачи."
+                  - generic [ref=e383]:
+                    - generic [ref=e384]: Все форматы аэросъёмки
+                    - generic [ref=e385]:
+                      - generic [ref=e386]: Открыть услуги
+                      - img [ref=e387]
+      - generic [ref=e390]:
+        - generic:
+          - generic:
+            - link "01 Недвижимость":
+              - /url: /real-estate-service
+              - generic [ref=e391] [cursor=pointer]:
+                - generic [ref=e392]: "01"
+                - generic [ref=e393]: Недвижимость
+        - generic [ref=e394]:
+          - img "Недвижимость" [ref=e398]
+          - generic [ref=e405]:
+            - generic [ref=e406]:
+              - paragraph [ref=e407]: 01 / Недвижимость
+              - heading "НЕДВИЖИМОСТЬ" [level=2] [ref=e408]
+              - paragraph [ref=e409]: Аэросъёмка, 360-туры и видео для риелторов и застройщиков — объекты с видео продаются на 68% быстрее
+            - generic [ref=e410]:
+              - 'link "VIDEO Продакшн 01 Видео для риелторов Съёмка квартиры или дома: интерьер, экстерьер, район. Монтаж за 3–5 дней. От 400 GEL Съёмка и монтаж Смотреть формат" [ref=e413] [cursor=pointer]':
+                - /url: /gazeta/real-estate
+                - img [ref=e414]
+                - generic [ref=e417]:
+                  - generic [ref=e418]:
+                    - generic [ref=e419]:
+                      - generic [ref=e420]: VIDEO
+                      - generic [ref=e421]: Продакшн
+                    - generic [ref=e422]: "01"
+                  - heading "Видео для риелторов" [level=3] [ref=e423]
+                  - paragraph [ref=e424]: "Съёмка квартиры или дома: интерьер, экстерьер, район. Монтаж за 3–5 дней. От 400 GEL"
+                  - generic [ref=e425]:
+                    - generic [ref=e426]: Съёмка и монтаж
+                    - generic [ref=e427]:
+                      - generic [ref=e428]: Смотреть формат
+                      - img [ref=e429]
+              - link "VIDEO Продакшн 01 Видео для застройщиков Презентационные ролики ЖК, рендеры и реальная съёмка для продаж и инвесторов Съёмка и монтаж Смотреть формат" [ref=e434] [cursor=pointer]:
+                - /url: /gazeta/real-estate
+                - img [ref=e435]
+                - generic [ref=e438]:
+                  - generic [ref=e439]:
+                    - generic [ref=e440]:
+                      - generic [ref=e441]: VIDEO
+                      - generic [ref=e442]: Продакшн
+                    - generic [ref=e443]: "01"
+                  - heading "Видео для застройщиков" [level=3] [ref=e444]
+                  - paragraph [ref=e445]: Презентационные ролики ЖК, рендеры и реальная съёмка для продаж и инвесторов
+                  - generic [ref=e446]:
+                    - generic [ref=e447]: Съёмка и монтаж
+                    - generic [ref=e448]:
+                      - generic [ref=e449]: Смотреть формат
+                      - img [ref=e450]
+              - link "AI AI-решения 01 Аэросъёмка объектов DJI Air 3S, 4K. Облёт фасада, территории и района. 94% больше просмотров объявления Упаковка и локализация Открыть решение" [ref=e455] [cursor=pointer]:
+                - /url: /drone-service
+                - img [ref=e456]
+                - generic [ref=e459]:
+                  - generic [ref=e460]:
+                    - generic [ref=e461]:
+                      - generic [ref=e462]: AI
+                      - generic [ref=e463]: AI-решения
+                    - generic [ref=e464]: "01"
+                  - heading "Аэросъёмка объектов" [level=3] [ref=e465]
+                  - paragraph [ref=e466]: DJI Air 3S, 4K. Облёт фасада, территории и района. 94% больше просмотров объявления
+                  - generic [ref=e467]:
+                    - generic [ref=e468]: Упаковка и локализация
+                    - generic [ref=e469]:
+                      - generic [ref=e470]: Открыть решение
+                      - img [ref=e471]
+              - link "360 Иммерсивный формат 01 360° виртуальные туры Интерактивный тур по объекту. Загрузка на SS.ge, MyHome.ge и ваш сайт Виртуальный тур Смотреть формат" [ref=e476] [cursor=pointer]:
+                - /url: /gazeta/360-tours
+                - img [ref=e477]
+                - generic [ref=e480]:
+                  - generic [ref=e481]:
+                    - generic [ref=e482]:
+                      - generic [ref=e483]: "360"
+                      - generic [ref=e484]: Иммерсивный формат
+                    - generic [ref=e485]: "01"
+                  - heading "360° виртуальные туры" [level=3] [ref=e486]
+                  - paragraph [ref=e487]: Интерактивный тур по объекту. Загрузка на SS.ge, MyHome.ge и ваш сайт
+                  - generic [ref=e488]:
+                    - generic [ref=e489]: Виртуальный тур
+                    - generic [ref=e490]:
+                      - generic [ref=e491]: Смотреть формат
+                      - img [ref=e492]
+              - link "PROGRESS Регулярный контроль 01 Мониторинг стройки Ежемесячные дрон-облёты с GPS-привязкой и PDF-отчётом для банков и инвесторов Облёты и отчёты Открыть решение" [ref=e497] [cursor=pointer]:
+                - /url: /drone-service/monitoring-stroiki
+                - img [ref=e498]
+                - generic [ref=e501]:
+                  - generic [ref=e502]:
+                    - generic [ref=e503]:
+                      - generic [ref=e504]: PROGRESS
+                      - generic [ref=e505]: Регулярный контроль
+                    - generic [ref=e506]: "01"
+                  - heading "Мониторинг стройки" [level=3] [ref=e507]
+                  - paragraph [ref=e508]: Ежемесячные дрон-облёты с GPS-привязкой и PDF-отчётом для банков и инвесторов
+                  - generic [ref=e509]:
+                    - generic [ref=e510]: Облёты и отчёты
+                    - generic [ref=e511]:
+                      - generic [ref=e512]: Открыть решение
+                      - img [ref=e513]
+              - link "AI AI-решения 01 AI-упаковка объявлений Улучшение фото, описания для порталов, Reels для соцсетей агентства Упаковка и локализация Открыть решение" [ref=e518] [cursor=pointer]:
+                - /url: /gazeta/ai-content
+                - img [ref=e519]
+                - generic [ref=e522]:
+                  - generic [ref=e523]:
+                    - generic [ref=e524]:
+                      - generic [ref=e525]: AI
+                      - generic [ref=e526]: AI-решения
+                    - generic [ref=e527]: "01"
+                  - heading "AI-упаковка объявлений" [level=3] [ref=e528]
+                  - paragraph [ref=e529]: Улучшение фото, описания для порталов, Reels для соцсетей агентства
+                  - generic [ref=e530]:
+                    - generic [ref=e531]: Упаковка и локализация
+                    - generic [ref=e532]:
+                      - generic [ref=e533]: Открыть решение
+                      - img [ref=e534]
+              - 'link "Полный список решений 01 Все услуги Откройте страницу направления с полным пакетом для недвижимости: съёмка, аэро, 360°-туры и AI-упаковка. Вся страница направления Перейти к услугам" [ref=e539] [cursor=pointer]':
+                - /url: /real-estate-service
+                - img [ref=e540]
+                - generic [ref=e543]:
+                  - generic [ref=e544]:
+                    - generic [ref=e546]: Полный список решений
+                    - generic [ref=e547]: "01"
+                  - heading "Все услуги" [level=3] [ref=e548]
+                  - paragraph [ref=e549]: "Откройте страницу направления с полным пакетом для недвижимости: съёмка, аэро, 360°-туры и AI-упаковка."
+                  - generic [ref=e550]:
+                    - generic [ref=e551]: Вся страница направления
+                    - generic [ref=e552]:
+                      - generic [ref=e553]: Перейти к услугам
+                      - img [ref=e554]
+      - generic [ref=e557]:
+        - generic:
+          - generic:
+            - link "02 Отели":
+              - /url: /hotels-service
+              - generic [ref=e558] [cursor=pointer]:
+                - generic [ref=e559]: "02"
+                - generic [ref=e560]: Отели
+        - generic [ref=e561]:
+          - img "Отели" [ref=e565]
+          - generic [ref=e572]:
+            - generic [ref=e573]:
+              - paragraph [ref=e574]: 02 / Отели
+              - heading "ОТЕЛИ" [level=2] [ref=e575]
+              - paragraph [ref=e576]: Видеотуры, аэросъёмка и Reels для отелей Грузии — гости бронируют там, где видят атмосферу
+            - generic [ref=e577]:
+              - link "VIDEO Продакшн 02 Видеотур по отелю Номера, ресторан, бассейн, вид — cinematic видео 2–4 мин для сайта и Booking Съёмка и монтаж Смотреть формат" [ref=e580] [cursor=pointer]:
+                - /url: /gazeta/hotels
+                - img [ref=e581]
+                - generic [ref=e584]:
+                  - generic [ref=e585]:
+                    - generic [ref=e586]:
+                      - generic [ref=e587]: VIDEO
+                      - generic [ref=e588]: Продакшн
+                    - generic [ref=e589]: "02"
+                  - heading "Видеотур по отелю" [level=3] [ref=e590]
+                  - paragraph [ref=e591]: Номера, ресторан, бассейн, вид — cinematic видео 2–4 мин для сайта и Booking
+                  - generic [ref=e592]:
+                    - generic [ref=e593]: Съёмка и монтаж
+                    - generic [ref=e594]:
+                      - generic [ref=e595]: Смотреть формат
+                      - img [ref=e596]
+              - link "DRONE Aerial-визуал 02 Аэросъёмка территории Дрон над отелем, парком и побережьем. Показывает локацию лучше любых слов Съёмка с воздуха Посмотреть формат" [ref=e601] [cursor=pointer]:
+                - /url: /drone-service
+                - img [ref=e602]
+                - generic [ref=e605]:
+                  - generic [ref=e606]:
+                    - generic [ref=e607]:
+                      - generic [ref=e608]: DRONE
+                      - generic [ref=e609]: Aerial-визуал
+                    - generic [ref=e610]: "02"
+                  - heading "Аэросъёмка территории" [level=3] [ref=e611]
+                  - paragraph [ref=e612]: Дрон над отелем, парком и побережьем. Показывает локацию лучше любых слов
+                  - generic [ref=e613]:
+                    - generic [ref=e614]: Съёмка с воздуха
+                    - generic [ref=e615]:
+                      - generic [ref=e616]: Посмотреть формат
+                      - img [ref=e617]
+              - link "360 Иммерсивный формат 02 360° тур по номерам Виртуальный тур который можно встроить на сайт, Booking и Google Maps Виртуальный тур Смотреть формат" [ref=e622] [cursor=pointer]:
+                - /url: /gazeta/360-tours
+                - img [ref=e623]
+                - generic [ref=e626]:
+                  - generic [ref=e627]:
+                    - generic [ref=e628]:
+                      - generic [ref=e629]: "360"
+                      - generic [ref=e630]: Иммерсивный формат
+                    - generic [ref=e631]: "02"
+                  - heading "360° тур по номерам" [level=3] [ref=e632]
+                  - paragraph [ref=e633]: Виртуальный тур который можно встроить на сайт, Booking и Google Maps
+                  - generic [ref=e634]:
+                    - generic [ref=e635]: Виртуальный тур
+                    - generic [ref=e636]:
+                      - generic [ref=e637]: Смотреть формат
+                      - img [ref=e638]
+              - 'link "REELS Short-form контент 02 Reels и сезонный контент Ежемесячный контент-пакет: 8–12 вертикальных видео под Instagram и TikTok Вертикальные форматы Смотреть пакет" [ref=e643] [cursor=pointer]':
+                - /url: /gazeta/reels
+                - img [ref=e644]
+                - generic [ref=e647]:
+                  - generic [ref=e648]:
+                    - generic [ref=e649]:
+                      - generic [ref=e650]: REELS
+                      - generic [ref=e651]: Short-form контент
+                    - generic [ref=e652]: "02"
+                  - heading "Reels и сезонный контент" [level=3] [ref=e653]
+                  - paragraph [ref=e654]: "Ежемесячный контент-пакет: 8–12 вертикальных видео под Instagram и TikTok"
+                  - generic [ref=e655]:
+                    - generic [ref=e656]: Вертикальные форматы
+                    - generic [ref=e657]:
+                      - generic [ref=e658]: Смотреть пакет
+                      - img [ref=e659]
+              - link "REELS Short-form контент 02 SMM для отеля Ведение Instagram и TikTok — контент-план, съёмка, монтаж, коммуникация Вертикальные форматы Смотреть пакет" [ref=e664] [cursor=pointer]:
+                - /url: /gazeta/hotels
+                - img [ref=e665]
+                - generic [ref=e668]:
+                  - generic [ref=e669]:
+                    - generic [ref=e670]:
+                      - generic [ref=e671]: REELS
+                      - generic [ref=e672]: Short-form контент
+                    - generic [ref=e673]: "02"
+                  - heading "SMM для отеля" [level=3] [ref=e674]
+                  - paragraph [ref=e675]: Ведение Instagram и TikTok — контент-план, съёмка, монтаж, коммуникация
+                  - generic [ref=e676]:
+                    - generic [ref=e677]: Вертикальные форматы
+                    - generic [ref=e678]:
+                      - generic [ref=e679]: Смотреть пакет
+                      - img [ref=e680]
+              - link "AI AI-решения 02 AI-перевод и локализация Описания номеров и постов на 3–5 языках через AI — для иностранных гостей Упаковка и локализация Открыть решение" [ref=e685] [cursor=pointer]:
+                - /url: /gazeta/ai-content
+                - img [ref=e686]
+                - generic [ref=e689]:
+                  - generic [ref=e690]:
+                    - generic [ref=e691]:
+                      - generic [ref=e692]: AI
+                      - generic [ref=e693]: AI-решения
+                    - generic [ref=e694]: "02"
+                  - heading "AI-перевод и локализация" [level=3] [ref=e695]
+                  - paragraph [ref=e696]: Описания номеров и постов на 3–5 языках через AI — для иностранных гостей
+                  - generic [ref=e697]:
+                    - generic [ref=e698]: Упаковка и локализация
+                    - generic [ref=e699]:
+                      - generic [ref=e700]: Открыть решение
+                      - img [ref=e701]
+              - link "Полный список решений 02 Все услуги Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Отели». Вся страница направления Перейти к услугам" [ref=e706] [cursor=pointer]:
+                - /url: /hotels-service
+                - img [ref=e707]
+                - generic [ref=e710]:
+                  - generic [ref=e711]:
+                    - generic [ref=e713]: Полный список решений
+                    - generic [ref=e714]: "02"
+                  - heading "Все услуги" [level=3] [ref=e715]
+                  - paragraph [ref=e716]: Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Отели».
+                  - generic [ref=e717]:
+                    - generic [ref=e718]: Вся страница направления
+                    - generic [ref=e719]:
+                      - generic [ref=e720]: Перейти к услугам
+                      - img [ref=e721]
+      - generic [ref=e724]:
+        - generic:
+          - generic:
+            - link "03 Рестораны":
+              - /url: /restaurants-service
+              - generic [ref=e725] [cursor=pointer]:
+                - generic [ref=e726]: "03"
+                - generic [ref=e727]: Рестораны
+        - generic [ref=e728]:
+          - img "Рестораны" [ref=e732]
+          - generic [ref=e739]:
+            - generic [ref=e740]:
+              - paragraph [ref=e741]: 03 / Рестораны
+              - heading "РЕСТОРАНЫ" [level=2] [ref=e742]
+              - paragraph [ref=e743]: Reels, фуд-видео и брендовый контент для ресторанов — гости идут туда, где видят атмосферу и еду
+            - generic [ref=e744]:
+              - link "VIDEO Продакшн 03 Фуд-видео и фото Съёмка блюд, подачи и процесса приготовления. Для меню, сайта и соцсетей Съёмка и монтаж Смотреть формат" [ref=e747] [cursor=pointer]:
+                - /url: /gazeta/restaurants
+                - img [ref=e748]
+                - generic [ref=e751]:
+                  - generic [ref=e752]:
+                    - generic [ref=e753]:
+                      - generic [ref=e754]: VIDEO
+                      - generic [ref=e755]: Продакшн
+                    - generic [ref=e756]: "03"
+                  - heading "Фуд-видео и фото" [level=3] [ref=e757]
+                  - paragraph [ref=e758]: Съёмка блюд, подачи и процесса приготовления. Для меню, сайта и соцсетей
+                  - generic [ref=e759]:
+                    - generic [ref=e760]: Съёмка и монтаж
+                    - generic [ref=e761]:
+                      - generic [ref=e762]: Смотреть формат
+                      - img [ref=e763]
+              - 'link "REELS Short-form контент 03 Атмосферный ролик Видео 60–90 сек: интерьер, команда, гости, кухня. Для Instagram и Google Maps Вертикальные форматы Смотреть пакет" [ref=e768] [cursor=pointer]':
+                - /url: /gazeta/restaurants
+                - img [ref=e769]
+                - generic [ref=e772]:
+                  - generic [ref=e773]:
+                    - generic [ref=e774]:
+                      - generic [ref=e775]: REELS
+                      - generic [ref=e776]: Short-form контент
+                    - generic [ref=e777]: "03"
+                  - heading "Атмосферный ролик" [level=3] [ref=e778]
+                  - paragraph [ref=e779]: "Видео 60–90 сек: интерьер, команда, гости, кухня. Для Instagram и Google Maps"
+                  - generic [ref=e780]:
+                    - generic [ref=e781]: Вертикальные форматы
+                    - generic [ref=e782]:
+                      - generic [ref=e783]: Смотреть пакет
+                      - img [ref=e784]
+              - 'link "REELS Short-form контент 03 Reels-пакет 5–10 вертикальных видео в месяц: блюда, акции, атмосфера, команда Вертикальные форматы Смотреть пакет" [ref=e789] [cursor=pointer]':
+                - /url: /gazeta/reels
+                - img [ref=e790]
+                - generic [ref=e793]:
+                  - generic [ref=e794]:
+                    - generic [ref=e795]:
+                      - generic [ref=e796]: REELS
+                      - generic [ref=e797]: Short-form контент
+                    - generic [ref=e798]: "03"
+                  - heading "Reels-пакет" [level=3] [ref=e799]
+                  - paragraph [ref=e800]: "5–10 вертикальных видео в месяц: блюда, акции, атмосфера, команда"
+                  - generic [ref=e801]:
+                    - generic [ref=e802]: Вертикальные форматы
+                    - generic [ref=e803]:
+                      - generic [ref=e804]: Смотреть пакет
+                      - img [ref=e805]
+              - link "DESIGN Визуальная упаковка 03 Дизайн меню Обновление меню с фото и дизайном. Print-ready + цифровая версия. От 600 GEL Меню и носители Подробнее" [ref=e810] [cursor=pointer]:
+                - /url: /gazeta/restaurants
+                - img [ref=e811]
+                - generic [ref=e814]:
+                  - generic [ref=e815]:
+                    - generic [ref=e816]:
+                      - generic [ref=e817]: DESIGN
+                      - generic [ref=e818]: Визуальная упаковка
+                    - generic [ref=e819]: "03"
+                  - heading "Дизайн меню" [level=3] [ref=e820]
+                  - paragraph [ref=e821]: Обновление меню с фото и дизайном. Print-ready + цифровая версия. От 600 GEL
+                  - generic [ref=e822]:
+                    - generic [ref=e823]: Меню и носители
+                    - generic [ref=e824]:
+                      - generic [ref=e825]: Подробнее
+                      - img [ref=e826]
+              - link "MAPS Local presence 03 Google Maps визуал Фото и видео для Google Business — выше в поиске «рестораны рядом» Визуал для карт Открыть решение" [ref=e831] [cursor=pointer]:
+                - /url: /gazeta/restaurants
+                - img [ref=e832]
+                - generic [ref=e835]:
+                  - generic [ref=e836]:
+                    - generic [ref=e837]:
+                      - generic [ref=e838]: MAPS
+                      - generic [ref=e839]: Local presence
+                    - generic [ref=e840]: "03"
+                  - heading "Google Maps визуал" [level=3] [ref=e841]
+                  - paragraph [ref=e842]: Фото и видео для Google Business — выше в поиске «рестораны рядом»
+                  - generic [ref=e843]:
+                    - generic [ref=e844]: Визуал для карт
+                    - generic [ref=e845]:
+                      - generic [ref=e846]: Открыть решение
+                      - img [ref=e847]
+              - link "REELS Short-form контент 03 SMM под ключ Контент-план, съёмка, монтаж и ведение Instagram ресторана Вертикальные форматы Смотреть пакет" [ref=e852] [cursor=pointer]:
+                - /url: /gazeta/restaurants
+                - img [ref=e853]
+                - generic [ref=e856]:
+                  - generic [ref=e857]:
+                    - generic [ref=e858]:
+                      - generic [ref=e859]: REELS
+                      - generic [ref=e860]: Short-form контент
+                    - generic [ref=e861]: "03"
+                  - heading "SMM под ключ" [level=3] [ref=e862]
+                  - paragraph [ref=e863]: Контент-план, съёмка, монтаж и ведение Instagram ресторана
+                  - generic [ref=e864]:
+                    - generic [ref=e865]: Вертикальные форматы
+                    - generic [ref=e866]:
+                      - generic [ref=e867]: Смотреть пакет
+                      - img [ref=e868]
+              - link "Полный список решений 03 Все услуги Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Рестораны». Вся страница направления Перейти к услугам" [ref=e873] [cursor=pointer]:
+                - /url: /restaurants-service
+                - img [ref=e874]
+                - generic [ref=e877]:
+                  - generic [ref=e878]:
+                    - generic [ref=e880]: Полный список решений
+                    - generic [ref=e881]: "03"
+                  - heading "Все услуги" [level=3] [ref=e882]
+                  - paragraph [ref=e883]: Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Рестораны».
+                  - generic [ref=e884]:
+                    - generic [ref=e885]: Вся страница направления
+                    - generic [ref=e886]:
+                      - generic [ref=e887]: Перейти к услугам
+                      - img [ref=e888]
+      - generic [ref=e891]:
+        - generic:
+          - generic:
+            - link "04 Авто бизнес":
+              - /url: /auto-service
+              - generic [ref=e892] [cursor=pointer]:
+                - generic [ref=e893]: "04"
+                - generic [ref=e894]: Авто бизнес
+        - generic [ref=e895]:
+          - img "Авто бизнес" [ref=e899]
+          - generic [ref=e906]:
+            - generic [ref=e907]:
+              - paragraph [ref=e908]: 04 / Авто бизнес
+              - heading "АВТО БИЗНЕС" [level=2] [ref=e909]
+              - paragraph [ref=e910]: Видеосъёмка автосалонов, дроны для стоянок и AI-контент — покупатели выбирают авто глазами
+            - generic [ref=e911]:
+              - link "VIDEO Продакшн 04 Обзорное видео автомобиля Внешний вид, интерьер, динамика — видео 60–90 сек для продаж и соцсетей Съёмка и монтаж Смотреть формат" [ref=e914] [cursor=pointer]:
+                - /url: /gazeta/auto
+                - img [ref=e915]
+                - generic [ref=e918]:
+                  - generic [ref=e919]:
+                    - generic [ref=e920]:
+                      - generic [ref=e921]: VIDEO
+                      - generic [ref=e922]: Продакшн
+                    - generic [ref=e923]: "04"
+                  - heading "Обзорное видео автомобиля" [level=3] [ref=e924]
+                  - paragraph [ref=e925]: Внешний вид, интерьер, динамика — видео 60–90 сек для продаж и соцсетей
+                  - generic [ref=e926]:
+                    - generic [ref=e927]: Съёмка и монтаж
+                    - generic [ref=e928]:
+                      - generic [ref=e929]: Смотреть формат
+                      - img [ref=e930]
+              - link "DRONE Aerial-визуал 04 Аэросъёмка дилерского центра Дрон над салоном и стоянкой — масштаб и статус для рекламы и сайта Съёмка с воздуха Посмотреть формат" [ref=e935] [cursor=pointer]:
+                - /url: /drone-service
+                - img [ref=e936]
+                - generic [ref=e939]:
+                  - generic [ref=e940]:
+                    - generic [ref=e941]:
+                      - generic [ref=e942]: DRONE
+                      - generic [ref=e943]: Aerial-визуал
+                    - generic [ref=e944]: "04"
+                  - heading "Аэросъёмка дилерского центра" [level=3] [ref=e945]
+                  - paragraph [ref=e946]: Дрон над салоном и стоянкой — масштаб и статус для рекламы и сайта
+                  - generic [ref=e947]:
+                    - generic [ref=e948]: Съёмка с воздуха
+                    - generic [ref=e949]:
+                      - generic [ref=e950]: Посмотреть формат
+                      - img [ref=e951]
+              - 'link "REELS Short-form контент 04 Reels и Shorts для автосалона Короткие вирусные видео: новинки, тест-драйвы, спецпредложения Вертикальные форматы Смотреть пакет" [ref=e956] [cursor=pointer]':
+                - /url: /gazeta/reels
+                - img [ref=e957]
+                - generic [ref=e960]:
+                  - generic [ref=e961]:
+                    - generic [ref=e962]:
+                      - generic [ref=e963]: REELS
+                      - generic [ref=e964]: Short-form контент
+                    - generic [ref=e965]: "04"
+                  - heading "Reels и Shorts для автосалона" [level=3] [ref=e966]
+                  - paragraph [ref=e967]: "Короткие вирусные видео: новинки, тест-драйвы, спецпредложения"
+                  - generic [ref=e968]:
+                    - generic [ref=e969]: Вертикальные форматы
+                    - generic [ref=e970]:
+                      - generic [ref=e971]: Смотреть пакет
+                      - img [ref=e972]
+              - link "VIDEO Продакшн 04 Контент для автопроката Съёмка парка автомобилей, условий аренды и локаций для туристов Съёмка и монтаж Смотреть формат" [ref=e977] [cursor=pointer]:
+                - /url: /gazeta/auto
+                - img [ref=e978]
+                - generic [ref=e981]:
+                  - generic [ref=e982]:
+                    - generic [ref=e983]:
+                      - generic [ref=e984]: VIDEO
+                      - generic [ref=e985]: Продакшн
+                    - generic [ref=e986]: "04"
+                  - heading "Контент для автопроката" [level=3] [ref=e987]
+                  - paragraph [ref=e988]: Съёмка парка автомобилей, условий аренды и локаций для туристов
+                  - generic [ref=e989]:
+                    - generic [ref=e990]: Съёмка и монтаж
+                    - generic [ref=e991]:
+                      - generic [ref=e992]: Смотреть формат
+                      - img [ref=e993]
+              - link "AI AI-решения 04 AI-описания для объявлений Продающие тексты на RU/EN/GE для auto.ge, myauto.ge и международных площадок Упаковка и локализация Открыть решение" [ref=e998] [cursor=pointer]:
+                - /url: /gazeta/ai-content
+                - img [ref=e999]
+                - generic [ref=e1002]:
+                  - generic [ref=e1003]:
+                    - generic [ref=e1004]:
+                      - generic [ref=e1005]: AI
+                      - generic [ref=e1006]: AI-решения
+                    - generic [ref=e1007]: "04"
+                  - heading "AI-описания для объявлений" [level=3] [ref=e1008]
+                  - paragraph [ref=e1009]: Продающие тексты на RU/EN/GE для auto.ge, myauto.ge и международных площадок
+                  - generic [ref=e1010]:
+                    - generic [ref=e1011]: Упаковка и локализация
+                    - generic [ref=e1012]:
+                      - generic [ref=e1013]: Открыть решение
+                      - img [ref=e1014]
+              - link "VIDEO Продакшн 04 Брендовое видео компании Имиджевый ролик дилерского центра или сервиса для сайта и презентаций Съёмка и монтаж Смотреть формат" [ref=e1019] [cursor=pointer]:
+                - /url: /gazeta/promo-video
+                - img [ref=e1020]
+                - generic [ref=e1023]:
+                  - generic [ref=e1024]:
+                    - generic [ref=e1025]:
+                      - generic [ref=e1026]: VIDEO
+                      - generic [ref=e1027]: Продакшн
+                    - generic [ref=e1028]: "04"
+                  - heading "Брендовое видео компании" [level=3] [ref=e1029]
+                  - paragraph [ref=e1030]: Имиджевый ролик дилерского центра или сервиса для сайта и презентаций
+                  - generic [ref=e1031]:
+                    - generic [ref=e1032]: Съёмка и монтаж
+                    - generic [ref=e1033]:
+                      - generic [ref=e1034]: Смотреть формат
+                      - img [ref=e1035]
+              - link "Полный список решений 04 Все услуги Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Авто бизнес». Вся страница направления Перейти к услугам" [ref=e1040] [cursor=pointer]:
+                - /url: /auto-service
+                - img [ref=e1041]
+                - generic [ref=e1044]:
+                  - generic [ref=e1045]:
+                    - generic [ref=e1047]: Полный список решений
+                    - generic [ref=e1048]: "04"
+                  - heading "Все услуги" [level=3] [ref=e1049]
+                  - paragraph [ref=e1050]: Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Авто бизнес».
+                  - generic [ref=e1051]:
+                    - generic [ref=e1052]: Вся страница направления
+                    - generic [ref=e1053]:
+                      - generic [ref=e1054]: Перейти к услугам
+                      - img [ref=e1055]
+      - generic [ref=e1058]:
+        - generic:
+          - generic:
+            - link "05 Туризм":
+              - /url: /tourism-service
+              - generic [ref=e1059] [cursor=pointer]:
+                - generic [ref=e1060]: "05"
+                - generic [ref=e1061]: Туризм
+        - generic [ref=e1062]:
+          - img "Туризм" [ref=e1066]
+          - generic [ref=e1073]:
+            - generic [ref=e1074]:
+              - paragraph [ref=e1075]: 05 / Туризм
+              - heading "ТУРИЗМ" [level=2] [ref=e1076]
+              - paragraph [ref=e1077]: Аэросъёмка и видеогиды по Грузии — для турагентств, гидов и локаций по всей стране
+            - generic [ref=e1078]:
+              - link "DRONE Aerial-визуал 05 Аэросъёмка локаций Горы, побережье, города — cinematic дрон-видео для туристических маршрутов Съёмка с воздуха Посмотреть формат" [ref=e1081] [cursor=pointer]:
+                - /url: /drone-service
+                - img [ref=e1082]
+                - generic [ref=e1085]:
+                  - generic [ref=e1086]:
+                    - generic [ref=e1087]:
+                      - generic [ref=e1088]: DRONE
+                      - generic [ref=e1089]: Aerial-визуал
+                    - generic [ref=e1090]: "05"
+                  - heading "Аэросъёмка локаций" [level=3] [ref=e1091]
+                  - paragraph [ref=e1092]: Горы, побережье, города — cinematic дрон-видео для туристических маршрутов
+                  - generic [ref=e1093]:
+                    - generic [ref=e1094]: Съёмка с воздуха
+                    - generic [ref=e1095]:
+                      - generic [ref=e1096]: Посмотреть формат
+                      - img [ref=e1097]
+              - link "VIDEO Продакшн 05 Видеогид по маршруту Документальный ролик 3–7 мин о туре или направлении. Для YouTube и сайта Съёмка и монтаж Смотреть формат" [ref=e1102] [cursor=pointer]:
+                - /url: /gazeta/tourism
+                - img [ref=e1103]
+                - generic [ref=e1106]:
+                  - generic [ref=e1107]:
+                    - generic [ref=e1108]:
+                      - generic [ref=e1109]: VIDEO
+                      - generic [ref=e1110]: Продакшн
+                    - generic [ref=e1111]: "05"
+                  - heading "Видеогид по маршруту" [level=3] [ref=e1112]
+                  - paragraph [ref=e1113]: Документальный ролик 3–7 мин о туре или направлении. Для YouTube и сайта
+                  - generic [ref=e1114]:
+                    - generic [ref=e1115]: Съёмка и монтаж
+                    - generic [ref=e1116]:
+                      - generic [ref=e1117]: Смотреть формат
+                      - img [ref=e1118]
+              - 'link "REELS Short-form контент 05 Reels для турагентства Контент-пакет: топ-локации, отзывы туристов, моменты из туров Вертикальные форматы Смотреть пакет" [ref=e1123] [cursor=pointer]':
+                - /url: /gazeta/reels
+                - img [ref=e1124]
+                - generic [ref=e1127]:
+                  - generic [ref=e1128]:
+                    - generic [ref=e1129]:
+                      - generic [ref=e1130]: REELS
+                      - generic [ref=e1131]: Short-form контент
+                    - generic [ref=e1132]: "05"
+                  - heading "Reels для турагентства" [level=3] [ref=e1133]
+                  - paragraph [ref=e1134]: "Контент-пакет: топ-локации, отзывы туристов, моменты из туров"
+                  - generic [ref=e1135]:
+                    - generic [ref=e1136]: Вертикальные форматы
+                    - generic [ref=e1137]:
+                      - generic [ref=e1138]: Смотреть пакет
+                      - img [ref=e1139]
+              - link "360 Иммерсивный формат 05 360° тур по локации Интерактивная панорама горы, пещеры, замка или курорта Виртуальный тур Смотреть формат" [ref=e1144] [cursor=pointer]:
+                - /url: /gazeta/360-tours
+                - img [ref=e1145]
+                - generic [ref=e1148]:
+                  - generic [ref=e1149]:
+                    - generic [ref=e1150]:
+                      - generic [ref=e1151]: "360"
+                      - generic [ref=e1152]: Иммерсивный формат
+                    - generic [ref=e1153]: "05"
+                  - heading "360° тур по локации" [level=3] [ref=e1154]
+                  - paragraph [ref=e1155]: Интерактивная панорама горы, пещеры, замка или курорта
+                  - generic [ref=e1156]:
+                    - generic [ref=e1157]: Виртуальный тур
+                    - generic [ref=e1158]:
+                      - generic [ref=e1159]: Смотреть формат
+                      - img [ref=e1160]
+              - link "VIDEO Продакшн 05 Контент для экотуризма Видео и фото природных парков, треккинговых маршрутов и глэмпингов Съёмка и монтаж Смотреть формат" [ref=e1165] [cursor=pointer]:
+                - /url: /gazeta/tourism
+                - img [ref=e1166]
+                - generic [ref=e1169]:
+                  - generic [ref=e1170]:
+                    - generic [ref=e1171]:
+                      - generic [ref=e1172]: VIDEO
+                      - generic [ref=e1173]: Продакшн
+                    - generic [ref=e1174]: "05"
+                  - heading "Контент для экотуризма" [level=3] [ref=e1175]
+                  - paragraph [ref=e1176]: Видео и фото природных парков, треккинговых маршрутов и глэмпингов
+                  - generic [ref=e1177]:
+                    - generic [ref=e1178]: Съёмка и монтаж
+                    - generic [ref=e1179]:
+                      - generic [ref=e1180]: Смотреть формат
+                      - img [ref=e1181]
+              - link "VIDEO Продакшн 05 Промо для иностранных туристов Видео на EN/DE/FR с субтитрами — для Booking, TripAdvisor и YouTube Съёмка и монтаж Смотреть формат" [ref=e1186] [cursor=pointer]:
+                - /url: /gazeta/promo-video
+                - img [ref=e1187]
+                - generic [ref=e1190]:
+                  - generic [ref=e1191]:
+                    - generic [ref=e1192]:
+                      - generic [ref=e1193]: VIDEO
+                      - generic [ref=e1194]: Продакшн
+                    - generic [ref=e1195]: "05"
+                  - heading "Промо для иностранных туристов" [level=3] [ref=e1196]
+                  - paragraph [ref=e1197]: Видео на EN/DE/FR с субтитрами — для Booking, TripAdvisor и YouTube
+                  - generic [ref=e1198]:
+                    - generic [ref=e1199]: Съёмка и монтаж
+                    - generic [ref=e1200]:
+                      - generic [ref=e1201]: Смотреть формат
+                      - img [ref=e1202]
+              - link "Полный список решений 05 Все услуги Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Туризм». Вся страница направления Перейти к услугам" [ref=e1207] [cursor=pointer]:
+                - /url: /tourism-service
+                - img [ref=e1208]
+                - generic [ref=e1211]:
+                  - generic [ref=e1212]:
+                    - generic [ref=e1214]: Полный список решений
+                    - generic [ref=e1215]: "05"
+                  - heading "Все услуги" [level=3] [ref=e1216]
+                  - paragraph [ref=e1217]: Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Туризм».
+                  - generic [ref=e1218]:
+                    - generic [ref=e1219]: Вся страница направления
+                    - generic [ref=e1220]:
+                      - generic [ref=e1221]: Перейти к услугам
+                      - img [ref=e1222]
+      - generic [ref=e1225]:
+        - generic:
+          - generic:
+            - link "06 Клиники":
+              - /url: /clinics-service
+              - generic [ref=e1226] [cursor=pointer]:
+                - generic [ref=e1227]: "06"
+                - generic [ref=e1228]: Клиники
+        - generic [ref=e1229]:
+          - img "Клиники" [ref=e1233]
+          - generic [ref=e1240]:
+            - generic [ref=e1241]:
+              - paragraph [ref=e1242]: 06 / Клиники
+              - heading "КЛИНИКИ" [level=2] [ref=e1243]
+              - paragraph [ref=e1244]: Видео и AI-контент для медицинских центров — пациент выбирает клинику до первого звонка
+            - generic [ref=e1245]:
+              - link "VIDEO Продакшн 06 Имиджевый ролик клиники Интерьер, оборудование, команда врачей — доверие до первого визита Съёмка и монтаж Смотреть формат" [ref=e1248] [cursor=pointer]:
+                - /url: /gazeta/clinics
+                - img [ref=e1249]
+                - generic [ref=e1252]:
+                  - generic [ref=e1253]:
+                    - generic [ref=e1254]:
+                      - generic [ref=e1255]: VIDEO
+                      - generic [ref=e1256]: Продакшн
+                    - generic [ref=e1257]: "06"
+                  - heading "Имиджевый ролик клиники" [level=3] [ref=e1258]
+                  - paragraph [ref=e1259]: Интерьер, оборудование, команда врачей — доверие до первого визита
+                  - generic [ref=e1260]:
+                    - generic [ref=e1261]: Съёмка и монтаж
+                    - generic [ref=e1262]:
+                      - generic [ref=e1263]: Смотреть формат
+                      - img [ref=e1264]
+              - link "VIDEO Продакшн 06 Видео о процедурах Понятное объяснение услуг клиники в видео-формате для сайта и соцсетей Съёмка и монтаж Смотреть формат" [ref=e1269] [cursor=pointer]:
+                - /url: /gazeta/clinics
+                - img [ref=e1270]
+                - generic [ref=e1273]:
+                  - generic [ref=e1274]:
+                    - generic [ref=e1275]:
+                      - generic [ref=e1276]: VIDEO
+                      - generic [ref=e1277]: Продакшн
+                    - generic [ref=e1278]: "06"
+                  - heading "Видео о процедурах" [level=3] [ref=e1279]
+                  - paragraph [ref=e1280]: Понятное объяснение услуг клиники в видео-формате для сайта и соцсетей
+                  - generic [ref=e1281]:
+                    - generic [ref=e1282]: Съёмка и монтаж
+                    - generic [ref=e1283]:
+                      - generic [ref=e1284]: Смотреть формат
+                      - img [ref=e1285]
+              - link "REELS Short-form контент 06 Reels для Instagram клиники До/после, советы врачей, ответы на вопросы — контент который приводит пациентов Вертикальные форматы Смотреть пакет" [ref=e1290] [cursor=pointer]:
+                - /url: /gazeta/reels
+                - img [ref=e1291]
+                - generic [ref=e1294]:
+                  - generic [ref=e1295]:
+                    - generic [ref=e1296]:
+                      - generic [ref=e1297]: REELS
+                      - generic [ref=e1298]: Short-form контент
+                    - generic [ref=e1299]: "06"
+                  - heading "Reels для Instagram клиники" [level=3] [ref=e1300]
+                  - paragraph [ref=e1301]: До/после, советы врачей, ответы на вопросы — контент который приводит пациентов
+                  - generic [ref=e1302]:
+                    - generic [ref=e1303]: Вертикальные форматы
+                    - generic [ref=e1304]:
+                      - generic [ref=e1305]: Смотреть пакет
+                      - img [ref=e1306]
+              - link "AI AI-решения 06 AI-контент на несколько языков Описания услуг на RU/EN/GE/AR — для иностранных пациентов медицинского туризма Упаковка и локализация Открыть решение" [ref=e1311] [cursor=pointer]:
+                - /url: /gazeta/ai-content
+                - img [ref=e1312]
+                - generic [ref=e1315]:
+                  - generic [ref=e1316]:
+                    - generic [ref=e1317]:
+                      - generic [ref=e1318]: AI
+                      - generic [ref=e1319]: AI-решения
+                    - generic [ref=e1320]: "06"
+                  - heading "AI-контент на несколько языков" [level=3] [ref=e1321]
+                  - paragraph [ref=e1322]: Описания услуг на RU/EN/GE/AR — для иностранных пациентов медицинского туризма
+                  - generic [ref=e1323]:
+                    - generic [ref=e1324]: Упаковка и локализация
+                    - generic [ref=e1325]:
+                      - generic [ref=e1326]: Открыть решение
+                      - img [ref=e1327]
+              - link "MAPS Local presence 06 Google Maps и отзывы Фото и видео для Google Business — выше в поиске «клиника в Тбилиси» Визуал для карт Открыть решение" [ref=e1332] [cursor=pointer]:
+                - /url: /gazeta/clinics
+                - img [ref=e1333]
+                - generic [ref=e1336]:
+                  - generic [ref=e1337]:
+                    - generic [ref=e1338]:
+                      - generic [ref=e1339]: MAPS
+                      - generic [ref=e1340]: Local presence
+                    - generic [ref=e1341]: "06"
+                  - heading "Google Maps и отзывы" [level=3] [ref=e1342]
+                  - paragraph [ref=e1343]: Фото и видео для Google Business — выше в поиске «клиника в Тбилиси»
+                  - generic [ref=e1344]:
+                    - generic [ref=e1345]: Визуал для карт
+                    - generic [ref=e1346]:
+                      - generic [ref=e1347]: Открыть решение
+                      - img [ref=e1348]
+              - link "VIDEO Продакшн 06 Съёмка конференций и событий Видео медицинских мероприятий, семинаров и открытий для PR и соцсетей Съёмка и монтаж Смотреть формат" [ref=e1353] [cursor=pointer]:
+                - /url: /gazeta/events
+                - img [ref=e1354]
+                - generic [ref=e1357]:
+                  - generic [ref=e1358]:
+                    - generic [ref=e1359]:
+                      - generic [ref=e1360]: VIDEO
+                      - generic [ref=e1361]: Продакшн
+                    - generic [ref=e1362]: "06"
+                  - heading "Съёмка конференций и событий" [level=3] [ref=e1363]
+                  - paragraph [ref=e1364]: Видео медицинских мероприятий, семинаров и открытий для PR и соцсетей
+                  - generic [ref=e1365]:
+                    - generic [ref=e1366]: Съёмка и монтаж
+                    - generic [ref=e1367]:
+                      - generic [ref=e1368]: Смотреть формат
+                      - img [ref=e1369]
+              - link "Полный список решений 06 Все услуги Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Клиники». Вся страница направления Перейти к услугам" [ref=e1374] [cursor=pointer]:
+                - /url: /clinics-service
+                - img [ref=e1375]
+                - generic [ref=e1378]:
+                  - generic [ref=e1379]:
+                    - generic [ref=e1381]: Полный список решений
+                    - generic [ref=e1382]: "06"
+                  - heading "Все услуги" [level=3] [ref=e1383]
+                  - paragraph [ref=e1384]: Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Клиники».
+                  - generic [ref=e1385]:
+                    - generic [ref=e1386]: Вся страница направления
+                    - generic [ref=e1387]:
+                      - generic [ref=e1388]: Перейти к услугам
+                      - img [ref=e1389]
+      - generic [ref=e1392]:
+        - generic:
+          - generic:
+            - link "07 IT":
+              - /url: /business-service
+              - generic [ref=e1393] [cursor=pointer]:
+                - generic [ref=e1394]: "07"
+                - generic [ref=e1395]: IT
+        - generic [ref=e1396]:
+          - img "IT" [ref=e1400]
+          - generic [ref=e1407]:
+            - generic [ref=e1408]:
+              - paragraph [ref=e1409]: 07 / IT
+              - heading "IT" [level=2] [ref=e1410]
+              - paragraph [ref=e1411]: Продакшн видео, кейс-стади и AI-визуал для IT-компаний и стартапов в Грузии
+            - generic [ref=e1412]:
+              - link "VIDEO Продакшн 07 Продуктовое видео Демо-ролик продукта или приложения — для инвесторов, сайта и App Store Съёмка и монтаж Смотреть формат" [ref=e1415] [cursor=pointer]:
+                - /url: /gazeta/promo-video
+                - img [ref=e1416]
+                - generic [ref=e1419]:
+                  - generic [ref=e1420]:
+                    - generic [ref=e1421]:
+                      - generic [ref=e1422]: VIDEO
+                      - generic [ref=e1423]: Продакшн
+                    - generic [ref=e1424]: "07"
+                  - heading "Продуктовое видео" [level=3] [ref=e1425]
+                  - paragraph [ref=e1426]: Демо-ролик продукта или приложения — для инвесторов, сайта и App Store
+                  - generic [ref=e1427]:
+                    - generic [ref=e1428]: Съёмка и монтаж
+                    - generic [ref=e1429]:
+                      - generic [ref=e1430]: Смотреть формат
+                      - img [ref=e1431]
+              - link "VIDEO Продакшн 07 Кейс-стади в видео История клиента до/после внедрения вашего продукта. Лучший B2B-контент Съёмка и монтаж Смотреть формат" [ref=e1436] [cursor=pointer]:
+                - /url: /gazeta/it
+                - img [ref=e1437]
+                - generic [ref=e1440]:
+                  - generic [ref=e1441]:
+                    - generic [ref=e1442]:
+                      - generic [ref=e1443]: VIDEO
+                      - generic [ref=e1444]: Продакшн
+                    - generic [ref=e1445]: "07"
+                  - heading "Кейс-стади в видео" [level=3] [ref=e1446]
+                  - paragraph [ref=e1447]: История клиента до/после внедрения вашего продукта. Лучший B2B-контент
+                  - generic [ref=e1448]:
+                    - generic [ref=e1449]: Съёмка и монтаж
+                    - generic [ref=e1450]:
+                      - generic [ref=e1451]: Смотреть формат
+                      - img [ref=e1452]
+              - 'link "VIDEO Продакшн 07 Видео для инвесторов Pitch-видео стартапа: команда, продукт, рынок. 60–120 сек Съёмка и монтаж Смотреть формат" [ref=e1457] [cursor=pointer]':
+                - /url: /gazeta/promo-video
+                - img [ref=e1458]
+                - generic [ref=e1461]:
+                  - generic [ref=e1462]:
+                    - generic [ref=e1463]:
+                      - generic [ref=e1464]: VIDEO
+                      - generic [ref=e1465]: Продакшн
+                    - generic [ref=e1466]: "07"
+                  - heading "Видео для инвесторов" [level=3] [ref=e1467]
+                  - paragraph [ref=e1468]: "Pitch-видео стартапа: команда, продукт, рынок. 60–120 сек"
+                  - generic [ref=e1469]:
+                    - generic [ref=e1470]: Съёмка и монтаж
+                    - generic [ref=e1471]:
+                      - generic [ref=e1472]: Смотреть формат
+                      - img [ref=e1473]
+              - 'link "AI AI-решения 07 AI-контент для LinkedIn и X Регулярный контент: новости компании, мнения экспертов, продуктовые обновления Упаковка и локализация Открыть решение" [ref=e1478] [cursor=pointer]':
+                - /url: /gazeta/ai-content
+                - img [ref=e1479]
+                - generic [ref=e1482]:
+                  - generic [ref=e1483]:
+                    - generic [ref=e1484]:
+                      - generic [ref=e1485]: AI
+                      - generic [ref=e1486]: AI-решения
+                    - generic [ref=e1487]: "07"
+                  - heading "AI-контент для LinkedIn и X" [level=3] [ref=e1488]
+                  - paragraph [ref=e1489]: "Регулярный контент: новости компании, мнения экспертов, продуктовые обновления"
+                  - generic [ref=e1490]:
+                    - generic [ref=e1491]: Упаковка и локализация
+                    - generic [ref=e1492]:
+                      - generic [ref=e1493]: Открыть решение
+                      - img [ref=e1494]
+              - link "VIDEO Продакшн 07 Корпоративная съёмка Команда, офис, культура компании — для найма, PR и партнёрств Съёмка и монтаж Смотреть формат" [ref=e1499] [cursor=pointer]:
+                - /url: /gazeta/it
+                - img [ref=e1500]
+                - generic [ref=e1503]:
+                  - generic [ref=e1504]:
+                    - generic [ref=e1505]:
+                      - generic [ref=e1506]: VIDEO
+                      - generic [ref=e1507]: Продакшн
+                    - generic [ref=e1508]: "07"
+                  - heading "Корпоративная съёмка" [level=3] [ref=e1509]
+                  - paragraph [ref=e1510]: Команда, офис, культура компании — для найма, PR и партнёрств
+                  - generic [ref=e1511]:
+                    - generic [ref=e1512]: Съёмка и монтаж
+                    - generic [ref=e1513]:
+                      - generic [ref=e1514]: Смотреть формат
+                      - img [ref=e1515]
+              - link "REELS Short-form контент 07 Reels для IT-бренда Короткие видео о продукте, команде и технологиях для Instagram и TikTok Вертикальные форматы Смотреть пакет" [ref=e1520] [cursor=pointer]:
+                - /url: /gazeta/reels
+                - img [ref=e1521]
+                - generic [ref=e1524]:
+                  - generic [ref=e1525]:
+                    - generic [ref=e1526]:
+                      - generic [ref=e1527]: REELS
+                      - generic [ref=e1528]: Short-form контент
+                    - generic [ref=e1529]: "07"
+                  - heading "Reels для IT-бренда" [level=3] [ref=e1530]
+                  - paragraph [ref=e1531]: Короткие видео о продукте, команде и технологиях для Instagram и TikTok
+                  - generic [ref=e1532]:
+                    - generic [ref=e1533]: Вертикальные форматы
+                    - generic [ref=e1534]:
+                      - generic [ref=e1535]: Смотреть пакет
+                      - img [ref=e1536]
+              - link "Полный список решений 07 Все услуги Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «IT». Вся страница направления Перейти к услугам" [ref=e1541] [cursor=pointer]:
+                - /url: /business-service
+                - img [ref=e1542]
+                - generic [ref=e1545]:
+                  - generic [ref=e1546]:
+                    - generic [ref=e1548]: Полный список решений
+                    - generic [ref=e1549]: "07"
+                  - heading "Все услуги" [level=3] [ref=e1550]
+                  - paragraph [ref=e1551]: Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «IT».
+                  - generic [ref=e1552]:
+                    - generic [ref=e1553]: Вся страница направления
+                    - generic [ref=e1554]:
+                      - generic [ref=e1555]: Перейти к услугам
+                      - img [ref=e1556]
+      - generic [ref=e1559]:
+        - generic:
+          - generic:
+            - link "08 Ваш бизнес":
+              - /url: /business-service
+              - generic [ref=e1560] [cursor=pointer]:
+                - generic [ref=e1561]: "08"
+                - generic [ref=e1562]: Ваш бизнес
+        - generic [ref=e1563]:
+          - img "Ваш бизнес" [ref=e1567]
+          - generic [ref=e1574]:
+            - generic [ref=e1575]:
+              - paragraph [ref=e1576]: 08 / Ваш бизнес
+              - heading "ВАШ БИЗНЕС" [level=2] [ref=e1577]
+              - paragraph [ref=e1578]: Не нашли свою нишу? Мы делаем контент для любого бизнеса — обсудим вашу задачу
+            - generic [ref=e1579]:
+              - link "Ваш бизнес 08 Расскажите о вашем проекте Опишите задачу — предложим формат, сроки и стоимость под ваш бюджет Ваш бизнес / формат Подробнее" [ref=e1582] [cursor=pointer]:
+                - /url: /gazeta/custom-business
+                - img [ref=e1583]
+                - generic [ref=e1586]:
+                  - generic [ref=e1587]:
+                    - generic [ref=e1589]: Ваш бизнес
+                    - generic [ref=e1590]: "08"
+                  - heading "Расскажите о вашем проекте" [level=3] [ref=e1591]
+                  - paragraph [ref=e1592]: Опишите задачу — предложим формат, сроки и стоимость под ваш бюджет
+                  - generic [ref=e1593]:
+                    - generic [ref=e1594]: Ваш бизнес / формат
+                    - generic [ref=e1595]:
+                      - generic [ref=e1596]: Подробнее
+                      - img [ref=e1597]
+              - link "REELS Short-form контент 08 Пакет «Старт» Видео + фото + 5 Reels для нового бизнеса. Всё необходимое для запуска Вертикальные форматы Смотреть пакет" [ref=e1602] [cursor=pointer]:
+                - /url: /gazeta/custom-business
+                - img [ref=e1603]
+                - generic [ref=e1606]:
+                  - generic [ref=e1607]:
+                    - generic [ref=e1608]:
+                      - generic [ref=e1609]: REELS
+                      - generic [ref=e1610]: Short-form контент
+                    - generic [ref=e1611]: "08"
+                  - heading "Пакет «Старт»" [level=3] [ref=e1612]
+                  - paragraph [ref=e1613]: Видео + фото + 5 Reels для нового бизнеса. Всё необходимое для запуска
+                  - generic [ref=e1614]:
+                    - generic [ref=e1615]: Вертикальные форматы
+                    - generic [ref=e1616]:
+                      - generic [ref=e1617]: Смотреть пакет
+                      - img [ref=e1618]
+              - link "DRONE Aerial-визуал 08 Разовая съёмка Один выезд — фото, видео, дрон. Всё в одном визите от 500 GEL Съёмка с воздуха Посмотреть формат" [ref=e1623] [cursor=pointer]:
+                - /url: /gazeta/custom-business
+                - img [ref=e1624]
+                - generic [ref=e1627]:
+                  - generic [ref=e1628]:
+                    - generic [ref=e1629]:
+                      - generic [ref=e1630]: DRONE
+                      - generic [ref=e1631]: Aerial-визуал
+                    - generic [ref=e1632]: "08"
+                  - heading "Разовая съёмка" [level=3] [ref=e1633]
+                  - paragraph [ref=e1634]: Один выезд — фото, видео, дрон. Всё в одном визите от 500 GEL
+                  - generic [ref=e1635]:
+                    - generic [ref=e1636]: Съёмка с воздуха
+                    - generic [ref=e1637]:
+                      - generic [ref=e1638]: Посмотреть формат
+                      - img [ref=e1639]
+              - 'link "AI AI-решения 08 AI-упаковка с нуля Контент без съёмки: AI-визуал, сценарии, тексты, дизайн для соцсетей Упаковка и локализация Открыть решение" [ref=e1644] [cursor=pointer]':
+                - /url: /gazeta/ai-content
+                - img [ref=e1645]
+                - generic [ref=e1648]:
+                  - generic [ref=e1649]:
+                    - generic [ref=e1650]:
+                      - generic [ref=e1651]: AI
+                      - generic [ref=e1652]: AI-решения
+                    - generic [ref=e1653]: "08"
+                  - heading "AI-упаковка с нуля" [level=3] [ref=e1654]
+                  - paragraph [ref=e1655]: "Контент без съёмки: AI-визуал, сценарии, тексты, дизайн для соцсетей"
+                  - generic [ref=e1656]:
+                    - generic [ref=e1657]: Упаковка и локализация
+                    - generic [ref=e1658]:
+                      - generic [ref=e1659]: Открыть решение
+                      - img [ref=e1660]
+              - link "Ваш бизнес 08 Ежемесячный контент Абонемент на регулярный контент — не думаете о соцсетях, мы делаем всё Ваш бизнес / формат Подробнее" [ref=e1665] [cursor=pointer]:
+                - /url: /gazeta/custom-business
+                - img [ref=e1666]
+                - generic [ref=e1669]:
+                  - generic [ref=e1670]:
+                    - generic [ref=e1672]: Ваш бизнес
+                    - generic [ref=e1673]: "08"
+                  - heading "Ежемесячный контент" [level=3] [ref=e1674]
+                  - paragraph [ref=e1675]: Абонемент на регулярный контент — не думаете о соцсетях, мы делаем всё
+                  - generic [ref=e1676]:
+                    - generic [ref=e1677]: Ваш бизнес / формат
+                    - generic [ref=e1678]:
+                      - generic [ref=e1679]: Подробнее
+                      - img [ref=e1680]
+              - link "Ваш бизнес 08 Обсудить проект → Напишите нам в WhatsApp — ответим за 15 минут Ваш бизнес / формат Подробнее" [ref=e1685] [cursor=pointer]:
+                - /url: https://wa.me/995574619393
+                - img [ref=e1686]
+                - generic [ref=e1689]:
+                  - generic [ref=e1690]:
+                    - generic [ref=e1692]: Ваш бизнес
+                    - generic [ref=e1693]: "08"
+                  - heading "Обсудить проект →" [level=3] [ref=e1694]
+                  - paragraph [ref=e1695]: Напишите нам в WhatsApp — ответим за 15 минут
+                  - generic [ref=e1696]:
+                    - generic [ref=e1697]: Ваш бизнес / формат
+                    - generic [ref=e1698]:
+                      - generic [ref=e1699]: Подробнее
+                      - img [ref=e1700]
+              - link "Полный список решений 08 Все услуги Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Ваш бизнес». Вся страница направления Перейти к услугам" [ref=e1705] [cursor=pointer]:
+                - /url: /business-service
+                - img [ref=e1706]
+                - generic [ref=e1709]:
+                  - generic [ref=e1710]:
+                    - generic [ref=e1712]: Полный список решений
+                    - generic [ref=e1713]: "08"
+                  - heading "Все услуги" [level=3] [ref=e1714]
+                  - paragraph [ref=e1715]: Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «Ваш бизнес».
+                  - generic [ref=e1716]:
+                    - generic [ref=e1717]: Вся страница направления
+                    - generic [ref=e1718]:
+                      - generic [ref=e1719]: Перейти к услугам
+                      - img [ref=e1720]
+      - generic [ref=e1723]:
+        - generic [ref=e1724]:
+          - generic [ref=e1725]: "09"
+          - generic [ref=e1726]: Частые вопросы
+        - generic [ref=e1727]:
+          - heading "Частые вопросы" [level=2] [ref=e1728]
+          - generic [ref=e1729]:
+            - button "Вы работаете только в Тбилиси? +" [ref=e1731]:
+              - generic [ref=e1732]: Вы работаете только в Тбилиси?
+              - generic [ref=e1733]: +
+            - button "Сколько стоят ваши услуги? +" [ref=e1735]:
+              - generic [ref=e1736]: Сколько стоят ваши услуги?
+              - generic [ref=e1737]: +
+            - button "Как быстро будет готово видео? +" [ref=e1739]:
+              - generic [ref=e1740]: Как быстро будет готово видео?
+              - generic [ref=e1741]: +
+            - button "Вы делаете всё сами или привлекаете подрядчиков? +" [ref=e1743]:
+              - generic [ref=e1744]: Вы делаете всё сами или привлекаете подрядчиков?
+              - generic [ref=e1745]: +
+            - button "Можно заказать несколько услуг за один выезд? +" [ref=e1747]:
+              - generic [ref=e1748]: Можно заказать несколько услуг за один выезд?
+              - generic [ref=e1749]: +
+            - button "Работаете ли вы с малым бизнесом? +" [ref=e1751]:
+              - generic [ref=e1752]: Работаете ли вы с малым бизнесом?
+              - generic [ref=e1753]: +
+            - button "Делаете ли вы мониторинг строек для застройщиков и банков? +" [ref=e1755]:
+              - generic [ref=e1756]: Делаете ли вы мониторинг строек для застройщиков и банков?
+              - generic [ref=e1757]: +
+            - button "Можно ли получить AI-контент без съёмки? +" [ref=e1759]:
+              - generic [ref=e1760]: Можно ли получить AI-контент без съёмки?
+              - generic [ref=e1761]: +
+      - generic [ref=e1762]:
+        - generic [ref=e1763]:
+          - generic [ref=e1764]: "10"
+          - generic [ref=e1765]: Форма связи
+        - generic [ref=e1766]:
+          - heading "Готов усилить цифровое присутствие?" [level=2] [ref=e1769]:
+            - text: Готов усилить
+            - text: цифровое присутствие?
+          - generic [ref=e1770]:
+            - generic [ref=e1771]:
+              - generic [ref=e1772]:
+                - generic [ref=e1773]: Ваше Имя *
+                - textbox "Иван Иванов" [ref=e1774]
+              - generic [ref=e1775]:
+                - generic [ref=e1776]: Способ связи *
+                - generic [ref=e1777]:
+                  - button "Telegram" [ref=e1778]
+                  - button "WhatsApp" [ref=e1779]
+                  - button "Mail" [ref=e1780]
+                - textbox "@username / +995..." [ref=e1781]
+            - generic [ref=e1782]:
+              - generic [ref=e1783]: Интересующие услуги
+              - generic [ref=e1784]:
+                - button "Дрон" [ref=e1785]
+                - button "360 тур" [ref=e1786]
+                - button "Reels" [ref=e1787]
+                - button "SMM контент" [ref=e1788]
+                - button "Google Maps" [ref=e1789]
+                - button "Event" [ref=e1790]
+            - generic [ref=e1791]:
+              - generic [ref=e1792]: Ваша ниша
+              - combobox [ref=e1793]:
+                - option "Выберите нишу..." [selected]
+                - option "Недвижимость"
+                - option "Отели"
+                - option "Рестораны"
+                - option "Авто бизнес"
+                - option "Туризм"
+                - option "Клиники"
+                - option "IT"
+                - option "Другое"
+            - generic [ref=e1794]:
+              - generic [ref=e1795]: Коротко о задаче
+              - 'textbox "Например: Нужно снять дрон тур для нового ЖК" [ref=e1796]'
+            - generic [ref=e1797]:
+              - button "Написать" [ref=e1798]:
+                - img [ref=e1799]
+                - text: Написать
+              - link "WhatsApp" [ref=e1802] [cursor=pointer]:
+                - /url: https://wa.me/995574619393
+                - img [ref=e1803]
+                - text: WhatsApp
+  - alert [ref=e1805]

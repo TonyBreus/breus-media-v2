@@ -1,0 +1,20 @@
+[    2550ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0
+[    4853ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[    4853ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[    4889ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[    5835ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[    8795ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[    8824ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[    9286ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[    9286ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[    9312ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[   11715ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[   11739ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[   11889ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[   11916ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[   11916ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[   12088ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[   12088ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[   12114ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[   12266ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0
+[   12287ms] [ERROR] Unable to preventDefault inside passive event listener invocation. @ http://127.0.0.1:3008/_next/static/chunks/3a37865264ecbc7a.js:0

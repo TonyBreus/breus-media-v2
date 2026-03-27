@@ -39,9 +39,9 @@ export function ContactDropdown() {
                         {/* Phones */}
                         <div className="flex flex-col gap-2">
                             <span className="text-white/50 uppercase text-xs tracking-wider">Numbers</span>
-                            <a href="tel:+995555123456" className="hover:text-[#D4AF37] transition-colors flex justify-between">
+                            <a href="tel:+995574619393" className="hover:text-[#D4AF37] transition-colors flex justify-between">
                                 <span>GEO/EN</span>
-                                <span className="font-mono">+995 555 12 34 56</span>
+                                <span className="font-mono">+995 574 619 393</span>
                             </a>
                             <a href="tel:+79991234567" className="hover:text-[#D4AF37] transition-colors flex justify-between">
                                 <span>RU</span>

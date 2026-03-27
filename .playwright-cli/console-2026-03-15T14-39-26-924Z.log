@@ -1,0 +1,12 @@
+[     232ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4:0
+[  300656ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/360-tours-service?_rsc=qr0tz:0
+[  301086ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/restaurants-service?_rsc=qr0tz:0
+[  305510ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/tourism-service?_rsc=qr0tz:0
+[  307368ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/drone-service?_rsc=qr0tz:0
+[  309078ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/clinics-service?_rsc=qr0tz:0
+[ 3057889ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/hotels-service?_rsc=qr0tz:0
+[ 3060370ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/real-estate-service?_rsc=qr0tz:0
+[ 3060370ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/business-service?_rsc=qr0tz:0
+[ 3060371ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/clinics-service?_rsc=qr0tz:0
+[ 3060371ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/tourism-service?_rsc=qr0tz:0
+[ 3060372ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:3033/restaurants-service?_rsc=qr0tz:0

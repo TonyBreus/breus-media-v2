@@ -1,99 +1,416 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { TimeWidget } from "./TimeWidget";
-import { ContactDropdown } from "./ContactDropdown";
+import Link from "next/link";
+import { useHeroStore } from "@/store/useHeroStore";
+import { gazetaDetailRoutes, gazetaIndustryNavItems, gazetaServiceNavItems, gazetaTickerLine1, gazetaTickerLine2 } from "@/constants/gazetaRoutes";
+import { ChevronDown, Globe, Phone, Mail, Send, MessageCircle, Menu, X } from "lucide-react";
 import { DebugWrapper } from "../debug/DebugWrapper";
 
-export function SmartHeader() {
+// --- Interactive Ticker Components ---
+type TickerItemType = string | { text: string; link: string };
+type HeaderSectionLink = { label: string; href: string };
+
+const TickerItem = ({ item, debugId }: { item: TickerItemType; debugId?: number }) => {
+    const { setHoveredService } = useHeroStore();
+    const isObj = typeof item === 'object';
+    const text = isObj ? item.text : item;
+    const shouldUseHoverPreview = text !== "360° Туры";
+
+    const content = (
+        <DebugWrapper id={debugId ?? 0} label={text}>
+            <span
+                onMouseEnter={() => {
+                    if (shouldUseHoverPreview) {
+                        setHoveredService(text);
+                    }
+                }}
+                onMouseLeave={() => {
+                    if (shouldUseHoverPreview) {
+                        setHoveredService(null);
+                    }
+                }}
+                className="cursor-pointer px-4 md:px-8 text-xs md:text-sm font-bold uppercase tracking-widest text-[#D4AF37]/70 hover:text-white transition-colors whitespace-nowrap"
+            >
+                {text}
+            </span>
+        </DebugWrapper>
+    );
+
+    return isObj ? <Link href={item.link}>{content}</Link> : content;
+};
+
+const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId }: { items: TickerItemType[], direction?: "left" | "right", speed?: number, baseId?: number }) => {
+    return (
+        <div className="flex overflow-hidden w-full relative group bg-zinc-950/50 backdrop-blur-sm">
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-black to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-black to-transparent" />
+
+            <motion.div
+                className="flex py-2"
+                animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: speed }}
+            >
+                {[...items, ...items, ...items, ...items].map((item, i) => {
+                    const idText = typeof item === 'object' ? item.text : item;
+                    const itemIndex = i % items.length;
+                    const debugId = baseId ? baseId + itemIndex + 1 : undefined;
+                    return <TickerItem key={`${idText}-${i}`} item={item} debugId={debugId} />;
+                })}
+            </motion.div>
+        </div>
+    );
+};
+
+/**
+ * GlobalHeader (Глобальная Шапка)
+ * Includes elements: 200, 201, 202, 203, 208, 204, 205, 207, 206.
+ */
+export function SmartHeader({
+    transparent = false,
+    isLanding = false,
+    sectionLinks = []
+}: {
+    transparent?: boolean;
+    isLanding?: boolean;
+    sectionLinks?: HeaderSectionLink[];
+}) {
     const { scrollY } = useScroll();
     const [isScrolled, setIsScrolled] = useState(false);
     const [lang, setLang] = useState("RU");
+    const [isLogoVisible, setIsLogoVisible] = useState(!isLanding);
+
+    // States for V23 menus
+    const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+    const [isContactOpen, setIsContactOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
-        // If scrolled past 50px, switch state
-        if (latest > 50 && !isScrolled) {
-            setIsScrolled(true);
-        } else if (latest <= 50 && isScrolled) {
-            setIsScrolled(false);
+        // Switch state based on scroll
+        if (latest > 50 && !isScrolled) setIsScrolled(true);
+        else if (latest <= 50 && isScrolled) setIsScrolled(false);
+
+        if (isLanding) {
+            const vh = typeof window !== "undefined" ? window.innerHeight : 800;
+            // Text exits screen around 80vh of scroll (scrollYProgress=0.4 in Hero)
+            if (latest > vh * 0.8 && !isLogoVisible) setIsLogoVisible(true);
+            else if (latest <= vh * 0.8 && isLogoVisible) setIsLogoVisible(false);
         }
     });
 
-    const links = [
-        { name: "Home", href: "#home" },
-        { name: "About Us", href: "#about" },
-        { name: "Contact", href: "#contact" },
-    ];
+    const aboutHref = isLanding ? "#market-reality" : "/gazeta#market-reality";
+    const contactHref = isLanding ? "#contact" : "/gazeta#contact";
 
     return (
-        <DebugWrapper id={1} label="Smart Header">
-            <header className={`fixed top-0 left-0 w-full z-50 flex items-start justify-between px-6 py-4 transition-colors duration-300 ${isScrolled ? 'bg-black/50 backdrop-blur-md border-b border-white/10' : 'bg-transparent'}`}>
-                {/* LEFT SECTION */}
-                <DebugWrapper id={2} label="Left Section" className="flex-1">
-                    <div className="relative h-6 flex items-center">
-                        {/* Agency Text */}
-                        <div
-                            className={`absolute inset-0 flex flex-col justify-center transition-all duration-300 ${isScrolled ? "opacity-0 pointer-events-none scale-95" : "opacity-100 scale-100"}`}
-                        >
-                            <span className="font-serif text-[18px] md:text-2xl leading-none tracking-wide text-white">Агентство</span>
-                            <span className="text-[#D4AF37] text-[8px] md:text-[10px] uppercase tracking-widest mt-0.5 whitespace-nowrap">
-                                визуального продакшена и AI
+        <DebugWrapper id={1} label="GlobalHeader (Глобальная Шапка)">
+            <header className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-300 ${isScrolled
+                ? 'bg-black/95 backdrop-blur-md shadow-2xl h-[70px] border-b border-white/10'
+                : transparent
+                    ? 'bg-transparent h-[90px]'
+                    : 'bg-black/40 backdrop-blur-sm h-[90px]'}`}>
+
+                {/* --- INITIAL VIEW (Not Scrolled) --- */}
+                <div className={`absolute inset-0 w-full h-full flex items-center px-6 transition-all duration-300 ${isScrolled ? 'opacity-0 pointer-events-none scale-95 delay-0' : 'opacity-100 scale-100 delay-100'}`}>
+                    {/* LEFT SECTION */}
+                    <DebugWrapper id={2} label="Left Section" className="flex-1">
+                        {isLanding && (
+                            <Link href="/gazeta" className="relative h-6 flex items-center hover:opacity-85 transition-opacity">
+                                {/* Agency Text */}
+                                <div className="absolute inset-0 flex flex-col justify-center">
+                                    <span className="font-serif text-[18px] md:text-2xl leading-none tracking-wide text-white">Агентство</span>
+                                    <span className="text-[#D4AF37] text-[8px] md:text-[10px] uppercase tracking-widest mt-0.5 whitespace-nowrap">
+                                        визуального продакшена и AI
+                                    </span>
+                                </div>
+                            </Link>
+                        )}
+                    </DebugWrapper>
+
+                    {/* CENTER SECTION */}
+                    <DebugWrapper id={3} label="Center Section" className="flex-1 flex justify-center items-start pt-1">
+                        <div className="flex items-center gap-2 leading-none">
+                            <span className="uppercase tracking-[0.2em] text-[10px] font-bold">Tbilisi</span>
+                            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-[pulse_2s_ease-in-out_infinite]" />
+                            <TimeWidget />
+                        </div>
+                    </DebugWrapper>
+
+                    {/* RIGHT SECTION (Now empty to remove 4,5,6) */}
+                    <div className="flex-1 flex items-center justify-end text-sm">
+                    </div>
+                </div>
+
+
+                {/* --- V23 HEADER COMPONENT VIEW (Scrolled) --- */}
+                <div className={`w-full px-2 md:px-10 flex justify-between items-center transition-all duration-300 relative z-[300] h-[70px] ${isScrolled ? 'opacity-100 scale-100 delay-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
+
+                    {/* LEFT: Branding */}
+                    <DebugWrapper id={200} label="Agency Branding">
+                        <div className="flex flex-col justify-center items-start flex-shrink-0 mr-2 md:mr-0 opacity-100 transition-opacity">
+                            {/* Subtext and branding visible. */}
+                            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] mb-0.5 ml-1 font-bold">АГЕНТСТВО</span>
+                            {/* Logo text appears when Element 13 scrolls out */}
+                            <div className="h-[20px] md:h-[28px] w-[110px] md:w-[160px] relative flex items-center">
+                                <AnimatePresence>
+                                    {isLogoVisible && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 10 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="absolute left-0"
+                                        >
+                                            <Link href="/gazeta" className="text-lg md:text-[22px] font-black uppercase tracking-tighter leading-none hover:opacity-80 transition-opacity text-white whitespace-nowrap">
+                                                Breus Media
+                                            </Link>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                            <span className="text-[8px] md:text-[10px] uppercase tracking-wider text-gray-400 mt-0.5 ml-1 leading-tight">
+                                <span className="text-[#D4AF37]">Визуальный Продакшен</span> & <span className="text-[#D4AF37]">AI</span>
                             </span>
                         </div>
+                    </DebugWrapper>
 
-                        {/* Navigation Links */}
-                        <div
-                            className={`absolute inset-0 flex items-center gap-4 transition-all duration-300 uppercase text-[10px] tracking-widest font-bold ${isScrolled ? "opacity-100 scale-100 delay-100" : "opacity-0 pointer-events-none scale-95"}`}
-                        >
-                            {links.map((link) => (
-                                <a key={link.name} href={link.href} className="text-white/60 hover:text-white transition-colors">
-                                    {link.name}
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-                </DebugWrapper>
+                    {/* CENTER: Navigation */}
+                    <nav className="hidden md:flex items-center gap-4 lg:gap-8 absolute left-1/2 -translate-x-1/2 mt-2 z-[310]">
+                        <DebugWrapper id={201} label="Link: О нас">
+                            <Link href={aboutHref} className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">О Нас</Link>
+                        </DebugWrapper>
 
-                {/* CENTER SECTION */}
-                <DebugWrapper id={3} label="Center Section" className="flex-1 flex justify-center items-start h-6 pt-1">
-                    <div className="flex items-center gap-2 leading-none">
-                        <span className="uppercase tracking-[0.2em] text-[10px] font-bold">Tbilisi</span>
-                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-[pulse_2s_ease-in-out_infinite]" />
-                        <TimeWidget />
-                    </div>
-                </DebugWrapper>
-
-                {/* RIGHT SECTION */}
-                <div className="flex-1 flex items-start justify-end text-sm h-6">
-                    {/* 3. Lang Switcher */}
-                    <DebugWrapper id={6} label="Lang Switcher">
-                        <div className="flex gap-2 text-[10px] items-center font-bold tracking-wider h-full pr-4">
-                            {["RU", "EN", "GE"].map((l) => (
-                                <button
-                                    key={l}
-                                    onClick={() => setLang(l)}
-                                    className={`transition-colors ${lang === l ? "text-white" : "text-white/40 hover:text-white"}`}
-                                >
-                                    {l}
+                        <DebugWrapper id={202} label="Dropdown: Индустрии">
+                            <div className="relative h-full flex items-center py-4" onMouseEnter={() => setHoveredMenu("industries")} onMouseLeave={() => setHoveredMenu(null)}>
+                                <button className="flex items-center gap-2 text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
+                                    Индустрии <ChevronDown className="w-4 h-4" />
                                 </button>
-                            ))}
-                        </div>
-                    </DebugWrapper>
+                                <AnimatePresence>
+                                    {hoveredMenu === "industries" && (
+                                        <motion.div initial={{ opacity: 0, y: 10, x: "-50%" }} animate={{ opacity: 1, y: 0, x: "-50%" }} exit={{ opacity: 0, y: 10, x: "-50%" }} className="absolute top-[60px] left-1/2 w-[500px] bg-black/95 border border-white/20 p-6 z-[1100] grid grid-cols-2 gap-3 rounded-2xl backdrop-blur-xl shadow-2xl">
+                                            {gazetaIndustryNavItems.map(item => <Link key={item.label} href={item.href} className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors">{item.label}</Link>)}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        </DebugWrapper>
 
-                    {/* 2. Contact Dropdown (Phone) */}
-                    <DebugWrapper id={5} label="Contact Dropdown">
-                        <div className="flex items-center h-full px-4 border-l border-white/20">
-                            <ContactDropdown />
-                        </div>
-                    </DebugWrapper>
+                        <DebugWrapper id={203} label="Dropdown: Услуги">
+                            <div className="relative h-full flex items-center py-4" onMouseEnter={() => setHoveredMenu("services")} onMouseLeave={() => setHoveredMenu(null)}>
+                                <button className="flex items-center gap-2 text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
+                                    Услуги <ChevronDown className="w-4 h-4" />
+                                </button>
+                                <AnimatePresence>
+                                    {hoveredMenu === "services" && (
+                                        <motion.div initial={{ opacity: 0, y: 10, x: "-50%" }} animate={{ opacity: 1, y: 0, x: "-50%" }} exit={{ opacity: 0, y: 10, x: "-50%" }} className="absolute top-[60px] left-1/2 w-[600px] bg-black/95 border border-white/20 p-6 z-[1100] grid grid-cols-3 gap-3 rounded-2xl backdrop-blur-xl shadow-2xl">
+                                            {gazetaServiceNavItems.map(item => <Link key={item.label} href={item.href} className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors">{item.label}</Link>)}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        </DebugWrapper>
 
-                    {/* 1. CTA Button */}
-                    <DebugWrapper id={4} label="CTA Button">
-                        <a href="#contact" className="hidden sm:flex px-4 py-1.5 bg-white/10 backdrop-blur text-white text-[10px] font-bold uppercase tracking-wider rounded-sm border border-white hover:bg-white hover:text-black transition-colors h-full items-center ml-4">
-                            Обсудить проект
-                        </a>
+                        {sectionLinks.map((link, index) => (
+                            <DebugWrapper key={`${link.label}-${link.href}`} id={210 + index} label={`Link: ${link.label}`}>
+                                <Link href={link.href} className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
+                                    {link.label}
+                                </Link>
+                            </DebugWrapper>
+                        ))}
+
+                        <DebugWrapper id={204} label="Link: AI Решения">
+                            <Link href={gazetaDetailRoutes.aiContent} className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">AI Решения</Link>
+                        </DebugWrapper>
+                    </nav>
+
+                    {/* RIGHT: Actions */}
+                    <div className="flex items-center gap-2 md:gap-4 lg:gap-6 flex-shrink-0 mt-2 relative z-[320]">
+                        {/* 1. Contact Dropdown (205) */}
+                        <DebugWrapper id={205} label="Phone Connect">
+                            <div className="relative group" onMouseEnter={() => setIsContactOpen(true)} onMouseLeave={() => setIsContactOpen(false)}>
+                                <button className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-full hover:bg-[#D4AF37] transition-colors border border-white/5 group-hover:border-[#D4AF37]/50">
+                                    <Phone className="w-3.5 h-3.5 text-white" />
+                                </button>
+
+                                <AnimatePresence>
+                                    {isContactOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                                            style={{ originY: 0, originX: 1 }}
+                                            className="absolute top-full right-0 mt-4 w-72 md:w-80 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl z-[1200] overflow-hidden"
+                                        >
+                                            <div className="p-6 flex flex-col gap-4">
+                                                <div className="flex items-start gap-4">
+                                                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center mt-1">
+                                                        <Phone className="w-4 h-4 text-[#D4AF37]" />
+                                                    </div>
+                                                    <div className="flex flex-col">
+                                                        <a href="tel:+995574619393" className="text-lg font-bold text-white hover:text-[#D4AF37] transition-colors tracking-wide">+995 574 619 393</a>
+                                                    </div>
+                                                </div>
+                                                <div className="h-px w-full bg-white/10 my-1" />
+                                                {/* Socials */}
+                                                <div className="flex justify-between items-center px-2">
+                                                    <a href="#" className="flex flex-col items-center gap-1 group/social">
+                                                        <MessageCircle className="w-5 h-5 text-[#25D366] hover:scale-110 transition-transform" />
+                                                        <span className="text-[9px] uppercase font-bold text-gray-400">WhatsApp</span>
+                                                    </a>
+                                                    <a href="#" className="flex flex-col items-center gap-1 group/social">
+                                                        <Send className="w-5 h-5 text-[#0088cc] ml-0.5 hover:scale-110 transition-transform" />
+                                                        <span className="text-[9px] uppercase font-bold text-gray-400">Telegram</span>
+                                                    </a>
+                                                    <a href="#" className="flex flex-col items-center gap-1 group/social">
+                                                        <MessageCircle className="w-5 h-5 text-[#7360f2] hover:scale-110 transition-transform" />
+                                                        <span className="text-[9px] uppercase font-bold text-gray-400">Viber</span>
+                                                    </a>
+                                                </div>
+                                                <div className="h-px w-full bg-white/10 my-1" />
+                                                <a href="mailto:hello@breus.media" className="flex items-center gap-3 px-2 group/mail">
+                                                    <Mail className="w-4 h-4 text-gray-500 group-hover/mail:text-white transition-colors" />
+                                                    <span className="text-sm font-bold text-gray-400 group-hover/mail:text-white transition-colors">hello@breus.media</span>
+                                                </a>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        </DebugWrapper>
+
+                        {/* 2. Language Switcher (207) */}
+                        <DebugWrapper id={207} label="Language Switcher">
+                            <div className="group relative">
+                                <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 rounded-full border border-white/5 hover:bg-white/20 transition-colors text-[10px] md:text-xs font-bold text-white uppercase">
+                                    <Globe className="w-3.5 h-3.5 text-[#D4AF37]" />
+                                    <span>{lang}</span>
+                                </button>
+                                <div className="absolute top-full right-0 mt-2 bg-black border border-white/10 hidden group-hover:flex flex-col rounded-xl overflow-hidden shadow-2xl backdrop-blur-xl z-[1200]">
+                                    {["RU", "EN", "GE"].map(l => (
+                                        <button key={l} onClick={() => setLang(l)} className="px-4 py-2 text-xs text-white hover:bg-[#D4AF37]/20 transition-colors text-left font-bold">{l}</button>
+                                    ))}
+                                </div>
+                            </div>
+                        </DebugWrapper>
+
+                        {/* 3. CTA Buttons (206) - Shows different text for mobile/desktop */}
+                        <DebugWrapper id={206} label="Button: Обсудить Задачу">
+                            <Link href={contactHref} className="flex items-center justify-center bg-white text-black px-4 py-1.5 md:px-6 md:py-2.5 rounded-full font-bold uppercase text-[9px] md:text-[10px] tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all whitespace-nowrap">
+                                <span className="md:hidden">Обсудить</span>
+                                <span className="hidden md:inline">Обсудить проект</span>
+                            </Link>
+                        </DebugWrapper>
+
+                        {/* 4. Menu Icon (Mobile Only) */}
+                        <button className="md:hidden text-white ml-1" onClick={() => setIsMobileMenuOpen(true)}>
+                            <Menu className="w-6 h-6" />
+                        </button>
+                    </div>
+                </div>
+
+                {/* INTERACTIVE TICKERS (208 & 209) */}
+                <div className={`transition-all duration-300 border-t border-white/5 relative z-[120] ${isScrolled
+                    ? 'bg-zinc-950/90 backdrop-blur-md'
+                    : transparent
+                        ? 'bg-transparent border-transparent'
+                        : 'bg-zinc-950/40 backdrop-blur-sm'}`}>
+                    <DebugWrapper id={208} label="Running Text Line 1">
+                        <InteractiveTicker items={gazetaTickerLine1} direction="left" speed={60} baseId={2080} />
+                    </DebugWrapper>
+                    <div className="h-[1px] bg-white/5 w-full" />
+                    <DebugWrapper id={209} label="Running Text Line 2">
+                        <InteractiveTicker items={gazetaTickerLine2} direction="right" speed={70} baseId={2090} />
                     </DebugWrapper>
                 </div>
+
+                <AnimatePresence>
+                    {isMobileMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 z-[1300] bg-black/70 backdrop-blur-md md:hidden"
+                        >
+                            <motion.div
+                                initial={{ y: -24, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                exit={{ y: -24, opacity: 0 }}
+                                className="mx-3 mt-3 rounded-[28px] border border-white/10 bg-[#0b0b0b]/95 shadow-2xl"
+                            >
+                                <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+                                    <div>
+                                        <p className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37]">Breus Media</p>
+                                        <p className="mt-1 text-sm font-bold uppercase tracking-[0.16em] text-white">Навигация Gazeta</p>
+                                    </div>
+                                    <button type="button" className="rounded-full border border-white/10 p-2 text-white" onClick={() => setIsMobileMenuOpen(false)}>
+                                        <X className="h-4 w-4" />
+                                    </button>
+                                </div>
+
+                                <div className="space-y-6 px-5 py-5">
+                                    <div>
+                                        <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">Индустрии</p>
+                                        <div className="grid grid-cols-2 gap-3">
+                                            {gazetaIndustryNavItems.map((item) => (
+                                                <Link
+                                                    key={item.label}
+                                                    href={item.href}
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                    className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/78 transition-colors hover:border-[#D4AF37]/40 hover:text-white"
+                                                >
+                                                    {item.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">Услуги</p>
+                                        <div className="grid grid-cols-2 gap-3">
+                                            {gazetaServiceNavItems.map((item) => (
+                                                <Link
+                                                    key={item.label}
+                                                    href={item.href}
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                    className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/78 transition-colors hover:border-[#D4AF37]/40 hover:text-white"
+                                                >
+                                                    {item.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {sectionLinks.length > 0 && (
+                                        <div>
+                                            <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">Разделы</p>
+                                            <div className="grid grid-cols-2 gap-3">
+                                                {sectionLinks.map((link) => (
+                                                    <Link
+                                                        key={`${link.label}-${link.href}-mobile`}
+                                                        href={link.href}
+                                                        onClick={() => setIsMobileMenuOpen(false)}
+                                                        className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/78 transition-colors hover:border-[#D4AF37]/40 hover:text-white text-center"
+                                                    >
+                                                        {link.label}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <Link
+                                        href={contactHref}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-[11px] font-black uppercase tracking-[0.22em] text-black transition-colors hover:bg-[#D4AF37]"
+                                    >
+                                        Обсудить проект
+                                    </Link>
+                                </div>
+                            </motion.div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
             </header>
         </DebugWrapper>
     );

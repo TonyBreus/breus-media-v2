@@ -3,9 +3,17 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useHeroStore } from "@/store/useHeroStore";
+import { tickerDataMapping } from "@/constants/tickerData";
 
 export default function HeroV22() {
     const { hoveredService } = useHeroStore();
+
+    // Case-insensitive lookup for ticker details
+    const tickerDetail = hoveredService ? (
+        Object.keys(tickerDataMapping).find(key => key.toLowerCase() === hoveredService.toLowerCase())
+            ? tickerDataMapping[Object.keys(tickerDataMapping).find(key => key.toLowerCase() === hoveredService.toLowerCase())!]
+            : null
+    ) : null;
 
     return (
         <section className="relative pt-[220px] pb-0 bg-black overflow-hidden min-h-[90vh] flex flex-col justify-center text-center">
@@ -20,20 +28,59 @@ export default function HeroV22() {
                         transition={{ duration: 0.3 }}
                         className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none"
                     >
-                        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm transition-all" />
+                        <div className="absolute inset-0 bg-black/80 backdrop-blur-md transition-all" />
+
                         <motion.div
-                            initial={{ scale: 0.9, y: 20, opacity: 0 }}
+                            initial={{ scale: 0.9, y: 30, opacity: 0 }}
                             animate={{ scale: 1, y: 0, opacity: 1 }}
-                            exit={{ scale: 0.95, y: -10, opacity: 0 }}
-                            transition={{ type: "spring", damping: 20 }}
-                            className="relative z-10 text-center"
+                            exit={{ scale: 0.95, y: -20, opacity: 0 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 120 }}
+                            className="relative z-10 text-center max-w-4xl px-6"
                         >
-                            <h2 className="text-[10vw] md:text-[120px] font-black uppercase tracking-tighter text-white leading-none drop-shadow-2xl">
-                                {hoveredService}
-                            </h2>
-                            <p className="text-brand font-bold uppercase tracking-[0.5em] mt-4 text-sm md:text-xl">
-                                Explore Solution
-                            </p>
+                            {tickerDetail ? (
+                                <>
+                                    <motion.h2
+                                        initial={{ y: 20, opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        transition={{ delay: 0.1 }}
+                                        className="text-[8vw] md:text-[100px] font-black uppercase tracking-tighter text-white leading-none mb-6"
+                                    >
+                                        {tickerDetail.heading}
+                                    </motion.h2>
+                                    <motion.p
+                                        initial={{ y: 20, opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        transition={{ delay: 0.2 }}
+                                        className="text-xl md:text-2xl text-gray-300 font-light mb-10 max-w-2xl mx-auto leading-relaxed"
+                                    >
+                                        {tickerDetail.subheading}
+                                    </motion.p>
+                                    <motion.div
+                                        initial={{ y: 20, opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        transition={{ delay: 0.3 }}
+                                        className="flex flex-wrap justify-center gap-3"
+                                    >
+                                        {tickerDetail.features.map((feature, i) => (
+                                            <span
+                                                key={i}
+                                                className="px-4 py-2 rounded-full border border-white/20 bg-white/5 text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#D4AF37]"
+                                            >
+                                                {feature}
+                                            </span>
+                                        ))}
+                                    </motion.div>
+                                </>
+                            ) : (
+                                <>
+                                    <h2 className="text-[10vw] md:text-[120px] font-black uppercase tracking-tighter text-white leading-none drop-shadow-2xl">
+                                        {hoveredService}
+                                    </h2>
+                                    <p className="text-brand font-bold uppercase tracking-[0.5em] mt-4 text-sm md:text-xl">
+                                        Explore Solution
+                                    </p>
+                                </>
+                            )}
                         </motion.div>
                     </motion.div>
                 )}

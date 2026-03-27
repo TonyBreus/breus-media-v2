@@ -1,0 +1,874 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic:
+      - generic: "#1"
+      - generic [ref=e3]:
+        - generic [ref=e4]:
+          - generic:
+            - generic: "#2"
+          - generic [ref=e5]:
+            - generic: "#3"
+            - generic [ref=e7]:
+              - generic [ref=e8]: Tbilisi
+              - generic [ref=e10]: 20:13:28
+        - generic:
+          - generic:
+            - generic: "#200"
+            - generic:
+              - generic:
+                - generic: АГЕНТСТВО
+                - generic:
+                  - generic:
+                    - link "Breus Media":
+                      - /url: /gazeta
+                - generic: Визуальный Продакшен & AI
+          - navigation:
+            - generic:
+              - generic: "#201"
+              - generic:
+                - link "О Нас":
+                  - /url: /gazeta#market-reality
+            - generic:
+              - generic: "#202"
+              - generic:
+                - generic:
+                  - button "Индустрии":
+                    - text: Индустрии
+                    - img
+            - generic:
+              - generic: "#203"
+              - generic:
+                - generic:
+                  - button "Услуги":
+                    - text: Услуги
+                    - img
+            - generic:
+              - generic: "#210"
+              - generic:
+                - link "Цены":
+                  - /url: "#pricing"
+            - generic:
+              - generic: "#211"
+              - generic:
+                - link "FAQ":
+                  - /url: "#faq"
+            - generic:
+              - generic: "#204"
+              - generic:
+                - link "AI Решения":
+                  - /url: /gazeta/ai-content
+          - generic:
+            - generic:
+              - generic: "#205"
+              - generic:
+                - generic:
+                  - button:
+                    - img
+            - generic:
+              - generic: "#207"
+              - generic:
+                - generic:
+                  - button "RU":
+                    - img
+                    - generic: RU
+            - generic:
+              - generic: "#206"
+              - generic:
+                - link "Обсудить проект":
+                  - /url: /gazeta#contact
+                  - generic: Обсудить проект
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - generic: "#208"
+            - generic [ref=e15]:
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e16] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e17]:
+                  - generic: "#2081"
+                  - generic [ref=e18]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e19] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e20]:
+                  - generic: "#2082"
+                  - generic [ref=e21]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e22] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e23]:
+                  - generic: "#2083"
+                  - generic [ref=e24]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e25] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e26]:
+                  - generic: "#2084"
+                  - generic [ref=e27]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e28] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e29]:
+                  - generic: "#2085"
+                  - generic [ref=e30]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e31] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e32]:
+                  - generic: "#2086"
+                  - generic [ref=e33]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e34] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e35]:
+                  - generic: "#2087"
+                  - generic [ref=e36]: ВАШ БИЗНЕС
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e37] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e38]:
+                  - generic: "#2081"
+                  - generic [ref=e39]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e40] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e41]:
+                  - generic: "#2082"
+                  - generic [ref=e42]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e43] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e44]:
+                  - generic: "#2083"
+                  - generic [ref=e45]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e46] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e47]:
+                  - generic: "#2084"
+                  - generic [ref=e48]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e49] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e50]:
+                  - generic: "#2085"
+                  - generic [ref=e51]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e52] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e53]:
+                  - generic: "#2086"
+                  - generic [ref=e54]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e55] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e56]:
+                  - generic: "#2087"
+                  - generic [ref=e57]: ВАШ БИЗНЕС
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e58] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e59]:
+                  - generic: "#2081"
+                  - generic [ref=e60]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e61] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e62]:
+                  - generic: "#2082"
+                  - generic [ref=e63]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e64] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e65]:
+                  - generic: "#2083"
+                  - generic [ref=e66]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e67] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e68]:
+                  - generic: "#2084"
+                  - generic [ref=e69]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e70] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e71]:
+                  - generic: "#2085"
+                  - generic [ref=e72]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e73] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e74]:
+                  - generic: "#2086"
+                  - generic [ref=e75]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e76] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e77]:
+                  - generic: "#2087"
+                  - generic [ref=e78]: ВАШ БИЗНЕС
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e79] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e80]:
+                  - generic: "#2081"
+                  - generic [ref=e81]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e82] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e83]:
+                  - generic: "#2082"
+                  - generic [ref=e84]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e85] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e86]:
+                  - generic: "#2083"
+                  - generic [ref=e87]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e88] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e89]:
+                  - generic: "#2084"
+                  - generic [ref=e90]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e91] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e92]:
+                  - generic: "#2085"
+                  - generic [ref=e93]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e94] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e95]:
+                  - generic: "#2086"
+                  - generic [ref=e96]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e97] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e98]:
+                  - generic: "#2087"
+                  - generic [ref=e99]: ВАШ БИЗНЕС
+          - generic [ref=e101]:
+            - generic: "#209"
+            - generic [ref=e104]:
+              - link "#2091 Аэросъёмка" [ref=e105] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e106]:
+                  - generic: "#2091"
+                  - generic [ref=e107]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e108] [cursor=pointer]:
+                - /url: /360-tours-service
+                - generic [ref=e109]:
+                  - generic: "#2092"
+                  - generic [ref=e110]: 360° Туры
+              - generic [ref=e111]:
+                - generic: "#2093"
+                - generic [ref=e112]: Промо Видео
+              - generic [ref=e113]:
+                - generic: "#2094"
+                - generic [ref=e114]: AI Content
+              - generic [ref=e115]:
+                - generic: "#2095"
+                - generic [ref=e116]: Reels
+              - link "#2091 Аэросъёмка" [ref=e117] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e118]:
+                  - generic: "#2091"
+                  - generic [ref=e119]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e120] [cursor=pointer]:
+                - /url: /360-tours-service
+                - generic [ref=e121]:
+                  - generic: "#2092"
+                  - generic [ref=e122]: 360° Туры
+              - generic [ref=e123]:
+                - generic: "#2093"
+                - generic [ref=e124]: Промо Видео
+              - generic [ref=e125]:
+                - generic: "#2094"
+                - generic [ref=e126]: AI Content
+              - generic [ref=e127]:
+                - generic: "#2095"
+                - generic [ref=e128]: Reels
+              - link "#2091 Аэросъёмка" [ref=e129] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e130]:
+                  - generic: "#2091"
+                  - generic [ref=e131]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e132] [cursor=pointer]:
+                - /url: /360-tours-service
+                - generic [ref=e133]:
+                  - generic: "#2092"
+                  - generic [ref=e134]: 360° Туры
+              - generic [ref=e135]:
+                - generic: "#2093"
+                - generic [ref=e136]: Промо Видео
+              - generic [ref=e137]:
+                - generic: "#2094"
+                - generic [ref=e138]: AI Content
+              - generic [ref=e139]:
+                - generic: "#2095"
+                - generic [ref=e140]: Reels
+              - link "#2091 Аэросъёмка" [ref=e141] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e142]:
+                  - generic: "#2091"
+                  - generic [ref=e143]: Аэросъёмка
+              - link "#2092 360° Туры" [ref=e144] [cursor=pointer]:
+                - /url: /360-tours-service
+                - generic [ref=e145]:
+                  - generic: "#2092"
+                  - generic [ref=e146]: 360° Туры
+              - generic [ref=e147]:
+                - generic: "#2093"
+                - generic [ref=e148]: Промо Видео
+              - generic [ref=e149]:
+                - generic: "#2094"
+                - generic [ref=e150]: AI Content
+              - generic [ref=e151]:
+                - generic: "#2095"
+                - generic [ref=e152]: Reels
+    - generic [ref=e153]:
+      - generic: "#10100"
+      - generic [ref=e155]:
+        - img "Промо-видео для недвижимости" [ref=e157]
+        - generic [ref=e163]:
+          - generic [ref=e164]:
+            - generic: "#10101"
+            - generic [ref=e166]: PROMO VIDEO SERVICE
+          - generic [ref=e167]:
+            - generic: "#10110"
+            - heading "Промо-видео для бизнеса и брендов" [level=1] [ref=e169]
+          - generic [ref=e170]:
+            - generic: "#10102"
+            - generic [ref=e171]:
+              - paragraph [ref=e172]: Имиджевые, продуктовые и рекламные видео для бизнеса, пространств и проектов в Тбилиси + выезд по Грузии по согласованию.
+              - paragraph [ref=e173]: Хорошее промо-видео не просто красиво выглядит — оно быстрее объясняет ценность бизнеса и усиливает доверие ещё до контакта.
+              - paragraph [ref=e174]: "В фокусе: Промо-видео для недвижимости"
+          - generic [ref=e175]:
+            - generic [ref=e176]:
+              - generic: "#10120"
+              - link "Подробнее" [ref=e178] [cursor=pointer]:
+                - /url: /real-estate-service
+            - generic [ref=e179]:
+              - generic: "#10121"
+              - link "Заказать" [ref=e181] [cursor=pointer]:
+                - /url: "#contact"
+        - generic:
+          - generic: "#10180"
+          - generic [ref=e182]:
+            - button "Промо-видео для бизнеса" [ref=e183]:
+              - generic [ref=e186]: Промо-видео для бизнеса
+            - button "Промо-видео для недвижимости" [ref=e187]:
+              - generic [ref=e190]: Промо-видео для недвижимости
+            - button "Промо-видео для отелей" [ref=e191]:
+              - generic [ref=e194]: Промо-видео для отелей
+            - button "Промо-видео для ресторанов" [ref=e195]:
+              - generic [ref=e198]: Промо-видео для ресторанов
+    - generic [ref=e199]:
+      - generic: "#10200"
+      - generic [ref=e203]:
+        - generic [ref=e204]:
+          - generic: "#10210"
+          - generic [ref=e206]:
+            - generic [ref=e207]: 2x
+            - generic [ref=e208]: Быстрее понимание ценности оффера
+        - generic [ref=e209]:
+          - generic: "#10211"
+          - generic [ref=e211]:
+            - generic [ref=e212]: 4K
+            - generic [ref=e213]: Форматы под сайт, ads и соцсети
+        - generic [ref=e214]:
+          - generic: "#10212"
+          - generic [ref=e216]:
+            - generic [ref=e217]: Short
+            - generic [ref=e218]: Вертикальные и короткие cut-down версии
+        - generic [ref=e219]:
+          - generic: "#10213"
+          - generic [ref=e221]:
+            - generic [ref=e222]: Hub
+            - generic [ref=e223]: Один сервис для разных ниш бизнеса
+    - generic [ref=e224]:
+      - generic: "#10300"
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - generic: "#10301"
+          - heading "Выберите, для какого направления нужен promo video" [level=2] [ref=e231]
+        - generic [ref=e233]:
+          - generic [ref=e234]:
+            - generic: "#10310"
+            - article [ref=e236]:
+              - generic [ref=e237]:
+                - img "Промо-видео для недвижимости" [ref=e238]
+                - generic [ref=e240]: HOT
+              - generic [ref=e241]:
+                - heading "Промо-видео для недвижимости" [level=3] [ref=e242]
+                - generic [ref=e243]: Объект · ЖК · Пространство
+                - paragraph [ref=e244]: Покажите объект, ЖК или пространство так, чтобы он выглядел сильнее в продаже и презентации.
+                - generic [ref=e245]:
+                  - generic [ref=e246]: Promo Video · по задаче
+                  - generic [ref=e247]:
+                    - link "Подробнее" [ref=e248] [cursor=pointer]:
+                      - /url: /real-estate-service
+                    - link "Заказать" [ref=e249] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e250]:
+            - generic: "#10311"
+            - article [ref=e252]:
+              - img "Промо-видео для отелей" [ref=e254]
+              - generic [ref=e255]:
+                - heading "Промо-видео для отелей" [level=3] [ref=e256]
+                - generic [ref=e257]: Гостеприимство · Бронирования · Атмосфера
+                - paragraph [ref=e258]: Создайте атмосферный ролик, который помогает гостю захотеть бронирование ещё до перехода на площадку.
+                - generic [ref=e259]:
+                  - generic [ref=e260]: Promo Video · по задаче
+                  - generic [ref=e261]:
+                    - link "Подробнее" [ref=e262] [cursor=pointer]:
+                      - /url: /hotels-service
+                    - link "Заказать" [ref=e263] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e264]:
+            - generic: "#10312"
+            - article [ref=e266]:
+              - img "Промо-видео для ресторанов" [ref=e268]
+              - generic [ref=e269]:
+                - heading "Промо-видео для ресторанов" [level=3] [ref=e270]
+                - generic [ref=e271]: Вайб · Подача · Бренд
+                - paragraph [ref=e272]: Передайте вайб, подачу, свет и настроение заведения до первого визита.
+                - generic [ref=e273]:
+                  - generic [ref=e274]: Promo Video · по задаче
+                  - generic [ref=e275]:
+                    - link "Подробнее" [ref=e276] [cursor=pointer]:
+                      - /url: /restaurants-service
+                    - link "Заказать" [ref=e277] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e278]:
+            - generic: "#10313"
+            - article [ref=e280]:
+              - img "Промо-видео для автобизнеса" [ref=e282]
+              - generic [ref=e283]:
+                - heading "Промо-видео для автобизнеса" [level=3] [ref=e284]
+                - generic [ref=e285]: Имидж · Обзор · Презентация
+                - paragraph [ref=e286]: Имиджевые и обзорные ролики для автосалонов, дилеров и премиальных площадок.
+                - generic [ref=e287]:
+                  - generic [ref=e288]: Promo Video · по задаче
+                  - generic [ref=e289]:
+                    - link "Подробнее" [ref=e290] [cursor=pointer]:
+                      - /url: /auto-service
+                    - link "Заказать" [ref=e291] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e292]:
+            - generic: "#10314"
+            - article [ref=e294]:
+              - img "Промо-видео для туризма" [ref=e296]
+              - generic [ref=e297]:
+                - heading "Промо-видео для туризма" [level=3] [ref=e298]
+                - generic [ref=e299]: Маршрут · Локация · Опыт
+                - paragraph [ref=e300]: Покажите маршрут, локацию или опыт так, чтобы человек захотел оказаться внутри этой истории.
+                - generic [ref=e301]:
+                  - generic [ref=e302]: Promo Video · по задаче
+                  - generic [ref=e303]:
+                    - link "Подробнее" [ref=e304] [cursor=pointer]:
+                      - /url: /tourism-service
+                    - link "Заказать" [ref=e305] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e306]:
+            - generic: "#10315"
+            - article [ref=e308]:
+              - img "Промо-видео для клиник" [ref=e310]
+              - generic [ref=e311]:
+                - heading "Промо-видео для клиник" [level=3] [ref=e312]
+                - generic [ref=e313]: Доверие · Среда · Сервис
+                - paragraph [ref=e314]: Сделайте видео, которое усиливает доверие к пространству, специалистам и сервису.
+                - generic [ref=e315]:
+                  - generic [ref=e316]: Promo Video · по задаче
+                  - generic [ref=e317]:
+                    - link "Подробнее" [ref=e318] [cursor=pointer]:
+                      - /url: /clinics-service
+                    - link "Заказать" [ref=e319] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e320]:
+            - generic: "#10316"
+            - article [ref=e322]:
+              - img "Промо-видео для бизнеса" [ref=e324]
+              - generic [ref=e325]:
+                - heading "Промо-видео для бизнеса" [level=3] [ref=e326]
+                - generic [ref=e327]: Бренд · Коммерция · Digital
+                - paragraph [ref=e328]: Подходит для брендов, коммерческих объектов, сервисов, шоурумов и digital-презентации бизнеса.
+                - generic [ref=e329]:
+                  - generic [ref=e330]: Promo Video · по задаче
+                  - generic [ref=e331]:
+                    - link "Подробнее" [ref=e332] [cursor=pointer]:
+                      - /url: /business-service
+                    - link "Заказать" [ref=e333] [cursor=pointer]:
+                      - /url: "#contact"
+    - generic [ref=e334]:
+      - generic: "#10500"
+      - generic [ref=e338]:
+        - generic [ref=e339]:
+          - generic: "#10510"
+          - generic [ref=e341]:
+            - generic [ref=e342]: "01"
+            - heading "Короткий бриф" [level=4] [ref=e343]
+            - paragraph [ref=e344]: Фиксируем задачу, формат ролика, каналы размещения и ожидаемый результат.
+        - generic [ref=e345]:
+          - generic: "#10511"
+          - generic [ref=e347]:
+            - generic [ref=e348]: "02"
+            - heading "Сценарий и структура" [level=4] [ref=e349]
+            - paragraph [ref=e350]: "Собираем логику подачи: что и в какой последовательности должно работать на ценность."
+        - generic [ref=e351]:
+          - generic: "#10512"
+          - generic [ref=e353]:
+            - generic [ref=e354]: "03"
+            - heading "Съёмка и продакшн" [level=4] [ref=e355]
+            - paragraph [ref=e356]: Проводим съёмку по согласованному плану с акцентом на смысл и визуальную целостность.
+        - generic [ref=e357]:
+          - generic: "#10513"
+          - generic [ref=e359]:
+            - generic [ref=e360]: "04"
+            - heading "Монтаж и адаптация" [level=4] [ref=e361]
+            - paragraph [ref=e362]: Собираем финальный ролик и версии под нужные форматы и digital-каналы.
+    - generic [ref=e363]:
+      - generic: "#10400"
+      - generic [ref=e365]:
+        - generic: "#10400"
+        - generic [ref=e368]:
+          - paragraph [ref=e369]: Формат работает в разных сегментах бизнеса
+          - generic [ref=e370]:
+            - generic [ref=e371]:
+              - generic: "#10410"
+              - generic [ref=e372]: Недвижимость
+            - generic [ref=e373]:
+              - generic: "#10411"
+              - generic [ref=e374]: Отель
+            - generic [ref=e375]:
+              - generic: "#10412"
+              - generic [ref=e376]: Ресторан
+            - generic [ref=e377]:
+              - generic: "#10413"
+              - generic [ref=e378]: Автобизнес
+            - generic [ref=e379]:
+              - generic: "#10414"
+              - generic [ref=e380]: Туризм
+            - generic [ref=e381]:
+              - generic: "#10415"
+              - generic [ref=e382]: Клиника
+            - generic [ref=e383]:
+              - generic: "#10416"
+              - generic [ref=e384]: Бизнес
+          - paragraph [ref=e385]: Тбилиси + выезд по Грузии по согласованию
+    - generic [ref=e386]:
+      - generic: "#10600"
+      - generic [ref=e389]:
+        - generic [ref=e390]:
+          - generic [ref=e391]:
+            - generic: "#10601"
+            - heading "География промо-видео проектов" [level=2] [ref=e393]
+          - generic [ref=e394]:
+            - generic: "#10602"
+            - paragraph [ref=e396]: Снимаем промо-видео для бизнеса и брендов в Тбилиси + выезд по Грузии по согласованию.
+          - generic [ref=e397]:
+            - generic [ref=e398]:
+              - generic: "#10610"
+              - generic [ref=e402]:
+                - heading "Тбилиси" [level=4] [ref=e403]
+                - paragraph [ref=e404]: Основная зона съёмок и продакшна в пределах города.
+            - generic [ref=e405]:
+              - generic: "#10611"
+              - generic [ref=e409]:
+                - heading "Выезд по Грузии" [level=4] [ref=e410]
+                - paragraph [ref=e411]: Выезд по Грузии по согласованию под задачу проекта.
+            - generic [ref=e412]:
+              - generic: "#10612"
+              - generic [ref=e416]:
+                - heading "Регионы Грузии" [level=4] [ref=e417]
+                - paragraph [ref=e418]: Кутаиси и другие регионы по согласованному графику.
+        - generic [ref=e419]:
+          - generic [ref=e420]:
+            - generic: "#10690"
+            - img "Georgia map with coverage areas" [ref=e422]
+          - generic [ref=e423]: Promo Video Coverage v1
+    - generic [ref=e424]:
+      - generic: "#10700"
+      - generic [ref=e426]:
+        - generic [ref=e427]:
+          - generic [ref=e428]:
+            - generic: "#10701"
+            - heading "Что вы получаете на выходе" [level=2] [ref=e430]
+          - generic [ref=e431]:
+            - generic: "#10702"
+            - paragraph [ref=e433]: Пакеты promo-видео и формат выдачи материалов
+        - generic [ref=e434]:
+          - generic [ref=e435]:
+            - generic: "#10710"
+            - generic [ref=e437]:
+              - heading "Старт promo" [level=3] [ref=e438]
+              - generic [ref=e439]: от 350 ₾
+              - list [ref=e440]:
+                - listitem [ref=e441]:
+                  - generic [ref=e442]: •
+                  - text: Готовое промо-видео — ролик под сайт, рекламу, презентацию или соцсети.
+                - listitem [ref=e443]:
+                  - generic [ref=e444]: •
+                  - text: Видео для digital-каналов — подходит для сайта, Instagram, TikTok, YouTube и рекламных кампаний.
+                - listitem [ref=e445]:
+                  - generic [ref=e446]: •
+                  - text: Сценарную и визуальную логику — не просто съёмка, а понятная подача ценности бизнеса.
+              - link "Выбрать" [ref=e447] [cursor=pointer]:
+                - /url: "#contact"
+          - generic [ref=e448]:
+            - generic: "#10711"
+            - generic [ref=e450]:
+              - generic [ref=e451]: Популярно
+              - heading "Стандартный promo-пакет" [level=3] [ref=e452]
+              - generic [ref=e453]: от 650 ₾
+              - list [ref=e454]:
+                - listitem [ref=e455]:
+                  - generic [ref=e456]: •
+                  - text: Готовое промо-видео — под сайт, рекламу и презентацию.
+                - listitem [ref=e457]:
+                  - generic [ref=e458]: •
+                  - text: Версии под разные форматы — горизонтальный, вертикальный и короткий cut-down при необходимости.
+                - listitem [ref=e459]:
+                  - generic [ref=e460]: •
+                  - text: Видео для digital-каналов — единый пакет под ключевые площадки.
+                - listitem [ref=e461]:
+                  - generic [ref=e462]: •
+                  - text: Сценарную и визуальную логику — структура ролика под бизнес-задачу.
+              - link "Выбрать" [ref=e463] [cursor=pointer]:
+                - /url: "#contact"
+          - generic [ref=e464]:
+            - generic: "#10712"
+            - generic [ref=e466]:
+              - heading "Полный promo-пакет" [level=3] [ref=e467]
+              - generic [ref=e468]: от 950 ₾
+              - list [ref=e469]:
+                - listitem [ref=e470]:
+                  - generic [ref=e471]: •
+                  - text: Готовое промо-видео — основной ролик под коммуникацию бренда.
+                - listitem [ref=e472]:
+                  - generic [ref=e473]: •
+                  - text: Версии под разные форматы — адаптация под кампании и платформы.
+                - listitem [ref=e474]:
+                  - generic [ref=e475]: •
+                  - text: Материал, который можно использовать в продажах — промо помогает быстрее объяснить ценность предложения.
+                - listitem [ref=e476]:
+                  - generic [ref=e477]: •
+                  - text: Видео для digital-каналов — подготовка под сайт, соцсети и рекламу.
+              - link "Выбрать" [ref=e478] [cursor=pointer]:
+                - /url: "#contact"
+    - generic [ref=e479]:
+      - generic: "#10750"
+      - generic [ref=e482]:
+        - generic [ref=e483]:
+          - paragraph [ref=e484]: Боль и решение
+          - heading "Почему бизнесу уже недостаточно просто “красивого ролика”" [level=2] [ref=e485]
+          - paragraph [ref=e486]: Если видео не объясняет ценность, не удерживает внимание и не вписывается в воронку, оно остаётся просто красивым файлом, а не рабочим инструментом.
+        - generic [ref=e487]:
+          - generic [ref=e488]:
+            - generic: "#10760"
+            - article [ref=e490]:
+              - heading "Видео выглядит красиво, но не продаёт" [level=3] [ref=e491]
+              - paragraph [ref=e492]: Без ясной идеи ролик не усиливает интерес и не помогает принять решение.
+              - paragraph [ref=e493]: "Решение: строим видео вокруг смысла, а не только картинки."
+          - generic [ref=e494]:
+            - generic: "#10761"
+            - article [ref=e496]:
+              - heading "Неясно, где использовать ролик" [level=3] [ref=e497]
+              - paragraph [ref=e498]: Один формат редко подходит сразу под сайт, рекламу и соцсети.
+              - paragraph [ref=e499]: "Решение: готовим видео с пониманием каналов и сценариев использования."
+          - generic [ref=e500]:
+            - generic: "#10762"
+            - article [ref=e502]:
+              - heading "Бренд не запоминается" [level=3] [ref=e503]
+              - paragraph [ref=e504]: Если ролик типовой, он не создаёт ощущения отличия от конкурентов.
+              - paragraph [ref=e505]: "Решение: выделяем атмосферу, логику подачи и сильные стороны бренда."
+          - generic [ref=e506]:
+            - generic: "#10763"
+            - article [ref=e508]:
+              - heading "Слишком много хаоса в продакшне" [level=3] [ref=e509]
+              - paragraph [ref=e510]: Когда съёмка, сценарий и маркетинг живут отдельно, результат размывается.
+              - paragraph [ref=e511]: "Решение: собираем промо-видео как единый коммерческий инструмент."
+    - generic [ref=e512]:
+      - generic: "#10800"
+      - generic [ref=e515]:
+        - generic [ref=e517]:
+          - generic: "#10801"
+          - heading "FAQ" [level=2] [ref=e519]
+        - generic [ref=e521]:
+          - generic [ref=e522]:
+            - generic: "#10810"
+            - group [ref=e524] [cursor=pointer]:
+              - generic "Чем промо-видео отличается от обычной съёмки? ↓" [ref=e525]:
+                - text: Чем промо-видео отличается от обычной съёмки?
+                - generic [ref=e526]: ↓
+          - generic [ref=e527]:
+            - generic: "#10811"
+            - group [ref=e529] [cursor=pointer]:
+              - generic "Можно ли сделать видео сразу под сайт и соцсети? ↓" [ref=e530]:
+                - text: Можно ли сделать видео сразу под сайт и соцсети?
+                - generic [ref=e531]: ↓
+          - generic [ref=e532]:
+            - generic: "#10812"
+            - group [ref=e534] [cursor=pointer]:
+              - generic "Вы помогаете со сценарием? ↓" [ref=e535]:
+                - text: Вы помогаете со сценарием?
+                - generic [ref=e536]: ↓
+          - generic [ref=e537]:
+            - generic: "#10813"
+            - group [ref=e539] [cursor=pointer]:
+              - generic "Сколько времени занимает подготовка и монтаж? ↓" [ref=e540]:
+                - text: Сколько времени занимает подготовка и монтаж?
+                - generic [ref=e541]: ↓
+          - generic [ref=e542]:
+            - generic: "#10814"
+            - group [ref=e544] [cursor=pointer]:
+              - generic "Можно ли снять промо без большого продакшна? ↓" [ref=e545]:
+                - text: Можно ли снять промо без большого продакшна?
+                - generic [ref=e546]: ↓
+          - generic [ref=e547]:
+            - generic: "#10815"
+            - group [ref=e549] [cursor=pointer]:
+              - generic "Подходит ли промо-видео для рекламы? ↓" [ref=e550]:
+                - text: Подходит ли промо-видео для рекламы?
+                - generic [ref=e551]: ↓
+          - generic [ref=e552]:
+            - generic: "#10816"
+            - group [ref=e554] [cursor=pointer]:
+              - generic "Можно ли сделать короткие версии из одного ролика? ↓" [ref=e555]:
+                - text: Можно ли сделать короткие версии из одного ролика?
+                - generic [ref=e556]: ↓
+    - generic [ref=e557]:
+      - generic: "#10850"
+      - generic [ref=e559]:
+        - generic: "#10850"
+        - generic [ref=e562]:
+          - generic [ref=e563]:
+            - paragraph [ref=e564]: Смежные направления
+            - heading "Что еще может подойти вашему объекту" [level=2] [ref=e565]
+          - generic [ref=e566]:
+            - generic [ref=e567]:
+              - generic: "#10860"
+              - link "Недвижимость Промо-видео для объектов, ЖК и коммерческих пространств." [ref=e569] [cursor=pointer]:
+                - /url: /real-estate-service
+                - paragraph [ref=e570]: Недвижимость
+                - paragraph [ref=e571]: Промо-видео для объектов, ЖК и коммерческих пространств.
+            - generic [ref=e572]:
+              - generic: "#10861"
+              - link "Отели Промо-видео для бронирования и презентации сервиса." [ref=e574] [cursor=pointer]:
+                - /url: /hotels-service
+                - paragraph [ref=e575]: Отели
+                - paragraph [ref=e576]: Промо-видео для бронирования и презентации сервиса.
+            - generic [ref=e577]:
+              - generic: "#10862"
+              - link "Рестораны Промо-подача атмосферы и концепции заведения." [ref=e579] [cursor=pointer]:
+                - /url: /restaurants-service
+                - paragraph [ref=e580]: Рестораны
+                - paragraph [ref=e581]: Промо-подача атмосферы и концепции заведения.
+            - generic [ref=e582]:
+              - generic: "#10863"
+              - link "Автобизнес Имиджевые и обзорные промо для автонаправления." [ref=e584] [cursor=pointer]:
+                - /url: /auto-service
+                - paragraph [ref=e585]: Автобизнес
+                - paragraph [ref=e586]: Имиджевые и обзорные промо для автонаправления.
+            - generic [ref=e587]:
+              - generic: "#10864"
+              - link "Туризм Промо для маршрутов, локаций и турпродуктов." [ref=e589] [cursor=pointer]:
+                - /url: /tourism-service
+                - paragraph [ref=e590]: Туризм
+                - paragraph [ref=e591]: Промо для маршрутов, локаций и турпродуктов.
+            - generic [ref=e592]:
+              - generic: "#10865"
+              - link "Клиники Промо-видео для усиления доверия к сервису." [ref=e594] [cursor=pointer]:
+                - /url: /clinics-service
+                - paragraph [ref=e595]: Клиники
+                - paragraph [ref=e596]: Промо-видео для усиления доверия к сервису.
+            - generic [ref=e597]:
+              - generic: "#10866"
+              - link "Ваш бизнес Промо-формат для коммерческих и бренд-задач." [ref=e599] [cursor=pointer]:
+                - /url: /business-service
+                - paragraph [ref=e600]: Ваш бизнес
+                - paragraph [ref=e601]: Промо-формат для коммерческих и бренд-задач.
+    - generic [ref=e602]:
+      - generic: "#10900"
+      - generic [ref=e606]:
+        - generic [ref=e607]:
+          - generic: "#10901"
+          - heading "Обсудим промо-видео для вашего проекта" [level=2] [ref=e609]
+        - generic [ref=e610]:
+          - generic: "#10902"
+          - paragraph [ref=e612]: Подскажем, какой формат подойдёт именно вашему бизнесу, где видео лучше использовать и как собрать его без лишнего хаоса.
+        - generic [ref=e613]:
+          - generic [ref=e614]:
+            - generic [ref=e615]:
+              - generic [ref=e616]: Ваше имя *
+              - textbox "Иван Иванов" [ref=e617]
+            - generic [ref=e618]:
+              - generic [ref=e619]: Способ связи *
+              - generic [ref=e620]:
+                - button "Telegram" [ref=e621]
+                - button "WhatsApp" [ref=e622]
+                - button "Email" [ref=e623]
+              - textbox "@username" [ref=e624]
+          - generic [ref=e625]:
+            - generic [ref=e626]: Интересующие услуги
+            - generic [ref=e627]:
+              - button "Недвижимость" [ref=e628]
+              - button "Отель" [ref=e629]
+              - button "Ресторан" [ref=e630]
+              - button "Автобизнес" [ref=e631]
+              - button "Туризм" [ref=e632]
+              - button "Клиника" [ref=e633]
+              - button "Бизнес" [ref=e634]
+          - generic [ref=e635]:
+            - generic [ref=e636]: Коротко о задаче
+            - 'textbox "Например: промо-видео для бренда с версиями под сайт, соцсети и рекламу." [ref=e637]'
+          - generic [ref=e638]:
+            - generic [ref=e639]:
+              - generic: "#10910"
+              - button "Отправить" [ref=e641]:
+                - img [ref=e642]
+                - text: Отправить
+            - generic [ref=e645]:
+              - generic: "#10911"
+              - link "WhatsApp" [ref=e647] [cursor=pointer]:
+                - /url: https://wa.me/995574619393
+                - img [ref=e648]
+                - text: WhatsApp
+          - paragraph [ref=e650]: Нажимая кнопку, вы соглашаетесь на обработку контактов для обратной связи.
+    - generic [ref=e651]:
+      - generic: "#11000"
+      - generic [ref=e653]:
+        - generic: "#11000"
+        - generic [ref=e655]:
+          - generic [ref=e656]:
+            - generic [ref=e657]:
+              - generic [ref=e658]:
+                - generic: "#11001"
+                - generic [ref=e660]:
+                  - generic [ref=e661]: ✈
+                  - text: BREUS MEDIA
+              - generic [ref=e662]:
+                - generic: "#11002"
+                - paragraph [ref=e664]: Профессиональная аэросъёмка и визуальные решения для бизнеса в Грузии. Тбилиси, Батуми, Кутаиси.
+              - generic [ref=e665]:
+                - generic [ref=e666]:
+                  - generic: "#11010"
+                  - link "IG" [ref=e668] [cursor=pointer]:
+                    - /url: "#"
+                - generic [ref=e669]:
+                  - generic: "#11011"
+                  - link "TG" [ref=e671] [cursor=pointer]:
+                    - /url: "#"
+                - generic [ref=e672]:
+                  - generic: "#11012"
+                  - link "YT" [ref=e674] [cursor=pointer]:
+                    - /url: "#"
+            - generic [ref=e676]:
+              - generic: "#11003"
+              - generic [ref=e677]:
+                - heading "Меню" [level=4] [ref=e678]
+                - list [ref=e679]:
+                  - listitem [ref=e680]:
+                    - generic [ref=e681]:
+                      - generic: "#11020"
+                      - link "Портфолио" [ref=e683] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e684]:
+                    - generic [ref=e685]:
+                      - generic: "#11021"
+                      - link "Оборудование" [ref=e687] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e688]:
+                    - generic [ref=e689]:
+                      - generic: "#11022"
+                      - link "Карта полетов" [ref=e691] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e692]:
+                    - generic [ref=e693]:
+                      - generic: "#11023"
+                      - link "Контакты" [ref=e695] [cursor=pointer]:
+                        - /url: "#"
+            - generic [ref=e697]:
+              - generic: "#11004"
+              - generic [ref=e698]:
+                - heading "Контакты" [level=4] [ref=e699]
+                - list [ref=e700]:
+                  - listitem [ref=e701]: Tbilisi, Georgia
+                  - listitem [ref=e702]: +995 5xx xxx xxx
+                  - listitem [ref=e703]: hello@breus.media
+          - generic [ref=e704]: © 2024 BREUS MEDIA PRODUCTION. ALL RIGHTS RESERVED.
+  - alert [ref=e705]

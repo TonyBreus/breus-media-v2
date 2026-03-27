@@ -1,0 +1,860 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic:
+      - generic: "#1"
+      - generic [ref=e3]:
+        - generic [ref=e4]:
+          - generic:
+            - generic: "#2"
+          - generic [ref=e5]:
+            - generic: "#3"
+            - generic [ref=e7]:
+              - generic [ref=e8]: Tbilisi
+              - generic [ref=e10]: 18:12:34
+        - generic:
+          - generic:
+            - generic: "#200"
+            - generic:
+              - generic:
+                - generic: АГЕНТСТВО
+                - generic:
+                  - generic:
+                    - link "Breus Media":
+                      - /url: /gazeta
+                - generic: Визуальный Продакшен & AI
+          - navigation:
+            - generic:
+              - generic: "#201"
+              - generic:
+                - link "О Нас":
+                  - /url: /gazeta#market-reality
+            - generic:
+              - generic: "#202"
+              - generic:
+                - generic:
+                  - button "Индустрии":
+                    - text: Индустрии
+                    - img
+            - generic:
+              - generic: "#203"
+              - generic:
+                - generic:
+                  - button "Услуги":
+                    - text: Услуги
+                    - img
+            - generic:
+              - generic: "#210"
+              - generic:
+                - link "Цены":
+                  - /url: "#pricing"
+            - generic:
+              - generic: "#211"
+              - generic:
+                - link "FAQ":
+                  - /url: "#faq"
+            - generic:
+              - generic: "#204"
+              - generic:
+                - link "AI Решения":
+                  - /url: /gazeta/ai-content
+          - generic:
+            - generic:
+              - generic: "#205"
+              - generic:
+                - generic:
+                  - button:
+                    - img
+            - generic:
+              - generic: "#207"
+              - generic:
+                - generic:
+                  - button "RU":
+                    - img
+                    - generic: RU
+            - generic:
+              - generic: "#206"
+              - generic:
+                - link "Обсудить проект":
+                  - /url: /gazeta#contact
+                  - generic: Обсудить проект
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - generic: "#208"
+            - generic [ref=e15]:
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e16] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e17]:
+                  - generic: "#2081"
+                  - generic [ref=e18]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e19] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e20]:
+                  - generic: "#2082"
+                  - generic [ref=e21]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e22] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e23]:
+                  - generic: "#2083"
+                  - generic [ref=e24]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e25] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e26]:
+                  - generic: "#2084"
+                  - generic [ref=e27]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e28] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e29]:
+                  - generic: "#2085"
+                  - generic [ref=e30]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e31] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e32]:
+                  - generic: "#2086"
+                  - generic [ref=e33]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e34] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e35]:
+                  - generic: "#2087"
+                  - generic [ref=e36]: ВАШ БИЗНЕС
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e37] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e38]:
+                  - generic: "#2081"
+                  - generic [ref=e39]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e40] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e41]:
+                  - generic: "#2082"
+                  - generic [ref=e42]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e43] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e44]:
+                  - generic: "#2083"
+                  - generic [ref=e45]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e46] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e47]:
+                  - generic: "#2084"
+                  - generic [ref=e48]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e49] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e50]:
+                  - generic: "#2085"
+                  - generic [ref=e51]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e52] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e53]:
+                  - generic: "#2086"
+                  - generic [ref=e54]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e55] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e56]:
+                  - generic: "#2087"
+                  - generic [ref=e57]: ВАШ БИЗНЕС
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e58] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e59]:
+                  - generic: "#2081"
+                  - generic [ref=e60]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e61] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e62]:
+                  - generic: "#2082"
+                  - generic [ref=e63]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e64] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e65]:
+                  - generic: "#2083"
+                  - generic [ref=e66]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e67] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e68]:
+                  - generic: "#2084"
+                  - generic [ref=e69]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e70] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e71]:
+                  - generic: "#2085"
+                  - generic [ref=e72]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e73] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e74]:
+                  - generic: "#2086"
+                  - generic [ref=e75]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e76] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e77]:
+                  - generic: "#2087"
+                  - generic [ref=e78]: ВАШ БИЗНЕС
+              - link "#2081 НЕДВИЖИМОСТЬ" [ref=e79] [cursor=pointer]:
+                - /url: /real-estate-service
+                - generic [ref=e80]:
+                  - generic: "#2081"
+                  - generic [ref=e81]: НЕДВИЖИМОСТЬ
+              - link "#2082 АВТОБИЗНЕС" [ref=e82] [cursor=pointer]:
+                - /url: /auto-service
+                - generic [ref=e83]:
+                  - generic: "#2082"
+                  - generic [ref=e84]: АВТОБИЗНЕС
+              - link "#2083 ОТЕЛИ" [ref=e85] [cursor=pointer]:
+                - /url: /hotels-service
+                - generic [ref=e86]:
+                  - generic: "#2083"
+                  - generic [ref=e87]: ОТЕЛИ
+              - link "#2084 РЕСТОРАНЫ" [ref=e88] [cursor=pointer]:
+                - /url: /restaurants-service
+                - generic [ref=e89]:
+                  - generic: "#2084"
+                  - generic [ref=e90]: РЕСТОРАНЫ
+              - link "#2085 ТУРИЗМ" [ref=e91] [cursor=pointer]:
+                - /url: /tourism-service
+                - generic [ref=e92]:
+                  - generic: "#2085"
+                  - generic [ref=e93]: ТУРИЗМ
+              - link "#2086 КЛИНИКИ" [ref=e94] [cursor=pointer]:
+                - /url: /clinics-service
+                - generic [ref=e95]:
+                  - generic: "#2086"
+                  - generic [ref=e96]: КЛИНИКИ
+              - link "#2087 ВАШ БИЗНЕС" [ref=e97] [cursor=pointer]:
+                - /url: /business-service
+                - generic [ref=e98]:
+                  - generic: "#2087"
+                  - generic [ref=e99]: ВАШ БИЗНЕС
+          - generic [ref=e101]:
+            - generic: "#209"
+            - generic [ref=e104]:
+              - link "#2091 Аэросъёмка" [ref=e105] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e106]:
+                  - generic: "#2091"
+                  - generic [ref=e107]: Аэросъёмка
+              - generic [ref=e108]:
+                - generic: "#2092"
+                - generic [ref=e109]: 360° Туры
+              - generic [ref=e110]:
+                - generic: "#2093"
+                - generic [ref=e111]: Промо Видео
+              - generic [ref=e112]:
+                - generic: "#2094"
+                - generic [ref=e113]: AI Content
+              - generic [ref=e114]:
+                - generic: "#2095"
+                - generic [ref=e115]: Reels
+              - link "#2091 Аэросъёмка" [ref=e116] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e117]:
+                  - generic: "#2091"
+                  - generic [ref=e118]: Аэросъёмка
+              - generic [ref=e119]:
+                - generic: "#2092"
+                - generic [ref=e120]: 360° Туры
+              - generic [ref=e121]:
+                - generic: "#2093"
+                - generic [ref=e122]: Промо Видео
+              - generic [ref=e123]:
+                - generic: "#2094"
+                - generic [ref=e124]: AI Content
+              - generic [ref=e125]:
+                - generic: "#2095"
+                - generic [ref=e126]: Reels
+              - link "#2091 Аэросъёмка" [ref=e127] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e128]:
+                  - generic: "#2091"
+                  - generic [ref=e129]: Аэросъёмка
+              - generic [ref=e130]:
+                - generic: "#2092"
+                - generic [ref=e131]: 360° Туры
+              - generic [ref=e132]:
+                - generic: "#2093"
+                - generic [ref=e133]: Промо Видео
+              - generic [ref=e134]:
+                - generic: "#2094"
+                - generic [ref=e135]: AI Content
+              - generic [ref=e136]:
+                - generic: "#2095"
+                - generic [ref=e137]: Reels
+              - link "#2091 Аэросъёмка" [ref=e138] [cursor=pointer]:
+                - /url: /drone-service
+                - generic [ref=e139]:
+                  - generic: "#2091"
+                  - generic [ref=e140]: Аэросъёмка
+              - generic [ref=e141]:
+                - generic: "#2092"
+                - generic [ref=e142]: 360° Туры
+              - generic [ref=e143]:
+                - generic: "#2093"
+                - generic [ref=e144]: Промо Видео
+              - generic [ref=e145]:
+                - generic: "#2094"
+                - generic [ref=e146]: AI Content
+              - generic [ref=e147]:
+                - generic: "#2095"
+                - generic [ref=e148]: Reels
+    - generic [ref=e149]:
+      - generic: "#10100"
+      - generic [ref=e151]:
+        - img "360° туры для недвижимости" [ref=e153]
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - generic: "#10101"
+            - generic [ref=e162]: 360° TOURS SERVICE
+          - generic [ref=e163]:
+            - generic: "#10110"
+            - heading "360° туры для бизнеса и объектов" [level=1] [ref=e165]
+          - generic [ref=e166]:
+            - generic: "#10102"
+            - generic [ref=e167]:
+              - paragraph [ref=e168]: Интерактивные 360° туры для пространств, объектов и локаций в Тбилиси + выезд по Грузии по согласованию.
+              - paragraph [ref=e169]: Клиенту проще доверять объекту, когда он может пройтись по нему ещё до визита.
+              - paragraph [ref=e170]: "В фокусе: 360° туры для недвижимости"
+          - generic [ref=e171]:
+            - generic [ref=e172]:
+              - generic: "#10120"
+              - link "Подробнее" [ref=e174] [cursor=pointer]:
+                - /url: /real-estate-service
+            - generic [ref=e175]:
+              - generic: "#10121"
+              - link "Заказать" [ref=e177] [cursor=pointer]:
+                - /url: "#contact"
+        - generic:
+          - generic: "#10180"
+          - generic [ref=e178]:
+            - button "360° туры для бизнеса" [ref=e179]:
+              - generic [ref=e182]: 360° туры для бизнеса
+            - button "360° туры для недвижимости" [ref=e183]:
+              - generic [ref=e186]: 360° туры для недвижимости
+            - button "360° туры для отелей" [ref=e187]:
+              - generic [ref=e190]: 360° туры для отелей
+            - button "360° туры для ресторанов" [ref=e191]:
+              - generic [ref=e194]: 360° туры для ресторанов
+    - generic [ref=e195]:
+      - generic: "#10200"
+      - generic [ref=e199]:
+        - generic [ref=e200]:
+          - generic: "#10210"
+          - generic [ref=e202]:
+            - generic [ref=e203]: 360°
+            - generic [ref=e204]: Интерактивный формат показа пространства
+        - generic [ref=e205]:
+          - generic: "#10211"
+          - generic [ref=e207]:
+            - generic [ref=e208]: Mobile
+            - generic [ref=e209]: Просмотр с телефона и компьютера
+        - generic [ref=e210]:
+          - generic: "#10212"
+          - generic [ref=e212]:
+            - generic [ref=e213]: Link
+            - generic [ref=e214]: Быстрая отправка клиенту и команде
+        - generic [ref=e215]:
+          - generic: "#10213"
+          - generic [ref=e217]:
+            - generic [ref=e218]: Embed
+            - generic [ref=e219]: Встраивание на сайт и лендинги
+    - generic [ref=e220]:
+      - generic: "#10300"
+      - generic [ref=e223]:
+        - generic [ref=e224]:
+          - generic: "#10301"
+          - heading "360° туры по категориям бизнеса" [level=2] [ref=e227]
+        - generic [ref=e229]:
+          - generic [ref=e230]:
+            - generic: "#10310"
+            - article [ref=e232]:
+              - generic [ref=e233]:
+                - img "360° туры для недвижимости" [ref=e234]
+                - generic [ref=e236]: HOT
+              - generic [ref=e237]:
+                - heading "360° туры для недвижимости" [level=3] [ref=e238]
+                - generic [ref=e239]: Квартиры · Дома · Коммерция · ЖК
+                - paragraph [ref=e240]: Покажите квартиру, дом, коммерческий объект или ЖК так, чтобы клиент понял пространство до просмотра.
+                - generic [ref=e241]:
+                  - generic [ref=e242]: 360° · от 300 ₾
+                  - generic [ref=e243]:
+                    - link "Подробнее" [ref=e244] [cursor=pointer]:
+                      - /url: /real-estate-service
+                    - link "Заказать" [ref=e245] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e246]:
+            - generic: "#10311"
+            - article [ref=e248]:
+              - img "360° туры для отелей" [ref=e250]
+              - generic [ref=e251]:
+                - heading "360° туры для отелей" [level=3] [ref=e252]
+                - generic [ref=e253]: Номера · Лобби · Территория
+                - paragraph [ref=e254]: Дайте гостю возможность пройтись по номеру, лобби и территории ещё до бронирования.
+                - generic [ref=e255]:
+                  - generic [ref=e256]: 360° · от 300 ₾
+                  - generic [ref=e257]:
+                    - link "Подробнее" [ref=e258] [cursor=pointer]:
+                      - /url: /hotels-service
+                    - link "Заказать" [ref=e259] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e260]:
+            - generic: "#10312"
+            - article [ref=e262]:
+              - img "360° туры для ресторанов" [ref=e264]
+              - generic [ref=e265]:
+                - heading "360° туры для ресторанов" [level=3] [ref=e266]
+                - generic [ref=e267]: Интерьер · Посадка · Атмосфера
+                - paragraph [ref=e268]: Покажите интерьер, посадку, атмосферу и пространство заведения до визита.
+                - generic [ref=e269]:
+                  - generic [ref=e270]: 360° · от 300 ₾
+                  - generic [ref=e271]:
+                    - link "Подробнее" [ref=e272] [cursor=pointer]:
+                      - /url: /restaurants-service
+                    - link "Заказать" [ref=e273] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e274]:
+            - generic: "#10313"
+            - article [ref=e276]:
+              - img "360° туры для автобизнеса" [ref=e278]
+              - generic [ref=e279]:
+                - heading "360° туры для автобизнеса" [level=3] [ref=e280]
+                - generic [ref=e281]: Автосалон · Шоурум · Площадка
+                - paragraph [ref=e282]: Покажите автосалон, шоурум, площадку или интерьер автомобиля в интерактивном формате.
+                - generic [ref=e283]:
+                  - generic [ref=e284]: 360° · от 300 ₾
+                  - generic [ref=e285]:
+                    - link "Подробнее" [ref=e286] [cursor=pointer]:
+                      - /url: /auto-service
+                    - link "Заказать" [ref=e287] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e288]:
+            - generic: "#10314"
+            - article [ref=e290]:
+              - img "360° туры для туризма и локаций" [ref=e292]
+              - generic [ref=e293]:
+                - heading "360° туры для туризма и локаций" [level=3] [ref=e294]
+                - generic [ref=e295]: Маршруты · Локации · Точки
+                - paragraph [ref=e296]: Дайте клиенту почувствовать место, маршрут или туристическую точку ещё до поездки.
+                - generic [ref=e297]:
+                  - generic [ref=e298]: 360° · от 300 ₾
+                  - generic [ref=e299]:
+                    - link "Подробнее" [ref=e300] [cursor=pointer]:
+                      - /url: /tourism-service
+                    - link "Заказать" [ref=e301] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e302]:
+            - generic: "#10315"
+            - article [ref=e304]:
+              - img "360° туры для клиник" [ref=e306]
+              - generic [ref=e307]:
+                - heading "360° туры для клиник" [level=3] [ref=e308]
+                - generic [ref=e309]: Кабинеты · Пространство · Среда
+                - paragraph [ref=e310]: Покажите пространство, кабинеты и уровень среды так, чтобы снизить тревогу до первого визита.
+                - generic [ref=e311]:
+                  - generic [ref=e312]: 360° · от 300 ₾
+                  - generic [ref=e313]:
+                    - link "Подробнее" [ref=e314] [cursor=pointer]:
+                      - /url: /clinics-service
+                    - link "Заказать" [ref=e315] [cursor=pointer]:
+                      - /url: "#contact"
+          - generic [ref=e316]:
+            - generic: "#10316"
+            - article [ref=e318]:
+              - img "360° туры для бизнеса" [ref=e320]
+              - generic [ref=e321]:
+                - heading "360° туры для бизнеса" [level=3] [ref=e322]
+                - generic [ref=e323]: Офисы · Шоурумы · Салоны · Студии
+                - paragraph [ref=e324]: Подходит для офисов, шоурумов, салонов, студий, коммерческих пространств и сервисных объектов.
+                - generic [ref=e325]:
+                  - generic [ref=e326]: 360° · от 300 ₾
+                  - generic [ref=e327]:
+                    - link "Подробнее" [ref=e328] [cursor=pointer]:
+                      - /url: /business-service
+                    - link "Заказать" [ref=e329] [cursor=pointer]:
+                      - /url: "#contact"
+    - generic [ref=e330]:
+      - generic: "#10500"
+      - generic [ref=e334]:
+        - generic [ref=e335]:
+          - generic: "#10510"
+          - generic [ref=e337]:
+            - generic [ref=e338]: "01"
+            - heading "Короткий бриф" [level=4] [ref=e339]
+            - paragraph [ref=e340]: Уточняем задачу, объект, количество точек и формат передачи тура.
+        - generic [ref=e341]:
+          - generic: "#10511"
+          - generic [ref=e343]:
+            - generic [ref=e344]: "02"
+            - heading "Съёмка на локации" [level=4] [ref=e345]
+            - paragraph [ref=e346]: Проводим съёмку пространства на объекте по согласованному маршруту.
+        - generic [ref=e347]:
+          - generic: "#10512"
+          - generic [ref=e349]:
+            - generic [ref=e350]: "03"
+            - heading "Сборка и настройка тура" [level=4] [ref=e351]
+            - paragraph [ref=e352]: Собираем интерактивный тур и подготавливаем его к просмотру на разных устройствах.
+        - generic [ref=e353]:
+          - generic: "#10513"
+          - generic [ref=e355]:
+            - generic [ref=e356]: "04"
+            - heading "Передача ссылки и встраивание" [level=4] [ref=e357]
+            - paragraph [ref=e358]: Передаём готовую ссылку и помогаем разместить тур на сайте или странице объекта.
+    - generic [ref=e359]:
+      - generic: "#10400"
+      - generic [ref=e361]:
+        - generic: "#10400"
+        - generic [ref=e364]:
+          - paragraph [ref=e365]: Формат подходит для разных типов объектов
+          - generic [ref=e366]:
+            - generic [ref=e367]:
+              - generic: "#10410"
+              - generic [ref=e368]: Недвижимость
+            - generic [ref=e369]:
+              - generic: "#10411"
+              - generic [ref=e370]: Отели
+            - generic [ref=e371]:
+              - generic: "#10412"
+              - generic [ref=e372]: Рестораны
+            - generic [ref=e373]:
+              - generic: "#10413"
+              - generic [ref=e374]: Автобизнес
+            - generic [ref=e375]:
+              - generic: "#10414"
+              - generic [ref=e376]: Туризм
+            - generic [ref=e377]:
+              - generic: "#10415"
+              - generic [ref=e378]: Клиники
+            - generic [ref=e379]:
+              - generic: "#10416"
+              - generic [ref=e380]: Бизнес
+          - paragraph [ref=e381]: Тбилиси + выезд по Грузии по согласованию
+    - generic [ref=e382]:
+      - generic: "#10600"
+      - generic [ref=e385]:
+        - generic [ref=e386]:
+          - generic [ref=e387]:
+            - generic: "#10601"
+            - heading "География 360° проектов" [level=2] [ref=e389]
+          - generic [ref=e390]:
+            - generic: "#10602"
+            - paragraph [ref=e392]: Тбилиси + выезд по Грузии по согласованию. Подбираем формат 360° тура под задачу объекта и каналов продаж.
+          - generic [ref=e393]:
+            - generic [ref=e394]:
+              - generic: "#10610"
+              - generic [ref=e398]:
+                - heading "Тбилиси" [level=4] [ref=e399]
+                - paragraph [ref=e400]: Основная зона съёмок и продакшна в пределах города.
+            - generic [ref=e401]:
+              - generic: "#10611"
+              - generic [ref=e405]:
+                - heading "Выезд по Грузии" [level=4] [ref=e406]
+                - paragraph [ref=e407]: Выезд по Грузии по согласованию под задачу проекта.
+            - generic [ref=e408]:
+              - generic: "#10612"
+              - generic [ref=e412]:
+                - heading "Регионы Грузии" [level=4] [ref=e413]
+                - paragraph [ref=e414]: Кутаиси и другие регионы по согласованному графику.
+        - generic [ref=e415]:
+          - generic [ref=e416]:
+            - generic: "#10690"
+            - img "Georgia map with coverage areas" [ref=e418]
+          - generic [ref=e419]: 360 Coverage v1
+    - generic [ref=e420]:
+      - generic: "#10700"
+      - generic [ref=e422]:
+        - generic [ref=e423]:
+          - generic [ref=e424]:
+            - generic: "#10701"
+            - heading "Что вы получаете на выходе" [level=2] [ref=e426]
+          - generic [ref=e427]:
+            - generic: "#10702"
+            - paragraph [ref=e429]: Пакеты 360° туров для объектов и пространств
+        - generic [ref=e430]:
+          - generic [ref=e431]:
+            - generic: "#10710"
+            - generic [ref=e433]:
+              - heading "Старт 360" [level=3] [ref=e434]
+              - generic [ref=e435]: от 300 ₾
+              - list [ref=e436]:
+                - listitem [ref=e437]:
+                  - generic [ref=e438]: •
+                  - text: "Интерактивный 360° тур: готовый формат для просмотра с телефона и компьютера."
+                - listitem [ref=e439]:
+                  - generic [ref=e440]: •
+                  - text: "Ссылка для отправки клиенту: можно быстро делиться туром в мессенджерах, презентациях и письмах."
+                - listitem [ref=e441]:
+                  - generic [ref=e442]: •
+                  - text: "Встраивание на сайт: тур можно разместить на вашем сайте, лендинге или странице объекта."
+              - link "Выбрать" [ref=e443] [cursor=pointer]:
+                - /url: "#contact"
+          - generic [ref=e444]:
+            - generic: "#10711"
+            - generic [ref=e446]:
+              - generic [ref=e447]: Популярно
+              - heading "Стандартный тур" [level=3] [ref=e448]
+              - generic [ref=e449]: от 550 ₾
+              - list [ref=e450]:
+                - listitem [ref=e451]:
+                  - generic [ref=e452]: •
+                  - text: "Интерактивный 360° тур: готовый формат для просмотра с телефона и компьютера."
+                - listitem [ref=e453]:
+                  - generic [ref=e454]: •
+                  - text: "Ссылка для отправки клиенту: можно быстро делиться туром в мессенджерах, презентациях и письмах."
+                - listitem [ref=e455]:
+                  - generic [ref=e456]: •
+                  - text: "Материалы для продаж и презентаций: подходит для удалённой демонстрации объекта, помещения или пространства."
+              - link "Выбрать" [ref=e457] [cursor=pointer]:
+                - /url: "#contact"
+          - generic [ref=e458]:
+            - generic: "#10712"
+            - generic [ref=e460]:
+              - heading "Полный 360 пакет" [level=3] [ref=e461]
+              - generic [ref=e462]: от 850 ₾
+              - list [ref=e463]:
+                - listitem [ref=e464]:
+                  - generic [ref=e465]: •
+                  - text: "Встраивание на сайт: тур можно разместить на вашем сайте, лендинге или странице объекта."
+                - listitem [ref=e466]:
+                  - generic [ref=e467]: •
+                  - text: "Материалы для продаж и презентаций: подходит для удалённой демонстрации объекта, помещения или пространства."
+                - listitem [ref=e468]:
+                  - generic [ref=e469]: •
+                  - text: "Удобный формат для рекламы и лидов: 360° тур помогает удержать внимание и повысить качество первичного интереса."
+              - link "Выбрать" [ref=e470] [cursor=pointer]:
+                - /url: "#contact"
+    - generic [ref=e471]:
+      - generic: "#10750"
+      - generic [ref=e474]:
+        - generic [ref=e475]:
+          - paragraph [ref=e476]: Боль и решение
+          - heading "Почему обычных фото уже недостаточно" [level=2] [ref=e477]
+          - paragraph [ref=e478]: Когда клиент не чувствует пространство, он дольше сомневается, хуже понимает объект и чаще уходит к тому, кто показал его нагляднее.
+        - generic [ref=e479]:
+          - generic [ref=e480]:
+            - generic: "#10760"
+            - article [ref=e482]:
+              - heading "Не чувствуется пространство" [level=3] [ref=e483]
+              - paragraph [ref=e484]: По фото сложно понять планировку, масштаб и связность помещения.
+              - paragraph [ref=e485]: "Решение: 360° тур даёт человеку ощущение реального присутствия."
+          - generic [ref=e486]:
+            - generic: "#10761"
+            - article [ref=e488]:
+              - heading "Клиенту приходится всё долго объяснять" [level=3] [ref=e489]
+              - paragraph [ref=e490]: Много времени уходит на ответы про вход, зону, посадку, комнаты и логику пространства.
+              - paragraph [ref=e491]: "Решение: интерактивный тур снимает часть вопросов ещё до звонка."
+          - generic [ref=e492]:
+            - generic: "#10762"
+            - article [ref=e494]:
+              - heading "Удалённому клиенту сложно принять решение" [level=3] [ref=e495]
+              - paragraph [ref=e496]: Если человек не может приехать сразу, обычный визуал часто не дотягивает до доверия.
+              - paragraph [ref=e497]: "Решение: 360° тур помогает показать объект дистанционно понятнее и сильнее."
+          - generic [ref=e498]:
+            - generic: "#10763"
+            - article [ref=e500]:
+              - heading "Объект выглядит слабее конкурентов" [level=3] [ref=e501]
+              - paragraph [ref=e502]: Если у других уже есть интерактивный просмотр, статичная подача проигрывает.
+              - paragraph [ref=e503]: "Решение: 360° формат делает презентацию объекта более современной и убедительной."
+    - generic [ref=e504]:
+      - generic: "#10800"
+      - generic [ref=e507]:
+        - generic [ref=e509]:
+          - generic: "#10801"
+          - heading "Частые вопросы" [level=2] [ref=e511]
+        - generic [ref=e513]:
+          - generic [ref=e514]:
+            - generic: "#10810"
+            - group [ref=e516] [cursor=pointer]:
+              - generic "Где можно использовать 360° тур? ↓" [ref=e517]:
+                - text: Где можно использовать 360° тур?
+                - generic [ref=e518]: ↓
+          - generic [ref=e519]:
+            - generic: "#10811"
+            - group [ref=e521] [cursor=pointer]:
+              - generic "Можно ли открыть тур с телефона? ↓" [ref=e522]:
+                - text: Можно ли открыть тур с телефона?
+                - generic [ref=e523]: ↓
+          - generic [ref=e524]:
+            - generic: "#10812"
+            - group [ref=e526] [cursor=pointer]:
+              - generic "Можно ли встроить 360° тур на сайт? ↓" [ref=e527]:
+                - text: Можно ли встроить 360° тур на сайт?
+                - generic [ref=e528]: ↓
+          - generic [ref=e529]:
+            - generic: "#10813"
+            - group [ref=e531] [cursor=pointer]:
+              - generic "Сколько времени занимает съёмка и сборка? ↓" [ref=e532]:
+                - text: Сколько времени занимает съёмка и сборка?
+                - generic [ref=e533]: ↓
+          - generic [ref=e534]:
+            - generic: "#10814"
+            - group [ref=e536] [cursor=pointer]:
+              - generic "Подходит ли 360 для коммерческих объектов и заведений? ↓" [ref=e537]:
+                - text: Подходит ли 360 для коммерческих объектов и заведений?
+                - generic [ref=e538]: ↓
+          - generic [ref=e539]:
+            - generic: "#10815"
+            - group [ref=e541] [cursor=pointer]:
+              - generic "Можно ли обновлять тур позже? ↓" [ref=e542]:
+                - text: Можно ли обновлять тур позже?
+                - generic [ref=e543]: ↓
+          - generic [ref=e544]:
+            - generic: "#10816"
+            - group [ref=e546] [cursor=pointer]:
+              - generic "Чем 360° тур лучше обычной фотогалереи? ↓" [ref=e547]:
+                - text: Чем 360° тур лучше обычной фотогалереи?
+                - generic [ref=e548]: ↓
+    - generic [ref=e549]:
+      - generic: "#10850"
+      - generic [ref=e551]:
+        - generic: "#10850"
+        - generic [ref=e554]:
+          - generic [ref=e555]:
+            - paragraph [ref=e556]: Смежные направления
+            - heading "Что еще может подойти вашему объекту" [level=2] [ref=e557]
+          - generic [ref=e558]:
+            - generic [ref=e559]:
+              - generic: "#10860"
+              - link "Недвижимость 360° туры для объектов и презентации пространства." [ref=e561] [cursor=pointer]:
+                - /url: /real-estate-service
+                - paragraph [ref=e562]: Недвижимость
+                - paragraph [ref=e563]: 360° туры для объектов и презентации пространства.
+            - generic [ref=e564]:
+              - generic: "#10861"
+              - link "Отели Интерактивный просмотр номеров, лобби и территории." [ref=e566] [cursor=pointer]:
+                - /url: /hotels-service
+                - paragraph [ref=e567]: Отели
+                - paragraph [ref=e568]: Интерактивный просмотр номеров, лобби и территории.
+            - generic [ref=e569]:
+              - generic: "#10862"
+              - link "Рестораны Показ интерьера, посадки и атмосферы заведения." [ref=e571] [cursor=pointer]:
+                - /url: /restaurants-service
+                - paragraph [ref=e572]: Рестораны
+                - paragraph [ref=e573]: Показ интерьера, посадки и атмосферы заведения.
+            - generic [ref=e574]:
+              - generic: "#10863"
+              - link "Автобизнес Визуал для автосалонов, площадок и шоурумов." [ref=e576] [cursor=pointer]:
+                - /url: /auto-service
+                - paragraph [ref=e577]: Автобизнес
+                - paragraph [ref=e578]: Визуал для автосалонов, площадок и шоурумов.
+            - generic [ref=e579]:
+              - generic: "#10864"
+              - link "Туризм Подача туристических локаций и маршрутов." [ref=e581] [cursor=pointer]:
+                - /url: /tourism-service
+                - paragraph [ref=e582]: Туризм
+                - paragraph [ref=e583]: Подача туристических локаций и маршрутов.
+            - generic [ref=e584]:
+              - generic: "#10865"
+              - link "Клиники Визуальная подача пространства и среды клиники." [ref=e586] [cursor=pointer]:
+                - /url: /clinics-service
+                - paragraph [ref=e587]: Клиники
+                - paragraph [ref=e588]: Визуальная подача пространства и среды клиники.
+            - generic [ref=e589]:
+              - generic: "#10866"
+              - link "Ваш бизнес Подход для офисов, студий и коммерческих пространств." [ref=e591] [cursor=pointer]:
+                - /url: /business-service
+                - paragraph [ref=e592]: Ваш бизнес
+                - paragraph [ref=e593]: Подход для офисов, студий и коммерческих пространств.
+    - generic [ref=e594]:
+      - generic: "#10900"
+      - generic [ref=e598]:
+        - generic [ref=e599]:
+          - generic: "#10901"
+          - heading "Обсудим 360° тур для вашего объекта" [level=2] [ref=e601]
+        - generic [ref=e602]:
+          - generic: "#10902"
+          - paragraph [ref=e604]: Подскажем, как лучше показать пространство, сколько точек нужно и в каком формате удобнее передать тур клиентам.
+        - generic [ref=e605]:
+          - generic [ref=e606]:
+            - generic [ref=e607]:
+              - generic [ref=e608]: Ваше имя *
+              - textbox "Иван Иванов" [ref=e609]
+            - generic [ref=e610]:
+              - generic [ref=e611]: Способ связи *
+              - generic [ref=e612]:
+                - button "Telegram" [ref=e613]
+                - button "WhatsApp" [ref=e614]
+                - button "Email" [ref=e615]
+              - textbox "@username" [ref=e616]
+          - generic [ref=e617]:
+            - generic [ref=e618]: Интересующие услуги
+            - generic [ref=e619]:
+              - button "Недвижимость" [ref=e620]
+              - button "Отель" [ref=e621]
+              - button "Ресторан" [ref=e622]
+              - button "Автобизнес" [ref=e623]
+              - button "Туризм" [ref=e624]
+              - button "Клиника" [ref=e625]
+              - button "Бизнес" [ref=e626]
+          - generic [ref=e627]:
+            - generic [ref=e628]: Коротко о задаче
+            - 'textbox "Например: нужен 360° тур для объекта с акцентом на ключевые зоны и удобную отправку клиенту." [ref=e629]'
+          - generic [ref=e630]:
+            - generic [ref=e631]:
+              - generic: "#10910"
+              - button "Отправить" [ref=e633]:
+                - img [ref=e634]
+                - text: Отправить
+            - generic [ref=e637]:
+              - generic: "#10911"
+              - link "WhatsApp" [ref=e639] [cursor=pointer]:
+                - /url: https://wa.me/995574619393
+                - img [ref=e640]
+                - text: WhatsApp
+          - paragraph [ref=e642]: Нажимая кнопку, вы соглашаетесь на обработку контактов для обратной связи.
+    - generic [ref=e643]:
+      - generic: "#11000"
+      - generic [ref=e645]:
+        - generic: "#11000"
+        - generic [ref=e647]:
+          - generic [ref=e648]:
+            - generic [ref=e649]:
+              - generic [ref=e650]:
+                - generic: "#11001"
+                - generic [ref=e652]:
+                  - generic [ref=e653]: ✈
+                  - text: BREUS MEDIA
+              - generic [ref=e654]:
+                - generic: "#11002"
+                - paragraph [ref=e656]: Профессиональная аэросъёмка и визуальные решения для бизнеса в Грузии. Тбилиси, Батуми, Кутаиси.
+              - generic [ref=e657]:
+                - generic [ref=e658]:
+                  - generic: "#11010"
+                  - link "IG" [ref=e660] [cursor=pointer]:
+                    - /url: "#"
+                - generic [ref=e661]:
+                  - generic: "#11011"
+                  - link "TG" [ref=e663] [cursor=pointer]:
+                    - /url: "#"
+                - generic [ref=e664]:
+                  - generic: "#11012"
+                  - link "YT" [ref=e666] [cursor=pointer]:
+                    - /url: "#"
+            - generic [ref=e668]:
+              - generic: "#11003"
+              - generic [ref=e669]:
+                - heading "Меню" [level=4] [ref=e670]
+                - list [ref=e671]:
+                  - listitem [ref=e672]:
+                    - generic [ref=e673]:
+                      - generic: "#11020"
+                      - link "Портфолио" [ref=e675] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e676]:
+                    - generic [ref=e677]:
+                      - generic: "#11021"
+                      - link "Оборудование" [ref=e679] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e680]:
+                    - generic [ref=e681]:
+                      - generic: "#11022"
+                      - link "Карта полетов" [ref=e683] [cursor=pointer]:
+                        - /url: "#"
+                  - listitem [ref=e684]:
+                    - generic [ref=e685]:
+                      - generic: "#11023"
+                      - link "Контакты" [ref=e687] [cursor=pointer]:
+                        - /url: "#"
+            - generic [ref=e689]:
+              - generic: "#11004"
+              - generic [ref=e690]:
+                - heading "Контакты" [level=4] [ref=e691]
+                - list [ref=e692]:
+                  - listitem [ref=e693]: Tbilisi, Georgia
+                  - listitem [ref=e694]: +995 5xx xxx xxx
+                  - listitem [ref=e695]: hello@breus.media
+          - generic [ref=e696]: © 2024 BREUS MEDIA PRODUCTION. ALL RIGHTS RESERVED.
+  - alert [ref=e697]

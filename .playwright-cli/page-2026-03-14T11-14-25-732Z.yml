@@ -1,0 +1,720 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e8]:
+          - generic [ref=e9]: Агентство
+          - generic [ref=e10]: визуального продакшена и AI
+        - generic [ref=e13]:
+          - generic [ref=e14]: Tbilisi
+          - generic [ref=e16]: 15:14:24
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic: АГЕНТСТВО
+              - generic: Визуальный Продакшен & AI
+        - navigation:
+          - generic:
+            - generic:
+              - link "О Нас":
+                - /url: /about
+          - generic:
+            - generic:
+              - generic:
+                - button "Индустрии":
+                  - text: Индустрии
+                  - img
+          - generic:
+            - generic:
+              - generic:
+                - button "Услуги":
+                  - text: Услуги
+                  - img
+          - generic:
+            - generic:
+              - link "AI Решения":
+                - /url: "#"
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - button:
+                  - img
+          - generic:
+            - generic:
+              - generic:
+                - button "RU":
+                  - img
+                  - generic: RU
+          - generic:
+            - generic:
+              - link "Обсудить проект":
+                - /url: "#contact"
+                - generic: Обсудить проект
+      - generic [ref=e17]:
+        - generic [ref=e21]:
+          - link "НЕДВИЖИМОСТЬ" [ref=e22] [cursor=pointer]:
+            - /url: /v23/real-estate
+            - generic [ref=e24]: НЕДВИЖИМОСТЬ
+          - generic [ref=e26]: АВТОБИЗНЕС
+          - generic [ref=e28]: ОТЕЛИ
+          - generic [ref=e30]: РЕСТОРАНЫ
+          - generic [ref=e32]: ТУРИЗМ
+          - generic [ref=e34]: КЛИНИКИ
+          - generic [ref=e36]: IT
+          - link "НЕДВИЖИМОСТЬ" [ref=e37] [cursor=pointer]:
+            - /url: /v23/real-estate
+            - generic [ref=e39]: НЕДВИЖИМОСТЬ
+          - generic [ref=e41]: АВТОБИЗНЕС
+          - generic [ref=e43]: ОТЕЛИ
+          - generic [ref=e45]: РЕСТОРАНЫ
+          - generic [ref=e47]: ТУРИЗМ
+          - generic [ref=e49]: КЛИНИКИ
+          - generic [ref=e51]: IT
+          - link "НЕДВИЖИМОСТЬ" [ref=e52] [cursor=pointer]:
+            - /url: /v23/real-estate
+            - generic [ref=e54]: НЕДВИЖИМОСТЬ
+          - generic [ref=e56]: АВТОБИЗНЕС
+          - generic [ref=e58]: ОТЕЛИ
+          - generic [ref=e60]: РЕСТОРАНЫ
+          - generic [ref=e62]: ТУРИЗМ
+          - generic [ref=e64]: КЛИНИКИ
+          - generic [ref=e66]: IT
+          - link "НЕДВИЖИМОСТЬ" [ref=e67] [cursor=pointer]:
+            - /url: /v23/real-estate
+            - generic [ref=e69]: НЕДВИЖИМОСТЬ
+          - generic [ref=e71]: АВТОБИЗНЕС
+          - generic [ref=e73]: ОТЕЛИ
+          - generic [ref=e75]: РЕСТОРАНЫ
+          - generic [ref=e77]: ТУРИЗМ
+          - generic [ref=e79]: КЛИНИКИ
+          - generic [ref=e81]: IT
+        - generic [ref=e86]:
+          - link "Аэросъемка" [ref=e87] [cursor=pointer]:
+            - /url: /drone-service
+            - generic [ref=e89]: Аэросъемка
+          - generic [ref=e91]: 360° Туры
+          - generic [ref=e93]: Промо Видео
+          - generic [ref=e95]: Мероприятия
+          - generic [ref=e97]: AI Content
+          - generic [ref=e99]: Reels
+          - link "Аэросъемка" [ref=e100] [cursor=pointer]:
+            - /url: /drone-service
+            - generic [ref=e102]: Аэросъемка
+          - generic [ref=e104]: 360° Туры
+          - generic [ref=e106]: Промо Видео
+          - generic [ref=e108]: Мероприятия
+          - generic [ref=e110]: AI Content
+          - generic [ref=e112]: Reels
+          - link "Аэросъемка" [ref=e113] [cursor=pointer]:
+            - /url: /drone-service
+            - generic [ref=e115]: Аэросъемка
+          - generic [ref=e117]: 360° Туры
+          - generic [ref=e119]: Промо Видео
+          - generic [ref=e121]: Мероприятия
+          - generic [ref=e123]: AI Content
+          - generic [ref=e125]: Reels
+          - link "Аэросъемка" [ref=e126] [cursor=pointer]:
+            - /url: /drone-service
+            - generic [ref=e128]: Аэросъемка
+          - generic [ref=e130]: 360° Туры
+          - generic [ref=e132]: Промо Видео
+          - generic [ref=e134]: Мероприятия
+          - generic [ref=e136]: AI Content
+          - generic [ref=e138]: Reels
+    - generic [ref=e141]:
+      - generic:
+        - generic:
+          - heading "Breus Media" [level=1]
+      - generic [ref=e142]:
+        - generic:
+          - heading "Агентство визуального продакшена и AI-контента в Тбилиси" [level=1]:
+            - text: Агентство визуального продакшена
+            - text: и AI-контента в Тбилиси
+          - paragraph: Видео, аэросъёмка, 360-туры и AI-контент для недвижимости, отелей, ресторанов и брендов по всей Грузии
+          - link "Обсудить проект" [ref=e147] [cursor=pointer]:
+            - /url: "#contact"
+        - img [ref=e151]
+    - generic [ref=e156]:
+      - generic [ref=e157]: Реальность рынка 2026
+      - heading "Люди не идут туда, где не понимают, что их ждёт." [level=2] [ref=e158]:
+        - text: Люди не идут туда,
+        - text: где не понимают,
+        - text: что их ждёт.
+      - generic [ref=e159]:
+        - paragraph [ref=e160]: 93% клиентов изучают бизнес онлайн до первого визита
+        - paragraph [ref=e161]: Объекты с видео продаются на 68% быстрее
+        - paragraph [ref=e162]: Бизнес без визуала теряет до 70% клиентов на этапе выбора
+    - generic [ref=e163]:
+      - generic [ref=e164]:
+        - link "00 АЭРОСЪЁМКА":
+          - /url: /drone-service
+          - generic [ref=e165] [cursor=pointer]:
+            - generic [ref=e166]: "00"
+            - generic [ref=e167]: АЭРОСЪЁМКА
+        - generic [ref=e168]:
+          - img "АЭРОСЪЁМКА" [ref=e170]
+          - generic [ref=e175]:
+            - generic [ref=e176]:
+              - paragraph [ref=e177]: Тбилиси • Батуми • Вся Грузия
+              - heading "УСЛУГИ АЭРОСЪЁМКИ" [level=2] [ref=e178]
+              - paragraph [ref=e179]: Комплексные решения аэросъёмки для бизнеса и частных лиц. Тбилиси, Батуми и вся Грузия.
+              - paragraph [ref=e180]: "10 форматов съёмки: продажи, мониторинг, inspection, hospitality, туризм и events."
+            - generic [ref=e181]:
+              - link "Продажи объектов 00 Недвижимость Аэрофото и видео для листингов, инвест-презентаций и продаж. Объекты с аэровидео продаются на 68% быстрее. Фото, видео и вид на район Смотреть формат" [ref=e182] [cursor=pointer]:
+                - /url: /v23/drone-real-estate
+                - img [ref=e183]
+                - generic [ref=e186]:
+                  - generic [ref=e187]:
+                    - generic [ref=e189]: Продажи объектов
+                    - generic [ref=e190]: "00"
+                  - heading "Недвижимость" [level=3] [ref=e191]
+                  - paragraph [ref=e192]: Аэрофото и видео для листингов, инвест-презентаций и продаж. Объекты с аэровидео продаются на 68% быстрее.
+                  - generic [ref=e193]:
+                    - generic [ref=e194]: Фото, видео и вид на район
+                    - generic [ref=e195]:
+                      - generic [ref=e196]: Смотреть формат
+                      - img [ref=e197]
+              - link "Стройка и девелопмент 00 Мониторинг стройки Еженедельные облёты с GPS-привязкой. PDF-отчёты о прогрессе для инвесторов без выезда на площадку. Регулярные облёты + PDF Открыть решение" [ref=e200] [cursor=pointer]:
+                - /url: /v23/drone-monitoring
+                - img [ref=e201]
+                - generic [ref=e204]:
+                  - generic [ref=e205]:
+                    - generic [ref=e207]: Стройка и девелопмент
+                    - generic [ref=e208]: "00"
+                  - heading "Мониторинг стройки" [level=3] [ref=e209]
+                  - paragraph [ref=e210]: Еженедельные облёты с GPS-привязкой. PDF-отчёты о прогрессе для инвесторов без выезда на площадку.
+                  - generic [ref=e211]:
+                    - generic [ref=e212]: Регулярные облёты + PDF
+                    - generic [ref=e213]:
+                      - generic [ref=e214]: Открыть решение
+                      - img [ref=e215]
+              - link "Технические осмотры 00 Инспекция объектов Визуальная диагностика без лесов и промальпинистов. Быстрее, безопаснее и дешевле проверки людьми. Без лесов и лишнего риска Подробнее" [ref=e218] [cursor=pointer]:
+                - /url: /v23/drone-inspection
+                - img [ref=e219]
+                - generic [ref=e222]:
+                  - generic [ref=e223]:
+                    - generic [ref=e225]: Технические осмотры
+                    - generic [ref=e226]: "00"
+                  - heading "Инспекция объектов" [level=3] [ref=e227]
+                  - paragraph [ref=e228]: Визуальная диагностика без лесов и промальпинистов. Быстрее, безопаснее и дешевле проверки людьми.
+                  - generic [ref=e229]:
+                    - generic [ref=e230]: Без лесов и лишнего риска
+                    - generic [ref=e231]:
+                      - generic [ref=e232]: Подробнее
+                      - img [ref=e233]
+              - link "Hospitality 00 Отели и курорты Hero-ролики территории и номеров для сайта, Booking и соцсетей. Гости бронируют там, где видят атмосферу. Hero-ролик территории Смотреть кейс" [ref=e236] [cursor=pointer]:
+                - /url: /v23/drone-hotels
+                - img [ref=e237]
+                - generic [ref=e240]:
+                  - generic [ref=e241]:
+                    - generic [ref=e243]: Hospitality
+                    - generic [ref=e244]: "00"
+                  - heading "Отели и курорты" [level=3] [ref=e245]
+                  - paragraph [ref=e246]: Hero-ролики территории и номеров для сайта, Booking и соцсетей. Гости бронируют там, где видят атмосферу.
+                  - generic [ref=e247]:
+                    - generic [ref=e248]: Hero-ролик территории
+                    - generic [ref=e249]:
+                      - generic [ref=e250]: Смотреть кейс
+                      - img [ref=e251]
+              - link "HoReCa 00 Рестораны Аэросъёмка открытых террас, ресторанов на крышах и за городом. Контент, который приводит гостей. Терраса, крыша, локация Посмотреть формат" [ref=e254] [cursor=pointer]:
+                - /url: /v23/drone-restaurants
+                - img [ref=e255]
+                - generic [ref=e258]:
+                  - generic [ref=e259]:
+                    - generic [ref=e261]: HoReCa
+                    - generic [ref=e262]: "00"
+                  - heading "Рестораны" [level=3] [ref=e263]
+                  - paragraph [ref=e264]: Аэросъёмка открытых террас, ресторанов на крышах и за городом. Контент, который приводит гостей.
+                  - generic [ref=e265]:
+                    - generic [ref=e266]: Терраса, крыша, локация
+                    - generic [ref=e267]:
+                      - generic [ref=e268]: Посмотреть формат
+                      - img [ref=e269]
+              - link "FPV-СЪЁМКА Внутри и снаружи 00 FPV-пролёты Cinematic пролёты изнутри и снаружи. FPV-дрон там, где обычный не пролетит — залы, арки, цеха. Один непрерывный проход Открыть FPV" [ref=e272] [cursor=pointer]:
+                - /url: /v23/drone-fpv
+                - img [ref=e273]
+                - generic [ref=e276]:
+                  - generic [ref=e277]:
+                    - generic [ref=e278]:
+                      - generic [ref=e279]: FPV-СЪЁМКА
+                      - generic [ref=e280]: Внутри и снаружи
+                    - generic [ref=e281]: "00"
+                  - heading "FPV-пролёты" [level=3] [ref=e282]
+                  - paragraph [ref=e283]: Cinematic пролёты изнутри и снаружи. FPV-дрон там, где обычный не пролетит — залы, арки, цеха.
+                  - generic [ref=e284]:
+                    - generic [ref=e285]: Один непрерывный проход
+                    - generic [ref=e286]:
+                      - generic [ref=e287]: Открыть FPV
+                      - img [ref=e288]
+              - link "Бренд-контент 00 Реклама и ролики Рекламные ролики, брендовый контент и корпоративное видео с воздуха для сайта и соцсетей. Реклама для сайта и соцсетей Смотреть решение" [ref=e291] [cursor=pointer]:
+                - /url: /v23/drone-commercial
+                - img [ref=e292]
+                - generic [ref=e295]:
+                  - generic [ref=e296]:
+                    - generic [ref=e298]: Бренд-контент
+                    - generic [ref=e299]: "00"
+                  - heading "Реклама и ролики" [level=3] [ref=e300]
+                  - paragraph [ref=e301]: Рекламные ролики, брендовый контент и корпоративное видео с воздуха для сайта и соцсетей.
+                  - generic [ref=e302]:
+                    - generic [ref=e303]: Реклама для сайта и соцсетей
+                    - generic [ref=e304]:
+                      - generic [ref=e305]: Смотреть решение
+                      - img [ref=e306]
+              - link "Travel 00 Туризм Cinematic аэросъёмка локаций Грузии. Горы, ущелья, замки — контент, который продаёт маршруты. Локации, маршруты, атмосфера Посмотреть формат" [ref=e309] [cursor=pointer]:
+                - /url: /v23/drone-tourism
+                - img [ref=e310]
+                - generic [ref=e313]:
+                  - generic [ref=e314]:
+                    - generic [ref=e316]: Travel
+                    - generic [ref=e317]: "00"
+                  - heading "Туризм" [level=3] [ref=e318]
+                  - paragraph [ref=e319]: Cinematic аэросъёмка локаций Грузии. Горы, ущелья, замки — контент, который продаёт маршруты.
+                  - generic [ref=e320]:
+                    - generic [ref=e321]: Локации, маршруты, атмосфера
+                    - generic [ref=e322]:
+                      - generic [ref=e323]: Посмотреть формат
+                      - img [ref=e324]
+              - link "Events 00 Мероприятия Аэросъёмка открытий, корпоративов, спортивных соревнований и фестивалей на открытом воздухе. Фестивали, спорт, открытия Подробнее" [ref=e327] [cursor=pointer]:
+                - /url: /v23/drone-events
+                - img [ref=e328]
+                - generic [ref=e331]:
+                  - generic [ref=e332]:
+                    - generic [ref=e334]: Events
+                    - generic [ref=e335]: "00"
+                  - heading "Мероприятия" [level=3] [ref=e336]
+                  - paragraph [ref=e337]: Аэросъёмка открытий, корпоративов, спортивных соревнований и фестивалей на открытом воздухе.
+                  - generic [ref=e338]:
+                    - generic [ref=e339]: Фестивали, спорт, открытия
+                    - generic [ref=e340]:
+                      - generic [ref=e341]: Подробнее
+                      - img [ref=e342]
+              - link "Подбор решения 00 Все услуги Не нашли нужное? Смотрите список или опишите задачу — подберём решения. Агро-съёмка, 3D-модели. Агро, 3D и спецзадачи Открыть каталог" [ref=e345] [cursor=pointer]:
+                - /url: /drone-service
+                - img [ref=e346]
+                - generic [ref=e349]:
+                  - generic [ref=e350]:
+                    - generic [ref=e352]: Подбор решения
+                    - generic [ref=e353]: "00"
+                  - heading "Все услуги" [level=3] [ref=e354]
+                  - paragraph [ref=e355]: Не нашли нужное? Смотрите список или опишите задачу — подберём решения. Агро-съёмка, 3D-модели.
+                  - generic [ref=e356]:
+                    - generic [ref=e357]: Агро, 3D и спецзадачи
+                    - generic [ref=e358]:
+                      - generic [ref=e359]: Открыть каталог
+                      - img [ref=e360]
+      - generic [ref=e363]:
+        - generic [ref=e364]:
+          - generic [ref=e365]: "01"
+          - generic [ref=e366]: Недвижимость
+        - generic [ref=e367]:
+          - img "Недвижимость" [ref=e371]
+          - generic [ref=e376]:
+            - generic [ref=e377]:
+              - heading "НЕДВИЖИМОСТЬ" [level=2] [ref=e378]
+              - paragraph [ref=e379]: Аэросъёмка, 360-туры и видео для риелторов и застройщиков — объекты с видео продаются на 68% быстрее
+            - generic [ref=e380]:
+              - 'link "Видео для риелторов Съёмка квартиры или дома: интерьер, экстерьер, район. Монтаж за 3–5 дней. От 400 GEL" [ref=e383] [cursor=pointer]':
+                - /url: /v23/real-estate
+                - generic [ref=e384]:
+                  - heading "Видео для риелторов" [level=3] [ref=e385]
+                  - paragraph [ref=e386]: "Съёмка квартиры или дома: интерьер, экстерьер, район. Монтаж за 3–5 дней. От 400 GEL"
+              - link "Видео для застройщиков Презентационные ролики ЖК, рендеры и реальная съёмка для продаж и инвесторов" [ref=e389] [cursor=pointer]:
+                - /url: /v23/real-estate
+                - generic [ref=e390]:
+                  - heading "Видео для застройщиков" [level=3] [ref=e391]
+                  - paragraph [ref=e392]: Презентационные ролики ЖК, рендеры и реальная съёмка для продаж и инвесторов
+              - link "Аэросъёмка объектов DJI Air 3S, 4K. Облёт фасада, территории и района. 94% больше просмотров объявления" [ref=e395] [cursor=pointer]:
+                - /url: /v23/real-estate
+                - generic [ref=e396]:
+                  - heading "Аэросъёмка объектов" [level=3] [ref=e397]
+                  - paragraph [ref=e398]: DJI Air 3S, 4K. Облёт фасада, территории и района. 94% больше просмотров объявления
+              - link "360° виртуальные туры Интерактивный тур по объекту. Загрузка на SS.ge, MyHome.ge и ваш сайт" [ref=e401] [cursor=pointer]:
+                - /url: /v23/real-estate
+                - generic [ref=e402]:
+                  - heading "360° виртуальные туры" [level=3] [ref=e403]
+                  - paragraph [ref=e404]: Интерактивный тур по объекту. Загрузка на SS.ge, MyHome.ge и ваш сайт
+              - link "Мониторинг стройки Ежемесячные дрон-облёты с GPS-привязкой и PDF-отчётом для банков и инвесторов" [ref=e407] [cursor=pointer]:
+                - /url: /v23/real-estate
+                - generic [ref=e408]:
+                  - heading "Мониторинг стройки" [level=3] [ref=e409]
+                  - paragraph [ref=e410]: Ежемесячные дрон-облёты с GPS-привязкой и PDF-отчётом для банков и инвесторов
+              - link "AI-упаковка объявлений Улучшение фото, описания для порталов, Reels для соцсетей агентства" [ref=e413] [cursor=pointer]:
+                - /url: /v23/real-estate
+                - generic [ref=e414]:
+                  - heading "AI-упаковка объявлений" [level=3] [ref=e415]
+                  - paragraph [ref=e416]: Улучшение фото, описания для порталов, Reels для соцсетей агентства
+      - generic [ref=e417]:
+        - generic [ref=e418]:
+          - generic [ref=e419]: "02"
+          - generic [ref=e420]: Отели
+        - generic [ref=e421]:
+          - img "Отели" [ref=e425]
+          - generic [ref=e430]:
+            - generic [ref=e431]:
+              - heading "ОТЕЛИ" [level=2] [ref=e432]
+              - paragraph [ref=e433]: Видеотуры, аэросъёмка и Reels для отелей Грузии — гости бронируют там, где видят атмосферу
+            - generic [ref=e434]:
+              - link "Видеотур по отелю Номера, ресторан, бассейн, вид — cinematic видео 2–4 мин для сайта и Booking" [ref=e437] [cursor=pointer]:
+                - /url: /v23/hotels
+                - generic [ref=e438]:
+                  - heading "Видеотур по отелю" [level=3] [ref=e439]
+                  - paragraph [ref=e440]: Номера, ресторан, бассейн, вид — cinematic видео 2–4 мин для сайта и Booking
+              - link "Аэросъёмка территории Дрон над отелем, парком и побережьем. Показывает локацию лучше любых слов" [ref=e443] [cursor=pointer]:
+                - /url: /v23/hotels
+                - generic [ref=e444]:
+                  - heading "Аэросъёмка территории" [level=3] [ref=e445]
+                  - paragraph [ref=e446]: Дрон над отелем, парком и побережьем. Показывает локацию лучше любых слов
+              - link "360° тур по номерам Виртуальный тур который можно встроить на сайт, Booking и Google Maps" [ref=e449] [cursor=pointer]:
+                - /url: /v23/hotels
+                - generic [ref=e450]:
+                  - heading "360° тур по номерам" [level=3] [ref=e451]
+                  - paragraph [ref=e452]: Виртуальный тур который можно встроить на сайт, Booking и Google Maps
+              - 'link "Reels и сезонный контент Ежемесячный контент-пакет: 8–12 вертикальных видео под Instagram и TikTok" [ref=e455] [cursor=pointer]':
+                - /url: /v23/hotels
+                - generic [ref=e456]:
+                  - heading "Reels и сезонный контент" [level=3] [ref=e457]
+                  - paragraph [ref=e458]: "Ежемесячный контент-пакет: 8–12 вертикальных видео под Instagram и TikTok"
+              - link "SMM для отеля Ведение Instagram и TikTok — контент-план, съёмка, монтаж, коммуникация" [ref=e461] [cursor=pointer]:
+                - /url: /v23/hotels
+                - generic [ref=e462]:
+                  - heading "SMM для отеля" [level=3] [ref=e463]
+                  - paragraph [ref=e464]: Ведение Instagram и TikTok — контент-план, съёмка, монтаж, коммуникация
+              - link "AI-перевод и локализация Описания номеров и постов на 3–5 языках через AI — для иностранных гостей" [ref=e467] [cursor=pointer]:
+                - /url: /v23/hotels
+                - generic [ref=e468]:
+                  - heading "AI-перевод и локализация" [level=3] [ref=e469]
+                  - paragraph [ref=e470]: Описания номеров и постов на 3–5 языках через AI — для иностранных гостей
+      - generic [ref=e471]:
+        - generic [ref=e472]:
+          - generic [ref=e473]: "03"
+          - generic [ref=e474]: Рестораны
+        - generic [ref=e475]:
+          - img "Рестораны" [ref=e479]
+          - generic [ref=e484]:
+            - generic [ref=e485]:
+              - heading "РЕСТОРАНЫ" [level=2] [ref=e486]
+              - paragraph [ref=e487]: Reels, фуд-видео и брендовый контент для ресторанов — гости идут туда, где видят атмосферу и еду
+            - generic [ref=e488]:
+              - link "Фуд-видео и фото Съёмка блюд, подачи и процесса приготовления. Для меню, сайта и соцсетей" [ref=e491] [cursor=pointer]:
+                - /url: /v23/restaurants
+                - generic [ref=e492]:
+                  - heading "Фуд-видео и фото" [level=3] [ref=e493]
+                  - paragraph [ref=e494]: Съёмка блюд, подачи и процесса приготовления. Для меню, сайта и соцсетей
+              - 'link "Атмосферный ролик Видео 60–90 сек: интерьер, команда, гости, кухня. Для Instagram и Google Maps" [ref=e497] [cursor=pointer]':
+                - /url: /v23/restaurants
+                - generic [ref=e498]:
+                  - heading "Атмосферный ролик" [level=3] [ref=e499]
+                  - paragraph [ref=e500]: "Видео 60–90 сек: интерьер, команда, гости, кухня. Для Instagram и Google Maps"
+              - 'link "Reels-пакет 5–10 вертикальных видео в месяц: блюда, акции, атмосфера, команда" [ref=e503] [cursor=pointer]':
+                - /url: /v23/restaurants
+                - generic [ref=e504]:
+                  - heading "Reels-пакет" [level=3] [ref=e505]
+                  - paragraph [ref=e506]: "5–10 вертикальных видео в месяц: блюда, акции, атмосфера, команда"
+              - link "Дизайн меню Обновление меню с фото и дизайном. Print-ready + цифровая версия. От 600 GEL" [ref=e509] [cursor=pointer]:
+                - /url: /v23/restaurants
+                - generic [ref=e510]:
+                  - heading "Дизайн меню" [level=3] [ref=e511]
+                  - paragraph [ref=e512]: Обновление меню с фото и дизайном. Print-ready + цифровая версия. От 600 GEL
+              - link "Google Maps визуал Фото и видео для Google Business — выше в поиске «рестораны рядом»" [ref=e515] [cursor=pointer]:
+                - /url: /v23/restaurants
+                - generic [ref=e516]:
+                  - heading "Google Maps визуал" [level=3] [ref=e517]
+                  - paragraph [ref=e518]: Фото и видео для Google Business — выше в поиске «рестораны рядом»
+              - link "SMM под ключ Контент-план, съёмка, монтаж и ведение Instagram ресторана" [ref=e521] [cursor=pointer]:
+                - /url: /v23/restaurants
+                - generic [ref=e522]:
+                  - heading "SMM под ключ" [level=3] [ref=e523]
+                  - paragraph [ref=e524]: Контент-план, съёмка, монтаж и ведение Instagram ресторана
+      - generic [ref=e525]:
+        - generic [ref=e526]:
+          - generic [ref=e527]: "04"
+          - generic [ref=e528]: Авто бизнес
+        - generic [ref=e529]:
+          - img "Авто бизнес" [ref=e533]
+          - generic [ref=e538]:
+            - generic [ref=e539]:
+              - heading "АВТО БИЗНЕС" [level=2] [ref=e540]
+              - paragraph [ref=e541]: Видеосъёмка автосалонов, дроны для стоянок и AI-контент — покупатели выбирают авто глазами
+            - generic [ref=e542]:
+              - link "Обзорное видео автомобиля Внешний вид, интерьер, динамика — видео 60–90 сек для продаж и соцсетей" [ref=e545] [cursor=pointer]:
+                - /url: /v23/auto
+                - generic [ref=e546]:
+                  - heading "Обзорное видео автомобиля" [level=3] [ref=e547]
+                  - paragraph [ref=e548]: Внешний вид, интерьер, динамика — видео 60–90 сек для продаж и соцсетей
+              - link "Аэросъёмка дилерского центра Дрон над салоном и стоянкой — масштаб и статус для рекламы и сайта" [ref=e551] [cursor=pointer]:
+                - /url: /v23/auto
+                - generic [ref=e552]:
+                  - heading "Аэросъёмка дилерского центра" [level=3] [ref=e553]
+                  - paragraph [ref=e554]: Дрон над салоном и стоянкой — масштаб и статус для рекламы и сайта
+              - 'link "Reels и Shorts для автосалона Короткие вирусные видео: новинки, тест-драйвы, спецпредложения" [ref=e557] [cursor=pointer]':
+                - /url: /v23/auto
+                - generic [ref=e558]:
+                  - heading "Reels и Shorts для автосалона" [level=3] [ref=e559]
+                  - paragraph [ref=e560]: "Короткие вирусные видео: новинки, тест-драйвы, спецпредложения"
+              - link "Контент для автопроката Съёмка парка автомобилей, условий аренды и локаций для туристов" [ref=e563] [cursor=pointer]:
+                - /url: /v23/auto
+                - generic [ref=e564]:
+                  - heading "Контент для автопроката" [level=3] [ref=e565]
+                  - paragraph [ref=e566]: Съёмка парка автомобилей, условий аренды и локаций для туристов
+              - link "AI-описания для объявлений Продающие тексты на RU/EN/GE для auto.ge, myauto.ge и международных площадок" [ref=e569] [cursor=pointer]:
+                - /url: /v23/auto
+                - generic [ref=e570]:
+                  - heading "AI-описания для объявлений" [level=3] [ref=e571]
+                  - paragraph [ref=e572]: Продающие тексты на RU/EN/GE для auto.ge, myauto.ge и международных площадок
+              - link "Брендовое видео компании Имиджевый ролик дилерского центра или сервиса для сайта и презентаций" [ref=e575] [cursor=pointer]:
+                - /url: /v23/auto
+                - generic [ref=e576]:
+                  - heading "Брендовое видео компании" [level=3] [ref=e577]
+                  - paragraph [ref=e578]: Имиджевый ролик дилерского центра или сервиса для сайта и презентаций
+      - generic [ref=e579]:
+        - generic [ref=e580]:
+          - generic [ref=e581]: "05"
+          - generic [ref=e582]: Туризм
+        - generic [ref=e583]:
+          - img "Туризм" [ref=e587]
+          - generic [ref=e592]:
+            - generic [ref=e593]:
+              - heading "ТУРИЗМ" [level=2] [ref=e594]
+              - paragraph [ref=e595]: Аэросъёмка и видеогиды по Грузии — для турагентств, гидов и локаций по всей стране
+            - generic [ref=e596]:
+              - link "Аэросъёмка локаций Горы, побережье, города — cinematic дрон-видео для туристических маршрутов" [ref=e599] [cursor=pointer]:
+                - /url: /v23/tourism
+                - generic [ref=e600]:
+                  - heading "Аэросъёмка локаций" [level=3] [ref=e601]
+                  - paragraph [ref=e602]: Горы, побережье, города — cinematic дрон-видео для туристических маршрутов
+              - link "Видеогид по маршруту Документальный ролик 3–7 мин о туре или направлении. Для YouTube и сайта" [ref=e605] [cursor=pointer]:
+                - /url: /v23/tourism
+                - generic [ref=e606]:
+                  - heading "Видеогид по маршруту" [level=3] [ref=e607]
+                  - paragraph [ref=e608]: Документальный ролик 3–7 мин о туре или направлении. Для YouTube и сайта
+              - 'link "Reels для турагентства Контент-пакет: топ-локации, отзывы туристов, моменты из туров" [ref=e611] [cursor=pointer]':
+                - /url: /v23/tourism
+                - generic [ref=e612]:
+                  - heading "Reels для турагентства" [level=3] [ref=e613]
+                  - paragraph [ref=e614]: "Контент-пакет: топ-локации, отзывы туристов, моменты из туров"
+              - link "360° тур по локации Интерактивная панорама горы, пещеры, замка или курорта" [ref=e617] [cursor=pointer]:
+                - /url: /v23/tourism
+                - generic [ref=e618]:
+                  - heading "360° тур по локации" [level=3] [ref=e619]
+                  - paragraph [ref=e620]: Интерактивная панорама горы, пещеры, замка или курорта
+              - link "Контент для экотуризма Видео и фото природных парков, треккинговых маршрутов и глэмпингов" [ref=e623] [cursor=pointer]:
+                - /url: /v23/tourism
+                - generic [ref=e624]:
+                  - heading "Контент для экотуризма" [level=3] [ref=e625]
+                  - paragraph [ref=e626]: Видео и фото природных парков, треккинговых маршрутов и глэмпингов
+              - link "Промо для иностранных туристов Видео на EN/DE/FR с субтитрами — для Booking, TripAdvisor и YouTube" [ref=e629] [cursor=pointer]:
+                - /url: /v23/tourism
+                - generic [ref=e630]:
+                  - heading "Промо для иностранных туристов" [level=3] [ref=e631]
+                  - paragraph [ref=e632]: Видео на EN/DE/FR с субтитрами — для Booking, TripAdvisor и YouTube
+      - generic [ref=e633]:
+        - generic [ref=e634]:
+          - generic [ref=e635]: "06"
+          - generic [ref=e636]: Клиники
+        - generic [ref=e637]:
+          - img "Клиники" [ref=e641]
+          - generic [ref=e646]:
+            - generic [ref=e647]:
+              - heading "КЛИНИКИ" [level=2] [ref=e648]
+              - paragraph [ref=e649]: Видео и AI-контент для медицинских центров — пациент выбирает клинику до первого звонка
+            - generic [ref=e650]:
+              - link "Имиджевый ролик клиники Интерьер, оборудование, команда врачей — доверие до первого визита" [ref=e653] [cursor=pointer]:
+                - /url: /v23/clinics
+                - generic [ref=e654]:
+                  - heading "Имиджевый ролик клиники" [level=3] [ref=e655]
+                  - paragraph [ref=e656]: Интерьер, оборудование, команда врачей — доверие до первого визита
+              - link "Видео о процедурах Понятное объяснение услуг клиники в видео-формате для сайта и соцсетей" [ref=e659] [cursor=pointer]:
+                - /url: /v23/clinics
+                - generic [ref=e660]:
+                  - heading "Видео о процедурах" [level=3] [ref=e661]
+                  - paragraph [ref=e662]: Понятное объяснение услуг клиники в видео-формате для сайта и соцсетей
+              - link "Reels для Instagram клиники До/после, советы врачей, ответы на вопросы — контент который приводит пациентов" [ref=e665] [cursor=pointer]:
+                - /url: /v23/clinics
+                - generic [ref=e666]:
+                  - heading "Reels для Instagram клиники" [level=3] [ref=e667]
+                  - paragraph [ref=e668]: До/после, советы врачей, ответы на вопросы — контент который приводит пациентов
+              - link "AI-контент на несколько языков Описания услуг на RU/EN/GE/AR — для иностранных пациентов медицинского туризма" [ref=e671] [cursor=pointer]:
+                - /url: /v23/clinics
+                - generic [ref=e672]:
+                  - heading "AI-контент на несколько языков" [level=3] [ref=e673]
+                  - paragraph [ref=e674]: Описания услуг на RU/EN/GE/AR — для иностранных пациентов медицинского туризма
+              - link "Google Maps и отзывы Фото и видео для Google Business — выше в поиске «клиника в Тбилиси»" [ref=e677] [cursor=pointer]:
+                - /url: /v23/clinics
+                - generic [ref=e678]:
+                  - heading "Google Maps и отзывы" [level=3] [ref=e679]
+                  - paragraph [ref=e680]: Фото и видео для Google Business — выше в поиске «клиника в Тбилиси»
+              - link "Съёмка конференций и событий Видео медицинских мероприятий, семинаров и открытий для PR и соцсетей" [ref=e683] [cursor=pointer]:
+                - /url: /v23/clinics
+                - generic [ref=e684]:
+                  - heading "Съёмка конференций и событий" [level=3] [ref=e685]
+                  - paragraph [ref=e686]: Видео медицинских мероприятий, семинаров и открытий для PR и соцсетей
+      - generic [ref=e687]:
+        - generic [ref=e688]:
+          - generic [ref=e689]: "07"
+          - generic [ref=e690]: IT
+        - generic [ref=e691]:
+          - img "IT" [ref=e695]
+          - generic [ref=e700]:
+            - generic [ref=e701]:
+              - heading "IT" [level=2] [ref=e702]
+              - paragraph [ref=e703]: Продакшн видео, кейс-стади и AI-визуал для IT-компаний и стартапов в Грузии
+            - generic [ref=e704]:
+              - link "Продуктовое видео Демо-ролик продукта или приложения — для инвесторов, сайта и App Store" [ref=e707] [cursor=pointer]:
+                - /url: /v23/it
+                - generic [ref=e708]:
+                  - heading "Продуктовое видео" [level=3] [ref=e709]
+                  - paragraph [ref=e710]: Демо-ролик продукта или приложения — для инвесторов, сайта и App Store
+              - link "Кейс-стади в видео История клиента до/после внедрения вашего продукта. Лучший B2B-контент" [ref=e713] [cursor=pointer]:
+                - /url: /v23/it
+                - generic [ref=e714]:
+                  - heading "Кейс-стади в видео" [level=3] [ref=e715]
+                  - paragraph [ref=e716]: История клиента до/после внедрения вашего продукта. Лучший B2B-контент
+              - 'link "Видео для инвесторов Pitch-видео стартапа: команда, продукт, рынок. 60–120 сек" [ref=e719] [cursor=pointer]':
+                - /url: /v23/it
+                - generic [ref=e720]:
+                  - heading "Видео для инвесторов" [level=3] [ref=e721]
+                  - paragraph [ref=e722]: "Pitch-видео стартапа: команда, продукт, рынок. 60–120 сек"
+              - 'link "AI-контент для LinkedIn и X Регулярный контент: новости компании, мнения экспертов, продуктовые обновления" [ref=e725] [cursor=pointer]':
+                - /url: /v23/it
+                - generic [ref=e726]:
+                  - heading "AI-контент для LinkedIn и X" [level=3] [ref=e727]
+                  - paragraph [ref=e728]: "Регулярный контент: новости компании, мнения экспертов, продуктовые обновления"
+              - link "Корпоративная съёмка Команда, офис, культура компании — для найма, PR и партнёрств" [ref=e731] [cursor=pointer]:
+                - /url: /v23/it
+                - generic [ref=e732]:
+                  - heading "Корпоративная съёмка" [level=3] [ref=e733]
+                  - paragraph [ref=e734]: Команда, офис, культура компании — для найма, PR и партнёрств
+              - link "Reels для IT-бренда Короткие видео о продукте, команде и технологиях для Instagram и TikTok" [ref=e737] [cursor=pointer]:
+                - /url: /v23/it
+                - generic [ref=e738]:
+                  - heading "Reels для IT-бренда" [level=3] [ref=e739]
+                  - paragraph [ref=e740]: Короткие видео о продукте, команде и технологиях для Instagram и TikTok
+      - generic [ref=e741]:
+        - generic [ref=e742]:
+          - generic [ref=e743]: "08"
+          - generic [ref=e744]: Ваш бизнес
+        - generic [ref=e745]:
+          - img "Ваш бизнес" [ref=e749]
+          - generic [ref=e754]:
+            - generic [ref=e755]:
+              - heading "ВАШ БИЗНЕС" [level=2] [ref=e756]
+              - paragraph [ref=e757]: Не нашли свою нишу? Мы делаем контент для любого бизнеса — обсудим вашу задачу
+            - generic [ref=e758]:
+              - link "Расскажите о вашем проекте Опишите задачу — предложим формат, сроки и стоимость под ваш бюджет" [ref=e761] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e762]:
+                  - heading "Расскажите о вашем проекте" [level=3] [ref=e763]
+                  - paragraph [ref=e764]: Опишите задачу — предложим формат, сроки и стоимость под ваш бюджет
+              - link "Пакет «Старт» Видео + фото + 5 Reels для нового бизнеса. Всё необходимое для запуска" [ref=e767] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e768]:
+                  - heading "Пакет «Старт»" [level=3] [ref=e769]
+                  - paragraph [ref=e770]: Видео + фото + 5 Reels для нового бизнеса. Всё необходимое для запуска
+              - link "Разовая съёмка Один выезд — фото, видео, дрон. Всё в одном визите от 500 GEL" [ref=e773] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e774]:
+                  - heading "Разовая съёмка" [level=3] [ref=e775]
+                  - paragraph [ref=e776]: Один выезд — фото, видео, дрон. Всё в одном визите от 500 GEL
+              - 'link "AI-упаковка с нуля Контент без съёмки: AI-визуал, сценарии, тексты, дизайн для соцсетей" [ref=e779] [cursor=pointer]':
+                - /url: "#contact"
+                - generic [ref=e780]:
+                  - heading "AI-упаковка с нуля" [level=3] [ref=e781]
+                  - paragraph [ref=e782]: "Контент без съёмки: AI-визуал, сценарии, тексты, дизайн для соцсетей"
+              - link "Ежемесячный контент Абонемент на регулярный контент — не думаете о соцсетях, мы делаем всё" [ref=e785] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e786]:
+                  - heading "Ежемесячный контент" [level=3] [ref=e787]
+                  - paragraph [ref=e788]: Абонемент на регулярный контент — не думаете о соцсетях, мы делаем всё
+              - link "Обсудить проект → Напишите нам в WhatsApp — ответим за 15 минут" [ref=e791] [cursor=pointer]:
+                - /url: https://wa.me/995574619393
+                - generic [ref=e792]:
+                  - heading "Обсудить проект →" [level=3] [ref=e793]
+                  - paragraph [ref=e794]: Напишите нам в WhatsApp — ответим за 15 минут
+      - generic [ref=e795]:
+        - generic [ref=e796]:
+          - generic [ref=e797]: "09"
+          - generic [ref=e798]: Частые вопросы
+        - generic [ref=e799]:
+          - heading "Частые вопросы" [level=2] [ref=e800]
+          - generic [ref=e801]:
+            - button "Вы работаете только в Тбилиси? +" [ref=e803]:
+              - generic [ref=e804]: Вы работаете только в Тбилиси?
+              - generic [ref=e805]: +
+            - button "Сколько стоят ваши услуги? +" [ref=e807]:
+              - generic [ref=e808]: Сколько стоят ваши услуги?
+              - generic [ref=e809]: +
+            - button "Как быстро будет готово видео? +" [ref=e811]:
+              - generic [ref=e812]: Как быстро будет готово видео?
+              - generic [ref=e813]: +
+            - button "Вы делаете всё сами или привлекаете подрядчиков? +" [ref=e815]:
+              - generic [ref=e816]: Вы делаете всё сами или привлекаете подрядчиков?
+              - generic [ref=e817]: +
+            - button "Можно заказать несколько услуг за один выезд? +" [ref=e819]:
+              - generic [ref=e820]: Можно заказать несколько услуг за один выезд?
+              - generic [ref=e821]: +
+            - button "Работаете ли вы с малым бизнесом? +" [ref=e823]:
+              - generic [ref=e824]: Работаете ли вы с малым бизнесом?
+              - generic [ref=e825]: +
+            - button "Делаете ли вы мониторинг строек для застройщиков и банков? +" [ref=e827]:
+              - generic [ref=e828]: Делаете ли вы мониторинг строек для застройщиков и банков?
+              - generic [ref=e829]: +
+            - button "Можно ли получить AI-контент без съёмки? +" [ref=e831]:
+              - generic [ref=e832]: Можно ли получить AI-контент без съёмки?
+              - generic [ref=e833]: +
+      - generic [ref=e834]:
+        - generic [ref=e835]:
+          - generic [ref=e836]: "10"
+          - generic [ref=e837]: Форма связи
+        - generic [ref=e838]:
+          - heading "Готов усилить цифровое присутствие?" [level=2] [ref=e841]:
+            - text: Готов усилить
+            - text: цифровое присутствие?
+          - generic [ref=e842]:
+            - generic [ref=e843]:
+              - generic [ref=e844]:
+                - generic [ref=e845]: Ваше Имя *
+                - textbox "Иван Иванов" [ref=e846]
+              - generic [ref=e847]:
+                - generic [ref=e848]: Способ связи *
+                - generic [ref=e849]:
+                  - button "Telegram" [ref=e850]
+                  - button "WhatsApp" [ref=e851]
+                  - button "Mail" [ref=e852]
+                - textbox "@username / +995..." [ref=e853]
+            - generic [ref=e854]:
+              - generic [ref=e855]: Интересующие услуги
+              - generic [ref=e856]:
+                - button "Дрон" [ref=e857]
+                - button "360 тур" [ref=e858]
+                - button "Reels" [ref=e859]
+                - button "SMM контент" [ref=e860]
+                - button "Google Maps" [ref=e861]
+                - button "Event" [ref=e862]
+            - generic [ref=e863]:
+              - generic [ref=e864]: Ваша ниша
+              - combobox [ref=e865]:
+                - option "Выберите нишу..." [selected]
+                - option "Недвижимость"
+                - option "Отели"
+                - option "Рестораны"
+                - option "Авто бизнес"
+                - option "Туризм"
+                - option "Клиники"
+                - option "IT"
+                - option "Другое"
+            - generic [ref=e866]:
+              - generic [ref=e867]: Коротко о задаче
+              - 'textbox "Например: Нужно снять дрон тур для нового ЖК" [ref=e868]'
+            - generic [ref=e869]:
+              - button "Написать" [ref=e870]:
+                - img [ref=e871]
+                - text: Написать
+              - link "WhatsApp" [ref=e874] [cursor=pointer]:
+                - /url: https://wa.me/995574619393
+                - img [ref=e875]
+                - text: WhatsApp
+  - button "Open Next.js Dev Tools" [ref=e882] [cursor=pointer]:
+    - img [ref=e883]
+  - alert [ref=e886]

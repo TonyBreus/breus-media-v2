@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { ChevronDown, Globe, Phone, Mail, Send, MessageCircle, Menu, X } from "lucide-react";
@@ -47,7 +45,7 @@ const InteractiveTicker = ({ items, direction = "left", speed = 40 }: { items: T
     );
 };
 
-export default function HeaderV23() {
+export default function HeaderV23({ transparent = false }: { transparent?: boolean }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
     const [isContactOpen, setIsContactOpen] = useState(false);
@@ -71,7 +69,12 @@ export default function HeaderV23() {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10 transition-all duration-300 flex flex-col shadow-2xl`}>
+            <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex flex-col ${isScrolled
+                ? 'bg-black/90 backdrop-blur-lg border-b border-white/10 shadow-2xl'
+                : transparent
+                    ? 'bg-transparent border-b border-transparent'
+                    : 'bg-black border-b border-white/10 shadow-2xl'
+                }`}>
 
                 {/* HEADLINE BAR */}
                 <div className={`w-full px-2 md:px-10 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'h-[70px]' : 'h-[90px]'} relative z-[60]`}>
@@ -154,7 +157,7 @@ export default function HeaderV23() {
                                                     <Phone className="w-4 h-4 text-brand" />
                                                 </div>
                                                 <div className="flex flex-col">
-                                                    <a href="tel:+995555000000" className="text-lg font-bold text-white hover:text-brand transition-colors tracking-wide">+995 555 00 00 00</a>
+                                                    <a href="tel:+995574619393" className="text-lg font-bold text-white hover:text-brand transition-colors tracking-wide">+995 574 619 393</a>
                                                 </div>
                                             </div>
                                             <div className="h-px w-full bg-white/10 my-1" />
@@ -213,7 +216,12 @@ export default function HeaderV23() {
                 </div>
 
                 {/* INTERACTIVE TICKERS */}
-                <div className="border-t border-white/5 bg-[#0F172A] relative z-[50]">
+                <div className={`transition-all duration-300 border-t ${isScrolled
+                    ? 'bg-[#0F172A]/90 backdrop-blur-md border-white/5'
+                    : transparent
+                        ? 'bg-transparent border-transparent'
+                        : 'bg-[#0F172A] border-white/5'
+                    } relative z-[50]`}>
                     <InteractiveTicker items={line1} direction="left" speed={60} />
                     <div className="h-[1px] bg-white/5 w-full" />
                     <InteractiveTicker items={line2} direction="right" speed={70} />

@@ -16,3 +16,6 @@ If an update breaks the layout, the instructions to the AI are: `git reset --har
 - **v25.9** - Phase 8: Header Refinements & Scroll Effects (Scaling Hero text & Marquee, Green dot Time widget)
 - **v25.10** - Phase 9: Restoring Header Links & NichesStack Debug ID Split
 - **v25.11** - Phase 10: Permanent Sticky Header & Marquee Width Fixes
+- **v25.12 / GAZETA_PASS_001** - Unified the `/gazeta` niche card system around the 00 Aerial Filming standard and added reusable "Все услуги" cards per niche.
+- **v25.13 / HEADER_PASS_001** - Made the Gazeta logo return to `/gazeta` and wired relevant header/ticker industry/service links to live destinations.
+- **v25.14 / ROUTE_PASS_001** - Added reusable `/v23/[slug]` support pages for homepage-linked category/service directions that previously had no route.
