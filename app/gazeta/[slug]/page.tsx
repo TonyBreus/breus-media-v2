@@ -35,36 +35,81 @@ export default async function GazetaDirectionPage({ params }: CategoryPageProps)
         <main className="min-h-screen bg-black text-white">
             <SmartHeader transparent={true} isLanding={false} />
 
-            <section className="relative min-h-screen overflow-hidden px-6 pb-20 pt-36 md:px-10">
+            <section className="relative overflow-hidden px-6 pb-20 pt-36 md:px-10">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(212,175,55,0.08),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.03),transparent_42%)]" />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/75 to-black" />
 
-                <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center">
-                    <div className="max-w-4xl">
-                        <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.32em] text-[#D4AF37]">
-                            {page.eyebrow}
-                        </p>
-                        <h1 className="max-w-5xl text-4xl font-black uppercase tracking-tighter text-white md:text-6xl lg:text-7xl">
-                            {page.title}
-                        </h1>
-                        <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/74 md:text-xl">
-                            {page.subtitle}
-                        </p>
+                <div className="relative z-10 mx-auto max-w-6xl">
+                    {/* Hero */}
+                    <div className="flex min-h-[50vh] flex-col justify-center">
+                        <div className="max-w-4xl">
+                            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.32em] text-[#D4AF37]">
+                                {page.eyebrow}
+                            </p>
+                            <h1 className="max-w-5xl text-4xl font-black uppercase tracking-tighter text-white md:text-6xl lg:text-7xl">
+                                {page.title}
+                            </h1>
+                            <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/74 md:text-xl">
+                                {page.subtitle}
+                            </p>
+                        </div>
+
+                        {/* Highlights */}
+                        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                            {page.highlights.map((item) => (
+                                <div key={item} className="rounded-[24px] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-md">
+                                    <p className="text-[11px] uppercase tracking-[0.18em] text-[#D4AF37]">
+                                        Направление
+                                    </p>
+                                    <p className="mt-4 text-lg font-bold leading-snug text-white">
+                                        {item}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                        {page.highlights.map((item) => (
-                            <div key={item} className="rounded-[24px] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-md">
-                                <p className="text-[11px] uppercase tracking-[0.18em] text-[#D4AF37]">
-                                    Направление
-                                </p>
-                                <p className="mt-4 text-lg font-bold leading-snug text-white">
-                                    {item}
-                                </p>
+                    {/* Services grid */}
+                    {page.services && page.services.length > 0 && (
+                        <div className="mt-20">
+                            <p className="mb-8 text-[11px] font-semibold uppercase tracking-[0.32em] text-[#D4AF37]">
+                                Услуги
+                            </p>
+                            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+                                {page.services.map((service) => {
+                                    const card = (
+                                        <div className="group flex flex-col justify-between rounded-[20px] border border-[#2a2a2a] bg-[#141414] p-5 transition-colors hover:border-[#D4AF37]/40 hover:bg-[#1a1a1a]">
+                                            <p className="text-sm font-bold leading-snug text-white group-hover:text-white">
+                                                {service.title}
+                                            </p>
+                                            <p className="mt-3 text-[11px] font-semibold text-[#FFD23F]">
+                                                {service.price}
+                                            </p>
+                                        </div>
+                                    );
+
+                                    return service.primaryHref ? (
+                                        <Link key={service.title} href={service.primaryHref}>
+                                            {card}
+                                        </Link>
+                                    ) : (
+                                        <div key={service.title}>{card}</div>
+                                    );
+                                })}
                             </div>
-                        ))}
-                    </div>
 
+                            {page.allServicesHref && (
+                                <Link
+                                    href={page.allServicesHref}
+                                    className="mt-6 flex w-full items-center justify-center rounded-full border border-white/20 bg-transparent px-6 py-4 text-xs font-black uppercase tracking-[0.24em] text-white transition-colors hover:border-[#D4AF37]/60 hover:text-[#D4AF37]"
+                                >
+                                    Все услуги →
+                                </Link>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Bottom buttons */}
                     <div className="mt-12 flex flex-col gap-4 sm:flex-row">
                         <Link
                             href="/gazeta"

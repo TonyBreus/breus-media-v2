@@ -3,11 +3,19 @@ export type GazetaNavItem = {
     href: string;
 };
 
+export type GazetaService = {
+    title: string;
+    price: string;
+    primaryHref?: string;
+};
+
 export type GazetaCategoryPage = {
     eyebrow: string;
     title: string;
     subtitle: string;
     highlights: string[];
+    allServicesHref?: string;
+    services?: GazetaService[];
 };
 
 export const gazetaDetailRoutes = {
@@ -80,6 +88,25 @@ export const gazetaTickerLine2 = [
 ];
 
 export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
+    "real-estate": {
+        eyebrow: "Недвижимость",
+        title: "Визуал для недвижимости",
+        subtitle: "Аэросъёмка, 360° туры и промо-видео для продажи и аренды объектов.",
+        highlights: [
+            "Аэросъёмка объектов",
+            "360° виртуальные туры",
+            "Промо-видео для ЖК",
+            "AI-стейджинг",
+        ],
+        allServicesHref: "/real-estate-service",
+        services: [
+            { title: "Промо-видео для недвижимости", price: "Promo Video · по задаче", primaryHref: "/promo-video/promo-real-estate" },
+            { title: "Аэросъёмка объекта", price: "Drone · от 400 ₾", primaryHref: "/drone-real-estate" },
+            { title: "360° тур для недвижимости", price: "360° · от 300 ₾", primaryHref: "/360-tour-real-estate" },
+            { title: "AI-стейджинг и меблировка", price: "AI Staging · по задаче", primaryHref: "/ai-visual/ai-staging" },
+            { title: "Reels для недвижимости", price: "Reels · по задаче", primaryHref: "/reels-promo/reels-real-estate" },
+        ],
+    },
     auto: {
         eyebrow: "Авто бизнес",
         title: "Контент для авто бизнеса",
@@ -89,6 +116,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Aerial-визуал стоянок и дилерских центров",
             "Reels и promo-креативы для продаж",
             "AI-описания и контент для листингов",
+        ],
+        allServicesHref: "/auto-service",
+        services: [
+            { title: "Видео дилерского центра", price: "Brand Video · от 300 ₾", primaryHref: "/promo-video/promo-car-dealer" },
+            { title: "Аэросъёмка авто и автосалонов", price: "Drone · от 400 ₾", primaryHref: "/drone-services/drone-auto" },
+            { title: "Reels для автобизнеса", price: "Reels · от 450 ₾", primaryHref: "/reels-promo/reels-auto" },
+            { title: "Обзорный контент по моделям", price: "Model Showcase · от 500 ₾", primaryHref: "/promo-video/auto-model-review" },
+            { title: "Контент для сервиса / детейлинга", price: "Service Content · от 550 ₾", primaryHref: "/promo-video/auto-service-detailing" },
         ],
     },
     hotels: {
@@ -101,6 +136,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "360° туры по номерам и зонам",
             "Сезонные контент-пакеты для соцсетей",
         ],
+        allServicesHref: "/hotels-service",
+        services: [
+            { title: "Видеотур по отелю", price: "Cinematic · от 350 ₾", primaryHref: "/promo-video/promo-hotel" },
+            { title: "Аэросъёмка территории", price: "Drone · от 400 ₾", primaryHref: "/drone-hotels-tourism" },
+            { title: "360° тур по номерам", price: "360° · от 500 ₾", primaryHref: "/360-tour-hotels" },
+            { title: "Reels и Shorts для отеля", price: "Short-form · от 450 ₾", primaryHref: "/reels-promo/reels-hotel" },
+            { title: "Сезонный контент-пакет", price: "Пакет · от 650 ₾", primaryHref: "/reels-promo/hotel-seasonal-content" },
+        ],
     },
     restaurants: {
         eyebrow: "Рестораны",
@@ -111,6 +154,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Aerial-визуал террас и roof-top пространств",
             "Reels-пакеты и seasonal content",
             "Визуал для Google Maps и меню",
+        ],
+        allServicesHref: "/restaurants-service",
+        services: [
+            { title: "Имиджевое видео ресторана", price: "Brand Video · от 300 ₾", primaryHref: "/promo-video/promo-restaurant" },
+            { title: "Reels для соцсетей", price: "Short-form · от 350 ₾", primaryHref: "/reels-promo/reels-restaurant" },
+            { title: "Аэросъёмка локации", price: "Drone · от 400 ₾", primaryHref: "/drone-services/drone-restaurants" },
+            { title: "Съёмка интерьера и подачи", price: "Photo + Video · от 450 ₾", primaryHref: "/promo-video/restaurant-interior-food" },
+            { title: "Контент-пакет на месяц", price: "Пакет · от 550 ₾", primaryHref: "/reels-promo/restaurant-content-pack" },
         ],
     },
     tourism: {
@@ -123,6 +174,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Guide-видео и reels для туроператоров",
             "Контент-пакеты под иностранную аудиторию",
         ],
+        allServicesHref: "/tourism-service",
+        services: [
+            { title: "Видео тура или маршрута", price: "Cinematic · от 350 ₾", primaryHref: "/promo-video/promo-tourism-route" },
+            { title: "Аэросъёмка локации", price: "Drone · от 400 ₾", primaryHref: "/drone-hotels-tourism" },
+            { title: "Reels для турпроекта", price: "Short-form · от 450 ₾", primaryHref: "/reels-promo/reels-tourism" },
+            { title: "Промо для экскурсии / активности", price: "Promo · от 550 ₾", primaryHref: "/promo-video/promo-excursion" },
+            { title: "AI-упаковка предложений", price: "AI Content · от 300 ₾", primaryHref: "/ai-content/tourism-ai-packaging" },
+        ],
     },
     clinics: {
         eyebrow: "Клиники",
@@ -133,6 +192,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Контент о процедурах и сервисах",
             "Reels и короткие форматы для соцсетей",
             "Мультиязычная AI-упаковка контента",
+        ],
+        allServicesHref: "/clinics-service",
+        services: [
+            { title: "Имиджевое видео клиники", price: "Brand Video · от 350 ₾", primaryHref: "/promo-video/promo-clinic" },
+            { title: "Видео для врача / направления", price: "Expert Video · от 400 ₾", primaryHref: "/promo-video/promo-doctor" },
+            { title: "Съёмка интерьера и кабинетов", price: "Photo + Video · от 450 ₾", primaryHref: "/promo-video/clinic-interior" },
+            { title: "Reels для клиники", price: "Reels · от 450 ₾", primaryHref: "/reels-promo/reels-clinic" },
+            { title: "360° тур для клиник", price: "360° · от 500 ₾", primaryHref: "/360-tour-clinics" },
         ],
     },
     it: {
@@ -145,6 +212,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Employer-branding и team content",
             "AI-контент для LinkedIn и launch-кампаний",
         ],
+        allServicesHref: "/business-service",
+        services: [
+            { title: "Имиджевое видео бизнеса", price: "Brand Video · от 300 ₾" },
+            { title: "Контент для сайта и рекламы", price: "Performance Pack · от 450 ₾" },
+            { title: "Reels и Shorts", price: "Short-form · от 450 ₾" },
+            { title: "360° туры", price: "360° · от 550 ₾", primaryHref: "/360-tour-business" },
+            { title: "Съёмка пространства / объекта", price: "Space Content · от 500 ₾" },
+        ],
     },
     "360-tours": {
         eyebrow: "360° Туры",
@@ -155,6 +230,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Интеграция в сайт и Google Maps",
             "POI и интерактивные точки",
             "Туры для недвижимости, hospitality и retail",
+        ],
+        allServicesHref: "/360-tours-service",
+        services: [
+            { title: "360° туры для недвижимости", price: "360° · от 300 ₾", primaryHref: "/360-tour-real-estate" },
+            { title: "360° туры для отелей", price: "360° · от 300 ₾", primaryHref: "/360-tour-hotels" },
+            { title: "360° туры для ресторанов", price: "360° · от 300 ₾", primaryHref: "/360-tour-restaurants" },
+            { title: "360° туры для автобизнеса", price: "360° · от 300 ₾", primaryHref: "/360-tour-auto" },
+            { title: "360° туры для туризма и локаций", price: "360° · от 300 ₾", primaryHref: "/360-tour-tourism" },
         ],
     },
     "promo-video": {
@@ -167,6 +250,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Съёмка, монтаж и цвет",
             "Aerial и motion-акценты в одном продакшне",
         ],
+        allServicesHref: "/promo-video-service",
+        services: [
+            { title: "Промо-видео для недвижимости", price: "Promo Video · по задаче", primaryHref: "/promo-video/promo-real-estate" },
+            { title: "Промо-видео для отелей", price: "Promo Video · по задаче", primaryHref: "/promo-video/promo-hotel" },
+            { title: "Промо-видео для ресторанов", price: "Promo Video · по задаче", primaryHref: "/promo-video/promo-restaurant" },
+            { title: "Промо-видео для автобизнеса", price: "Promo Video · по задаче", primaryHref: "/promo-video/promo-car-dealer" },
+            { title: "Промо-видео для туризма", price: "Promo Video · по задаче", primaryHref: "/promo-video/promo-excursion" },
+        ],
     },
     events: {
         eyebrow: "Мероприятия",
@@ -177,6 +268,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Vertical cuts в день события",
             "Aerial-покрытие площадки и crowd shots",
             "Контент для PR и соцсетей",
+        ],
+        allServicesHref: "/promo-video-service",
+        services: [
+            { title: "Промо-видео для мероприятий", price: "Promo Video · по задаче", primaryHref: "/promo-video-service" },
+            { title: "Reels и Shorts с события", price: "Short-form · от 450 ₾", primaryHref: "/reels-service" },
+            { title: "Аэросъёмка площадки", price: "Drone · от 400 ₾", primaryHref: "/drone-service" },
+            { title: "AI-упаковка контента", price: "AI Content · от 300 ₾", primaryHref: "/ai-visualization-service" },
+            { title: "Полный пакет для события", price: "Пакет · по задаче", primaryHref: "/business-service" },
         ],
     },
     "ai-content": {
@@ -189,6 +288,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "AI-copy и content packaging",
             "Мультиязычные версии роликов и постов",
         ],
+        allServicesHref: "/ai-visualization-service",
+        services: [
+            { title: "AI-визуализация недвижимости", price: "AI Visualization · по задаче", primaryHref: "/ai-visual/ai-real-estate" },
+            { title: "AI staging и меблировка", price: "AI Staging · по задаче", primaryHref: "/ai-visual/ai-staging" },
+            { title: "AI-визуализация пространств", price: "AI Space Visuals · по задаче", primaryHref: "/ai-visual/ai-interior" },
+            { title: "AI-продуктовый визуал", price: "AI Product Visuals · по задаче", primaryHref: "/ai-visual/ai-product" },
+            { title: "AI-визуал для автобизнеса", price: "AI Auto Visuals · по задаче", primaryHref: "/ai-visual/ai-auto" },
+        ],
     },
     reels: {
         eyebrow: "Reels",
@@ -200,6 +307,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Контент для Instagram, TikTok и Shorts",
             "Регулярные форматы под рост присутствия",
         ],
+        allServicesHref: "/reels-service",
+        services: [
+            { title: "Reels для отелей", price: "Reels · по задаче", primaryHref: "/reels-promo/reels-hotel" },
+            { title: "Reels для ресторанов", price: "Reels · по задаче", primaryHref: "/reels-promo/reels-restaurant" },
+            { title: "Reels для автобизнеса", price: "Reels · по задаче", primaryHref: "/reels-promo/reels-auto" },
+            { title: "Reels для туризма", price: "Reels · по задаче", primaryHref: "/reels-promo/reels-tourism" },
+            { title: "Reels для клиник", price: "Reels · по задаче", primaryHref: "/reels-promo/reels-clinic" },
+        ],
     },
     "custom-business": {
         eyebrow: "Ваш бизнес",
@@ -210,6 +325,14 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Стартовый пакет: видео, фото и короткие форматы",
             "AI-упаковка для запуска или теста гипотез",
             "Ежемесячное производство контента под рост",
+        ],
+        allServicesHref: "/business-service",
+        services: [
+            { title: "Имиджевое видео бизнеса", price: "Brand Video · от 300 ₾" },
+            { title: "Контент для сайта и рекламы", price: "Performance Pack · от 450 ₾" },
+            { title: "Reels и Shorts", price: "Short-form · от 450 ₾" },
+            { title: "360° туры", price: "360° · от 550 ₾", primaryHref: "/360-tour-business" },
+            { title: "Съёмка пространства / объекта", price: "Space Content · от 500 ₾" },
         ],
     },
 };
