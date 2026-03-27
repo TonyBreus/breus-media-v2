@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { DebugWrapper } from "../debug/DebugWrapper";
 import Link from "next/link";
@@ -79,18 +79,15 @@ export function MarqueeSection() {
         { text: "360° Туры", link: "/360-tours-service" }, "Промо Видео", "Мероприятия", "AI Content", "Reels"
     ];
 
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end start"],
-    });
-
-    // Animate only padding to avoid squashing text width and keep background 100% wide
-    const paddingY = useTransform(scrollYProgress, [0, 0.4, 1], ["0.5rem", "0rem", "0rem"]);
+    const { scrollY } = useScroll();
+    const revealEndPx = 420;
+    const paddingY = useTransform(scrollY, [0, revealEndPx], ["0.5rem", "0rem"]);
+    const marqueeY = useTransform(scrollY, [0, revealEndPx], ["100vh", "0vh"]);
+    const marqueeOpacity = useTransform(scrollY, [0, 80, revealEndPx], [0, 1, 1]);
 
     return (
         <DebugWrapper id={20} label="Marquee Scroll Track">
-            <section ref={containerRef} className="relative w-full h-0 bg-black pointer-events-none">
+            <section className="relative w-full h-0 bg-black pointer-events-none">
 
                 {/* CINEMATIC REVEAL OVERLAY (Z-[9999]) FOR HOVERED SERVICE (Notebook style) */}
                 <AnimatePresence>
@@ -168,7 +165,8 @@ export function MarqueeSection() {
                     style={{
                         paddingTop: paddingY,
                         paddingBottom: paddingY,
-                        y: useTransform(scrollYProgress, [0, 0.4], ["100vh", "0vh"])
+                        y: marqueeY,
+                        opacity: marqueeOpacity
                     }}
                     className="fixed top-[70px] left-0 w-full overflow-hidden bg-zinc-950 border-y border-white/20 z-[40] flex flex-col pointer-events-auto"
                 >

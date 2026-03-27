@@ -70,11 +70,13 @@ const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId }: { 
 export function SmartHeader({
     transparent = false,
     isLanding = false,
-    sectionLinks = []
+    sectionLinks = [],
+    showTickers
 }: {
     transparent?: boolean;
     isLanding?: boolean;
     sectionLinks?: HeaderSectionLink[];
+    showTickers?: boolean;
 }) {
     const { scrollY } = useScroll();
     const [isScrolled, setIsScrolled] = useState(false);
@@ -85,6 +87,7 @@ export function SmartHeader({
     const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
     const [isContactOpen, setIsContactOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const shouldShowTickers = showTickers ?? !isLanding;
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         // Switch state based on scroll
@@ -308,20 +311,21 @@ export function SmartHeader({
                     </div>
                 </div>
 
-                {/* INTERACTIVE TICKERS (208 & 209) */}
-                <div className={`transition-all duration-300 border-t border-white/5 relative z-[120] ${isScrolled
-                    ? 'bg-zinc-950/90 backdrop-blur-md'
-                    : transparent
-                        ? 'bg-transparent border-transparent'
-                        : 'bg-zinc-950/40 backdrop-blur-sm'}`}>
-                    <DebugWrapper id={208} label="Running Text Line 1">
-                        <InteractiveTicker items={gazetaTickerLine1} direction="left" speed={60} baseId={2080} />
-                    </DebugWrapper>
-                    <div className="h-[1px] bg-white/5 w-full" />
-                    <DebugWrapper id={209} label="Running Text Line 2">
-                        <InteractiveTicker items={gazetaTickerLine2} direction="right" speed={70} baseId={2090} />
-                    </DebugWrapper>
-                </div>
+                {shouldShowTickers && (
+                    <div className={`transition-all duration-300 border-t border-white/5 relative z-[120] ${isScrolled
+                        ? 'bg-zinc-950/90 backdrop-blur-md'
+                        : transparent
+                            ? 'bg-transparent border-transparent'
+                            : 'bg-zinc-950/40 backdrop-blur-sm'}`}>
+                        <DebugWrapper id={208} label="Running Text Line 1">
+                            <InteractiveTicker items={gazetaTickerLine1} direction="left" speed={60} baseId={2080} />
+                        </DebugWrapper>
+                        <div className="h-[1px] bg-white/5 w-full" />
+                        <DebugWrapper id={209} label="Running Text Line 2">
+                            <InteractiveTicker items={gazetaTickerLine2} direction="right" speed={70} baseId={2090} />
+                        </DebugWrapper>
+                    </div>
+                )}
 
                 <AnimatePresence>
                     {isMobileMenuOpen && (
