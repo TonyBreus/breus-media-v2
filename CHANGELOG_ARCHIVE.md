@@ -25,6 +25,19 @@ Append-only архив изменений. Старые записи не уда
 - `DEPLOYMENT.md` — регламент деплоя и rollback.
 - `CONTEXT_NEXT_CHAT.md` — обновлён и приведён к формату “актуальный срез”.
 
+### Session Update (GitHub + Vercel Sync)
+- GitHub remote настроен: `origin -> https://github.com/TonyBreus/breus-media-v2.git`
+- `main` успешно запушен в GitHub.
+- Vercel проект подключен к GitHub репозиторию.
+- Выполнен дополнительный safeguard для `/gazeta`, чтобы исключить повтор дублирования marquee из header.
+
+#### Commits
+- `03e19bc` — fix(gazeta): force-disable header ticker on landing to prevent duplicate marquee
+
+#### Verification
+- `npm run build` — OK.
+- Live/local сравнение `/gazeta` (hero + marquee reveal) — консистентное поведение.
+
 ---
 
 ## Шаблон новой записи (копировать в конец файла)
@@ -41,4 +54,3 @@ Append-only архив изменений. Старые записи не уда
 #### Release Notes
 - Статус: local only / deployed
 - Проверка: ...
-
