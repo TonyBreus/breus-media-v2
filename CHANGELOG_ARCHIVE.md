@@ -387,6 +387,27 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-27 (Gazeta Mobile UX Pack Deployed)
+### Session Summary
+- Выполнен продакшн-деплой пакета мобильных UX-улучшений для `/gazeta`.
+
+### Commits
+- `413c9d2` — feat(gazeta): optimize mobile compact layout, cards, and scroll handoff
+
+### Technical Notes
+- В релиз вошли локальные доработки этой сессии:
+  - compact top для mobile landscape и portrait (header + marquee + top rows),
+  - мобильная сетка карточек (`2` колонки portrait, `4` колонки landscape),
+  - точечный фикс карточек `8410/8411` (убран highlight-price, CTA вертикально на mobile),
+  - nested-scroll handoff (`overscroll-y-contain` + `touch-pan-y`),
+  - устранение зазора между `#209` и `#00` через корректировку sticky offsets.
+
+### Release Notes
+- Статус: `deployed`.
+- Деплой: выполнен после явной команды `DEPLOY NOW` (push `main` -> Vercel auto deploy).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

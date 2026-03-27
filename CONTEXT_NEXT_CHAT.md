@@ -7,7 +7,7 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: 1c7f85c
+- Последний кодовый коммит: 413c9d2
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Цены — проверены, исправлены 3 нарушения матрицы  
@@ -101,6 +101,9 @@
   - уменьшены `stickyTop` оффсеты для mobile (`landscape: 84`, `portrait: 96`) в `NichesStack`;
   - синхронизирован `FinalFormSection` (`84/96`) для ровного поведения по всему стеку;
   - `npm run build` — OK.
+- 27.03.2026: деплой выполнен после команды `DEPLOY NOW`:
+  - commit: `413c9d2` (`feat(gazeta): optimize mobile compact layout, cards, and scroll handoff`);
+  - включает: mobile compact top (portrait/landscape), grid 2/4 cards, fixes 8410/8411, nested-scroll handoff, gap fix `209 -> 00`.
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 
