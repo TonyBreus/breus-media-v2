@@ -598,12 +598,10 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
     const stepSize = 1 / totalSteps;
     const start = index * stepSize;
 
-    // We split each step so the card STAYS still for 20% of the step, 
-    // ENTERS for 50%, and then STAYS for the remaining 30%.
-    // This allows the user to scroll through the internal contents (services grid) of the previous card
-    // before the new card slides over it.
-    const entryStart = start + stepSize * 0.2;
-    const entryEnd = start + stepSize * 0.7;
+    // Keep transition very short so section headers (00/01/...) snap to the top quickly
+    // instead of drifting across the screen while scrolling.
+    const entryStart = start + stepSize * 0.02;
+    const entryEnd = start + stepSize * 0.08;
 
     // y animation: translateY(100%) -> translateY(0)
     // Card 0 starts at 0. Others slide in during their specific entry window.
@@ -761,39 +759,6 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         onNavigateToStep(index + 1);
     };
 
-    const handleScrollControl = (direction: "up" | "down") => {
-        const el = contentScrollRef.current;
-        if (!el) return;
-
-        const maxScrollTop = Math.max(0, el.scrollHeight - el.clientHeight);
-        const step = isMobileLandscape ? 150 : 210;
-
-        if (direction === "up") {
-            if (el.scrollTop > 2) {
-                el.scrollTo({
-                    top: Math.max(0, el.scrollTop - step),
-                    behavior: "smooth",
-                });
-                syncInnerScrollProgress(el);
-                return;
-            }
-
-            handlePreviousIndustryClick();
-            return;
-        }
-
-        if (el.scrollTop < maxScrollTop - 2) {
-            el.scrollTo({
-                top: Math.min(maxScrollTop, el.scrollTop + step),
-                behavior: "smooth",
-            });
-            syncInnerScrollProgress(el);
-            return;
-        }
-
-        handleNextIndustryClick();
-    };
-
     return (
         <motion.div
             id={`niche-step-${niche.id}`}
@@ -837,28 +802,6 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                     </div>
                 </MaybeDebugWrapper>
 
-                {isMobileCompactTop && (
-                    <div className="absolute left-1 top-1/2 z-[72] -translate-y-1/2">
-                        <div className="flex flex-col items-center gap-2 rounded-full border border-white/25 bg-black/70 px-1.5 py-2 shadow-[0_10px_24px_rgba(0,0,0,0.35)] backdrop-blur-md">
-                            <button
-                                type="button"
-                                onClick={() => handleScrollControl("up")}
-                                className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 bg-zinc-900/80 text-white hover:border-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors"
-                                aria-label={`Прокрутить вверх в секции ${niche.id} ${niche.title}`}
-                            >
-                                <ChevronUp className="h-4 w-4" />
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => handleScrollControl("down")}
-                                className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 bg-zinc-900/80 text-white hover:border-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors"
-                                aria-label={`Прокрутить вниз в секции ${niche.id} ${niche.title}`}
-                            >
-                                <ChevronDown className="h-4 w-4" />
-                            </button>
-                        </div>
-                    </div>
-                )}
                 {showTopBackButton && prevStep && (
                     <div className={`absolute ${topStaticNavOffsetClassName} left-0 right-0 z-[73] flex justify-center`}>
                         <button
@@ -1494,6 +1437,8 @@ export function NichesStack() {
     const containerRef = useRef<HTMLDivElement>(null);
     const isMobileLandscape = useMobileLandscape();
     const isMobilePortrait = useMobilePortrait();
+    const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
+    const [activeStepIndex, setActiveStepIndex] = useState(0);
     const stickyTopPx = isMobileLandscape
         ? LANDSCAPE_STICKY_TOP_PX
         : isMobilePortrait
@@ -1506,6 +1451,17 @@ export function NichesStack() {
         target: containerRef,
         offset: ["start start", "end end"]
     });
+
+    const getActiveStepIndex = () => {
+        if (typeof window === "undefined") return 0;
+        const containerEl = containerRef.current;
+        if (!containerEl) return 0;
+
+        const containerTop = containerEl.getBoundingClientRect().top + window.scrollY;
+        const relativeScroll = window.scrollY - containerTop;
+        const rawIndex = Math.round(relativeScroll / window.innerHeight);
+        return Math.max(0, Math.min(totalSteps - 1, rawIndex));
+    };
 
     const scrollToNicheStep = (targetIndex: number) => {
         if (typeof window === "undefined") return;
@@ -1543,8 +1499,91 @@ export function NichesStack() {
         }, 420);
     };
 
+    useEffect(() => {
+        if (!isMobileCompactTop) return;
+
+        const syncActiveStep = () => {
+            setActiveStepIndex(getActiveStepIndex());
+        };
+
+        syncActiveStep();
+        window.addEventListener("scroll", syncActiveStep, { passive: true });
+        window.addEventListener("resize", syncActiveStep);
+
+        return () => {
+            window.removeEventListener("scroll", syncActiveStep);
+            window.removeEventListener("resize", syncActiveStep);
+        };
+    }, [isMobileCompactTop, totalSteps]);
+
+    const handleFloatingScrollControl = (direction: "up" | "down") => {
+        const currentIndex = getActiveStepIndex();
+        const currentStep = stackStepNavItems[currentIndex];
+        if (!currentStep) return;
+
+        const currentStepEl = document.getElementById(`niche-step-${currentStep.id}`);
+        const innerScroller = currentStepEl?.querySelector(".custom-scrollbar") as HTMLDivElement | null;
+        const scrollStep = isMobileLandscape ? 150 : 210;
+
+        if (innerScroller) {
+            const maxScrollTop = Math.max(0, innerScroller.scrollHeight - innerScroller.clientHeight);
+
+            if (direction === "up" && innerScroller.scrollTop > 2) {
+                innerScroller.scrollTo({
+                    top: Math.max(0, innerScroller.scrollTop - scrollStep),
+                    behavior: "smooth",
+                });
+                return;
+            }
+
+            if (direction === "down" && innerScroller.scrollTop < maxScrollTop - 2) {
+                innerScroller.scrollTo({
+                    top: Math.min(maxScrollTop, innerScroller.scrollTop + scrollStep),
+                    behavior: "smooth",
+                });
+                return;
+            }
+        }
+
+        if (direction === "up" && currentIndex > 0) {
+            scrollToNicheStep(currentIndex - 1);
+            return;
+        }
+
+        if (direction === "down" && currentIndex < totalSteps - 1) {
+            scrollToNicheStep(currentIndex + 1);
+        }
+    };
+
     return (
         <div ref={containerRef} className="relative w-full bg-black" style={{ height: `${totalSteps * 100}vh` }}>
+            {isMobileCompactTop && (
+                <div className="fixed left-3 top-1/2 z-[200] -translate-y-1/2 pointer-events-auto">
+                    <div className="animate-pulse rounded-full border border-[#D4AF37]/45 p-1">
+                        <div className="flex flex-col items-center gap-2 rounded-full border border-white/25 bg-black/78 px-2 py-2 shadow-[0_14px_34px_rgba(0,0,0,0.42)] backdrop-blur-md">
+                            <button
+                                type="button"
+                                onClick={() => handleFloatingScrollControl("up")}
+                                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-zinc-900/85 text-white hover:border-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors"
+                                aria-label={`Прокрутить вверх. Текущий шаг ${stackStepNavItems[activeStepIndex]?.id ?? "00"}`}
+                            >
+                                <ChevronUp className="h-4 w-4" />
+                            </button>
+                            <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#D4AF37]">
+                                {stackStepNavItems[activeStepIndex]?.id ?? "00"}
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => handleFloatingScrollControl("down")}
+                                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-zinc-900/85 text-white hover:border-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors"
+                                aria-label={`Прокрутить вниз. Текущий шаг ${stackStepNavItems[activeStepIndex]?.id ?? "00"}`}
+                            >
+                                <ChevronDown className="h-4 w-4" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
             {niches.map((niche, index) => (
                 <Card
                     key={niche.id}
