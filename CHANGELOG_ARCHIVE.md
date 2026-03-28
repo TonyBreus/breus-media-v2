@@ -785,6 +785,27 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-28 (Gazeta Left-Center Control + Snap-In Deployed)
+### Session Summary
+- После команды `DEPLOY NOW` выкачен пакет UX-правок: перенос floating-control в левую зону и ускоренный snap строк секций.
+
+### Commits
+- `2715ebf` — feat(gazeta): move floating control left and speed up section snap
+
+### Technical Notes
+- В релиз вошли:
+  - fixed floating-control перенесён в левую часть экрана (по вертикальному центру),
+  - повышен `z-index` для надежного single-click поведения мышью,
+  - сокращено окно входа карточек, чтобы строки `00/01/...` быстро вставали в верхнюю sticky-позицию без длительного “проползания”.
+- Проверка перед релизом:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `deployed`.
+- Деплой: выполнен после явной команды `DEPLOY NOW` (push `main` -> Vercel auto deploy).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

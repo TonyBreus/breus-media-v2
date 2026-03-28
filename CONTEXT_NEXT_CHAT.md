@@ -175,6 +175,10 @@
   - повышен `z-index` floating-control, чтобы клики мышью срабатывали с первого раза даже над слоями `FAQ/Form`;
   - ускорен вход карточек в стек: строки `00/01/...` быстро “прилипают” к верху и больше не медленно проползают по экрану;
   - `npm run build` — OK.
+- 28.03.2026: деплой выполнен после команды `DEPLOY NOW`:
+  - commit: `2715ebf` (`feat(gazeta): move floating control left and speed up section snap`);
+  - включает: перенос floating-control в левую зону, усиление кликабельности на desktop (`z-index`), быстрый snap header-строк `00/01/...` к верху;
+  - статус: pushed в `main`, Vercel auto-deploy запущен.
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 
