@@ -806,6 +806,643 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-28 (Gazeta Mobile Horizontal Rail + 4-Way Joystick)
+### Session Summary
+- Для мобильной версии `/gazeta` карточки внутри секций переведены на горизонтальную прокрутку, а floating-control расширен до 4 направлений.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - в мобильном режиме включён horizontal rail карточек (`overflow-x-auto`, `snap-x`) вместо вертикального внутреннего скролла;
+  - карточкам добавлены мобильные rail-ширины (`w-[76vw]` portrait, `w-[44vw]` landscape) для свайпа слева-направо;
+  - добавлен атрибут `data-services-rail="true"` для точечного управления текущей лентой;
+  - floating-control обновлён с `↑/↓` до джойстика `↑ ↓ ← →`;
+  - `←/→` прокручивают rail активной секции, `↑/↓` сохраняют переходы по шагам вверх/вниз (и inner-scroll там, где применимо);
+  - вертикальный inner-scroll отключается только в мобильном режиме horizontal rail, desktop логика не изменена.
+- Проверка:
+  - `npm run build` — успешно.
+  - локал доступен по `http://127.0.0.1:3099/gazeta`.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-28 (Gazeta Mobile UX v2: Slim Vertical Control + Side Card Arrows)
+### Session Summary
+- По обратной связи убран 4-way floating joystick; мобильный UX переработан под тонкий вертикальный control и боковые стрелки прямо у карточек.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - floating-control:
+    - удалён формат `↑ ↓ ← →`,
+    - добавлен тонкий левый вертикальный control с отдельными `↑/↓` и линейными разделителями;
+  - карточки в mobile:
+    - сохранена горизонтальная rail-логика (`overflow-x`, `snap-x`),
+    - добавлены локальные кнопки `←/→` по бокам rails в каждой секции (эффект “выбора карточек”);
+    - пересобраны размеры карточек под видимость ~2 карточек в кадре;
+  - стек секций:
+    - добавлен mobile preview-offset к `stickyHeight`, чтобы внизу кадра оставалась видимой следующая строка секции (`00/01/02...`).
+- Проверка:
+  - `npm run build` — успешно.
+  - локал доступен по `http://127.0.0.1:3099/gazeta`.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-28 (Gazeta Section 00 Mobile Card Width Fix)
+### Session Summary
+- Исправлен mobile-баг секции `00` (аэросъёмка), где карточки сжимались и отображались почти все сразу вместо двух.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - ширина мобильной карточки закреплена на уровне `article` (`servicePageParityCardClassName`), а не через debug-wrapper;
+  - это выровняло поведение секции `00` с остальными секциями независимо от debug-обёртки;
+  - карточки в mobile теперь следуют целевому формату: ~2 карточки в кадре + горизонтальное перелистывание.
+- Проверка:
+  - `npm run build` — успешно.
+  - локал доступен по `http://127.0.0.1:3099/gazeta`.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-28 (Gazeta Mobile Width Parity v2 + Aerial Mid-Zone Rail)
+### Session Summary
+- После дополнительной проверки исправлена системная причина разной ширины карточек между `00` и `01..08`; для `00` добавлено смещение rail к средней зоне экрана.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - `MaybeDebugWrapper`:
+    - при `enabled=false` и `className` теперь возвращает `<div className={className}>...</div>` вместо `fragment`, чтобы не терять layout-классы;
+  - карточки mobile rails:
+    - ширина карточки снова задаётся на wrapper (`cardGridClassName`), а `article` получает `w-full`;
+    - это выравнивает поведение всех секций, включая `00`, в формат ~2 карточки в кадре;
+  - секция `00`:
+    - добавлен mobile offset (`mt-[8vh]` landscape / `mt-[12vh]` portrait) для расположения rails ближе к середине экрана.
+- Проверка:
+  - `npm run build` — успешно.
+  - `curl -I http://192.168.1.7:3099/gazeta` — `200 OK`.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 00: Remove Intro Copy + Tighten Text/Card Spacing)
+### Session Summary
+- По запросу удалён лишний текст в секции `0.0` и уменьшен вертикальный разрыв между текстом и карточками для выравнивания с `0.1/0.2`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - в `niches[00].detailedContent` удалено поле `introNote` с фразой про “10 форматов съёмки”;
+  - в `Card` для aerial секции уменьшен отступ `headingBlockClassName` (`mb-*`) до более компактного значения;
+  - удалён дополнительный `mobileAerialRailOffsetClassName` из контейнера rail, который создавал лишний зазор.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta Mobile Experiment A/B/C/D by Section)
+### Session Summary
+- Добавлен мобильный эксперимент из 4 разных layout-вариантов карточек по секциям `00..03` в одном файле, без изменения desktop поведения.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен тип и маппинг вариантов:
+    - `MobileCardsLayoutVariant`
+    - `mobileCardsVariantByNicheId = {00:A, 01:B, 02:C, 03:D}`;
+  - mobile-only switch в `Card`:
+    - variant booleans (`isVariantA/B/C/D`),
+    - variant-specific rail container classes,
+    - variant-specific card width presets, image heights, description density;
+  - variant `D`:
+    - добавлен text-only orientation block (карточек N + список названий + swipe cue);
+  - left vertical floating control:
+    - отключён в mobile для эксперимента (desktop untouched).
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta Mobile Winner Standardized Globally)
+### Session Summary
+- Победивший mobile layout (ранее на секции `01->02`) применён как единый стандарт для всех индустриальных секций `/gazeta`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - удалены variant-specific A/C/D ветки из mobile rails/card presentation;
+  - mobile rails/card sizing/spacing унифицированы по паттерну `01->02`:
+    - 2 видимые карточки + partial third cue,
+    - horizontal rail + snap, боковые стрелки сохранены;
+  - desktop ветка не менялась;
+  - links/titles/prices/CTAs/service mapping/order не менялись;
+  - left mobile floating vertical control остаётся скрытым.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta: Remove Duplicate Industry Headings Inside Sections)
+### Session Summary
+- Убраны дубли названий индустрий внутри блоков секций `/gazeta`, которые повторяли строку `00/01/02...`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлена нормализация заголовков (`normalizeIndustryHeading`) и проверка дубля (`isDuplicateIndustryHeading`);
+  - внутренний `h2` (`niche.detailedContent.heading`) рендерится только если не дублирует `niche.title`;
+  - покрыт кейс с префиксом `УСЛУГИ` и различием регистра/`ё` (`УСЛУГИ АЭРОСЪЁМКИ` == `АЭРОСЪЁМКА`).
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 00: Hide Eyebrow + Inner Heading)
+### Session Summary
+- По запросу скрыты две текстовые строки внутри секции `00` (`Аэросъёмка`), которые занимали лишнее место.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен флаг `shouldRenderDetailedEyebrow` и условие на `shouldRenderDetailedHeading` для секции `00`;
+  - в `00` не рендерятся:
+    - `Тбилиси • Батуми • Вся Грузия` (`eyebrow`),
+    - `УСЛУГИ АЭРОСЪЁМКИ` (`detailedContent.heading`);
+  - секции `01..08` не затронуты.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta Mobile: Raise Bottom Next Button Above Browser UI)
+### Session Summary
+- Нижняя кнопка `Далее` на мобильной версии поднята выше, чтобы не перекрываться нижней навигацией браузера.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен `bottomStaticNavOffsetClassName` для mobile `portrait/landscape`;
+  - нижний отступ теперь учитывает `safe area`:
+    - portrait: `bottom-[calc(env(safe-area-inset-bottom,0px)+6.25rem)]`,
+    - landscape: `bottom-[calc(env(safe-area-inset-bottom,0px)+4.25rem)]`;
+  - блок кнопки `Далее` переведён на новый offset-класс.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta Mobile: Static Global Next Button + Lifted Inner Content)
+### Session Summary
+- Кнопка `Далее` стабилизирована в одной позиции (fixed), а контент внутри mobile-подстраниц поднят выше, чтобы карточки не конфликтовали с нижней навигацией.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - в `Card` удалена локальная нижняя `Далее` (absolute внутри каждой секции);
+  - на уровне `NichesStack` добавлена единая `fixed` mobile-кнопка:
+    - берёт `activeStepIndex`,
+    - показывает `activeStepIndex + 1`,
+    - вызывает `scrollToNicheStep(activeStepIndex + 1)`;
+  - для мобильного контента добавлен подъём отступов в подстраницах:
+    - landscape: `pt-14 pb-14`,
+    - portrait: `pt-16 pb-20`;
+  - это поднимает текст и rails карточек выше и уменьшает пересечение с зоной кнопки.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta Mobile Nav: Unique Button IDs)
+### Session Summary
+- Для удобной коммуникации и точечной отладки добавлены уникальные номера для кнопок `Назад/Далее`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен helper `getBackButtonUiId(nicheId)`:
+    - back-кнопки получают `data-ui-id` в формате `91{nicheId}` (`9100..9108`);
+  - добавлена константа `GLOBAL_NEXT_BUTTON_UI_ID = "9200"`:
+    - глобальная fixed-кнопка `Далее` получает `data-ui-id="9200"`;
+  - для обеих кнопок добавлены `data-ui-name`:
+    - `GAZETA_BACK_<id>`,
+    - `GAZETA_NEXT_9200`.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta Mobile Nav: Visible #ID Badges on Back/Next Buttons)
+### Session Summary
+- Технические номера кнопок сделаны видимыми на UI: добавлены ярлычки `#xxxx` прямо на кнопки `Назад` и `Далее`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен компонент `UiIdBadge`;
+  - для верхней кнопки `Назад` в секциях добавлен видимый бейдж `#91xx`;
+  - для глобальной фиксированной кнопки `Далее` добавлен видимый бейдж `#9200`;
+  - `data-ui-id` и `data-ui-name` сохранены для стабильной адресации.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 01 Mobile Spacing Tune + 9200 Bottom Reposition)
+### Session Summary
+- На примере `01 Недвижимость` подтянуты вертикальные отступы (верхний блок и карточки), а кнопка `#9200` опущена ближе к нижней safe-area линии.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен флаг `isRealEstateScreen` (`niche.id === "01"`);
+  - для `01` уменьшены верхние/межблочные отступы:
+    - `headingBlockClassName` для `01`: более компактные `mt/mb`,
+    - `mobileContentPaddingOverrideClassName` для `01`: `pt-10/pt-12` (landscape/portrait),
+    - `mobileRailShellClassName` для `01`: лёгкий отрицательный `margin-top` для приближения карточек к тексту;
+  - позиция глобальной fixed-кнопки `#9200`:
+    - landscape: `bottom-[calc(env(safe-area-inset-bottom,0px)+0.9rem)]`,
+    - portrait: `bottom-[calc(env(safe-area-inset-bottom,0px)+1.15rem)]`.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 01: Card Prototype for 8412/8413 + 2-Card Rail)
+### Session Summary
+- В секции `01` реализован тестовый компактный шаблон карточек на `#8412` и `#8413` с целью унификации высоты, плюс rail настроен на показ ровно двух карточек без видимого хвоста третьей.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен helper `clampLinesStyle` для строгого line-clamp по месту;
+  - только для `niche.id === "01"`:
+    - rail container/shell перестроены под 2 карточки в viewport (без partial 3rd);
+    - боковые стрелки сдвинуты в боковые зоны и выше по вертикали, чтобы не перекрывать текст;
+  - только для карточек `serviceId === 8412 || 8413`:
+    - уменьшены image/body/button размеры;
+    - заголовок/категория/описание ограничены по строкам (2/3/3);
+    - для `#8412` добавлен принудительный split title на 2 строки;
+    - price-line упакована в компактный жёлтый chip вместо длинного пустого блока;
+    - для `#8413` добавлен отдельный контрастный визуальный акцент (box-shadow).
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 01: Edge Arrows + Wider Cards + 2-Line Yellow Chips)
+### Session Summary
+- Для теста в секции `01` стрелки вынесены ближе к краям, карточки слегка расширены, а жёлтые блоки у `#8412/#8413` ужаты до 2 строк.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - mobile rail для `01`:
+    - уменьшены боковые отступы shell (`px-3/px-4`) и gap (`gap-1.5`) для расширения карточек;
+    - формула ширины карточки для `01` обновлена: `calc((100% - 0.375rem) / 2)`;
+    - стрелки сдвинуты к краям (`-left-3`, `-right-3`);
+  - стрелки `01`:
+    - заменены на `motion.button` с цикличной анимацией `opacity/scale`;
+  - карточки `#8412/#8413`:
+    - price-chip теперь поддерживает перенос в 2 строки (`replace(" · ", "\n") + clampLinesStyle(2)`).
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 01: Extra Edge Shift for Arrows + Remove “Context” in Chip)
+### Session Summary
+- По дополнительному запросу стрелки раздвинуты ещё дальше к краям, а в жёлтом chip удалено слово `Context`, чтобы формат был аккуратнее в 2 строки.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - для `01`:
+    - arrow offsets обновлены:
+      - portrait: `-left-6`, `-right-6`,
+      - landscape: `-left-5`, `-right-5`;
+  - для prototype-карточек `#8412/#8413`:
+    - в price-string удаляется `GEO Context` -> `GEO`,
+    - удаляется `контекст` (если встречается),
+    - затем применяется перенос в 2-строчный chip.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 01: Increase 8412 Inner Scale to Use Bottom Space)
+### Session Summary
+- Для карточки `#8412` увеличен внутренний scale (текст и блоки), чтобы карточка стала чуть выше и использовала нижний запас пространства.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - только для `serviceId === 8412`:
+    - увеличены image-height значения;
+    - увеличены text-size и spacing для title/category/description;
+    - увеличен размер price-chip и CTA-кнопок (`Подробнее` / `Заказать`).
+  - `#8413` этим изменением не затронута.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 01: Reduce 8412 Yellow Chip by ~15%)
+### Session Summary
+- По запросу слегка уменьшен жёлтый блок в `#8412`, чтобы чуть сократить высоту карточки снизу при сохранении читаемости.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - только для `serviceId === 8412` в `servicePagePriceClassName`:
+    - уменьшены paddings (`px/py`),
+    - уменьшен font-size (`portrait` и `landscape`),
+    - уменьшен `mb`;
+  - визуальная цель: примерно `-15%` размера chip и около `-3%` общей высоты карточки снизу.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 01: Price Chip Rule Locked to Phone-Only for 8412/8413)
+### Session Summary
+- Зафиксировано правило: двухстрочный price-chip для `#8412/#8413` действует только на телефонах; планшет/desktop — всегда однострочно.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен локальный viewport-detector в `Card`:
+    - `isPhoneViewport = (innerWidth <= 640) || (innerHeight <= 520)`;
+  - для prototype-карточек `#8412/#8413`:
+    - перенос ` · ` в `\n` и `clampLinesStyle(2)` включаются только при `isPhoneViewport`;
+    - на non-phone принудительно `whitespace-nowrap` и однострочный chip.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 01: 8412 Price Block Back to Thin-Line Style)
+### Session Summary
+- Для карточки `#8412` price-блок возвращён к стилю “тонкая линия + жёлтый текст” без жёлтой плашки.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - только для `serviceId === 8412` обновлён `servicePagePriceClassName`:
+    - удалены фон и рамка chip-стиля,
+    - добавлен `border-t border-[#2a2a2a]`,
+    - оставлен жёлтый текст (`#F2C94C`) в price-зоне;
+  - `#8413` не изменялась этим шагом.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-29 (Gazeta 01: Unified 8410..8415 Card System)
+### Session Summary
+- По запросу карточки `8410..8415` в `01 Недвижимость` унифицированы по внешнему виду и высоте; в `8410/8411` добавлена нижняя price-линия как у `8412`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - введён единый флаг `isRealEstateReferenceCard` для диапазона `8410..8415`;
+  - все карточки в диапазоне получили общие размеры (включая фиксированную высоту на mobile, единые text/cta размеры);
+  - `isRealEstatePriceEnabledCard` применяется для `8410..8414`:
+    - тонкая разделительная линия сверху + жёлтый price-текст без chip-фона;
+  - для `8415` (`Все услуги`) добавлен невидимый spacer в зоне price-линии для равной высоты;
+  - сохранено правило переноса price-текста:
+    - phone: 2 строки,
+    - tablet/desktop: 1 строка.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-30 (Gazeta 01: Typography Fill Test for 8412/8413)
+### Session Summary
+- Для снижения тёмного пустого промежутка перед price-блоком усилена типографика верхних 3 блоков отдельно в `#8412` и `#8413`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлены точечные условия:
+    - `isRealEstateCard8412` (`serviceId === 8412`),
+    - `isRealEstateCard8413` (`serviceId === 8413`);
+  - для `#8412`:
+    - title/category/description увеличены примерно на ~15%;
+  - для `#8413`:
+    - title/category/description увеличены примерно на ~10%;
+  - внешний размер карточек не менялся; изменена только внутренняя плотность текста.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-30 (Gazeta 01: +10% More for 8412 and No Description Truncation for 8412/8413)
+### Session Summary
+- По уточнению увеличена типографика в `#8412` ещё на ~10%, а обрезание 3-го блока в `#8412/#8413` отключено.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен флаг `shouldUnclampDescription` для `8412/8413`;
+  - `#8412`: дополнительно увеличены размеры:
+    - title (`text-[16.5px] sm:text-[18.5px]`),
+    - category (`text-[11.5px]`),
+    - description (`text-[13.5px]`);
+  - `#8412/#8413`: снят `clampLinesStyle(3)` с description, поэтому текст не обрезается `...`.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-30 (Gazeta 01: 8412 Description -10% to Fix Cropped Feel)
+### Session Summary
+- По новому фидбеку уменьшен 3-й текстовый блок в карточке `#8412`, чтобы убрать эффект “обрезания” и выровнять визуальный размер с соседними карточками.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - для `isRealEstateCard8412` обновлён класс описания:
+    - `text-[13.5px]` → `text-[12px]` (примерно -10%),
+    - `leading-[1.25]` → `leading-[1.22]`.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-30 (Gazeta 01: Unified 8410..8415 to 8412 Typography + Common Bottom Spacer)
+### Session Summary
+- По запросу все карточки в подстранице `01 Недвижимость` (`8410..8415`) приведены к единому виду по образцу `#8412`: одинаковая типографика, одинаковая карточка и единый нижний отступ.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - удалены отдельные исключения по `#8412/#8413` для title/category/description;
+  - для всех `isRealEstateReferenceCard` (`8410..8415`) установлены единые размеры:
+    - title: `text-[16.5px] sm:text-[18.5px]`,
+    - category: `text-[11.5px]`,
+    - description: `text-[12px] leading-[1.22]`;
+  - для описания у `8410..8415` применён единый clamp (`3` строки), чтобы карточки держали одинаковый ритм;
+  - добавлен общий `servicePageBottomSpacerClassName` (чёрный нижний отступ) для всех `8410..8415`, чтобы нивелировать разницу длины текста и сохранить одинаковый визуальный размер карточек.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

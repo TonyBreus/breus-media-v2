@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { DebugWrapper } from "../debug/DebugWrapper";
 import { motion, useScroll, useTransform, AnimatePresence, MotionValue } from "framer-motion";
-import { Send, MessageCircle, ArrowUpRight, ArrowDown, ChevronUp, ChevronDown } from "lucide-react";
+import { Send, MessageCircle, ArrowUpRight, ArrowDown, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { gazetaDetailRoutes, gazetaNicheLandingRoutes } from "@/constants/gazetaRoutes";
 import { l2DirectionConfigs } from "@/constants/l2DirectionConfigs";
@@ -41,7 +41,6 @@ const niches = [
             eyebrow: "Тбилиси • Батуми • Вся Грузия",
             heading: "УСЛУГИ АЭРОСЪЁМКИ",
             subheading: "Комплексные решения аэросъёмки для бизнеса и частных лиц. Тбилиси, Батуми и вся Грузия.",
-            introNote: "10 форматов съёмки: продажи, мониторинг, inspection, hospitality, туризм и events.",
             services: [
                 {
                     title: "Недвижимость",
@@ -309,6 +308,8 @@ const stackStepNavItems: StackStepNavItem[] = [
 const DEFAULT_STICKY_TOP_PX = 184;
 const PORTRAIT_STICKY_TOP_PX = 104;
 const LANDSCAPE_STICKY_TOP_PX = 84;
+const PORTRAIT_STACK_PREVIEW_PX = 28;
+const LANDSCAPE_STACK_PREVIEW_PX = 22;
 
 type ServiceItem = {
     slug?: string;
@@ -441,6 +442,9 @@ const MaybeDebugWrapper = ({
     children: React.ReactNode;
 }) => {
     if (!enabled) {
+        if (className) {
+            return <div className={className}>{children}</div>;
+        }
         return <>{children}</>;
     }
 
@@ -576,18 +580,59 @@ const isExternalHref = (href: string) =>
     href.startsWith("mailto:") ||
     href.startsWith("tel:");
 
+const normalizeIndustryHeading = (value?: string) =>
+    (value ?? "")
+        .toLowerCase()
+        .replace(/ё/g, "е")
+        .replace(/^услуги\s+/u, "")
+        .replace(/\s+/g, " ")
+        .replace(/[^a-zа-я0-9 ]/gi, "")
+        .trim();
+
+const isDuplicateIndustryHeading = (niche: NicheItem) => {
+    const heading = normalizeIndustryHeading(niche.detailedContent?.heading);
+    const title = normalizeIndustryHeading(niche.title);
+
+    if (!heading || !title) return false;
+    return heading === title;
+};
+
+const getBackButtonUiId = (nicheId: string) => `91${nicheId.padStart(2, "0")}`;
+const GLOBAL_NEXT_BUTTON_UI_ID = "9200";
+
+const UiIdBadge = ({ id }: { id: string }) => (
+    <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-2 -left-2 rounded-br bg-red-500 px-1.5 py-1 text-[10px] leading-none font-bold text-white shadow-md border-r border-b border-red-700 z-[240]"
+    >
+        #{id}
+    </span>
+);
+
+const clampLinesStyle = (lines: number): React.CSSProperties => ({
+    display: "-webkit-box",
+    WebkitLineClamp: lines,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+});
+
 const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeight, isMobileLandscape, isMobilePortrait, onNavigateToStep }: StackCardProps) => {
     const contentScrollRef = useRef<HTMLDivElement | null>(null);
+    const servicesRailRef = useRef<HTMLDivElement | null>(null);
     const lastTouchYRef = useRef<number | null>(null);
     const [innerScrollProgress, setInnerScrollProgress] = useState(0);
+    const [isPhoneViewport, setIsPhoneViewport] = useState(false);
     const isAerialScreen = niche.id === "00";
     const isAerialCompactScreen = niche.id === "00";
+    const isRealEstateScreen = niche.id === "01";
     const isCompactNicheScreen = niche.id !== "00";
     const showDebugOverlays = !isAerialScreen;
     const screenLink = gazetaNicheLandingRoutes[niche.id];
     const allServicesCard = buildAllServicesCard(niche);
     const sourceServices = canonicalServicesByNicheId[niche.id] ?? niche.detailedContent?.services ?? [];
     const limitedServices = sourceServices.slice(0, 5);
+    const shouldRenderDetailedHeading = niche.id !== "00" && !isDuplicateIndustryHeading(niche);
+    const shouldRenderDetailedEyebrow = niche.id !== "00";
     const services = niche.detailedContent
         ? [
             ...limitedServices,
@@ -629,7 +674,9 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         ? "min-h-full flex flex-col max-w-[1500px] mx-auto w-full pb-2"
         : "min-h-full flex flex-col justify-center max-w-[1500px] mx-auto w-full pb-10";
     const headingBlockClassName = isAerialCompactScreen
-        ? "max-w-4xl mb-10 md:mb-14 mt-4 md:mt-0 xl:mb-3"
+        ? "max-w-4xl mb-4 md:mb-6 mt-4 md:mt-0 xl:mb-3"
+        : isRealEstateScreen
+        ? "max-w-4xl mb-2 md:mb-6 mt-1 md:mt-0 xl:mb-2"
         : isCompactNicheScreen
         ? "max-w-4xl mb-4 md:mb-6 mt-4 md:mt-0 xl:mb-3"
         : "max-w-4xl mb-10 md:mb-14 mt-4 md:mt-0";
@@ -655,8 +702,21 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         ? "grid-cols-4 gap-2 md:grid-cols-4"
         : `grid-cols-2 gap-2 sm:grid-cols-2 ${servicesGridClassName}`;
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
+    const mobileContentPaddingOverrideClassName = isRealEstateScreen
+        ? isMobileLandscape
+            ? "pt-10 pb-14"
+            : isMobilePortrait
+            ? "pt-12 pb-20"
+            : ""
+        : isMobileLandscape
+        ? "pt-14 pb-14"
+        : isMobilePortrait
+        ? "pt-16 pb-20"
+        : "";
+    const useMobileHorizontalServicesRail = isMobileCompactTop && Boolean(niche.detailedContent);
+    const shouldUseInnerVerticalScroll = !useMobileHorizontalServicesRail;
+    const showMobileRailArrows = useMobileHorizontalServicesRail && services.length > 1;
     const prevStep = index > 0 ? stackStepNavItems[index - 1] : null;
-    const nextStep = stackStepNavItems[index + 1] ?? null;
     const sectionHeaderClassName = isMobileLandscape
         ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold text-white z-20 absolute top-0 left-0 shadow-lg"
         : isMobilePortrait
@@ -667,8 +727,53 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
     const sectionBodyPaddingTopClassName = isMobileLandscape ? "pt-6" : isMobilePortrait ? "pt-8" : "pt-12";
     const sectionHeaderIndexClassName = isMobileCompactTop ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4";
     const showTopBackButton = isMobileCompactTop && Boolean(prevStep);
-    const showBottomNextButton = isMobileCompactTop && Boolean(nextStep);
+    const backButtonUiId = getBackButtonUiId(niche.id);
     const topStaticNavOffsetClassName = isMobileLandscape ? "top-7" : "top-9";
+    const mobileRailContainerClassName = useMobileHorizontalServicesRail
+        ? isRealEstateScreen
+            ? `services-horizontal-rail flex items-stretch gap-1.5 overflow-x-auto overscroll-x-contain px-0 pb-2 snap-x snap-mandatory touch-pan-x scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
+                isMobileLandscape ? "pt-1" : "pt-1.5"
+            }`
+            : `services-horizontal-rail -mx-2 flex items-stretch gap-2 overflow-x-auto overscroll-x-contain px-4 pb-2 snap-x snap-mandatory touch-pan-x scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
+                isMobileLandscape ? "pt-1" : "pt-2"
+            }`
+        : `grid ${mobileServicesGridClassName}`;
+    const mobileRailShellClassName = useMobileHorizontalServicesRail
+        ? `relative ${isRealEstateScreen && isMobileCompactTop ? (isMobileLandscape ? "-mt-1 px-3" : "-mt-2 px-4") : ""}`
+        : "";
+    const mobileRailArrowVerticalClassName =
+        isRealEstateScreen && isMobileCompactTop ? "top-[28%]" : "top-1/2";
+    const mobileRailLeftArrowOffsetClassName =
+        isRealEstateScreen && isMobileCompactTop
+            ? isMobileLandscape
+                ? "-left-5"
+                : "-left-6"
+            : "left-0";
+    const mobileRailRightArrowOffsetClassName =
+        isRealEstateScreen && isMobileCompactTop
+            ? isMobileLandscape
+                ? "-right-5"
+                : "-right-6"
+            : "right-0";
+    const shouldAnimateMobileRailArrows = isRealEstateScreen && isMobileCompactTop;
+
+    useEffect(() => {
+        const updateViewportKind = () => {
+            if (typeof window === "undefined") return;
+            const phoneLikeWidth = window.innerWidth <= 640;
+            const phoneLikeHeight = window.innerHeight <= 520;
+            setIsPhoneViewport(phoneLikeWidth || phoneLikeHeight);
+        };
+
+        updateViewportKind();
+        window.addEventListener("resize", updateViewportKind);
+        window.addEventListener("orientationchange", updateViewportKind);
+
+        return () => {
+            window.removeEventListener("resize", updateViewportKind);
+            window.removeEventListener("orientationchange", updateViewportKind);
+        };
+    }, []);
 
     const syncInnerScrollProgress = (el: HTMLDivElement) => {
         const maxScrollTop = Math.max(0, el.scrollHeight - el.clientHeight);
@@ -686,7 +791,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
             preventDefault: () => void;
         }
     ) => {
-        if (!isMobileCompactTop) return;
+        if (!isMobileCompactTop || !shouldUseInnerVerticalScroll) return;
 
         const el = contentScrollRef.current;
         if (!el) return;
@@ -719,12 +824,12 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
     };
 
     const handleInnerTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
-        if (!isMobileCompactTop) return;
+        if (!isMobileCompactTop || !shouldUseInnerVerticalScroll) return;
         lastTouchYRef.current = event.touches[0]?.clientY ?? null;
     };
 
     const handleInnerTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
-        if (!isMobileCompactTop) return;
+        if (!isMobileCompactTop || !shouldUseInnerVerticalScroll) return;
 
         const touchY = event.touches[0]?.clientY;
         if (typeof touchY !== "number") return;
@@ -746,17 +851,32 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
     useEffect(() => {
         const el = contentScrollRef.current;
         if (!el) return;
+        if (!shouldUseInnerVerticalScroll) {
+            setInnerScrollProgress(1);
+            return;
+        }
         syncInnerScrollProgress(el);
-    }, [niche.id, isMobileCompactTop]);
+    }, [niche.id, isMobileCompactTop, shouldUseInnerVerticalScroll]);
 
     const handlePreviousIndustryClick = () => {
         if (!prevStep) return;
         onNavigateToStep(index - 1);
     };
 
-    const handleNextIndustryClick = () => {
-        if (!nextStep) return;
-        onNavigateToStep(index + 1);
+    const handleCardRailScroll = (direction: "left" | "right") => {
+        const rail = servicesRailRef.current;
+        if (!rail) return;
+
+        const maxScrollLeft = Math.max(0, rail.scrollWidth - rail.clientWidth);
+        if (maxScrollLeft <= 0) return;
+
+        const step = Math.max(140, Math.round(rail.clientWidth * (isMobileLandscape ? 0.56 : 0.78)));
+        const delta = direction === "left" ? -step : step;
+        const targetLeft = Math.max(0, Math.min(maxScrollLeft, rail.scrollLeft + delta));
+        rail.scrollTo({
+            left: targetLeft,
+            behavior: "smooth",
+        });
     };
 
     return (
@@ -804,35 +924,24 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
 
                 {showTopBackButton && prevStep && (
                     <div className={`absolute ${topStaticNavOffsetClassName} left-0 right-0 z-[73] flex justify-center`}>
-                        <button
-                            type="button"
-                            onClick={handlePreviousIndustryClick}
-                            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
-                            aria-label={`Перейти к секции ${prevStep.id} ${prevStep.title}`}
-                        >
-                            <ArrowDown className="h-3 w-3 -rotate-180 text-[#D4AF37]" />
-                            <span className="text-white/60">Назад</span>
-                            <span className="text-[#D4AF37]">{prevStep.id}</span>
-                            <span className="text-white">{prevStep.title}</span>
-                        </button>
+                        <div className="relative inline-flex">
+                            <UiIdBadge id={backButtonUiId} />
+                            <button
+                                type="button"
+                                onClick={handlePreviousIndustryClick}
+                                data-ui-id={backButtonUiId}
+                                data-ui-name={`GAZETA_BACK_${backButtonUiId}`}
+                                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
+                                aria-label={`Перейти к секции ${prevStep.id} ${prevStep.title}`}
+                            >
+                                <ArrowDown className="h-3 w-3 -rotate-180 text-[#D4AF37]" />
+                                <span className="text-white/60">Назад</span>
+                                <span className="text-[#D4AF37]">{prevStep.id}</span>
+                                <span className="text-white">{prevStep.title}</span>
+                            </button>
+                        </div>
                     </div>
                 )}
-                {showBottomNextButton && nextStep && (
-                    <div className="absolute bottom-2 left-0 right-0 z-[73] flex justify-center">
-                        <button
-                            type="button"
-                            onClick={handleNextIndustryClick}
-                            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
-                            aria-label={`Перейти к секции ${nextStep.id} ${nextStep.title}`}
-                        >
-                            <span className="text-white/60">Далее</span>
-                            <span className="text-[#D4AF37]">{nextStep.id}</span>
-                            <span className="text-white">{nextStep.title}</span>
-                            <ArrowDown className="h-3 w-3 text-[#D4AF37]" />
-                        </button>
-                    </div>
-                )}
-
                 {niche.detailedContent ? (
                     <div
                         ref={contentScrollRef}
@@ -841,9 +950,13 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                         onTouchStart={handleInnerTouchStart}
                         onTouchMove={handleInnerTouchMove}
                         onTouchEnd={handleInnerTouchEnd}
-                        className={`absolute inset-0 z-10 text-white overflow-y-auto overscroll-y-contain touch-pan-y custom-scrollbar ${contentPaddingClassName}`}
+                        className={`absolute inset-0 z-10 text-white ${
+                            shouldUseInnerVerticalScroll
+                                ? "overflow-y-auto overscroll-y-contain touch-pan-y custom-scrollbar"
+                                : "overflow-y-hidden touch-pan-y"
+                        } ${contentPaddingClassName} ${mobileContentPaddingOverrideClassName}`}
                     >
-                        {isMobileCompactTop && (
+                        {isMobileCompactTop && shouldUseInnerVerticalScroll && (
                             <div className="pointer-events-none absolute right-1 top-12 bottom-6 z-30 flex items-end">
                                 <div className="relative h-full w-[2px] rounded-full bg-white/15 overflow-hidden">
                                     <div
@@ -856,14 +969,16 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                         <MaybeDebugWrapper enabled={showDebugOverlays} id={index === 0 ? 902 : 8300 + index} label={`Detailed Layout: ${niche.title}`}>
                             <div className={contentWrapperClassName}>
                                 <div className={headingBlockClassName}>
-                                    {niche.detailedContent.eyebrow && (
+                                    {shouldRenderDetailedEyebrow && niche.detailedContent.eyebrow && (
                                         <p className="mb-3 text-[11px] md:text-xs uppercase tracking-[0.32em] text-[#D4AF37] font-semibold">
                                             {niche.detailedContent.eyebrow}
                                         </p>
                                     )}
-                                    <h2 className={headingClassName}>
-                                        {niche.detailedContent.heading}
-                                    </h2>
+                                    {shouldRenderDetailedHeading && (
+                                        <h2 className={headingClassName}>
+                                            {niche.detailedContent.heading}
+                                        </h2>
+                                    )}
                                     <p className={subheadingClassName}>
                                         {niche.detailedContent.subheading}
                                     </p>
@@ -874,7 +989,34 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                     )}
                                 </div>
 
-                                <div className={`grid ${mobileServicesGridClassName}`}>
+                                <div className={mobileRailShellClassName}>
+                                    {showMobileRailArrows && (
+                                        <motion.button
+                                            type="button"
+                                            onClick={() => handleCardRailScroll("left")}
+                                            animate={
+                                                shouldAnimateMobileRailArrows
+                                                    ? { opacity: [0.4, 0.95, 0.5], scale: [0.94, 1.02, 0.94] }
+                                                    : undefined
+                                            }
+                                            transition={
+                                                shouldAnimateMobileRailArrows
+                                                    ? { duration: 1.9, repeat: Infinity, ease: "easeInOut" }
+                                                    : undefined
+                                            }
+                                            className={`absolute ${mobileRailLeftArrowOffsetClassName} ${mobileRailArrowVerticalClassName} z-20 -translate-y-1/2 rounded-full border border-white/25 bg-black/68 text-white backdrop-blur-sm transition-colors hover:border-[#D4AF37]/75 hover:text-[#D4AF37] ${
+                                                isMobileLandscape ? "h-7 w-7" : "h-8 w-8"
+                                            }`}
+                                            aria-label={`Прокрутить карточки ${niche.id} влево`}
+                                        >
+                                            <ChevronLeft className={`mx-auto ${isMobileLandscape ? "h-3.5 w-3.5" : "h-4 w-4"}`} />
+                                        </motion.button>
+                                    )}
+                                    <div
+                                        ref={useMobileHorizontalServicesRail ? servicesRailRef : undefined}
+                                        data-services-rail={useMobileHorizontalServicesRail ? "true" : undefined}
+                                        className={mobileRailContainerClassName}
+                                    >
                                     {services.map((svc: ServiceItem, i: number) => {
                                         // Start unique IDs from 8400+ range, isolated by index (e.g., 8410, 8420)
                                         const serviceId = 8400 + (index * 10) + i;
@@ -890,7 +1032,14 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         const cardEyebrow = svc.eyebrow || suggestedCardDetails.eyebrow || niche.title;
                                         const cardMeta = svc.meta || suggestedCardDetails.meta || (isAllServicesCard ? "Вся страница направления" : "Форматы и детали");
                                         const cardCta = svc.cta || suggestedCardDetails.cta || (isAllServicesCard ? "Открыть страницу" : "Подробнее");
-                                        const cardGridClassName = "";
+                                        const isRealEstateReferenceCard = isRealEstateScreen && serviceId >= 8410 && serviceId <= 8415;
+                                        const isRealEstatePriceEnabledCard = isRealEstateReferenceCard && !isAllServicesCard;
+                                        const shouldUseTwoLinePrice = isRealEstatePriceEnabledCard && isPhoneViewport;
+                                        const cardGridClassName = useMobileHorizontalServicesRail
+                                            ? isRealEstateScreen
+                                                ? "basis-[calc((100%-0.375rem)/2)] min-w-[calc((100%-0.375rem)/2)] max-w-[calc((100%-0.375rem)/2)] shrink-0 snap-start"
+                                                : "basis-[calc(50%-0.25rem)] min-w-[calc(50%-0.25rem)] max-w-[calc(50%-0.25rem)] shrink-0 snap-start"
+                                            : "";
                                         const cardSurfaceClassName = isCompactAllServicesCard || isAerialAllServicesCard
                                             ? "bg-[linear-gradient(135deg,rgba(16,16,18,0.94),rgba(28,28,32,0.9))] shadow-[0_26px_60px_rgba(0,0,0,0.38)]"
                                             : "bg-zinc-950/72 shadow-[0_20px_50px_rgba(0,0,0,0.32)]";
@@ -948,34 +1097,85 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                                 </div>
                                             </>
                                         );
-                                        const servicePageParityCardClassName = `service-card-target scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col h-full ${svc.featured ? 'gold-glow border-[#D4A017]/50' : ''}`;
-                                        const servicePageParityCardStyle = svc.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : {};
-                                        const hideHighlightedPriceLine = serviceId === 8410 || serviceId === 8411;
-                                        const servicePageImageHeightClassName = isMobileLandscape
+                                        const unifiedRealEstateCardHeightClassName =
+                                            isRealEstateReferenceCard && isMobileCompactTop
+                                                ? isMobileLandscape
+                                                    ? "h-[248px]"
+                                                    : "h-[352px]"
+                                                : "h-full";
+                                        const servicePageParityCardClassName = `service-card-target w-full scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col ${unifiedRealEstateCardHeightClassName} ${svc.featured ? 'gold-glow border-[#D4A017]/50' : ''}`;
+                                        const servicePageParityCardStyle = svc.featured
+                                            ? { boxShadow: "0 0 20px rgba(212, 160, 23, 0.2)" }
+                                            : undefined;
+                                        const hideHighlightedPriceLine = false;
+                                        const servicePageImageHeightClassName = isMobileCompactTop
+                                            ? isMobileLandscape
+                                                ? isRealEstateReferenceCard
+                                                    ? "h-16"
+                                                    : "h-16"
+                                                : isRealEstateReferenceCard
+                                                ? "h-[82px]"
+                                                : "h-[88px]"
+                                            : isMobileLandscape
                                             ? "h-16"
                                             : "h-24 sm:h-36";
                                         const servicePageBodyClassName = isMobileLandscape
-                                            ? "px-2 pt-1.5 pb-1.5 flex-grow flex flex-col"
+                                            ? isRealEstateReferenceCard
+                                                ? "px-2 pt-2 pb-2 flex-grow flex flex-col"
+                                                : "px-2 pt-1.5 pb-1.5 flex-grow flex flex-col"
+                                            : isRealEstateReferenceCard
+                                            ? "px-2.5 pt-2.5 pb-2.5 sm:px-4 sm:pt-4 sm:pb-3.5 flex-grow flex flex-col"
                                             : "px-2.5 pt-2.5 pb-2.5 sm:px-4 sm:pt-4 sm:pb-3.5 flex-grow flex flex-col";
                                         const servicePageTitleClassName = isMobileLandscape
                                             ? `text-[11px] font-bold leading-tight mb-1 ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`
+                                            : isRealEstateReferenceCard
+                                            ? `text-[16.5px] sm:text-[18.5px] font-bold mb-1.5 leading-tight ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`
                                             : `text-sm sm:text-lg font-bold mb-1 ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`;
                                         const servicePageCategoryClassName = isMobileLandscape
                                             ? "text-[8px] text-gray-500 uppercase tracking-[0.12em] mb-1.5"
+                                            : isRealEstateReferenceCard
+                                            ? "text-[11.5px] text-gray-500 uppercase tracking-[0.11em] mb-1.5 leading-tight"
                                             : "text-[10px] text-gray-500 uppercase tracking-wider mb-2";
                                         const servicePageDescriptionClassName = isMobileLandscape
-                                            ? "text-[10px] text-gray-400 mb-2 leading-tight"
-                                            : "text-xs sm:text-sm text-gray-400 mb-3 leading-snug";
+                                            ? "text-[10px] text-gray-400 mb-2 leading-tight max-h-[3.8em] overflow-hidden"
+                                            : isRealEstateReferenceCard
+                                            ? "text-[12px] text-gray-300 mb-2 leading-[1.22]"
+                                            : "text-xs sm:text-sm text-gray-400 mb-3 leading-snug max-h-[4.2em] overflow-hidden";
                                         const servicePagePriceClassName = isMobileLandscape
-                                            ? "pt-2 border-t border-[#2a2a2a] text-[8px] text-[#D4A017] font-bold uppercase tracking-[0.12em] mb-2"
+                                            ? isRealEstatePriceEnabledCard
+                                                ? `mb-1 block w-full border-t border-[#2a2a2a] pt-1.5 text-[7.5px] text-[#F2C94C] font-bold uppercase tracking-[0.1em] leading-tight ${shouldUseTwoLinePrice ? "whitespace-pre-line" : "whitespace-nowrap"}`
+                                                : "pt-2 border-t border-[#2a2a2a] text-[8px] text-[#D4A017] font-bold uppercase tracking-[0.12em] mb-2"
+                                            : isRealEstatePriceEnabledCard
+                                            ? `mb-1.5 block w-full border-t border-[#2a2a2a] pt-2 text-[8.5px] text-[#F2C94C] font-bold uppercase tracking-[0.1em] leading-tight ${shouldUseTwoLinePrice ? "whitespace-pre-line" : "whitespace-nowrap"}`
                                             : "pt-3 border-t border-[#2a2a2a] text-[10px] text-[#D4A017] font-bold uppercase tracking-wider mb-4";
                                         const servicePageActionsClassName = "flex flex-col gap-1.5 lg:flex-row lg:gap-3";
+                                        const servicePageBottomSpacerClassName = isRealEstateReferenceCard
+                                            ? isMobileLandscape
+                                                ? "h-1.5"
+                                                : "h-2"
+                                            : "";
                                         const servicePagePrimaryActionClassName = isMobileLandscape
                                             ? "w-full py-1.5 px-1.5 border border-white/20 rounded-md text-[8px] font-bold uppercase tracking-[0.1em] text-white hover:bg-white hover:text-black transition-colors text-center"
+                                            : isRealEstateReferenceCard
+                                            ? "w-full py-[7px] px-2 border border-white/20 rounded-lg text-[9px] font-bold uppercase tracking-[0.1em] text-white hover:bg-white hover:text-black transition-colors text-center"
                                             : "w-full py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center";
                                         const servicePageSecondaryActionClassName = isMobileLandscape
                                             ? "w-full py-1.5 px-1.5 bg-[#D4A017] text-black rounded-md text-[8px] font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center"
+                                            : isRealEstateReferenceCard
+                                            ? "w-full py-[7px] px-2 bg-[#D4A017] text-black rounded-lg text-[9px] font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center"
                                             : "w-full py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center";
+                                        const normalizedCategory = isRealEstateReferenceCard && svc.category
+                                            ? svc.category.replace(/\s*[·•|]\s*/g, "\n")
+                                            : svc.category;
+                                        const formattedPriceText =
+                                            isRealEstatePriceEnabledCard && svc.price
+                                                ? svc.price
+                                                    .replace(/\bgeo\s*context\b/gi, "GEO")
+                                                    .replace(/\bконтекст\b/gi, "")
+                                                    .replace(/\s{2,}/g, " ")
+                                                    .replace(" · ", shouldUseTwoLinePrice ? "\n" : " · ")
+                                                : svc.price;
+                                        const formattedTitle = svc.title;
                                         const servicePageParityCardBody = (
                                             <>
                                                 <div className={`${servicePageImageHeightClassName} bg-neutral-800 overflow-hidden relative`}>
@@ -1008,25 +1208,37 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                                     <h3 className={servicePageTitleClassName}>
                                                         {isExternalServiceLink ? (
                                                             <a href={svc.link} target="_blank" rel="noreferrer" className="hover:text-[#D4A017] transition-colors">
-                                                                {svc.title}
+                                                                <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
+                                                                    {formattedTitle}
+                                                                </span>
                                                             </a>
                                                         ) : (
                                                             <Link href={svc.link} className="hover:text-[#D4A017] transition-colors">
-                                                                {svc.title}
+                                                                <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
+                                                                    {formattedTitle}
+                                                                </span>
                                                             </Link>
                                                         )}
                                                     </h3>
-                                                    {svc.category ? (
-                                                        <div className={servicePageCategoryClassName}>
-                                                            {svc.category}
+                                                    {normalizedCategory ? (
+                                                        <div className={`${servicePageCategoryClassName} ${isRealEstateReferenceCard ? "whitespace-pre-line" : ""}`} style={isRealEstateReferenceCard ? clampLinesStyle(3) : undefined}>
+                                                            {normalizedCategory}
                                                         </div>
                                                     ) : null}
-                                                    <p className={servicePageDescriptionClassName}>{svc.desc}</p>
+                                                    <p className={servicePageDescriptionClassName} style={isRealEstateReferenceCard ? clampLinesStyle(3) : undefined}>{svc.desc}</p>
                                                     <div className="mt-auto">
                                                         {svc.price && !hideHighlightedPriceLine ? (
-                                                            <div className={servicePagePriceClassName}>
-                                                                {svc.price}
+                                                            <div className={servicePagePriceClassName} style={shouldUseTwoLinePrice ? clampLinesStyle(2) : undefined}>
+                                                                {formattedPriceText}
                                                             </div>
+                                                        ) : null}
+                                                        {!svc.price && isAllServicesCard && isRealEstateReferenceCard ? (
+                                                            <div className="mb-1.5 block w-full border-t border-[#2a2a2a] pt-2 text-[8.5px] leading-tight opacity-0 select-none">
+                                                                spacer
+                                                            </div>
+                                                        ) : null}
+                                                        {servicePageBottomSpacerClassName ? (
+                                                            <div className={servicePageBottomSpacerClassName} aria-hidden="true" />
                                                         ) : null}
                                                         <div className={servicePageActionsClassName}>
                                                             {isExternalServiceLink ? (
@@ -1071,6 +1283,29 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                             </MaybeDebugWrapper>
                                         );
                                     })}
+                                    </div>
+                                    {showMobileRailArrows && (
+                                        <motion.button
+                                            type="button"
+                                            onClick={() => handleCardRailScroll("right")}
+                                            animate={
+                                                shouldAnimateMobileRailArrows
+                                                    ? { opacity: [0.4, 0.95, 0.5], scale: [0.94, 1.02, 0.94] }
+                                                    : undefined
+                                            }
+                                            transition={
+                                                shouldAnimateMobileRailArrows
+                                                    ? { duration: 1.9, repeat: Infinity, ease: "easeInOut" }
+                                                    : undefined
+                                            }
+                                            className={`absolute ${mobileRailRightArrowOffsetClassName} ${mobileRailArrowVerticalClassName} z-20 -translate-y-1/2 rounded-full border border-white/25 bg-black/68 text-white backdrop-blur-sm transition-colors hover:border-[#D4AF37]/75 hover:text-[#D4AF37] ${
+                                                isMobileLandscape ? "h-7 w-7" : "h-8 w-8"
+                                            }`}
+                                            aria-label={`Прокрутить карточки ${niche.id} вправо`}
+                                        >
+                                            <ChevronRight className={`mx-auto ${isMobileLandscape ? "h-3.5 w-3.5" : "h-4 w-4"}`} />
+                                        </motion.button>
+                                    )}
                                 </div>
 
                             </div>
@@ -1444,8 +1679,13 @@ export function NichesStack() {
         : isMobilePortrait
         ? PORTRAIT_STICKY_TOP_PX
         : DEFAULT_STICKY_TOP_PX;
+    const mobileStackPreviewPx = isMobileLandscape
+        ? LANDSCAPE_STACK_PREVIEW_PX
+        : isMobilePortrait
+        ? PORTRAIT_STACK_PREVIEW_PX
+        : 0;
     const stickyTop = `${stickyTopPx}px`;
-    const stickyHeight = `calc(100vh - ${stickyTopPx}px)`;
+    const stickyHeight = `calc(100vh - ${stickyTopPx + mobileStackPreviewPx}px)`;
     const totalSteps = niches.length + 2; // +1 Placeholder (09), +1 Form (10)
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -1555,32 +1795,67 @@ export function NichesStack() {
         }
     };
 
+    const activeMobileNextStep = stackStepNavItems[activeStepIndex + 1] ?? null;
+    const showGlobalMobileNextButton =
+        isMobileCompactTop &&
+        activeStepIndex < niches.length &&
+        Boolean(activeMobileNextStep);
+    const globalBottomNextOffsetClassName = isMobileLandscape
+        ? "bottom-[calc(env(safe-area-inset-bottom,0px)+0.9rem)]"
+        : "bottom-[calc(env(safe-area-inset-bottom,0px)+1.15rem)]";
+    const handleGlobalNextStepClick = () => {
+        if (!activeMobileNextStep) return;
+        scrollToNicheStep(activeStepIndex + 1);
+    };
+
     return (
         <div ref={containerRef} className="relative w-full bg-black" style={{ height: `${totalSteps * 100}vh` }}>
-            {isMobileCompactTop && (
-                <div className="fixed left-3 top-1/2 z-[200] -translate-y-1/2 pointer-events-auto">
-                    <div className="animate-pulse rounded-full border border-[#D4AF37]/45 p-1">
-                        <div className="flex flex-col items-center gap-2 rounded-full border border-white/25 bg-black/78 px-2 py-2 shadow-[0_14px_34px_rgba(0,0,0,0.42)] backdrop-blur-md">
+            {false && isMobileCompactTop && (
+                <div className="fixed left-2 top-1/2 z-[200] -translate-y-1/2 pointer-events-auto">
+                    <div className="rounded-full border border-[#D4AF37]/35 bg-black/58 px-1 py-1.5 backdrop-blur-md">
+                        <div className="flex w-7 flex-col items-center gap-1">
                             <button
                                 type="button"
                                 onClick={() => handleFloatingScrollControl("up")}
-                                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-zinc-900/85 text-white hover:border-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors"
+                                className="flex h-6 w-6 items-center justify-center rounded-full border border-white/25 bg-zinc-900/80 text-white hover:border-[#D4AF37]/70 hover:text-[#D4AF37] transition-colors"
                                 aria-label={`Прокрутить вверх. Текущий шаг ${stackStepNavItems[activeStepIndex]?.id ?? "00"}`}
                             >
-                                <ChevronUp className="h-4 w-4" />
+                                <ChevronUp className="h-3.5 w-3.5" />
                             </button>
-                            <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#D4AF37]">
+                            <div className="h-8 w-px bg-gradient-to-b from-[#D4AF37]/10 via-[#D4AF37]/70 to-[#D4AF37]/10" />
+                            <div className="text-[9px] font-black uppercase tracking-[0.12em] text-[#D4AF37]">
                                 {stackStepNavItems[activeStepIndex]?.id ?? "00"}
                             </div>
+                            <div className="h-8 w-px bg-gradient-to-b from-[#D4AF37]/10 via-[#D4AF37]/70 to-[#D4AF37]/10" />
                             <button
                                 type="button"
                                 onClick={() => handleFloatingScrollControl("down")}
-                                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-zinc-900/85 text-white hover:border-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors"
+                                className="flex h-6 w-6 items-center justify-center rounded-full border border-white/25 bg-zinc-900/80 text-white hover:border-[#D4AF37]/70 hover:text-[#D4AF37] transition-colors"
                                 aria-label={`Прокрутить вниз. Текущий шаг ${stackStepNavItems[activeStepIndex]?.id ?? "00"}`}
                             >
-                                <ChevronDown className="h-4 w-4" />
+                                <ChevronDown className="h-3.5 w-3.5" />
                             </button>
                         </div>
+                    </div>
+                </div>
+            )}
+            {showGlobalMobileNextButton && activeMobileNextStep && (
+                <div className={`fixed ${globalBottomNextOffsetClassName} left-0 right-0 z-[220] flex justify-center pointer-events-none`}>
+                    <div className="relative inline-flex">
+                        <UiIdBadge id={GLOBAL_NEXT_BUTTON_UI_ID} />
+                        <button
+                            type="button"
+                            onClick={handleGlobalNextStepClick}
+                            data-ui-id={GLOBAL_NEXT_BUTTON_UI_ID}
+                            data-ui-name="GAZETA_NEXT_9200"
+                            className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
+                            aria-label={`Перейти к секции ${activeMobileNextStep.id} ${activeMobileNextStep.title}`}
+                        >
+                            <span className="text-white/60">Далее</span>
+                            <span className="text-[#D4AF37]">{activeMobileNextStep.id}</span>
+                            <span className="text-white">{activeMobileNextStep.title}</span>
+                            <ArrowDown className="h-3 w-3 text-[#D4AF37]" />
+                        </button>
                     </div>
                 </div>
             )}
