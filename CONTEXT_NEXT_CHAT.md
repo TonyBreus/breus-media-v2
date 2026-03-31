@@ -464,6 +464,22 @@
     - route-sanity долги в части drone related links (legacy href);
   - сформирован практический plan на Batch 4A/4B/4C без редизайна и без mass deletion;
   - кодовые правки в рамках этой задачи не вносились (только аудит + docs sync).
+- 31.03.2026: Route Fix Batch (P0/P1 route sanity, local):
+  - P0 route safety:
+    - `/real-estate` -> server redirect на `/real-estate-service`;
+    - `/real-estate-3` -> server redirect на `/real-estate-service`;
+    - `/drone-service/monitoring-stroiki` -> server redirect на `/drone-construction-monitoring`;
+    - убраны входы в legacy `monitoring-stroiki` из активного пути:
+      - `constants/gazetaRoutes.ts` (`monitoringStroiki` теперь указывает на `/drone-construction-monitoring`);
+      - `app/drone-real-estate/page.tsx` (related service href обновлён на `/drone-construction-monitoring`).
+  - P1 hub integrity:
+    - исправлен дублирующий mapping в `gazetaNicheLandingRoutes`:
+      - `07` -> `gazetaDetailRoutes.it` (`/gazeta/it`);
+      - `08` -> `/business-service`;
+    - `gazetaDetailRoutes.realEstate` переключён с `/gazeta/real-estate` на главный хаб `/real-estate-service`;
+    - orphan-страница `/360-tour-commercial-real-estate` оставлена как secondary/supporting и помечена `noindex, nofollow`.
+  - проверка:
+    - `npm run build` — OK (81/81).
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 
@@ -510,6 +526,7 @@
 3. Начать L3-страницы кластера Reels.
 4. После UX-подтверждения выполнить деплой Batch 3 L2 cleanup.
 5. Запустить Batch 4A: shared copy/CTA/anchor normalization по файлу `BREUS_MEDIA_BATCH4_VISUAL_CONSISTENCY_SWEEP.md`.
+6. После QA деплоя проверить redirects `/real-estate`, `/real-estate-3`, `/drone-service/monitoring-stroiki` и robots для `/360-tour-commercial-real-estate`.
 
 ## СТРУКТУРА САЙТА
 - L1: /gazeta — главная страница-газета

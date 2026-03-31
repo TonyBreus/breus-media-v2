@@ -441,7 +441,7 @@ const relatedServices: RelatedService[] = [
     },
     {
         title: 'Дрон-мониторинг строительства',
-        href: '/drone-service/monitoring-stroiki',
+        href: '/drone-construction-monitoring',
         text: 'Регулярные выезды и отчёты для девелоперов, инвесторов и банков по ходу стройки.',
     },
     {

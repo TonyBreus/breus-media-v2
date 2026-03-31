@@ -32,6 +32,10 @@ export const metadata: Metadata = {
     alternates: {
         canonical: 'https://breus.media/360-tour-commercial-real-estate',
     },
+    robots: {
+        index: false,
+        follow: false,
+    },
 };
 
 export default function TourCommercialRealEstatePage() {

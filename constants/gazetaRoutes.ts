@@ -21,9 +21,9 @@ export type GazetaCategoryPage = {
 
 export const gazetaDetailRoutes = {
     droneService: "/drone-service",
-    monitoringStroiki: "/drone-service/monitoring-stroiki",
+    monitoringStroiki: "/drone-construction-monitoring",
     objectInspection: "/drone-object-inspection",
-    realEstate: "/gazeta/real-estate",
+    realEstate: "/real-estate-service",
     hotels: "/gazeta/hotels",
     restaurants: "/gazeta/restaurants",
     auto: "/gazeta/auto",
@@ -46,7 +46,7 @@ export const gazetaNicheLandingRoutes: Record<string, string> = {
     "04": "/auto-service",
     "05": "/tourism-service",
     "06": "/clinics-service",
-    "07": "/business-service",
+    "07": gazetaDetailRoutes.it,
     "08": "/business-service",
 };
 

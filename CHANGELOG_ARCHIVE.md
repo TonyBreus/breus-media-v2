@@ -1717,6 +1717,33 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-31 (Route Fix Batch: P0/P1 Route Sanity)
+### Session Summary
+- Выполнен Route Fix Batch по приоритету P0 -> P1 для route safety и hub integrity.
+- Без редизайна страниц: только route-логика, redirects, mapping и crawl hygiene.
+
+### Technical Notes
+- P0 (route safety):
+  - `/real-estate` переведён на server redirect -> `/real-estate-service`.
+  - `/real-estate-3` переведён на server redirect -> `/real-estate-service`.
+  - `/drone-service/monitoring-stroiki` переведён на server redirect -> `/drone-construction-monitoring`.
+  - удалены активные входы в legacy `monitoring-stroiki`:
+    - `constants/gazetaRoutes.ts` (`monitoringStroiki` теперь `/drone-construction-monitoring`);
+    - `app/drone-real-estate/page.tsx` (related service href обновлён).
+- P1 (route logic / hub integrity):
+  - исправлен дублирующий mapping ниш в `gazetaNicheLandingRoutes`:
+    - `07` -> `/gazeta/it`,
+    - `08` -> `/business-service`.
+  - `gazetaDetailRoutes.realEstate` переключён с `/gazeta/real-estate` на `/real-estate-service`.
+  - `/360-tour-commercial-real-estate` оставлен как secondary/supporting и помечен `robots: noindex, nofollow`.
+- Проверка:
+  - `npm run build` — успешно (81/81 страниц).
+
+### Release Notes
+- Статус: `local ready` (без деплоя в этой сессии).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary
