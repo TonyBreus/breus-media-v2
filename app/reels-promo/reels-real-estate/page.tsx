@@ -877,18 +877,27 @@ export default function ReelsRealEstatePage() {
                             <p className="text-xl font-bold text-white">CTA №1: Заказать съёмку объекта</p>
                             <p className="mt-2 text-sm leading-relaxed text-white/70">
                                 Есть объект на продажу? Напишите нам в WhatsApp или Telegram — расскажем, что входит в
-                                пакет, и назначим дату съёмки.
+                                пакет, и назначим дату съёмки. Если хотите сначала выбрать уровень услуг, откройте
+                                блок пакетов ниже.
                             </p>
                             <p className="mt-3 text-sm text-[#FFD23F]">📲 {CONTACT_PHONE_DISPLAY}</p>
                         </div>
-                        <a
-                            href={WHATSAPP_URL}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="mt-5 inline-flex items-center justify-center rounded-[10px] bg-[#FFD23F] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white md:mt-0"
-                        >
-                            Написать в WhatsApp
-                        </a>
+                        <div className="mt-5 flex flex-wrap gap-3 md:mt-0 md:justify-end">
+                            <a
+                                href="#packages"
+                                className="inline-flex items-center justify-center rounded-[10px] border border-white/25 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F]"
+                            >
+                                Быстрый переход к пакетам
+                            </a>
+                            <a
+                                href={WHATSAPP_URL}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center justify-center rounded-[10px] bg-[#FFD23F] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
+                            >
+                                Написать в WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1155,15 +1164,20 @@ export default function ReelsRealEstatePage() {
 
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
                 <div className="container mx-auto px-6">
-                    <h2 className="text-3xl font-bold md:text-4xl">Частые ошибки в нише</h2>
-                    <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                        {commonMistakes.map((item) => (
-                            <article key={item.title} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">{item.title}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{item.text}</p>
-                            </article>
-                        ))}
-                    </div>
+                    <details className="group rounded-[16px] border border-[#2a2a2a] bg-[#131313] p-6">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                            <span className="text-3xl font-bold md:text-4xl">Частые ошибки в нише</span>
+                            <span className="text-2xl font-bold text-[#FFD23F] transition-transform group-open:rotate-45">+</span>
+                        </summary>
+                        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                            {commonMistakes.map((item) => (
+                                <article key={item.title} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                    <h3 className="text-lg font-bold text-white">{item.title}</h3>
+                                    <p className="mt-3 text-sm leading-relaxed text-white/72">{item.text}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </details>
                 </div>
             </section>
 
@@ -1195,49 +1209,54 @@ export default function ReelsRealEstatePage() {
 
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-20">
                 <div className="container mx-auto px-6">
-                    <h2 className="text-3xl font-bold md:text-4xl">Расширенные ответы для long-tail SEO</h2>
+                    <details className="group rounded-[16px] border border-[#2a2a2a] bg-[#131313] p-6">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                            <span className="text-3xl font-bold md:text-4xl">Расширенные ответы для long-tail SEO</span>
+                            <span className="text-2xl font-bold text-[#FFD23F] transition-transform group-open:rotate-45">+</span>
+                        </summary>
 
-                    <article className="mt-8 rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                        <h3 className="text-xl font-bold text-white">Как правильно снять квартиру для продажи на ss.ge?</h3>
-                        <p className="mt-4 text-sm leading-relaxed text-white/72">
-                            Большинство объявлений на ss.ge и myhome.ge содержат фото с телефона в плохом свете и
-                            стандартное описание «3 комнаты, хороший ремонт». Чтобы выделиться, нужно сделать три вещи:
-                            правильная съёмка, видео и нормальный текст. Для съёмки — дневной свет, открытые шторы,
-                            стабилизатор или штатив. Главные ракурсы: широкий план каждой комнаты с угла, вид из окна,
-                            кухня, санузел, вход в квартиру.
-                        </p>
-                        <p className="mt-3 text-sm leading-relaxed text-white/72">
-                            Текст должен отвечать на реальные вопросы покупателя: метраж комнат, парковка, транспортная
-                            доступность, ориентиры в районе и расстояние до центра.
-                        </p>
-                    </article>
+                        <article className="mt-8 rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
+                            <h3 className="text-xl font-bold text-white">Как правильно снять квартиру для продажи на ss.ge?</h3>
+                            <p className="mt-4 text-sm leading-relaxed text-white/72">
+                                Большинство объявлений на ss.ge и myhome.ge содержат фото с телефона в плохом свете и
+                                стандартное описание «3 комнаты, хороший ремонт». Чтобы выделиться, нужно сделать три вещи:
+                                правильная съёмка, видео и нормальный текст. Для съёмки — дневной свет, открытые шторы,
+                                стабилизатор или штатив. Главные ракурсы: широкий план каждой комнаты с угла, вид из окна,
+                                кухня, санузел, вход в квартиру.
+                            </p>
+                            <p className="mt-3 text-sm leading-relaxed text-white/72">
+                                Текст должен отвечать на реальные вопросы покупателя: метраж комнат, парковка, транспортная
+                                доступность, ориентиры в районе и расстояние до центра.
+                            </p>
+                        </article>
 
-                    <article className="mt-5 rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                        <h3 className="text-xl font-bold text-white">Влияет ли видео на скорость продажи квартиры?</h3>
-                        <p className="mt-4 text-sm leading-relaxed text-white/72">
-                            Да: объявления с видео получают до 4 раз больше обращений, а объекты с профессиональным
-                            контентом продаются на 20–30% быстрее. Видео даёт покупателю ответы на ключевые вопросы до
-                            звонка: планировка, состояние ремонта, вид из окна и ощущение пространства.
-                        </p>
-                    </article>
+                        <article className="mt-5 rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
+                            <h3 className="text-xl font-bold text-white">Влияет ли видео на скорость продажи квартиры?</h3>
+                            <p className="mt-4 text-sm leading-relaxed text-white/72">
+                                Да: объявления с видео получают до 4 раз больше обращений, а объекты с профессиональным
+                                контентом продаются на 20–30% быстрее. Видео даёт покупателю ответы на ключевые вопросы до
+                                звонка: планировка, состояние ремонта, вид из окна и ощущение пространства.
+                            </p>
+                        </article>
 
-                    <article className="mt-5 rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                        <h3 className="text-xl font-bold text-white">Чем отличается видео для портала от Reels для Instagram?</h3>
-                        <p className="mt-4 text-sm leading-relaxed text-white/72">
-                            Видео для портала — горизонтальный формат 16:9 длиной 1–2 минуты, спокойный темп и структурная
-                            подача. Reels — вертикальный формат 9:16 длиной 15–60 секунд, быстрый хук в первые секунды и
-                            акцент на самые сильные кадры.
-                        </p>
-                    </article>
+                        <article className="mt-5 rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
+                            <h3 className="text-xl font-bold text-white">Чем отличается видео для портала от Reels для Instagram?</h3>
+                            <p className="mt-4 text-sm leading-relaxed text-white/72">
+                                Видео для портала — горизонтальный формат 16:9 длиной 1–2 минуты, спокойный темп и структурная
+                                подача. Reels — вертикальный формат 9:16 длиной 15–60 секунд, быстрый хук в первые секунды и
+                                акцент на самые сильные кадры.
+                            </p>
+                        </article>
 
-                    <article className="mt-5 rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                        <h3 className="text-xl font-bold text-white">Нужна ли аэросъёмка при продаже городской квартиры?</h3>
-                        <p className="mt-4 text-sm leading-relaxed text-white/72">
-                            Для большинства квартир — это опция, а не обязательный элемент. Но для панорамных видов,
-                            верхних этажей, элитных объектов, новостроек и загородной недвижимости дрон значительно усиливает
-                            восприятие объекта и повышает доверие к объявлению.
-                        </p>
-                    </article>
+                        <article className="mt-5 rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
+                            <h3 className="text-xl font-bold text-white">Нужна ли аэросъёмка при продаже городской квартиры?</h3>
+                            <p className="mt-4 text-sm leading-relaxed text-white/72">
+                                Для большинства квартир — это опция, а не обязательный элемент. Но для панорамных видов,
+                                верхних этажей, элитных объектов, новостроек и загородной недвижимости дрон значительно усиливает
+                                восприятие объекта и повышает доверие к объявлению.
+                            </p>
+                        </article>
+                    </details>
                 </div>
             </section>
 
@@ -1310,29 +1329,39 @@ export default function ReelsRealEstatePage() {
 
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-20">
                 <div className="container mx-auto px-6">
-                    <h2 className="text-3xl font-bold md:text-4xl">Мифы и реальность</h2>
-                    <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                        {myths.map((item) => (
-                            <article key={item.title} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">{item.title}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{item.text}</p>
-                            </article>
-                        ))}
-                    </div>
+                    <details className="group rounded-[16px] border border-[#2a2a2a] bg-[#131313] p-6">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                            <span className="text-3xl font-bold md:text-4xl">Мифы и реальность</span>
+                            <span className="text-2xl font-bold text-[#FFD23F] transition-transform group-open:rotate-45">+</span>
+                        </summary>
+                        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                            {myths.map((item) => (
+                                <article key={item.title} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                    <h3 className="text-lg font-bold text-white">{item.title}</h3>
+                                    <p className="mt-3 text-sm leading-relaxed text-white/72">{item.text}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </details>
                 </div>
             </section>
 
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
                 <div className="container mx-auto px-6">
-                    <h2 className="text-3xl font-bold md:text-4xl">Мини-словарь терминов</h2>
-                    <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                        {glossary.map((item) => (
-                            <article key={item.term} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">{item.term}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{item.description}</p>
-                            </article>
-                        ))}
-                    </div>
+                    <details className="group rounded-[16px] border border-[#2a2a2a] bg-[#131313] p-6">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                            <span className="text-3xl font-bold md:text-4xl">Мини-словарь терминов</span>
+                            <span className="text-2xl font-bold text-[#FFD23F] transition-transform group-open:rotate-45">+</span>
+                        </summary>
+                        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                            {glossary.map((item) => (
+                                <article key={item.term} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                    <h3 className="text-lg font-bold text-white">{item.term}</h3>
+                                    <p className="mt-3 text-sm leading-relaxed text-white/72">{item.description}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </details>
                 </div>
             </section>
 

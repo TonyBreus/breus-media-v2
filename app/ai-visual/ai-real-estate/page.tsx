@@ -750,6 +750,34 @@ export default function AiRealEstatePage() {
                 </div>
             </section>
 
+            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-16">
+                <div className="container mx-auto px-6">
+                    <div className="rounded-[14px] border border-[#D4A017]/35 bg-[#131313] p-6 md:flex md:items-center md:justify-between">
+                        <div>
+                            <p className="text-xl font-bold text-white">Быстрый путь к офферу</p>
+                            <p className="mt-2 text-sm leading-relaxed text-white/70">
+                                Если задача уже понятна, переходите сразу к пакетам и оставляйте бриф. Развёрнутые
+                                образовательные блоки и long-tail ответы остаются ниже.
+                            </p>
+                        </div>
+                        <div className="mt-5 flex flex-wrap gap-3 md:mt-0 md:justify-end">
+                            <a
+                                href="#packages"
+                                className="inline-flex items-center justify-center rounded-[10px] border border-white/25 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#D4A017]"
+                            >
+                                К пакетам
+                            </a>
+                            <a
+                                href="#contact"
+                                className="inline-flex items-center justify-center rounded-[10px] bg-[#D4A017] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
+                            >
+                                Оставить бриф
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <MidCta
                 text="Хотите посмотреть, как будет выглядеть ваш объект до того, как там появится мебель или завершится ремонт?"
                 buttonLabel="Получить демо-визуализацию"
@@ -879,15 +907,20 @@ export default function AiRealEstatePage() {
 
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
                 <div className="container mx-auto px-6">
-                    <h2 className="mb-8 text-3xl font-bold md:text-4xl">Частые ошибки при заказе</h2>
-                    <div className="grid gap-5 md:grid-cols-2">
-                        {mistakes.map((item) => (
-                            <article key={item.title} className="rounded-[12px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="mb-3 text-base font-bold">{item.title}</h3>
-                                <p className="text-sm leading-relaxed text-white/70">{item.text}</p>
-                            </article>
-                        ))}
-                    </div>
+                    <details className="group rounded-[16px] border border-[#2a2a2a] bg-[#131313] p-6">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                            <span className="text-3xl font-bold md:text-4xl">Частые ошибки при заказе</span>
+                            <span className="text-2xl font-bold text-[#D4A017] transition-transform group-open:rotate-45">+</span>
+                        </summary>
+                        <div className="mt-8 grid gap-5 md:grid-cols-2">
+                            {mistakes.map((item) => (
+                                <article key={item.title} className="rounded-[12px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                    <h3 className="mb-3 text-base font-bold">{item.title}</h3>
+                                    <p className="text-sm leading-relaxed text-white/70">{item.text}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </details>
                 </div>
             </section>
 
@@ -921,51 +954,61 @@ export default function AiRealEstatePage() {
 
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
                 <div className="container mx-auto px-6">
-                    <h2 className="mb-8 text-3xl font-bold md:text-4xl">Расширенные ответы (long-tail SEO)</h2>
-                    <div className="grid gap-5 md:grid-cols-2">
-                        {longAnswers.map((item) => (
-                            <article key={item.title} className="rounded-[12px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="mb-3 text-base font-bold text-[#D4A017]">{item.title}</h3>
-                                <p className="text-sm leading-relaxed text-white/72">{item.text}</p>
-                            </article>
-                        ))}
-                    </div>
+                    <details className="group rounded-[16px] border border-[#2a2a2a] bg-[#131313] p-6">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                            <span className="text-3xl font-bold md:text-4xl">Расширенные ответы (long-tail SEO)</span>
+                            <span className="text-2xl font-bold text-[#D4A017] transition-transform group-open:rotate-45">+</span>
+                        </summary>
+                        <div className="mt-8 grid gap-5 md:grid-cols-2">
+                            {longAnswers.map((item) => (
+                                <article key={item.title} className="rounded-[12px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                    <h3 className="mb-3 text-base font-bold text-[#D4A017]">{item.title}</h3>
+                                    <p className="text-sm leading-relaxed text-white/72">{item.text}</p>
+                                </article>
+                            ))}
+                        </div>
 
-                    <h3 className="mt-12 text-xl font-bold">Short Q&A для AI-поиска</h3>
-                    <div className="mt-5 grid gap-4 md:grid-cols-2">
-                        {shortQa.map((item) => (
-                            <article key={item.question} className="rounded-[12px] border border-[#2a2a2a] bg-[#111111] p-5">
-                                <p className="text-sm font-bold">Q: {item.question}</p>
-                                <p className="mt-2 text-sm text-white/72">A: {item.answer}</p>
-                            </article>
-                        ))}
-                    </div>
+                        <h3 className="mt-12 text-xl font-bold">Short Q&A для AI-поиска</h3>
+                        <div className="mt-5 grid gap-4 md:grid-cols-2">
+                            {shortQa.map((item) => (
+                                <article key={item.question} className="rounded-[12px] border border-[#2a2a2a] bg-[#111111] p-5">
+                                    <p className="text-sm font-bold">Q: {item.question}</p>
+                                    <p className="mt-2 text-sm text-white/72">A: {item.answer}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </details>
                 </div>
             </section>
 
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
                 <div className="container mx-auto px-6">
-                    <h2 className="mb-8 text-3xl font-bold md:text-4xl">Мифы и реальность</h2>
-                    <div className="grid gap-5 md:grid-cols-2">
-                        {myths.map((item) => (
-                            <article key={item.myth} className="rounded-[12px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-base font-bold text-white">Миф: {item.myth}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">
-                                    <span className="font-semibold text-[#D4A017]">Реальность:</span> {item.reality}
-                                </p>
-                            </article>
-                        ))}
-                    </div>
+                    <details className="group rounded-[16px] border border-[#2a2a2a] bg-[#131313] p-6">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                            <span className="text-3xl font-bold md:text-4xl">Мифы и реальность</span>
+                            <span className="text-2xl font-bold text-[#D4A017] transition-transform group-open:rotate-45">+</span>
+                        </summary>
+                        <div className="mt-8 grid gap-5 md:grid-cols-2">
+                            {myths.map((item) => (
+                                <article key={item.myth} className="rounded-[12px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                    <h3 className="text-base font-bold text-white">Миф: {item.myth}</h3>
+                                    <p className="mt-3 text-sm leading-relaxed text-white/72">
+                                        <span className="font-semibold text-[#D4A017]">Реальность:</span> {item.reality}
+                                    </p>
+                                </article>
+                            ))}
+                        </div>
 
-                    <h3 className="mt-12 text-xl font-bold">Мини-словарь терминов</h3>
-                    <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                        {glossary.map((item) => (
-                            <article key={item.term} className="rounded-[12px] border border-[#2a2a2a] bg-[#111111] p-5">
-                                <h4 className="text-sm font-bold text-[#D4A017]">{item.term}</h4>
-                                <p className="mt-2 text-sm leading-relaxed text-white/72">{item.definition}</p>
-                            </article>
-                        ))}
-                    </div>
+                        <h3 className="mt-12 text-xl font-bold">Мини-словарь терминов</h3>
+                        <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                            {glossary.map((item) => (
+                                <article key={item.term} className="rounded-[12px] border border-[#2a2a2a] bg-[#111111] p-5">
+                                    <h4 className="text-sm font-bold text-[#D4A017]">{item.term}</h4>
+                                    <p className="mt-2 text-sm leading-relaxed text-white/72">{item.definition}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </details>
                 </div>
             </section>
 

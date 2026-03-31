@@ -1633,6 +1633,32 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-31 (Batch 2 Cleanup: Reels Real Estate + Promo Real Estate + AI Real Estate)
+### Session Summary
+- Выполнен Batch 2 cleanup для:
+  - `/reels-promo/reels-real-estate`
+  - `/promo-video/promo-real-estate`
+  - `/ai-visual/ai-real-estate`
+- Подход: content layering без редизайна с нуля и без массового удаления deep-контента.
+
+### Technical Notes
+- На всех трёх страницах:
+  - сохранён rich слой (SEO/GEO/AEO/AI-search-supporting), но переразложен по приоритету чтения;
+  - добавлены ранние entry-блоки для быстрого перехода к пакетам/контакту;
+  - deep-секции переведены в collapsible (`details/accordion`) для снижения визуального шума:
+    - частые ошибки,
+    - расширенные long-tail ответы,
+    - мифы и реальность,
+    - мини-словарь терминов;
+  - снижено дублирование смыслов в верхнем слое без потери полезного текста.
+- Проверка:
+  - `npm run build` — успешно (81/81 страниц).
+
+### Release Notes
+- Статус: `local ready` (без деплоя в этой сессии).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

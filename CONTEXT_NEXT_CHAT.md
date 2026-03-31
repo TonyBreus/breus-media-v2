@@ -421,6 +421,18 @@
   - `drone-object-inspection`: добавлена явная граница visual inspection only (без инженерной сертификации по умолчанию), разделены base/premium outputs, упрощён верхний flow-блок;
   - `npm run build` — OK (81/81);
   - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
+- 31.03.2026: Batch 2 cleanup (content layering, без mass deletion) для 3 страниц (local):
+  - обновлены:
+    - `app/reels-promo/reels-real-estate/page.tsx`,
+    - `app/promo-video/promo-real-estate/page.tsx`,
+    - `app/ai-visual/ai-real-estate/page.tsx`;
+  - выполнено:
+    - сохранён богатый контент и SEO/AEO/AI-search слой, но улучшена иерархия чтения (core selling layer выше, deep layer ниже);
+    - добавлены ранние entry-блоки к пакетам/брифу для сокращения пути к офферу;
+    - deep-блоки (`частые ошибки`, `long-tail`, `мифы`, `словарь`) переведены в collapsible (`details/accordion`) с сохранением crawlable текста;
+    - снижено визуальное дублирование смыслов в верхней части страниц без удаления полезных материалов;
+  - `npm run build` — OK (81/81);
+  - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 
@@ -463,7 +475,7 @@
 
 ## СЛЕДУЮЩИЙ БАТЧ
 1. Проверить карточки `/gazeta/tourism` (стиль как на `/tourism-service`).
-2. Продолжить аудит deliverables по пакетам (CORE vs ADD-ON) на остальных L3-страницах.
+2. Продолжить аудит deliverables по пакетам (CORE vs ADD-ON) на остальных L3-страницах, вне Batch 1-2.
 3. Начать L3-страницы кластера Reels.
 
 ## СТРУКТУРА САЙТА
