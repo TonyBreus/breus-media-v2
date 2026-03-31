@@ -81,7 +81,7 @@ export const L2DirectionHero = ({ hero, heroSubtitle, heroSupportingLine, servic
 
     return (
         <DebugWrapper id={10100} label="L2 Direction Hero Section">
-            <section className="relative h-[calc(100vh-80px)] min-h-[700px] overflow-hidden bg-[#080808]" id="top">
+            <section className="relative h-[calc(100vh-80px)] min-h-[620px] md:min-h-[680px] overflow-hidden bg-[#080808]" id="top">
                 <div className="absolute inset-0 z-0">
                     <AnimatePresence mode="wait">
                         <motion.img
@@ -110,7 +110,7 @@ export const L2DirectionHero = ({ hero, heroSubtitle, heroSupportingLine, servic
                             </DebugWrapper>
 
                             <DebugWrapper id={10110} label="Hero Title">
-                                <h1 className="text-[42px] md:text-7xl lg:text-[88px] font-bold leading-[0.92] text-white mb-4">
+                                <h1 className="text-[40px] md:text-6xl lg:text-[80px] font-bold leading-[0.92] text-white mb-4">
                                     {hero.h1}
                                 </h1>
                             </DebugWrapper>
@@ -142,10 +142,10 @@ export const L2DirectionHero = ({ hero, heroSubtitle, heroSupportingLine, servic
                                 </DebugWrapper>
                                 <DebugWrapper id={10121} label="Hero Secondary CTA">
                                     <Link
-                                        href="#contact"
+                                        href="#services"
                                         className="border border-white/25 hover:border-[#D4A017] text-white px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest transition-all"
                                     >
-                                        Заказать
+                                        Подобрать услугу
                                     </Link>
                                 </DebugWrapper>
                             </div>
@@ -318,16 +318,18 @@ export const L2DirectionServices = ({ heading, services }: L2DirectionServicesPr
                                                 {service.primaryHref ? (
                                                     <Link
                                                         href={service.primaryHref}
-                                                        className="flex-1 py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center"
+                                                        className="flex-1 py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center"
                                                     >
-                                                        {service.primaryCtaLabel ?? 'Подробнее'}
+                                                        {service.primaryCtaLabel ?? 'Открыть услугу'}
                                                     </Link>
                                                 ) : null}
                                                 <a
                                                     href="#contact"
-                                                    className="flex-1 py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center"
+                                                    className={`py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center ${
+                                                        service.primaryHref ? 'flex-1' : 'w-full'
+                                                    }`}
                                                 >
-                                                    Заказать
+                                                    Подобрать пакет
                                                 </a>
                                             </div>
                                         </div>

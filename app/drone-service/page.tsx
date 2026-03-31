@@ -50,6 +50,7 @@ export default function DroneServicePage() {
                 transparent={true}
                 isLanding={false}
                 sectionLinks={[
+                    { label: 'Услуги', href: '#services' },
                     { label: 'Цены', href: '#pricing' },
                     { label: 'FAQ', href: '#faq' },
                 ]}
@@ -76,11 +77,11 @@ export default function DroneServicePage() {
             <DebugWrapper id={10100} label="Hero Section">
                 <DroneHeroStitch hero={pageConfig.hero} />
             </DebugWrapper>
-            <DebugWrapper id={10200} label="Social Proof Section">
-                <DroneSocialProofStitch />
-            </DebugWrapper>
             <DebugWrapper id={10300} label="Services Section">
                 <DroneServicesStitch />
+            </DebugWrapper>
+            <DebugWrapper id={10200} label="Social Proof Section">
+                <DroneSocialProofStitch />
             </DebugWrapper>
             <DebugWrapper id={10500} label="Process Section">
                 <DroneProcessStitch />

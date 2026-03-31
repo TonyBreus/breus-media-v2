@@ -78,7 +78,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
     };
 
     const handleScrollToNextSection = () => {
-        const nextSection = document.getElementById('drone-social-proof-section');
+        const nextSection = document.getElementById('services');
         if (!nextSection) {
             return;
         }
@@ -88,7 +88,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
 
     return (
         <DebugWrapper id={10100} label="Drone Hero Section">
-            <section className="relative h-[calc(100vh-80px)] min-h-[700px] overflow-hidden bg-[#080808]">
+            <section className="relative h-[calc(100vh-80px)] min-h-[620px] md:min-h-[680px] overflow-hidden bg-[#080808]">
                 <div className="absolute inset-0 z-0">
                     <AnimatePresence mode="wait">
                         <motion.img
@@ -126,7 +126,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                     </DebugWrapper>
 
                                     <DebugWrapper id={10110} label={`Hero Title: ${activeService.title}`}>
-                                        <h1 className="text-[46px] md:text-7xl lg:text-[96px] font-bold leading-[0.92] text-white mb-4">
+                                        <h1 className="text-[40px] md:text-6xl lg:text-[80px] font-bold leading-[0.92] text-white mb-4">
                                             {activeService.title}
                                         </h1>
                                     </DebugWrapper>
@@ -153,10 +153,10 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                         </DebugWrapper>
                                         <DebugWrapper id={10121} label="Hero Secondary CTA">
                                             <Link
-                                                href="#contact"
+                                                href="#services"
                                                 className="border border-white/25 hover:border-[#D4A017] text-white px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest transition-all"
                                             >
-                                                Заказать
+                                                Подобрать услугу
                                             </Link>
                                         </DebugWrapper>
                                     </div>

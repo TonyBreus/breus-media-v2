@@ -42,6 +42,7 @@ export const L2DirectionRenderer = ({ schemaKey, config }: L2DirectionRendererPr
                 transparent={true}
                 isLanding={false}
                 sectionLinks={[
+                    { label: 'Услуги', href: '#services' },
                     { label: 'Цены', href: '#pricing' },
                     { label: 'FAQ', href: '#faq' },
                 ]}
@@ -54,9 +55,15 @@ export const L2DirectionRenderer = ({ schemaKey, config }: L2DirectionRendererPr
                 services={config.data.services}
             />
 
-            <L2DirectionSocialProof stats={config.data.socialProofStats} />
-
             <L2DirectionServices heading={config.data.servicesHeading} services={config.data.services} />
+
+            <L2DirectionPricing
+                heading={config.data.pricingHeading}
+                tagline={config.data.pricingTagline}
+                plans={config.data.pricingPlans}
+            />
+
+            <L2DirectionSocialProof stats={config.data.socialProofStats} />
 
             <L2DirectionProcess steps={config.data.processSteps} />
 
@@ -65,12 +72,6 @@ export const L2DirectionRenderer = ({ schemaKey, config }: L2DirectionRendererPr
             </DebugWrapper>
 
             <L2DirectionMap map={config.data.map} />
-
-            <L2DirectionPricing
-                heading={config.data.pricingHeading}
-                tagline={config.data.pricingTagline}
-                plans={config.data.pricingPlans}
-            />
 
             <L2DirectionPainProof
                 title={config.data.painProofTitle}

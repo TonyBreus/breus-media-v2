@@ -433,6 +433,23 @@
     - снижено визуальное дублирование смыслов в верхней части страниц без удаления полезных материалов;
   - `npm run build` — OK (81/81);
   - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
+- 31.03.2026: Batch 3 cleanup для L2 hub-страниц (local):
+  - обновлены:
+    - `app/real-estate-service/page.tsx`,
+    - `app/drone-service/page.tsx`,
+    - `components/l2-direction/L2DirectionRenderer.tsx`,
+    - `components/l2-direction/L2DirectionSections.tsx`,
+    - `components/real-estate-service/RealEstateHeroStitch.tsx`,
+    - `components/drone/DroneHeroStitch.tsx`;
+  - выполнено:
+    - карточки услуг подняты выше в flow хабов (сразу после hero) для более быстрого выбора пути;
+    - в `SmartHeader` добавлена быстрая секция `Услуги` (`#services`) на L2-хабах;
+    - ранние hero CTA ослаблены для hub-логики: secondary CTA переключён с `#contact / Заказать` на `#services / Подобрать услугу`;
+    - в L2 service cards primary фокус смещён на переход в услугу (`Открыть услугу`), contact-кнопка оставлена вторичным шагом (`Подобрать пакет`);
+    - уменьшена минимальная высота hero-блоков (`700px -> 620px`) для снижения первого экрана и ускорения доступа к карточкам;
+    - для `/drone-service` стрелка hero теперь ведёт к `#services`, а не к social proof;
+  - `npm run build` — OK (81/81);
+  - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 
@@ -477,6 +494,7 @@
 1. Проверить карточки `/gazeta/tourism` (стиль как на `/tourism-service`).
 2. Продолжить аудит deliverables по пакетам (CORE vs ADD-ON) на остальных L3-страницах, вне Batch 1-2.
 3. Начать L3-страницы кластера Reels.
+4. После UX-подтверждения выполнить деплой Batch 3 L2 cleanup.
 
 ## СТРУКТУРА САЙТА
 - L1: /gazeta — главная страница-газета

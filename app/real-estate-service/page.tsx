@@ -46,6 +46,7 @@ export default function RealEstateServicePage() {
                 transparent={true}
                 isLanding={false}
                 sectionLinks={[
+                    { label: 'Услуги', href: '#services' },
                     { label: 'Цены', href: '#pricing' },
                     { label: 'FAQ', href: '#faq' },
                 ]}
@@ -53,11 +54,11 @@ export default function RealEstateServicePage() {
             <DebugWrapper id={10100} label="Hero Section">
                 <RealEstateHeroStitch hero={pageConfig.hero} />
             </DebugWrapper>
-            <DebugWrapper id={10200} label="Social Proof Section">
-                <RealEstateSocialProofStitch />
-            </DebugWrapper>
             <DebugWrapper id={10300} label="Services Section">
                 <RealEstateServicesStitch />
+            </DebugWrapper>
+            <DebugWrapper id={10200} label="Social Proof Section">
+                <RealEstateSocialProofStitch />
             </DebugWrapper>
             <DebugWrapper id={10500} label="Process Section">
                 <RealEstateProcessStitch />

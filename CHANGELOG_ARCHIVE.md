@@ -1659,6 +1659,39 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-31 (Batch 3 Cleanup: L2 Hub Clarity + Route Sanity)
+### Session Summary
+- Выполнен Batch 3 cleanup для L2-хабов:
+  - `/real-estate-service`
+  - `/drone-service`
+  - `/tourism-service`
+  - `/hotels-service`
+  - `/restaurants-service`
+- Фокус: ускорить путь выбора услуги, снизить верхний шум и стабилизировать CTA/route flow без редизайна.
+
+### Technical Notes
+- Обновлены:
+  - `app/real-estate-service/page.tsx`
+  - `app/drone-service/page.tsx`
+  - `components/l2-direction/L2DirectionRenderer.tsx`
+  - `components/l2-direction/L2DirectionSections.tsx`
+  - `components/real-estate-service/RealEstateHeroStitch.tsx`
+  - `components/drone/DroneHeroStitch.tsx`
+- Что сделано:
+  - блок `services` поднят сразу после hero на L2 hub flow;
+  - в `SmartHeader` добавлен быстрый якорь `Услуги` (`#services`);
+  - secondary CTA в hero переведён из раннего `Заказать` в `Подобрать услугу` с переходом к `#services`;
+  - CTA в L2 service cards смещён в пользу перехода на страницу услуги (`Открыть услугу`) с более мягким вторичным contact-шага (`Подобрать пакет`);
+  - минимальная высота hero уменьшена (`700px -> 620px`) для более раннего появления сервисных карточек;
+  - на `/drone-service` hero-стрелка ведёт к `#services`, а не к social proof.
+- Проверка:
+  - `npm run build` — успешно (81/81 страниц).
+
+### Release Notes
+- Статус: `local ready` (без деплоя в этой сессии).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary
