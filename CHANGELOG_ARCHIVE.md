@@ -1564,6 +1564,38 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-31 (Deploy: trust-lowering cleanup + CTA + noindex)
+### Session Summary
+- Задеплоены все изменения сессии 31.03.2026: удалены placeholder-блоки, кнопка Заказать, добавлен noindex.
+
+### Commits
+- `70065ab` — `fix: remove trust-lowering placeholders, Заказать CTA, add noindex for drafts`
+
+### Technical Notes
+- Деплой: `npx vercel --prod` → Vercel production.
+- Deployment ID: `dpl_9QGsQx1hpE3D5Uvx1rScHuSgeZxS`
+- Статус: `READY`
+
+### Release Notes
+- Статус: `deployed`.
+- Live: https://breus-media-v2.vercel.app
+
+---
+
+## 2026-03-31 (Deploy Sync: 29–31 March Commits)
+### Session Summary
+- Синхронизирована документация с фактическим состоянием `main`: ключевые правки 29–31 марта отмечены как реально задеплоенные.
+
+### Commits
+- `add7f74` — `fix(gazeta): unify real estate mobile cards to 8412 baseline`
+- `70065ab` — `fix: remove trust-lowering placeholders, Заказать CTA, add noindex for drafts`
+
+### Release Notes
+- `add7f74` — status: `deployed`.
+- `70065ab` — status: `deployed`.
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary
