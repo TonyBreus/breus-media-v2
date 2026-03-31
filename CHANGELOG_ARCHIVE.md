@@ -1605,6 +1605,34 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-31 (Page Cleanup: 360 Tour + Construction Monitoring + Object Inspection)
+### Session Summary
+- Выполнен page-family cleanup в режиме package truth-check + CTA stabilization + content layering для:
+  - `/360-tour-real-estate`
+  - `/drone-construction-monitoring`
+  - `/drone-object-inspection`
+- Подход: не редизайн, а rephrase / move-lower / boundary clarification / CORE vs PREMIUM разделение.
+
+### Technical Notes
+- `360-tour-real-estate`:
+  - hosting/storage сохранены как тема, но переведены в support-формат по согласованию срока и условий;
+  - жёсткие формулировки (“без доплат/скрытых подписок/на наших серверах”) заменены на мягкие и операционно реалистичные.
+- `drone-construction-monitoring`:
+  - deliverables и pricing разделены на `CORE` и `PREMIUM / ADD-ON`;
+  - investor/bank-ready слой (брендированный PDF, архив по ссылке, monthly timelapse, ZIP, executive summary) перенесён в расширенный пакет;
+  - app-based и advanced automation зафиксированы как `future capability` (manual roadmap), не как default promise.
+- `drone-object-inspection`:
+  - добавлена явная граница: visual inspection/documentation support, без инженерной сертификации по умолчанию;
+  - outputs разделены на `CORE` и `PREMIUM / ADD-ON`;
+  - верх страницы упрощён через отдельный flow-блок: задача → как это работает → что получает клиент → CTA.
+- Проверка:
+  - `npm run build` — успешно (81/81 страниц).
+
+### Release Notes
+- Статус: `local ready` (без деплоя в этой сессии).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

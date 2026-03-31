@@ -408,6 +408,19 @@
   - оставлена одна кнопка `Подробнее` (ведёт на страницу услуги);
   - `npm run build` — OK;
   - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
+- 31.03.2026: cleanup + package truth-check + CTA/content-layering для 3 страниц (local):
+  - обновлены:
+    - `app/360-tour-real-estate/page.tsx`,
+    - `components/360-tour-real-estate/TourDeliverables.tsx`,
+    - `components/360-tour-real-estate/TourPricing.tsx`,
+    - `components/360-tour-real-estate/TourProcess.tsx`,
+    - `app/drone-construction-monitoring/page.tsx`,
+    - `app/drone-object-inspection/page.tsx`;
+  - `360-tour-real-estate`: тема hosting/storage сохранена, но переведена в мягкий support-формат (срок/условия по согласованию), убраны hard promise формулировки;
+  - `drone-construction-monitoring`: явно разделены CORE vs PREMIUM / ADD-ON deliverables; app/automation зафиксирован как future capability (manual roadmap), убраны жёсткие overstatements;
+  - `drone-object-inspection`: добавлена явная граница visual inspection only (без инженерной сертификации по умолчанию), разделены base/premium outputs, упрощён верхний flow-блок;
+  - `npm run build` — OK (81/81);
+  - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 
@@ -450,7 +463,7 @@
 
 ## СЛЕДУЮЩИЙ БАТЧ
 1. Проверить карточки `/gazeta/tourism` (стиль как на `/tourism-service`).
-2. Провести аудит deliverables по пакетам — отделить CORE от ADD-ON.
+2. Продолжить аудит deliverables по пакетам (CORE vs ADD-ON) на остальных L3-страницах.
 3. Начать L3-страницы кластера Reels.
 
 ## СТРУКТУРА САЙТА
