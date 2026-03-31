@@ -296,7 +296,8 @@ export default function TourRealEstatePage() {
                 </section>
             </DebugWrapper>
 
-            <div id="examples">
+            {/* Tour Examples Section (trust-lowering placeholder) — hidden until real cases are ready */}
+            {/* <div id="examples">
                 <DebugWrapper id={360500} label="Tour Examples Section">
                     <section className="py-24 bg-[#080808] border-b border-[#2a2a2a]">
                         <div className="container mx-auto px-6">
@@ -317,7 +318,7 @@ export default function TourRealEstatePage() {
                         </div>
                     </section>
                 </DebugWrapper>
-            </div>
+            </div> */}
 
             <DebugWrapper id={360520} label="Evidence Section">
                 <section className="py-24 bg-[#0D0D0D] border-b border-[#2a2a2a]">

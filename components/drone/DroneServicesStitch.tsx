@@ -71,12 +71,6 @@ export const DroneServicesStitch = () => {
                                                 >
                                                     {service.primaryCtaLabel ?? 'Подробнее'}
                                                 </Link>
-                                                <a
-                                                    href="#contact"
-                                                    className="flex-1 py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center"
-                                                >
-                                                    Заказать
-                                                </a>
                                             </div>
                                         </div>
                                     </div>

@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 27 марта 2026
+### Обновлён: 31 марта 2026
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -372,8 +372,70 @@
   - добавлен единый нижний чёрный отступ (spacer) для всех карточек линии `8410..8415`, чтобы при разной длине текста визуально сохранялся одинаковый размер карточек;
   - `npm run build` — OK;
   - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
+- 31.03.2026: удалены trust-lowering фразы из трёх страниц (local):
+  - `app/drone-real-estate/page.tsx`: удалены два `<p>` с текстом "кейсы появятся" / "Реальные кейсы..." в секции `Social Proof`; целиком закомментирована секция `Portfolio Section` (`#381500`) с блоком "Портфолио наполняется / честный placeholder";
+  - `app/360-tour-real-estate/page.tsx`: целиком закомментирована секция `Tour Examples Section` (`#360500`) с текстом "Реальные кейсы появятся после первых съёмок в Тбилиси";
+  - `app/360-tour-restaurants/page.tsx`: совпадений не найдено, файл не изменялся;
+  - `npm run build` — OK (81/81 страниц, без ошибок);
+  - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
+- 30.03.2026: A/B/C тест single-CTA для карточек `8412`, `8411`, `8410` (local):
+  - только для трёх карточек в `01 Недвижимость` заменён двухкнопочный CTA-блок на одну primary кнопку:
+    - `8412` → `Смотреть примеры`,
+    - `8411` → `Узнать стоимость`,
+    - `8410` → `Посмотреть услугу`;
+  - остальные элементы карточек сохранены без редизайна (image/title/audience/description/support-line);
+  - остальные карточки секции не затронуты;
+  - логика ссылок:
+    - `8411` ведёт на `#contact` (pricing-oriented),
+    - `8412` и `8410` ведут на `svc.link` (service/proof-first);
+  - `npm run build` — OK;
+  - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
+- 31.03.2026: добавлен `robots: noindex, nofollow` для страниц-черновиков (local):
+  - `app/real-estate-2/page.tsx` — `"use client"`, metadata напрямую не поддерживается;
+  - создан `app/real-estate-2/layout.tsx` с `export const metadata = { robots: 'noindex, nofollow' }`;
+  - `app/dronetest/` и `app/test-docking/` — директории не существуют в проекте, пропущены;
+  - `npm run build` — OK (81/81);
+  - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
+- 31.03.2026: аудит CTA в `app/real-estate-service/page.tsx` и `app/drone-service/page.tsx` (local):
+  - проверено, что сервисные карточки на этих страницах рендерятся через:
+    - `components/real-estate-service/RealEstateServicesStitch.tsx`,
+    - `components/drone/DroneServicesStitch.tsx`;
+  - в обоих stitch-компонентах удалена вторая кнопка `Заказать` из карточек услуг;
+  - оставлена одна кнопка `Подробнее` (ведёт на страницу услуги);
+  - `npm run build` — OK;
+  - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
+
+## SERVICE IMAGES WORKFLOW (АКТУАЛЬНЫЙ СТАНДАРТ)
+- Корневая папка для image workflow: `/services-images`.
+- Структура: одна папка на каждый `service-slug`.
+- Внутри каждой сервисной папки:
+  - `selected`
+  - `final`
+  - `SERVICE_IMAGE_PLAN.md`
+- Используется единый image set на сервис.
+- Отдельные image sets для карточек и для full pages не создаются.
+
+### Логика использования изображений
+- `01–03` = card rotation + top-of-page / hero rotation.
+- `04+` = inner L3 visuals / examples / supporting content.
+
+### Master format и mobile поведение
+- Текущий master generation format: `16:9`.
+- Для mobile/card использовать crop / zoom / focal-point из тех же master-изображений.
+- Ключевой объект кадра держать в центральной safe-area, чтобы одно изображение корректно работало и на desktop, и на mobile.
+
+### Рабочий процесс
+1. Открыть папку нужной услуги в `/services-images/[service-slug]`.
+2. Прочитать `SERVICE_IMAGE_PLAN.md`.
+3. Скопировать prompts из плана.
+4. Сгенерировать изображения.
+5. Сохранить хорошие кандидаты в `selected`.
+6. Переместить утверждённые версии в `final`.
+
+### Правило для будущих AI-сессий
+- Любой будущий AI, работающий с service images, обязан сначала прочитать `CONTEXT_NEXT_CHAT.md` и использовать этот файл как главный контекст image workflow.
 
 ## ОТКРЫТЫЕ ЗАДАЧИ
 1. Проверить и, при необходимости, обновить карточки туризма на `/gazeta/tourism` до стиля как на `/tourism-service`.

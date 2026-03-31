@@ -1443,6 +1443,127 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-30 (Gazeta 01: Single-CTA Test on 8412/8411/8410)
+### Session Summary
+- Для теста визуальной и стратегической читаемости заменён двухкнопочный CTA-блок на single-CTA в трёх карточках секции `01 Недвижимость`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `components/gazeta/NichesStack.tsx`:
+  - добавлен точечный single-CTA switch по `serviceId`:
+    - `8412` → `Смотреть примеры`,
+    - `8411` → `Узнать стоимость`,
+    - `8410` → `Посмотреть услугу`;
+  - для этих карточек:
+    - убран двухкнопочный блок (`Подробнее` + `Заказать`),
+    - рендерится одна primary-кнопка в текущем карточном стиле;
+  - link-логика в тесте:
+    - `8411` → `#contact`,
+    - `8412`/`8410` → `svc.link` (с поддержкой internal/external перехода);
+  - остальные карточки и структура карточки не затронуты.
+- Проверка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-31 (Trust-Lowering Phrases Removal)
+### Session Summary
+- Удалены фразы "кейсы появятся / портфолио наполняется / честный placeholder" из трёх страниц сервиса недвижимости и 360-туров.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `app/drone-real-estate/page.tsx`:
+  - удалён `<p>` "Реальные кейсы Breus Media для этой страницы появятся..." (секция `#381200 Social Proof`, подзаголовок);
+  - удалён `<p>` "Реальные кейсы Breus Media появятся после первых проектов..." (хвост секции `#381200`);
+  - закомментирован целиком блок `<div id="examples">` / `DebugWrapper #381500 Portfolio Section` ("Портфолио наполняется", "честный placeholder").
+- `app/360-tour-real-estate/page.tsx`:
+  - закомментирован целиком блок `<div id="examples">` / `DebugWrapper #360500 Tour Examples Section` ("Реальные кейсы появятся после первых съёмок в Тбилиси").
+- `app/360-tour-restaurants/page.tsx`:
+  - совпадений не найдено, файл не изменялся.
+- Проверка:
+  - `npm run build` — успешно (81/81 страниц, без ошибок).
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
+## 2026-03-31 (CTA Audit: Real Estate + Drone Service Pages)
+### Session Summary
+- По запросу выполнена проверка карточек услуг на страницах `real-estate-service` и `drone-service` на предмет двух кнопок `Подробнее` + `Заказать`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- Проверены:
+  - `app/real-estate-service/page.tsx`
+  - `app/drone-service/page.tsx`
+- Установлено, что сервисные карточки этих страниц рендерятся через:
+  - `components/real-estate-service/RealEstateServicesStitch.tsx`
+  - `components/drone/DroneServicesStitch.tsx`
+- В обоих stitch-компонентах удалена кнопка `Заказать` из карточек услуг:
+  - `RealEstateServicesStitch`: удалён `<a href="#contact">Заказать</a>`;
+  - `DroneServicesStitch`: удалён `<a href="#contact">Заказать</a>`;
+- В карточках оставлена одна кнопка `Подробнее` (ссылка на страницу услуги).
+- Дополнительно выполнена сборка:
+  - `npm run build` — успешно.
+
+### Release Notes
+- Статус: `verified local`.
+- Деплой: не выполнялся (по явному требованию не деплоить).
+
+---
+
+## 2026-03-31 (Service Images Workflow Added)
+### Session Summary
+- Введён новый workflow для service images с корневой структурой `/services-images`.
+- Добавлены сервисные папки и `SERVICE_IMAGE_PLAN.md` как стандарт процесса подготовки image sets.
+- Полные правила и usage-логика зафиксированы в `CONTEXT_NEXT_CHAT.md`.
+
+### Commits
+- `N/A` — обновлены project memory файлы (`CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`).
+
+### Release Notes
+- Статус: `documentation updated`.
+
+---
+
+## 2026-03-31 (Noindex for Draft Pages + Remove Заказать CTA)
+### Session Summary
+- Добавлен `robots: noindex, nofollow` для страницы `/real-estate-2` через `layout.tsx`.
+- Убрана кнопка `Заказать` с карточек услуг на `/real-estate-service` и `/drone-service`.
+
+### Commits
+- `N/A` — изменения подготовлены локально (без деплоя).
+
+### Technical Notes
+- `app/real-estate-2/layout.tsx` — создан новый файл:
+  - `export const metadata: Metadata = { robots: 'noindex, nofollow' }`;
+  - `page.tsx` в этой директории — `"use client"`, metadata в нём не может быть, поэтому используется `layout.tsx`.
+- `app/dronetest/` и `app/test-docking/` — директории не существуют, пропущены.
+- `components/real-estate-service/RealEstateServicesStitch.tsx`:
+  - удалена `<a href="#contact">Заказать</a>` из CTA-блока карточек.
+- `components/drone/DroneServicesStitch.tsx`:
+  - то же самое.
+- Проверка:
+  - `npm run build` — успешно (81/81 страниц, без ошибок).
+
+### Release Notes
+- Статус: `local ready`.
+- Деплой: не выполнялся (ожидается явная команда `DEPLOY NOW`).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

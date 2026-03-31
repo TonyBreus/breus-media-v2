@@ -1035,6 +1035,16 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         const isRealEstateReferenceCard = isRealEstateScreen && serviceId >= 8410 && serviceId <= 8415;
                                         const isRealEstatePriceEnabledCard = isRealEstateReferenceCard && !isAllServicesCard;
                                         const shouldUseTwoLinePrice = isRealEstatePriceEnabledCard && isPhoneViewport;
+                                        const singleCtaLabel =
+                                            serviceId === 8412
+                                                ? "Смотреть примеры"
+                                                : serviceId === 8411
+                                                ? "Узнать стоимость"
+                                                : serviceId === 8410
+                                                ? "Посмотреть услугу"
+                                                : null;
+                                        const isSingleCtaExperimentCard = Boolean(singleCtaLabel);
+                                        const useContactAnchorForSingleCta = serviceId === 8411;
                                         const cardGridClassName = useMobileHorizontalServicesRail
                                             ? isRealEstateScreen
                                                 ? "basis-[calc((100%-0.375rem)/2)] min-w-[calc((100%-0.375rem)/2)] max-w-[calc((100%-0.375rem)/2)] shrink-0 snap-start"
@@ -1241,31 +1251,60 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                                             <div className={servicePageBottomSpacerClassName} aria-hidden="true" />
                                                         ) : null}
                                                         <div className={servicePageActionsClassName}>
-                                                            {isExternalServiceLink ? (
-                                                                <a
-                                                                    href={svc.link}
-                                                                    target="_blank"
-                                                                    rel="noreferrer"
-                                                                    className={servicePagePrimaryActionClassName}
-                                                                >
-                                                                    {svc.primaryCtaLabel ?? "Подробнее"}
-                                                                </a>
+                                                            {isSingleCtaExperimentCard ? (
+                                                                useContactAnchorForSingleCta ? (
+                                                                    <a
+                                                                        href="#contact"
+                                                                        className={servicePageSecondaryActionClassName}
+                                                                    >
+                                                                        {singleCtaLabel}
+                                                                    </a>
+                                                                ) : isExternalServiceLink ? (
+                                                                    <a
+                                                                        href={svc.link}
+                                                                        target="_blank"
+                                                                        rel="noreferrer"
+                                                                        className={servicePageSecondaryActionClassName}
+                                                                    >
+                                                                        {singleCtaLabel}
+                                                                    </a>
+                                                                ) : (
+                                                                    <Link
+                                                                        href={svc.link}
+                                                                        className={servicePageSecondaryActionClassName}
+                                                                    >
+                                                                        {singleCtaLabel}
+                                                                    </Link>
+                                                                )
                                                             ) : (
-                                                                <Link
-                                                                    href={svc.link}
-                                                                    className={servicePagePrimaryActionClassName}
-                                                                >
-                                                                    {svc.primaryCtaLabel ?? "Подробнее"}
-                                                                </Link>
+                                                                <>
+                                                                    {isExternalServiceLink ? (
+                                                                        <a
+                                                                            href={svc.link}
+                                                                            target="_blank"
+                                                                            rel="noreferrer"
+                                                                            className={servicePagePrimaryActionClassName}
+                                                                        >
+                                                                            {svc.primaryCtaLabel ?? "Подробнее"}
+                                                                        </a>
+                                                                    ) : (
+                                                                        <Link
+                                                                            href={svc.link}
+                                                                            className={servicePagePrimaryActionClassName}
+                                                                        >
+                                                                            {svc.primaryCtaLabel ?? "Подробнее"}
+                                                                        </Link>
+                                                                    )}
+                                                                    {!isAllServicesCard ? (
+                                                                        <a
+                                                                            href="#contact"
+                                                                            className={servicePageSecondaryActionClassName}
+                                                                        >
+                                                                            Заказать
+                                                                        </a>
+                                                                    ) : null}
+                                                                </>
                                                             )}
-                                                            {!isAllServicesCard ? (
-                                                                <a
-                                                                    href="#contact"
-                                                                    className={servicePageSecondaryActionClassName}
-                                                                >
-                                                                    Заказать
-                                                                </a>
-                                                            ) : null}
                                                         </div>
                                                     </div>
                                                 </div>

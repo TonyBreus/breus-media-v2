@@ -671,10 +671,7 @@ export default function DroneRealEstatePage() {
                     <div className="container mx-auto px-6">
                         <div className="max-w-3xl">
                             <h2 className="text-3xl font-bold md:text-4xl">Цифры рынка</h2>
-                            <p className="mt-4 leading-relaxed text-white/70">
-                                Реальные кейсы Breus Media для этой страницы появятся после первых проектов. Пока опираемся на
-                                рыночные сигналы и на то, как покупатели выбирают объект онлайн.
-                            </p>
+                            {/* trust-lowering placeholder removed */}
                         </div>
 
                         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -687,10 +684,7 @@ export default function DroneRealEstatePage() {
                             ))}
                         </div>
 
-                        <p className="mt-8 max-w-3xl text-sm leading-relaxed text-white/58">
-                            Реальные кейсы Breus Media появятся после первых проектов. Свяжитесь с нами, если хотите обсудить
-                            пилотный проект на выгодных условиях.
-                        </p>
+                        {/* trust-lowering placeholder removed */}
                     </div>
                 </section>
             </DebugWrapper>
@@ -833,7 +827,8 @@ export default function DroneRealEstatePage() {
                 </section>
             </DebugWrapper>
 
-            <div id="examples">
+            {/* Portfolio Section (trust-lowering placeholder) — hidden until real cases are ready */}
+            {/* <div id="examples">
                 <DebugWrapper id={381500} label="Portfolio Section">
                     <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
                         <div className="container mx-auto px-6">
@@ -856,7 +851,7 @@ export default function DroneRealEstatePage() {
                         </div>
                     </section>
                 </DebugWrapper>
-            </div>
+            </div> */}
 
             <DebugWrapper id={381520} label="Evidence Section">
                 <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
