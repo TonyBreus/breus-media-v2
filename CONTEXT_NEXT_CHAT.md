@@ -480,6 +480,22 @@
     - orphan-страница `/360-tour-commercial-real-estate` оставлена как secondary/supporting и помечена `noindex, nofollow`.
   - проверка:
     - `npm run build` — OK (81/81).
+- 31.03.2026: Batch 4A implemented (local, без редизайна):
+  - shared copy cleanup в `constants/l2DirectionConfigs.ts` и `constants/droneDirectionPages.ts`:
+    - удалены legacy wording остатки `Coverage v1`, `Google Presence`, `Шаблонный L2 блок`;
+    - нормализованы пользовательские формулировки: `Карта покрытия`, `Репутация в Google`, нейтральный map hint без internal/dev-текста;
+    - убраны internal-style labels в related links (`Категория ...`, `L2-страница ...`).
+  - CTA normalization в shared-слое:
+    - `components/l2-direction/L2DirectionRenderer.tsx`: label `Пакеты` -> `#pricing`;
+    - `components/l2-direction/L2DirectionSections.tsx`: hero CTA `Открыть услугу` (вместо `Подробнее`);
+    - `components/gazeta/NichesStack.tsx`: унифицированы карточечные CTA (`Открыть услугу` + secondary `Обсудить задачу`).
+  - 360 hero cleanup:
+    - `components/360-tour-*/TourHero.tsx`: `Смотреть демо` -> `Смотреть примеры`;
+    - убран visible legacy label `L3 Услуга` (hotels/commercial real estate).
+  - anchor normalization по активным семействам:
+    - в `app/reels-promo/*`, `app/ai-visual/*`, `app/ai-content/*` унифицировано `#packages` -> `#pricing`;
+    - репрезентативная страница `/reels-promo/reels-real-estate` дополнительно очищена от visible legacy `CTA №1/CTA №2` и placeholder-style заголовков.
+  - в этой сессии выполнялась точечная проверка через `rg/git diff`; `npm run build` не запускался.
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 
@@ -525,8 +541,8 @@
 2. Продолжить аудит deliverables по пакетам (CORE vs ADD-ON) на остальных L3-страницах, вне Batch 1-2.
 3. Начать L3-страницы кластера Reels.
 4. После UX-подтверждения выполнить деплой Batch 3 L2 cleanup.
-5. Запустить Batch 4A: shared copy/CTA/anchor normalization по файлу `BREUS_MEDIA_BATCH4_VISUAL_CONSISTENCY_SWEEP.md`.
-6. После QA деплоя проверить redirects `/real-estate`, `/real-estate-3`, `/drone-service/monitoring-stroiki` и robots для `/360-tour-commercial-real-estate`.
+5. Запустить Batch 4B: доочистка route/link остатков и deep-copy consistency по файлу `BREUS_MEDIA_BATCH4_VISUAL_CONSISTENCY_SWEEP.md`.
+6. После QA/деплоя повторно проверить anchors `#services/#pricing/#contact`, redirects `/real-estate`, `/real-estate-3`, `/drone-service/monitoring-stroiki` и robots для `/360-tour-commercial-real-estate`.
 
 ## СТРУКТУРА САЙТА
 - L1: /gazeta — главная страница-газета

@@ -534,7 +534,7 @@ export default function AiRealEstatePage() {
                 transparent={true}
                 isLanding={false}
                 sectionLinks={[
-                    { label: 'Пакеты', href: '#packages' },
+                    { label: 'Пакеты', href: '#pricing' },
                     { label: 'FAQ', href: '#faq' },
                     { label: 'Контакты', href: '#contact' },
                 ]}
@@ -585,7 +585,7 @@ export default function AiRealEstatePage() {
                                     Получить демо-визуализацию
                                 </a>
                                 <a
-                                    href="#packages"
+                                    href="#pricing"
                                     className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#D4A017]"
                                 >
                                     Смотреть пакеты
@@ -762,7 +762,7 @@ export default function AiRealEstatePage() {
                         </div>
                         <div className="mt-5 flex flex-wrap gap-3 md:mt-0 md:justify-end">
                             <a
-                                href="#packages"
+                                href="#pricing"
                                 className="inline-flex items-center justify-center rounded-[10px] border border-white/25 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#D4A017]"
                             >
                                 К пакетам
@@ -836,7 +836,7 @@ export default function AiRealEstatePage() {
                 </div>
             </section>
 
-            <section id="packages" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
+            <section id="pricing" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
                 <div className="container mx-auto px-6">
                     <h2 className="mb-10 text-3xl font-bold md:text-4xl">Пакеты</h2>
                     <div className="grid gap-5 lg:grid-cols-3">

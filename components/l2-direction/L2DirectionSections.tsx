@@ -136,7 +136,7 @@ export const L2DirectionHero = ({ hero, heroSubtitle, heroSupportingLine, servic
                                             href={activeService.primaryHref}
                                             className="bg-[#D4A017] text-black px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-white transition-all"
                                         >
-                                            Подробнее
+                                            {activeService.primaryCtaLabel ?? 'Открыть услугу'}
                                         </Link>
                                     ) : null}
                                 </DebugWrapper>

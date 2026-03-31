@@ -17,7 +17,7 @@ export function TourHero() {
                         href="#examples"
                         className="bg-[#D4A017] text-black px-7 py-3 rounded-[12px] font-bold uppercase tracking-wider text-xs hover:bg-white transition-colors"
                     >
-                        Смотреть демо
+                        Смотреть примеры
                     </Link>
                     <Link
                         href="#contact"

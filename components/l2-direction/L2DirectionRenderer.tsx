@@ -43,7 +43,7 @@ export const L2DirectionRenderer = ({ schemaKey, config }: L2DirectionRendererPr
                 isLanding={false}
                 sectionLinks={[
                     { label: 'Услуги', href: '#services' },
-                    { label: 'Цены', href: '#pricing' },
+                    { label: 'Пакеты', href: '#pricing' },
                     { label: 'FAQ', href: '#faq' },
                 ]}
             />

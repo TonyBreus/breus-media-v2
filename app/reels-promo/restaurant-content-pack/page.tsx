@@ -716,7 +716,7 @@ export default function RestaurantContentPackPage() {
                 transparent={true}
                 isLanding={false}
                 sectionLinks={[
-                    { label: 'Пакеты', href: '#packages' },
+                    { label: 'Пакеты', href: '#pricing' },
                     { label: 'FAQ', href: '#faq' },
                     { label: 'Контакты', href: '#contact' },
                 ]}
@@ -770,7 +770,7 @@ export default function RestaurantContentPackPage() {
                                     Обсудить контент-пакет
                                 </a>
                                 <a
-                                    href="#packages"
+                                    href="#pricing"
                                     className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F]"
                                 >
                                     Смотреть пакеты
@@ -1053,7 +1053,7 @@ export default function RestaurantContentPackPage() {
                 </div>
             </section>
 
-            <section id="packages" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
+            <section id="pricing" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl font-bold md:text-4xl">Описание 3 пакетов</h2>
                     <div className="mt-10 grid gap-6 lg:grid-cols-3">

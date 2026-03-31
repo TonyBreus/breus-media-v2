@@ -686,7 +686,7 @@ export default function HotelAiDescriptionsPage() {
                 transparent={true}
                 isLanding={false}
                 sectionLinks={[
-                    { label: 'Пакеты', href: '#packages' },
+                    { label: 'Пакеты', href: '#pricing' },
                     { label: 'FAQ', href: '#faq' },
                     { label: 'Контакты', href: '#contact' },
                 ]}
@@ -736,7 +736,7 @@ export default function HotelAiDescriptionsPage() {
                                     Проверить и обновить описания
                                 </a>
                                 <a
-                                    href="#packages"
+                                    href="#pricing"
                                     className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F]"
                                 >
                                     Выбрать пакет
@@ -999,7 +999,7 @@ export default function HotelAiDescriptionsPage() {
                 </div>
             </section>
 
-            <section id="packages" className="border-b border-[#2a2a2a] bg-[#080808] py-20">
+            <section id="pricing" className="border-b border-[#2a2a2a] bg-[#080808] py-20">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl font-bold md:text-4xl">Пакеты</h2>
                     <div className="mt-8 grid gap-5 xl:grid-cols-3">

@@ -1744,6 +1744,34 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-31 (Batch 4A: Shared Wording + CTA + Anchor Normalization)
+### Session Summary
+- Реализован Batch 4A без редизайна: точечная очистка shared-visible слоя и унификация CTA/anchors на активных семействах страниц.
+
+### Technical Notes
+- Shared legacy wording cleanup:
+  - `constants/l2DirectionConfigs.ts`
+  - `constants/droneDirectionPages.ts`
+  - удалены/заменены: `Coverage v1`, `Google Presence`, `Шаблонный L2 блок`, internal labels вида `Категория ...`/`L2-страница ...`.
+- CTA normalization:
+  - `components/l2-direction/L2DirectionRenderer.tsx` (`Пакеты` -> `#pricing`);
+  - `components/l2-direction/L2DirectionSections.tsx` (hero CTA `Открыть услугу`);
+  - `components/gazeta/NichesStack.tsx` (унификация CTA `Открыть услугу`, secondary `Обсудить задачу`).
+- Visible legacy remnants cleanup:
+  - `components/360-tour-*/TourHero.tsx` (`Смотреть демо` -> `Смотреть примеры`, удалён `L3 Услуга`);
+  - `app/reels-promo/reels-real-estate/page.tsx` (убраны `CTA №1/CTA №2`, очищены placeholder-style заголовки).
+- Anchor normalization across active families:
+  - `app/reels-promo/*`, `app/ai-visual/*`, `app/ai-content/*`:
+    - `#packages` -> `#pricing` (header links, inline links, section id).
+- Verification:
+  - выполнена проверка через `rg` и `git diff`;
+  - `npm run build` в этой сессии не запускался.
+
+### Release Notes
+- Статус: `local ready` (без деплоя в этой сессии).
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

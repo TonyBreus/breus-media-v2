@@ -5,7 +5,7 @@ export function TourHero() {
         <section id="tour-hero" className="relative pt-40 md:pt-44 pb-28 min-h-[calc(100vh-80px)] bg-[#080808] border-b border-[#2a2a2a]">
             <div className="container mx-auto px-6">
                 <span className="text-[#D4A017] font-bold tracking-[0.22em] text-[11px] uppercase block mb-4">
-                    L3 Услуга
+                    360° тур · Тбилиси
                 </span>
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.95] mb-6">
                     360° тур для коммерческой недвижимости

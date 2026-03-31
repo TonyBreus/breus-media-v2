@@ -47,7 +47,7 @@ const niches = [
                     eyebrow: "Продажи объектов",
                     desc: "Аэрофото и видео для листингов, инвест-презентаций и продаж. Объекты с аэровидео продаются на 68% быстрее.",
                     meta: "Фото, видео и вид на район",
-                    cta: "Смотреть формат",
+                    cta: "Открыть услугу",
                     link: "/drone-real-estate",
                     img: "https://images.unsplash.com/photo-1512453979436-5a5369614333?w=800&q=80"
                 },
@@ -56,7 +56,7 @@ const niches = [
                     eyebrow: "Стройка и девелопмент",
                     desc: "Еженедельные облёты с GPS-привязкой. PDF-отчёты о прогрессе для инвесторов без выезда на площадку.",
                     meta: "Регулярные облёты + PDF",
-                    cta: "Открыть решение",
+                    cta: "Открыть услугу",
                     link: "/drone-construction-monitoring",
                     img: "https://images.unsplash.com/photo-1541888086225-ee5a006c6426?w=800&q=80"
                 },
@@ -65,7 +65,7 @@ const niches = [
                     eyebrow: "Технические осмотры",
                     desc: "Визуальная диагностика без лесов и промальпинистов. Быстрее, безопаснее и дешевле проверки людьми.",
                     meta: "Без лесов и лишнего риска",
-                    cta: "Подробнее",
+                    cta: "Открыть услугу",
                     link: "/drone-object-inspection",
                     img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
                 },
@@ -74,7 +74,7 @@ const niches = [
                     eyebrow: "Hospitality",
                     desc: "Hero-ролики территории и номеров для сайта, Booking и соцсетей. Гости бронируют там, где видят атмосферу.",
                     meta: "Hero-ролик территории",
-                    cta: "Смотреть кейс",
+                    cta: "Открыть услугу",
                     link: "/drone-hotels-tourism",
                     img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
                 },
@@ -83,7 +83,7 @@ const niches = [
                     eyebrow: "HoReCa",
                     desc: "Аэросъёмка открытых террас, ресторанов на крышах и за городом. Контент, который приводит гостей.",
                     meta: "Терраса, крыша, локация",
-                    cta: "Посмотреть формат",
+                    cta: "Открыть услугу",
                     link: "/drone-services/drone-restaurants",
                     img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80"
                 },
@@ -94,7 +94,7 @@ const niches = [
                     tagAccent: true,
                     desc: "Cinematic пролёты изнутри и снаружи. FPV-дрон там, где обычный не пролетит — залы, арки, цеха.",
                     meta: "Один непрерывный проход",
-                    cta: "Открыть FPV",
+                    cta: "Открыть услугу",
                     link: "/drone-service",
                     img: "https://images.unsplash.com/photo-1581481615985-ba4775734a9b?w=800&q=80"
                 },
@@ -103,7 +103,7 @@ const niches = [
                     eyebrow: "Бренд-контент",
                     desc: "Рекламные ролики, брендовый контент и корпоративное видео с воздуха для сайта и соцсетей.",
                     meta: "Реклама для сайта и соцсетей",
-                    cta: "Смотреть решение",
+                    cta: "Открыть услугу",
                     link: "/promo-video-service",
                     img: "https://images.unsplash.com/photo-1524146128017-b9dd0bfd2778?w=800&q=80"
                 },
@@ -112,7 +112,7 @@ const niches = [
                     eyebrow: "Travel",
                     desc: "Cinematic аэросъёмка локаций Грузии. Горы, ущелья, замки — контент, который продаёт маршруты.",
                     meta: "Локации, маршруты, атмосфера",
-                    cta: "Посмотреть формат",
+                    cta: "Открыть услугу",
                     link: "/drone-hotels-tourism",
                     img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80"
                 },
@@ -121,7 +121,7 @@ const niches = [
                     eyebrow: "Events",
                     desc: "Аэросъёмка открытий, корпоративов, спортивных соревнований и фестивалей на открытом воздухе.",
                     meta: "Фестивали, спорт, открытия",
-                    cta: "Подробнее",
+                    cta: "Открыть услугу",
                     link: "/drone-weddings-events",
                     img: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80"
                 }
@@ -228,7 +228,7 @@ const niches = [
                     img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
                     category: "Пространство · Оборудование · Подход",
                     price: "Brand Video · от 350 ₾",
-                    primaryCtaLabel: "Подробнее",
+                    primaryCtaLabel: "Открыть услугу",
                 },
                 {
                     title: "360° тур для клиник",
@@ -491,7 +491,7 @@ const getSuggestedCardDetails = (niche: NicheItem, svc: ServiceItem): Partial<Se
             tagAccent: true,
             eyebrow: "AI-решения",
             meta: "Упаковка и локализация",
-            cta: "Открыть решение",
+            cta: "Открыть услугу",
         };
     }
 
@@ -500,7 +500,7 @@ const getSuggestedCardDetails = (niche: NicheItem, svc: ServiceItem): Partial<Se
             tag: "360",
             eyebrow: "Иммерсивный формат",
             meta: "Виртуальный тур",
-            cta: "Смотреть формат",
+            cta: "Открыть услугу",
         };
     }
 
@@ -518,7 +518,7 @@ const getSuggestedCardDetails = (niche: NicheItem, svc: ServiceItem): Partial<Se
             tag: "PROGRESS",
             eyebrow: "Регулярный контроль",
             meta: "Облёты и отчёты",
-            cta: "Открыть решение",
+            cta: "Открыть услугу",
         };
     }
 
@@ -527,7 +527,7 @@ const getSuggestedCardDetails = (niche: NicheItem, svc: ServiceItem): Partial<Se
             tag: "DRONE",
             eyebrow: "Aerial-визуал",
             meta: "Съёмка с воздуха",
-            cta: "Посмотреть формат",
+            cta: "Открыть услугу",
         };
     }
 
@@ -545,7 +545,7 @@ const getSuggestedCardDetails = (niche: NicheItem, svc: ServiceItem): Partial<Se
             tag: "MAPS",
             eyebrow: "Local presence",
             meta: "Визуал для карт",
-            cta: "Открыть решение",
+            cta: "Открыть услугу",
         };
     }
 
@@ -554,7 +554,7 @@ const getSuggestedCardDetails = (niche: NicheItem, svc: ServiceItem): Partial<Se
             tag: "DESIGN",
             eyebrow: "Визуальная упаковка",
             meta: "Меню и носители",
-            cta: "Подробнее",
+            cta: "Открыть услугу",
         };
     }
 
@@ -563,14 +563,14 @@ const getSuggestedCardDetails = (niche: NicheItem, svc: ServiceItem): Partial<Se
             tag: "VIDEO",
             eyebrow: "Продакшн",
             meta: "Съёмка и монтаж",
-            cta: "Смотреть формат",
+            cta: "Открыть услугу",
         };
     }
 
     return {
         eyebrow: niche.title,
         meta: `${niche.title} / формат`,
-        cta: "Подробнее",
+        cta: "Открыть услугу",
     };
 };
 
@@ -1031,7 +1031,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         const isExternalServiceLink = isExternalHref(svc.link);
                                         const cardEyebrow = svc.eyebrow || suggestedCardDetails.eyebrow || niche.title;
                                         const cardMeta = svc.meta || suggestedCardDetails.meta || (isAllServicesCard ? "Вся страница направления" : "Форматы и детали");
-                                        const cardCta = svc.cta || suggestedCardDetails.cta || (isAllServicesCard ? "Открыть страницу" : "Подробнее");
+                                        const cardCta = svc.cta || suggestedCardDetails.cta || (isAllServicesCard ? "Открыть страницу" : "Открыть услугу");
                                         const isRealEstateReferenceCard = isRealEstateScreen && serviceId >= 8410 && serviceId <= 8415;
                                         const isRealEstatePriceEnabledCard = isRealEstateReferenceCard && !isAllServicesCard;
                                         const shouldUseTwoLinePrice = isRealEstatePriceEnabledCard && isPhoneViewport;
@@ -1041,7 +1041,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                                 : serviceId === 8411
                                                 ? "Узнать стоимость"
                                                 : serviceId === 8410
-                                                ? "Посмотреть услугу"
+                                                ? "Открыть услугу"
                                                 : null;
                                         const isSingleCtaExperimentCard = Boolean(singleCtaLabel);
                                         const useContactAnchorForSingleCta = serviceId === 8411;
@@ -1285,14 +1285,14 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                                                             rel="noreferrer"
                                                                             className={servicePagePrimaryActionClassName}
                                                                         >
-                                                                            {svc.primaryCtaLabel ?? "Подробнее"}
+                                                                            {svc.primaryCtaLabel ?? "Открыть услугу"}
                                                                         </a>
                                                                     ) : (
                                                                         <Link
                                                                             href={svc.link}
                                                                             className={servicePagePrimaryActionClassName}
                                                                         >
-                                                                            {svc.primaryCtaLabel ?? "Подробнее"}
+                                                                            {svc.primaryCtaLabel ?? "Открыть услугу"}
                                                                         </Link>
                                                                     )}
                                                                     {!isAllServicesCard ? (
@@ -1300,7 +1300,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                                                             href="#contact"
                                                                             className={servicePageSecondaryActionClassName}
                                                                         >
-                                                                            Заказать
+                                                                            Обсудить задачу
                                                                         </a>
                                                                     ) : null}
                                                                 </>

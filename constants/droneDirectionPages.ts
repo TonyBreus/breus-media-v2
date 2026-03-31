@@ -64,8 +64,8 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
             heroImage: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=1800&q=80',
             primaryCtaLabel: 'Смотреть направления',
             primaryCtaHref: '#services',
-            secondaryCtaLabel: 'Заказать',
-            secondaryCtaHref: '#contact',
+            secondaryCtaLabel: 'Подобрать услугу',
+            secondaryCtaHref: '#services',
             panelServiceSlugs: [
                 'nedvizhimost',
                 'monitoring-stroiki',
@@ -94,13 +94,13 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
             location: 'Тбилиси · Батуми · Грузия',
         },
         googleTrust: {
-            heading: 'Google Presence',
+            heading: 'Репутация в Google',
             rating: '4.9',
             reviewsText: '50+ отзывов',
             profileUrl: 'https://www.google.com/maps/search/?api=1&query=Breus+Media+Tbilisi',
             mapTitle: 'Breus Media',
             mapAddress: 'Tbilisi, Georgia',
-            mapHint: 'Статический блок. Живые отзывы и карта будут подключены после клонирования первых страниц.',
+            mapHint: 'Рейтинг и отзывы подтягиваются из профиля Breus Media в Google.',
         },
         relatedLinks: [
             {
@@ -146,8 +146,8 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
             heroImage: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&q=80',
             primaryCtaLabel: 'Смотреть направления',
             primaryCtaHref: '#services',
-            secondaryCtaLabel: 'Заказать',
-            secondaryCtaHref: '#contact',
+            secondaryCtaLabel: 'Подобрать услугу',
+            secondaryCtaHref: '#services',
             panelServiceSlugs: ['prodazha-kvartir', 'prezentaciya-zhk', 'monitoring-stroyki'],
         },
         trust: {
@@ -156,13 +156,13 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
             location: 'Тбилиси · Батуми · Регионы Грузии',
         },
         googleTrust: {
-            heading: 'Google Presence',
+            heading: 'Репутация в Google',
             rating: '4.9',
             reviewsText: '50+ отзывов от клиентов',
             profileUrl: 'https://www.google.com/maps/search/?api=1&query=Breus+Media+Tbilisi',
             mapTitle: 'Breus Media · Real Estate',
             mapAddress: 'Tbilisi & Batumi, Georgia',
-            mapHint: 'Блок сохранен в шаблонной структуре L2. Подключение live-карты и отзывов выполняется отдельным этапом.',
+            mapHint: 'Рейтинг и отзывы подтягиваются из профиля Breus Media в Google.',
         },
         relatedLinks: [
             {
@@ -187,7 +187,7 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
             },
             {
                 href: realEstate,
-                title: 'Недвижимость (категория)',
+                title: 'Недвижимость в Gazeta',
                 description: 'Категорийная страница направления в Gazeta.',
             },
         ],

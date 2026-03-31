@@ -17,13 +17,13 @@ const {
 } = gazetaDetailRoutes;
 
 const commonGoogleTrust: DroneDirectionPageConfig['googleTrust'] = {
-    heading: 'Google Presence',
+    heading: 'Репутация в Google',
     rating: '4.9',
     reviewsText: '50+ отзывов от клиентов',
     profileUrl: 'https://www.google.com/maps/search/?api=1&query=Breus+Media+Tbilisi',
     mapTitle: 'Breus Media',
     mapAddress: 'Tbilisi, Georgia',
-    mapHint: 'Шаблонный L2 блок. Live-виджет подключается отдельным этапом.',
+    mapHint: 'Рейтинг и отзывы подтягиваются из профиля Breus Media в Google.',
 };
 
 const makeCommonProcessSteps = (context: string): L2ProcessStep[] => [
@@ -170,8 +170,8 @@ const makePage = ({
         heroImage,
         primaryCtaLabel: 'Смотреть услуги',
         primaryCtaHref: '#services',
-        secondaryCtaLabel: 'Заказать',
-        secondaryCtaHref: '#contact',
+        secondaryCtaLabel: 'Подобрать услугу',
+        secondaryCtaHref: '#services',
         panelServiceSlugs,
     },
     trust: {
@@ -207,7 +207,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/tourism-service', title: 'Туризм', description: 'Маршруты, локации и travel-визуал.' },
                 { href: '/business-service', title: 'Бизнес', description: 'Упаковка коммерческих объектов и брендов.' },
                 { href: droneService, title: 'Аэросъёмка', description: 'Каталог aerial-форматов Breus Media.' },
-                { href: '/real-estate-service', title: 'Недвижимость', description: 'L2-страница для real estate направления.' },
+                { href: '/real-estate-service', title: 'Недвижимость', description: 'Страница направления недвижимости.' },
             ],
             seoTitle: 'Контент для отелей и курортов в Тбилиси | Hotels Service — Breus Media',
             seoDescription: 'Видео, аэросъёмка, 360° туры и short-form контент для отелей и курортов в Грузии. Форматы для сайта, Booking, соцсетей и рекламы.',
@@ -294,9 +294,9 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             map: makeCommonMap(
                 'География hospitality-проектов',
                 'Тбилиси + выезд по Грузии по согласованию. Формируем съёмку под тип объекта: бутик-отель, апарт-отель, resort и загородные комплексы.',
-                'Hotels Coverage v1'
+                'Карта покрытия'
             ),
-            pricingHeading: 'Тарифы',
+            pricingHeading: 'Пакеты',
             pricingTagline: 'Пакеты для отелей и курортных объектов',
             pricingPlans: [
                 {
@@ -403,7 +403,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/tourism-service', title: 'Туризм', description: 'Контент для маршрутов и travel-проектов.' },
                 { href: '/business-service', title: 'Бизнес', description: 'Коммерческая digital-упаковка бренда.' },
                 { href: droneService, title: 'Аэросъёмка', description: 'Съёмка локации, террасы и окружения.' },
-                { href: restaurants, title: 'Категория Рестораны', description: 'Gazeta-направление ресторанного контента.' },
+                { href: restaurants, title: 'Рестораны в Gazeta', description: 'Gazeta-направление ресторанного контента.' },
             ],
             seoTitle: 'Контент для ресторанов в Тбилиси | Restaurants Service — Breus Media',
             seoDescription: 'Видео, reels, интерьерная съёмка и digital-упаковка для ресторанов, кафе и гастропроектов в Грузии.',
@@ -500,9 +500,9 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             map: makeCommonMap(
                 'География ресторанных съёмок',
                 'Тбилиси + выезд по Грузии по согласованию для ресторанов, кафе и гастропространств.',
-                'Restaurants Coverage v1'
+                'Карта покрытия'
             ),
-            pricingHeading: 'Тарифы',
+            pricingHeading: 'Пакеты',
             pricingTagline: 'Пакеты для ресторанов и гастропроектов',
             pricingPlans: [
                 {
@@ -608,7 +608,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/restaurants-service', title: 'Рестораны', description: 'Визуал для гастро-точек маршрута.' },
                 { href: '/business-service', title: 'Бизнес', description: 'Упаковка коммерческих объектов.' },
                 { href: droneService, title: 'Аэросъёмка', description: 'Обзорные и cinematic aerial форматы.' },
-                { href: tourism, title: 'Категория Туризм', description: 'Gazeta-направление tourism-контента.' },
+                { href: tourism, title: 'Туризм в Gazeta', description: 'Gazeta-направление tourism-контента.' },
             ],
             seoTitle: 'Контент для туризма и локаций в Грузии | Tourism Service — Breus Media',
             seoDescription: 'Видео, дрон, reels и digital-упаковка для маршрутов, туров, глэмпингов и туристических объектов в Грузии.',
@@ -705,9 +705,9 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             map: makeCommonMap(
                 'География туристических съёмок',
                 'Тбилиси + выезд по Грузии по согласованию для турпроектов, включая горные и региональные локации. Подбираем продакшн под формат маршрута и логистику локаций.',
-                'Tourism Coverage v1'
+                'Карта покрытия'
             ),
-            pricingHeading: 'Тарифы',
+            pricingHeading: 'Пакеты',
             pricingTagline: 'Пакеты для турпроектов и маршрутов',
             pricingPlans: [
                 {
@@ -813,7 +813,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/auto-service', title: 'Автобизнес', description: 'Контент для объектов с офлайн-точками.' },
                 { href: '/hotels-service', title: 'Отели', description: 'Сервисная подача пространств и атмосферы.' },
                 { href: droneService, title: 'Аэросъёмка', description: 'Aerial-форматы для объектов и локаций.' },
-                { href: clinics, title: 'Категория Клиники', description: 'Gazeta-направление для медицинской ниши.' },
+                { href: clinics, title: 'Клиники в Gazeta', description: 'Gazeta-направление для медицинской ниши.' },
             ],
             seoTitle: 'Контент для клиник в Тбилиси | Clinics Service — Breus Media',
             seoDescription: 'Видео, интерьерная съёмка, reels и digital-упаковка для клиник, стоматологий и эстетических центров в Грузии.',
@@ -839,7 +839,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     featured: true,
                     tag: 'HOT',
                     primaryHref: '/promo-video/promo-clinic',
-                    primaryCtaLabel: 'Подробнее',
+                    primaryCtaLabel: 'Открыть услугу',
                 },
                 {
                     id: 2,
@@ -862,7 +862,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     price: 'Photo + Video · от 450 ₾',
                     image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&q=80',
                     primaryHref: '/promo-video/clinic-interior',
-                    primaryCtaLabel: 'Подробнее',
+                    primaryCtaLabel: 'Открыть услугу',
                 },
                 {
                     id: 4,
@@ -913,9 +913,9 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             map: makeCommonMap(
                 'География медицинских съёмок',
                 'Тбилиси + выезд по Грузии по согласованию для клиник и медицинских проектов. Подстраиваем продакшн под режим работы объекта.',
-                'Clinics Coverage v1'
+                'Карта покрытия'
             ),
-            pricingHeading: 'Тарифы',
+            pricingHeading: 'Пакеты',
             pricingTagline: 'Пакеты для клиник и медицинских проектов',
             pricingPlans: [
                 {
@@ -1021,7 +1021,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/clinics-service', title: 'Клиники', description: 'Сервисный контент с акцентом на доверие.' },
                 { href: '/restaurants-service', title: 'Рестораны', description: 'Кейс регулярного short-form потока.' },
                 { href: droneService, title: 'Аэросъёмка', description: 'Aerial-пролёты для площадок и объектов.' },
-                { href: auto, title: 'Категория Автобизнес', description: 'Gazeta-направление автобизнеса.' },
+                { href: auto, title: 'Автобизнес в Gazeta', description: 'Gazeta-направление автобизнеса.' },
             ],
             seoTitle: 'Контент для автобизнеса в Тбилиси | Auto Service — Breus Media',
             seoDescription: 'Видео, аэросъёмка, reels и digital-контент для дилерских центров, автоплощадок и сервисов в Грузии.',
@@ -1118,9 +1118,9 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             map: makeCommonMap(
                 'География авто-проектов',
                 'Тбилиси + выезд по Грузии по согласованию для автообъектов и автобизнеса. Планируем съёмку под рабочий график площадки и потоки клиентов.',
-                'Auto Coverage v1'
+                'Карта покрытия'
             ),
-            pricingHeading: 'Тарифы',
+            pricingHeading: 'Пакеты',
             pricingTagline: 'Пакеты для автобизнеса и автообъектов',
             pricingPlans: [
                 {
@@ -1229,7 +1229,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/clinics-service', title: 'Клиники', description: 'Сервисная визуальная подача и доверие.' },
                 { href: '/hotels-service', title: 'Отели', description: 'Hospitality-кейс визуальной упаковки.' },
                 { href: '/restaurants-service', title: 'Рестораны', description: 'Регулярный short-form и промо-контент.' },
-                { href: customBusiness, title: 'Категория Ваш бизнес', description: 'Gazeta-направление custom business.' },
+                { href: customBusiness, title: 'Ваш бизнес в Gazeta', description: 'Gazeta-направление custom business.' },
             ],
             seoTitle: 'Контент для бизнеса в Тбилиси | Business Service — Breus Media',
             seoDescription: 'Видео, aerial, reels, 360° и digital-упаковка для бизнеса и коммерческих объектов в Грузии.',
@@ -1312,9 +1312,9 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             map: makeCommonMap(
                 'География коммерческих проектов',
                 'Тбилиси + выезд по Грузии по согласованию. Подбираем формат продакшна под офлайн-объект, digital-воронку и этап роста бизнеса.',
-                'Business Coverage v1'
+                'Карта покрытия'
             ),
-            pricingHeading: 'Тарифы',
+            pricingHeading: 'Пакеты',
             pricingTagline: 'Пакеты для бизнеса и коммерческих объектов',
             pricingPlans: [
                 {
@@ -1454,7 +1454,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     price: 'Promo Video · по задаче',
                     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
                     primaryHref: '/promo-video/promo-real-estate',
-                    primaryCtaLabel: 'Подробнее',
+                    primaryCtaLabel: 'Открыть услугу',
                     featured: true,
                     tag: 'HOT',
                 },
@@ -1492,7 +1492,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     price: 'Promo Video · по задаче',
                     image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80',
                     primaryHref: '/promo-video/promo-car-dealer',
-                    primaryCtaLabel: 'Подробнее',
+                    primaryCtaLabel: 'Открыть услугу',
                 },
                 {
                     id: 5,
@@ -1517,7 +1517,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     price: 'Promo Video · по задаче',
                     image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80',
                     primaryHref: '/promo-video/promo-clinic',
-                    primaryCtaLabel: 'Подробнее',
+                    primaryCtaLabel: 'Открыть услугу',
                 },
                 {
                     id: 7,
@@ -1556,7 +1556,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             map: makeCommonMap(
                 'География промо-видео проектов',
                 'Снимаем промо-видео для бизнеса и брендов в Тбилиси + выезд по Грузии по согласованию.',
-                'Promo Video Coverage v1'
+                'Карта покрытия'
             ),
             pricingHeading: 'Что вы получаете на выходе',
             pricingTagline: 'Пакеты promo-видео и формат выдачи материалов',
@@ -1849,7 +1849,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             map: makeCommonMap(
                 'География AI-визуализации',
                 'Создаём AI-визуалы для проектов в Тбилиси + выезд по Грузии по согласованию.',
-                'AI Visualization Coverage v1'
+                'Карта покрытия'
             ),
             pricingHeading: 'Что вы получаете на выходе',
             pricingTagline: 'Пакеты AI-визуализации и digital-упаковки',
@@ -2124,7 +2124,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             map: makeCommonMap(
                 'География съёмок Reels-контента',
                 'Снимаем короткие вертикальные видео в Тбилиси + выезд по Грузии по согласованию.',
-                'Reels Coverage v1'
+                'Карта покрытия'
             ),
             pricingHeading: 'Что вы получаете на выходе',
             pricingTagline: 'Пакеты Reels/Shorts для контент-потока и заявок',
@@ -2389,7 +2389,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             map: makeCommonMap(
                 'География 360° проектов',
                 'Тбилиси + выезд по Грузии по согласованию. Подбираем формат 360° тура под задачу объекта и каналов продаж.',
-                '360 Coverage v1'
+                'Карта покрытия'
             ),
             pricingHeading: 'Что вы получаете на выходе',
             pricingTagline: 'Пакеты 360° туров для объектов и пространств',

@@ -665,7 +665,7 @@ export default function ReelsRealEstatePage() {
                 transparent={true}
                 isLanding={false}
                 sectionLinks={[
-                    { label: 'Пакеты', href: '#packages' },
+                    { label: 'Пакеты', href: '#pricing' },
                     { label: 'FAQ', href: '#faq' },
                     { label: 'Контакты', href: '#contact' },
                 ]}
@@ -722,7 +722,7 @@ export default function ReelsRealEstatePage() {
                                     Заказать съёмку объекта
                                 </a>
                                 <a
-                                    href="#packages"
+                                    href="#pricing"
                                     className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F]"
                                 >
                                     Посмотреть пакеты
@@ -841,7 +841,7 @@ export default function ReelsRealEstatePage() {
 
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
                 <div className="container mx-auto px-6">
-                    <h2 className="text-3xl font-bold md:text-4xl">Deliverables: что входит в услугу</h2>
+                    <h2 className="text-3xl font-bold md:text-4xl">Что входит в пакет</h2>
                     <ul className="mt-8 grid gap-3 text-sm leading-relaxed text-white/74 md:grid-cols-2">
                         {deliverables.map((item) => (
                             <li key={item} className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-4">
@@ -874,7 +874,7 @@ export default function ReelsRealEstatePage() {
                 <div className="container mx-auto px-6">
                     <div className="rounded-[14px] border border-[#FFD23F]/35 bg-[#131313] p-6 md:flex md:items-center md:justify-between">
                         <div>
-                            <p className="text-xl font-bold text-white">CTA №1: Заказать съёмку объекта</p>
+                            <p className="text-xl font-bold text-white">Быстрый старт: заказать съёмку объекта</p>
                             <p className="mt-2 text-sm leading-relaxed text-white/70">
                                 Есть объект на продажу? Напишите нам в WhatsApp или Telegram — расскажем, что входит в
                                 пакет, и назначим дату съёмки. Если хотите сначала выбрать уровень услуг, откройте
@@ -884,7 +884,7 @@ export default function ReelsRealEstatePage() {
                         </div>
                         <div className="mt-5 flex flex-wrap gap-3 md:mt-0 md:justify-end">
                             <a
-                                href="#packages"
+                                href="#pricing"
                                 className="inline-flex items-center justify-center rounded-[10px] border border-white/25 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F]"
                             >
                                 Быстрый переход к пакетам
@@ -967,7 +967,7 @@ export default function ReelsRealEstatePage() {
 
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-20">
                 <div className="container mx-auto px-6">
-                    <h2 className="text-3xl font-bold md:text-4xl">Social proof / доказательства</h2>
+                    <h2 className="text-3xl font-bold md:text-4xl">Доказательства и опыт</h2>
                     <div className="mt-8 grid gap-5 md:grid-cols-2">
                         {socialProofCards.map((item) => (
                             <article key={item.title} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
@@ -1025,7 +1025,7 @@ export default function ReelsRealEstatePage() {
                 </div>
             </section>
 
-            <section id="packages" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
+            <section id="pricing" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl font-bold md:text-4xl">Описание 3 пакетов</h2>
                     <div className="mt-8 grid gap-5 xl:grid-cols-3">
@@ -1104,7 +1104,7 @@ export default function ReelsRealEstatePage() {
             </section>
 
             <MidCta
-                text="CTA №2: Получить пример готового комплекта. Напишите в WhatsApp — пришлём пример видео, фото и текста по похожему объекту."
+                text="Получите пример готового комплекта: напишите в WhatsApp — пришлём видео, фото и текст по похожему объекту."
                 buttonLabel="Получить пример"
                 href={WHATSAPP_URL}
                 bgColor="#0D0D0D"
@@ -1112,7 +1112,7 @@ export default function ReelsRealEstatePage() {
 
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-20">
                 <div className="container mx-auto px-6">
-                    <h2 className="text-3xl font-bold md:text-4xl">Related services</h2>
+                    <h2 className="text-3xl font-bold md:text-4xl">Смежные услуги</h2>
                     <div className="mt-8 grid gap-5 md:grid-cols-2">
                         {relatedServices.map((service) => (
                             <article key={service.title} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
@@ -1127,7 +1127,7 @@ export default function ReelsRealEstatePage() {
             <section id="contact" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
                 <div className="container mx-auto px-6">
                     <div className="rounded-[20px] border border-[#FFD23F]/30 bg-[#121212] p-6 md:p-8">
-                        <h2 className="text-3xl font-bold md:text-4xl">Contact block</h2>
+                        <h2 className="text-3xl font-bold md:text-4xl">Связаться с командой</h2>
                         <p className="mt-4 max-w-3xl leading-relaxed text-white/72">
                             Работаем по всему Тбилиси. Снимаем в будни и выходные. Ближайший слот обычно через 2–4 дня —
                             напишите сейчас, чтобы забронировать удобную дату.

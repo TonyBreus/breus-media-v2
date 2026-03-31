@@ -667,7 +667,7 @@ export default function TourismAiPackagingPage() {
                 transparent={true}
                 isLanding={false}
                 sectionLinks={[
-                    { label: 'Пакеты', href: '#packages' },
+                    { label: 'Пакеты', href: '#pricing' },
                     { label: 'FAQ', href: '#faq' },
                     { label: 'Контакты', href: '#contact' },
                 ]}
@@ -716,7 +716,7 @@ export default function TourismAiPackagingPage() {
                                     Обсудить AI-упаковку туров
                                 </a>
                                 <a
-                                    href="#packages"
+                                    href="#pricing"
                                     className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F]"
                                 >
                                     Посмотреть пакеты
@@ -973,7 +973,7 @@ export default function TourismAiPackagingPage() {
                 </div>
             </section>
 
-            <section id="packages" className="border-b border-[#2a2a2a] bg-[#080808] py-20">
+            <section id="pricing" className="border-b border-[#2a2a2a] bg-[#080808] py-20">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl font-bold md:text-4xl">Тарифы на AI-упаковку</h2>
                     <div className="mt-8 grid gap-5 xl:grid-cols-3">
