@@ -1596,6 +1596,15 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-31 (Doc Sync + Batch 1-3 Deployed)
+- Синхронизированы CONTEXT и CHANGELOG с реальным git-состоянием.
+- Батч 1: trust-фразы убраны (`drone-real-estate`, `360-tour-real-estate`).
+- Батч 2: двойные кнопки убраны (`RealEstateServicesStitch`, `DroneServicesStitch`).
+- Батч 3: noindex на черновых страницах.
+- Все три батча в коммите `70065ab`, задеплоены.
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary
