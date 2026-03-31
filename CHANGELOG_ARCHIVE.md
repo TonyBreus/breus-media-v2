@@ -1692,6 +1692,31 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-03-31 (Batch 4 Audit: Visual Consistency + Legacy Junk Sweep)
+### Session Summary
+- Выполнен cross-page consistency sweep по активному слою сайта:
+  - `/gazeta`,
+  - активные L2 hubs,
+  - репрезентативные L3 (drone / 360 / reels / promo / AI / inspection-monitoring).
+- Подход: cleanup-oriented аудит без редизайна и без mass deletion.
+
+### Technical Notes
+- Создан итоговый аудит-файл:
+  - `BREUS_MEDIA_BATCH4_VISUAL_CONSISTENCY_SWEEP.md`
+- В отчёте зафиксированы группы проблем:
+  - shared component leftovers (`Coverage v1`, `Шаблонный L2 блок`, `Google Presence`, internal labels),
+  - CTA consistency drift,
+  - anchor consistency drift,
+  - visible legacy wording/junk (`CTA №1`, `L3 Услуга`, placeholder copy),
+  - route-sanity хвосты в части drone related links.
+- Сформирован первый implementation plan (Batch 4A/4B/4C) для точечной стабилизации без полной переработки страниц.
+
+### Release Notes
+- Статус: `audit complete / local docs update`.
+- Деплой: не выполнялся.
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

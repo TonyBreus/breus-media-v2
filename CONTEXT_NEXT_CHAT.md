@@ -450,6 +450,20 @@
     - для `/drone-service` стрелка hero теперь ведёт к `#services`, а не к social proof;
   - `npm run build` — OK (81/81);
   - деплой не выполнялся (ожидается явная команда `DEPLOY NOW`).
+- 31.03.2026: Batch 4 visual consistency + legacy junk sweep (audit-only, local):
+  - создан файл аудита:
+    - `BREUS_MEDIA_BATCH4_VISUAL_CONSISTENCY_SWEEP.md`;
+  - покрытие аудита:
+    - `/gazeta`,
+    - активные L2 hubs,
+    - репрезентативные L3 (drone / 360 / reels / promo / AI / inspection-monitoring);
+  - ключевые finding-группы:
+    - shared component leftovers (`Coverage v1`, `Шаблонный L2 блок`, `Google Presence`, internal labels),
+    - CTA/anchor naming drift между семействами страниц,
+    - visible legacy copy (`CTA №1`, `L3 Услуга`, placeholder-тексты),
+    - route-sanity долги в части drone related links (legacy href);
+  - сформирован практический plan на Batch 4A/4B/4C без редизайна и без mass deletion;
+  - кодовые правки в рамках этой задачи не вносились (только аудит + docs sync).
 - Для деплоя и отката добавлен регламент: `DEPLOYMENT.md`.
 - Для истории сессий добавлен архив: `CHANGELOG_ARCHIVE.md`.
 
@@ -495,6 +509,7 @@
 2. Продолжить аудит deliverables по пакетам (CORE vs ADD-ON) на остальных L3-страницах, вне Batch 1-2.
 3. Начать L3-страницы кластера Reels.
 4. После UX-подтверждения выполнить деплой Batch 3 L2 cleanup.
+5. Запустить Batch 4A: shared copy/CTA/anchor normalization по файлу `BREUS_MEDIA_BATCH4_VISUAL_CONSISTENCY_SWEEP.md`.
 
 ## СТРУКТУРА САЙТА
 - L1: /gazeta — главная страница-газета
