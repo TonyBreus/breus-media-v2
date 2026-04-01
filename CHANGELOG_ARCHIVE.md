@@ -1,6 +1,23 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Localhost Visual Smoke Test)
+### Session Summary
+- Запущен prod-сервер на порту 3001 (`next start` после чистой сборки).
+- Проверены 11 страниц на 3 viewport: desktop 1440×900, mobile portrait 390×844, landscape 844×390.
+- Код не менялся — только аудит.
+
+### Result
+- **Критических проблем: 0**
+- Все P1 CTA-фиксы (batch 1, commit 77c634d) подтверждены DOM-запросами.
+- Единственная находка: DebugWrapper labels видны в локальной prod-сборке — это ожидаемо (env var не задан локально). На Vercel env выставлен корректно.
+- Console errors/warnings: 0. Build errors: 0.
+
+### Added Docs
+- `BREUS_MEDIA_LOCALHOST_VISUAL_SMOKE_TEST.md`
+
+---
+
 ## 2026-04-01 (Launch Readiness Audit — автоматический scheduled task)
 ### Session Summary
 - Выполнен полный Launch Readiness Audit против HEAD `70065ab`.

@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (launch readiness audit — автоматический scheduled task)
+### Обновлён: 1 апреля 2026 (regression sanity check — автоматический scheduled task)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -7,7 +7,7 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: 70065ab
+- Последний кодовый коммит: 77c634d (fix(cta-batch1): gazeta hero anchor, slug CTA hierarchy and contact path)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Цены — проверены, исправлены 3 нарушения матрицы  
@@ -32,6 +32,7 @@
 ✅ /gazeta: для секции `01` (Недвижимость) карточки визуально приведены к дизайну `RealEstateServicesStitch`
 ✅ /gazeta: добавлен compact-режим для mobile landscape — уменьшены фиксированные верхние элементы (header + marquee), чтобы не съедали экран
 ✅ CTA & Contact Path Audit завершён (01.04.2026) — BREUS_MEDIA_CTA_CONTACT_PATH_AUDIT.md
+✅ Localhost Visual Smoke Test пройден (01.04.2026) — BREUS_MEDIA_LOCALHOST_VISUAL_SMOKE_TEST.md
 ✅ Launch Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_LAUNCH_READINESS_AUDIT.md
 
 ## ОТКРЫТЫЕ ЗАДАЧИ — Batch 5 (следующий, маленький)
