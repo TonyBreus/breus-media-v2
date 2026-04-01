@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (analytics batch — GA4 + whatsapp_click + form_submit_attempt)
+### Обновлён: 1 апреля 2026 (Form UX Honesty Batch)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -7,7 +7,7 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: c82bc61 (feat(analytics): GA4 script + whatsapp_click + form_submit_attempt)
+- Последний кодовый коммит: (pending) (ux(form): WhatsApp as primary CTA, honest submit via pre-fill)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Цены — проверены, исправлены 3 нарушения матрицы  
@@ -35,8 +35,9 @@
 ✅ Localhost Visual Smoke Test пройден (01.04.2026) — BREUS_MEDIA_LOCALHOST_VISUAL_SMOKE_TEST.md
 ✅ Launch Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_LAUNCH_READINESS_AUDIT.md
 ✅ Analytics & Tracking Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_ANALYTICS_READINESS_AUDIT.md
+✅ Form UX Honesty Batch (01.04.2026) — WhatsApp primary CTA, форма → WhatsApp pre-fill, честный subtitle
 
-## ОТКРЫТЫЕ ЗАДАЧИ — Batch 5 (следующий, маленький)
+## ОТКРЫТЫЕ ЗАДАЧИ — Batch 6 (следующий, маленький)
 
 ### P1 — ВСЕ ЗАКРЫТЫ ✅ (исправлены в коммите 77c634d)
 - [x] P1: `/gazeta/[slug]` — стили кнопок исправлены: "Обсудить проект" = `bg-white text-black` (primary), "Назад к Gazeta" = ghost border (secondary) — подтверждено в коде

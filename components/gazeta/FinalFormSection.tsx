@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
-import { Send, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { DebugWrapper } from "../debug/DebugWrapper";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMobileLandscape } from "@/hooks/useMobileLandscape";
@@ -9,6 +9,10 @@ import { useMobilePortrait } from "@/hooks/useMobilePortrait";
 export function FinalFormSection() {
     const [method, setMethod] = useState("Telegram");
     const [services, setServices] = useState<string[]>([]);
+    const [name, setName] = useState("");
+    const [contact, setContact] = useState("");
+    const [niche, setNiche] = useState("");
+    const [task, setTask] = useState("");
     const containerRef = useRef<HTMLDivElement>(null);
     const isMobileLandscape = useMobileLandscape();
     const isMobilePortrait = useMobilePortrait();
@@ -19,6 +23,24 @@ export function FinalFormSection() {
         setServices((prev) =>
             prev.includes(s) ? prev.filter((item) => item !== s) : [...prev, s]
         );
+    };
+
+    const buildWhatsAppUrl = () => {
+        const parts: string[] = [];
+        if (name) parts.push(`Меня зовут ${name}.`);
+        if (services.length > 0) parts.push(`Интересует: ${services.join(", ")}.`);
+        if (niche) parts.push(`Ниша: ${niche}.`);
+        if (task) parts.push(`Задача: ${task}`);
+        const message = parts.length > 0 ? parts.join(" ") : "Привет! Хочу обсудить проект.";
+        return `https://wa.me/995574619393?text=${encodeURIComponent(message)}`;
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+            (window as any).gtag("event", "form_submit_attempt");
+        }
+        window.open(buildWhatsAppUrl(), "_blank");
     };
 
     const { scrollYProgress } = useScroll({
@@ -49,13 +71,16 @@ export function FinalFormSection() {
                     {/* Form Body - Scrollable */}
                     <div className="flex-1 overflow-y-auto overscroll-y-contain touch-pan-y px-6 py-12 md:px-12 md:py-16 max-w-5xl mx-auto w-full custom-scrollbar">
                         <DebugWrapper id={42} label="Form Title">
-                            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-12">
+                            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">
                                 Готов усилить <br className="hidden md:block" />
                                 <span className="text-[#D4AF37]">цифровое</span> присутствие?
                             </h2>
+                            <p className="text-white/50 text-sm uppercase tracking-widest mb-10">
+                                Напишите напрямую — или заполните форму, и мы откроем чат с вашим запросом.
+                            </p>
                         </DebugWrapper>
 
-                        <form className="space-y-10 pb-10" onSubmit={(e) => { e.preventDefault(); if (typeof window !== "undefined" && typeof (window as any).gtag === "function") { (window as any).gtag("event", "form_submit_attempt"); } }}>
+                        <form className="space-y-10 pb-10" onSubmit={handleSubmit}>
                             <DebugWrapper id={43} label="Personal Info">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div>
@@ -63,6 +88,8 @@ export function FinalFormSection() {
                                         <input
                                             type="text"
                                             placeholder="Иван Иванов"
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
                                             className="w-full bg-transparent border-b border-white/20 pb-2 focus:border-[#D4AF37] transition-colors outline-none font-medium"
                                             required
                                         />
@@ -85,6 +112,8 @@ export function FinalFormSection() {
                                         <input
                                             type={method === "Mail" ? "email" : "text"}
                                             placeholder={method === "Mail" ? "hello@example.com" : "@username / +995..."}
+                                            value={contact}
+                                            onChange={(e) => setContact(e.target.value)}
                                             className="w-full bg-transparent border-b border-white/20 pb-2 mt-4 focus:border-[#D4AF37] transition-colors outline-none font-medium"
                                             required
                                         />
@@ -116,16 +145,20 @@ export function FinalFormSection() {
                             <DebugWrapper id={45} label="Niche Select">
                                 <div>
                                     <label className="block text-xs uppercase tracking-widest text-white/50 mb-2">Ваша ниша</label>
-                                    <select className="w-full bg-transparent border-b border-white/20 pb-2 focus:border-[#D4AF37] transition-colors outline-none font-medium appearance-none">
+                                    <select
+                                        value={niche}
+                                        onChange={(e) => setNiche(e.target.value)}
+                                        className="w-full bg-transparent border-b border-white/20 pb-2 focus:border-[#D4AF37] transition-colors outline-none font-medium appearance-none"
+                                    >
                                         <option value="" className="bg-zinc-900">Выберите нишу...</option>
-                                        <option value="realestate" className="bg-zinc-900">Недвижимость</option>
-                                        <option value="hotels" className="bg-zinc-900">Отели</option>
-                                        <option value="restaurants" className="bg-zinc-900">Рестораны</option>
-                                        <option value="auto" className="bg-zinc-900">Авто бизнес</option>
-                                        <option value="tourism" className="bg-zinc-900">Туризм</option>
-                                        <option value="clinics" className="bg-zinc-900">Клиники</option>
-                                        <option value="it" className="bg-zinc-900">IT</option>
-                                        <option value="other" className="bg-zinc-900">Другое</option>
+                                        <option value="Недвижимость" className="bg-zinc-900">Недвижимость</option>
+                                        <option value="Отели" className="bg-zinc-900">Отели</option>
+                                        <option value="Рестораны" className="bg-zinc-900">Рестораны</option>
+                                        <option value="Авто бизнес" className="bg-zinc-900">Авто бизнес</option>
+                                        <option value="Туризм" className="bg-zinc-900">Туризм</option>
+                                        <option value="Клиники" className="bg-zinc-900">Клиники</option>
+                                        <option value="IT" className="bg-zinc-900">IT</option>
+                                        <option value="Другое" className="bg-zinc-900">Другое</option>
                                     </select>
                                 </div>
                             </DebugWrapper>
@@ -136,6 +169,8 @@ export function FinalFormSection() {
                                     <textarea
                                         placeholder="Например: Нужно снять дрон тур для нового ЖК"
                                         rows={3}
+                                        value={task}
+                                        onChange={(e) => setTask(e.target.value)}
                                         className="w-full bg-transparent border-b border-white/20 pb-2 focus:border-[#D4AF37] transition-colors outline-none font-medium resize-none"
                                     />
                                 </div>
@@ -143,14 +178,27 @@ export function FinalFormSection() {
 
                             <DebugWrapper id={47} label="Submit Actions">
                                 <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                                    <button type="submit" className="flex-1 bg-white text-black font-black uppercase tracking-widest py-4 px-8 flex justify-center items-center gap-2 hover:bg-[#D4AF37] transition-colors">
-                                        <Send className="w-5 h-5" />
-                                        Написать
-                                    </button>
-                                    <a href="https://wa.me/995574619393" target="_blank" rel="noreferrer" onClick={() => { if (typeof window !== "undefined" && typeof (window as any).gtag === "function") { (window as any).gtag("event", "whatsapp_click"); } }} className="flex-1 border border-white/20 text-white font-bold uppercase tracking-widest py-4 px-8 flex justify-center items-center gap-2 hover:bg-white/5 transition-colors">
+                                    <a
+                                        href="https://wa.me/995574619393"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        onClick={() => { if (typeof window !== "undefined" && typeof (window as any).gtag === "function") { (window as any).gtag("event", "whatsapp_click"); } }}
+                                        className="flex-1 bg-white text-black font-black uppercase tracking-widest py-4 px-8 flex justify-center items-center gap-2 hover:bg-[#D4AF37] transition-colors"
+                                    >
                                         <MessageCircle className="w-5 h-5" />
-                                        Перейти в WhatsApp
+                                        Написать в WhatsApp
                                     </a>
+                                    <div className="flex-1 flex flex-col gap-1">
+                                        <button
+                                            type="submit"
+                                            className="w-full border border-white/20 text-white font-bold uppercase tracking-widest py-4 px-8 flex justify-center items-center gap-2 hover:bg-white/5 transition-colors"
+                                        >
+                                            Отправить запрос
+                                        </button>
+                                        <p className="text-center text-white/30 text-[10px] uppercase tracking-widest">
+                                            Данные формы откроются в WhatsApp
+                                        </p>
+                                    </div>
                                 </div>
                             </DebugWrapper>
                         </form>

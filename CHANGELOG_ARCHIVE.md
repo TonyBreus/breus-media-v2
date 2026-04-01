@@ -1,6 +1,34 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Form UX Honesty Batch)
+### Session Summary
+- Устранён UX-разрыв: форма выглядела как рабочая submission-форма, но никуда не отправляла данные.
+- WhatsApp стал primary CTA. Форма — secondary, честно работает через WhatsApp pre-fill.
+- Код изменён в 1 файле: `components/gazeta/FinalFormSection.tsx`.
+
+### Что изменено
+
+#### FinalFormSection.tsx
+- Удалён импорт `Send` (иконка неактуальна), оставлен `MessageCircle`.
+- Добавлены controlled state для `name`, `contact`, `niche`, `task` (для сборки WhatsApp-сообщения).
+- `buildWhatsAppUrl()` — собирает pre-filled wa.me URL из данных формы.
+- `handleSubmit()` — вместо fake submit открывает WhatsApp с заполненным сообщением + gtag event.
+- Добавлен subtitle под h2: _"Напишите напрямую — или заполните форму, и мы откроем чат с вашим запросом."_
+- `<select>` option values переключены на читаемые строки (раньше были `realestate`, `hotels`, etc.).
+
+#### Кнопки (DebugWrapper #47)
+| До | После |
+|---|---|
+| PRIMARY: `bg-white` "Написать" → ничего не делает | PRIMARY: `bg-white` → `hover:bg-[#D4AF37]` "Написать в WhatsApp" → прямой WhatsApp |
+| SECONDARY: border "Перейти в WhatsApp" | SECONDARY: border "Отправить запрос" → WhatsApp pre-fill с данными формы |
+| Нет пояснения | Footnote: "Данные формы откроются в WhatsApp" |
+
+### Commits
+- `(pending)`
+
+---
+
 ## 2026-04-01 (Analytics Batch — minimal pre-launch tracking)
 ### Session Summary
 - Реализован минимальный аналитический слой перед soft launch.
