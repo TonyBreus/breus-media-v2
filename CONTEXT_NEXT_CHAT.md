@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (Package Matrix Batch A recovery)
+### Обновлён: 1 апреля 2026 (Card & Pricing Consistency Audit)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -42,6 +42,14 @@
 ✅ Analytics & Tracking Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_ANALYTICS_READINESS_AUDIT.md
 ✅ Form UX Honesty Batch (01.04.2026) — WhatsApp primary CTA, форма → WhatsApp pre-fill, честный subtitle
 ✅ Package Matrix Batch A recovery (01.04.2026) — 16 файлов: 360° FAQ hosting wording (6 страниц), drone-reporting PDF add-on label, drone-hotels-tourism placeholder removed, лицензионная музыка (8 reels страниц)
+✅ Card & Pricing Consistency Audit завершён (01.04.2026) — `BREUS_MEDIA_CARD_AND_PRICING_CONSISTENCY_AUDIT.md`
+  - Охват: 10 L2 хабов (`l2DirectionConfigs.ts`) + `/gazeta` NichesStack + `/real-estate-service`
+  - 27 точек несоответствия: 11 пропущенных L3 hrefs, 2 неверных href, 5 ценовых несоответствий, 5 CTA-label нарушений, 3 нарушения card-count
+  - Критичное: `clinicsService.ai-upakovka-kontenta` → неверная href (hotel AI вместо clinic)
+  - Критичное: `clinicsService.kontent-esteticheskih-uslug` → дублирует href card 3
+  - Эталонные семьи: `tours360Service` (7/7 hrefs, единый формат), `hotelsService` (чистая структура)
+  - `businessService` — критически недосвязанный хаб (5 из 6 карточек без href)
+  - Следующий batch: Batch A (исправить 2 неверных href) → Batch B (AI Content hrefs) → Batch D (3 ценовых правки)
 
 ## АУДИТ-ПРИМЕЧАНИЕ (01.04.2026)
 - Для корректной визуальной parity-проверки использовался **production-like local baseline**, а не `next dev`:

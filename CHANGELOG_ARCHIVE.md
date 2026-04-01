@@ -2041,6 +2041,33 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+---
+
+## 2026-04-01 — Card & Pricing Consistency Audit
+#### Session Summary
+- Проведён полный аудит карточек и ценообразования по 10 активным L2 хабам (`l2DirectionConfigs.ts`), `/gazeta` NichesStack и `/real-estate-service`.
+- Ключевые находки:
+  - **11 карточек без primaryHref** — пользователь не может перейти к L3 услуге; 5 из них в `businessService` (хаб практически полностью отвязан от L3).
+  - **2 неверных href**: `clinicsService.ai-upakovka-kontenta` → `/ai-content/hotel-ai-descriptions` (неверная семья); `clinicsService.kontent-esteticheskih-uslug` → дублирует href card 3.
+  - **Ценовые несоответствия**: `businessService` 360° карточка = 550 ₾ vs 500 ₾ везде; рестораны reels = 350 ₾ vs 450 ₾ везде; `autoService` featured plan = 600 ₾ (нечётное между 550/650).
+  - **CTA label**: только `clinicsService` и `promoVideoService` имеют `primaryCtaLabel: 'Открыть услугу'` — неравномерно проставлено внутри этих же семей.
+  - **Смешанный ценовой формат**: `reelsService` card 8 vs cards 1–7; `aiVisualizationService` cards 8–9 vs остальных 7.
+  - **Эталонные семьи**: `tours360Service` (7/7 с href, единый формат), `hotelsService` (чистая структура).
+- Документ: `BREUS_MEDIA_CARD_AND_PRICING_CONSISTENCY_AUDIT.md`
+
+#### Commits
+- (doc-only сессия, без изменений кода)
+
+#### Technical Notes
+- Все нарушения — только в данных `constants/l2DirectionConfigs.ts`, компоненты стабильны.
+- Исправления разбиты на батчи: Batch A (2 неверных href) → Batch B (AI Content hrefs) → Batch C (businessService, требует новых L3) → Batch D (3 ценовых правки).
+- Новые L3 для полной связности: `/promo-video/promo-business`, `/reels-promo/reels-business`.
+
+#### Release Notes
+- Статус: docs only, no code changes, no deploy.
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary
