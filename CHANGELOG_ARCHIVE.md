@@ -1,6 +1,45 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Package Matrix Batch A recovery)
+### Session Summary
+- Обнаружено: коммит `cd591f2` (Package Matrix Batch A) отсутствовал на `main` после последующих коммитов.
+- Восстановлены изменения вручную — без rollback, без потери более новых фиксов (form UX, analytics, routes/CTA).
+- 16 кодовых файлов изменены (все контентные, нет архитектурных изменений).
+
+### Что изменено
+
+#### 360° tour pages (6 файлов) — FAQ hosting/storage wording
+- `app/360-tour-auto/page.tsx`
+- `app/360-tour-business/page.tsx`
+- `app/360-tour-clinics/page.tsx`
+- `app/360-tour-hotels/page.tsx`
+- `app/360-tour-restaurants/page.tsx`
+- `app/360-tour-tourism/page.tsx`
+
+Вопрос "Где хранится тур?" и "Нужно ли платить ежемесячно за хостинг?" — смягчены. Было: жёсткое обещание бесплатного хостинга в пакете. Стало: передаём материалы, размещение согласуем; длительное хранение = support-опция.
+
+#### drone-hotels-tourism — удалён trust-lowering placeholder
+- `app/drone-hotels-tourism/page.tsx`: удалён абзац «Реальные кейсы Breus Media появятся после первых проектов. Свяжитесь — обсудим пилотный проект на выгодных условиях.»
+
+#### drone-reporting — PDF add-on label
+- `app/drone-services/drone-reporting/page.tsx`: «При заказе сводки: PDF-отчёт...» → «PDF-отчёт ... доступен как add-on к любому выезду (+100 ₾).»
+
+#### reels pages (8 файлов) — лицензионная музыка
+- `app/reels-promo/hotel-seasonal-content/page.tsx`
+- `app/reels-promo/promo-zhk-launch/page.tsx`
+- `app/reels-promo/reels-auto/page.tsx`
+- `app/reels-promo/reels-clinic/page.tsx`
+- `app/reels-promo/reels-hotel/page.tsx`
+- `app/reels-promo/reels-real-estate/page.tsx`
+- `app/reels-promo/reels-realtor/page.tsx`
+- `app/reels-promo/reels-restaurant/page.tsx`
+
+«музыка» → «лицензионная музыка» / «треки» → «лицензионные треки» в deliverables и glossary.
+
+### Commits
+- `(pending)` — fix(content): recover package matrix batch A — hosting FAQ, PDF label, placeholder, licensed music
+
 ## 2026-04-01 (Live vs Local Visual Parity Audit)
 ### Session Summary
 - Выполнен live-vs-local visual parity audit с приоритетом `/gazeta`, затем `/real-estate-service` и `/drone-service`.

@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (Live vs Local Visual Parity Audit)
+### Обновлён: 1 апреля 2026 (Package Matrix Batch A recovery)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -7,7 +7,7 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: c40f327 (ux(form): WhatsApp as primary CTA, honest submit via pre-fill)
+- Последний кодовый коммит: (pending — Package Matrix Batch A recovery)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Live vs Local Visual Parity Audit завершён (01.04.2026) — `BREUS_MEDIA_LIVE_VS_LOCAL_VISUAL_PARITY.md`
@@ -41,6 +41,7 @@
 ✅ Launch Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_LAUNCH_READINESS_AUDIT.md
 ✅ Analytics & Tracking Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_ANALYTICS_READINESS_AUDIT.md
 ✅ Form UX Honesty Batch (01.04.2026) — WhatsApp primary CTA, форма → WhatsApp pre-fill, честный subtitle
+✅ Package Matrix Batch A recovery (01.04.2026) — 16 файлов: 360° FAQ hosting wording (6 страниц), drone-reporting PDF add-on label, drone-hotels-tourism placeholder removed, лицензионная музыка (8 reels страниц)
 
 ## АУДИТ-ПРИМЕЧАНИЕ (01.04.2026)
 - Для корректной визуальной parity-проверки использовался **production-like local baseline**, а не `next dev`:

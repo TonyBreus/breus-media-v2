@@ -597,10 +597,6 @@ export default function DroneHotelsTourismPage() {
                             ))}
                         </div>
 
-                        <p className="mt-10 max-w-3xl text-sm leading-relaxed text-white/58">
-                            Реальные кейсы Breus Media появятся после первых проектов. Свяжитесь — обсудим пилотный
-                            проект на выгодных условиях.
-                        </p>
                     </div>
                 </section>
             </DebugWrapper>
