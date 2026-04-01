@@ -1,6 +1,24 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (CTA Fix Batch 1)
+### Session Summary
+- Реализованы P1 CTA-фиксы по итогам аудита.
+
+### Changes
+1. `components/gazeta/FinalFormSection.tsx` — добавлен `id="contact"` на внешний div-контейнер. Исправляет broken anchor `#contact` в hero CTA на `/gazeta`.
+2. `app/gazeta/[slug]/page.tsx` — исправлена иерархия кнопок: "Обсудить проект" теперь white filled (primary), "Назад к Gazeta" — border (secondary). Контактный href изменён с `/gazeta#contact` на `https://wa.me/995574619393` (direct WhatsApp, надёжный путь).
+3. AI Visual P1 — аудит-агент ошибся: лейбл "Узнать цену" не существует ни в одной из 7 страниц. Реальные лейблы ("Получить демо-визуализацию", "Прислать фото авто" и др.) корректны. Изменений не требуется.
+
+### Commits
+- `(pending)` — fix(cta-batch1): fix gazeta hero anchor, slug CTA hierarchy and contact path
+
+### Technical Notes
+- FinalFormSection — sticky slide-up компонент с h-[150vh]; добавление id="contact" на внешний div позволяет браузеру скроллить к нему, после чего анимация формы срабатывает штатно.
+- gazeta/[slug] — WhatsApp выбран вместо on-page формы, т.к. страница категории не имеет своей формы, а cross-page anchor `/gazeta#contact` требует перехода и ненадёжен.
+
+---
+
 ## 2026-04-01
 ### Session Summary
 - Выполнен автоматический cross-family CTA & Contact Path Audit (scheduled task).

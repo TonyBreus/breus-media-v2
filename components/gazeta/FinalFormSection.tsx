@@ -31,7 +31,7 @@ export function FinalFormSection() {
 
     return (
         <DebugWrapper id={41} label="Final Form Container">
-            <div ref={containerRef} className="relative w-full h-[150vh] z-[100]">
+            <div id="contact" ref={containerRef} className="relative w-full h-[150vh] z-[100]">
                 <motion.section
                     style={{ y, top: `${stickyTopPx}px`, height: stickyHeight }}
                     className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"

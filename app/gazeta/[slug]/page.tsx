@@ -156,16 +156,18 @@ export default async function GazetaDirectionPage({ params }: CategoryPageProps)
             <div className="mx-auto max-w-6xl px-6 pb-20 md:px-10">
                 <div className="flex flex-col gap-4 sm:flex-row">
                     <Link
-                        href="/gazeta"
+                        href="https://wa.me/995574619393"
+                        target="_blank"
+                        rel="noreferrer"
                         className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-black uppercase tracking-[0.24em] text-black transition-colors hover:bg-[#D4AF37]"
                     >
-                        Назад к Gazeta
+                        Обсудить проект
                     </Link>
                     <Link
-                        href="/gazeta#contact"
+                        href="/gazeta"
                         className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-6 py-3 text-xs font-black uppercase tracking-[0.24em] text-white transition-colors hover:border-[#D4AF37]/50 hover:text-[#D4AF37]"
                     >
-                        Обсудить проект
+                        Назад к Gazeta
                     </Link>
                 </div>
             </div>

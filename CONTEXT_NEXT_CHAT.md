@@ -34,10 +34,10 @@
 ✅ CTA & Contact Path Audit завершён (01.04.2026) — BREUS_MEDIA_CTA_CONTACT_PATH_AUDIT.md
 
 ## ОТКРЫТЫЕ ЗАДАЧИ (CTA) — следующий батч
-- [ ] P1: `/gazeta` — добавить `id="contact"` на FinalFormSection (hero CTA #contact сейчас broken anchor)
-- [ ] P1: `/gazeta/[slug]` — поменять стили кнопок: "Обсудить проект" → white filled (primary), "Назад к Gazeta" → border (secondary)
-- [ ] P1: `/gazeta/[slug]` — заменить `href="/gazeta#contact"` → WhatsApp или якорь внутри страницы
-- [ ] P1: AI Visual L3 — переименовать CTA с "Узнать цену" → "Написать в WhatsApp" (ожидание vs реальность)
+- [x] P1: `/gazeta` — добавлен `id="contact"` на FinalFormSection (01.04.2026)
+- [x] P1: `/gazeta/[slug]` — исправлена иерархия кнопок (01.04.2026)
+- [x] P1: `/gazeta/[slug]` — заменён `href="/gazeta#contact"` → WhatsApp (01.04.2026)
+- [~] P1: AI Visual L3 — проверено: "Узнать цену" не существовало (аудит-агент ошибся). Реальные лейблы корректны.
 - [ ] P2: L2 Hubs — добавить sticky CTA bar в L2DirectionRenderer (аналог DroneStickyCta)
 - [ ] P2: L2 Hero — изменить primary CTA с "Открыть услугу" (ведёт на L3) → "Посмотреть пакеты" → #pricing
 
