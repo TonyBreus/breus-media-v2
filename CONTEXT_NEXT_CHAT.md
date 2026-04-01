@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (businessService Simplification + Gazeta Final Form Fix)
+### Обновлён: 1 апреля 2026 (IT Routing Cleanup — /gazeta/it → /business-service)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -87,6 +87,13 @@
   - `FinalFormSection` (step-09, дубль формы) удалена из `app/gazeta/page.tsx`
   - `NichesStack` уже содержит step-09 (FAQ) и step-10 (contact form с `id="contact"`)
   - Дублирующий контакт-слой устранён; стек и contact path сохранены
+✅ IT Routing Cleanup завершён (01.04.2026)
+  - `/gazeta/it` теперь статический redirect → `/business-service`
+  - `gazetaDetailRoutes.it` изменён с `/gazeta/it` на `/business-service` — каскадно фиксирует `gazetaNicheLandingRoutes["07"]` и IT nav item
+  - IT в NichesStack (niche "07"): screenLink, allServicesCard и service fallbacks теперь ведут на `/business-service`
+  - IT в SmartHeader (`gazetaIndustryNavItems`): href → `/business-service`
+  - Временное решение: IT и Business намеренно шарят одну страницу
+  - Создан `app/gazeta/it/page.tsx` (redirect) — overrides dynamic [slug] handler для прямых URL-посетителей
 
 ## АУДИТ-ПРИМЕЧАНИЕ (01.04.2026)
 - Для корректной визуальной parity-проверки использовался **production-like local baseline**, а не `next dev`:

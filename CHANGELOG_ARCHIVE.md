@@ -1,6 +1,34 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (IT Routing Cleanup)
+### Session Summary
+- `/gazeta/it` удалён из активного user journey — вместо него IT трафик идёт на `/business-service`
+- Временное решение: IT и Business намеренно шарят одну страницу (обсуждение-first L2 hub)
+
+### Что изменено
+- `constants/gazetaRoutes.ts`: `gazetaDetailRoutes.it` `/gazeta/it` → `/business-service`
+  - Автоматически фиксирует: `gazetaNicheLandingRoutes["07"]`, IT nav item в `gazetaIndustryNavItems`
+- `app/gazeta/it/page.tsx`: создан новый файл — статический `redirect("/business-service")` — overrides dynamic [slug] handler для прямых URL-посетителей
+
+### IT entry points затронуты
+| Entry point | Было | Стало |
+|-------------|------|-------|
+| `gazetaDetailRoutes.it` | `/gazeta/it` | `/business-service` |
+| `gazetaNicheLandingRoutes["07"]` (NichesStack screenLink + allServicesCard) | `/gazeta/it` | `/business-service` |
+| SmartHeader `gazetaIndustryNavItems` IT item | `/gazeta/it` | `/business-service` |
+| Прямой URL `/gazeta/it` | gazeta slug page (IT config) | redirect → `/business-service` |
+
+### Файлы изменены
+- `constants/gazetaRoutes.ts`
+- `app/gazeta/it/page.tsx` (создан)
+- `CONTEXT_NEXT_CHAT.md`
+- `CHANGELOG_ARCHIVE.md`
+
+### Build: ✅ чистый (84/84 страниц)
+
+---
+
 ## 2026-04-01 (businessService Simplification + Gazeta Final Form Fix)
 ### Session Summary
 - `businessService` переведён из fake catalog (6 карточек, 3 без href) в discussion-first broad entry page (3 честных карточки).

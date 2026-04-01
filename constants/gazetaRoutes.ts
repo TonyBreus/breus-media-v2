@@ -29,7 +29,7 @@ export const gazetaDetailRoutes = {
     auto: "/gazeta/auto",
     tourism: "/gazeta/tourism",
     clinics: "/gazeta/clinics",
-    it: "/gazeta/it",
+    it: "/business-service",
     customBusiness: "/gazeta/custom-business",
     tours360: "/gazeta/360-tours",
     promoVideo: "/gazeta/promo-video",
