@@ -1254,6 +1254,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     image: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80',
                     featured: true,
                     tag: 'HOT',
+                    primaryHref: '/promo-video/promo-business',
                 },
                 {
                     id: 2,
@@ -1274,6 +1275,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description: 'Серии коротких роликов для регулярного digital-присутствия.',
                     price: 'Short-form · от 450 ₾',
                     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80',
+                    primaryHref: '/reels-promo/reels-business',
                 },
                 {
                     id: 4,
@@ -1528,6 +1530,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                         'Подходит для брендов, коммерческих объектов, сервисов, шоурумов и digital-презентации бизнеса.',
                     price: 'Promo Video · по задаче',
                     image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80',
+                    primaryHref: '/promo-video/promo-business',
                 },
             ],
             processSteps: [
@@ -2086,6 +2089,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                         'Подходит для брендов, сервисов, коммерческих объектов, личного бренда и регулярного контент-потока.',
                     price: 'Reels · по задаче',
                     image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80',
+                    primaryHref: '/reels-promo/reels-business',
                 },
                 {
                     id: 8,

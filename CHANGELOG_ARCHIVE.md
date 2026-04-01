@@ -1,6 +1,45 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Coverage Gap Batch C)
+### Session Summary
+- Закрыты 4 карточки NEEDS_L3 из Coverage Gap Audit: создано 2 новые L3 страницы для бизнес-ниши.
+- Все 4 `primaryHref` привязаны в `constants/l2DirectionConfigs.ts`.
+- Build чистый.
+
+### Что создано
+
+#### Новые страницы
+
+**C1 — `/reels-promo/reels-business`** (~380 строк)
+- Reels для бизнеса: бренды, сервисы, личный бренд, коммерческие объекты.
+- Паттерн: семья `reels-promo` (reels-restaurant как эталон).
+- Пакеты: Basic 1 200 ₾ (6 роликов), Standard 1 600 ₾ (8 + Caption Bank), Full 2 000 ₾ (10 + реклама).
+- FAQ: beginner + money, long-tail answers, short Q&A, myths, glossary.
+
+**C2 — `/promo-video/promo-business`** (~420 строк)
+- Имиджевое видео бизнеса: команда, пространство, ценностное предложение.
+- Паттерн: семья `promo-video` (promo-restaurant как эталон).
+- Пакеты: Basic 600 ₾, Standard 1 000 ₾, Full 1 500 ₾.
+- FAQ: beginner + commercial, long-tail answers, short Q&A, myths, glossary.
+
+### Что изменено
+
+#### `constants/l2DirectionConfigs.ts` — 4 новых primaryHref
+
+| Хаб | Card slug | primaryHref |
+|---|---|---|
+| reelsService | `reels-biznes` (card 7) | `/reels-promo/reels-business` |
+| promoVideoService | `promo-video-biznes` (card 7) | `/promo-video/promo-business` |
+| businessService | `imidzhevoe-video-biznesa` (card 1) | `/promo-video/promo-business` |
+| businessService | `reels-shorts` (card 3) | `/reels-promo/reels-business` |
+
+### Статус businessService после Batch C
+- Связано: 3/6 карточек (`imidzhevoe-video-biznesa`, `reels-shorts`, `tury-360`)
+- Без href: 3/6 (`kontent-sayta-reklamy`, `semka-prostranstva-obekta`, `ai-upakovka-kontenta`) — NEEDS_MANUAL_PRODUCT_DECISION
+
+---
+
 ## 2026-04-01 (Coverage Gap Audit)
 ### Session Summary
 - Проведён полный аудит пробелов покрытия L3-страниц по всем 10 L2-хабам.

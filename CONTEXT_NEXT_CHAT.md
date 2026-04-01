@@ -66,6 +66,12 @@
   - `businessService` cards 1,2,3,5,6: ни одного канонического L3 для business-specific promo-video / reels / AI / space-shooting → все 5 оставлены без href
   - Файл: `constants/l2DirectionConfigs.ts`
   - Build: ✅ чистый
+✅ Coverage Gap Batch C завершён (01.04.2026) — 2 новые L3 страницы созданы, 4 карточки связаны
+  - Создана `/reels-promo/reels-business` (~380 строк) — закрывает `reelsService.reels-biznes` + `businessService.reels-shorts`
+  - Создана `/promo-video/promo-business` (~420 строк) — закрывает `promoVideoService.promo-video-biznes` + `businessService.imidzhevoe-video-biznesa`
+  - `constants/l2DirectionConfigs.ts`: 4 новых `primaryHref` привязаны
+  - businessService: 3/6 связанных карточек (было 1/6 до Batch C)
+  - Build: ✅ чистый
 
 ## АУДИТ-ПРИМЕЧАНИЕ (01.04.2026)
 - Для корректной визуальной parity-проверки использовался **production-like local baseline**, а не `next dev`:
