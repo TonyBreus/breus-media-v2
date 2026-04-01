@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (Card/Binding Consistency Batch A)
+### Обновлён: 1 апреля 2026 (Card/Binding Consistency Batch B)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -53,6 +53,12 @@
 ✅ Card/Binding Consistency Batch A завершён (01.04.2026) — 2 неверных href в `clinicsService` исправлены
   - `clinicsService.ai-upakovka-kontenta`: `/ai-content/hotel-ai-descriptions` → `/ai-content/tourism-ai-packaging`
   - `clinicsService.kontent-esteticheskih-uslug`: `/promo-video/clinic-interior` (дубль card 3) → href убран (L3 страница не существует)
+  - Файл: `constants/l2DirectionConfigs.ts`
+  - Build: ✅ чистый
+✅ Card/Binding Consistency Batch B завершён (01.04.2026) — 1 L3 href добавлен, 6 карточек оставлены без href (L3 страницы не существуют)
+  - `reelsService.reels-nedvizhimost` (card 1): добавлен `primaryHref: '/reels-promo/reels-real-estate'`
+  - `reelsService.reels-biznes` (card 7): L3 страница `/reels-promo/reels-business` не существует → fallback
+  - `businessService` cards 1,2,3,5,6: ни одного канонического L3 для business-specific promo-video / reels / AI / space-shooting → все 5 оставлены без href
   - Файл: `constants/l2DirectionConfigs.ts`
   - Build: ✅ чистый
 

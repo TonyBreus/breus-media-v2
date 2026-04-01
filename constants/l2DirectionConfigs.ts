@@ -2014,6 +2014,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
                     featured: true,
                     tag: 'HOT',
+                    primaryHref: '/reels-promo/reels-real-estate',
                 },
                 {
                     id: 2,

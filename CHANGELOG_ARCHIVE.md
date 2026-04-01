@@ -1,6 +1,40 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Card/Binding Consistency Batch B)
+### Session Summary
+- Проверены 7 карточек без `primaryHref` в `businessService` (5 штук) и `reelsService` (2 штуки).
+- Исправлена 1 карточка: `reelsService.reels-nedvizhimost` → `/reels-promo/reels-real-estate`.
+- 6 карточек оставлены без `primaryHref` — канонические L3 страницы не существуют.
+- Изменения данные-only: нет редизайна, нет правки цен, нет нормализации CTA.
+- Build чистый.
+
+### Что изменено
+
+#### `constants/l2DirectionConfigs.ts` — reelsService
+
+**B1 — reels-nedvizhimost (card 1):**
+- Было: нет `primaryHref`
+- Стало: `primaryHref: '/reels-promo/reels-real-estate'` (страница существует)
+
+### Оставлено без href (L3 страница не существует)
+
+| Хаб | Card slug | Причина |
+|---|---|---|
+| reelsService | reels-biznes (card 7) | `/reels-promo/reels-business` не существует |
+| businessService | imidzhevoe-video-biznesa (card 1) | `/promo-video/promo-business` не существует |
+| businessService | kontent-sayta-reklamy (card 2) | нет generic content-for-ads L3 |
+| businessService | reels-shorts (card 3) | `/reels-promo/reels-business` не существует |
+| businessService | semka-prostranstva-obekta (card 5) | нет space-shooting L3 |
+| businessService | ai-upakovka-kontenta (card 6) | нет business-specific AI content L3 |
+
+### Не тронуто
+- Все существующие `primaryHref` в `businessService` (card 4: `/360-tour-business`) — без изменений
+- Все существующие `primaryHref` в `reelsService` (cards 2,3,4,5,6,8) — без изменений
+- Ценообразование — без изменений
+
+---
+
 ## 2026-04-01 (Card/Binding Consistency Batch A)
 ### Session Summary
 - Исправлены 2 подтверждённых неверных L3 href в `clinicsService` (`l2DirectionConfigs.ts`).
