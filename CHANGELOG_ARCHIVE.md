@@ -25,7 +25,7 @@ Append-only архив изменений. Старые записи не уда
 | Нет пояснения | Footnote: "Данные формы откроются в WhatsApp" |
 
 ### Commits
-- `(pending)`
+- `c40f327` — ux(form): WhatsApp as primary CTA, honest submit via pre-fill
 
 ---
 

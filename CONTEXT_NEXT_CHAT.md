@@ -7,7 +7,7 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: (pending) (ux(form): WhatsApp as primary CTA, honest submit via pre-fill)
+- Последний кодовый коммит: c40f327 (ux(form): WhatsApp as primary CTA, honest submit via pre-fill)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Цены — проверены, исправлены 3 нарушения матрицы  
