@@ -884,7 +884,6 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description: 'Подходит для beauty/skin/dental/wellness направлений.',
                     price: 'Package · от 600 ₾',
                     image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80',
-                    primaryHref: '/promo-video/clinic-interior',
                 },
                 {
                     id: 6,
@@ -895,7 +894,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description: 'Описания, тексты и адаптация под digital-каналы.',
                     price: 'AI Content · от 300 ₾',
                     image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80',
-                    primaryHref: '/ai-content/hotel-ai-descriptions',
+                    primaryHref: '/ai-content/tourism-ai-packaging',
                 },
                 {
                     id: 7,

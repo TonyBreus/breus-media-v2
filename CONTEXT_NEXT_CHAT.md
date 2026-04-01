@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (Card & Pricing Consistency Audit)
+### Обновлён: 1 апреля 2026 (Card/Binding Consistency Batch A)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -49,7 +49,12 @@
   - Критичное: `clinicsService.kontent-esteticheskih-uslug` → дублирует href card 3
   - Эталонные семьи: `tours360Service` (7/7 hrefs, единый формат), `hotelsService` (чистая структура)
   - `businessService` — критически недосвязанный хаб (5 из 6 карточек без href)
-  - Следующий batch: Batch A (исправить 2 неверных href) → Batch B (AI Content hrefs) → Batch D (3 ценовых правки)
+  - Следующий batch: Batch B (AI Content hrefs) → Batch D (3 ценовых правки)
+✅ Card/Binding Consistency Batch A завершён (01.04.2026) — 2 неверных href в `clinicsService` исправлены
+  - `clinicsService.ai-upakovka-kontenta`: `/ai-content/hotel-ai-descriptions` → `/ai-content/tourism-ai-packaging`
+  - `clinicsService.kontent-esteticheskih-uslug`: `/promo-video/clinic-interior` (дубль card 3) → href убран (L3 страница не существует)
+  - Файл: `constants/l2DirectionConfigs.ts`
+  - Build: ✅ чистый
 
 ## АУДИТ-ПРИМЕЧАНИЕ (01.04.2026)
 - Для корректной визуальной parity-проверки использовался **production-like local baseline**, а не `next dev`:

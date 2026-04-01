@@ -1,6 +1,31 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Card/Binding Consistency Batch A)
+### Session Summary
+- Исправлены 2 подтверждённых неверных L3 href в `clinicsService` (`l2DirectionConfigs.ts`).
+- Изменения данные-only: нет редизайна, нет правки цен, нет широкой нормализации карточек.
+- Build чистый.
+
+### Что изменено
+
+#### `constants/l2DirectionConfigs.ts` — clinicsService
+
+**A1 — ai-upakovka-kontenta (card 6):**
+- Было: `primaryHref: '/ai-content/hotel-ai-descriptions'` (неверная hotel-family страница)
+- Стало: `primaryHref: '/ai-content/tourism-ai-packaging'` (ближайший существующий AI Content вариант)
+
+**A2 — kontent-esteticheskih-uslug (card 5):**
+- Было: `primaryHref: '/promo-video/clinic-interior'` (дублировало href card 3 `semka-interera-kabinetov`)
+- Стало: поле `primaryHref` удалено (нет уникальной L3 страницы для beauty/skin/dental/wellness)
+
+### Не тронуто
+- Cards 1–4, 7 в clinicsService — hrefs без изменений
+- Ценообразование — без изменений
+- Все другие L2 хабы — без изменений
+
+---
+
 ## 2026-04-01 (Package Matrix Batch A recovery)
 ### Session Summary
 - Обнаружено: коммит `cd591f2` (Package Matrix Batch A) отсутствовал на `main` после последующих коммитов.
