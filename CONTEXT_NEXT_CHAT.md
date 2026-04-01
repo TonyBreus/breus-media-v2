@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (Form UX Honesty Batch)
+### Обновлён: 1 апреля 2026 (Live vs Local Visual Parity Audit)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -10,6 +10,11 @@
 - Последний кодовый коммит: c40f327 (ux(form): WhatsApp as primary CTA, honest submit via pre-fill)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
+✅ Live vs Local Visual Parity Audit завершён (01.04.2026) — `BREUS_MEDIA_LIVE_VS_LOCAL_VISUAL_PARITY.md`
+✅ Подтверждено: `/gazeta` в production-like local (`NEXT_PUBLIC_DEBUG_MODE=false`, `next start`) визуально совпадает с live на desktop / mobile portrait / mobile landscape
+✅ Найдено расхождение L2 hero-state: `/drone-service` (стартовый активный слайд + порядок compact navigator + secondary CTA copy)
+✅ Найдено copy-расхождение L2 hero secondary CTA: `/real-estate-service` (`Заказать` live vs `Подобрать услугу` local)
+✅ Time-allow L3 spot-check: `/drone-construction-monitoring` (структура совпадает, copy-различия), `/promo-video/promo-real-estate` (совпадает)
 ✅ Цены — проверены, исправлены 3 нарушения матрицы  
 ✅ SEO metadata — все 81 страница имеют title/description/canonical  
 ✅ Суффикс | Breus Media — везде  
@@ -36,6 +41,17 @@
 ✅ Launch Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_LAUNCH_READINESS_AUDIT.md
 ✅ Analytics & Tracking Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_ANALYTICS_READINESS_AUDIT.md
 ✅ Form UX Honesty Batch (01.04.2026) — WhatsApp primary CTA, форма → WhatsApp pre-fill, честный subtitle
+
+## АУДИТ-ПРИМЕЧАНИЕ (01.04.2026)
+- Для корректной визуальной parity-проверки использовался **production-like local baseline**, а не `next dev`:
+  - build: `NEXT_PUBLIC_DEBUG_MODE=false npm run build`
+  - start: `NEXT_PUBLIC_DEBUG_MODE=false PORT=3200 npm run start`
+- Причина: `next dev` + `.env.local` (`NEXT_PUBLIC_DEBUG_MODE=true`) создают ложные визуальные шумы:
+  - DebugWrapper badges/overlays;
+  - смещение phase у auto-rotating hero-блоков (dev/hydration timing).
+- Артефакты проверки:
+  - `output/playwright/live-localprod-parity-2026-04-01/`
+  - `output/playwright/live-localprod-parity-2026-04-01/diff-metrics.tsv`
 
 ## ОТКРЫТЫЕ ЗАДАЧИ — Batch 6 (следующий, маленький)
 

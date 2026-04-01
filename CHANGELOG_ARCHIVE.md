@@ -1,6 +1,38 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Live vs Local Visual Parity Audit)
+### Session Summary
+- Выполнен live-vs-local visual parity audit с приоритетом `/gazeta`, затем `/real-estate-service` и `/drone-service`.
+- Сравнение проведено на desktop, mobile portrait, mobile landscape.
+- Добавлен отдельный отчёт: `BREUS_MEDIA_LIVE_VS_LOCAL_VISUAL_PARITY.md`.
+- Код страниц не менялся, обновлена документация и контекст.
+
+### Baseline / Method
+- Live reference: `https://breus-media-v2.vercel.app/gazeta`
+- Local parity baseline: production-like (`NEXT_PUBLIC_DEBUG_MODE=false`, `npm run build`, `npm run start` на `PORT=3200`)
+- Дополнительно зафиксировано, что `next dev` + `.env.local` (`NEXT_PUBLIC_DEBUG_MODE=true`) дают шум parity (debug badges + timing drift).
+
+### Key Findings
+- `/gazeta`: near-full parity на всех 3 breakpoint (структура, hero/marquee/header, section stack, FAQ/contact).
+- Critical mismatch: `/drone-service` initial hero state (стартовый активный слайд и compact navigator порядок) не совпадает с live.
+- Medium mismatch: hero secondary CTA copy на L2:
+  - `/real-estate-service`: live `Заказать` vs local `Подобрать услугу`
+  - `/drone-service`: live `Заказать` vs local `Подобрать услугу`
+- L3 spot-check:
+  - `/drone-construction-monitoring`: структура совпадает, copy-различия;
+  - `/promo-video/promo-real-estate`: визуально совпадает.
+
+### Added Docs
+- `BREUS_MEDIA_LIVE_VS_LOCAL_VISUAL_PARITY.md`
+
+### Artifacts
+- `output/playwright/live-localprod-parity-2026-04-01/`
+- `output/playwright/live-localprod-parity-2026-04-01/diff-metrics.tsv`
+
+### Commits
+- `(pending)` — docs: live-vs-local visual parity audit + context/changelog update
+
 ## 2026-04-01 (Form UX Honesty Batch)
 ### Session Summary
 - Устранён UX-разрыв: форма выглядела как рабочая submission-форма, но никуда не отправляла данные.
