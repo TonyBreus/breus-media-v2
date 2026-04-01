@@ -1,6 +1,33 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01
+### Session Summary
+- Выполнен автоматический cross-family CTA & Contact Path Audit (scheduled task).
+- Покрытие: /gazeta, все 10 L2 хабов, репрезентативные L3 страницы по 7 семействам (drone, 360, reels, promo, AI, monitoring/inspection).
+- Код не изменялся — только анализ и документация.
+
+### Commits
+- `(pending)` — docs: cross-family CTA & contact path audit
+
+### Findings
+- **Сильные паттерны:** Drone L3 (двойной hero CTA + MidCta ×2-3 + sticky + 4-канальный контакт); L2 SmartHeader nav-якоря; Reels L3 hero pair.
+- **Критические дефекты (P1):**
+  1. `/gazeta` hero CTA `#contact` — broken anchor (нет id="contact" на FinalFormSection)
+  2. `/gazeta/[slug]` — инвертированная иерархия кнопок (backward nav = primary)
+  3. `/gazeta/[slug]` — contact href ведёт на `/gazeta#contact` (cross-page anchor, ненадёжно)
+  4. AI Visual L3 — "Узнать цену" ведёт в WhatsApp (несоответствие ожидания)
+- **Системный пробел (P2):** На L2 хабах нет sticky CTA, несмотря на 11 секций страниц.
+- **Несогласованность:** Hero primary CTA использует 3 разные стратегии маршрутизации между семействами (anchor / direct WA / L3 href).
+
+### Added Docs
+- `BREUS_MEDIA_CTA_CONTACT_PATH_AUDIT.md` — полный аудит с таблицами и рекомендациями
+
+### Release Notes
+- Статус: только документация, деплой не требуется.
+
+---
+
 ## 2026-03-27
 ### Session Summary
 - Обновлён handover-контекст проекта и структура передачи знаний между чатами.

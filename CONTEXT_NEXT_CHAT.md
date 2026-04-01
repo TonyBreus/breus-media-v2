@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 31 марта 2026
+### Обновлён: 1 апреля 2026
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -31,6 +31,15 @@
 ✅ /gazeta: введён лимит карточек в стеке — максимум `8` на секцию (`7` услуг + `Все услуги`)
 ✅ /gazeta: для секции `01` (Недвижимость) карточки визуально приведены к дизайну `RealEstateServicesStitch`
 ✅ /gazeta: добавлен compact-режим для mobile landscape — уменьшены фиксированные верхние элементы (header + marquee), чтобы не съедали экран
+✅ CTA & Contact Path Audit завершён (01.04.2026) — BREUS_MEDIA_CTA_CONTACT_PATH_AUDIT.md
+
+## ОТКРЫТЫЕ ЗАДАЧИ (CTA) — следующий батч
+- [ ] P1: `/gazeta` — добавить `id="contact"` на FinalFormSection (hero CTA #contact сейчас broken anchor)
+- [ ] P1: `/gazeta/[slug]` — поменять стили кнопок: "Обсудить проект" → white filled (primary), "Назад к Gazeta" → border (secondary)
+- [ ] P1: `/gazeta/[slug]` — заменить `href="/gazeta#contact"` → WhatsApp или якорь внутри страницы
+- [ ] P1: AI Visual L3 — переименовать CTA с "Узнать цену" → "Написать в WhatsApp" (ожидание vs реальность)
+- [ ] P2: L2 Hubs — добавить sticky CTA bar в L2DirectionRenderer (аналог DroneStickyCta)
+- [ ] P2: L2 Hero — изменить primary CTA с "Открыть услугу" (ведёт на L3) → "Посмотреть пакеты" → #pricing
 
 ## ВАЖНОЕ ТЕХСОСТОЯНИЕ НА СЕЙЧАС
 - Фиксы по `gazeta` подтверждены локально (build + визуальная проверка).
