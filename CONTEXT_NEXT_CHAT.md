@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (IT Routing Cleanup — /gazeta/it → /business-service)
+### Обновлён: 1 апреля 2026 (AI Entry Routing — кнопка 204 → /ai-visualization-service)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -94,6 +94,10 @@
   - IT в SmartHeader (`gazetaIndustryNavItems`): href → `/business-service`
   - Временное решение: IT и Business намеренно шарят одну страницу
   - Создан `app/gazeta/it/page.tsx` (redirect) — overrides dynamic [slug] handler для прямых URL-посетителей
+✅ AI Entry Routing завершён (01.04.2026)
+  - SmartHeader кнопка `AI Решения` (id 204): `/gazeta/ai-content` → `/ai-visualization-service`
+  - Временное решение: AI Content и AI Solutions намеренно шарят одну страницу до расширения AI-семьи
+  - `/gazeta/it` routing — изменений не требовалось (redirect уже в коде)
 
 ## АУДИТ-ПРИМЕЧАНИЕ (01.04.2026)
 - Для корректной визуальной parity-проверки использовался **production-like local baseline**, а не `next dev`:

@@ -235,7 +235,7 @@ export function SmartHeader({
                         ))}
 
                         <DebugWrapper id={204} label="Link: AI Решения">
-                            <Link href={gazetaDetailRoutes.aiContent} className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">AI Решения</Link>
+                            <Link href="/ai-visualization-service" className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">AI Решения</Link>
                         </DebugWrapper>
                     </nav>
 

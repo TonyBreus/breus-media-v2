@@ -1,6 +1,32 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (AI Entry Routing — кнопка 204)
+### Session Summary
+- SmartHeader кнопка `AI Решения` (id 204) перенаправлена на `/ai-visualization-service`
+- Временное решение: AI Content и AI Solutions шарят одну страницу до расширения AI-семьи
+
+### Что изменено
+- `components/gazeta/SmartHeader.tsx`: `Link href` кнопки 204 — `gazetaDetailRoutes.aiContent` → `/ai-visualization-service` (hardcoded)
+
+### AI entry points затронуты
+| Entry point | Было | Стало |
+|-------------|------|-------|
+| SmartHeader кнопка 204 `AI Решения` | `/gazeta/ai-content` | `/ai-visualization-service` |
+
+### /gazeta/it проверка
+- Код: `app/gazeta/it/page.tsx` уже содержит `redirect("/business-service")` — изменений не требовалось
+- Статус: только restart/deploy нужен если сервер не запущен с последним билдом
+
+### Файлы изменены
+- `components/gazeta/SmartHeader.tsx`
+- `CONTEXT_NEXT_CHAT.md`
+- `CHANGELOG_ARCHIVE.md`
+
+### Build: ✅ чистый
+
+---
+
 ## 2026-04-01 (IT Routing Cleanup)
 ### Session Summary
 - `/gazeta/it` удалён из активного user journey — вместо него IT трафик идёт на `/business-service`
