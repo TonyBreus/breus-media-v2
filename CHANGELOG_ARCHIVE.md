@@ -38,7 +38,7 @@ Append-only архив изменений. Старые записи не уда
 «музыка» → «лицензионная музыка» / «треки» → «лицензионные треки» в deliverables и glossary.
 
 ### Commits
-- `(pending)` — fix(content): recover package matrix batch A — hosting FAQ, PDF label, placeholder, licensed music
+- `5479476` — fix(content): recover package matrix batch A — hosting FAQ, PDF label, placeholder, licensed music
 
 ## 2026-04-01 (Live vs Local Visual Parity Audit)
 ### Session Summary

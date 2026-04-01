@@ -7,7 +7,7 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: (pending — Package Matrix Batch A recovery)
+- Последний кодовый коммит: 5479476 (fix(content): recover package matrix batch A)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Live vs Local Visual Parity Audit завершён (01.04.2026) — `BREUS_MEDIA_LIVE_VS_LOCAL_VISUAL_PARITY.md`
