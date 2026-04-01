@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (Coverage Gap Audit)
+### Обновлён: 1 апреля 2026 (businessService Simplification + Gazeta Final Form Fix)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -78,6 +78,15 @@
   - `semka-prostranstva-obekta` → NEEDS_MANUAL_PRODUCT_MERGE (компонент promo-business; расширить страницу, затем линковать)
   - `ai-upakovka-kontenta` → NEEDS_NEW_L3 (3-й член семьи ai-content: hotel + tourism + business)
   - Рекомендован Batch D1 как минимальный следующий шаг: `/ai-content/business-ai-content`
+✅ businessService Simplification Batch завершён (01.04.2026)
+  - 3 карточки без href удалены (`kontent-sayta-reklamy`, `semka-prostranstva-obekta`, `ai-upakovka-kontenta`)
+  - Остались 3 честных карточки с валидными hrefs (promo-business, reels-business, 360-tour-business)
+  - Hero copy и contact copy переведены в discussion-first / contact-first тон
+  - Страница теперь — широкий входной хаб для бизнесов, не вписывающихся в основные ниши
+✅ /gazeta final form duplication ПОДТВЕРЖДЕНА и исправлена (01.04.2026)
+  - `FinalFormSection` (step-09, дубль формы) удалена из `app/gazeta/page.tsx`
+  - `NichesStack` уже содержит step-09 (FAQ) и step-10 (contact form с `id="contact"`)
+  - Дублирующий контакт-слой устранён; стек и contact path сохранены
 
 ## АУДИТ-ПРИМЕЧАНИЕ (01.04.2026)
 - Для корректной визуальной parity-проверки использовался **production-like local baseline**, а не `next dev`:
@@ -90,20 +99,18 @@
   - `output/playwright/live-localprod-parity-2026-04-01/`
   - `output/playwright/live-localprod-parity-2026-04-01/diff-metrics.tsv`
 
-## ОТКРЫТЫЕ ЗАДАЧИ — Batch D (продуктовые решения — businessService)
+## ОТКРЫТЫЕ ЗАДАЧИ — businessService (статус после Simplification Batch)
 
-### Статус businessService: 3/6 карточек связаны
-- ✅ `imidzhevoe-video-biznesa` → `/promo-video/promo-business`
-- ✅ `reels-shorts` → `/reels-promo/reels-business`
-- ✅ `tury-360` → `/360-tour-business`
-- ❌ `kontent-sayta-reklamy` → NEEDS_NEW_L3 (`/promo-video/promo-business-ads`)
-- ❌ `semka-prostranstva-obekta` → NEEDS_MANUAL_PRODUCT_MERGE (расширить promo-business, затем линковать)
-- ❌ `ai-upakovka-kontenta` → NEEDS_NEW_L3 (`/ai-content/business-ai-content`)
+### businessService теперь: широкий входной хаб (discussion-first)
+- ✅ 3 карточки с валидными hrefs: `imidzhevoe-video-biznesa` → `/promo-video/promo-business`, `reels-shorts` → `/reels-promo/reels-business`, `tury-360` → `/360-tour-business`
+- ✅ 3 карточки без hrefs удалены (были fake catalog)
+- Страница — не каталог, а broad entry page для бизнесов вне основных ниш
+- При желании расширить: можно создать новые L3 и добавить карточки назад
 
-### Recommended sequence (smallest-first):
-- [ ] D1: Создать `/ai-content/business-ai-content` → линковать `businessService.ai-upakovka-kontenta` (шаблон: hotel-ai-descriptions / tourism-ai-packaging)
-- [ ] D2: Расширить `/promo-video/promo-business` — добавить space-shoot в пакеты → линковать `businessService.semka-prostranstva-obekta`
-- [ ] D3: Создать `/promo-video/promo-business-ads` → линковать `businessService.kontent-sayta-reklamy`
+### Если понадобится вернуть Batch D:
+- D1: Создать `/ai-content/business-ai-content` (шаблон: hotel-ai-descriptions / tourism-ai-packaging)
+- D2: Расширить `/promo-video/promo-business` с space-shoot пакетами
+- D3: Создать `/promo-video/promo-business-ads`
 
 ### Прочие продуктовые решения (другие хабы):
 - [ ] `restaurantsService.ai-upakovka-menyu-opisaniy` — создать `/ai-content/restaurant-ai-content` или hub-only?

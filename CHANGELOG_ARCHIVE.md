@@ -1,6 +1,37 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (businessService Simplification + Gazeta Final Form Fix)
+### Session Summary
+- `businessService` переведён из fake catalog (6 карточек, 3 без href) в discussion-first broad entry page (3 честных карточки).
+- Дублирование финальной формы на `/gazeta` подтверждено и исправлено.
+
+### businessService — что изменено (`constants/l2DirectionConfigs.ts`)
+- `h1`: «…объектов» → «…проектов»
+- `intro`: добавлена фраза «Если ваша ниша не в списке — расскажите о задаче, подберём формат вместе»
+- `heroSubtitle`: заменён на discussion-first copy про структурное сходство бизнес-задач
+- `heroSupportingLine`: «Даже если ваша ниша не вписывается…» — invitation to discuss
+- `servicesHeading`: «Услуги для бизнеса…» → «Форматы, которые работают для бизнеса»
+- Карточки 2, 5, 6 удалены (`kontent-sayta-reklamy`, `semka-prostranstva-obekta`, `ai-upakovka-kontenta`) — у них не было valID L3 href, они создавали видимость fake catalog
+- Остались 3 честных карточки: `imidzhevoe-video-biznesa` → `/promo-video/promo-business`, `reels-shorts` → `/reels-promo/reels-business`, `tury-360` → `/360-tour-business`
+- `contact.title`: «ОБСУДИМ КОНТЕНТ…» → «РАССКАЖИТЕ О СВОЁМ ПРОЕКТЕ»
+- `contact.description`: discussion-first, «даже если ниша не в списке — обсудим и найдём формат»
+- `contact.serviceOptions`: упрощён до 5 широких вариантов
+
+### Gazeta final form duplication — что исправлено (`app/gazeta/page.tsx`)
+- **Подтверждено**: `FinalFormSection` (labeled «09 — Форма связи») рендерилась поверх `NichesStack`, который уже содержал step-09 (FAQ) и step-10 (contact form, `id="contact"`, `zIndex: 100`)
+- **Исправление**: `<FinalFormSection />` и его import удалены из `app/gazeta/page.tsx`
+- Стек NichesStack сохранён полностью; contact path через step-10 не затронут
+- Импорт `FinalFormSection` убран из файла
+
+### Файлы изменены
+- `constants/l2DirectionConfigs.ts`
+- `app/gazeta/page.tsx`
+- `CONTEXT_NEXT_CHAT.md`
+- `CHANGELOG_ARCHIVE.md`
+
+---
+
 ## 2026-04-01 (businessService Product Decision Audit)
 ### Session Summary
 - Проведён ручной product decision audit для 3 оставшихся карточек `businessService` без `primaryHref`.

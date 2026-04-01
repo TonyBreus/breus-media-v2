@@ -3,7 +3,6 @@ import { SmartHeader } from "@/components/gazeta/SmartHeader";
 import { HeroSection } from "@/components/gazeta/HeroSection";
 import { MarqueeSection } from "@/components/gazeta/MarqueeSection";
 import { NichesStack } from "@/components/gazeta/NichesStack";
-import { FinalFormSection } from "@/components/gazeta/FinalFormSection";
 
 export const metadata = {
     title: "Site Gazeta - Breus Media",
@@ -19,11 +18,8 @@ export default function GazetaPage() {
             {/* Marquee appears right after Hero */}
             <MarqueeSection />
 
-            {/* Stacking Cards */}
+            {/* Stacking Cards — includes step-09 (FAQ) and step-10 (contact form) */}
             <NichesStack />
-
-            {/* Final Form Layer */}
-            <FinalFormSection />
 
             <DebugWrapper id={100} label="Main Content Container">
                 <div className="hidden" />
