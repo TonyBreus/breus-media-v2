@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026
+### Обновлён: 1 апреля 2026 (launch readiness audit — автоматический scheduled task)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -32,14 +32,24 @@
 ✅ /gazeta: для секции `01` (Недвижимость) карточки визуально приведены к дизайну `RealEstateServicesStitch`
 ✅ /gazeta: добавлен compact-режим для mobile landscape — уменьшены фиксированные верхние элементы (header + marquee), чтобы не съедали экран
 ✅ CTA & Contact Path Audit завершён (01.04.2026) — BREUS_MEDIA_CTA_CONTACT_PATH_AUDIT.md
+✅ Launch Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_LAUNCH_READINESS_AUDIT.md
 
-## ОТКРЫТЫЕ ЗАДАЧИ (CTA) — следующий батч
-- [x] P1: `/gazeta` — добавлен `id="contact"` на FinalFormSection (01.04.2026)
-- [x] P1: `/gazeta/[slug]` — исправлена иерархия кнопок (01.04.2026)
-- [x] P1: `/gazeta/[slug]` — заменён `href="/gazeta#contact"` → WhatsApp (01.04.2026)
-- [~] P1: AI Visual L3 — проверено: "Узнать цену" не существовало (аудит-агент ошибся). Реальные лейблы корректны.
+## ОТКРЫТЫЕ ЗАДАЧИ — Batch 5 (следующий, маленький)
+
+### P1 — нужно до soft launch:
+- [ ] P1: `/gazeta/[slug]` — поменять стили кнопок: "Обсудить проект" → `bg-white text-black` (primary), "Назад к Gazeta" → border ghost (secondary)
+  - Файл: `app/gazeta/[slug]/page.tsx:158–170`
+- [ ] P1: `/gazeta/[slug]` — заменить `href="/gazeta#contact"` → `href="https://wa.me/995574619393"`
+  - Файл: `app/gazeta/[slug]/page.tsx:165`
+
+### P2 — важно, но не блокирует:
+- [ ] P2: `constants/l2DirectionConfigs.ts` — 5 случаев `primaryCtaLabel: 'Открыть услугу'` заменить на `'Смотреть услуги'` → `'#services'`
 - [ ] P2: L2 Hubs — добавить sticky CTA bar в L2DirectionRenderer (аналог DroneStickyCta)
-- [ ] P2: L2 Hero — изменить primary CTA с "Открыть услугу" (ведёт на L3) → "Посмотреть пакеты" → #pricing
+- [ ] P2: Аналитика — добавить GA/GTM или Yandex Metrika в root layout (сейчас нет никакого tracking)
+
+### Уточнение по предыдущему аудиту (CTA):
+- ✅ `/gazeta` hero CTA `#contact` — НЕ сломан: `id="contact"` существует в `NichesStack.tsx:1617`
+- ✅ AI Visual L3 "Узнать цену" — лейбл исправлен в HEAD; все страницы используют корректные лейблы
 
 ## ВАЖНОЕ ТЕХСОСТОЯНИЕ НА СЕЙЧАС
 - Фиксы по `gazeta` подтверждены локально (build + визуальная проверка).

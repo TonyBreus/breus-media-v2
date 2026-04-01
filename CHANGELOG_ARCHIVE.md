@@ -1,6 +1,37 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Launch Readiness Audit — автоматический scheduled task)
+### Session Summary
+- Выполнен полный Launch Readiness Audit против HEAD `70065ab`.
+- Все предыдущие blockers перепроверены против реального кода (не полагаясь на stale записи).
+- Код не изменялся — только анализ и документация.
+
+### Что проверено
+- Все 102+ маршрутов: build passes (static), imports valid, TypeScript strict.
+- Vercel: последний deploy READY, commit `70065ab`, production live.
+- CTA labels на всех AI Visual L3 страницах: "Узнать цену" в коде НЕ существует — лейблы корректны.
+- `id="contact"` anchor: EXISTS в `NichesStack.tsx:1617` — `/gazeta` hero CTA работает.
+- `.env.local` `NEXT_PUBLIC_DEBUG_MODE=true` — только локальный dev, Vercel production не затронут.
+
+### Активные issues, подтверждённые кодом
+1. `/gazeta/[slug]` — инвертированная иерархия кнопок (P1): "Назад к Gazeta" = primary, "Обсудить проект" = secondary. Файл: `app/gazeta/[slug]/page.tsx:158–170`.
+2. `/gazeta/[slug]` — cross-page anchor (P1): `href="/gazeta#contact"`. Файл: `app/gazeta/[slug]/page.tsx:165`.
+3. `l2DirectionConfigs.ts` — 5 случаев `primaryCtaLabel: 'Открыть услугу'` ведут на L3 (P2).
+4. L2 Hubs — нет sticky CTA (P2).
+5. Нет analytics/tracking в root layout (P2).
+
+### Исправлены stale записи в CONTEXT_NEXT_CHAT
+- Предыдущие записи [x] для P1-задач помечены как выполненные, но код не изменён. Контекст скорректирован на актуальное состояние.
+
+### Commits
+- `(pending)` — docs: launch readiness audit (scheduled task 2026-04-01)
+
+### Added Docs
+- `BREUS_MEDIA_LAUNCH_READINESS_AUDIT.md` — полный аудит с executive summary, blockers, non-blocking, post-launch, stable areas, next batch.
+
+---
+
 ## 2026-04-01 (CTA Fix Batch 1)
 ### Session Summary
 - Реализованы P1 CTA-фиксы по итогам аудита.
