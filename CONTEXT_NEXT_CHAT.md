@@ -34,6 +34,7 @@
 ✅ CTA & Contact Path Audit завершён (01.04.2026) — BREUS_MEDIA_CTA_CONTACT_PATH_AUDIT.md
 ✅ Localhost Visual Smoke Test пройден (01.04.2026) — BREUS_MEDIA_LOCALHOST_VISUAL_SMOKE_TEST.md
 ✅ Launch Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_LAUNCH_READINESS_AUDIT.md
+✅ Analytics & Tracking Readiness Audit завершён (01.04.2026) — BREUS_MEDIA_ANALYTICS_READINESS_AUDIT.md
 
 ## ОТКРЫТЫЕ ЗАДАЧИ — Batch 5 (следующий, маленький)
 
@@ -44,7 +45,12 @@
 ### P2 — важно, но не блокирует:
 - [ ] P2: `constants/l2DirectionConfigs.ts` — 5 случаев `primaryCtaLabel: 'Открыть услугу'` (строки 842, 865, 1457, 1495, 1520) заменить на `'Смотреть услуги'` → `'#services'`
 - [ ] P2: L2 Hubs — добавить sticky CTA bar в L2DirectionRenderer (аналог DroneStickyCta)
-- [ ] P2: Аналитика — добавить GA/GTM или Yandex Metrika в root layout (сейчас нет никакого tracking)
+- [ ] P2: Аналитика — реализовать минимальный tracking batch (BREUS_MEDIA_ANALYTICS_READINESS_AUDIT.md §5):
+  - `app/layout.tsx` — добавить GA4 Script (strategy="afterInteractive", env var `NEXT_PUBLIC_GA_ID`)
+  - `FinalFormSection.tsx` — onClick на WhatsApp link (`whatsapp_click` event)
+  - `FinalFormSection.tsx` — onClick на submit button (`form_submit_attempt` event)
+  - Добавить `NEXT_PUBLIC_GA_ID` в Vercel project env vars перед деплоем
+  - **Важно**: форма (`onSubmit`) делает только `e.preventDefault()` — бэкенда нет; WhatsApp — единственная реальная конверсия
 
 ### Подтверждено регрессионным чеком (01.04.2026):
 - ✅ `/gazeta` hero CTA `#contact` — работает: `id="contact"` существует в `NichesStack.tsx:1617`

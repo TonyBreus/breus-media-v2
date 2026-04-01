@@ -1891,6 +1891,34 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+---
+
+## 2026-04-01 — Analytics & Tracking Readiness Audit
+#### Session Summary
+- Проведён полный аудит состояния аналитики перед soft launch.
+- Ключевые находки:
+  - В codebase **ноль** tracking-кода (0 вхождений gtag/GTM/Metrika/pixel/etc. по всем tsx/ts файлам).
+  - `app/layout.tsx` (14 строк) — чистый, без каких-либо Script-тегов аналитики.
+  - `FinalFormSection.tsx:58` — форма делает `e.preventDefault()` и ничего более: **нет бэкенда, нет API-вызова**. Единственная реальная конверсия на сайте — WhatsApp-ссылка `wa.me/995574619393` (строка 150).
+  - 13+ CTA-компонентов (DroneStickyCta ×7, TourStickyCta ×8, MidCta, FinalFormSection) — все без onClick-трекинга.
+- Составлен план минимального pre-launch трекинга: 2 файла, ~10 строк.
+- Документ: `BREUS_MEDIA_ANALYTICS_READINESS_AUDIT.md`
+
+#### Commits
+- (doc-only сессия, без изменений кода)
+
+#### Technical Notes
+- Приоритеты трекинга (порядок):
+  1. GA4 Script в `app/layout.tsx` (env: `NEXT_PUBLIC_GA_ID`)
+  2. `whatsapp_click` event — onClick на `wa.me` link в FinalFormSection
+  3. `form_submit_attempt` event — onClick на submit button в FinalFormSection
+- Post-launch (можно подождать): sticky CTA clicks, MidCta clicks, Metrika/Clarity, форма с реальным бэкендом.
+
+#### Release Notes
+- Статус: docs only, no code changes, no deploy.
+
+---
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary
