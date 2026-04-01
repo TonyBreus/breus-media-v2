@@ -1,6 +1,32 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Regression Sanity Check — автоматический scheduled task)
+### Session Summary
+- Выполнен регрессионный чек против HEAD `e7c428f` (все 25 пунктов).
+- Код не изменялся — только документация.
+
+### Key Findings
+- Все P1 blockers из `BREUS_MEDIA_LAUNCH_READINESS_AUDIT.md` подтверждены как RESOLVED в `77c634d`.
+- CONTEXT_NEXT_CHAT.md исправлен: `[ ]` P1-задачи переведены в `[x]`, last commit обновлён до `77c634d`.
+- CHANGELOG_ARCHIVE.md: `(pending)` для CTA Fix Batch 1 заменён на `77c634d`.
+- 3 активных P2 подтверждены: `primaryCtaLabel 'Открыть услугу'` × 5, no sticky CTA на L2, no analytics.
+- False positives от предыдущих аудитов задокументированы.
+
+### False Positives Closed
+- `/gazeta/[slug]` CTA hierarchy — resolved in `77c634d`
+- `/gazeta/[slug]` contact href cross-page — resolved in `77c634d`
+- `/gazeta` `#contact` anchor — existed in NichesStack.tsx:1617 all along
+- AI Visual "Узнать цену" — never existed in production code
+
+### Commits
+- `(pending)` — docs: regression sanity check, fix stale P1 task markers
+
+### Added Docs
+- `BREUS_MEDIA_CURRENT_HEAD_REGRESSION_CHECK.md`
+
+---
+
 ## 2026-04-01 (Localhost Visual Smoke Test)
 ### Session Summary
 - Запущен prod-сервер на порту 3001 (`next start` после чистой сборки).
@@ -59,7 +85,7 @@ Append-only архив изменений. Старые записи не уда
 3. AI Visual P1 — аудит-агент ошибся: лейбл "Узнать цену" не существует ни в одной из 7 страниц. Реальные лейблы ("Получить демо-визуализацию", "Прислать фото авто" и др.) корректны. Изменений не требуется.
 
 ### Commits
-- `(pending)` — fix(cta-batch1): fix gazeta hero anchor, slug CTA hierarchy and contact path
+- `77c634d` — fix(cta-batch1): fix gazeta hero anchor, slug CTA hierarchy and contact path
 
 ### Technical Notes
 - FinalFormSection — sticky slide-up компонент с h-[150vh]; добавление id="contact" на внешний div позволяет браузеру скроллить к нему, после чего анимация формы срабатывает штатно.

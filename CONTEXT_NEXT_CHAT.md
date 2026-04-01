@@ -37,20 +37,21 @@
 
 ## ОТКРЫТЫЕ ЗАДАЧИ — Batch 5 (следующий, маленький)
 
-### P1 — нужно до soft launch:
-- [ ] P1: `/gazeta/[slug]` — поменять стили кнопок: "Обсудить проект" → `bg-white text-black` (primary), "Назад к Gazeta" → border ghost (secondary)
-  - Файл: `app/gazeta/[slug]/page.tsx:158–170`
-- [ ] P1: `/gazeta/[slug]` — заменить `href="/gazeta#contact"` → `href="https://wa.me/995574619393"`
-  - Файл: `app/gazeta/[slug]/page.tsx:165`
+### P1 — ВСЕ ЗАКРЫТЫ ✅ (исправлены в коммите 77c634d)
+- [x] P1: `/gazeta/[slug]` — стили кнопок исправлены: "Обсудить проект" = `bg-white text-black` (primary), "Назад к Gazeta" = ghost border (secondary) — подтверждено в коде
+- [x] P1: `/gazeta/[slug]` — `href` исправлен на `https://wa.me/995574619393` — подтверждено в коде
 
 ### P2 — важно, но не блокирует:
-- [ ] P2: `constants/l2DirectionConfigs.ts` — 5 случаев `primaryCtaLabel: 'Открыть услугу'` заменить на `'Смотреть услуги'` → `'#services'`
+- [ ] P2: `constants/l2DirectionConfigs.ts` — 5 случаев `primaryCtaLabel: 'Открыть услугу'` (строки 842, 865, 1457, 1495, 1520) заменить на `'Смотреть услуги'` → `'#services'`
 - [ ] P2: L2 Hubs — добавить sticky CTA bar в L2DirectionRenderer (аналог DroneStickyCta)
 - [ ] P2: Аналитика — добавить GA/GTM или Yandex Metrika в root layout (сейчас нет никакого tracking)
 
-### Уточнение по предыдущему аудиту (CTA):
-- ✅ `/gazeta` hero CTA `#contact` — НЕ сломан: `id="contact"` существует в `NichesStack.tsx:1617`
-- ✅ AI Visual L3 "Узнать цену" — лейбл исправлен в HEAD; все страницы используют корректные лейблы
+### Подтверждено регрессионным чеком (01.04.2026):
+- ✅ `/gazeta` hero CTA `#contact` — работает: `id="contact"` существует в `NichesStack.tsx:1617`
+- ✅ AI Visual L3 "Узнать цену" — строка не существует ни в одном файле `app/ai-visual/`
+- ✅ Все редиректы (7 маршрутов) — корректны
+- ✅ Нет `console.log`, нет захардкоженных localhost URL
+- ✅ `NEXT_PUBLIC_DEBUG_MODE=true` — только в `.env.local`, production Vercel не затронут
 
 ## ВАЖНОЕ ТЕХСОСТОЯНИЕ НА СЕЙЧАС
 - Фиксы по `gazeta` подтверждены локально (build + визуальная проверка).
