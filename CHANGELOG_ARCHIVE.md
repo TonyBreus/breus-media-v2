@@ -1,6 +1,31 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (businessService Product Decision Audit)
+### Session Summary
+- Проведён ручной product decision audit для 3 оставшихся карточек `businessService` без `primaryHref`.
+- Код не изменялся — только документирование решений.
+- Артефакт: `BREUS_MEDIA_BUSINESSSERVICE_REMAINING_DECISIONS.md`
+
+### Решения по карточкам
+
+| Card slug | Title | Decision | Обоснование |
+|-----------|-------|----------|-------------|
+| `kontent-sayta-reklamy` | Контент для сайта и рекламы | NEEDS_NEW_L3 | Landing/Ads/Performance intent отличен от brand video; нет существующей страницы покрывающей performance-контент |
+| `semka-prostranstva-obekta` | Съёмка пространства / объекта | NEEDS_MANUAL_PRODUCT_MERGE | Компонент brand video пакета, не отдельный продукт; нужно расширить `/promo-video/promo-business`, затем линковать |
+| `ai-upakovka-kontenta` | AI-упаковка контента | NEEDS_NEW_L3 | Естественный 3-й член семьи ai-content (hotel + tourism + business); чистый паттерн для создания |
+
+### Статус businessService
+- Связано: 3/6 (`imidzhevoe-video-biznesa`, `reels-shorts`, `tury-360`)
+- Без href (решения приняты): 3/6 (`kontent-sayta-reklamy`, `semka-prostranstva-obekta`, `ai-upakovka-kontenta`)
+
+### Рекомендованная последовательность следующих batches
+- **D1** (минимальный): создать `/ai-content/business-ai-content` → businessService 3/6 → 4/6
+- **D2**: расширить `/promo-video/promo-business` + линковать `semka-prostranstva-obekta` → 4/6 → 5/6
+- **D3**: создать `/promo-video/promo-business-ads` → 5/6 → 6/6 (полная связность)
+
+---
+
 ## 2026-04-01 (Coverage Gap Batch C)
 ### Session Summary
 - Закрыты 4 карточки NEEDS_L3 из Coverage Gap Audit: создано 2 новые L3 страницы для бизнес-ниши.

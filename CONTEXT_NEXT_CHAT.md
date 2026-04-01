@@ -72,6 +72,12 @@
   - `constants/l2DirectionConfigs.ts`: 4 новых `primaryHref` привязаны
   - businessService: 3/6 связанных карточек (было 1/6 до Batch C)
   - Build: ✅ чистый
+✅ businessService Product Decision Audit завершён (01.04.2026) — `BREUS_MEDIA_BUSINESSSERVICE_REMAINING_DECISIONS.md`
+  - 3 оставшихся карточки без href классифицированы: 2× NEEDS_NEW_L3, 1× NEEDS_MANUAL_PRODUCT_MERGE
+  - `kontent-sayta-reklamy` → NEEDS_NEW_L3 (performance/ads intent, не перекрывается promo-business)
+  - `semka-prostranstva-obekta` → NEEDS_MANUAL_PRODUCT_MERGE (компонент promo-business; расширить страницу, затем линковать)
+  - `ai-upakovka-kontenta` → NEEDS_NEW_L3 (3-й член семьи ai-content: hotel + tourism + business)
+  - Рекомендован Batch D1 как минимальный следующий шаг: `/ai-content/business-ai-content`
 
 ## АУДИТ-ПРИМЕЧАНИЕ (01.04.2026)
 - Для корректной визуальной parity-проверки использовался **production-like local baseline**, а не `next dev`:
@@ -84,18 +90,27 @@
   - `output/playwright/live-localprod-parity-2026-04-01/`
   - `output/playwright/live-localprod-parity-2026-04-01/diff-metrics.tsv`
 
-## ОТКРЫТЫЕ ЗАДАЧИ — Coverage Gap Batch C (следующий, маленький)
+## ОТКРЫТЫЕ ЗАДАЧИ — Batch D (продуктовые решения — businessService)
 
-### Batch C — Business Family L3 (2 страницы, 4 карточки закроются)
-- [ ] C1: Создать `/reels-promo/reels-business/page.tsx` → добавить `primaryHref` в `reelsService.reels-biznes` + `businessService.reels-shorts`
-- [ ] C2: Создать `/promo-video/promo-business/page.tsx` → добавить `primaryHref` в `promoVideoService.promo-video-biznes` + `businessService.imidzhevoe-video-biznesa`
+### Статус businessService: 3/6 карточек связаны
+- ✅ `imidzhevoe-video-biznesa` → `/promo-video/promo-business`
+- ✅ `reels-shorts` → `/reels-promo/reels-business`
+- ✅ `tury-360` → `/360-tour-business`
+- ❌ `kontent-sayta-reklamy` → NEEDS_NEW_L3 (`/promo-video/promo-business-ads`)
+- ❌ `semka-prostranstva-obekta` → NEEDS_MANUAL_PRODUCT_MERGE (расширить promo-business, затем линковать)
+- ❌ `ai-upakovka-kontenta` → NEEDS_NEW_L3 (`/ai-content/business-ai-content`)
 
-### Batch D — Продуктовые решения (требуют участия клиента/продукта)
-- [ ] D1: `restaurantsService.ai-upakovka-menyu-opisaniy` — создать `/ai-content/restaurant-ai-content` или hub-only?
-- [ ] D2: `autoService.ai-upakovka-obyavleniy` — создать `/ai-content/auto-ai-listings` или hub-only?
-- [ ] D3: `businessService.kontent-sayta-reklamy` — включить в promo-business или отдельный формат?
-- [ ] D4: `businessService.semka-prostranstva-obekta` — роутить на real-estate или включить в promo-business?
-- [ ] D5: `businessService.ai-upakovka-kontenta` — создать `/ai-content/business-ai-content` или hub-only?
+### Recommended sequence (smallest-first):
+- [ ] D1: Создать `/ai-content/business-ai-content` → линковать `businessService.ai-upakovka-kontenta` (шаблон: hotel-ai-descriptions / tourism-ai-packaging)
+- [ ] D2: Расширить `/promo-video/promo-business` — добавить space-shoot в пакеты → линковать `businessService.semka-prostranstva-obekta`
+- [ ] D3: Создать `/promo-video/promo-business-ads` → линковать `businessService.kontent-sayta-reklamy`
+
+### Прочие продуктовые решения (другие хабы):
+- [ ] `restaurantsService.ai-upakovka-menyu-opisaniy` — создать `/ai-content/restaurant-ai-content` или hub-only?
+- [ ] `autoService.ai-upakovka-obyavleniy` — создать `/ai-content/auto-ai-listings` или hub-only?
+
+### Аудит-артефакт:
+- `BREUS_MEDIA_BUSINESSSERVICE_REMAINING_DECISIONS.md` — полный product decision audit (01.04.2026)
 
 ### Прочие открытые задачи (перенесены из Batch 6)
 
