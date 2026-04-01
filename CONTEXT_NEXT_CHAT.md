@@ -7,7 +7,7 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: (pending — analytics batch)
+- Последний кодовый коммит: c82bc61 (feat(analytics): GA4 script + whatsapp_click + form_submit_attempt)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Цены — проверены, исправлены 3 нарушения матрицы  

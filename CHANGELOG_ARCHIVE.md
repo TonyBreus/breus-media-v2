@@ -20,7 +20,7 @@ Append-only архив изменений. Старые записи не уда
 - `NEXT_PUBLIC_GA_ID` — добавить в Vercel project env vars перед production деплоем
 
 ### Commits
-- (pending) — feat(analytics): add GA4 script and whatsapp_click/form_submit_attempt events
+- `c82bc61` — feat(analytics): add GA4 script and whatsapp_click/form_submit_attempt events
 
 ---
 
