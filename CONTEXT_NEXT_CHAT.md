@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (Card/Binding Consistency Batch B)
+### Обновлён: 1 апреля 2026 (Coverage Gap Audit)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -55,6 +55,11 @@
   - `clinicsService.kontent-esteticheskih-uslug`: `/promo-video/clinic-interior` (дубль card 3) → href убран (L3 страница не существует)
   - Файл: `constants/l2DirectionConfigs.ts`
   - Build: ✅ чистый
+✅ Coverage Gap Audit завершён (01.04.2026) — `BREUS_MEDIA_COVERAGE_GAP_AUDIT.md`
+  - 11 карточек без primaryHref классифицированы: 4× NEEDS_L3, 2× CAN_STAY_HUB_ONLY, 1× SHOULD_LINK_TO_EXISTING_HUB, 5× NEEDS_MANUAL_PRODUCT_DECISION
+  - 1 soft-mismatch: `clinicsService.ai-upakovka-kontenta` → временный tourism fallback
+  - Batch C рекомендован: 2 страницы (`/reels-promo/reels-business`, `/promo-video/promo-business`) закроют 4 карточки
+  - businessService: 1/6 связанных карточек (после Batch C станет 3/6)
 ✅ Card/Binding Consistency Batch B завершён (01.04.2026) — 1 L3 href добавлен, 6 карточек оставлены без href (L3 страницы не существуют)
   - `reelsService.reels-nedvizhimost` (card 1): добавлен `primaryHref: '/reels-promo/reels-real-estate'`
   - `reelsService.reels-biznes` (card 7): L3 страница `/reels-promo/reels-business` не существует → fallback
@@ -73,7 +78,22 @@
   - `output/playwright/live-localprod-parity-2026-04-01/`
   - `output/playwright/live-localprod-parity-2026-04-01/diff-metrics.tsv`
 
-## ОТКРЫТЫЕ ЗАДАЧИ — Batch 6 (следующий, маленький)
+## ОТКРЫТЫЕ ЗАДАЧИ — Coverage Gap Batch C (следующий, маленький)
+
+### Batch C — Business Family L3 (2 страницы, 4 карточки закроются)
+- [ ] C1: Создать `/reels-promo/reels-business/page.tsx` → добавить `primaryHref` в `reelsService.reels-biznes` + `businessService.reels-shorts`
+- [ ] C2: Создать `/promo-video/promo-business/page.tsx` → добавить `primaryHref` в `promoVideoService.promo-video-biznes` + `businessService.imidzhevoe-video-biznesa`
+
+### Batch D — Продуктовые решения (требуют участия клиента/продукта)
+- [ ] D1: `restaurantsService.ai-upakovka-menyu-opisaniy` — создать `/ai-content/restaurant-ai-content` или hub-only?
+- [ ] D2: `autoService.ai-upakovka-obyavleniy` — создать `/ai-content/auto-ai-listings` или hub-only?
+- [ ] D3: `businessService.kontent-sayta-reklamy` — включить в promo-business или отдельный формат?
+- [ ] D4: `businessService.semka-prostranstva-obekta` — роутить на real-estate или включить в promo-business?
+- [ ] D5: `businessService.ai-upakovka-kontenta` — создать `/ai-content/business-ai-content` или hub-only?
+
+### Прочие открытые задачи (перенесены из Batch 6)
+
+## ОТКРЫТЫЕ ЗАДАЧИ — Batch 6 (в процессе)
 
 ### P1 — ВСЕ ЗАКРЫТЫ ✅ (исправлены в коммите 77c634d)
 - [x] P1: `/gazeta/[slug]` — стили кнопок исправлены: "Обсудить проект" = `bg-white text-black` (primary), "Назад к Gazeta" = ghost border (secondary) — подтверждено в коде

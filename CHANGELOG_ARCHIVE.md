@@ -1,6 +1,39 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Coverage Gap Audit)
+### Session Summary
+- Проведён полный аудит пробелов покрытия L3-страниц по всем 10 L2-хабам.
+- Найдено и классифицировано 11 карточек без `primaryHref` + 1 soft-mismatch.
+- Сформированы рекомендации по следующему Batch C и продуктовым решениям.
+- Изменения в код не вносились — только документирование.
+
+### Классификация пробелов
+
+| Хаб | Card slug | Заголовок | Статус |
+|---|---|---|---|
+| reelsService | `reels-biznes` | Reels для бизнеса | NEEDS_L3 → `/reels-promo/reels-business` |
+| promoVideoService | `promo-video-biznes` | Промо-видео для бизнеса | NEEDS_L3 → `/promo-video/promo-business` |
+| businessService | `imidzhevoe-video-biznesa` | Имиджевое видео бизнеса | NEEDS_L3 → `/promo-video/promo-business` |
+| businessService | `reels-shorts` | Reels и Shorts | NEEDS_L3 → `/reels-promo/reels-business` |
+| tourismService | `kontent-glemping-baza` | Контент для глэмпинга / базы | CAN_STAY_HUB_ONLY |
+| clinicsService | `kontent-esteticheskih-uslug` | Контент для эстетических услуг | CAN_STAY_HUB_ONLY |
+| clinicsService | `ai-upakovka-kontenta` | AI-упаковка контента | SHOULD_LINK_TO_EXISTING_HUB (soft-mismatch, tourism fallback) |
+| restaurantsService | `ai-upakovka-menyu-opisaniy` | AI-упаковка меню и описаний | NEEDS_MANUAL_PRODUCT_DECISION |
+| autoService | `ai-upakovka-obyavleniy` | AI-упаковка объявлений | NEEDS_MANUAL_PRODUCT_DECISION |
+| businessService | `kontent-sayta-reklamy` | Контент для сайта и рекламы | NEEDS_MANUAL_PRODUCT_DECISION |
+| businessService | `semka-prostranstva-obekta` | Съёмка пространства / объекта | NEEDS_MANUAL_PRODUCT_DECISION |
+| businessService | `ai-upakovka-kontenta` | AI-упаковка контента | NEEDS_MANUAL_PRODUCT_DECISION |
+
+### Рекомендованный следующий batch (Batch C)
+- C1: `/reels-promo/reels-business` — закрывает `reelsService.reels-biznes` + `businessService.reels-shorts`
+- C2: `/promo-video/promo-business` — закрывает `promoVideoService.promo-video-biznes` + `businessService.imidzhevoe-video-biznesa`
+
+### Файл-артефакт
+- `BREUS_MEDIA_COVERAGE_GAP_AUDIT.md`
+
+---
+
 ## 2026-04-01 (Card/Binding Consistency Batch B)
 ### Session Summary
 - Проверены 7 карточек без `primaryHref` в `businessService` (5 штук) и `reelsService` (2 штуки).
