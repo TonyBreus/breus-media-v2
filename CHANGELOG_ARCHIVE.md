@@ -1,6 +1,38 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Hero Title Staggered Reveal)
+### Session Summary
+- Добавлена cinematic staggered letter-reveal анимация для заголовка `Breus Media` на главной странице `/gazeta`
+- Эффект: каждая буква поднимается снизу (y 24px → 0) + fade in, с задержкой 55ms между буквами слева направо
+- Scroll-кинетика (shrink + translate вверх → логотип) не затронута
+
+### Что изменено
+- `components/gazeta/HeroSection.tsx`:
+  - Добавлен импорт `useReducedMotion` из framer-motion
+  - `TITLE_CHARS` константа — `"Breus Media".split("")` вне компонента
+  - `motion.h1` children заменены на `TITLE_CHARS.map()` → `motion.span` с stagger
+  - `aria-label="Breus Media"` добавлен на h1 для accessibility при letter-split
+  - Пробел между словами — `"\u00A0"` внутри `inline-block` span
+
+### Параметры анимации
+| Параметр | Значение |
+|----------|---------|
+| Entrance | `opacity: 0→1`, `y: 24→0` |
+| Duration | 0.6s |
+| Stagger delay | 55ms per letter |
+| Ease | `[0.22, 1, 0.36, 1]` (custom ease-out quint) |
+| Reduced motion | `initial` = конечное состояние, `delay: 0` |
+
+### Файлы изменены
+- `components/gazeta/HeroSection.tsx`
+- `CONTEXT_NEXT_CHAT.md`
+- `CHANGELOG_ARCHIVE.md`
+
+### Build: ✅ чистый (tsc --noEmit, 0 новых ошибок)
+
+---
+
 ## 2026-04-01 (AI Entry Routing — кнопка 204)
 ### Session Summary
 - SmartHeader кнопка `AI Решения` (id 204) перенаправлена на `/ai-visualization-service`

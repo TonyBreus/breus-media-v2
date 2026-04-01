@@ -1,11 +1,14 @@
 "use client";
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { DebugWrapper } from "../debug/DebugWrapper";
 
+const TITLE_CHARS = "Breus Media".split("");
+
 export function HeroSection() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const prefersReducedMotion = useReducedMotion();
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end start"],
@@ -28,8 +31,26 @@ export function HeroSection() {
                     <motion.h1
                         style={{ scale, y: yTranslate, transformOrigin: 'top center' }}
                         className="text-[12vw] sm:text-[14vw] font-black leading-none tracking-[0.2em] md:tracking-[0.4em] lg:tracking-[0.5em] uppercase whitespace-nowrap font-sans text-white drop-shadow-md"
+                        aria-label="Breus Media"
                     >
-                        Breus Media
+                        {TITLE_CHARS.map((char, i) => (
+                            <motion.span
+                                key={i}
+                                className="inline-block"
+                                initial={{
+                                    opacity: prefersReducedMotion ? 1 : 0,
+                                    y: prefersReducedMotion ? 0 : 24,
+                                }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: prefersReducedMotion ? 0 : i * 0.055,
+                                    ease: [0.22, 1, 0.36, 1],
+                                }}
+                            >
+                                {char === " " ? "\u00A0" : char}
+                            </motion.span>
+                        ))}
                     </motion.h1>
                 </DebugWrapper>
 

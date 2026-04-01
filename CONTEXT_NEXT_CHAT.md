@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (AI Entry Routing — кнопка 204 → /ai-visualization-service)
+### Обновлён: 1 апреля 2026 (Hero Title Staggered Reveal — /gazeta HeroSection)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -10,6 +10,12 @@
 - Последний кодовый коммит: 5479476 (fix(content): recover package matrix batch A)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
+✅ Hero title staggered reveal (01.04.2026) — `components/gazeta/HeroSection.tsx`
+  - `Breus Media` h1 теперь анимируется при загрузке: каждая буква поднимается снизу (y: 24→0) с opacity 0→1
+  - Stagger: 55ms между буквами (общая длительность ~1.1s), ease [0.22, 1, 0.36, 1]
+  - Scroll-поведение (kinetic shrink → логотип) сохранено без изменений
+  - `prefers-reduced-motion`: анимация мгновенная (initial = конечное состояние)
+  - `aria-label="Breus Media"` добавлен на h1 для сохранения доступности при letter-split
 ✅ Live vs Local Visual Parity Audit завершён (01.04.2026) — `BREUS_MEDIA_LIVE_VS_LOCAL_VISUAL_PARITY.md`
 ✅ Подтверждено: `/gazeta` в production-like local (`NEXT_PUBLIC_DEBUG_MODE=false`, `next start`) визуально совпадает с live на desktop / mobile portrait / mobile landscape
 ✅ Найдено расхождение L2 hero-state: `/drone-service` (стартовый активный слайд + порядок compact navigator + secondary CTA copy)
