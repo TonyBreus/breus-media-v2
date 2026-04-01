@@ -1,6 +1,29 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-01 (Analytics Batch — minimal pre-launch tracking)
+### Session Summary
+- Реализован минимальный аналитический слой перед soft launch.
+- Код изменён в 2 файлах: `app/layout.tsx` и `components/gazeta/FinalFormSection.tsx`.
+
+### Что сделано
+- `app/layout.tsx`: добавлен GA4 через `next/script` `strategy="afterInteractive"`, управляется через `NEXT_PUBLIC_GA_ID`. Если переменная не задана — скрипт не вставляется, сайт работает без ошибок.
+- `FinalFormSection.tsx`: WhatsApp-кнопка — `whatsapp_click` event; onSubmit формы — `form_submit_attempt` event. Оба через `window.gtag` с защитой `typeof gtag === "function"`.
+
+### Events
+| Событие | Где | Когда |
+|---|---|---|
+| `whatsapp_click` | FinalFormSection → WhatsApp ссылка | При клике на "Перейти в WhatsApp" |
+| `form_submit_attempt` | FinalFormSection → onSubmit | При попытке отправить форму |
+
+### Env var
+- `NEXT_PUBLIC_GA_ID` — добавить в Vercel project env vars перед production деплоем
+
+### Commits
+- (pending) — feat(analytics): add GA4 script and whatsapp_click/form_submit_attempt events
+
+---
+
 ## 2026-04-01 (Regression Sanity Check — автоматический scheduled task)
 ### Session Summary
 - Выполнен регрессионный чек против HEAD `e7c428f` (все 25 пунктов).

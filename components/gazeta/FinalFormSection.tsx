@@ -55,7 +55,7 @@ export function FinalFormSection() {
                             </h2>
                         </DebugWrapper>
 
-                        <form className="space-y-10 pb-10" onSubmit={(e) => e.preventDefault()}>
+                        <form className="space-y-10 pb-10" onSubmit={(e) => { e.preventDefault(); if (typeof window !== "undefined" && typeof (window as any).gtag === "function") { (window as any).gtag("event", "form_submit_attempt"); } }}>
                             <DebugWrapper id={43} label="Personal Info">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div>
@@ -147,7 +147,7 @@ export function FinalFormSection() {
                                         <Send className="w-5 h-5" />
                                         Написать
                                     </button>
-                                    <a href="https://wa.me/995574619393" target="_blank" rel="noreferrer" className="flex-1 border border-white/20 text-white font-bold uppercase tracking-widest py-4 px-8 flex justify-center items-center gap-2 hover:bg-white/5 transition-colors">
+                                    <a href="https://wa.me/995574619393" target="_blank" rel="noreferrer" onClick={() => { if (typeof window !== "undefined" && typeof (window as any).gtag === "function") { (window as any).gtag("event", "whatsapp_click"); } }} className="flex-1 border border-white/20 text-white font-bold uppercase tracking-widest py-4 px-8 flex justify-center items-center gap-2 hover:bg-white/5 transition-colors">
                                         <MessageCircle className="w-5 h-5" />
                                         Перейти в WhatsApp
                                     </a>

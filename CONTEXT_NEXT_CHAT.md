@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (regression sanity check — автоматический scheduled task)
+### Обновлён: 1 апреля 2026 (analytics batch — GA4 + whatsapp_click + form_submit_attempt)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -7,7 +7,7 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: 77c634d (fix(cta-batch1): gazeta hero anchor, slug CTA hierarchy and contact path)
+- Последний кодовый коммит: (pending — analytics batch)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Цены — проверены, исправлены 3 нарушения матрицы  
@@ -45,12 +45,11 @@
 ### P2 — важно, но не блокирует:
 - [ ] P2: `constants/l2DirectionConfigs.ts` — 5 случаев `primaryCtaLabel: 'Открыть услугу'` (строки 842, 865, 1457, 1495, 1520) заменить на `'Смотреть услуги'` → `'#services'`
 - [ ] P2: L2 Hubs — добавить sticky CTA bar в L2DirectionRenderer (аналог DroneStickyCta)
-- [ ] P2: Аналитика — реализовать минимальный tracking batch (BREUS_MEDIA_ANALYTICS_READINESS_AUDIT.md §5):
-  - `app/layout.tsx` — добавить GA4 Script (strategy="afterInteractive", env var `NEXT_PUBLIC_GA_ID`)
-  - `FinalFormSection.tsx` — onClick на WhatsApp link (`whatsapp_click` event)
-  - `FinalFormSection.tsx` — onClick на submit button (`form_submit_attempt` event)
-  - Добавить `NEXT_PUBLIC_GA_ID` в Vercel project env vars перед деплоем
-  - **Важно**: форма (`onSubmit`) делает только `e.preventDefault()` — бэкенда нет; WhatsApp — единственная реальная конверсия
+- [x] P2: Аналитика — реализован минимальный tracking batch:
+  - `app/layout.tsx` — GA4 Script (strategy="afterInteractive", env var `NEXT_PUBLIC_GA_ID`), безопасно если var не задан
+  - `FinalFormSection.tsx` — onClick на WhatsApp link → `whatsapp_click`
+  - `FinalFormSection.tsx` — onSubmit → `form_submit_attempt`
+  - **Env var**: добавить `NEXT_PUBLIC_GA_ID` в Vercel project env vars перед деплоем
 
 ### Подтверждено регрессионным чеком (01.04.2026):
 - ✅ `/gazeta` hero CTA `#contact` — работает: `id="contact"` существует в `NichesStack.tsx:1617`
