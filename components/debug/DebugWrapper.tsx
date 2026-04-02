@@ -37,7 +37,7 @@ export const DebugWrapper = ({
         #{id}
       </div>
       {/* Target Content */}
-      <div data-debug-content className="ring-1 ring-red-500/0 group-hover:ring-red-500/50 transition-all duration-200">
+      <div data-debug-content className={`ring-1 ring-red-500/0 group-hover:ring-red-500/50 transition-all duration-200${className?.includes('h-full') ? ' h-full' : ''}`}>
         {children}
       </div>
     </div>

@@ -1,6 +1,19 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-02 (DebugWrapper h-full fix — hero video fills screen)
+### Session Summary
+- Fixed dark empty band above hero video on /gazeta
+- Root cause: DebugWrapper's inner debug-content div was not inheriting h-full from wrapper
+
+### Изменения
+- `components/debug/DebugWrapper.tsx` — `data-debug-content` div now conditionally adds `h-full` when wrapper className contains `h-full`
+  - This fixes any DebugWrapper-wrapped full-height containers in debug mode
+  - Production mode (no debug): unaffected (DebugWrapper renders Fragment or plain div)
+
+### Build
+- ○ /gazeta (Static) ✓, full clean build
+
 ## 2026-04-02 (Hero poster generated from video frame)
 ### Session Summary
 - Extracted a JPEG poster from the first strong frame of the hero video

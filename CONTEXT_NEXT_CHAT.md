@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 2 апреля 2026 (Hero poster generated from video)
+### Обновлён: 2 апреля 2026 (DebugWrapper h-full fix — hero video fills screen)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -18,6 +18,12 @@
   - Graceful fallback: если файл отсутствует — показывается poster (чёрный фон), лаяут не ломается
   - Swap: просто заменить файл в папке, код менять не нужно
   - Build: ○ /gazeta (Static) ✓
+✅ DebugWrapper h-full fix — hero video fills screen (02.04.2026) — `components/debug/DebugWrapper.tsx`
+  - Root cause: in debug mode DebugWrapper inserts a `data-debug-content` inner div that did NOT inherit `h-full` from the outer wrapper className
+  - Effect: video container had only intrinsic height (~219px) instead of full screen
+  - Fix: `data-debug-content` div now gets `h-full` when the wrapper className includes `h-full`
+  - No layout changes to HeroSection.tsx or any page file
+  - Build: clean ✓
 ✅ Hero poster generated from video frame (02.04.2026) — `public/media/hero/posters/breus-hero-demo-poster.jpg`
   - Кадр извлечён из `breus-hero-demo.mp4` (t=0.5s) с помощью VLC CLI
   - Разрешение: 1920×1088, JPEG, ~505KB
