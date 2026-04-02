@@ -1,6 +1,39 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-02 (About Section — /gazeta)
+### Session Summary
+- Добавлен компактный блок «О студии» на главную страницу `/gazeta`
+- Позиция: после MarqueeSection, перед NichesStack
+- Тон: серьёзный, B2B, аналитический — без fake-метрик, логотипов и раздутых формулировок
+
+### Что изменено
+- `components/gazeta/AboutSection.tsx` — новый компонент:
+  - Eyebrow badge «О студии»
+  - Заголовок: «Производство контента, которое работает на задачу.»
+  - 3 коротких абзаца: позиционирование, арсенал + подход, открытость к нестандартным нишам
+  - CTA «О студии подробнее» → `/about` (ArrowUpRight icon)
+  - framer-motion `whileInView` анимации, `DebugWrapper id={25}`
+  - Акцент `#D4AF37`, фон `bg-black`, тонкие горизонтальные бордеры
+- `app/gazeta/page.tsx` — импорт и вставка `<AboutSection />` между MarqueeSection и NichesStack
+
+### Параметры блока
+| Параметр | Значение |
+|----------|---------|
+| DebugWrapper ID | 25 |
+| Heading | «Производство контента, которое работает на задачу.» |
+| CTA label | «О студии подробнее» |
+| CTA href | `/about` |
+| Анимации | whileInView, once: true, stagger 80ms |
+| Фон | bg-black |
+| Акцент | #D4AF37 |
+
+### Файлы изменены
+- `components/gazeta/AboutSection.tsx` (новый)
+- `app/gazeta/page.tsx`
+- `CONTEXT_NEXT_CHAT.md`
+- `CHANGELOG_ARCHIVE.md`
+
 ## 2026-04-01 (Hero Title Staggered Reveal)
 ### Session Summary
 - Добавлена cinematic staggered letter-reveal анимация для заголовка `Breus Media` на главной странице `/gazeta`

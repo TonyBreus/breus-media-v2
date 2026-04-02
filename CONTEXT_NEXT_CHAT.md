@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 1 апреля 2026 (Hero Title Staggered Reveal — /gazeta HeroSection)
+### Обновлён: 2 апреля 2026 (About Section — /gazeta компактный блок «О студии»)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -10,6 +10,13 @@
 - Последний кодовый коммит: 5479476 (fix(content): recover package matrix batch A)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
+✅ About Section (02.04.2026) — `components/gazeta/AboutSection.tsx` + `app/gazeta/page.tsx`
+  - Новый компактный блок «О студии» между MarqueeSection и NichesStack на `/gazeta`
+  - Eyebrow badge, заголовок «Производство контента, которое работает на задачу.», 3 абзаца, CTA «О студии подробнее» → `/about`
+  - framer-motion whileInView анимации, DebugWrapper id={25}
+  - Тон: серьёзный, аналитический, B2B, без fake-метрик и клиентских логотипов
+  - Билд: OK
+
 ✅ Hero title staggered reveal (01.04.2026) — `components/gazeta/HeroSection.tsx`
   - `Breus Media` h1 теперь анимируется при загрузке: каждая буква поднимается снизу (y: 24→0) с opacity 0→1
   - Stagger: 55ms между буквами (общая длительность ~1.1s), ease [0.22, 1, 0.36, 1]

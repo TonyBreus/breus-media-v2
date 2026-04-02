@@ -2,6 +2,7 @@ import { DebugWrapper } from "@/components/debug/DebugWrapper";
 import { SmartHeader } from "@/components/gazeta/SmartHeader";
 import { HeroSection } from "@/components/gazeta/HeroSection";
 import { MarqueeSection } from "@/components/gazeta/MarqueeSection";
+import { AboutSection } from "@/components/gazeta/AboutSection";
 import { NichesStack } from "@/components/gazeta/NichesStack";
 
 export const metadata = {
@@ -17,6 +18,9 @@ export default function GazetaPage() {
 
             {/* Marquee appears right after Hero */}
             <MarqueeSection />
+
+            {/* About Studio — compact trust block, after hero/ticker, before service flow */}
+            <AboutSection />
 
             {/* Stacking Cards — includes step-09 (FAQ) and step-10 (contact form) */}
             <NichesStack />
