@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 2 апреля 2026 (Hero media structure + local video wiring)
+### Обновлён: 2 апреля 2026 (Hero poster generated from video)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -18,6 +18,11 @@
   - Graceful fallback: если файл отсутствует — показывается poster (чёрный фон), лаяут не ломается
   - Swap: просто заменить файл в папке, код менять не нужно
   - Build: ○ /gazeta (Static) ✓
+✅ Hero poster generated from video frame (02.04.2026) — `public/media/hero/posters/breus-hero-demo-poster.jpg`
+  - Кадр извлечён из `breus-hero-demo.mp4` (t=0.5s) с помощью VLC CLI
+  - Разрешение: 1920×1088, JPEG, ~505KB
+  - `poster` атрибут уже прописан в HeroSection.tsx — изменений в коде не потребовалось
+  - Замена постера: заменить файл по пути `/public/media/hero/posters/breus-hero-demo-poster.jpg`
 
 ✅ Visual Asset Inventory Audit (02.04.2026) — `BREUS_MEDIA_VISUAL_ASSET_INVENTORY.md`
   - Охват: `/gazeta`, все L2 хабы, представительные L3 страницы

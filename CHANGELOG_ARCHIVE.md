@@ -1,6 +1,20 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-02 (Hero poster generated from video frame)
+### Session Summary
+- Extracted a JPEG poster from the first strong frame of the hero video
+- No code changes — HeroSection.tsx already had the correct poster path wired
+
+### Изменения
+- `public/media/hero/posters/breus-hero-demo-poster.jpg` — создан (1920×1088 JPEG, ~505KB)
+  - Кадр: t=0.5s из `breus-hero-demo.mp4`, извлечён через VLC CLI
+  - Путь уже прописан в `HeroSection.tsx` (`poster="/media/hero/posters/breus-hero-demo-poster.jpg"`)
+  - Замена: заменить файл по тому же пути, код не трогать
+
+### Build
+- No code changes; existing build is clean
+
 ## 2026-04-02 (Hero media structure + local video wiring)
 ### Session Summary
 - Created public folder structure for hero media assets
