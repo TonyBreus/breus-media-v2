@@ -1,6 +1,33 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-02 — Consolidation Audit: About/Trust/Process blocks
+#### Session Summary
+- Проведён полный аудит наличия About/trust/process блоков в текущей ветке `main`.
+- Все требуемые компоненты подтверждены в `main` — интеграция из других веток не потребовалась.
+- Подтверждены:
+  - `components/gazeta/AboutSection.tsx` ✓
+  - `components/gazeta/HowWeWorkSection.tsx` ✓
+  - `components/gazeta/ExperienceTrustSection.tsx` ✓
+  - `app/about/page.tsx` (460 строк) ✓
+  - SmartHeader: ссылка "О Нас" → `/about` (строка 196) ✓
+  - `/gazeta` структура: Hero → Marquee → AboutSection → HowWeWorkSection → ExperienceTrustSection → NichesStack ✓
+- Остановлены все стейл-серверы; запущен единственный dev-сервер на порту `3200`.
+- Local: http://localhost:3200 | LAN/mobile: http://192.168.1.2:3200
+
+#### Commits
+- (doc-only сессия, код уже был в main — новых кодовых коммитов не потребовалось)
+
+#### Technical Notes
+- Ветки `backup-31mar-2026`, `claude/cool-cannon`, `claude/ecstatic-morse`, `claude/musing-swartz` существуют, но весь нужный код уже влит в `main`.
+- Ветка `main` = единственный канонический источник истины.
+
+#### Release Notes
+- Статус: local only, no deploy.
+- Сервер: http://localhost:3200 (desktop), http://192.168.1.2:3200 (LAN/mobile).
+
+---
+
 ## 2026-04-02 (DebugWrapper h-full fix — hero video fills screen)
 ### Session Summary
 - Fixed dark empty band above hero video on /gazeta

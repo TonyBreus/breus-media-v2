@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 2 апреля 2026 (DebugWrapper h-full fix — hero video fills screen)
+### Обновлён: 2 апреля 2026 (Consolidation audit — all About/trust/process blocks confirmed in main)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -10,6 +10,15 @@
 - Последний кодовый коммит: 5479476 (fix(content): recover package matrix batch A)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
+✅ Consolidation audit (02.04.2026) — все About/trust/process блоки подтверждены в main:
+  - `components/gazeta/AboutSection.tsx` ✓
+  - `components/gazeta/HowWeWorkSection.tsx` ✓
+  - `components/gazeta/ExperienceTrustSection.tsx` ✓
+  - `app/about/page.tsx` (460 строк) ✓
+  - `components/gazeta/SmartHeader.tsx` — ссылка "О Нас" → `/about` ✓
+  - `app/gazeta/page.tsx` — полная цепочка: Hero → Marquee → About → HowWeWork → ExperienceTrust → NichesStack ✓
+  - Сервер: единственный на порту 3200 (desktop: http://localhost:3200, LAN: http://192.168.1.2:3200)
+
 ✅ Hero media structure + local video wiring (02.04.2026) — `components/gazeta/HeroSection.tsx`
   - Создана папка `/public/media/hero/video/` — кладите сюда `breus-hero-demo.mp4`
   - Создана папка `/public/media/hero/posters/` — кладите сюда `breus-hero-demo-poster.jpg`
