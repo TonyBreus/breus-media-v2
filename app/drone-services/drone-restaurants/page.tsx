@@ -249,7 +249,7 @@ const pricingCards: DeliverablePackage[] = [
         price: '1 450–2 200 ₾',
         audience: 'Флагманский ресторан, hotel restaurant, event-driven venue, multi-zone concept',
         items: [
-            'Pre-shoot planning call',
+            'Расширенный бриф: созвон + согласование полётного маршрута до съёмки',
             'Съёмка до 4–5 часов',
             'Exterior + interior + advanced route planning',
             'FPV walkthrough (где уместно)',
@@ -324,7 +324,7 @@ const shootChecklist: string[] = [
     'Понимаете, в какой пакет укладывается задача',
 ];
 
-const beginnerFaqItems: FaqItem[] = [
+const faqItems: FaqItem[] = [
     {
         question: 'Что именно даёт дрон-съёмка ресторану?',
         answer:
@@ -355,9 +355,6 @@ const beginnerFaqItems: FaqItem[] = [
         answer:
             'Для сайта, Google Business Profile, рекламных объявлений, переписки с клиентами и организаторами мероприятий, а также презентаций venue.',
     },
-];
-
-const commercialFaqItems: FaqItem[] = [
     {
         question: 'Сколько стоит аэросъёмка ресторана в Тбилиси?',
         answer:
@@ -743,16 +740,6 @@ export default function DroneRestaurantsPage() {
                             с фотографиями.
                         </p>
                     </div>
-
-                    <ul className="mt-8 grid gap-4 text-sm leading-relaxed text-white/78 md:grid-cols-2">
-                        <li className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-5">Гость, который ни разу не был, понимает куда идёт.</li>
-                        <li className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-5">Терраса, двор или rooftop перестают быть «тайным преимуществом».</li>
-                        <li className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-5">Сезонный контент готов к публикации без долгих согласований.</li>
-                        <li className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-5">Google Business Profile получает видео, которое усиливает карточку.</li>
-                        <li className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-5 md:col-span-2">
-                            Менеджер по event-мероприятиям может отправить ссылку вместо набора отдельных фотографий.
-                        </li>
-                    </ul>
                 </div>
             </section>
 
@@ -945,14 +932,7 @@ export default function DroneRestaurantsPage() {
             </section>
 
             {/* ── FAQ ──────────────────────────────────────────────────────────────── */}
-            <FaqSection id="faq" items={beginnerFaqItems} title="Вопросы тех, кто заказывает впервые" variant="beginner" />
-
-            <FaqSection
-                items={commercialFaqItems}
-                title="Вопросы о цене, сроках и процессе"
-                variant="commercial"
-                bgColor="#0D0D0D"
-            />
+            <FaqSection id="faq" items={faqItems} title="Частые вопросы" />
 
             {/* ── КАК МЫ ПОДХОДИМ К СЪЁМКЕ ─────────────────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
@@ -972,29 +952,6 @@ export default function DroneRestaurantsPage() {
                 </div>
             </section>
 
-            {/* ── СМЕЖНЫЕ УСЛУГИ ───────────────────────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Смежные услуги</h2>
-                    </div>
-
-                    <div className="mt-10 grid gap-5 md:grid-cols-2">
-                        {relatedServices.map((service) => (
-                            <Link
-                                key={service.href}
-                                href={service.href}
-                                className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6 transition-colors hover:border-[#FFD23F]/50"
-                            >
-                                <h3 className="text-lg font-bold text-white">{service.title}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{service.text}</p>
-                                <p className="mt-4 text-sm font-semibold text-[#FFD23F]">Подробнее →</p>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* ════════════════════════════════════════════════════════════════════════
                 НИЖНИЙ ИНФОРМАЦИОННЫЙ СЛОЙ
             ════════════════════════════════════════════════════════════════════════ */}
@@ -1008,24 +965,6 @@ export default function DroneRestaurantsPage() {
 
                     <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                         {audienceCards.map((card) => (
-                            <article key={card.title} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">{card.title}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{card.text}</p>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ── КТО И КАК ИСПОЛЬЗУЕТ ЭТОТ КОНТЕНТ ───────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Кто и как использует этот контент</h2>
-                    </div>
-
-                    <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                        {roleScenarios.map((card) => (
                             <article key={card.title} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
                                 <h3 className="text-lg font-bold text-white">{card.title}</h3>
                                 <p className="mt-3 text-sm leading-relaxed text-white/72">{card.text}</p>
@@ -1129,6 +1068,29 @@ export default function DroneRestaurantsPage() {
                                 <h3 className="text-lg font-bold text-white">{item.question}</h3>
                                 <p className="mt-4 text-sm leading-relaxed text-white/74">{item.answer}</p>
                             </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── СМЕЖНЫЕ УСЛУГИ ───────────────────────────────────────────────────── */}
+            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-3xl">
+                        <h2 className="text-3xl font-bold md:text-4xl">Смежные услуги</h2>
+                    </div>
+
+                    <div className="mt-10 grid gap-5 md:grid-cols-2">
+                        {relatedServices.map((service) => (
+                            <Link
+                                key={service.href}
+                                href={service.href}
+                                className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6 transition-colors hover:border-[#FFD23F]/50"
+                            >
+                                <h3 className="text-lg font-bold text-white">{service.title}</h3>
+                                <p className="mt-3 text-sm leading-relaxed text-white/72">{service.text}</p>
+                                <p className="mt-4 text-sm font-semibold text-[#FFD23F]">Подробнее →</p>
+                            </Link>
                         ))}
                     </div>
                 </div>

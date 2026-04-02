@@ -20,13 +20,18 @@ export const DroneFooterStitch = () => {
                             </p>
                         </DebugWrapper>
                         <div className="flex space-x-6">
-                            {['IG', 'TG', 'YT'].map((social, sIdx) => (
-                                <DebugWrapper key={social} id={11010 + sIdx} label={`Social Link: ${social}`}>
+                            {[
+                                { label: 'IG', href: 'https://www.instagram.com/breusmedia' },
+                                { label: 'TG', href: 'https://t.me/breusmedia' },
+                            ].map((social, sIdx) => (
+                                <DebugWrapper key={social.label} id={11010 + sIdx} label={`Social Link: ${social.label}`}>
                                     <a
-                                        href="#"
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noreferrer"
                                         className="w-10 h-10 rounded-full border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-[#D4A017] hover:border-[#D4A017] transition-all"
                                     >
-                                        {social}
+                                        {social.label}
                                     </a>
                                 </DebugWrapper>
                             ))}
@@ -51,14 +56,14 @@ export const DroneFooterStitch = () => {
                             <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-6 text-white">Контакты</h4>
                             <ul className="space-y-4 text-sm text-gray-500">
                                 <li>Tbilisi, Georgia</li>
-                                <li className="text-white font-bold">+995 5xx xxx xxx</li>
+                                <li className="text-white font-bold">+995 574 619 393</li>
                                 <li className="hover:text-white transition-colors">hello@breus.media</li>
                             </ul>
                         </DebugWrapper>
                     </div>
                 </div>
                 <div className="container mx-auto px-6 mt-16 pt-8 border-t border-[#2a2a2a] text-center text-[10px] text-gray-600 uppercase tracking-[0.3em]">
-                    © 2024 BREUS MEDIA PRODUCTION. ALL RIGHTS RESERVED.
+                    © 2026 BREUS MEDIA PRODUCTION. ALL RIGHTS RESERVED.
                 </div>
             </footer>
         </DebugWrapper>
