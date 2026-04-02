@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 2 апреля 2026 (/gazeta — блок «Как мы работаем» + нишевой опыт)
+### Обновлён: 2 апреля 2026 (Hero media structure + local video wiring)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -10,6 +10,22 @@
 - Последний кодовый коммит: 5479476 (fix(content): recover package matrix batch A)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
+✅ Hero media structure + local video wiring (02.04.2026) — `components/gazeta/HeroSection.tsx`
+  - Создана папка `/public/media/hero/video/` — кладите сюда `breus-hero-demo.mp4`
+  - Создана папка `/public/media/hero/posters/` — кладите сюда `breus-hero-demo-poster.jpg`
+  - HeroSection.tsx переключён с Pixabay CDN на локальные пути + `poster` атрибут
+  - autoPlay / loop / muted / playsInline сохранены без изменений
+  - Graceful fallback: если файл отсутствует — показывается poster (чёрный фон), лаяут не ломается
+  - Swap: просто заменить файл в папке, код менять не нужно
+  - Build: ○ /gazeta (Static) ✓
+
+✅ Visual Asset Inventory Audit (02.04.2026) — `BREUS_MEDIA_VISUAL_ASSET_INVENTORY.md`
+  - Охват: `/gazeta`, все L2 хабы, представительные L3 страницы
+  - Главный вывод: 100% медиа — внешний (Unsplash + Pixabay), `/public/` содержит только SVG
+  - Hero-видео на `/gazeta` — Pixabay плейсхолдер (природа), не связан с агентством
+  - Единственная страница с реальным видео: `/promo-video/promo-hotel` (YouTube embed)
+  - 63 слота в NichesStack заполнены Unsplash; все L3 (drone, ai-visual, reels) — полностью текстовые
+  - Следующий batch (без рефакторинга): замена hero-video → демо-рил; +2–3 YouTube embeds; +3–5 niche фото
 ✅ HowWeWorkSection (02.04.2026) — `components/gazeta/HowWeWorkSection.tsx` + `app/gazeta/page.tsx`
   - Компактный блок «Как мы работаем» — 4 шага, text-first, без fake-данных
   - Шаги: Бриф и задача → Исследование → Производство → Упаковка и сдача

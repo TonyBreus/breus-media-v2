@@ -58,15 +58,17 @@ export function HeroSection() {
 
                     {/* Background Video */}
                     <DebugWrapper id={12} label="Video Background" className="absolute top-0 left-0 w-full h-full z-0">
-                        {/* Placeholder highly optimized video for now */}
+                        {/* Local hero video — swap file to update: /public/media/hero/video/breus-hero-demo.mp4 */}
                         <video
                             autoPlay
                             loop
                             muted
                             playsInline
+                            poster="/media/hero/posters/breus-hero-demo-poster.jpg"
                             className="w-full h-full object-cover opacity-50"
                         >
-                            <source src="https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4" type="video/mp4" />
+                            <source src="/media/hero/video/breus-hero-demo.mp4" type="video/mp4" />
+                            {/* Fallback: shows poster (black bg) if file is missing — no layout break */}
                         </video>
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                     </DebugWrapper>

@@ -1,6 +1,46 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-02 (Hero media structure + local video wiring)
+### Session Summary
+- Created public folder structure for hero media assets
+- Wired local video path into HeroSection.tsx, replacing Pixabay CDN placeholder
+
+### Изменения
+- `public/media/hero/video/` — создана (пустая, ожидает `breus-hero-demo.mp4`)
+- `public/media/hero/posters/` — создана (пустая, ожидает `breus-hero-demo-poster.jpg`)
+- `components/gazeta/HeroSection.tsx` — `<video>` переключён на `/media/hero/video/breus-hero-demo.mp4`
+  - `poster="/media/hero/posters/breus-hero-demo-poster.jpg"` добавлен
+  - autoPlay / loop / muted / playsInline сохранены
+  - Fallback: отсутствие файла → poster/чёрный фон, лаяут не ломается
+  - Swap: заменить файл, код не трогать
+
+### Build
+- ○ /gazeta (Static) ✓
+
+## 2026-04-02 (Visual Asset Inventory Audit)
+### Session Summary
+- Read-only audit of visual assets across `/gazeta`, key L2 hubs, representative L3 pages
+- No code changes made
+
+### Что выявлено
+- `/public/` содержит только 6 SVG-иконок — ноль фото, ноль видео, ноль портфолио
+- 80+ Unsplash URL захардкожены в data-файлах и конфигах — весь визуал стоковый
+- 2 hero-video элемента указывают на один Pixabay-плейсхолдер (природа, не связано с агентством)
+- Единственная страница с реальным видео: `/promo-video/promo-hotel` (YouTube embed)
+- Структурно сайт готов принять реальные ассеты — замена URL, не рефакторинг
+
+### Что задокументировано
+- `BREUS_MEDIA_VISUAL_ASSET_INVENTORY.md` — создан
+  - 7 разделов: executive summary, сильные/слабые зоны, безопасные точки вставки, плейсхолдеры, матрица страниц, рекомендованный batch
+  - Матрица: 14 страниц × 5 полей (visual state, empty slot, asset type, priority, notes)
+  - Appendix: полный список video src, содержимое /public/, паттерны URL размеров
+
+### Приоритет следующего batch
+1. Заменить hero-video в HeroSection.tsx (Pixabay → демо-рил Breus Media)
+2. Добавить YouTube embed на 2–3 promo-video L3 (по образцу promo-hotel)
+3. Заменить 3–5 niche hero img в NichesStack реальными проектными фото
+
 ## 2026-04-02 (/gazeta — блок «Как мы работаем» + нишевой опыт)
 ### Session Summary
 - Добавлен компактный блок «Как мы работаем» на `/gazeta` перед FAQ/contact
