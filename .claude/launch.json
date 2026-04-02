@@ -3,15 +3,14 @@
   "configurations": [
     {
       "name": "Next.js dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 3000,
-      "autoPort": true
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["-c", "export PATH=/opt/homebrew/opt/node/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin && export NEXT_PUBLIC_DEBUG_MODE=false && /opt/homebrew/opt/node/bin/node node_modules/.bin/next dev -p 3200"],
+      "port": 3200
     },
     {
       "name": "Next.js prod",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start"],
+      "runtimeExecutable": "/opt/homebrew/opt/node/bin/node",
+      "runtimeArgs": ["node_modules/.bin/next", "start"],
       "port": 3001,
       "autoPort": true
     }
