@@ -1,6 +1,26 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-02 (/gazeta — блок «Как мы работаем» + нишевой опыт)
+### Session Summary
+- Добавлен компактный блок «Как мы работаем» на `/gazeta` перед FAQ/contact
+- Добавлен блок нишевого опыта «ExperienceTrustSection» (12 ниш, сетка 3-col)
+
+### Что изменено
+- `components/gazeta/HowWeWorkSection.tsx` — создан (4 шага процесса)
+  - 01: Бриф и задача — «Начинаем с вопросов: что продаётся, кому, где и в какие сроки»
+  - 02: Исследование — ниша, конкуренты, форматы; AI как слой ускорения
+  - 03: Производство — съёмка / обработка / монтаж по ТЗ
+  - 04: Упаковка и сдача — горизонталь, вертикаль, обложки, адаптации
+  - framer-motion whileInView, DebugWrapper id={26}
+- `components/gazeta/ExperienceTrustSection.tsx` — создан (12 нишевых контекстов)
+  - Сетка 3-col, каждая карточка: icon + название + описание
+  - DebugWrapper id={28}
+- `app/gazeta/page.tsx` — добавлены HowWeWorkSection + ExperienceTrustSection между AboutSection и NichesStack
+
+### Build
+- ○ /gazeta (Static) ✓ — чистая сборка без ошибок
+
 ## 2026-04-02 (/about — полная страница «О студии»)
 ### Session Summary
 - Создана полная B2B-страница `/about` как самостоятельный роут

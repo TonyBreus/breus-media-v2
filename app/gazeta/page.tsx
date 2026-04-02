@@ -3,6 +3,8 @@ import { SmartHeader } from "@/components/gazeta/SmartHeader";
 import { HeroSection } from "@/components/gazeta/HeroSection";
 import { MarqueeSection } from "@/components/gazeta/MarqueeSection";
 import { AboutSection } from "@/components/gazeta/AboutSection";
+import { HowWeWorkSection } from "@/components/gazeta/HowWeWorkSection";
+import { ExperienceTrustSection } from "@/components/gazeta/ExperienceTrustSection";
 import { NichesStack } from "@/components/gazeta/NichesStack";
 
 export const metadata = {
@@ -21,6 +23,12 @@ export default function GazetaPage() {
 
             {/* About Studio — compact trust block, after hero/ticker, before service flow */}
             <AboutSection />
+
+            {/* How We Work — 4-step process block, before FAQ/contact */}
+            <HowWeWorkSection />
+
+            {/* Experience Trust — industry breadth block, before FAQ/contact */}
+            <ExperienceTrustSection />
 
             {/* Stacking Cards — includes step-09 (FAQ) and step-10 (contact form) */}
             <NichesStack />

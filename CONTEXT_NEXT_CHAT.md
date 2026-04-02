@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 2 апреля 2026 (/about — полная страница «О студии» для B2B)
+### Обновлён: 2 апреля 2026 (/gazeta — блок «Как мы работаем» + нишевой опыт)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -10,6 +10,16 @@
 - Последний кодовый коммит: 5479476 (fix(content): recover package matrix batch A)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
+✅ HowWeWorkSection (02.04.2026) — `components/gazeta/HowWeWorkSection.tsx` + `app/gazeta/page.tsx`
+  - Компактный блок «Как мы работаем» — 4 шага, text-first, без fake-данных
+  - Шаги: Бриф и задача → Исследование → Производство → Упаковка и сдача
+  - AI упомянут как практический слой ускорения исследования, не как buzzword
+  - Размещение: между AboutSection и NichesStack (перед FAQ/contact), DebugWrapper id={26}
+  - Build: ○ /gazeta (Static) ✓
+✅ ExperienceTrustSection (02.04.2026) — `components/gazeta/ExperienceTrustSection.tsx` + `app/gazeta/page.tsx`
+  - 12 нишевых контекстов в сетке — честный перечень реального опыта без fake-логотипов
+  - Размещение: между HowWeWorkSection и NichesStack, DebugWrapper id={28}
+  - Build: ○ /gazeta (Static) ✓
 ✅ /about page (02.04.2026) — `app/about/page.tsx` + `components/gazeta/SmartHeader.tsx`
   - Полная B2B страница «О студии» — 9 секций, server component, без `"use client"`
   - Секции: Hero · Who We Are · Approach · What We Do · AI Layer · Experience Areas · Process · Geography · CTA
