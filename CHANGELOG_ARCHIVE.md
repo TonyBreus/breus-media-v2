@@ -1,6 +1,53 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-02 (/about — полная страница «О студии»)
+### Session Summary
+- Создана полная B2B-страница `/about` как самостоятельный роут
+- 9 секций: Hero, Who We Are, Approach, What We Do, AI Layer, Experience Areas, Process, Geography, CTA
+- SmartHeader «О Нас» теперь ведёт на `/about` (ранее: `#market-reality`)
+- Страница — server component (нет `"use client"`), статически пре-рендерится
+
+### Что изменено
+- `app/about/page.tsx` — создан с нуля (301 строка)
+  - Metadata: title + description + canonical
+  - Hero: заголовок «Визуальное производство для бизнеса», подзаголовок, WA/TG CTA
+  - Who We Are: 2-колонки — текст + 4 карточки (Форматы, Ниши, География, Языки)
+  - Approach: 4 карточки с номерами (01–04)
+  - What We Do: 6 формат-карточек + ссылки на L2-страницы
+  - AI Layer: 2-колонки — тезис + 6 bullet-пунктов применения AI
+  - Experience Areas: 16 тегов реального опыта (без fake-кейсов)
+  - Process: 5 последовательных шагов
+  - Geography: 3 карточки (Тбилиси, Удалённые, Языки)
+  - CTA: финальный блок с gold border, WA primary, TG secondary
+  - DebugWrapper IDs: 20100–21000
+- `components/gazeta/SmartHeader.tsx`:
+  - `aboutHref` теперь всегда `/about` (убрана логика isLanding ? "#market-reality" : "/gazeta#market-reality")
+
+### Структура секций
+| ID | Секция |
+|----|--------|
+| 20100 | Hero |
+| 20200 | Who We Are |
+| 20300 | Approach |
+| 20400 | What We Do |
+| 20500 | AI Layer |
+| 20600 | Experience Areas |
+| 20700 | Process |
+| 20800 | Geography |
+| 20900 | CTA |
+| 21000 | Footer |
+
+### Параметры
+- Фон: `#080808` / `#0D0D0D` (чередование)
+- Акцент: `#D4AF37` (золото)
+- Borders: `#2a2a2a`
+- Нет видео, нет анимаций framer-motion, нет `"use client"`
+- Страница: ○ /about (Static) в build
+
+### Build
+- `○ /about` — Static, без ошибок
+
 ## 2026-04-02 (About Section — /gazeta)
 ### Session Summary
 - Добавлен компактный блок «О студии» на главную страницу `/gazeta`

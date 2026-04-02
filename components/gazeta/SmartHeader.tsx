@@ -112,7 +112,7 @@ export function SmartHeader({
         }
     });
 
-    const aboutHref = isLanding ? "#market-reality" : "/gazeta#market-reality";
+    const aboutHref = "/about";
     const contactHref = isLanding ? "#contact" : "/gazeta#contact";
 
     return (

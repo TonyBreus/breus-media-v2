@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 2 апреля 2026 (About Section — /gazeta компактный блок «О студии»)
+### Обновлён: 2 апреля 2026 (/about — полная страница «О студии» для B2B)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -10,6 +10,14 @@
 - Последний кодовый коммит: 5479476 (fix(content): recover package matrix batch A)
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
+✅ /about page (02.04.2026) — `app/about/page.tsx` + `components/gazeta/SmartHeader.tsx`
+  - Полная B2B страница «О студии» — 9 секций, server component, без `"use client"`
+  - Секции: Hero · Who We Are · Approach · What We Do · AI Layer · Experience Areas · Process · Geography · CTA
+  - DebugWrapper IDs: 20100–21000
+  - SmartHeader «О Нас» nav link → `/about` (вместо `#market-reality`)
+  - Честные данные: 16 реальных ниш, 6 форматов, 4 принципа подхода, 5 шагов процесса
+  - WhatsApp primary CTA, Telegram secondary, контакт +995 574 619 393
+  - Build: ○ /about (Static) ✓
 ✅ About Section (02.04.2026) — `components/gazeta/AboutSection.tsx` + `app/gazeta/page.tsx`
   - Новый компактный блок «О студии» между MarqueeSection и NichesStack на `/gazeta`
   - Eyebrow badge, заголовок «Производство контента, которое работает на задачу.», 3 абзаца, CTA «О студии подробнее» → `/about`
