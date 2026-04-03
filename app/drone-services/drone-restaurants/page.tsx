@@ -47,6 +47,11 @@ type RelatedService = {
     text: string;
 };
 
+type AddonItem = {
+    title: string;
+    text: string;
+};
+
 type SeoAnswer = {
     question: string;
     answer: string;
@@ -108,10 +113,10 @@ const problemCards: CardItem[] = [
 
 const deliverablesDefault: string[] = [
     'Смонтированное hero video (длина зависит от пакета)',
-    'Минимум 1 вертикальный cut для Reels / Stories',
+    'Минимум 1 вертикальный cut (в каждом пакете)',
     'Набор обработанных стоп-кадров / фотографий',
     'Организованная выдача файлов по назначению (сайт, соцсети, Google)',
-    'Форматы под сайт и Instagram (горизонталь + вертикаль)',
+    'Формат под задачу: горизонталь, вертикаль или оба',
 ];
 
 const shootingZones: string[] = [
@@ -225,7 +230,7 @@ const pricingCards: DeliverablePackage[] = [
             'Выдача файлов по папкам (сайт, соцсети)',
         ],
         timeline: '3–5 рабочих дней',
-        exclusions: 'FPV с несколькими дублями, ночная съёмка, продакшн с моделью / food styling',
+        exclusions: 'FPV-пролёт внутри помещения, ночная съёмка, продакшн с моделью / food styling',
     },
     {
         title: 'SIGNATURE RESTAURANT STORY',
@@ -234,7 +239,8 @@ const pricingCards: DeliverablePackage[] = [
         items: [
             '1 съёмочный визит до 3 часов',
             'Exterior + interior capture (если пространство позволяет)',
-            'Planned drone route + базовый FPV walkthrough',
+            'Спланированный маршрут съёмки (drone route)',
+            'FPV-пролёт внутри — если пространство позволяет (обсуждается на брифе)',
             '1 hero video 30–60 сек',
             '3 вертикальных social cut',
             '15–25 обработанных стоп-кадров',
@@ -263,35 +269,66 @@ const pricingCards: DeliverablePackage[] = [
     },
 ];
 
-const addonPricing: string[] = [
-    'Дополнительный вертикальный cut: 80–120 ₾',
-    'Вечерняя / golden hour съёмка: 100–180 ₾',
-    'Food close-up companion footage: 120–250 ₾',
-    'Двуязычные титры (RU + EN): 80–150 ₾',
-    'Дополнительный тур от 360°-камеры: по запросу',
-    'Сезонный refresh-пакет: по договорённости',
+const addonItems: AddonItem[] = [
+    {
+        title: 'Пролёт FPV-камерой внутри — движение сквозь зал',
+        text: 'FPV («от первого лица») — плавное движение камеры через вход, зал, бар, террасу или rooftop. Гость видит маршрут и атмосферу заведения ещё до визита. Подходит не для каждого пространства — обсуждаем на брифе.',
+    },
+    {
+        title: 'Дополнительный ролик / extra cut',
+        text: 'Отдельная короткая версия, второй монтажный вариант или дополнительный формат под другую задачу.',
+    },
+    {
+        title: 'Google Business Profile версия',
+        text: 'Короткий понятный ролик или набор кадров для карточки заведения в Google Business Profile и картах.',
+    },
+    {
+        title: '360° aerial photo',
+        text: 'Панорамный кадр с высоты для сайта, презентации venue, Google Business Profile или sales-материалов.',
+    },
+    {
+        title: 'Raw footage / исходники',
+        text: 'Если вашей команде нужен исходный материал под собственный монтаж, рекламу или внутреннюю работу.',
+    },
+    {
+        title: 'Дополнительные кадры / still pack',
+        text: 'Обработанные стоп-кадры для сайта, афиш, анонсов, карточек и переписки с клиентами.',
+    },
+    {
+        title: 'Ранний выезд',
+        text: 'По согласованию, если важно снять объект в первые спокойные часы дня и до активного потока гостей.',
+    },
+    {
+        title: 'Вечерний слот',
+        text: 'По согласованию, если нужно показать lights-on atmosphere, terrace, city glow или вечернюю посадку.',
+    },
 ];
 
 const relatedServices: RelatedService[] = [
     {
-        title: '360° виртуальный тур для ресторана',
-        href: '/360-tour-services/360-tour-restaurants',
-        text: 'Интерактивный walkthrough по залу как дополнение к aerial-контенту.',
+        title: 'Reels для ресторанов',
+        href: '/reels-promo/reels-restaurant',
+        text: 'Короткие вертикальные ролики для регулярного контента, анонсов, special nights и сезонных обновлений.',
     },
     {
-        title: 'Аэросъёмка отелей и hospitality',
-        href: '/drone-hotels-tourism',
-        text: 'Если ресторан часть отеля или resort-объекта, снимаем комплекс в одном визите.',
+        title: '360° туры для ресторанов и venue',
+        href: '/360-tour-restaurants',
+        text: 'Подходят, если важно показать пространство подробнее и дать гостю или event-клиенту понятную навигацию по заведению.',
     },
     {
-        title: 'Reels и промо-видео для ресторанов',
-        href: '/reels',
-        text: 'Дрон показывает панораму, reels добавляет темп внутри заведения.',
+        title: 'Промо-видео для hospitality',
+        href: '/promo-video/promo-restaurant',
+        text: 'Когда нужен уже не только drone layer, а полноценная история про атмосферу, сервис и характер места.',
     },
     {
-        title: 'FPV-съёмка',
+        title: 'Контент-пакет для ресторана',
+        href: '/restaurants-service',
+        text: 'Если из одной съёмки нужно собрать материалы под сайт, соцсети, Google Business Profile и продажи.',
+    },
+    {
+        title: 'Съёмка event / rooftop / seasonal launch',
         href: '/drone-fpv-cinema',
-        text: 'Кинематографичный проход через пространство с эффектом присутствия.',
+        text: 'Для private events, вечерних форматов, rooftop-активаций, новых меню и сезонных запусков.',
     },
 ];
 
@@ -689,8 +726,8 @@ export default function DroneRestaurantsPage() {
                                     </div>
                                 </div>
                                 <ul className="space-y-2 text-sm leading-relaxed text-white/72">
-                                    <li>DJI Air 3S + DJI Avata 2</li>
-                                    <li>Форматы под сайт, Reels и Google</li>
+                                    <li>DJI Air 3S 4K — основной дрон</li>
+                                    <li>Горизонталь, вертикаль или оба — под задачу</li>
                                     <li>Тбилиси и другие города Грузии</li>
                                 </ul>
                             </div>
@@ -903,12 +940,21 @@ export default function DroneRestaurantsPage() {
                     </div>
 
                     <div className="mt-8 rounded-[16px] border border-[#FFD23F]/30 bg-[#121212] p-6">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Опциональные добавки</p>
-                        <ul className="mt-4 grid gap-3 text-sm leading-relaxed text-white/80 md:grid-cols-2">
-                            {addonPricing.map((item) => (
-                                <li key={item}>• {item}</li>
+                        <h3 className="text-xl font-bold text-white">Дополнительно по задаче</h3>
+                        <p className="mt-3 leading-relaxed text-white/70">
+                            Из одной съёмки можно собрать не только основной материал, но и дополнительные форматы под сайт, соцсети, Google Business Profile и продажи.
+                        </p>
+                        <div className="mt-6 grid gap-4 md:grid-cols-2">
+                            {addonItems.map((item) => (
+                                <div key={item.title} className="rounded-[12px] border border-[#2a2a2a] bg-[#0D0D0D] p-4">
+                                    <p className="font-semibold text-white">{item.title}</p>
+                                    <p className="mt-2 text-sm leading-relaxed text-white/68">{item.text}</p>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
+                        <p className="mt-5 text-sm leading-relaxed text-white/45">
+                            Из одной съёмки можем собрать материалы под сайт, соцсети, Google Business Profile и презентацию venue.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -1078,6 +1124,9 @@ export default function DroneRestaurantsPage() {
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
                         <h2 className="text-3xl font-bold md:text-4xl">Смежные услуги</h2>
+                        <p className="mt-4 leading-relaxed text-white/70">
+                            Если вам нужен не только aerial layer, а более широкая контент-система для заведения, эту съёмку можно усилить следующими форматами.
+                        </p>
                     </div>
 
                     <div className="mt-10 grid gap-5 md:grid-cols-2">
