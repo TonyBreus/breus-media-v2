@@ -16,6 +16,15 @@
   - Секция «Пакеты и цены» переписана под fixed-price copy и новый JSX карточек (`subtitle`, `note`, `popular`)
   - FAQ / SEO-ответы про цену и `serviceSchema.offers.lowPrice` синхронизированы с новой матрицей
   - Build: `npm run build` ✅ clean
+✅ drone-hotels-tourism hospitality copy standardization (04.04.2026) — `app/drone-hotels-tourism/page.tsx`
+  - Новая ценовая структура: 4 карточки (`250 / 350 / 500 / от 900 ₾`) + add-ons
+  - Убраны англицизмы и жаргон: `hero video`, `cuts`, `stills`, `OTA`, `deliverables` и т.д.
+  - Hero aside: `от 250 ₾`, выдача `от 24 ч`
+  - Deliverables-блок: убраны противоречия, добавлены понятные папки выдачи
+  - `whyUsCards` и `nicheCards` переписаны на человеческий язык
+  - FAQ: обновлены ответы про цену и сроки
+  - `serviceSchema`: `lowPrice=250`, `offerCount=4`
+  - Build: `npm run build` ✅ clean
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Consolidation audit (02.04.2026) — все About/trust/process блоки подтверждены в main:

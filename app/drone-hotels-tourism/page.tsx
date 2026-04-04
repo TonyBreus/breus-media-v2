@@ -73,65 +73,56 @@ const problemCards: CardItem[] = [
     },
 ];
 
-const shootingZones: string[] = [
-    'Фасад и вход в отель',
-    'Территория: бассейн, сад, двор, набережная',
-    'Терраса на крыше или смотровая зона',
-    'Вид из номеров — как выглядит окружение с высоты',
-    'Контекст локации: город, горы, море, виноградники',
-    'Пролёт камерой по лобби или ключевым зонам — по согласованию',
+const deliverablesDefault: string[] = [
+    'Разрешение на полёт (GCAA) — оформляем сами',
+    'Видеофайлы в 4K',
+    'Передача через Google Drive или WeTransfer',
+    'Выезд по Тбилиси включён',
 ];
 
-const deliverablesDefault: string[] = [
-    'Смонтированный основной ролик (длина зависит от пакета)',
-    'Минимум 1 вертикальное видео для Reels / Stories',
-    'Набор обработанных фотографий с воздуха',
-    'Файлы в папке, разложены по назначению (сайт, Booking, соцсети)',
-    'Горизонтальный, вертикальный или оба формата — по задаче',
+const deliverablesPremium: string[] = [
+    'Монтаж основного ролика и коротких видео',
+    'Обработанные фотографии',
+    'Файлы разложены по папкам: сайт, соцсети, Google Maps',
+    'Формат под задачу: горизонтальный, вертикальный или оба',
 ];
 
 const pricingCards: PricingPackage[] = [
     {
         title: 'Полёт снаружи',
         price: '250 ₾',
-        subtitle: 'Обычный дрон, сырые файлы',
+        subtitle: '4K-дрон, съёмка с воздуха',
         items: [
-            'Съёмка с воздуха обычным дроном',
-            'До 1,5 часов на объекте',
-            'Фасад, территория, окружение, вид с высоты',
-            'Сырые видеофайлы в 4K без монтажа',
-            'Разрешение на полёт включено',
-            'Передача файлов — от 24 часов',
+            'Съёмка с воздуха в 4K',
+            'Фасад, территория, бассейн, окружение',
+            'Видеофайлы без монтажа',
+            'Выезд по Тбилиси включён',
         ],
-        note: 'Подходит, если нужна только воздушная съёмка территории и фасада.',
+        note: 'Просто съёмка — без обработки. Обычно 1–1,5 часа на объекте.',
     },
     {
         title: 'Пролёт внутри (FPV)',
         price: '350 ₾',
-        subtitle: 'FPV-дрон, пролёт камерой по лобби и залам',
+        subtitle: 'Пролёт камерой по лобби и залам',
         items: [
-            'Съёмка компактным FPV-дроном внутри помещения',
-            'До 1 часа на объекте',
-            'Лобби, коридоры, зона бассейна, терраса — по маршруту',
-            'Несколько заходов — подбираем лучший маршрут',
-            'Сырые видеофайлы без монтажа',
-            'Разрешение на полёт включено',
+            'Пролёт камерой по лобби, коридору, зоне бассейна или террасе',
+            'Подбираем лучший ракурс на месте',
+            'Видеофайлы без монтажа',
+            'Выезд по Тбилиси включён',
         ],
-        note: 'FPV — это съёмка в движении через пространство. Не каждый интерьер подходит — уточняем до выезда.',
+        note: 'Не каждый интерьер подходит — уточняем до выезда. Обычно до 1 часа.',
     },
     {
         title: 'Полная съёмка',
         price: '500 ₾',
         subtitle: 'Снаружи с воздуха + пролёт по лобби — за один визит',
         items: [
-            'Съёмка с воздуха снаружи + пролёт камерой внутри',
-            'До 2 часов на объекте',
-            'Территория, фасад, ключевые зоны + пролёт по лобби',
+            'Съёмка с воздуха + пролёт камерой внутри',
+            'Оба формата за один визит',
             'Видеофайлы в 4K без монтажа',
-            'Разрешение на полёт включено',
-            'Передача файлов — от 24 часов',
+            'Выезд по Тбилиси включён',
         ],
-        note: 'Полная съёмка за один выезд — и вид с воздуха, и движение внутри.',
+        note: 'Полная съёмка за один приезд — и территорию сверху, и движение внутри.',
         popular: true,
     },
     {
@@ -139,15 +130,15 @@ const pricingCards: PricingPackage[] = [
         price: 'от 900 ₾',
         subtitle: 'Съёмка снаружи и внутри + монтаж + фото — всё под ключ',
         items: [
-            'Съёмка с воздуха + пролёт камерой по лобби',
+            'Съёмка с воздуха + пролёт камерой внутри',
             'Продуманный маршрут съёмки',
             'Основной ролик для сайта (45–90 сек)',
-            '3+ коротких видео для Reels / Stories',
+            '3+ коротких видео для соцсетей',
             '20+ обработанных фотографий для сайта и площадок бронирования',
             'Видео для карточки в Google Maps',
-            'Все файлы в папке, разложены по назначению',
+            'Файлы в папке по назначению',
         ],
-        note: 'Для тех, кому нужен готовый контент. Для курортов, международных сетей и расширенных задач — полный пакет от 1 500 ₾, обсудим на брифе.',
+        note: 'Готовый контент под ключ. Для курортов и международных сетей — от 1 500 ₾, обсудим.',
     },
 ];
 
@@ -191,44 +182,44 @@ const nicheCards: NicheCard[] = [
         title: 'Городской бутик-отель (Тбилиси)',
         pain: 'Теряемся среди похожих объектов на Booking.',
         solution: 'Аэрокадры района, расположение в городе, вид на исторические кварталы.',
-        deliverables: 'Hero + Reels + аэрофото для OTA.',
+        deliverables: 'Основной ролик + видео для соцсетей + фотографии для Booking.',
     },
     {
         title: 'Курортный отель (Батуми / Чёрное море)',
         pain: 'Главная ценность — море и побережье, но фото с земли это не передаёт.',
         solution: 'Аэровидео береговой линии, бассейна, территории с высоты.',
-        deliverables: 'Cinematic hero + 3–5 Reels + 30+ аэрофото.',
+        deliverables: 'Кинематографичный ролик + 3–5 видео для соцсетей + 30+ фотографий.',
     },
     {
         title: 'Горный / эко-отель (Казбеги, Местиа, Кахетия)',
         pain: 'Пейзаж вокруг — главный продукт, его нельзя показать с земли.',
         solution: 'Съёмка горного контекста, путь к отелю, виды из номеров сверху.',
-        deliverables: 'Кинематографичный hero + аэрофото для сайта и соцсетей.',
+        deliverables: 'Кинематографичный ролик + фотографии.',
     },
     {
         title: 'Апарт-отель и Airbnb (несколько объектов)',
         pain: 'Нужен контент для каждого объекта, но бюджет ограничен.',
         solution: 'Пакет на несколько объектов за один выезд, быстрая доставка.',
-        deliverables: 'Аэрофото + короткий highlight clip на каждый объект.',
+        deliverables: 'Фотографии с воздуха + короткий ролик.',
     },
     {
         title: 'Тревел-контент и туроператоры',
         pain: 'Нужен destination-ролик, который продаёт Грузию как направление.',
         solution: 'Аэросъёмка локаций, пейзажей, культурных объектов и природных зон.',
-        deliverables: 'Hero-ролик + серия clips под соцсети.',
+        deliverables: 'Основной ролик + серия видео для соцсетей.',
     },
     {
         title: 'Международная отельная сеть',
         pain: 'Нужен локальный оператор с правильным workflow и коммуникацией на EN.',
-        solution: 'Продакшн-пакет, line-item смета, исходники, работа в рамках GCAA.',
-        deliverables: 'По шот-листу, форматы под глобальные стандарты сети.',
+        solution: 'Продакшн-пакет, подробная смета по пунктам, исходники, работа в рамках GCAA.',
+        deliverables: 'По списку кадров, форматы под стандарты сети.',
     },
 ];
 
 const whyUsCards: CardItem[] = [
     {
-        title: 'Съёмка под задачу отеля, а не ради красивого кадра',
-        text: 'Мы думаем о том, чтобы гость понял расположение, атмосферу и ключевые зоны объекта — а не просто увидел вид сверху.',
+        title: 'Снимаем так, чтобы гость захотел забронировать',
+        text: 'Мы думаем не о красивом пролёте, а о том, чтобы будущий гость понял: где находится отель, какая там территория и что его ждёт внутри.',
     },
     {
         title: 'Два формата съёмки из одного визита',
@@ -261,7 +252,7 @@ const relatedServices: RelatedService[] = [
     {
         title: '360° виртуальные туры для отелей',
         href: '/360-tour-hotels',
-        text: 'Интерактивные туры для сайта и OTA, чтобы гость мог детально изучить пространство до бронирования.',
+        text: 'Интерактивные туры для сайта и площадок бронирования (Booking, Airbnb), чтобы гость мог детально изучить пространство до бронирования.',
     },
     {
         title: 'Промо-видео для отеля',
@@ -292,9 +283,9 @@ const faqItems: FaqItem[] = [
             'Обычный дрон (Air 3S) снимает плавные стабильные панорамы снаружи — фасад, территория, вид с высоты. FPV-дрон (Avata 2) может работать внутри: лобби, коридор, pool area — и создаёт непрерывный иммерсивный кадр. Это опция, а не обязательная часть каждого пакета.',
     },
     {
-        question: 'Подходит ли контент для Booking, Airbnb и других OTA?',
+        question: 'Подходит ли контент для Booking, Airbnb и других площадок бронирования?',
         answer:
-            'Да. Отдаём в форматах, которые принимают основные платформы: JPG / WebP для фото, MP4 для видео. Горизонтальные версии для сайта и YouTube, вертикальные для Reels и мобильных OTA. Адаптируем под ваши требования.',
+            'Да. Отдаём в форматах, которые принимают основные площадки: JPG / WebP для фото, MP4 для видео. Горизонтальные версии для сайта и YouTube, вертикальные для Reels и мобильных площадок бронирования. Адаптируем под ваши требования.',
     },
     {
         question: 'Нужно ли закрывать отель на время съёмки?',
@@ -304,7 +295,7 @@ const faqItems: FaqItem[] = [
     {
         question: 'Сколько стоит дрон-съёмка отеля в Тбилиси?',
         answer:
-            'Полёт обычным дроном снаружи — 250 ₾. Пролёт FPV-дроном внутри — 350 ₾. Полная съёмка за один визит — 500 ₾. Это съёмка без монтажа, сырые файлы. Готовый контент под ключ (монтаж, ролик, фото, видео для соцсетей) — от 900 ₾. К любому пакету можно добавить монтаж Reels (+100 ₾), ролик для сайта (+150 ₾), 360° панораму (+80 ₾) или обработку фотографий (+60 ₾).',
+            'Полёт дроном снаружи — 250 ₾. Пролёт камерой внутри (FPV) — 350 ₾. Полная съёмка (снаружи + внутри) — 500 ₾. Это съёмка без монтажа, видеофайлы в 4K. Готовый контент под ключ (монтаж, ролик, фото, видео для соцсетей) — от 900 ₾. К любому пакету можно добавить монтаж Reels (+100 ₾), ролик для сайта (+150 ₾), 360° панораму (+80 ₾) или обработку фотографий (+60 ₾).',
     },
     {
         question: 'Сколько времени занимает съёмка?',
@@ -366,7 +357,7 @@ const serviceSchema = {
     '@type': 'Service',
     name: 'Дрон-съёмка отелей и туризма в Тбилиси',
     description:
-        'Аэросъёмка и FPV-видео для отелей, курортов и hospitality-объектов в Тбилиси и Грузии. Контент для сайта, Booking/OTA и соцсетей.',
+        'Аэросъёмка и FPV-видео для отелей, курортов и hospitality-объектов в Тбилиси и Грузии. Контент для сайта, Booking и площадок бронирования, соцсетей.',
     provider: {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
@@ -508,7 +499,7 @@ export default function DroneHotelsTourismPage() {
                                 <div className="mt-5 space-y-4">
                                     <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-4">
                                         <p className="text-2xl font-bold text-white">от 250 ₾</p>
-                                        <p className="mt-1 text-sm leading-relaxed text-white/65">Полёт + сырые файлы. Монтаж — отдельно.</p>
+                                        <p className="mt-1 text-sm leading-relaxed text-white/65">Полёт + видеофайлы. Монтаж — отдельно.</p>
                                     </div>
                                     <div className="grid grid-cols-2 gap-3">
                                         <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-4">
@@ -516,14 +507,14 @@ export default function DroneHotelsTourismPage() {
                                             <p className="mt-1 text-xs uppercase tracking-[0.16em] text-white/45">Съёмка</p>
                                         </div>
                                         <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-4">
-                                            <p className="text-lg font-bold text-white">2–6 дней</p>
+                                            <p className="text-lg font-bold text-white">от 24 ч</p>
                                             <p className="mt-1 text-xs uppercase tracking-[0.16em] text-white/45">Выдача</p>
                                         </div>
                                     </div>
                                     <ul className="space-y-2 text-sm leading-relaxed text-white/72">
                                         <li>Видео в 4K — чёткая картинка на любом экране</li>
                                         <li>Один визит — контент для сайта, Booking и соцсетей</li>
-                                        <li>Тбилиси, Батуми, Казбеги и другие регионы Грузии</li>
+                                        <li>Разрешения на полёт включены</li>
                                     </ul>
                                 </div>
                             </aside>
@@ -597,46 +588,34 @@ export default function DroneHotelsTourismPage() {
 
                         <div className="mt-10 grid gap-5 lg:grid-cols-3">
                             <article className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">По умолчанию в любом пакете</h3>
+                                <h3 className="text-lg font-bold text-white">Что входит в каждый пакет</h3>
                                 <ul className="mt-5 space-y-3 text-sm leading-relaxed text-white/72">
                                     {deliverablesDefault.map((item) => (
                                         <li key={item}>✓ {item}</li>
                                     ))}
                                 </ul>
-                            </article>
-
-                            <article className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">Зоны съёмки</h3>
-                                <ul className="mt-5 space-y-3 text-sm leading-relaxed text-white/72">
-                                    {shootingZones.map((item) => (
-                                        <li key={item}>• {item}</li>
+                                <p className="mt-6 text-sm font-semibold text-white/80">Дополнительно в пакете «С готовым результатом»:</p>
+                                <ul className="mt-4 space-y-3 text-sm leading-relaxed text-white/72">
+                                    {deliverablesPremium.map((item) => (
+                                        <li key={item}>✓ {item}</li>
                                     ))}
                                 </ul>
                             </article>
 
-                            <article className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">Опциональные добавки</h3>
-                                <ul className="mt-5 space-y-3 text-sm leading-relaxed text-white/72">
-                                    <li>+ FPV-пролёт по лобби / ключевым зонам</li>
-                                    <li>+ Дополнительные вертикальные нарезки</li>
-                                    <li>+ Версия для Google Business Profile</li>
-                                    <li>+ Вечерний / golden hour слот</li>
-                                    <li>+ 360° aerial panorama</li>
-                                    <li>+ Двуязычные титры (RU + EN)</li>
-                                    <li>+ Raw footage / исходники</li>
-                                </ul>
-                            </article>
-                        </div>
-
-                        <div className="mt-5 grid gap-5 md:grid-cols-2">
                             <article className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">Структура выдачи</h3>
-                                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/72">
-                                    <li>/website/ — основной ролик и фотографии для сайта</li>
-                                    <li>/instagram-reels/ — вертикальные видео для соцсетей</li>
-                                    <li>/booking/ — горизонтальный ролик и фото для площадок бронирования</li>
-                                    <li>/archive/ — обработанные материалы для будущего использования</li>
-                                </ul>
+                                <h3 className="text-lg font-bold text-white">Как организованы файлы</h3>
+                                <p className="mt-4 text-sm leading-relaxed text-white/72">
+                                    Папка «Сайт» — основной ролик и фотографии для страниц сайта
+                                </p>
+                                <p className="mt-3 text-sm leading-relaxed text-white/72">
+                                    Папка «Соцсети» — вертикальные видео для Reels, Stories, TikTok
+                                </p>
+                                <p className="mt-3 text-sm leading-relaxed text-white/72">
+                                    Папка «Google Maps» — короткий ролик и фотографии для карточки
+                                </p>
+                                <p className="mt-3 text-sm leading-relaxed text-white/72">
+                                    Папка «Архив» — все материалы для будущего использования
+                                </p>
                             </article>
 
                             <article className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
@@ -765,10 +744,7 @@ export default function DroneHotelsTourismPage() {
                         </div>
 
                         <div className="mt-8 rounded-[16px] border border-[#FFD23F]/30 bg-[#121212] p-6">
-                            <h3 className="text-xl font-bold text-white">Дополнительно по задаче</h3>
-                            <p className="mt-3 leading-relaxed text-white/70">
-                                Из одной съёмки можно собрать не только основной материал, но и дополнительные форматы под конкретные платформы или задачи.
-                            </p>
+                            <h3 className="text-xl font-bold text-white">Можно добавить к любому пакету</h3>
                             <div className="mt-6 grid gap-4 md:grid-cols-2">
                                 {addonPricing.map((item) => (
                                     <div key={item} className="rounded-[12px] border border-[#2a2a2a] bg-[#0D0D0D] p-4">
@@ -911,6 +887,10 @@ export default function DroneHotelsTourismPage() {
                             </p>
                         </div>
 
+                        <p className="mt-8 text-sm leading-relaxed text-white/58">
+                            Часто к съёмке с воздуха добавляют 360° тур по отелю и серию Reels для соцсетей. Если интересно — обсудим, сколько стоит в комплекте.
+                        </p>
+
                         <div className="mt-10 grid gap-5 md:grid-cols-2">
                             {relatedServices.map((service) => (
                                 <Link
@@ -1041,7 +1021,7 @@ export default function DroneHotelsTourismPage() {
                                         <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.2em] text-white/50">Задача и платформы</label>
                                         <input
                                             type="text"
-                                            placeholder="Сайт, Booking/OTA, Reels, YouTube, рекламная кампания"
+                                            placeholder="Сайт, Booking и площадки бронирования, Reels, YouTube, рекламная кампания"
                                             className="w-full rounded-[14px] border border-white/12 bg-white/[0.03] px-4 py-3 text-white outline-none transition-colors placeholder:text-white/28 focus:border-[#FFD23F]/55"
                                         />
                                     </div>

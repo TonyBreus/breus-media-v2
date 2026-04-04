@@ -2576,6 +2576,25 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-04-04 — Drone Hotels Tourism Standardization
+#### Session Summary
+- Приведена к стандарту ресторана страница `app/drone-hotels-tourism/page.tsx`.
+- Обновлена ценовая структура: 4 пакета `250 / 350 / 500 / от 900 ₾` + add-ons.
+- Убраны англицизмы и жаргон из hero, pricing, deliverables, FAQ и niche copy.
+
+#### Commits
+- working tree only, commit pending
+
+#### Technical Notes
+- Hero aside переведён на `Полёт + видеофайлы. Монтаж — отдельно.` и `от 24 ч`.
+- Deliverables-блок переписан: понятные папки выдачи, технические параметры и сроки.
+- `whyUsCards`, `nicheCards` и FAQ синхронизированы с новой ценовой логикой.
+- `serviceSchema.offers` подтверждён на `lowPrice=250`, `highPrice=2600`, `offerCount=4`.
+
+#### Release Notes
+- Статус: local only
+- Проверка: `npm run build` — OK
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary
