@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 2 апреля 2026 (Consolidation audit — all About/trust/process blocks confirmed in main)
+### Обновлён: 4 апреля 2026 (restaurant + hotel pricing patch, docs synced)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -7,7 +7,15 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: 5479476 (fix(content): recover package matrix batch A)
+- Последний кодовый коммит: текущий `HEAD` (restaurant + hotel pricing patch, docs included)
+
+✅ restaurant + hotel pricing patch (04.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `app/drone-hotels-tourism/page.tsx`
+  - Обе страницы переведены на локальный `PricingPackage` тип вместо старой жёсткой структуры deliverables
+  - Полностью заменены ценовые массивы: 4 пакета (`250 ₾`, `350 ₾`, `500 ₾`, `от 900 ₾`) + новый список add-ons
+  - Hero aside на обеих страницах обновлён на `от 250 ₾`
+  - Секция «Пакеты и цены» переписана под fixed-price copy и новый JSX карточек (`subtitle`, `note`, `popular`)
+  - FAQ / SEO-ответы про цену и `serviceSchema.offers.lowPrice` синхронизированы с новой матрицей
+  - Build: `npm run build` ✅ clean
 
 ## ЧТО СДЕЛАНО И ЗАКРЫТО
 ✅ Consolidation audit (02.04.2026) — все About/trust/process блоки подтверждены в main:
@@ -27,6 +35,11 @@
   - Graceful fallback: если файл отсутствует — показывается poster (чёрный фон), лаяут не ломается
   - Swap: просто заменить файл в папке, код менять не нужно
   - Build: ○ /gazeta (Static) ✓
+✅ drone-restaurants hero aside micro-patch (04.04.2026) — `app/drone-services/drone-restaurants/page.tsx`
+  - Hero aside карточка «КОРОТКО» уточнена: «Полёт + видеофайлы. Монтаж — отдельно.»
+  - Срок выдачи в aside изменён на «от 24 ч»
+  - Сопутствующие контекстные файлы обновлены: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+  - Build: ✅ clean
 ✅ DebugWrapper h-full fix — hero video fills screen (02.04.2026) — `components/debug/DebugWrapper.tsx`
   - Root cause: in debug mode DebugWrapper inserts a `data-debug-content` inner div that did NOT inherit `h-full` from the outer wrapper className
   - Effect: video container had only intrinsic height (~219px) instead of full screen

@@ -1,6 +1,47 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-04 (restaurant + hotel pricing patch)
+### Session Summary
+- Синхронизирована ценовая матрица на двух страницах: ресторан и отель.
+- Старый deliverables-формат карточек заменён на упрощённую pricing-структуру с `subtitle`, `note`, `popular`.
+- Документация обновлена в тот же коммит, что и код.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - Обновлён тип пакетов и полностью заменён `pricingCards`.
+  - Обновлён `addonPricing`.
+  - Переписан JSX карточек пакетов под новую структуру данных.
+  - Hero aside обновлён на `от 250 ₾`.
+  - FAQ / SEO / schema синхронизированы с новой ценовой матрицей.
+- `app/drone-hotels-tourism/page.tsx`
+  - Обновлён тип пакетов и полностью заменён `pricingCards`.
+  - `addonItems` упрощён до строкового `addonPricing`.
+  - Переписан JSX карточек и add-ons под новую структуру.
+  - Hero aside обновлён на `от 250 ₾`.
+  - FAQ / schema синхронизированы с новой ценовой матрицей.
+- `CONTEXT_NEXT_CHAT.md`
+  - Контекст обновлён под новый pricing-patch.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта запись.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
+## 2026-04-04 (drone-restaurants hero aside micro-patch + docs refresh)
+### Session Summary
+- В `app/drone-services/drone-restaurants/page.tsx` точечно обновлён hero aside блок «КОРОТКО».
+- Формулировка про выдачу файлов переведена на «Полёт + видеофайлы. Монтаж — отдельно.».
+- Время выдачи в aside изменено на «от 24 ч».
+- Обновлены сопровождающие контекстные файлы: `CONTEXT_NEXT_CHAT.md` и этот архив.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
 ## 2026-04-02 — Consolidation Audit: About/Trust/Process blocks
 #### Session Summary
 - Проведён полный аудит наличия About/trust/process блоков в текущей ветке `main`.
