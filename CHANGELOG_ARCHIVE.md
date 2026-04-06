@@ -1,6 +1,33 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-06 (drone-restaurants visuals + footer cleanup)
+### Session Summary
+- Страница `/drone-services/drone-restaurants` усилена визуально без изменения цен, FAQ, processSteps и metadata.
+- Hero переведён на автоматическое слайдшоу, добавлены два video/image placeholder-блока и обновлён блок папок.
+- Футер очищен от мёртвых ссылок, документация синхронизирована в тот же коммит.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - Hero background заменён на отдельный slideshow-компонент.
+  - Сразу после hero добавлен `VIDEO_SLOT` placeholder с play-overlay.
+  - После секции deliverables добавлен блок «Примеры по форматам» с тремя визуальными карточками.
+  - Блок «Как организованы файлы» заменён на карточки папок.
+- `components/drone-restaurants/HeroSlideshow.tsx`
+  - Создан client-компонент с 4 слайдами, автосменой каждые 4 секунды и fade transition `opacity`.
+- `components/drone/DroneFooterStitch.tsx`
+  - `Портфолио`, `Оборудование`, `Карта полетов` переведены в неактивные `span`.
+  - `Контакты` исправлены на рабочий якорь `#contact`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Контекст обновлён под visual patch на странице ресторанов.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта запись.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
 ## 2026-04-04 (restaurant + hotel pricing patch)
 ### Session Summary
 - Синхронизирована ценовая матрица на двух страницах: ресторан и отель.

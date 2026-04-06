@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 4 апреля 2026 (restaurant + hotel pricing patch, docs synced)
+### Обновлён: 6 апреля 2026 (drone-restaurants visuals + footer cleanup, docs synced)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -7,7 +7,15 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: текущий `HEAD` (restaurant + hotel pricing patch, docs included)
+- Последний кодовый коммит: текущий `HEAD` (drone-restaurants visuals + footer cleanup, docs included)
+
+✅ drone-restaurants visuals + footer cleanup (06.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `components/drone-restaurants/HeroSlideshow.tsx`, `components/drone/DroneFooterStitch.tsx`
+  - Hero секция ресторана переведена с одного background-image на отдельный client-компонент `HeroSlideshow` с 4 Unsplash-слайдами, fade transition `1s` и autoplay `4s`
+  - Сразу после hero добавлен большой `VIDEO_SLOT` placeholder-блок с preview-изображением и play-overlay
+  - После секции «Что вы получаете» добавлен второй visual block с тремя форматами: exterior aerial, FPV interior, finished reel
+  - Блок «Как организованы файлы» заменён на карточки папок: `Сайт`, `Соцсети`, `Google Maps`, `Архив`
+  - В `DroneFooterStitch` мёртвые `href="#"` ссылки (`Портфолио`, `Оборудование`, `Карта полетов`) заменены на неактивные `span`, `Контакты` теперь ведёт на `#contact`
+  - Build: `npm run build` ✅ clean
 
 ✅ restaurant + hotel pricing patch (04.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `app/drone-hotels-tourism/page.tsx`
   - Обе страницы переведены на локальный `PricingPackage` тип вместо старой жёсткой структуры deliverables

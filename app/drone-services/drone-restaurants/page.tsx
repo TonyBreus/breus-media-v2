@@ -9,6 +9,7 @@ import { DroneStickyCta } from '@/components/drone-restaurants/DroneStickyCta';
 import { MobileBottomBar } from '@/components/drone-restaurants/MobileBottomBar';
 import { ScrollArrow } from '@/components/drone-restaurants/ScrollArrow';
 import { DroneRestaurantsContactForm } from '@/components/drone-restaurants/DroneRestaurantsContactForm';
+import { HeroSlideshow } from '@/components/drone-restaurants/HeroSlideshow';
 
 type FaqItem = {
     question: string;
@@ -668,14 +669,7 @@ export default function DroneRestaurantsPage() {
                 id="drone-restaurants-hero"
                 className="relative isolate overflow-hidden border-b border-[#2a2a2a] bg-[#080808] pb-24 pt-36 md:pb-28 md:pt-44"
             >
-                <div
-                    aria-hidden
-                    className="absolute inset-0 bg-cover bg-center opacity-30"
-                    style={{
-                        backgroundImage:
-                            "url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80')",
-                    }}
-                />
+                <HeroSlideshow />
                 <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,210,63,0.26),transparent_42%),linear-gradient(180deg,rgba(8,8,8,0.35),rgba(8,8,8,0.95)_70%,#080808)]" />
                 <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FFD23F]/60 to-transparent" />
 
@@ -750,6 +744,37 @@ export default function DroneRestaurantsPage() {
                 </div>
 
                 <ScrollArrow />
+            </section>
+
+            {/* VIDEO_SLOT — заменить на реальный embed когда появится footage */}
+            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-16">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-3xl">
+                        <h2 className="text-3xl font-bold md:text-4xl">Как это выглядит</h2>
+                        <p className="mt-4 leading-relaxed text-white/70">
+                            Примеры аэросъёмки ресторанов и кафе в Тбилиси — снаружи и внутри.
+                        </p>
+                    </div>
+                    <div className="mt-10 overflow-hidden rounded-[20px] border border-[#2a2a2a] bg-[#141414]">
+                        <div className="relative aspect-video w-full">
+                            <img
+                                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80"
+                                alt="Аэросъёмка ресторана в Тбилиси — пример работы Breus Media"
+                                className="h-full w-full object-cover"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/60 bg-black/50">
+                                    <svg className="ml-1 h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div className="absolute bottom-4 left-4 rounded-full bg-black/60 px-3 py-1 text-xs text-white/70">
+                                Видео появится здесь
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             {/* ── С КАКИМИ ПРОБЛЕМАМИ ПРИХОДЯТ ─────────────────────────────────────── */}
@@ -851,16 +876,25 @@ export default function DroneRestaurantsPage() {
                         </article>
                     </div>
 
-                    <div className="mt-5 grid gap-5 md:grid-cols-2">
-                        <article className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                            <h3 className="text-lg font-bold text-white">Как организованы файлы</h3>
-                            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/72">
-                                <li>Папка «Сайт» — основной ролик и фотографии для страниц сайта</li>
-                                <li>Папка «Соцсети» — вертикальные видео для Reels, Stories, TikTok</li>
-                                <li>Папка «Google Maps» — короткий ролик и фотографии для карточки</li>
-                                <li>Папка «Архив» — все материалы для будущего использования</li>
-                            </ul>
-                        </article>
+                    <div className="mt-8 grid gap-8 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,0.9fr)]">
+                        <div>
+                            <h3 className="text-xl font-bold text-white">Как устроены файлы</h3>
+                            <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                                {[
+                                    { name: 'Сайт', desc: 'Основной ролик и фотографии для страниц сайта' },
+                                    { name: 'Соцсети', desc: 'Вертикальные видео для Reels, Stories, TikTok' },
+                                    { name: 'Google Maps', desc: 'Короткий ролик и фото для карточки заведения' },
+                                    { name: 'Архив', desc: 'Все исходники — для будущего использования' },
+                                ].map((folder) => (
+                                    <div key={folder.name} className="rounded-[14px] border border-[#2a2a2a] bg-[#0D0D0D] p-5">
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">
+                                            {folder.name}
+                                        </p>
+                                        <p className="mt-2 text-sm leading-relaxed text-white/70">{folder.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
 
                         <article className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
                             <h3 className="text-lg font-bold text-white">Технические параметры</h3>
@@ -878,6 +912,43 @@ export default function DroneRestaurantsPage() {
                                 Сроки: от 24 часов (съёмка без монтажа) до 7 рабочих дней (пакет с готовым результатом).
                             </p>
                         </article>
+                    </div>
+                </div>
+            </section>
+
+            {/* VIDEO_SLOT — три формата съёмки */}
+            <section className="border-b border-[#2a2a2a] bg-[#080808] py-16">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-3xl">
+                        <h2 className="text-2xl font-bold md:text-3xl">Примеры по форматам</h2>
+                    </div>
+                    <div className="mt-8 grid gap-5 md:grid-cols-3">
+                        {[
+                            {
+                                label: 'Снаружи с воздуха',
+                                img: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80',
+                                alt: 'Аэросъёмка ресторана снаружи с воздуха',
+                            },
+                            {
+                                label: 'Пролёт внутри (FPV)',
+                                img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+                                alt: 'FPV-съёмка внутри ресторана',
+                            },
+                            {
+                                label: 'Готовый ролик',
+                                img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+                                alt: 'Готовый видеоролик для ресторана',
+                            },
+                        ].map((item) => (
+                            <div key={item.label} className="overflow-hidden rounded-[16px] border border-[#2a2a2a] bg-[#141414]">
+                                <div className="relative aspect-video">
+                                    <img src={item.img} alt={item.alt} className="h-full w-full object-cover" />
+                                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-4">
+                                        <p className="text-sm font-bold text-white">{item.label}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>

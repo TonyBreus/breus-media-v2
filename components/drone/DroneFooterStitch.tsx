@@ -41,10 +41,21 @@ export const DroneFooterStitch = () => {
                         <DebugWrapper id={11003} label="Footer Nav Column">
                             <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-6 text-white">Меню</h4>
                             <ul className="space-y-4 text-sm text-gray-500">
-                                {['Портфолио', 'Оборудование', 'Карта полетов', 'Контакты'].map((item, mIdx) => (
-                                    <li key={item}>
-                                        <DebugWrapper id={11020 + mIdx} label={`Footer Link: ${item}`}>
-                                            <a href="#" className="hover:text-white transition-colors">{item}</a>
+                                {[
+                                    { label: 'Портфолио', inactive: true },
+                                    { label: 'Оборудование', inactive: true },
+                                    { label: 'Карта полётов', inactive: true },
+                                    { label: 'Контакты', href: '#contact' },
+                                ].map((item, mIdx) => (
+                                    <li key={item.label}>
+                                        <DebugWrapper id={11020 + mIdx} label={`Footer Link: ${item.label}`}>
+                                            {item.inactive ? (
+                                                <span className="text-white/40">{item.label}</span>
+                                            ) : (
+                                                <a href={item.href} className="hover:text-white transition-colors">
+                                                    {item.label}
+                                                </a>
+                                            )}
                                         </DebugWrapper>
                                     </li>
                                 ))}
