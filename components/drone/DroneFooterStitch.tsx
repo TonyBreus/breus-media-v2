@@ -42,9 +42,6 @@ export const DroneFooterStitch = () => {
                             <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-6 text-white">Меню</h4>
                             <ul className="space-y-4 text-sm text-gray-500">
                                 {[
-                                    { label: 'Портфолио', inactive: true },
-                                    { label: 'Оборудование', inactive: true },
-                                    { label: 'Карта полётов', inactive: true },
                                     { label: 'Контакты', href: '#contact' },
                                 ].map((item, mIdx) => (
                                     <li key={item.label}>
