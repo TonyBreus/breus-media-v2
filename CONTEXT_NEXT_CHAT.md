@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 7 апреля 2026 (footer dead links sweep audit-only, docs synced)
+### Обновлён: 7 апреля 2026 (footer menu items removed sitewide, docs synced)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -7,7 +7,13 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: `footer dead links class fix + 360-tour-restaurants route fix` (07.04.2026); текущий `HEAD` — doc-only audit update
+- Последний кодовый коммит: `footer: remove unavailable menu items` (07.04.2026) — `components/drone/DroneFooterStitch.tsx`
+
+✅ footer menu items removed sitewide (07.04.2026) — `components/drone/DroneFooterStitch.tsx`
+  - В колонке `Меню` удалены пункты `Портфолио`, `Оборудование`, `Карта полётов` (они больше не рендерятся)
+  - `Контакты` оставлены рабочей ссылкой `#contact` без изменений
+  - Изменение распространяется на все страницы, где используется общий компонент `DroneFooterStitch`
+  - Сопутствующие контекстные файлы синхронизированы отдельным doc-коммитом
 
 ✅ footer dead links sweep (audit-only) (07.04.2026) — `components/drone/DroneFooterStitch.tsx`, `components/drone/DroneFooter.tsx`, `app/real-estate-2/page.tsx`
   - Выполнен повторный аудит всех футеров в проекте: целевые пункты `Портфолио`, `Оборудование`, `Карта полётов` найдены только в `DroneFooterStitch`
