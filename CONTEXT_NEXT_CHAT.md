@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 6 апреля 2026 (drone-restaurants visuals + footer cleanup, docs synced)
+### Обновлён: 7 апреля 2026 (footer dead links class fix + 360-tour-restaurants route fix, docs synced)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -7,7 +7,12 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: текущий `HEAD` (drone-restaurants visuals + footer cleanup, docs included)
+- Последний кодовый коммит: текущий `HEAD` (footer dead links class fix + 360-tour-restaurants route fix, docs included)
+
+✅ footer dead links class fix + 360-tour-restaurants route fix (07.04.2026) — `components/drone/DroneFooterStitch.tsx`, `app/drone-services/drone-restaurants/page.tsx`
+  - В `DroneFooterStitch` неактивным пунктам `Портфолио`, `Оборудование`, `Карта полётов` добавлен `cursor-default`; рабочий пункт `Контакты` не менялся
+  - На странице `/drone-services/drone-restaurants` related service ссылка на ресторанный 360° тур исправлена с `/360-tour-services/360-tour-restaurants` на `/360-tour-restaurants`
+  - Сопутствующие контекстные файлы синхронизированы в тот же коммит
 
 ✅ drone-restaurants visuals + footer cleanup (06.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `components/drone-restaurants/HeroSlideshow.tsx`, `components/drone/DroneFooterStitch.tsx`
   - Hero секция ресторана переведена с одного background-image на отдельный client-компонент `HeroSlideshow` с 4 Unsplash-слайдами, fade transition `1s` и autoplay `4s`

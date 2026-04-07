@@ -1,6 +1,27 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-07 (footer dead links class fix + 360-tour-restaurants route fix)
+### Session Summary
+- Точечно обновлён общий дрон-футер без изменения рабочей ссылки `Контакты`.
+- Исправлена битая ссылка на 360° тур ресторана на странице `drone-restaurants`.
+- Контекстные файлы синхронизированы в тот же коммит.
+
+### Изменения
+- `components/drone/DroneFooterStitch.tsx`
+  - Для неактивных пунктов `Портфолио`, `Оборудование`, `Карта полётов` добавлен класс `cursor-default` на `span`.
+- `app/drone-services/drone-restaurants/page.tsx`
+  - `href` related service обновлён с `/360-tour-services/360-tour-restaurants` на `/360-tour-restaurants`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Верхний контекст обновлён под этот точечный patch.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта запись.
+
+### Build
+- Не запускался: не требовалось для двух точечных ссылочных правок
+
+---
+
 ## 2026-04-06 (drone-restaurants visuals + footer cleanup)
 ### Session Summary
 - Страница `/drone-services/drone-restaurants` усилена визуально без изменения цен, FAQ, processSteps и metadata.

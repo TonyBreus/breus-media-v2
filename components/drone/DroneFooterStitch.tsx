@@ -50,7 +50,7 @@ export const DroneFooterStitch = () => {
                                     <li key={item.label}>
                                         <DebugWrapper id={11020 + mIdx} label={`Footer Link: ${item.label}`}>
                                             {item.inactive ? (
-                                                <span className="text-white/40">{item.label}</span>
+                                                <span className="text-white/40 cursor-default">{item.label}</span>
                                             ) : (
                                                 <a href={item.href} className="hover:text-white transition-colors">
                                                     {item.label}

@@ -283,7 +283,7 @@ const addonPricing: string[] = [
 const relatedServices: RelatedService[] = [
     {
         title: '360° виртуальный тур для ресторана',
-        href: '/360-tour-services/360-tour-restaurants',
+        href: '/360-tour-restaurants',
         text: 'Интерактивная прогулка по залу — гость крутит камеру сам. Хорошо дополняет видео с дрона.',
     },
     {
