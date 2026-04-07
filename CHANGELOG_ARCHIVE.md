@@ -1,6 +1,30 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-07 (footer dead links sweep audit-only)
+### Session Summary
+- Выполнен повторный sweep всех футер-компонентов по задаче dead links.
+- Подтверждено, что целевые пункты `Портфолио`, `Оборудование`, `Карта полётов` уже корректно неактивны в `DroneFooterStitch`.
+- Код не менялся; синхронизированы только контекстные документы.
+
+### Изменения
+- `components/drone/DroneFooterStitch.tsx`
+  - Подтверждено состояние без новых правок: три пункта рендерятся как `span` с `className="text-white/40 cursor-default"`.
+  - `Контакты` остаётся рабочей ссылкой `href="#contact"`.
+- `components/drone/DroneFooter.tsx`
+  - Проверен: целевые пункты (`Портфолио`, `Оборудование`, `Карта полётов`) отсутствуют, изменений не требовалось.
+- `app/real-estate-2/page.tsx`
+  - Проверен inline footer: целевые пункты отсутствуют; найденные `href="#"` относятся к social-кнопкам формы и вне scope задачи.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя audit-only запись.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- Не запускался: doc-only фиксация, кодовых изменений нет
+
+---
+
 ## 2026-04-07 (footer dead links class fix + 360-tour-restaurants route fix)
 ### Session Summary
 - Точечно обновлён общий дрон-футер без изменения рабочей ссылки `Контакты`.

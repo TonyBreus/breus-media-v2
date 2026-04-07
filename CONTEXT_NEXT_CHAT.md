@@ -1,5 +1,5 @@
 # КОНТЕКСТ — Breus Media
-### Обновлён: 7 апреля 2026 (footer dead links class fix + 360-tour-restaurants route fix, docs synced)
+### Обновлён: 7 апреля 2026 (footer dead links sweep audit-only, docs synced)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -7,7 +7,13 @@
 - Домен: breus.media
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
-- Последний кодовый коммит: текущий `HEAD` (footer dead links class fix + 360-tour-restaurants route fix, docs included)
+- Последний кодовый коммит: `footer dead links class fix + 360-tour-restaurants route fix` (07.04.2026); текущий `HEAD` — doc-only audit update
+
+✅ footer dead links sweep (audit-only) (07.04.2026) — `components/drone/DroneFooterStitch.tsx`, `components/drone/DroneFooter.tsx`, `app/real-estate-2/page.tsx`
+  - Выполнен повторный аудит всех футеров в проекте: целевые пункты `Портфолио`, `Оборудование`, `Карта полётов` найдены только в `DroneFooterStitch`
+  - Подтверждено текущее состояние `DroneFooterStitch`: три неактивных пункта уже рендерятся как `span` с `className="text-white/40 cursor-default"`, `Контакты` остаётся рабочей ссылкой `#contact`
+  - В `DroneFooter` и inline footer на `/real-estate-2` целевые пункты отсутствуют; кодовые изменения не требовались
+  - Зафиксирована только doc-only синхронизация: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
 
 ✅ footer dead links class fix + 360-tour-restaurants route fix (07.04.2026) — `components/drone/DroneFooterStitch.tsx`, `app/drone-services/drone-restaurants/page.tsx`
   - В `DroneFooterStitch` неактивным пунктам `Портфолио`, `Оборудование`, `Карта полётов` добавлен `cursor-default`; рабочий пункт `Контакты` не менялся
