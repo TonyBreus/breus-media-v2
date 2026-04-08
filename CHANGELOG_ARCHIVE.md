@@ -1,6 +1,291 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-08 (gazeta NichesStack mobile rail touch-action handoff fix)
+### Session Summary
+- Устранён конфликт touch-жестов в mobile rail карточек на `/gazeta`: горизонтальный свайп по rail теперь явно помечен как `pan-x`.
+- Изменение сделано точечно в контейнере с `servicesRailRef`, без изменения desktop-поведения и без вмешательства в существующую логику стрелок/inner-scroll.
+- Контекстные файлы синхронизированы в рамках этой задачи.
+
+### Изменения
+- `components/gazeta/NichesStack.tsx`
+  - На контейнер rail (`ref={servicesRailRef}` в мобильной ветке) добавлен inline style:
+    - `touchAction: "pan-x"`
+  - Ветка desktop не изменялась (`style` применяется только при `useMobileHorizontalServicesRail`).
+- `DEBUG_KNOWN_ISSUES.md`
+  - BUG-001 переведён в статус FIXED и перенесён в архив исправленных багов.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по фиксу mobile rail touch-action.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
+## 2026-04-07 (drone-restaurants pricing comparison + short QA blocks)
+### Session Summary
+- В RU и EN версиях страницы `/drone-services/drone-restaurants` добавлены три новых структурных SEO/UX блока.
+- После pricing + add-ons появился визуальный comparison layer для всех 4 пакетов и отдельный helper-блок для быстрого выбора.
+- После `seoAnswers` добавлен компактный `shortQA` слой для AI-поиска и быстрых цитируемых ответов.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - Добавлена константа `shortQA` с 7 короткими вопросами и ответами:
+    - стоимость
+    - что входит в съёмку
+    - можно ли снимать внутри
+    - сроки на объекте и выдача
+    - разрешения
+    - зачем ресторану дрон-видео
+    - география съёмок
+  - После `addonPricing` добавлена секция `Сравнение пакетов` с таблицей по 4 пакетам.
+  - Сразу после таблицы добавлена секция `Как выбрать пакет`.
+  - После секции `Подробные ответы на частые вопросы` и перед `Смежные услуги` добавлен блок `Коротко о главном`.
+- `app/drone-services/drone-restaurants/page.en.tsx`
+  - Добавлена константа `shortQA` с 7 короткими English Q&A для AI-search use case.
+  - После `addonPricing` добавлена секция `Package comparison`.
+  - Сразу после таблицы добавлена секция `How to choose`.
+  - После секции `Detailed answers to common questions` и перед `Related services` добавлен блок `Quick answers`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому обновлению.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
+## 2026-04-07 (drone-restaurants package timing wording update)
+### Session Summary
+- В RU и EN версиях страницы `/drone-services/drone-restaurants` точечно обновлены формулировки времени на объекте внутри pricing-пакетов.
+- Изменения ограничены только массивами `items` в `pricingCards`.
+- Пакеты `Съёмка с готовым результатом / Full Package` не затрагивались.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - В пакете `Полёт снаружи` строка времени заменена на `Около 1,5 часов на объекте — от подготовки до финального дубля`.
+  - В пакете `Пролёт внутри (FPV)` строка времени заменена на `Около 1,5 часов на объекте — от подготовки до финального дубля`.
+  - В пакете `Полная съёмка` строка времени заменена на `Около 2,5 часов на объекте — от подготовки до финального дубля`.
+- `app/drone-services/drone-restaurants/page.en.tsx`
+  - В пакете `Aerial Shot` строка времени заменена на `About 1.5 hours on site — from setup to final take`.
+  - В пакете `FPV Fly-Through` строка времени заменена на `About 1.5 hours on site — from setup to final take`.
+  - В пакете `Full Shoot` строка времени заменена на `About 2.5 hours on site — from setup to final take`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому обновлению.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- Не запускался: 6 точечных copy-замен без структурных изменений
+
+---
+
+## 2026-04-07 (drone-restaurants SEO/GEO boost for RU+EN)
+### Session Summary
+- Для RU и EN версий страницы `/drone-services/drone-restaurants` добавлен новый SEO/GEO слой.
+- Страница теперь имеет `hreflang`, `BreadcrumbList`, расширенное geo coverage в `serviceSchema`, GEO FAQ и отдельный районный блок по Тбилиси.
+- В английской версии дополнительно уточнён hero/pricing/SEO copy, чтобы текст звучал компактнее и точнее.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - В `metadata.alternates` добавлены `languages` для `ru` и `en`.
+  - В metadata добавлен `twitter` блок (`summary_large_image`).
+  - Добавлен `breadcrumbSchema` и подключён как отдельный JSON-LD script.
+  - В `serviceSchema.areaServed` вместо одного `Place` добавлен массив городов:
+    - `Tbilisi`
+    - `Batumi`
+    - `Kutaisi`
+  - В `faqItems` добавлен новый вопрос `В каких районах Тбилиси вы снимаете?`
+  - В `faqSchema` добавлен новый GEO question про районы Тбилиси.
+  - После секции `Типичные ошибки...` добавлен новый блок `Где мы снимаем в Тбилиси` с district list.
+- `app/drone-services/drone-restaurants/page.en.tsx`
+  - В `metadata.alternates` добавлены `languages` для `ru` и `en`.
+  - В metadata добавлен `twitter` блок (`summary_large_image`).
+  - Добавлен `breadcrumbSchema` и подключён как отдельный JSON-LD script.
+  - В `serviceSchema.areaServed` вместо одного `Place` добавлен массив городов:
+    - `Tbilisi`
+    - `Batumi`
+    - `Kutaisi`
+  - В `faqItems` добавлен новый GEO question `Which Tbilisi districts do you cover?`
+  - В `faqSchema` добавлен новый GEO question `Which Tbilisi districts do you cover for restaurant filming?`
+  - После секции `Common visual marketing mistakes for restaurants` добавлен новый блок `Where we shoot in Tbilisi` с district list.
+  - Уточнён EN copy:
+    - hero intro: `Photos and handheld video...`
+    - hero delivery line: `We shoot, edit, and deliver...`
+    - hero aside bullet: `We shoot and edit — you just publish`
+    - `Aerial Shot` note переписан под direct use case
+    - `seoAnswers` по срокам переформулирован в более concise English
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому обновлению.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
+## 2026-04-07 (drone-restaurants EN page + RU/EN header switch + hero overlap fix)
+### Session Summary
+- Для `/drone-services/drone-restaurants` создана отдельная английская версия страницы с адаптированным copy, EN metadata и переведённым schema.org.
+- Верхний language switch на этой странице подключён к реальной навигации между RU и EN версиями.
+- `SmartHeader` переведён в общий RU/EN режим: переведены sticky navigation labels, dropdown-меню, mobile menu и обе бегущие строки.
+- После возврата ticker lines hero-контент на RU и EN версиях опущен ниже, чтобы заголовок больше не перекрывался бегущими строками.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.en.tsx`
+  - Создан отдельный EN source file со всем основным контентом страницы.
+  - Переведены и адаптированы hero, deliverables, process, pricing, FAQ, SEO answers, related services, contact block.
+  - Сохранены термины `FPV`, `DJI Avata 2`, `Google Business Profile`, `Reels`, `Stories`, `TikTok`.
+  - Пакеты адаптированы как:
+    - `Aerial Shot`
+    - `FPV Fly-Through`
+    - `Full Shoot`
+    - `Full Package`
+  - `metadata`, `faqSchema`, `serviceSchema`, `localBusinessSchema` переведены на английский.
+- `app/drone-services/drone-restaurants/en/page.tsx`
+  - Добавлен реэкспорт для публичного EN route `/drone-services/drone-restaurants/en`.
+- `app/drone-services/drone-restaurants/page.tsx`
+  - Подключены `languageLinks` для `RU / EN` переключения.
+  - Hero-top spacing увеличен до `pt-40 md:pt-48`, чтобы ticker lines не перекрывали заголовок.
+- `components/gazeta/SmartHeader.tsx`
+  - Добавлены optional props `initialLang` и `languageLinks`.
+  - Введён общий RU/EN copy-layer для header labels, dropdown items, mobile menu и обеих ticker lines.
+  - EN header теперь показывает:
+    - `About`
+    - `Industries`
+    - `Services`
+    - `AI Solutions`
+    - `Discuss Project`
+- `components/drone-restaurants/DroneStickyCta.tsx`
+  - Добавлен optional prop `label` для локализации CTA.
+- `components/drone-restaurants/MobileBottomBar.tsx`
+  - Добавлен optional prop `primaryLabel` для локализации mobile CTA.
+- `components/drone-restaurants/DroneRestaurantsContactForm.tsx`
+  - Добавлены optional props для перевода labels/placeholders/submit button.
+- `components/drone-restaurants/FormatExamplesSlideshow.tsx`
+  - Добавлен optional prop `altTexts` для EN alt text.
+- `components/drone/DroneFooterStitch.tsx`
+  - Добавлены optional props для EN mission/menu/contact labels в футере.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому обновлению.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
+## 2026-04-07 (drone-restaurants faq/seo/schema sync + pricing cleanup)
+### Session Summary
+- На странице `/drone-services/drone-restaurants` синхронизированы FAQ, SEO-ответы и schema.org под обновлённую ценовую и контентную матрицу.
+- Убраны устаревшие формулировки про сырые файлы, venue, обработку фото как отдельный add-on и ограничительный тон в ответах про интерьерную съёмку.
+- Дотянуты финальные copy-правки в pricing-блоке и вспомогательном блоке `Дополнительно по задаче`.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - В `addonPricing` удалён пункт `10 обработанных фотографий: +60 ₾`.
+  - В `faqItems` обновлены ответы и формулировки:
+    - `Можно ли снимать внутри ресторана?`
+    - `Где ещё можно использовать то, что мы снимем?`
+    - `Сколько стоит аэросъёмка ресторана в Тбилиси?`
+    - `Что входит в финальную выдачу файлов?`
+  - В `seoAnswers` обновлены стоимость, формулировка `Она отвечает...`, ответ про интерьерную съёмку и вопрос/ответ про сроки готовности файлов.
+  - В `faqSchema` синхронизированы ответы по цене, интерьерной съёмке и тому, что клиент получает после съёмки.
+  - В блоке `Дополнительно по задаче` удалена нижняя фраза про сбор материалов под сайт, соцсети, Google Business Profile и presentation venue.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому обновлению.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- Не запускался отдельно после этого FAQ/SEO/schema mini-batch; последний полный `npm run build` по странице ранее проходил `✅ clean`
+
+---
+
+## 2026-04-07 (drone-restaurants pricing/content refinement + footer render cleanup)
+### Session Summary
+- На странице `/drone-services/drone-restaurants` проведена серия точечных copy/layout-уточнений без смены общей структуры страницы.
+- Обновлены формулировки в блоках зон съёмки, процесса и пакетов, а pricing-карточки приведены к новой матрице текста.
+- Дополнительно устранён TypeScript-конфликт в `DroneFooterStitch`, который остался после удаления пунктов футера.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - В `Зоны съёмки` заменена строка на `FPV полёт сквозь пространство: детали интерьера в движении`.
+  - В `Шаг 5 / Передача файлов` удалена фраза `Один раунд правок включён.`.
+  - В секции `Пакеты и цены` заменены вводные абзацы под новую подачу.
+  - Полностью обновлён контент 4 pricing-карточек:
+    - `250 ₾` — аэросъёмка дроном с высоты
+    - `350 ₾` — FPV-пролёт по залу
+    - `500 ₾` — полная съёмка с воздуха + пролёт внутри
+    - `от 900 ₾` — съёмка с воздуха + пролёт дроном внутри + монтаж и фото
+  - У пакета `500 ₾` бейдж `Выгодно` перенесён к цене, чтобы освободить заголовочную область и визуально подтянуть цену по уровню к остальным карточкам.
+  - Из пакета `от 900 ₾` убраны лишние формулировки про `всё под ключ`, разложенные папки и длинный explanatory note.
+- `components/drone/DroneFooterStitch.tsx`
+  - Убрана ветка `item.inactive` после того, как меню было сокращено до одной рабочей ссылки `Контакты`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому обновлению.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
+## 2026-04-07 (drone-restaurants format visuals dual placement)
+### Session Summary
+- Обновлён визуальный блок форматов на странице `/drone-services/drone-restaurants` по новой структуре из двух мест.
+- В `Как это выглядит` теперь поочерёдная ротация трёх новых локальных изображений.
+- Секция `Примеры по форматам` возвращена и показывает те же три изображения статичными карточками.
+
+### Изменения
+- `components/drone-restaurants/FormatExamplesSlideshow.tsx`
+  - Создан client-компонент слайдера на локальных файлах:
+    - `@/services-images/drone-restaurants/final/1.png`
+    - `@/services-images/drone-restaurants/final/2.png`
+    - `@/services-images/drone-restaurants/final/3.png`
+  - Интервал смены слайдов: `3000ms`.
+- `app/drone-services/drone-restaurants/page.tsx`
+  - В блоке `Как это выглядит` удалена видео-заглушка и подключён `FormatExamplesSlideshow`.
+  - Блок `Примеры по форматам` оставлен на странице и заполнен 3 статичными карточками на тех же новых изображениях.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому обновлению.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
+## 2026-04-07 (drone-restaurants hero copy/layout refresh)
+### Session Summary
+- На странице `/drone-services/drone-restaurants` обновлён hero copy под новый текст.
+- Убрана английская подпись над заголовком и переработан hero-лейаут для desktop-first восприятия.
+- Текст увеличен и расширен по горизонтали, чтобы ключевой контент и CTA лучше помещались в первом экране.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - Удалена строка `Restaurant Drone Filming in Tbilisi, Georgia`.
+  - Заменён текстовый блок hero на новый copy (аэрофото/FPV, полный цикл, площадки публикации, итог по съёмочному дню).
+  - Изменены отступы hero (`pt/pb`) и выравнивание контента (`items-start`) для более раннего входа заголовка и текста.
+  - Текстовый блок расширен и увеличен по desktop (`max-w-none`, увеличенные `text-*`, `lg:columns-2`) для уменьшения вертикального роста.
+  - CTA-блок (`Обсудить проект`, `Посмотреть цены`) смещён ближе к тексту (`mt-7`).
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись об этом обновлении.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- Не запускался: copy + layout правка одного hero-блока
+
+---
+
 ## 2026-04-07 (footer menu items removed sitewide)
 ### Session Summary
 - Выполнено фактическое удаление неактуальных пунктов футера со всего сайта.

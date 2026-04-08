@@ -1016,6 +1016,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         ref={useMobileHorizontalServicesRail ? servicesRailRef : undefined}
                                         data-services-rail={useMobileHorizontalServicesRail ? "true" : undefined}
                                         className={mobileRailContainerClassName}
+                                        style={useMobileHorizontalServicesRail ? { touchAction: "pan-x" } : undefined}
                                     >
                                     {services.map((svc: ServiceItem, i: number) => {
                                         // Start unique IDs from 8400+ range, isolated by index (e.g., 8410, 8420)

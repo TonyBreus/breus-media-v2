@@ -1,5 +1,18 @@
+## ТЕКУЩИЙ ФОКУС — 08.04.2026
+
+Активная задача: дрон-витрины по шаблону drone-restaurants
+  → следующие страницы: drone-hotels · drone-sport · drone-wine · drone-tourism · drone-auto
+
+Готово к запуску: CODEX_PROMPT_SCROLL_FIX.md — фикс скролла NichesStack мобайл
+
+Заморожено: Reels L3 · Promo L3 · English translations (после витрин)
+
+Новые файлы в корне проекта:
+  CLAUDE.md — читается Codex автоматически каждую сессию
+  AI_AGENT_BRIEFING.md — контекст для любой среды
+  DEBUG_KNOWN_ISSUES.md — живой трекер багов
 # КОНТЕКСТ — Breus Media
-### Обновлён: 7 апреля 2026 (footer menu items removed sitewide, docs synced)
+### Обновлён: 8 апреля 2026 (gazeta mobile rail touch-action fix, docs synced)
 
 ## ПРОЕКТ
 - Live: https://breus-media-v2.vercel.app
@@ -8,6 +21,121 @@
 - GitHub: https://github.com/TonyBreus/breus-media-v2
 - Ветка: main
 - Последний кодовый коммит: `footer: remove unavailable menu items` (07.04.2026) — `components/drone/DroneFooterStitch.tsx`
+
+✅ gazeta mobile rail touch-action handoff fix (08.04.2026) — `components/gazeta/NichesStack.tsx`
+  - На контейнер горизонтального rail карточек с `servicesRailRef` добавлен inline style `touchAction: "pan-x"`.
+  - Фикс ограничен мобильной rail-зоной через `useMobileHorizontalServicesRail`; desktop-поведение и non-rail ветка не менялись.
+  - Логика стрелок `handleCardRailScroll` и внутренний vertical scroll (`contentScrollRef`, touch handlers) не изменялись.
+  - Цель: убрать конфликт touch-событий между внешним vertical page scroll и горизонтальным свайпом карточек внутри rail.
+  - Build: `npm run build` ✅ clean
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`, `DEBUG_KNOWN_ISSUES.md`
+
+✅ drone-restaurants pricing comparison + short QA blocks (07.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `app/drone-services/drone-restaurants/page.en.tsx`
+  - В обе версии страницы добавлен новый post-pricing слой сразу после `addonPricing`:
+    - `Сравнение пакетов / Package comparison`
+    - `Как выбрать пакет / How to choose`
+  - Таблица сравнения выводит рядом все 4 пакета (`250 / 350 / 500 / от 900 ₾`) по ключевым параметрам:
+    - цена
+    - aerial 4K video
+    - interior FPV pass
+    - photos
+    - editing
+    - social-ready clips
+    - Google Maps video
+    - time on site
+    - file delivery
+  - Helper-блок добавлен как быстрый routing layer для выбора пакета под задачу
+  - Рядом с `seoAnswers` в обеих версиях добавлена новая константа `shortQA`
+  - После секции подробных SEO-ответов и перед `relatedServices` добавлен новый AI-search блок:
+    - `Коротко о главном`
+    - `Quick answers`
+  - `shortQA` закрывает короткие высокочастотные вопросы по цене, составу съёмки, FPV inside, срокам, разрешениям, бизнес-ценности и географии
+  - Build: `npm run build` ✅ clean
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+
+✅ drone-restaurants package timing wording update (07.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `app/drone-services/drone-restaurants/page.en.tsx`
+  - В `pricingCards` обеих версий обновлены формулировки времени на объекте только внутри `items`
+  - RU:
+    - `До 1,5 часов работы на объекте` -> `Около 1,5 часов на объекте — от подготовки до финального дубля`
+    - `До 2,5 часов работы на объекте` -> `Около 2,5 часов на объекте — от подготовки до финального дубля`
+  - EN:
+    - `Up to 1.5 hours on site` -> `About 1.5 hours on site — from setup to final take`
+    - `Up to 2.5 hours on site` -> `About 2.5 hours on site — from setup to final take`
+  - Пакеты `Съёмка с готовым результатом / Full Package` не менялись
+  - Build: не запускался, так как это 6 точечных copy-замен без структурных изменений
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+
+✅ drone-restaurants SEO/GEO boost for RU+EN (07.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `app/drone-services/drone-restaurants/page.en.tsx`
+  - В RU и EN metadata добавлены `alternates.languages` (`hreflang`) для двуязычной связки `/drone-services/drone-restaurants` <-> `/drone-services/drone-restaurants/en`
+  - В обе версии добавлены `twitter` cards (`summary_large_image`) для social sharing
+  - В обе страницы добавлен `breadcrumbSchema` (`BreadcrumbList`) и подключён отдельным `<script type="application/ld+json">`
+  - В `serviceSchema.areaServed` обеих версий расширено GEO-покрытие с одного `Place` до массива городов `Tbilisi / Batumi / Kutaisi`
+  - В RU и EN добавлены новые GEO-секции с районами Тбилиси:
+    - `Где мы снимаем в Тбилиси`
+    - `Where we shoot in Tbilisi`
+  - В `faqItems` обеих версий добавлен GEO-вопрос по районам Тбилиси и дополнительным городам/регионам (`Batumi`, `Kutaisi`, `Kakheti`)
+  - В `faqSchema` обеих версий добавлен соответствующий GEO FAQ для search enrichment
+  - В EN-версии дополнительно обновлён copy:
+    - hero: `Photos and handheld video...`
+    - hero delivery line: `We shoot, edit, and deliver...`
+    - hero aside bullet: `We shoot and edit — you just publish`
+    - `Aerial Shot` note: более прямое описание self-service использования
+    - `seoAnswers`: сроки и выдача файлов переформулированы в более compact English
+  - Build: `npm run build` ✅ clean
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+
+✅ drone-restaurants EN page + RU/EN header switch + hero overlap fix (07.04.2026) — `app/drone-services/drone-restaurants/page.en.tsx`, `app/drone-services/drone-restaurants/en/page.tsx`, `app/drone-services/drone-restaurants/page.tsx`, `components/gazeta/SmartHeader.tsx`
+  - Создана полноценная английская версия страницы в отдельном файле `app/drone-services/drone-restaurants/page.en.tsx` с адаптированным English copy, EN metadata, EN FAQ/SEO-ответами и переведённым `schema.org`
+  - Для реального маршрута добавлен реэкспорт `app/drone-services/drone-restaurants/en/page.tsx`; в build подтверждён новый static route `/drone-services/drone-restaurants/en`
+  - На `drone-restaurants` подключён рабочий language switch через `SmartHeader`: `RU -> /drone-services/drone-restaurants`, `EN -> /drone-services/drone-restaurants/en`
+  - `SmartHeader` переведён в переиспользуемый RU/EN режим для будущих локализованных страниц:
+    - добавлены `initialLang` и `languageLinks`
+    - переведены sticky header labels: `About`, `Industries`, `Services`, `AI Solutions`, `Discuss Project`
+    - переведены dropdown-списки, mobile menu и обе бегущие строки
+  - Для EN-версии локализованы общие компоненты вокруг страницы через optional props:
+    - `DroneStickyCta`
+    - `MobileBottomBar`
+    - `DroneRestaurantsContactForm`
+    - `FormatExamplesSlideshow`
+    - `DroneFooterStitch`
+  - После включения бегущих строк hero-контент на RU и EN страницах опущен ниже (`pt-40 md:pt-48`), чтобы ticker lines больше не перекрывали заголовок
+  - Build: `npm run build` ✅ clean
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+
+✅ drone-restaurants faq/seo/schema sync + pricing cleanup (07.04.2026) — `app/drone-services/drone-restaurants/page.tsx`
+  - В `addonPricing` удалён add-on `10 обработанных фотографий: +60 ₾`
+  - Обновлены `faqItems`: съёмка внутри, области использования материалов, стоимость, финальная выдача файлов
+  - Обновлены `seoAnswers`: стоимость, формулировка `Она отвечает...`, съёмка внутри, сроки и выдача файлов
+  - Синхронизирован `faqSchema` / schema.org с теми же новыми формулировками по цене, интерьерной съёмке и выдаче
+  - В блоке `Дополнительно по задаче` удалена нижняя фраза про материалы под сайт / соцсети / GBP / presentation venue
+  - В pricing-карточках и surrounding copy завершены последние copy-уточнения для `250 / 350 / 500 / от 900 ₾`
+  - Build: текстовые правки не проверялись отдельно после этого мини-батча; последний полный `npm run build` для страницы был `✅ clean`
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+
+✅ drone-restaurants pricing/content refinement + footer render cleanup (07.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `components/drone/DroneFooterStitch.tsx`
+  - В блоке `Зоны съёмки` формулировка FPV обновлена на `FPV полёт сквозь пространство: детали интерьера в движении`
+  - В шаге `Шаг 5 / Передача файлов` удалена фраза про включённый раунд правок
+  - Переписаны intro-абзацы секции `Пакеты и цены`
+  - Все 4 pricing-карточки обновлены по новому copy: `250 / 350 / 500 / от 900 ₾`, включая subtitles, пункты и notes
+  - В карточке `500 ₾` бейдж `Выгодно` перенесён к цене, чтобы освободить верхнюю строку и визуально выровнять уровень цены
+  - В карточке `от 900 ₾` убраны лишние формулировки про `всё под ключ`, разложенные папки и длинный note
+  - В `DroneFooterStitch` убрана оставшаяся `inactive`-ветка рендера после удаления пунктов меню; `Контакты` остаются обычной ссылкой `#contact`
+  - Build: `npm run build` ✅ clean
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+
+✅ drone-restaurants format visuals dual placement (07.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `components/drone-restaurants/FormatExamplesSlideshow.tsx`
+  - В блоке `Как это выглядит` удалена заглушка `Видео появится здесь`; добавлен слайдер из локальных файлов `services-images/drone-restaurants/final/1.png`, `2.png`, `3.png`
+  - Слайдер крутит изображения по очереди каждые `3s` (fade transition)
+  - Секция `Примеры по форматам` сохранена как второе место на странице и снова показывает 3 карточки, но теперь на тех же новых локальных изображениях (статично, без ротации)
+  - Build: `npm run build` ✅ clean
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+
+✅ drone-restaurants hero copy/layout refresh (07.04.2026) — `app/drone-services/drone-restaurants/page.tsx`
+  - В hero удалена фраза `Restaurant Drone Filming in Tbilisi, Georgia`
+  - Основной текст заменён на новый расширенный copy-блок про аэрофото/FPV и полный цикл
+  - Для desktop hero поднят выше и уплотнён по вертикали: уменьшены `pt/pb`, выравнивание grid изменено на `items-start`
+  - Текст сделан крупнее и шире без роста вертикали: введена двухколоночная подача (`lg:columns-2`) + кнопки CTA остаются в первом экране блока
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
 
 ✅ footer menu items removed sitewide (07.04.2026) — `components/drone/DroneFooterStitch.tsx`
   - В колонке `Меню` удалены пункты `Портфолио`, `Оборудование`, `Карта полётов` (они больше не рендерятся)
