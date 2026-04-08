@@ -52,7 +52,7 @@
 ## ИСПРАВЛЕННЫЕ БАГИ (архив)
 
 ### [FIXED-007] 🟢 Скролл-конфликт на `/gazeta` мобайл (horizontal rail touch-action)
-**Коммит:** `pending-local-commit` (08.04.2026)
+**Коммит:** `de71cd7` (08.04.2026)
 **Был:** На мобильном свайпы в зоне карточек конкурировали между page scroll / sticky-секциями и horizontal rail.
 **Фикс:** На контейнер rail с `servicesRailRef` добавлен `touchAction: "pan-x"` (точечно для mobile rail ветки).
 
