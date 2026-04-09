@@ -22,6 +22,17 @@
 - Ветка: main
 - Последний кодовый коммит: `footer: remove unavailable menu items` (07.04.2026) — `components/drone/DroneFooterStitch.tsx`
 
+✅ drone-restaurants anchor audit force-reapply (09.04.2026) — `app/drone-services/drone-restaurants/page.tsx`
+  - Подтверждено, что в целевой странице якоря присутствуют на корневых секциях:
+    - `#pricing` на секции «Пакеты и цены»
+    - `#contact` на секции с `DroneRestaurantsContactForm`
+  - Для фиксации аудита выполнен force-touch JSX этих двух секций без изменения поведения:
+    - сохранены `id="pricing"` / `id="contact"`
+    - сохранены `scroll-mt-20 lg:scroll-mt-24`
+  - `#faq` не менялся
+  - Build: `npm run build` — ✅ clean
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+
 ✅ drone-restaurants Perplexity + Cowork audit fixes (09.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `components/shared/FaqSection.tsx`
   - Alt-теги трёх изображений formatExampleCards заменены на уникальные описательные
   - serviceSchema highPrice изменён с 2200 на 1300 (900 + все аддоны)

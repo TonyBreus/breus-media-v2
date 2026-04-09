@@ -1,6 +1,28 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-09 (drone-restaurants anchor audit force-reapply)
+### Session Summary
+- Проверен аудит якорей в целевой странице `/drone-services/drone-restaurants`: `#pricing` и `#contact` уже присутствуют на нужных корневых секциях.
+- Для фиксации результата в истории выполнен force-touch секций без изменения поведения.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - Секция `Пакеты и цены`: сохранён корневой `id="pricing"` с `scroll-mt-20 lg:scroll-mt-24` (JSX переоформлен в canonical multiline-вид)
+  - Секция контакта с `DroneRestaurantsContactForm`: сохранён корневой `id="contact"` с `scroll-mt-20 lg:scroll-mt-24` (JSX переоформлен в canonical multiline-вид)
+  - `id="faq"` не изменялся
+- `components/shared/FaqSection.tsx`
+  - Только проверка: `id` пробрасывается на корневой `<section>` (без правок в этом шаге)
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по force-reapply аудиту якорей
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
 ## 2026-04-09 (drone-restaurants Perplexity + Cowork audit fixes)
 ### Session Summary
 - Точечные SEO-правки по аудиту Perplexity: alt-теги, schema highPrice, визуальное сворачивание нижних FAQ-слоёв, коммерческие ключевые фразы.
