@@ -10,6 +10,10 @@ import { MobileBottomBar } from '@/components/drone-restaurants/MobileBottomBar'
 import { ScrollArrow } from '@/components/drone-restaurants/ScrollArrow';
 import { DroneRestaurantsContactForm } from '@/components/drone-restaurants/DroneRestaurantsContactForm';
 import { HeroSlideshow } from '@/components/drone-restaurants/HeroSlideshow';
+import { FormatExamplesSlideshow } from '@/components/drone-restaurants/FormatExamplesSlideshow';
+import formatExampleOne from '@/services-images/drone-restaurants/final/1.png';
+import formatExampleTwo from '@/services-images/drone-restaurants/final/2.png';
+import formatExampleThree from '@/services-images/drone-restaurants/final/3.png';
 
 type FaqItem = {
     question: string;
@@ -126,7 +130,7 @@ const shootingZones: string[] = [
     'Терраса, двор, courtyard',
     'Rooftop-зона',
     'Обзор квартала / городской контекст',
-    'FPV-проход по интерьеру (если пространство позволяет)',
+    'FPV полёт сквозь пространство: детали интерьера в движении',
 ];
 
 const optionalAddons: string[] = [
@@ -161,6 +165,12 @@ const roleScenarios: CardItem[] = [
         title: 'Контент для рекламы и таргетинга',
         text: 'Вертикальные clips с сильным первым кадром — база для Instagram и TikTok.',
     },
+];
+
+const formatExampleCards = [
+    { image: formatExampleOne, alt: 'Ресторан с террасой на крыше в Тбилиси — аэросъёмка дроном, вид на улицу и вход' },
+    { image: formatExampleTwo, alt: 'FPV-пролёт по интерьеру ресторана — съёмка дроном внутри зала' },
+    { image: formatExampleThree, alt: 'Аэросъёмка ресторана в Тбилиси — кадр с дрона для сайта и соцсетей' },
 ];
 
 const whyUsCards: CardItem[] = [
@@ -210,7 +220,7 @@ const processSteps: ProcessStep[] = [
     {
         step: 'Шаг 5',
         title: 'Передача файлов',
-        text: 'Передаём папку с готовыми файлами, разложенными по назначению. Один раунд правок включён.',
+        text: 'Передаём папку с готовыми файлами, разложенными по назначению.',
     },
 ];
 
@@ -218,66 +228,72 @@ const pricingCards: PricingPackage[] = [
     {
         title: 'Полёт снаружи',
         price: '250 ₾',
-        subtitle: 'Обычный дрон, сырые файлы',
+        subtitle: 'Аэросъёмка дроном с высоты',
         items: [
-            'Съёмка с воздуха обычным дроном',
-            'До 1,5 часов на объекте',
-            'Сырые видеофайлы в 4K без монтажа',
-            'Разрешение на полёт включено',
+            'Видео в 4K + фото в высоком разрешении — готовы к использованию',
+            '10+ фотографий с разных ракурсов',
+            'Около 1,5 часов на объекте — от подготовки до финального дубля',
             'Передача файлов — от 24 часов',
         ],
-        note: 'Подходит, если нужна только съёмка — без обработки и монтажа.',
+        note: 'Подходит, если вы сами работаете с визуалом — получаете и используете где нужно.',
     },
     {
         title: 'Пролёт внутри (FPV)',
         price: '350 ₾',
         subtitle: 'FPV-дрон, пролёт камерой по залу',
         items: [
-            'Съёмка компактным FPV-дроном внутри помещения',
-            'До 1 часа на объекте',
+            'Видео в 4K — готово к использованию',
             'Несколько заходов — подбираем лучший маршрут',
-            'Сырые видеофайлы без монтажа',
-            'Разрешение на полёт включено',
+            'Около 1,5 часов на объекте — от подготовки до финального дубля',
             'Передача файлов — от 24 часов',
         ],
-        note: 'FPV — это съёмка в движении через пространство. Не каждый интерьер подходит — уточняем до выезда.',
+        note: 'FPV — это съёмка в движении через пространство. Перед выездом согласуем маршрут и детали, чтобы результат попал точно в цель.',
     },
     {
         title: 'Полная съёмка',
         price: '500 ₾',
-        subtitle: 'Снаружи с воздуха + пролёт по залу — за один визит',
+        subtitle: 'Съёмка с воздуха + пролёт внутри — зал, веранда, терраса — за один визит',
         items: [
-            'Съёмка с воздуха снаружи + пролёт камерой внутри',
-            'До 2 часов на объекте',
-            'Видеофайлы в 4K без монтажа',
-            'Разрешение на полёт включено',
+            'Аэровидео и FPV-пролёт в 4K',
+            '10+ фотографий в высоком разрешении с разных ракурсов',
+            'Около 2,5 часов на объекте — от подготовки до финального дубля',
             'Передача файлов — от 24 часов',
         ],
-        note: 'Полная съёмка за один выезд — и фасад с воздуха, и пролёт по залу.',
+        note: 'Полная съёмка за один выезд — и фасад с воздуха, и пролёт по вашему пространству.',
         popular: true,
     },
     {
         title: 'Съёмка с готовым результатом',
         price: 'от 900 ₾',
-        subtitle: 'Съёмка снаружи и внутри + монтаж + фото — всё под ключ',
+        subtitle: 'Съёмка с воздуха + пролёт дроном внутри + монтаж и фото',
         items: [
-            'Съёмка с воздуха + пролёт камерой по залу',
             'Продуманный маршрут съёмки',
-            'Основной ролик для сайта (30–60 сек)',
-            '3+ коротких видео для Reels / Stories / TikTok',
-            '15+ обработанных фотографий',
+            'До 3 минут смонтированного видео — разбитого на несколько роликов под сайт, Reels, Stories и TikTok',
+            '20+ обработанных фотографий',
             'Видео для карточки в Google Maps',
-            'Все файлы в папке, разложены по назначению',
+            'Передача материала — от 48 часов (монтаж включён)',
         ],
-        note: 'Для тех, кому нужен готовый контент. Для крупных объектов и расширенных задач — полный пакет от 1 500 ₾, обсудим на брифе.',
     },
 ];
 
 const addonPricing: string[] = [
-    'Монтаж Reels до 30 сек (музыка + субтитры): +100 ₾',
+    'Монтаж Reels до 30 сек (музыка + субтитры): +150 ₾',
     'Монтаж ролика 30–60 сек для сайта: +150 ₾',
     '360° панорама с воздуха: +80 ₾',
-    '10 обработанных фотографий: +60 ₾',
+];
+
+const comparisonPackageLabels: string[] = ['Снаружи', 'FPV', 'Полная', 'Под ключ'];
+
+const comparisonRows = [
+    { parameter: 'Цена', values: ['250 ₾', '350 ₾', '500 ₾', 'от 900 ₾'] },
+    { parameter: 'Аэровидео 4K', values: ['✓', '—', '✓', '✓'] },
+    { parameter: 'FPV-пролёт внутри', values: ['—', '✓', '✓', '✓'] },
+    { parameter: 'Фото', values: ['10+', '—', '10+', '20+'] },
+    { parameter: 'Монтаж', values: ['—', '—', '—', '✓'] },
+    { parameter: 'Ролики под соцсети', values: ['—', '—', '—', '✓'] },
+    { parameter: 'Видео для Google Maps', values: ['—', '—', '—', '✓'] },
+    { parameter: 'Время на объекте', values: ['~1,5 ч', '~1,5 ч', '~2,5 ч', 'по задаче'] },
+    { parameter: 'Передача файлов', values: ['от 24 ч', 'от 24 ч', 'от 24 ч', 'от 48 ч'] },
 ];
 
 const relatedServices: RelatedService[] = [
@@ -293,7 +309,7 @@ const relatedServices: RelatedService[] = [
     },
     {
         title: 'Reels и короткие видео для ресторанов',
-        href: '/reels',
+        href: '/reels-promo/reels-restaurant',
         text: 'Дрон показывает ресторан сверху, а Reels — живую энергию внутри.',
     },
     {
@@ -351,7 +367,7 @@ const faqItems: FaqItem[] = [
     {
         question: 'Можно ли снимать внутри ресторана?',
         answer:
-            'В ряде случаев — да. Для интерьеров используем FPV-камеру DJI Avata 2. Не каждое пространство подходит для полноценного fly-through, но формат обсуждаем заранее.',
+            'Да, для интерьеров используем FPV-камеру DJI Avata 2. Перед съёмкой оцениваем пространство и согласуем маршрут, чтобы результат получился точным.',
     },
     {
         question: 'Нужно ли закрывать ресторан на время съёмки?',
@@ -359,19 +375,19 @@ const faqItems: FaqItem[] = [
             'Обычно нет. Подбираем окно, которое минимально мешает работе: до открытия, в тихие часы или в согласованный слот.',
     },
     {
-        question: 'Для чего использовать этот материал, кроме Instagram?',
+        question: 'Где ещё можно использовать то, что мы снимем?',
         answer:
-            'Для сайта, Google Business Profile, рекламных объявлений, переписки с клиентами и организаторами мероприятий, а также презентаций venue.',
+            'На сайте, в Google Business Profile, в рекламных объявлениях, в переписке с клиентами и организаторами мероприятий, а также в презентации заведения.',
     },
     {
         question: 'Сколько стоит аэросъёмка ресторана в Тбилиси?',
         answer:
-            'Полёт обычным дроном снаружи — 250 ₾. Пролёт FPV-дроном внутри — 350 ₾. Полная съёмка за один визит — 500 ₾. Это съёмка без монтажа, сырые файлы. Готовый контент под ключ (монтаж, фото, видео для соцсетей) — от 900 ₾. К любому пакету можно добавить монтаж Reels (+100 ₾), ролик для сайта (+150 ₾), 360° панораму (+80 ₾) или обработку фотографий (+60 ₾).',
+            'Аэросъёмка с высоты — 250 ₾. Пролёт FPV-дроном внутри — 350 ₾. Полная съёмка за один визит — 500 ₾. В этих пакетах вы получаете фото и видео в 4K. Съёмка с монтажом и роликами под соцсети — от 900 ₾. К любому пакету можно добавить монтаж Reels (+150 ₾), ролик для сайта (+150 ₾) или 360° панораму (+80 ₾).',
     },
     {
         question: 'Что входит в финальную выдачу файлов?',
         answer:
-            'Hero video, минимум один вертикальный cut, обработанные стоп-кадры и структурированные папки под сайт, Reels и Google.',
+            'Основной ролик, короткие видео в вертикальном и горизонтальном формате, фотографии с цветокоррекцией — всё разложено по папкам: для сайта, соцсетей и Google.',
     },
     {
         question: 'Сколько времени занимает съёмка?',
@@ -398,13 +414,18 @@ const faqItems: FaqItem[] = [
         answer:
             'Да. Снимаем в Батуми, Кутаиси и других локациях Грузии по договорённости с учётом выезда.',
     },
+    {
+        question: 'В каких районах Тбилиси вы снимаете?',
+        answer:
+            'По всему городу: Старый Тбилиси, Мтацминда, Вера, Сабуртало, Ваке, Авлабари, Чугурети, Марджанишвили и другие районы. Также снимаем в Батуми, Кутаиси и Кахетии.',
+    },
 ];
 
 const seoAnswers: SeoAnswer[] = [
     {
         question: 'Сколько стоит съёмка ресторана дроном в Тбилиси?',
         answer:
-            'Полёт обычным дроном снаружи — 250 ₾. Пролёт FPV-дроном внутри — 350 ₾. Полная съёмка за один визит — 500 ₾. Это съёмка без монтажа, сырые файлы. Готовый контент под ключ (монтаж, фото, видео для соцсетей) — от 900 ₾. К любому пакету можно добавить монтаж Reels (+100 ₾), ролик для сайта (+150 ₾), 360° панораму (+80 ₾) или обработку фотографий (+60 ₾).',
+            'Аэросъёмка с высоты — 250 ₾. Пролёт FPV-дроном внутри — 350 ₾. Полная съёмка за один визит — 500 ₾. В этих пакетах вы получаете фото и видео в 4K, готовые к использованию. Съёмка с монтажом, роликами и фото под соцсети — от 900 ₾ (передача от 48 часов, монтаж включён). К любому пакету можно добавить монтаж Reels (+150 ₾), ролик для сайта (+150 ₾) или 360° панораму (+80 ₾).',
     },
     {
         question: 'Нужны ли разрешения для съёмки дроном над рестораном в Тбилиси?',
@@ -414,12 +435,12 @@ const seoAnswers: SeoAnswer[] = [
     {
         question: 'Как дрон-съёмка помогает ресторану привлекать гостей?',
         answer:
-            'Оно отвечает на вопрос «а что там вообще?» ещё до визита: показывает фасад, вход, террасу и зал в движении. Для ресторанов со скрытыми входами или необычной локацией в Тбилиси это особенно важно — гость понимает, что его ждёт, и решается прийти.',
+            'Видеосъёмка ресторана дроном отвечает на вопрос гостя «а что там вообще?» ещё до визита: показывает фасад, вход, террасу и зал в движении. Для ресторанов со скрытыми входами или необычной локацией в Тбилиси это особенно важно — гость понимает, что его ждёт, и решается прийти.',
     },
     {
         question: 'Можно ли снимать дроном внутри ресторана?',
         answer:
-            'Если пространство позволяет, мы делаем пролёт компактной камерой по залу. Не каждый интерьер подходит — это зависит от высоты потолков, планировки и безопасности. На осмотре мы оцениваем, возможен ли такой формат.',
+            'Да, для интерьеров используем компактную FPV-камеру, которая пролетает по залу. Перед съёмкой приезжаем на осмотр — оцениваем высоту потолков, планировку и безопасность, и согласуем маршрут.',
     },
     {
         question: 'Что получает ресторан после съёмки?',
@@ -427,9 +448,50 @@ const seoAnswers: SeoAnswer[] = [
             'Основной ролик для сайта, короткие видео для Instagram / TikTok / Stories, обработанные фотографии и видео для карточки в Google Maps. Всё в папке, разложенной по назначению. Формат и количество зависят от выбранного пакета.',
     },
     {
-        question: 'Сколько времени занимает съёмка и когда будут готовы материалы?',
+        question: 'Сколько времени занимает съёмка и когда будут готовы файлы?',
         answer:
-            'Съёмка занимает от 1 до 3 часов в зависимости от задачи. Видеофайлы без монтажа — от 24 часов. Готовый контент с монтажом и обработкой — от 3 до 7 рабочих дней.',
+            'Съёмка занимает от 1 до 3 часов в зависимости от задачи. Файлы в 4K без монтажа — от 24 часов. Готовые ролики с монтажом и обработкой — от 3 до 7 рабочих дней.',
+    },
+    {
+        question: 'Подходит ли дрон-съёмка для сезонного запуска или открытия ресторана?',
+        answer:
+            'Да, это один из самых частых сценариев. Перед сезоном или после ремонта мы снимаем за один визит полный комплект: аэровидео, FPV-пролёт, фото и нарезки для соцсетей. Готовые файлы можно сразу использовать в рекламе, на сайте и в Google Maps — контент появляется вместе с запуском.',
+    },
+    {
+        question: 'Вы снимаете только рестораны или также кафе и бары?',
+        answer:
+            'Снимаем любые заведения: рестораны, кафе, бары, винные бары, rooftop-площадки и площадки для мероприятий. Формат съёмки адаптируем под размер и особенности пространства — от небольшого кафе с уютным двором до крупного ресторана с несколькими залами.',
+    },
+];
+
+const shortQA: { q: string; a: string }[] = [
+    {
+        q: 'Сколько стоит аэросъёмка ресторана в Тбилиси?',
+        a: 'От 250 ₾ за съёмку с воздуха. Полная съёмка снаружи и внутри — 500 ₾. С монтажом и готовыми роликами — от 900 ₾.',
+    },
+    {
+        q: 'Что входит в съёмку ресторана дроном?',
+        a: 'Аэровидео и аэрофото в 4K, FPV-пролёт по залу, фотографии с цветокоррекцией. В пакете с монтажом — готовые ролики под соцсети и Google Maps.',
+    },
+    {
+        q: 'Можно ли снимать дроном внутри ресторана?',
+        a: 'Да. Для интерьеров используем компактный FPV-дрон DJI Avata 2. Маршрут согласуем заранее.',
+    },
+    {
+        q: 'Сколько времени занимает съёмка ресторана?',
+        a: 'От 1,5 до 2,5 часов на объекте. Готовые файлы без монтажа — от 24 часов, с монтажом — 3–7 рабочих дней.',
+    },
+    {
+        q: 'Нужно ли разрешение на полёт дрона в Тбилиси?',
+        a: 'Да, полёты регулирует GCAA. Мы берём все согласования на себя.',
+    },
+    {
+        q: 'Для чего ресторану дрон-видео?',
+        a: 'Показать гостю пространство до визита: фасад, вход, террасу, зал. Видео работает на сайте, в соцсетях и карточке Google Maps.',
+    },
+    {
+        q: 'Вы снимаете только в Тбилиси?',
+        a: 'Нет. Также снимаем в Батуми, Кутаиси, Кахетии и других регионах Грузии.',
     },
 ];
 
@@ -481,7 +543,7 @@ const faqSchema = {
             name: 'Сколько стоит аэросъёмка ресторана в Тбилиси?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Полёт обычным дроном снаружи — 250 ₾. Пролёт FPV-дроном внутри — 350 ₾. Полная съёмка за один визит — 500 ₾. Это съёмка без монтажа, сырые файлы. Готовый контент под ключ (монтаж, фото, видео для соцсетей) — от 900 ₾. К любому пакету можно добавить монтаж Reels (+100 ₾), ролик для сайта (+150 ₾), 360° панораму (+80 ₾) или обработку фотографий (+60 ₾).',
+                text: 'Аэросъёмка с высоты — 250 ₾. Пролёт FPV-дроном внутри — 350 ₾. Полная съёмка за один визит — 500 ₾. Фото и видео в 4K. Съёмка с монтажом под соцсети — от 900 ₾. К любому пакету можно добавить монтаж Reels (+150 ₾), ролик для сайта (+150 ₾) или 360° панораму (+80 ₾).',
             },
         },
         {
@@ -497,7 +559,7 @@ const faqSchema = {
             name: 'Можно ли снимать внутри ресторана?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'В ряде случаев — да. Для интерьеров используется FPV-дрон DJI Avata 2, способный работать в закрытых помещениях. Маршрут согласовывается заранее.',
+                text: 'Да, для интерьеров используем FPV-камеру DJI Avata 2. Перед съёмкой оцениваем пространство и согласуем маршрут, чтобы результат получился точным.',
             },
         },
         {
@@ -537,7 +599,7 @@ const faqSchema = {
             name: 'Что именно получаю после съёмки?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Hero video, вертикальные cuts для Reels и Stories, обработанные фотографии, организованную папку файлов по назначению (сайт, Instagram, Google Business Profile). Всё готово к публикации.',
+                text: 'Основной ролик, короткие видео в вертикальном и горизонтальном формате, фотографии с цветокоррекцией. Файлы разложены по назначению: сайт, соцсети, Google Business Profile. Всё готово к публикации.',
             },
         },
         {
@@ -564,6 +626,30 @@ const faqSchema = {
                 text: 'DJI Air 3S для внешней аэросъёмки (4K) и DJI Avata 2 для FPV-элементов в интерьере. Все материалы проходят цветокоррекцию перед выдачей.',
             },
         },
+        {
+            '@type': 'Question',
+            name: 'В каких районах Тбилиси вы снимаете рестораны?',
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'По всему городу: Старый Тбилиси, Мтацминда, Вера, Сабуртало, Ваке, Авлабари, Чугурети, Марджанишвили и другие районы. Также работаем в Батуми, Кутаиси и Кахетии.',
+            },
+        },
+        {
+            '@type': 'Question',
+            name: 'Подходит ли дрон-съёмка для сезонного запуска или открытия ресторана?',
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Да. За один визит снимаем полный комплект: аэровидео, FPV-пролёт, фото и нарезки для соцсетей. Готовые файлы можно использовать сразу — в рекламе, на сайте и в Google Maps.',
+            },
+        },
+        {
+            '@type': 'Question',
+            name: 'Вы снимаете только рестораны или также кафе и бары?',
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Снимаем любые заведения: рестораны, кафе, бары, винные бары, rooftop-площадки и площадки для мероприятий. Формат адаптируем под размер и особенности пространства.',
+            },
+        },
     ],
 };
 
@@ -583,15 +669,28 @@ const serviceSchema = {
             addressCountry: 'GE',
         },
     },
-    areaServed: {
-        '@type': 'Place',
-        name: 'Тбилиси, Грузия',
-    },
+    areaServed: [
+        {
+            '@type': 'City',
+            name: 'Tbilisi',
+            containedInPlace: { '@type': 'Country', name: 'Georgia' },
+        },
+        {
+            '@type': 'City',
+            name: 'Batumi',
+            containedInPlace: { '@type': 'Country', name: 'Georgia' },
+        },
+        {
+            '@type': 'City',
+            name: 'Kutaisi',
+            containedInPlace: { '@type': 'Country', name: 'Georgia' },
+        },
+    ],
     offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'GEL',
         lowPrice: '250',
-        highPrice: '2200',
+        highPrice: '1300',
         offerCount: '4',
     },
     serviceType: 'Drone Photography and Videography',
@@ -622,17 +721,46 @@ const localBusinessSchema = {
     sameAs: ['https://www.instagram.com/breusmedia'],
 };
 
+const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+        {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Главная',
+            item: 'https://breus.media',
+        },
+        {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Дрон-услуги',
+            item: 'https://breus.media/drone-services',
+        },
+        {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Аэросъёмка ресторанов',
+            item: 'https://breus.media/drone-services/drone-restaurants',
+        },
+    ],
+};
+
 export const metadata: Metadata = {
     title: 'Аэросъёмка ресторана в Тбилиси — дрон + FPV | Breus Media',
     description:
-        'Аэросъёмка и FPV-съёмка ресторанов в Тбилиси от 250 ₾. Съёмка снаружи, пролёт внутри и готовый контент под ключ для сайта, Reels и Google Maps.',
+        'Аэросъёмка и FPV-съёмка ресторанов, кафе и баров в Тбилиси от 250 ₾. Съёмка снаружи, пролёт внутри и готовый контент под ключ для сайта, Reels и Google Maps.',
     alternates: {
         canonical: 'https://breus.media/drone-services/drone-restaurants',
+        languages: {
+            ru: 'https://breus.media/drone-services/drone-restaurants',
+            en: 'https://breus.media/drone-services/drone-restaurants/en',
+        },
     },
     openGraph: {
         title: 'Аэросъёмка ресторана в Тбилиси | Breus Media',
         description:
-            'Аэросъёмка и FPV-съёмка ресторанов в Тбилиси от 250 ₾. Снаружи, внутри и под ключ: материалы для сайта, Reels и Google Maps.',
+            'Аэросъёмка и FPV-съёмка ресторанов, кафе и баров в Тбилиси от 250 ₾. Снаружи, внутри и под ключ: материалы для сайта, Reels и Google Maps.',
         url: 'https://breus.media/drone-services/drone-restaurants',
         siteName: 'Breus Media',
         locale: 'ru_RU',
@@ -646,6 +774,12 @@ export const metadata: Metadata = {
             },
         ],
     },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Аэросъёмка ресторана в Тбилиси | Breus Media',
+        description: 'Аэросъёмка и FPV-съёмка ресторанов, кафе и баров в Тбилиси от 250 ₾. Съёмка, монтаж и готовый контент для сайта, соцсетей и Google Maps.',
+        images: ['https://breus.media/og/drone-restaurants.jpg'],
+    },
 };
 
 export default function DroneRestaurantsPage() {
@@ -656,6 +790,10 @@ export default function DroneRestaurantsPage() {
             <SmartHeader
                 transparent={true}
                 isLanding={false}
+                languageLinks={{
+                    RU: '/drone-services/drone-restaurants',
+                    EN: '/drone-services/drone-restaurants/en',
+                }}
                 sectionLinks={[
                     { label: 'Процесс', href: '#process' },
                     { label: 'Цены', href: '#pricing' },
@@ -667,40 +805,55 @@ export default function DroneRestaurantsPage() {
             {/* ── HERO ─────────────────────────────────────────────────────────────── */}
             <section
                 id="drone-restaurants-hero"
-                className="relative isolate overflow-hidden border-b border-[#2a2a2a] bg-[#080808] pb-24 pt-36 md:pb-28 md:pt-44"
+                className="relative isolate overflow-hidden border-b border-[#2a2a2a] bg-[#080808] pb-14 pt-40 md:pb-16 md:pt-48"
             >
                 <HeroSlideshow />
                 <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,210,63,0.26),transparent_42%),linear-gradient(180deg,rgba(8,8,8,0.35),rgba(8,8,8,0.95)_70%,#080808)]" />
                 <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FFD23F]/60 to-transparent" />
 
                 <div className="container relative mx-auto px-6">
-                    <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.1fr)_360px]">
+                    <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_320px]">
                         <div>
-                            <p className="mb-5 inline-flex rounded-full border border-[#FFD23F]/35 bg-[#111111]/80 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">
-                                Restaurant Drone Filming in Tbilisi, Georgia
-                            </p>
-
-                            <h1 className="max-w-5xl text-4xl font-bold leading-[0.94] md:text-6xl lg:text-7xl">
+                            <h1 className="max-w-none text-4xl font-bold leading-[0.94] md:text-6xl lg:text-7xl">
                                 Аэросъёмка ресторана в Тбилиси
                             </h1>
 
-                            <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/78 md:text-xl">
-                                Дрон и FPV — чтобы гость увидел вашу атмосферу раньше, чем переступит порог.
+                            <p className="mt-4 max-w-none text-[17px] leading-[1.4] text-white/85 md:text-[21px]">
+                                В Тбилиси рестораны всё чаще конкурируют не только кухней — дворы, rooftop-террасы,
+                                виды на город и сам маршрут гостя внутри заведения стали частью продукта.
                             </p>
 
-                            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-white/70 md:text-lg">
-                                Тбилисские рестораны всё чаще конкурируют визуальным образом: дворами, rooftop-зонами,
-                                видами и маршрутом внутри. Когда это сложно передать словами и одной фотографией, дрон и
-                                FPV-камера показывают всё за несколько секунд видео. Мы снимаем экстерьер, подачу места
-                                и атмосферу так, как гость воспринимает это в реальности.
-                            </p>
+                            <div className="mt-4 max-w-none text-[15px] leading-[1.34] text-white/74 md:text-[17px] lg:columns-2 lg:gap-8">
+                                <p className="mb-3 break-inside-avoid">
+                                    Фотографии и видео уже есть у всех, но они ограничены пространством внутри. А дрон
+                                    меняет правила.
+                                </p>
 
-                            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/62 md:text-base">
-                                Готовые материалы подходят для сайта, Instagram, Google Business Profile и переписки с
-                                клиентами.
-                            </p>
+                                <p className="mb-3 break-inside-avoid">
+                                    Аэрофото и аэровидео с высоты показывают масштаб: террасу на крыше, двор с зеленью,
+                                    расположение в квартале — гость понимает, куда он едет, ещё до бронирования.
+                                </p>
 
-                            <div className="mt-10 flex flex-wrap gap-3">
+                                <p className="mb-3 break-inside-avoid">
+                                    FPV-дрон идёт дальше — он пролетает сквозь арку, скользит над столами,
+                                    приближается к подаче блюда и поднимается к панораме города за одно непрерывное
+                                    движение. Несколько секунд — и человек видит ваше место так, как почувствует его
+                                    вживую: пространство, атмосферу, свет, детали.
+                                </p>
+
+                                <p className="mb-3 break-inside-avoid">
+                                    Мы снимаем, монтируем и запускаем рекламу — полный цикл. А также передаём готовое,
+                                    что подходит для Instagram, TikTok, Facebook, Google Maps, Google Business Profile
+                                    и вашего сайта.
+                                </p>
+
+                                <p className="mb-0 break-inside-avoid text-white/84">
+                                    Один съёмочный день — и у вас есть визуальная база, которая работает на вас год и
+                                    дольше.
+                                </p>
+                            </div>
+
+                            <div className="mt-7 flex flex-wrap gap-3">
                                 <a
                                     href="#contact"
                                     className="inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
@@ -721,7 +874,7 @@ export default function DroneRestaurantsPage() {
                             <div className="mt-5 space-y-4">
                                 <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-4">
                                     <p className="text-2xl font-bold text-white">от 250 ₾</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-white/65">Полёт + видеофайлы. Монтаж — отдельно.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-white/65">Ваш ресторан глазами гостя, ещё до визита</p>
                                 </div>
                                 <div className="grid grid-cols-2 gap-3">
                                     <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-4">
@@ -734,9 +887,9 @@ export default function DroneRestaurantsPage() {
                                     </div>
                                 </div>
                                 <ul className="space-y-2 text-sm leading-relaxed text-white/72">
-                                    <li>Видео в 4K — чёткая картинка на любом экране</li>
-                                    <li>Один визит — весь контент для сайта и соцсетей</li>
-                                    <li>Разрешения на полёт включены</li>
+                                    <li>Экстерьер, интерьер, атмосфера — всё в 4K</li>
+                                    <li>Снимаем и монтируем — остаётся только выложить</li>
+                                    <li>Один выезд — и видео работает на вас годами</li>
                                 </ul>
                             </div>
                         </aside>
@@ -756,32 +909,16 @@ export default function DroneRestaurantsPage() {
                         </p>
                     </div>
                     <div className="mt-10 overflow-hidden rounded-[20px] border border-[#2a2a2a] bg-[#141414]">
-                        <div className="relative aspect-video w-full">
-                            <img
-                                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80"
-                                alt="Аэросъёмка ресторана в Тбилиси — пример работы Breus Media"
-                                className="h-full w-full object-cover"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/60 bg-black/50">
-                                    <svg className="ml-1 h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div className="absolute bottom-4 left-4 rounded-full bg-black/60 px-3 py-1 text-xs text-white/70">
-                                Видео появится здесь
-                            </div>
-                        </div>
+                        <FormatExamplesSlideshow />
                     </div>
                 </div>
             </section>
 
-            {/* ── С КАКИМИ ПРОБЛЕМАМИ ПРИХОДЯТ ─────────────────────────────────────── */}
+            {/* ── ЧТО ОБЫЧНО ГОВОРЯТ ПЕРЕД СЪЁМКОЙ ─────────────────────────────────── */}
             <section id="problems" className="border-b border-[#2a2a2a] bg-[#080808] py-24">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">С какими проблемами приходят к нам</h2>
+                        <h2 className="text-3xl font-bold md:text-4xl">Что обычно говорят перед съёмкой?</h2>
                     </div>
 
                     <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -916,36 +1053,17 @@ export default function DroneRestaurantsPage() {
                 </div>
             </section>
 
-            {/* VIDEO_SLOT — три формата съёмки */}
+            {/* ── ПРИМЕРЫ ПО ФОРМАТАМ ────────────────────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-16">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
                         <h2 className="text-2xl font-bold md:text-3xl">Примеры по форматам</h2>
                     </div>
                     <div className="mt-8 grid gap-5 md:grid-cols-3">
-                        {[
-                            {
-                                label: 'Снаружи с воздуха',
-                                img: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80',
-                                alt: 'Аэросъёмка ресторана снаружи с воздуха',
-                            },
-                            {
-                                label: 'Пролёт внутри (FPV)',
-                                img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
-                                alt: 'FPV-съёмка внутри ресторана',
-                            },
-                            {
-                                label: 'Готовый ролик',
-                                img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
-                                alt: 'Готовый видеоролик для ресторана',
-                            },
-                        ].map((item) => (
-                            <div key={item.label} className="overflow-hidden rounded-[16px] border border-[#2a2a2a] bg-[#141414]">
+                        {formatExampleCards.map((item, index) => (
+                            <div key={index} className="overflow-hidden rounded-[16px] border border-[#2a2a2a] bg-[#141414]">
                                 <div className="relative aspect-video">
-                                    <img src={item.img} alt={item.alt} className="h-full w-full object-cover" />
-                                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-4">
-                                        <p className="text-sm font-bold text-white">{item.label}</p>
-                                    </div>
+                                    <img src={item.image.src} alt={item.alt} className="h-full w-full object-cover" />
                                 </div>
                             </div>
                         ))}
@@ -1005,10 +1123,14 @@ export default function DroneRestaurantsPage() {
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
                         <h2 className="text-3xl font-bold md:text-4xl">Пакеты и цены</h2>
-                        <p className="mt-4 leading-relaxed text-white/70">Цены фиксированные, в грузинских лари (₾). Без скрытых доплат.</p>
+                        <p className="mt-4 leading-relaxed text-white/70">
+                            Цены фиксированные, в грузинских лари (₾). Без скрытых доплат. Выбирайте пакет под свою
+                            задачу — от базовой съёмки до полного цикла.
+                        </p>
                         <p className="mt-2 text-sm leading-relaxed text-white/55">
-                            Первые три пакета — это съёмка без монтажа: приезжаем, снимаем, отдаём файлы. Четвёртый —
-                            готовый результат под ключ. К любому пакету можно добавить монтаж, фото или 360°.
+                            Все фото и видео вы получаете в 4K — готовыми к использованию. К любому пакету можно
+                            добавить монтаж под соцсети, сайт и Google Maps, музыкальное сопровождение, субтитры на
+                            нужных языках и панорамы 360°.
                         </p>
                     </div>
 
@@ -1016,33 +1138,33 @@ export default function DroneRestaurantsPage() {
                         {pricingCards.map((card) => (
                             <article
                                 key={card.title}
-                                className={`flex flex-col rounded-[20px] border p-6 ${
+                                className={`flex flex-col rounded-[20px] border p-5 md:p-6 ${
                                     card.popular
                                         ? 'border-[#FFD23F]/55 bg-[linear-gradient(180deg,rgba(255,210,63,0.1),rgba(20,20,20,1)_28%)]'
                                         : 'border-[#2a2a2a] bg-[#141414]'
                                 }`}
                             >
-                                <div className="flex items-start justify-between gap-4">
-                                    <div>
-                                        <h3 className="text-xl font-bold text-white">{card.title}</h3>
-                                        <p className="mt-2 text-sm text-white/64">{card.subtitle}</p>
-                                    </div>
+                                <div>
+                                    <h3 className="text-lg font-bold text-white md:text-xl">{card.title}</h3>
+                                    <p className="mt-2 text-xs text-white/64 md:text-sm">{card.subtitle}</p>
+                                </div>
+                                <div className="mt-5 flex items-center gap-2 md:mt-6 md:gap-3">
+                                    <p className="text-2xl font-bold text-[#FFD23F] md:text-3xl">{card.price}</p>
                                     {card.popular ? (
                                         <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/12 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">
                                             Выгодно
                                         </span>
                                     ) : null}
                                 </div>
-                                <p className="mt-6 text-3xl font-bold text-[#FFD23F]">{card.price}</p>
-                                <ul className="mt-6 flex-1 space-y-3 text-sm leading-relaxed text-white/72">
+                                <ul className="mt-5 flex-1 space-y-2.5 text-[13px] leading-relaxed text-white/72 md:mt-6 md:space-y-3 md:text-sm">
                                     {card.items.map((item) => (
                                         <li key={item}>✓ {item}</li>
                                     ))}
                                 </ul>
-                                {card.note && <p className="mt-5 text-sm leading-relaxed text-white/58">{card.note}</p>}
+                                {card.note && <p className="mt-4 text-xs leading-relaxed text-white/58 md:mt-5 md:text-sm">{card.note}</p>}
                                 <a
                                     href="#contact"
-                                    className="mt-6 inline-flex items-center justify-center rounded-[10px] border border-white/20 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F] hover:text-[#FFD23F]"
+                                    className="mt-5 inline-flex items-center justify-center rounded-[10px] border border-white/20 px-5 py-2 text-[11px] font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F] hover:text-[#FFD23F] md:mt-6 md:py-2.5 md:text-xs"
                                 >
                                     Обсудить этот пакет →
                                 </a>
@@ -1062,9 +1184,136 @@ export default function DroneRestaurantsPage() {
                                 </li>
                             ))}
                         </ul>
-                        <p className="mt-5 text-sm leading-relaxed text-white/45">
-                            Из одной съёмки можем собрать материалы под сайт, соцсети, Google Business Profile и презентацию venue.
-                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── СРАВНЕНИЕ ПАКЕТОВ — ТАБЛИЦА ────────────────────────────────────── */}
+            <section className="border-b border-[#2a2a2a] bg-[#080808] py-16">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-3xl">
+                        <h2 className="text-2xl font-bold md:text-3xl">Сравнение пакетов</h2>
+                    </div>
+                    <div className="mt-8 space-y-3 md:hidden">
+                        {comparisonRows.map((row) => (
+                            <article key={row.parameter} className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-4">
+                                <p className="text-sm font-semibold text-white">{row.parameter}</p>
+                                <div className="mt-3 grid grid-cols-2 gap-2">
+                                    {row.values.map((value, index) => (
+                                        <div key={`${row.parameter}-${comparisonPackageLabels[index]}`} className="rounded-[10px] border border-[#2a2a2a] bg-[#0D0D0D] px-3 py-2">
+                                            <p className="text-[10px] uppercase tracking-[0.14em] text-white/55">{comparisonPackageLabels[index]}</p>
+                                            <p className={`mt-1 text-sm ${index === 2 ? 'font-semibold text-[#FFD23F]' : 'text-white/80'}`}>{value}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                    <div className="mt-8 hidden overflow-x-auto md:block">
+                        <table className="w-full min-w-[640px] text-sm text-white/80">
+                            <thead>
+                                <tr className="border-b border-[#2a2a2a] text-left text-xs uppercase tracking-[0.16em] text-white/50">
+                                    <th className="py-4 pr-4">Параметр</th>
+                                    <th className="py-4 px-4">Полёт снаружи</th>
+                                    <th className="py-4 px-4">FPV внутри</th>
+                                    <th className="py-4 px-4 text-[#FFD23F]">Полная съёмка</th>
+                                    <th className="py-4 pl-4">Готовый результат</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-[#2a2a2a]">
+                                <tr>
+                                    <td className="py-3 pr-4 font-medium text-white">Цена</td>
+                                    <td className="py-3 px-4">250 ₾</td>
+                                    <td className="py-3 px-4">350 ₾</td>
+                                    <td className="py-3 px-4 font-semibold text-[#FFD23F]">500 ₾</td>
+                                    <td className="py-3 pl-4">от 900 ₾</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-3 pr-4 font-medium text-white">Аэровидео 4K</td>
+                                    <td className="py-3 px-4">✓</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 px-4">✓</td>
+                                    <td className="py-3 pl-4">✓</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-3 pr-4 font-medium text-white">FPV-пролёт внутри</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 px-4">✓</td>
+                                    <td className="py-3 px-4">✓</td>
+                                    <td className="py-3 pl-4">✓</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-3 pr-4 font-medium text-white">Фото</td>
+                                    <td className="py-3 px-4">10+</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 px-4">10+</td>
+                                    <td className="py-3 pl-4">20+</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-3 pr-4 font-medium text-white">Монтаж</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 pl-4">✓</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-3 pr-4 font-medium text-white">Ролики под соцсети</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 pl-4">✓</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-3 pr-4 font-medium text-white">Видео для Google Maps</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 px-4">—</td>
+                                    <td className="py-3 pl-4">✓</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-3 pr-4 font-medium text-white">Время на объекте</td>
+                                    <td className="py-3 px-4">~1,5 ч</td>
+                                    <td className="py-3 px-4">~1,5 ч</td>
+                                    <td className="py-3 px-4">~2,5 ч</td>
+                                    <td className="py-3 pl-4">по задаче</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-3 pr-4 font-medium text-white">Передача файлов</td>
+                                    <td className="py-3 px-4">от 24 ч</td>
+                                    <td className="py-3 px-4">от 24 ч</td>
+                                    <td className="py-3 px-4">от 24 ч</td>
+                                    <td className="py-3 pl-4">от 48 ч</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── ПОМОЩНИК ВЫБОРА ПАКЕТА ─────────────────────────────────────────── */}
+            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-14">
+                <div className="container mx-auto px-6">
+                    <div className="mx-auto max-w-3xl">
+                        <h3 className="text-xl font-bold md:text-2xl">Как выбрать пакет</h3>
+                        <div className="mt-6 space-y-3 text-sm leading-relaxed text-white/76">
+                            <p>
+                                → Нужна только съёмка с воздуха, монтаж сделаете сами —{' '}
+                                <strong className="text-white">Полёт снаружи, 250 ₾</strong>
+                            </p>
+                            <p>
+                                → Хотите показать зал изнутри одним пролётом —{' '}
+                                <strong className="text-white">FPV внутри, 350 ₾</strong>
+                            </p>
+                            <p>
+                                → Нужно и снаружи, и внутри за один визит —{' '}
+                                <strong className="text-white">Полная съёмка, 500 ₾</strong>
+                            </p>
+                            <p>
+                                → Хотите получить готовые ролики, фото и видео для Google Maps —{' '}
+                                <strong className="text-white">Готовый результат, от 900 ₾</strong>
+                            </p>
+                            <p className="pt-2 text-white/55">Не уверены? Напишите — подберём формат за 5 минут.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1203,6 +1452,38 @@ export default function DroneRestaurantsPage() {
                 </div>
             </section>
 
+            {/* ── ГДЕ МЫ СНИМАЕМ — РАЙОНЫ ТБИЛИСИ ──────────────────────────────── */}
+            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-3xl">
+                        <h2 className="text-3xl font-bold md:text-4xl">Где мы снимаем в Тбилиси</h2>
+                        <p className="mt-4 leading-relaxed text-white/70">
+                            Работаем по всему городу. Знаем особенности каждого района — свет, застройку, ограничения полётов и лучшие точки для съёмки.
+                        </p>
+                    </div>
+                    <div className="mt-10 grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+                        {[
+                            'Старый Тбилиси',
+                            'Мтацминда',
+                            'Вера',
+                            'Сабуртало',
+                            'Ваке',
+                            'Диди Дигоми',
+                            'Авлабари',
+                            'Чугурети',
+                            'Марджанишвили',
+                            'Орбелиани',
+                            'Лиси',
+                            'Тбилиси за пределами центра',
+                        ].map((district) => (
+                            <div key={district} className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] px-5 py-4 text-sm text-white/76">
+                                {district}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* ── ЧТО СДЕЛАТЬ ПРЯМО СЕЙЧАС — БЕСПЛАТНО ────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
                 <div className="container mx-auto px-6">
@@ -1241,18 +1522,47 @@ export default function DroneRestaurantsPage() {
             {/* ── ПОДРОБНЫЕ ОТВЕТЫ НА ЧАСТЫЕ ВОПРОСЫ ──────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
                 <div className="container mx-auto px-6">
-                    <div className="max-w-4xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Подробные ответы на частые вопросы</h2>
-                    </div>
+                    <details className="group max-w-4xl">
+                        <summary className="cursor-pointer list-none">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-3xl font-bold md:text-4xl">Подробные ответы на частые вопросы</h2>
+                                <span className="ml-4 shrink-0 text-2xl text-[#FFD23F] transition-transform group-open:rotate-45">+</span>
+                            </div>
+                            <p className="mt-3 text-sm text-white/50">Нажмите, чтобы развернуть</p>
+                        </summary>
 
-                    <div className="mt-10 space-y-5">
-                        {seoAnswers.map((item) => (
-                            <article key={item.question} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">{item.question}</h3>
-                                <p className="mt-4 text-sm leading-relaxed text-white/74">{item.answer}</p>
-                            </article>
-                        ))}
-                    </div>
+                        <div className="mt-10 space-y-5">
+                            {seoAnswers.map((item) => (
+                                <article key={item.question} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                    <h3 className="text-lg font-bold text-white">{item.question}</h3>
+                                    <p className="mt-4 text-sm leading-relaxed text-white/74">{item.answer}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            {/* ── КОРОТКИЕ ОТВЕТЫ ДЛЯ AI-ПОИСКА ─────────────────────────────────── */}
+            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
+                <div className="container mx-auto px-6">
+                    <details className="group max-w-3xl">
+                        <summary className="cursor-pointer list-none">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-2xl font-bold md:text-3xl">Коротко о главном</h2>
+                                <span className="ml-4 shrink-0 text-2xl text-[#FFD23F] transition-transform group-open:rotate-45">+</span>
+                            </div>
+                            <p className="mt-3 text-sm text-white/50">Нажмите, чтобы развернуть</p>
+                        </summary>
+                        <div className="mt-8 space-y-5">
+                            {shortQA.map((item) => (
+                                <div key={item.q}>
+                                    <p className="font-bold text-white">{item.q}</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-white/72">{item.a}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </details>
                 </div>
             </section>
 
@@ -1287,8 +1597,8 @@ export default function DroneRestaurantsPage() {
                 <div className="container mx-auto px-6">
                     <div className="mx-auto max-w-3xl text-center">
                         <p className="text-lg leading-relaxed text-white/78">
-                            Если вы дочитали до этого места, значит вопрос с визуальным контентом для ресторана
-                            актуален. Следующий шаг — расскажите о заведении, и мы предложим конкретный формат.
+                            Если вы дочитали до этого места, значит вопрос с визуальным контентом актуален.
+                            Заказать съёмку ресторана дроном в Тбилиси — просто: расскажите о заведении, и мы предложим конкретный формат.
                         </p>
                         <a
                             href="#contact"
@@ -1357,6 +1667,7 @@ export default function DroneRestaurantsPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
         </main>
     );
 }

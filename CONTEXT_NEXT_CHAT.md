@@ -22,6 +22,37 @@
 - Ветка: main
 - Последний кодовый коммит: `footer: remove unavailable menu items` (07.04.2026) — `components/drone/DroneFooterStitch.tsx`
 
+✅ drone-restaurants Perplexity audit fixes (09.04.2026) — `app/drone-services/drone-restaurants/page.tsx`
+  - Alt-теги трёх изображений formatExampleCards заменены на уникальные описательные
+  - serviceSchema highPrice изменён с 2200 на 1300 (900 + все аддоны)
+  - Блоки seoAnswers и shortQA обёрнуты в <details> — визуально свёрнуты, HTML рендерится для SEO
+  - В seoAnswers добавлена фраза «видеосъёмка ресторана дроном» (ответ про привлечение гостей)
+  - В PRE-CONTACT CTA добавлена фраза «заказать съёмку ресторана дроном в Тбилиси»
+  - Build: npm run build — ✅ clean
+
+✅ drone-hotels-tourism visual/text parity with drone-restaurants (09.04.2026) — `app/drone-hotels-tourism/page.tsx`, `app/drone-services/drone-restaurants/page.tsx`, `app/drone-services/drone-restaurants/page.en.tsx`
+  - В hero отеля удалён бейдж `Hotels & Tourism Drone Content`, заголовок обновлён на `Аэросъёмка...`
+  - Hero copy на отеле обновлён (новые абзацы + разделение длинного текста на отдельные параграфы)
+  - Карточка `Коротко` в hero отеля обновлена под новый текст и тайминги
+  - На отеле добавлен блок `Как это выглядит` со слайдером и блок `Примеры по форматам` после `Что вы получаете`
+  - Отель переключён на те же изображения, что ресторан: `services-images/drone-restaurants/final/1.png`, `2.png`, `3.png`
+  - Заголовок секции проблем унифицирован:
+    - RU (restaurant + hotel): `Что обычно говорят перед съёмкой?`
+    - EN (restaurant): `What do people usually say before filming?`
+  - В секции `Что снимаем — и какую задачу это решает` на отеле обновлён текст и добавлены 5 карточек-результатов (как в ресторане)
+  - В секции `Что вы получаете` на отеле блок файлов переведён в карточный формат `Как устроены файлы` (как в ресторане)
+  - Build: `npm run build` ✅ clean
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+
+✅ drone-restaurants mobile pricing UX optimization (09.04.2026) — `app/drone-services/drone-restaurants/page.tsx`
+  - В `Сравнение пакетов` добавлен отдельный мобильный режим без горизонтального скролла (`md:hidden`): компактные карточки-матрицы по каждому параметру
+  - Десктопная таблица сохранена без изменений (`md:block`)
+  - В `Пакеты и цены` карточки на мобильном уплотнены примерно на 10% по высоте:
+    - уменьшены mobile padding/spacing
+    - снижены mobile размеры цены/подписей/notes/кнопки
+  - Build: `npm run build` ✅ clean
+  - Сопутствующие контекстные файлы синхронизированы: `CONTEXT_NEXT_CHAT.md`, `CHANGELOG_ARCHIVE.md`
+
 ✅ gazeta mobile rail touch-action handoff fix (08.04.2026) — `components/gazeta/NichesStack.tsx`
   - На контейнер горизонтального rail карточек с `servicesRailRef` добавлен inline style `touchAction: "pan-x"`.
   - Фикс ограничен мобильной rail-зоной через `useMobileHorizontalServicesRail`; desktop-поведение и non-rail ветка не менялись.

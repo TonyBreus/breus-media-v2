@@ -1,6 +1,67 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-09 (drone-restaurants Perplexity audit fixes)
+### Session Summary
+- Точечные SEO-правки по результатам аудита Perplexity: alt-теги, schema highPrice, визуальное сворачивание нижних FAQ-слоёв, добавление коммерческих ключевых фраз.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - formatExampleCards: 3 alt-тега заменены на уникальные описательные
+  - serviceSchema.offers.highPrice: 2200 → 1300
+  - Секция seoAnswers обёрнута в `<details>` с summary
+  - Секция shortQA обёрнута в `<details>` с summary
+  - seoAnswers: в ответ «Как дрон-съёмка помогает» добавлено «Видеосъёмка ресторана дроном»
+  - PRE-CONTACT CTA: добавлена фраза «Заказать съёмку ресторана дроном в Тбилиси»
+- `CONTEXT_NEXT_CHAT.md` — запись добавлена
+- `CHANGELOG_ARCHIVE.md` — эта запись добавлена
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
+## 2026-04-09 (drone-hotels parity sync + restaurant mobile pricing UX)
+### Session Summary
+- Страница отеля приведена к визуальной логике ресторана: синхронизированы hero-слои, блоки форматов, карточные секции и текстовые формулировки.
+- Для restaurant pricing comparison добавлен мобильный режим без horizontal scroll.
+- Карточки `Пакеты и цены` на ресторане уплотнены по высоте на мобильных экранах.
+
+### Изменения
+- `app/drone-hotels-tourism/page.tsx`
+  - Удалён hero-бейдж `Hotels & Tourism Drone Content`.
+  - H1 обновлён на `Аэросъёмка отелей и курортов в Тбилиси и по всей Грузии`.
+  - Hero copy обновлён, длинные фрагменты разбиты на отдельные абзацы.
+  - Обновлена карточка `Коротко` в hero (цена/тайминги/пункты).
+  - Добавлен блок `Как это выглядит` с каруселью.
+  - Добавлен блок `Примеры по форматам` с 3 карточками.
+  - В секции `Что снимаем — и какую задачу это решает` обновлён текст и добавлены 5 карточек-результатов.
+  - Удалена фраза `Это опция... Обсуждаем на брифе.` из FPV-абзаца.
+  - В секции `Что вы получаете` блок файлов заменён на карточный `Как устроены файлы`.
+  - Отель подключён к тем же изображениям, что используются в ресторане:
+    - `@/services-images/drone-restaurants/final/1.png`
+    - `@/services-images/drone-restaurants/final/2.png`
+    - `@/services-images/drone-restaurants/final/3.png`
+- `app/drone-services/drone-restaurants/page.tsx`
+  - Заголовок секции проблем обновлён на `Что обычно говорят перед съёмкой?`.
+  - Для `Сравнение пакетов` добавлен мобильный режим (`md:hidden`) без horizontal scroll: карточки по параметрам с 4 пакетами.
+  - Desktop-таблица оставлена в `md:block`.
+  - В `Пакеты и цены` уплотнены мобильные карточки:
+    - `p-6 -> p-5` (mobile)
+    - уменьшены mobile размеры заголовков, цены, подписи, notes и CTA
+    - уменьшены mobile vertical gaps (`mt`, `space-y`)
+- `app/drone-services/drone-restaurants/page.en.tsx`
+  - Заголовок секции проблем обновлён на `What do people usually say before filming?`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлены верхние записи по этим изменениям.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
 ## 2026-04-08 (gazeta NichesStack mobile rail touch-action handoff fix)
 ### Session Summary
 - Устранён конфликт touch-жестов в mobile rail карточек на `/gazeta`: горизонтальный свайп по rail теперь явно помечен как `pan-x`.
