@@ -1,6 +1,32 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-09 (drone-restaurants Perplexity + Cowork audit fixes)
+### Session Summary
+- Точечные SEO-правки по аудиту Perplexity: alt-теги, schema highPrice, визуальное сворачивание нижних FAQ-слоёв, коммерческие ключевые фразы.
+- UX-правки по аудиту Cowork: починены якорные переходы #pricing / #contact / #faq, добавлен scroll-margin-top для sticky header.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - formatExampleCards: 3 alt-тега заменены на уникальные описательные
+  - serviceSchema.offers.highPrice: 2200 → 1300
+  - Секция seoAnswers обёрнута в `<details>` с summary
+  - Секция shortQA обёрнута в `<details>` с summary
+  - seoAnswers: в ответ «Как дрон-съёмка помогает» добавлено «Видеосъёмка ресторана дроном»
+  - PRE-CONTACT CTA: добавлена фраза «Заказать съёмку ресторана дроном в Тбилиси»
+  - Секции #pricing и #contact: добавлен scroll-mt-20 lg:scroll-mt-24
+  - FaqSection: anchor #faq использует корневой section c id, добавлен scroll-mt через компонент
+- `components/shared/FaqSection.tsx`
+  - Проверен проброс id; id={id} на корневом `<section>` присутствует
+  - На корневой `<section>` добавлен `scroll-mt-20 lg:scroll-mt-24`
+- `CONTEXT_NEXT_CHAT.md` — запись добавлена
+- `CHANGELOG_ARCHIVE.md` — эта запись добавлена
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
 ## 2026-04-09 (drone-restaurants Perplexity audit fixes)
 ### Session Summary
 - Точечные SEO-правки по результатам аудита Perplexity: alt-теги, schema highPrice, визуальное сворачивание нижних FAQ-слоёв, добавление коммерческих ключевых фраз.

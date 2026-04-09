@@ -22,6 +22,16 @@
 - Ветка: main
 - Последний кодовый коммит: `footer: remove unavailable menu items` (07.04.2026) — `components/drone/DroneFooterStitch.tsx`
 
+✅ drone-restaurants Perplexity + Cowork audit fixes (09.04.2026) — `app/drone-services/drone-restaurants/page.tsx`, `components/shared/FaqSection.tsx`
+  - Alt-теги трёх изображений formatExampleCards заменены на уникальные описательные
+  - serviceSchema highPrice изменён с 2200 на 1300 (900 + все аддоны)
+  - Блоки seoAnswers и shortQA обёрнуты в <details> — визуально свёрнуты, HTML рендерится для SEO
+  - В seoAnswers добавлена фраза «видеосъёмка ресторана дроном» (ответ про привлечение гостей)
+  - В PRE-CONTACT CTA добавлена фраза «заказать съёмку ресторана дроном в Тбилиси»
+  - FaqSection: проверен/исправлен проброс id на корневой <section>
+  - Секции #pricing, #contact, #faq: добавлен scroll-mt-20 lg:scroll-mt-24 для корректного якорного скролла под sticky header
+  - Build: npm run build — ✅ clean
+
 ✅ drone-restaurants Perplexity audit fixes (09.04.2026) — `app/drone-services/drone-restaurants/page.tsx`
   - Alt-теги трёх изображений formatExampleCards заменены на уникальные описательные
   - serviceSchema highPrice изменён с 2200 на 1300 (900 + все аддоны)

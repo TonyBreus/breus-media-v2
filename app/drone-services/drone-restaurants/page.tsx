@@ -1119,7 +1119,7 @@ export default function DroneRestaurantsPage() {
             </section>
 
             {/* ── ПАКЕТЫ И ЦЕНЫ ────────────────────────────────────────────────────── */}
-            <section id="pricing" className="border-b border-[#2a2a2a] bg-[#080808] py-24">
+            <section id="pricing" className="scroll-mt-20 lg:scroll-mt-24 border-b border-[#2a2a2a] bg-[#080808] py-24">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
                         <h2 className="text-3xl font-bold md:text-4xl">Пакеты и цены</h2>
@@ -1611,7 +1611,7 @@ export default function DroneRestaurantsPage() {
             </section>
 
             {/* ── КОНТАКТ ──────────────────────────────────────────────────────────── */}
-            <section id="contact" className="bg-[#0D0D0D] py-20">
+            <section id="contact" className="scroll-mt-20 lg:scroll-mt-24 bg-[#0D0D0D] py-20">
                 <div className="container mx-auto px-6">
                     <div className="mx-auto max-w-5xl rounded-[24px] border border-[#FFD23F]/25 bg-gradient-to-br from-[#151515] via-[#111111] to-[#0c0c0c] p-6 md:p-8 lg:p-10">
                         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">

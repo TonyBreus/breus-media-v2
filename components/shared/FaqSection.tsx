@@ -16,7 +16,11 @@ export function FaqSection({ items, title, variant = 'beginner', id, bgColor }: 
     const sectionBgColor = bgColor ?? (isCommercial ? '#0D0D0D' : '#080808');
 
     return (
-        <section className="py-24 border-b border-[#2a2a2a]" id={id} style={{ backgroundColor: sectionBgColor }}>
+        <section
+            className="scroll-mt-20 py-24 border-b border-[#2a2a2a] lg:scroll-mt-24"
+            id={id}
+            style={{ backgroundColor: sectionBgColor }}
+        >
             <div className="container mx-auto px-6 max-w-3xl">
                 <h2 className={`text-3xl font-bold text-center ${isCommercial ? 'mb-12' : 'mb-10'}`}>{title}</h2>
                 <div className="space-y-4">
