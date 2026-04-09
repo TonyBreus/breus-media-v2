@@ -3084,6 +3084,31 @@ Append-only архив изменений. Старые записи не уда
 - Статус: local only
 - Проверка: `npm run build` — OK
 
+---
+
+## 2026-04-09 (SmartHeader CTA override for drone-restaurants RU+EN)
+### Session Summary
+- Добавлен управляемый override для CTA в `SmartHeader`: при передаче `ctaHref` кнопка «Обсудить проект / Discuss Project» в desktop header и mobile menu использует переданный href.
+- Для ресторанных страниц RU/EN передан `ctaHref="#contact"`; fallback-поведение на остальных страницах сохранено без изменений.
+
+### Изменения
+- `components/gazeta/SmartHeader.tsx`
+  - В props добавлен optional `ctaHref?: string`
+  - Сохранён существующий fallback `contactHref = isLanding ? "#contact" : "/gazeta#contact"`
+  - Добавлен `resolvedCtaHref = ctaHref ?? contactHref`
+  - Desktop CTA и mobile CTA в меню переведены на `resolvedCtaHref`
+- `app/drone-services/drone-restaurants/page.tsx`
+  - В `SmartHeader` добавлен `ctaHref="#contact"`
+- `app/drone-services/drone-restaurants/page.en.tsx`
+  - В `SmartHeader` добавлен `ctaHref="#contact"`
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя контекстная запись по этой сессии
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись
+
+### Build
+- `npm run build` — ✅ clean
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary

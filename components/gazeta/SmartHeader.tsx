@@ -4,7 +4,7 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-
 import { TimeWidget } from "./TimeWidget";
 import Link from "next/link";
 import { useHeroStore } from "@/store/useHeroStore";
-import { gazetaDetailRoutes, gazetaIndustryNavItems, gazetaServiceNavItems, gazetaTickerLine1, gazetaTickerLine2 } from "@/constants/gazetaRoutes";
+import { gazetaIndustryNavItems, gazetaServiceNavItems, gazetaTickerLine1, gazetaTickerLine2 } from "@/constants/gazetaRoutes";
 import { ChevronDown, Globe, Phone, Mail, Send, MessageCircle, Menu, X } from "lucide-react";
 import { DebugWrapper } from "../debug/DebugWrapper";
 import { useMobileLandscape } from "@/hooks/useMobileLandscape";
@@ -13,12 +13,108 @@ import { useMobilePortrait } from "@/hooks/useMobilePortrait";
 // --- Interactive Ticker Components ---
 type TickerItemType = string | { text: string; link: string };
 type HeaderSectionLink = { label: string; href: string };
+type HeaderLanguage = "RU" | "EN" | "GE";
+type HeaderLanguageLinks = Partial<Record<HeaderLanguage, string>>;
+type HeaderNavItem = { label: string; href: string };
+type HeaderCopy = {
+    landingAgency: string;
+    landingAgencySubtitle: string;
+    compactAgencyEyebrow: string;
+    compactAgencySubtitle: string;
+    aboutLabel: string;
+    industriesLabel: string;
+    servicesLabel: string;
+    aiSolutionsLabel: string;
+    ctaMobile: string;
+    ctaDesktop: string;
+    mobileMenuTitle: string;
+    mobileIndustriesLabel: string;
+    mobileServicesLabel: string;
+    mobileSectionsLabel: string;
+    industryNavItems: HeaderNavItem[];
+    serviceNavItems: HeaderNavItem[];
+    tickerLine1: TickerItemType[];
+    tickerLine2: TickerItemType[];
+};
+
+const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
+    RU: {
+        landingAgency: "Агентство",
+        landingAgencySubtitle: "визуального продакшена и AI",
+        compactAgencyEyebrow: "АГЕНТСТВО",
+        compactAgencySubtitle: "Визуальный Продакшен",
+        aboutLabel: "О Нас",
+        industriesLabel: "Индустрии",
+        servicesLabel: "Услуги",
+        aiSolutionsLabel: "AI Решения",
+        ctaMobile: "Обсудить",
+        ctaDesktop: "Обсудить проект",
+        mobileMenuTitle: "Навигация Gazeta",
+        mobileIndustriesLabel: "Индустрии",
+        mobileServicesLabel: "Услуги",
+        mobileSectionsLabel: "Разделы",
+        industryNavItems: gazetaIndustryNavItems,
+        serviceNavItems: gazetaServiceNavItems,
+        tickerLine1: gazetaTickerLine1,
+        tickerLine2: gazetaTickerLine2,
+    },
+    EN: {
+        landingAgency: "Agency",
+        landingAgencySubtitle: "visual production and AI",
+        compactAgencyEyebrow: "AGENCY",
+        compactAgencySubtitle: "Visual Production",
+        aboutLabel: "About",
+        industriesLabel: "Industries",
+        servicesLabel: "Services",
+        aiSolutionsLabel: "AI Solutions",
+        ctaMobile: "Discuss",
+        ctaDesktop: "Discuss Project",
+        mobileMenuTitle: "Gazeta Navigation",
+        mobileIndustriesLabel: "Industries",
+        mobileServicesLabel: "Services",
+        mobileSectionsLabel: "Sections",
+        industryNavItems: [
+            { label: "Real Estate", href: "/real-estate-service" },
+            { label: "Auto Business", href: "/gazeta/auto" },
+            { label: "Hotels", href: "/gazeta/hotels" },
+            { label: "Restaurants", href: "/gazeta/restaurants" },
+            { label: "Tourism", href: "/gazeta/tourism" },
+            { label: "Clinics", href: "/gazeta/clinics" },
+            { label: "IT", href: "/business-service" },
+            { label: "Your Business", href: "/gazeta/custom-business" },
+        ],
+        serviceNavItems: [
+            { label: "Aerial Filming", href: "/drone-service" },
+            { label: "360° Tours", href: "/gazeta/360-tours" },
+            { label: "Promo Video", href: "/gazeta/promo-video" },
+            { label: "Events", href: "/gazeta/events" },
+            { label: "AI Content", href: "/gazeta/ai-content" },
+            { label: "Reels", href: "/gazeta/reels" },
+        ],
+        tickerLine1: [
+            { text: "REAL ESTATE", link: "/real-estate-service" },
+            { text: "AUTO BUSINESS", link: "/auto-service" },
+            { text: "HOTELS", link: "/hotels-service" },
+            { text: "RESTAURANTS", link: "/restaurants-service" },
+            { text: "TOURISM", link: "/tourism-service" },
+            { text: "CLINICS", link: "/clinics-service" },
+            { text: "YOUR BUSINESS", link: "/business-service" },
+        ],
+        tickerLine2: [
+            { text: "Aerial Filming", link: "/drone-service" },
+            { text: "360° Tours", link: "/360-tours-service" },
+            { text: "Promo Video", link: "/promo-video-service" },
+            { text: "AI Content", link: "/ai-visualization-service" },
+            { text: "Reels", link: "/reels-service" },
+        ],
+    },
+};
 
 const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; debugId?: number; compact?: boolean }) => {
     const { setHoveredService } = useHeroStore();
     const isObj = typeof item === 'object';
     const text = isObj ? item.text : item;
-    const shouldUseHoverPreview = text !== "360° Туры";
+    const shouldUseHoverPreview = text !== "360° Туры" && text !== "360° Tours";
 
     const content = (
         <DebugWrapper id={debugId ?? 0} label={text} className="inline-flex items-center h-full shrink-0">
@@ -75,16 +171,22 @@ export function SmartHeader({
     transparent = false,
     isLanding = false,
     sectionLinks = [],
-    showTickers
+    showTickers,
+    initialLang = "RU",
+    languageLinks,
+    ctaHref,
 }: {
     transparent?: boolean;
     isLanding?: boolean;
     sectionLinks?: HeaderSectionLink[];
     showTickers?: boolean;
+    initialLang?: string;
+    languageLinks?: HeaderLanguageLinks;
+    ctaHref?: string;
 }) {
     const { scrollY } = useScroll();
     const [isScrolled, setIsScrolled] = useState(false);
-    const [lang, setLang] = useState("RU");
+    const [lang, setLang] = useState(initialLang);
     const [isLogoVisible, setIsLogoVisible] = useState(!isLanding);
 
     // States for V23 menus
@@ -98,6 +200,8 @@ export function SmartHeader({
     const headerExpandedHeight = isMobileLandscape ? 64 : isMobilePortrait ? 64 : 90;
     const headerCompactHeight = isMobileLandscape ? 56 : isMobilePortrait ? 52 : 70;
     const headerHeight = isScrolled ? headerCompactHeight : headerExpandedHeight;
+    const routeLanguage: HeaderLanguage = initialLang === "EN" ? "EN" : initialLang === "GE" ? "GE" : "RU";
+    const copy = headerCopy[routeLanguage === "EN" ? "EN" : "RU"];
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         // Switch state based on scroll
@@ -114,6 +218,7 @@ export function SmartHeader({
 
     const aboutHref = "/about";
     const contactHref = isLanding ? "#contact" : "/gazeta#contact";
+    const resolvedCtaHref = ctaHref ?? contactHref;
 
     return (
         <DebugWrapper id={1} label="GlobalHeader (Глобальная Шапка)">
@@ -132,9 +237,9 @@ export function SmartHeader({
                             <Link href="/gazeta" className={`relative flex items-center hover:opacity-85 transition-opacity ${isMobileCompactTop ? "h-5" : "h-6"}`}>
                                 {/* Agency Text */}
                                 <div className="absolute inset-0 flex flex-col justify-center">
-                                    <span className={`font-serif leading-none tracking-wide text-white ${isMobileCompactTop ? "text-[14px]" : "text-[18px] md:text-2xl"}`}>Агентство</span>
+                                    <span className={`font-serif leading-none tracking-wide text-white ${isMobileCompactTop ? "text-[14px]" : "text-[18px] md:text-2xl"}`}>{copy.landingAgency}</span>
                                     <span className={`text-[#D4AF37] uppercase mt-0.5 whitespace-nowrap ${isMobileCompactTop ? "text-[7px] tracking-[0.14em]" : "text-[8px] md:text-[10px] tracking-widest"}`}>
-                                        визуального продакшена и AI
+                                        {copy.landingAgencySubtitle}
                                     </span>
                                 </div>
                             </Link>
@@ -142,7 +247,7 @@ export function SmartHeader({
                     </DebugWrapper>
 
                     {/* CENTER SECTION */}
-                    <DebugWrapper id={3} label="Center Section" className={`flex-1 flex justify-center items-start ${isMobileCompactTop ? "pt-0" : "pt-1"}`}>
+                    <DebugWrapper id={3} label="Center Section" className={`flex-1 flex justify-center items-start ${isMobileCompactTop ? "-mt-1" : "pt-1"}`}>
                         <div className={`flex items-center leading-none ${isMobileCompactTop ? "gap-1.5" : "gap-2"}`}>
                             <span className={`uppercase font-bold ${isMobileCompactTop ? "tracking-[0.14em] text-[9px]" : "tracking-[0.2em] text-[10px]"}`}>Tbilisi</span>
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-[pulse_2s_ease-in-out_infinite]" />
@@ -165,7 +270,7 @@ export function SmartHeader({
                     <DebugWrapper id={200} label="Agency Branding">
                         <div className="flex flex-col justify-center items-start flex-shrink-0 mr-2 md:mr-0 opacity-100 transition-opacity">
                             {/* Subtext and branding visible. */}
-                            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] mb-0.5 ml-1 font-bold">АГЕНТСТВО</span>
+                            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] mb-0.5 ml-1 font-bold">{copy.compactAgencyEyebrow}</span>
                             {/* Logo text appears when Element 13 scrolls out */}
                             <div className="h-[20px] md:h-[28px] w-[110px] md:w-[160px] relative flex items-center">
                                 <AnimatePresence>
@@ -185,7 +290,7 @@ export function SmartHeader({
                                 </AnimatePresence>
                             </div>
                             <span className="text-[8px] md:text-[10px] uppercase tracking-wider text-gray-400 mt-0.5 ml-1 leading-tight">
-                                <span className="text-[#D4AF37]">Визуальный Продакшен</span> & <span className="text-[#D4AF37]">AI</span>
+                                <span className="text-[#D4AF37]">{copy.compactAgencySubtitle}</span> & <span className="text-[#D4AF37]">AI</span>
                             </span>
                         </div>
                     </DebugWrapper>
@@ -193,18 +298,18 @@ export function SmartHeader({
                     {/* CENTER: Navigation */}
                     <nav className="hidden md:flex items-center gap-4 lg:gap-8 absolute left-1/2 -translate-x-1/2 mt-2 z-[310]">
                         <DebugWrapper id={201} label="Link: О нас">
-                            <Link href={aboutHref} className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">О Нас</Link>
+                            <Link href={aboutHref} className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">{copy.aboutLabel}</Link>
                         </DebugWrapper>
 
                         <DebugWrapper id={202} label="Dropdown: Индустрии">
                             <div className="relative h-full flex items-center py-4" onMouseEnter={() => setHoveredMenu("industries")} onMouseLeave={() => setHoveredMenu(null)}>
                                 <button className="flex items-center gap-2 text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
-                                    Индустрии <ChevronDown className="w-4 h-4" />
+                                    {copy.industriesLabel} <ChevronDown className="w-4 h-4" />
                                 </button>
                                 <AnimatePresence>
                                     {hoveredMenu === "industries" && (
                                         <motion.div initial={{ opacity: 0, y: 10, x: "-50%" }} animate={{ opacity: 1, y: 0, x: "-50%" }} exit={{ opacity: 0, y: 10, x: "-50%" }} className="absolute top-[60px] left-1/2 w-[500px] bg-black/95 border border-white/20 p-6 z-[1100] grid grid-cols-2 gap-3 rounded-2xl backdrop-blur-xl shadow-2xl">
-                                            {gazetaIndustryNavItems.map(item => <Link key={item.label} href={item.href} className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors">{item.label}</Link>)}
+                                            {copy.industryNavItems.map((item) => <Link key={item.label} href={item.href} className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors">{item.label}</Link>)}
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
@@ -214,12 +319,12 @@ export function SmartHeader({
                         <DebugWrapper id={203} label="Dropdown: Услуги">
                             <div className="relative h-full flex items-center py-4" onMouseEnter={() => setHoveredMenu("services")} onMouseLeave={() => setHoveredMenu(null)}>
                                 <button className="flex items-center gap-2 text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
-                                    Услуги <ChevronDown className="w-4 h-4" />
+                                    {copy.servicesLabel} <ChevronDown className="w-4 h-4" />
                                 </button>
                                 <AnimatePresence>
                                     {hoveredMenu === "services" && (
                                         <motion.div initial={{ opacity: 0, y: 10, x: "-50%" }} animate={{ opacity: 1, y: 0, x: "-50%" }} exit={{ opacity: 0, y: 10, x: "-50%" }} className="absolute top-[60px] left-1/2 w-[600px] bg-black/95 border border-white/20 p-6 z-[1100] grid grid-cols-3 gap-3 rounded-2xl backdrop-blur-xl shadow-2xl">
-                                            {gazetaServiceNavItems.map(item => <Link key={item.label} href={item.href} className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors">{item.label}</Link>)}
+                                            {copy.serviceNavItems.map((item) => <Link key={item.label} href={item.href} className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors">{item.label}</Link>)}
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
@@ -235,7 +340,7 @@ export function SmartHeader({
                         ))}
 
                         <DebugWrapper id={204} label="Link: AI Решения">
-                            <Link href="/ai-visualization-service" className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">AI Решения</Link>
+                            <Link href="/ai-visualization-service" className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">{copy.aiSolutionsLabel}</Link>
                         </DebugWrapper>
                     </nav>
 
@@ -302,18 +407,29 @@ export function SmartHeader({
                                     <span>{lang}</span>
                                 </button>
                                 <div className="absolute top-full right-0 mt-2 bg-black border border-white/10 hidden group-hover:flex flex-col rounded-xl overflow-hidden shadow-2xl backdrop-blur-xl z-[1200]">
-                                    {["RU", "EN", "GE"].map(l => (
-                                        <button key={l} onClick={() => setLang(l)} className="px-4 py-2 text-xs text-white hover:bg-[#D4AF37]/20 transition-colors text-left font-bold">{l}</button>
-                                    ))}
+                                    {(["RU", "EN", "GE"] as HeaderLanguage[]).map((l) => {
+                                        const href = languageLinks?.[l];
+                                        const className = "px-4 py-2 text-xs text-white hover:bg-[#D4AF37]/20 transition-colors text-left font-bold";
+
+                                        return href ? (
+                                            <Link key={l} href={href} onClick={() => setLang(l)} className={className}>
+                                                {l}
+                                            </Link>
+                                        ) : (
+                                            <button key={l} onClick={() => setLang(l)} className={className}>
+                                                {l}
+                                            </button>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </DebugWrapper>
 
                         {/* 3. CTA Buttons (206) - Shows different text for mobile/desktop */}
                         <DebugWrapper id={206} label="Button: Обсудить Задачу">
-                            <Link href={contactHref} className={`flex items-center justify-center bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all whitespace-nowrap ${isMobileCompactTop ? "px-3 py-1 text-[8px]" : "px-4 py-1.5 md:px-6 md:py-2.5 text-[9px] md:text-[10px]"}`}>
-                                <span className="md:hidden">Обсудить</span>
-                                <span className="hidden md:inline">Обсудить проект</span>
+                            <Link href={resolvedCtaHref} className={`flex items-center justify-center bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all whitespace-nowrap ${isMobileCompactTop ? "px-3 py-1 text-[8px]" : "px-4 py-1.5 md:px-6 md:py-2.5 text-[9px] md:text-[10px]"}`}>
+                                <span className="md:hidden">{copy.ctaMobile}</span>
+                                <span className="hidden md:inline">{copy.ctaDesktop}</span>
                             </Link>
                         </DebugWrapper>
 
@@ -331,11 +447,11 @@ export function SmartHeader({
                             ? 'bg-transparent border-transparent'
                             : 'bg-zinc-950/40 backdrop-blur-sm'}`}>
                         <DebugWrapper id={208} label="Running Text Line 1">
-                            <InteractiveTicker items={gazetaTickerLine1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
+                            <InteractiveTicker items={copy.tickerLine1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
                         </DebugWrapper>
                         <div className="h-[1px] bg-white/5 w-full" />
                         <DebugWrapper id={209} label="Running Text Line 2">
-                            <InteractiveTicker items={gazetaTickerLine2} direction="right" speed={70} baseId={2090} compact={isMobileCompactTop} />
+                            <InteractiveTicker items={copy.tickerLine2} direction="right" speed={70} baseId={2090} compact={isMobileCompactTop} />
                         </DebugWrapper>
                     </div>
                 )}
@@ -357,7 +473,7 @@ export function SmartHeader({
                                 <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
                                     <div>
                                         <p className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37]">Breus Media</p>
-                                        <p className="mt-1 text-sm font-bold uppercase tracking-[0.16em] text-white">Навигация Gazeta</p>
+                                        <p className="mt-1 text-sm font-bold uppercase tracking-[0.16em] text-white">{copy.mobileMenuTitle}</p>
                                     </div>
                                     <button type="button" className="rounded-full border border-white/10 p-2 text-white" onClick={() => setIsMobileMenuOpen(false)}>
                                         <X className="h-4 w-4" />
@@ -366,9 +482,9 @@ export function SmartHeader({
 
                                 <div className="space-y-6 px-5 py-5">
                                     <div>
-                                        <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">Индустрии</p>
+                                        <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">{copy.mobileIndustriesLabel}</p>
                                         <div className="grid grid-cols-2 gap-3">
-                                            {gazetaIndustryNavItems.map((item) => (
+                                            {copy.industryNavItems.map((item) => (
                                                 <Link
                                                     key={item.label}
                                                     href={item.href}
@@ -382,9 +498,9 @@ export function SmartHeader({
                                     </div>
 
                                     <div>
-                                        <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">Услуги</p>
+                                        <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">{copy.mobileServicesLabel}</p>
                                         <div className="grid grid-cols-2 gap-3">
-                                            {gazetaServiceNavItems.map((item) => (
+                                            {copy.serviceNavItems.map((item) => (
                                                 <Link
                                                     key={item.label}
                                                     href={item.href}
@@ -399,7 +515,7 @@ export function SmartHeader({
 
                                     {sectionLinks.length > 0 && (
                                         <div>
-                                            <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">Разделы</p>
+                                            <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">{copy.mobileSectionsLabel}</p>
                                             <div className="grid grid-cols-2 gap-3">
                                                 {sectionLinks.map((link) => (
                                                     <Link
@@ -416,11 +532,11 @@ export function SmartHeader({
                                     )}
 
                                     <Link
-                                        href={contactHref}
+                                        href={resolvedCtaHref}
                                         onClick={() => setIsMobileMenuOpen(false)}
                                         className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-[11px] font-black uppercase tracking-[0.22em] text-black transition-colors hover:bg-[#D4AF37]"
                                     >
-                                        Обсудить проект
+                                        {copy.ctaDesktop}
                                     </Link>
                                 </div>
                             </motion.div>

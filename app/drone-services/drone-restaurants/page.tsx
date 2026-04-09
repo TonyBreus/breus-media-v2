@@ -792,6 +792,7 @@ export default function DroneRestaurantsPage() {
             <SmartHeader
                 transparent={true}
                 isLanding={false}
+                ctaHref="#contact"
                 languageLinks={{
                     RU: '/drone-services/drone-restaurants',
                     EN: '/drone-services/drone-restaurants/en',

@@ -1,3 +1,12 @@
+✅ SmartHeader CTA override for drone-restaurants RU+EN (09.04.2026) — `components/gazeta/SmartHeader.tsx`, `app/drone-services/drone-restaurants/page.tsx`, `app/drone-services/drone-restaurants/page.en.tsx`
+  - В `SmartHeader` добавлен optional prop `ctaHref?: string`
+  - Сохранён текущий fallback без изменений: `contactHref = isLanding ? "#contact" : "/gazeta#contact"`
+  - Добавлен `resolvedCtaHref = ctaHref ?? contactHref`
+  - Desktop CTA и mobile-menu CTA переведены на единый `resolvedCtaHref`
+  - На RU/EN страницах ресторана передан `ctaHref="#contact"` в `SmartHeader`
+  - Поведение страниц без `ctaHref` сохранено (fallback как прежде)
+  - Build: `npm run build` — ✅ clean
+
 ## ТЕКУЩИЙ ФОКУС — 08.04.2026
 
 Активная задача: дрон-витрины по шаблону drone-restaurants
