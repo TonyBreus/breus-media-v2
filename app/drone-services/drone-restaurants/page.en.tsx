@@ -141,9 +141,9 @@ const optionalAddons: string[] = [
 ];
 
 const formatExampleCards = [
-    { image: formatExampleOne, alt: 'Restaurant aerial filming example in Tbilisi - format 1' },
-    { image: formatExampleTwo, alt: 'Restaurant aerial filming example in Tbilisi - format 2' },
-    { image: formatExampleThree, alt: 'Restaurant aerial filming example in Tbilisi - format 3' },
+    { image: formatExampleOne, alt: 'Rooftop restaurant in Tbilisi — aerial drone shot with street and entrance view' },
+    { image: formatExampleTwo, alt: 'FPV fly-through of a restaurant interior — indoor drone filming' },
+    { image: formatExampleThree, alt: 'Restaurant drone filming in Tbilisi — aerial shot for website and social media' },
 ];
 
 const formatExampleSlides = [formatExampleOne, formatExampleTwo, formatExampleThree];
@@ -396,7 +396,7 @@ const seoAnswers: SeoAnswer[] = [
     {
         question: 'How does drone filming help a restaurant attract guests?',
         answer:
-            'It answers the guest’s first question before the visit: what does this place feel like? The footage shows facade, entrance, terrace, and the hall in motion. For hidden venues or unusual locations in Tbilisi, that makes a real difference.',
+            'Restaurant drone videography answers the guest\'s first question before the visit: what does this place actually feel like? The footage shows facade, entrance, terrace, and the hall in motion. For hidden venues or unusual locations in Tbilisi, that makes a real difference.',
     },
     {
         question: 'Can you fly a drone inside a restaurant?',
@@ -651,7 +651,7 @@ const serviceSchema = {
         '@type': 'AggregateOffer',
         priceCurrency: 'GEL',
         lowPrice: '250',
-        highPrice: '2200',
+        highPrice: '1300',
         offerCount: '4',
     },
     serviceType: 'Drone Photography and Videography',
@@ -1194,7 +1194,7 @@ export default function DroneRestaurantsPageEn() {
                 </div>
             </section>
 
-            <section id="pricing" className="border-b border-[#2a2a2a] bg-[#080808] py-24">
+            <section id="pricing" className="scroll-mt-20 lg:scroll-mt-24 border-b border-[#2a2a2a] bg-[#080808] py-24">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
                         <h2 className="text-3xl font-bold md:text-4xl">Packages and pricing</h2>
@@ -1363,17 +1363,23 @@ export default function DroneRestaurantsPageEn() {
             {/* ── SHORT ANSWERS FOR AI SEARCH ────────────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
                 <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <h2 className="text-2xl font-bold md:text-3xl">Quick answers</h2>
-                    </div>
-                    <div className="mt-8 max-w-3xl space-y-5">
-                        {shortQA.map((item) => (
-                            <div key={item.q}>
-                                <p className="font-bold text-white">{item.q}</p>
-                                <p className="mt-1 text-sm leading-relaxed text-white/72">{item.a}</p>
+                    <details className="group max-w-3xl">
+                        <summary className="cursor-pointer list-none">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-2xl font-bold md:text-3xl">Quick answers</h2>
+                                <span className="ml-4 shrink-0 text-2xl text-[#FFD23F] transition-transform group-open:rotate-45">+</span>
                             </div>
-                        ))}
-                    </div>
+                            <p className="mt-3 text-sm text-white/50">Click to expand</p>
+                        </summary>
+                        <div className="mt-8 space-y-5">
+                            {shortQA.map((item) => (
+                                <div key={item.q}>
+                                    <p className="font-bold text-white">{item.q}</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-white/72">{item.a}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </details>
                 </div>
             </section>
 
@@ -1461,18 +1467,24 @@ export default function DroneRestaurantsPageEn() {
 
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
                 <div className="container mx-auto px-6">
-                    <div className="max-w-4xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Detailed answers to common questions</h2>
-                    </div>
+                    <details className="group max-w-4xl">
+                        <summary className="cursor-pointer list-none">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-3xl font-bold md:text-4xl">Detailed answers to common questions</h2>
+                                <span className="ml-4 shrink-0 text-2xl text-[#FFD23F] transition-transform group-open:rotate-45">+</span>
+                            </div>
+                            <p className="mt-3 text-sm text-white/50">Click to expand</p>
+                        </summary>
 
-                    <div className="mt-10 space-y-5">
-                        {seoAnswers.map((item) => (
-                            <article key={item.question} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">{item.question}</h3>
-                                <p className="mt-4 text-sm leading-relaxed text-white/74">{item.answer}</p>
-                            </article>
-                        ))}
-                    </div>
+                        <div className="mt-10 space-y-5">
+                            {seoAnswers.map((item) => (
+                                <article key={item.question} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                    <h3 className="text-lg font-bold text-white">{item.question}</h3>
+                                    <p className="mt-4 text-sm leading-relaxed text-white/74">{item.answer}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </details>
                 </div>
             </section>
 
@@ -1505,7 +1517,8 @@ export default function DroneRestaurantsPageEn() {
                 <div className="container mx-auto px-6">
                     <div className="mx-auto max-w-3xl text-center">
                         <p className="text-lg leading-relaxed text-white/78">
-                            If you made it this far, visual content for the restaurant is clearly on the table. The next step is simple: tell us about the venue and we will suggest a format that fits.
+                            If you made it this far, visual content for the restaurant is clearly on the table.
+                            Book restaurant drone filming in Tbilisi — just tell us about the venue and we will suggest a format that fits.
                         </p>
                         <a
                             href="#contact"
@@ -1517,7 +1530,7 @@ export default function DroneRestaurantsPageEn() {
                 </div>
             </section>
 
-            <section id="contact" className="bg-[#0D0D0D] py-20">
+            <section id="contact" className="scroll-mt-20 lg:scroll-mt-24 bg-[#0D0D0D] py-20">
                 <div className="container mx-auto px-6">
                     <div className="mx-auto max-w-5xl rounded-[24px] border border-[#FFD23F]/25 bg-gradient-to-br from-[#151515] via-[#111111] to-[#0c0c0c] p-6 md:p-8 lg:p-10">
                         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">

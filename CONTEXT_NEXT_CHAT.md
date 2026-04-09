@@ -1,3 +1,11 @@
+✅ drone-restaurants EN sync (09.04.2026) — `app/drone-services/drone-restaurants/page.en.tsx`
+  - Alt-теги: 3 уникальных EN-описания
+  - highPrice: 2200 → 1300
+  - seoAnswers и shortQA обёрнуты в <details> (Click to expand)
+  - «restaurant drone videography» добавлено в seoAnswer
+  - «Book restaurant drone filming in Tbilisi» добавлено в PRE-CONTACT CTA
+  - scroll-mt-20 lg:scroll-mt-24 на #pricing и #contact
+
 ✅ SmartHeader CTA override for drone-restaurants RU+EN (09.04.2026) — `components/gazeta/SmartHeader.tsx`, `app/drone-services/drone-restaurants/page.tsx`, `app/drone-services/drone-restaurants/page.en.tsx`
   - В `SmartHeader` добавлен optional prop `ctaHref?: string`
   - Сохранён текущий fallback без изменений: `contactHref = isLanding ? "#contact" : "/gazeta#contact"`

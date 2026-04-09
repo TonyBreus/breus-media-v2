@@ -3109,6 +3109,29 @@ Append-only архив изменений. Старые записи не уда
 ### Build
 - `npm run build` — ✅ clean
 
+---
+
+## 2026-04-09 (drone-restaurants EN sync)
+### Session Summary
+- Синхронизированы оставшиеся расхождения EN-страницы `drone-restaurants` относительно RU-версии: SEO-теги, schema highPrice, сворачиваемые FAQ-блоки, коммерческие формулировки и якорные отступы под sticky header.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.en.tsx`
+  - `formatExampleCards`: alt-теги заменены на 3 уникальных описательных EN-формулировки
+  - `serviceSchema.offers.highPrice`: `2200` → `1300`
+  - Секция `shortQA` обёрнута в `<details>` с `Click to expand`
+  - Секция `seoAnswers` обёрнута в `<details>` с `Click to expand`
+  - В ответ `How does drone filming help a restaurant attract guests?` добавлено `Restaurant drone videography...`
+  - В PRE-CONTACT CTA добавлена фраза `Book restaurant drone filming in Tbilisi...`
+  - Для секций `#pricing` и `#contact` добавлен `scroll-mt-20 lg:scroll-mt-24`
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по EN sync
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись
+
+### Build
+- `npm run build` — ✅ clean
+
 ## Шаблон новой записи (копировать в конец файла)
 ### YYYY-MM-DD
 #### Session Summary
