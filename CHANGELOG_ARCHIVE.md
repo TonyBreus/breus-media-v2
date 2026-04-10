@@ -1,6 +1,49 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-10 (drone-service mobile hero typewriter + directions list)
+### Session Summary
+- В мобильной версии `/drone-service` hero переведён на typewriter-сценарий с поэтапным раскрытием описания/цены/стрелки.
+- Добавлен отдельный mobile-only блок направлений между hero и карточками; существующий вводный trust-блок оставлен только для desktop.
+
+### Изменения
+- `components/drone/DroneHeroStitch.tsx`
+  - Добавлен mobile-only слой `block md:hidden` с typewriter-текстом:
+    - `АЭРОСЪЁМКА`
+    - `ДЛЯ БИЗНЕСА`
+    - `В ГРУЗИИ` (gold)
+  - Реализована одноразовая печать через `useEffect + useState`:
+    - 40ms на символ
+    - 120ms на перенос строки
+    - мигающий курсор `|` (gold), исчезает после завершения печати
+  - Добавлены staged fade-in слои на mobile:
+    - `+400ms` — 2 строки описания
+    - `+800ms` — pill `от 250 ₾`
+    - `+1200ms` — bounce chevron с якорем `#directions`
+  - Существующий контент hero вынесен в `hidden md:block` (desktop без изменений).
+  - Удалён мобильный chips-навигационный блок (`lg:hidden`) во избежание дублирования.
+  - Нижняя hero-стрелка ограничена desktop (`hidden md:block`).
+- `components/drone/DroneServicesMobileList.tsx` (new)
+  - Добавлен mobile-only блок `id="directions"`:
+    - заголовок + подзаголовок с количеством направлений
+    - grid 2 колонки по всем `droneServiceItems`
+    - ссылки на `item.primaryHref` (fallback `#contact`)
+    - `ChevronRight` в пунктах и `ChevronDown` в hint-блоке
+  - Добавлен нижний hint: `Карточки с описанием и ценами — ниже`.
+- `app/drone-service/page.tsx`
+  - Подключён и вставлен `<DroneServicesMobileList />` между hero и services.
+  - Текущий вводный trust-блок после hero переведён в `hidden md:block` (desktop-only).
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по изменениям mobile hero/list.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-10 (drone-service L2 Perplexity audit fixes batch 2)
 ### Session Summary
 - Для `/drone-service` добавлены новые контентные и CTA-слои по Perplexity-аудиту: вводный SEO-текст, trust strip, mid-page CTA, sticky CTA и mobile bottom bar.

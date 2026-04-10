@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 import { droneServiceItems } from '@/components/drone/droneServicesData';
 import type { DroneDirectionHeroConfig } from '@/constants/droneDirectionPages';
@@ -12,6 +13,9 @@ type DroneHeroStitchProps = {
 };
 
 const ROTATION_MS = 5000;
+const TYPEWRITER_INTERVAL_MS = 40;
+const TYPEWRITER_NEWLINE_PAUSE_MS = 120;
+const MOBILE_HERO_TYPEWRITER_TEXT = 'АЭРОСЪЁМКА\nДЛЯ БИЗНЕСА\nВ ГРУЗИИ';
 
 export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
     const heroServices = useMemo(
@@ -20,6 +24,11 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
     );
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const [typedCharsCount, setTypedCharsCount] = useState(0);
+    const [typewriterDone, setTypewriterDone] = useState(false);
+    const [showMobileDescription, setShowMobileDescription] = useState(false);
+    const [showMobilePricePill, setShowMobilePricePill] = useState(false);
+    const [showMobileArrow, setShowMobileArrow] = useState(false);
     const rotationRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
     useEffect(() => {
@@ -47,6 +56,51 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
         };
     }, [restartRotation]);
 
+    useEffect(() => {
+        let timeoutId: ReturnType<typeof setTimeout> | null = null;
+        let nextIndex = 0;
+
+        const typeNext = () => {
+            if (nextIndex >= MOBILE_HERO_TYPEWRITER_TEXT.length) {
+                setTypewriterDone(true);
+                return;
+            }
+
+            const nextChar = MOBILE_HERO_TYPEWRITER_TEXT[nextIndex];
+            nextIndex += 1;
+            setTypedCharsCount(nextIndex);
+
+            timeoutId = setTimeout(
+                typeNext,
+                nextChar === '\n' ? TYPEWRITER_NEWLINE_PAUSE_MS : TYPEWRITER_INTERVAL_MS
+            );
+        };
+
+        timeoutId = setTimeout(typeNext, TYPEWRITER_INTERVAL_MS);
+
+        return () => {
+            if (timeoutId !== null) {
+                clearTimeout(timeoutId);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!typewriterDone) {
+            return;
+        }
+
+        const descriptionTimer = setTimeout(() => setShowMobileDescription(true), 400);
+        const priceTimer = setTimeout(() => setShowMobilePricePill(true), 800);
+        const arrowTimer = setTimeout(() => setShowMobileArrow(true), 1200);
+
+        return () => {
+            clearTimeout(descriptionTimer);
+            clearTimeout(priceTimer);
+            clearTimeout(arrowTimer);
+        };
+    }, [typewriterDone]);
+
     const safeActiveIndex = heroServices.length > 0 ? activeIndex % heroServices.length : 0;
     const activeService = heroServices[safeActiveIndex] ?? droneServiceItems[0];
 
@@ -62,6 +116,11 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
         }
         return `${introLead}.`;
     }, [hero.intro]);
+
+    const typedMobileLines = useMemo(
+        () => MOBILE_HERO_TYPEWRITER_TEXT.slice(0, typedCharsCount).split('\n'),
+        [typedCharsCount]
+    );
 
     const visibleCount = Math.min(4, heroServices.length);
     const visibleIndices = useMemo(() => {
@@ -110,58 +169,104 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                 <div className="container mx-auto px-6 relative z-10 h-full">
                     <div className="h-full flex items-center justify-center pt-28 md:pt-32 pb-16">
                         <div className="w-full max-w-4xl text-center">
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={activeService.slug}
-                                    initial={{ opacity: 0, y: 14 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.34, ease: 'easeOut' }}
-                                    className="px-2"
-                                >
-                                    <DebugWrapper id={10101} label="Hero Tagline">
-                                        <span className="text-[#D4A017] font-bold tracking-[0.28em] text-[10px] md:text-xs mb-3 block uppercase">
-                                            {hero.eyebrow}
-                                        </span>
-                                    </DebugWrapper>
+                            <div className="hidden md:block">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={activeService.slug}
+                                        initial={{ opacity: 0, y: 14 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.34, ease: 'easeOut' }}
+                                        className="px-2"
+                                    >
+                                        <DebugWrapper id={10101} label="Hero Tagline">
+                                            <span className="text-[#D4A017] font-bold tracking-[0.28em] text-[10px] md:text-xs mb-3 block uppercase">
+                                                {hero.eyebrow}
+                                            </span>
+                                        </DebugWrapper>
 
-                                    <DebugWrapper id={10110} label={`Hero Title: ${activeService.title}`}>
-                                        <h1 className="text-[40px] md:text-6xl lg:text-[80px] font-bold leading-[0.92] text-white mb-4">
-                                            {activeService.title}
-                                        </h1>
-                                    </DebugWrapper>
+                                        <DebugWrapper id={10110} label={`Hero Title: ${activeService.title}`}>
+                                            <h1 className="text-[40px] md:text-6xl lg:text-[80px] font-bold leading-[0.92] text-white mb-4">
+                                                {activeService.title}
+                                            </h1>
+                                        </DebugWrapper>
 
-                                    <DebugWrapper id={10102} label="Hero Description">
-                                        <p className="text-base md:text-2xl text-white/88 max-w-3xl mx-auto leading-relaxed">
-                                            {sellingLine}
-                                        </p>
-                                        {supportLine && (
-                                            <p className="text-sm md:text-lg text-white/62 mt-2 max-w-2xl mx-auto">
-                                                {supportLine}
+                                        <DebugWrapper id={10102} label="Hero Description">
+                                            <p className="text-base md:text-2xl text-white/88 max-w-3xl mx-auto leading-relaxed">
+                                                {sellingLine}
                                             </p>
-                                        )}
-                                    </DebugWrapper>
+                                            {supportLine && (
+                                                <p className="text-sm md:text-lg text-white/62 mt-2 max-w-2xl mx-auto">
+                                                    {supportLine}
+                                                </p>
+                                            )}
+                                        </DebugWrapper>
 
-                                    <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-8 md:mt-10">
-                                        <DebugWrapper id={10120} label="Hero Primary CTA">
-                                            <Link
-                                                href={activeService.primaryHref}
-                                                className="bg-[#D4A017] text-black px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-white transition-all"
-                                            >
-                                                Подробнее
-                                            </Link>
-                                        </DebugWrapper>
-                                        <DebugWrapper id={10121} label="Hero Secondary CTA">
-                                            <Link
-                                                href="#services"
-                                                className="border border-white/25 hover:border-[#D4A017] text-white px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest transition-all"
-                                            >
-                                                Подобрать услугу
-                                            </Link>
-                                        </DebugWrapper>
+                                        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-8 md:mt-10">
+                                            <DebugWrapper id={10120} label="Hero Primary CTA">
+                                                <Link
+                                                    href={activeService.primaryHref}
+                                                    className="bg-[#D4A017] text-black px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-white transition-all"
+                                                >
+                                                    Подробнее
+                                                </Link>
+                                            </DebugWrapper>
+                                            <DebugWrapper id={10121} label="Hero Secondary CTA">
+                                                <Link
+                                                    href="#services"
+                                                    className="border border-white/25 hover:border-[#D4A017] text-white px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest transition-all"
+                                                >
+                                                    Подобрать услугу
+                                                </Link>
+                                            </DebugWrapper>
+                                        </div>
+                                    </motion.div>
+                                </AnimatePresence>
+                            </div>
+
+                            <div className="block md:hidden px-1">
+                                <div className="mx-auto max-w-[320px] text-left">
+                                    <div className="text-[34px] font-bold leading-[1.02] tracking-[0.06em] uppercase text-white min-h-[136px]">
+                                        {typedMobileLines.map((line, index) => (
+                                            <div key={`typed-line-${index}`} className={index === 2 ? 'text-[#C9A84C]' : ''}>
+                                                {line || '\u00A0'}
+                                            </div>
+                                        ))}
+                                        {!typewriterDone && (
+                                            <span className="ml-1 inline-block align-baseline text-[#C9A84C] animate-pulse">|</span>
+                                        )}
                                     </div>
-                                </motion.div>
-                            </AnimatePresence>
+
+                                    <div
+                                        className={`mt-4 text-sm leading-relaxed text-white/65 transition-opacity duration-500 ${
+                                            showMobileDescription ? 'opacity-100' : 'opacity-0'
+                                        }`}
+                                    >
+                                        <p>Фото и видео с воздуха для продажи, продвижения и мониторинга.</p>
+                                        <p>Снаружи, с высоты и FPV-пролёт внутри помещений.</p>
+                                    </div>
+
+                                    <div
+                                        className={`mt-5 transition-opacity duration-500 ${
+                                            showMobilePricePill ? 'opacity-100' : 'opacity-0'
+                                        }`}
+                                    >
+                                        <span className="inline-flex items-center rounded-full border border-[#C9A84C]/50 px-4 py-1.5 text-sm font-medium text-[#C9A84C]">
+                                            от 250 ₾
+                                        </span>
+                                    </div>
+
+                                    <a
+                                        href="#directions"
+                                        aria-label="Прокрутить к направлениям"
+                                        className={`mt-8 inline-flex items-center justify-center text-[#C9A84C] transition-opacity duration-500 ${
+                                            showMobileArrow ? 'opacity-100' : 'pointer-events-none opacity-0'
+                                        }`}
+                                    >
+                                        <ChevronDown className="h-6 w-6 animate-bounce" />
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -200,35 +305,13 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                     </div>
                 </DebugWrapper>
 
-                <div className="lg:hidden absolute left-4 right-4 bottom-8 z-20">
-                    <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                        {heroServices.map((service, index) => {
-                            const isActive = index === safeActiveIndex;
-                            return (
-                                <button
-                                    key={`${service.slug}-mobile`}
-                                    type="button"
-                                    onClick={() => handleSelectService(index)}
-                                    className={`shrink-0 rounded-full border px-3.5 py-1.5 text-xs transition-colors ${
-                                        isActive
-                                            ? 'border-[#D4A017] bg-[#D4A017]/15 text-[#F6DB8A]'
-                                            : 'border-white/20 text-white/70'
-                                    }`}
-                                >
-                                    {service.title}
-                                </button>
-                            );
-                        })}
-                    </div>
-                </div>
-
                 <motion.button
                     type="button"
                     aria-label="Прокрутить к следующему разделу"
                     onClick={handleScrollToNextSection}
                     animate={{ y: [0, 6, 0] }}
                     transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute bottom-3 left-1/2 z-30 -translate-x-1/2 text-2xl text-white/70 transition-colors hover:text-white"
+                    className="hidden md:block absolute bottom-3 left-1/2 z-30 -translate-x-1/2 text-2xl text-white/70 transition-colors hover:text-white"
                 >
                     ↓
                 </motion.button>

@@ -1,3 +1,12 @@
+✅ drone-service mobile hero typewriter + directions list (10.04.2026) — `components/drone/DroneHeroStitch.tsx`, `components/drone/DroneServicesMobileList.tsx`, `app/drone-service/page.tsx`
+  - Mobile hero переведён на typewriter-сценарий: `АЭРОСЪЁМКА / ДЛЯ БИЗНЕСА / В ГРУЗИИ` с курсором, одноразовый запуск при монтировании.
+  - После печати добавлены staged fade-in слои на mobile: описание (`+400ms`), pill `от 250 ₾` (`+800ms`), chevron к `#directions` (`+1200ms`).
+  - Desktop-hero сохранён без изменений: существующий контент вынесен в `hidden md:block`.
+  - Удалён mobile chips-блок в hero; нижняя hero-стрелка ограничена desktop (`hidden md:block`) для устранения дублирования.
+  - Добавлен новый mobile-only блок `DroneServicesMobileList` с 19 направлениями (2 колонки, ссылки на `primaryHref`, fallback `#contact`) и нижним hint-блоком.
+  - В `app/drone-service/page.tsx` список вставлен между hero и services; существующий вводный trust-блок переведён в `hidden md:block` (desktop-only).
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ drone-service L2 Perplexity audit fixes (10.04.2026) — `app/drone-service/page.tsx`
   - Добавлен вводный текст перед карточками направлений (150 слов, SEO-контент)
   - Добавлена trust strip: оборудование, 4K, география, цена от 250 ₾

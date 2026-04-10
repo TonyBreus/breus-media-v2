@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DroneHeroStitch } from '@/components/drone/DroneHeroStitch';
+import { DroneServicesMobileList } from '@/components/drone/DroneServicesMobileList';
 import { DroneServicesStitch } from '@/components/drone/DroneServicesStitch';
 import { DroneProcessStitch } from '@/components/drone/DroneProcessStitch';
 import { DroneFlightConditionsNote } from '@/components/drone/DroneFlightConditionsNote';
@@ -95,8 +96,10 @@ export default function DroneServicePage() {
                 </DebugWrapper>
             </div>
 
+            <DroneServicesMobileList />
+
             {/* ── ВВОДНЫЙ ТЕКСТ + TRUST STRIP ───────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#080808] py-16">
+            <section className="hidden md:block border-b border-[#2a2a2a] bg-[#080808] py-16">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
                         <p className="text-lg leading-relaxed text-white/78">
