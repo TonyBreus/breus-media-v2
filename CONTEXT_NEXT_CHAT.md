@@ -1,3 +1,30 @@
+✅ drone-service L2 Perplexity audit fixes (10.04.2026) — `app/drone-service/page.tsx`
+  - Добавлен вводный текст перед карточками направлений (150 слов, SEO-контент)
+  - Добавлена trust strip: оборудование, 4K, география, цена от 250 ₾
+  - Подключены `DroneStickyCta` + `MobileBottomBar` (sticky CTA для десктопа и мобильного)
+  - Добавлен mid-page CTA после карточек направлений
+  - Проверены все 19 href карточек направлений на существование страниц (0 битых ссылок), для тонких страниц добавлены TODO в `components/drone/droneServicesData.ts`
+  - Build: `npm run build` — ✅ clean
+
+✅ drone-service L2 hub cleanup (09.04.2026) — `app/drone-service/page.tsx`, `constants/droneDirectionPages.ts`, `lib/seo/directionSeo.ts`, `components/drone/DronePricingStitch.tsx`
+  - Убраны секции: `DroneSocialProofStitch` (placeholder), `DroneGoogleTrustLite` (Google-отзывы отсутствуют)
+  - Порядок секций: Hero → Services → Pricing → Trust → Process → Flight Note → Map → FAQ → Related → Contact → Footer
+  - Metadata: убрано слово «Профессиональная», добавлены openGraph + twitter cards, canonical на `breus.media`
+  - Schema: AggregateOffer 250–2600 ₾, areaServed массив городов, telephone реальный, BreadcrumbList берётся из `buildDirectionJsonLd`
+  - FPV-карточка: добавлено пояснение что такое FPV-дрон для людей не в теме
+  - Pricing sync: 4 пакета (`250/350/500/от 900 ₾`) + add-ons (`+150/+150/+80 ₾`)
+  - Домен: все URL в schema и canonical — `breus.media`
+  - Build: `npm run build` — ✅ clean
+
+✅ drone-service cards copy+visual refresh (09.04.2026) — `components/drone/droneServicesData.ts`, `public/media/drone-service/*`
+  - На `/drone-service` обновлён контент карточек по новому пакету текстов пользователя: подзаголовки (`category`), описания (`description`) и теги (`price`) для ключевых карточек витрины.
+  - Переименована карточка `Аэросьемка для авто и автосалонов` → `Автосалоны и шоурумы`.
+  - Карточки переведены с внешних image URL на локальные project assets в `public/media/drone-service`.
+  - Финальные локальные изображения подключены для карточек:
+    - `Недвижимость`, `Мониторинг стройки`, `FPV Съёмка`, `Отели & Курорты`, `Рестораны`, `Туризм и локации`, `Мероприятия`, `Инспекция объектов`, `Мониторинг территорий`, `Съёмка интерьеров и складов`, `Спорт комплексы`, `Реклама и бренд видео`, `Автосалоны и шоурумы`, `Агро и виноделие`, `Инспекция крыш`, `Регулярные аэроотчёты`.
+  - Добавлены локальные файлы:
+    - `real-estate-1.png`, `construction-monitoring-1.png`, `fpv-2.png`, `hotels-resorts-5.png`, `restaurants-3.png`, `tourism-6.png`, `events-1.png`, `object-inspection-from-territory-1.png`, `territory-monitoring-2.png`, `interiors-warehouses-1.png`, `sport-complex-1.png`, `brand-video-1.png`, `auto-showroom-1.png`, `agro-wine-1.png`, `roof-inspection-1.png`, `reporting-1.png`.
+
 ✅ drone-restaurants EN sync (09.04.2026) — `app/drone-services/drone-restaurants/page.en.tsx`
   - Alt-теги: 3 уникальных EN-описания
   - highPrice: 2200 → 1300

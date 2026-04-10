@@ -2,23 +2,23 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DroneHeroStitch } from '@/components/drone/DroneHeroStitch';
-import { DroneSocialProofStitch } from '@/components/drone/DroneSocialProofStitch';
 import { DroneServicesStitch } from '@/components/drone/DroneServicesStitch';
 import { DroneProcessStitch } from '@/components/drone/DroneProcessStitch';
 import { DroneFlightConditionsNote } from '@/components/drone/DroneFlightConditionsNote';
 import { DroneTrustLite } from '@/components/drone/DroneTrustLite';
 import { DroneMapStitch } from '@/components/drone/DroneMapStitch';
 import { DronePricingStitch } from '@/components/drone/DronePricingStitch';
-import { DroneGoogleTrustLite } from '@/components/drone/DroneGoogleTrustLite';
 import { DroneFAQExpanded } from '@/components/drone/DroneFAQExpanded';
 import { DroneRelatedLinksCompact } from '@/components/drone/DroneRelatedLinksCompact';
 import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 import { DronePageScrollProgress } from '@/components/drone/DronePageScrollProgress';
+import { DroneStickyCta } from '@/components/drone/DroneStickyCta';
+import { MobileBottomBar } from '@/components/drone/MobileBottomBar';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 import { droneServiceItems } from '@/components/drone/droneServicesData';
 import { droneDirectionPages } from '@/constants/droneDirectionPages';
-import { buildDirectionJsonLd, buildDirectionMetadata } from '@/lib/seo/directionSeo';
+import { buildDirectionJsonLd } from '@/lib/seo/directionSeo';
 
 const pageConfig = droneDirectionPages.droneService;
 const jsonLdSchemas = buildDirectionJsonLd(
@@ -29,9 +29,24 @@ const jsonLdSchemas = buildDirectionJsonLd(
 export const metadata: Metadata = {
     title: 'Аэросъёмка дроном для бизнеса в Тбилиси | Breus Media',
     description:
-        'Профессиональная аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм и события. 4K, FPV, выезды по всей стране.',
+        'Аэросъёмка дроном в Тбилиси и Грузии для бизнеса: недвижимость, стройка, отели, рестораны, туризм и события. 4K, FPV, выезды по всей стране. От 250 ₾.',
     alternates: {
         canonical: 'https://breus.media/drone-service',
+    },
+    openGraph: {
+        title: 'Аэросъёмка дроном для бизнеса в Тбилиси | Breus Media',
+        description:
+            'Аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм. 4K + FPV. От 250 ₾.',
+        url: 'https://breus.media/drone-service',
+        siteName: 'Breus Media',
+        locale: 'ru_RU',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Аэросъёмка дроном для бизнеса в Тбилиси | Breus Media',
+        description:
+            'Аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм. 4K + FPV. От 250 ₾.',
     },
 };
 
@@ -74,14 +89,61 @@ export default function DroneServicePage() {
                     </nav>
                 </div>
             </div>
-            <DebugWrapper id={10100} label="Hero Section">
-                <DroneHeroStitch hero={pageConfig.hero} />
-            </DebugWrapper>
+            <div id="drone-service-hero">
+                <DebugWrapper id={10100} label="Hero Section">
+                    <DroneHeroStitch hero={pageConfig.hero} />
+                </DebugWrapper>
+            </div>
+
+            {/* ── ВВОДНЫЙ ТЕКСТ + TRUST STRIP ───────────────────────────── */}
+            <section className="border-b border-[#2a2a2a] bg-[#080808] py-16">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-3xl">
+                        <p className="text-lg leading-relaxed text-white/78">
+                            Аэросъёмка показывает бизнес с ракурсов, которые невозможны с земли: масштаб здания, территорию,
+                            подход и окружение. Снимаем в Тбилиси и по всей Грузии на DJI Air 3S (съёмка с высоты) и DJI
+                            Avata 2 (пролёт камерой внутри помещений). Результат — видео в 4K и фото, готовые для сайта,
+                            соцсетей, Google Maps и рекламы.
+                        </p>
+                        <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/55">
+                            <span>DJI Air 3S + Avata 2</span>
+                            <span className="text-white/25">·</span>
+                            <span>4K</span>
+                            <span className="text-white/25">·</span>
+                            <span>Тбилиси · Батуми · Кутаиси</span>
+                            <span className="text-white/25">·</span>
+                            <span className="text-[#FFD23F]">от 250 ₾</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <DebugWrapper id={10300} label="Services Section">
                 <DroneServicesStitch />
             </DebugWrapper>
-            <DebugWrapper id={10200} label="Social Proof Section">
-                <DroneSocialProofStitch />
+
+            {/* ── MID-PAGE CTA ───────────────────────────────────────────── */}
+            <section className="bg-[#0D0D0D] py-12">
+                <div className="container mx-auto px-6">
+                    <div className="mx-auto max-w-2xl text-center">
+                        <p className="text-lg leading-relaxed text-white/78">
+                            Не нашли свою нишу? Расскажите задачу — подберём формат и рассчитаем бюджет.
+                        </p>
+                        <a
+                            href="#contact"
+                            className="mt-6 inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
+                        >
+                            Обсудить проект
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <DebugWrapper id={10700} label="Pricing Section">
+                <DronePricingStitch />
+            </DebugWrapper>
+            <DebugWrapper id={10400} label="Trust Lite Section">
+                <DroneTrustLite trust={pageConfig.trust} />
             </DebugWrapper>
             <DebugWrapper id={10500} label="Process Section">
                 <DroneProcessStitch />
@@ -89,17 +151,8 @@ export default function DroneServicePage() {
             <DebugWrapper id={10550} label="Flight Conditions Note">
                 <DroneFlightConditionsNote />
             </DebugWrapper>
-            <DebugWrapper id={10400} label="Trust Lite Section">
-                <DroneTrustLite trust={pageConfig.trust} />
-            </DebugWrapper>
             <DebugWrapper id={10600} label="Map Section">
                 <DroneMapStitch />
-            </DebugWrapper>
-            <DebugWrapper id={10700} label="Pricing Section">
-                <DronePricingStitch />
-            </DebugWrapper>
-            <DebugWrapper id={10750} label="Google Trust Lite Section">
-                <DroneGoogleTrustLite googleTrust={pageConfig.googleTrust} />
             </DebugWrapper>
             <DebugWrapper id={10800} label="FAQ Section">
                 <DroneFAQExpanded />
@@ -110,6 +163,8 @@ export default function DroneServicePage() {
             <DebugWrapper id={10900} label="Contact Section">
                 <DroneContactStitch />
             </DebugWrapper>
+            <DroneStickyCta heroId="drone-service-hero" label="Обсудить съёмку" />
+            <MobileBottomBar primaryLabel="Обсудить съёмку" />
             <DebugWrapper id={11000} label="Footer Section">
                 <DroneFooterStitch />
             </DebugWrapper>

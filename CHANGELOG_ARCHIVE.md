@@ -1,6 +1,87 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-10 (drone-service L2 Perplexity audit fixes batch 2)
+### Session Summary
+- Для `/drone-service` добавлены новые контентные и CTA-слои по Perplexity-аудиту: вводный SEO-текст, trust strip, mid-page CTA, sticky CTA и mobile bottom bar.
+- Проведён аудит `primaryHref` карточек направлений: проверены все 19 карточек, битые ссылки не обнаружены, для тонких маршрутов добавлены TODO-комментарии в data-файле.
+
+### Изменения
+- `app/drone-service/page.tsx`
+  - Между hero и services добавлен inline-блок с вводным текстом и trust strip (`DJI Air 3S + Avata 2 · 4K · Тбилиси · Батуми · Кутаиси · от 250 ₾`)
+  - Добавлен mid-page CTA после блока `DroneServicesStitch`:
+    - текст: `Не нашли свою нишу?...`
+    - кнопка: `Обсудить проект` → `#contact`
+  - Подключены generic CTA-компоненты перед футером:
+    - `<DroneStickyCta heroId="drone-service-hero" label="Обсудить съёмку" />`
+    - `<MobileBottomBar primaryLabel="Обсудить съёмку" />`
+  - Для корректного sticky-threshold hero обёрнут в контейнер с `id="drone-service-hero"`
+- `components/drone/DroneStickyCta.tsx` (new)
+  - Добавлен generic desktop sticky CTA с пропсами:
+    - `heroId?: string`
+    - `label?: string`
+    - `contactId?: string`
+    - `href?: string`
+  - Поведение: появляется после hero и скрывается при достижении секции `#contact`
+- `components/drone/MobileBottomBar.tsx` (new)
+  - Добавлен generic mobile bottom bar с пропсами:
+    - `primaryLabel?: string`
+    - `contactHref?: string`
+    - `whatsappHref?: string`
+    - `telegramHref?: string`
+  - Дефолтные ссылки: `#contact`, `https://wa.me/995574619393`, `https://t.me/breusmedia`
+- `components/drone/droneServicesData.ts`
+  - Выполнен аудит `primaryHref` 19 карточек: битых ссылок нет (0 замен на `#contact`)
+  - Добавлены TODO-комментарии для тонких маршрутов:
+    - `/drone-warehouses` (redirect alias)
+    - `/drone-services/drone-brand-video` (тонкий server entrypoint)
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по batch 2.
+
+### Build
+- `npm run build` — ✅ clean
+
+---
+
+## 2026-04-09 (drone-service cards copy + local images relink)
+### Session Summary
+- На странице `/drone-service` выполнен крупный апдейт карточек: обновлены маркетинговые тексты пользователя и массово заменены изображения на локальные project assets.
+- Данные карточек централизованно обновлены в `components/drone/droneServicesData.ts`.
+
+### Изменения
+- `components/drone/droneServicesData.ts`
+  - Обновлены `category`, `description`, `price` для пакета карточек `/drone-service` по новому copy-брифу.
+  - Переименован title карточки:
+    - `Аэросьемка для авто и автосалонов` → `Автосалоны и шоурумы`
+  - Для 16 карточек `image` переведены с внешних URL на локальные пути `/media/drone-service/*`:
+    - `Недвижимость` → `/media/drone-service/real-estate-1.png`
+    - `Мониторинг стройки` → `/media/drone-service/construction-monitoring-1.png`
+    - `FPV Съёмка` → `/media/drone-service/fpv-2.png`
+    - `Отели & Курорты` → `/media/drone-service/hotels-resorts-5.png`
+    - `Рестораны` → `/media/drone-service/restaurants-3.png`
+    - `Туризм и локации` → `/media/drone-service/tourism-6.png`
+    - `Мероприятия` → `/media/drone-service/events-1.png`
+    - `Инспекция объектов` → `/media/drone-service/object-inspection-from-territory-1.png`
+    - `Мониторинг территорий` → `/media/drone-service/territory-monitoring-2.png`
+    - `Съёмка интерьеров и складов` → `/media/drone-service/interiors-warehouses-1.png`
+    - `Спорт комплексы` → `/media/drone-service/sport-complex-1.png`
+    - `Реклама и бренд видео` → `/media/drone-service/brand-video-1.png`
+    - `Автосалоны и шоурумы` → `/media/drone-service/auto-showroom-1.png`
+    - `Агро и виноделие` → `/media/drone-service/agro-wine-1.png`
+    - `Инспекция крыш` → `/media/drone-service/roof-inspection-1.png`
+    - `Регулярные аэроотчёты` → `/media/drone-service/reporting-1.png`
+- `public/media/drone-service/`
+  - Добавлены соответствующие локальные изображения карточек (16 файлов, перечислены выше).
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя контекстная запись по этому апдейту.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- Не запускался (контент и asset-path правки без изменения логики рендера компонентов).
+
+---
+
 ## 2026-04-09 (drone-restaurants anchor audit force-reapply)
 ### Session Summary
 - Проверен аудит якорей в целевой странице `/drone-services/drone-restaurants`: `#pricing` и `#contact` уже присутствуют на нужных корневых секциях.
@@ -3146,3 +3227,40 @@ Append-only архив изменений. Старые записи не уда
 #### Release Notes
 - Статус: local only / deployed
 - Проверка: ...
+
+---
+
+## 2026-04-09 (drone-service L2 hub cleanup)
+### Session Summary
+- Выполнен cleanup L2-хаба `/drone-service` перед EN/SEO этапом.
+- Убраны пустые/неактуальные секции, обновлён порядок блоков, синхронизированы якоря в header.
+- Обновлены metadata и schema под `breus.media`, добавлены pricing-правки и пояснение FPV для непрофильной аудитории.
+
+### Изменения
+- `app/drone-service/page.tsx`
+  - Удалены `DroneSocialProofStitch` и `DroneGoogleTrustLite` (импорты + рендер).
+  - Порядок секций приведён к целевому: Hero → Services → Pricing → Trust → Process → Flight Note → Map → FAQ → Related → Contact → Footer.
+  - `SmartHeader.sectionLinks`: `#services`, `#pricing`, `#faq`.
+  - Metadata расширена: `openGraph`, `twitter`, `canonical` на `https://breus.media/drone-service`.
+  - Из description убрано слово «Профессиональная».
+- `constants/droneDirectionPages.ts`
+  - Для `droneService.seo` добавлены:
+    - `offers` (`AggregateOffer`, `lowPrice=250`, `highPrice=2600`, `offerCount=4`, `priceCurrency=GEL`)
+    - `providerTelephone: +995574619393`
+    - `areaServed` как массив городов: Тбилиси, Батуми, Кутаиси.
+  - SEO description для `droneService` обновлён без запрещённых слов.
+- `lib/seo/directionSeo.ts`
+  - Добавлен проброс `offers` в `Service` schema из config.
+  - Добавлен проброс `provider.telephone` в `LocalBusiness` из config.
+  - `BreadcrumbList` продолжает генерироваться автоматически (без дубля в `page.tsx`).
+- `components/drone/DronePricingStitch.tsx`
+  - Обновлены пакеты: `250 ₾`, `350 ₾`, `500 ₾`, `от 900 ₾`.
+  - Добавлены add-ons: `+150 ₾`, `+150 ₾`, `+80 ₾`.
+  - Для FPV добавлено пояснение: что это компактный дрон для полётов внутри помещений.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому cleanup.
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.
+
+### Build
+- `npm run build` — ✅ clean
