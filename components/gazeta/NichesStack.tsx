@@ -1465,8 +1465,8 @@ const FAQCard = ({
 
     const stepSize = 1 / totalSteps;
     const start = index * stepSize;
-    const entryStart = start + stepSize * 0.2;
-    const entryEnd = start + stepSize * 0.7;
+    const entryStart = start + stepSize * 0.02;
+    const entryEnd = start + stepSize * 0.08;
 
     const y = useTransform(scrollYProgress, [entryStart, entryEnd], ["100%", "0%"]);
 
@@ -1496,7 +1496,7 @@ const FAQCard = ({
     return (
         <motion.div
             id="niche-step-09"
-            style={{ y, zIndex: 90, top: stickyTop, height: stickyHeight }}
+            style={{ y, zIndex: index, top: stickyTop, height: stickyHeight }}
             className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
         >
             {/* JSON-LD Schema */}
@@ -1593,8 +1593,8 @@ const FormCard = ({
 
     const stepSize = 1 / totalSteps;
     const start = index * stepSize;
-    const entryStart = start + stepSize * 0.2;
-    const entryEnd = start + stepSize * 0.7;
+    const entryStart = start + stepSize * 0.02;
+    const entryEnd = start + stepSize * 0.08;
 
     const y = useTransform(scrollYProgress, [entryStart, entryEnd], ["100%", "0%"]);
 
@@ -1612,7 +1612,7 @@ const FormCard = ({
     return (
         <motion.div
             id="niche-step-10"
-            style={{ y, zIndex: 100, top: stickyTop, height: stickyHeight }}
+            style={{ y, zIndex: index, top: stickyTop, height: stickyHeight }}
             className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
         >
             <div id="contact" className="absolute top-0" />

@@ -25,7 +25,7 @@ export function HeroSection() {
 
     return (
         <DebugWrapper id={11} label="Hero Section">
-            <section ref={containerRef} className="relative w-full h-[100vh]">
+            <section ref={containerRef} className="relative w-full h-[100vh] overflow-x-clip">
                 {/* Kinetic Text anchored perfectly under the header, translating to become the logo */}
                 <DebugWrapper id={13} label="Kinetic Typography" className="fixed w-full flex justify-center z-[70] pointer-events-none top-[64px] left-0 md:mt-0">
                     <motion.h1
@@ -65,7 +65,7 @@ export function HeroSection() {
                             muted
                             playsInline
                             poster="/media/hero/posters/breus-hero-demo-poster.jpg"
-                            className="w-full h-full object-cover opacity-50"
+                            className="absolute inset-0 min-w-full min-h-full w-full h-full object-cover object-center opacity-50 scale-[1.03] md:scale-100"
                         >
                             <source src="/media/hero/video/breus-hero-demo.mp4" type="video/mp4" />
                             {/* Fallback: shows poster (black bg) if file is missing — no layout break */}

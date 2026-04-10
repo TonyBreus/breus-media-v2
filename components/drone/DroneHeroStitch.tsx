@@ -27,7 +27,6 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
     const [typedCharsCount, setTypedCharsCount] = useState(0);
     const [typewriterDone, setTypewriterDone] = useState(false);
     const [showMobileDescription, setShowMobileDescription] = useState(false);
-    const [showMobilePricePill, setShowMobilePricePill] = useState(false);
     const [showMobileArrow, setShowMobileArrow] = useState(false);
     const rotationRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -91,12 +90,10 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
         }
 
         const descriptionTimer = setTimeout(() => setShowMobileDescription(true), 400);
-        const priceTimer = setTimeout(() => setShowMobilePricePill(true), 800);
         const arrowTimer = setTimeout(() => setShowMobileArrow(true), 1200);
 
         return () => {
             clearTimeout(descriptionTimer);
-            clearTimeout(priceTimer);
             clearTimeout(arrowTimer);
         };
     }, [typewriterDone]);
@@ -226,7 +223,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
 
                             <div className="block md:hidden px-1">
                                 <div className="mx-auto max-w-[320px] text-left">
-                                    <div className="text-[34px] font-bold leading-[1.02] tracking-[0.06em] uppercase text-white min-h-[136px]">
+                                    <div className="text-[34px] font-bold leading-[1.02] tracking-[0.06em] uppercase text-white min-h-[124px]">
                                         {typedMobileLines.map((line, index) => (
                                             <div key={`typed-line-${index}`} className={index === 2 ? 'text-[#C9A84C]' : ''}>
                                                 {line || '\u00A0'}
@@ -238,32 +235,37 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                     </div>
 
                                     <div
-                                        className={`mt-4 text-sm leading-relaxed text-white/65 transition-opacity duration-500 ${
+                                        className={`mt-0 text-[15px] leading-relaxed text-white/80 font-medium transition-opacity duration-500 ${
                                             showMobileDescription ? 'opacity-100' : 'opacity-0'
                                         }`}
                                     >
-                                        <p>Фото и видео с воздуха для продажи, продвижения и мониторинга.</p>
-                                        <p>Снаружи, с высоты и FPV-пролёт внутри помещений.</p>
-                                    </div>
-
-                                    <div
-                                        className={`mt-5 transition-opacity duration-500 ${
-                                            showMobilePricePill ? 'opacity-100' : 'opacity-0'
-                                        }`}
-                                    >
-                                        <span className="inline-flex items-center rounded-full border border-[#C9A84C]/50 px-4 py-1.5 text-sm font-medium text-[#C9A84C]">
-                                            от 250 ₾
-                                        </span>
+                                        <p>
+                                            С земли не видно главного: террасу ресторана, масштаб стройки, дефект на
+                                            крыше.
+                                        </p>
+                                        <p className="mt-2">
+                                            Объекты с аэровидео продаются на 68% быстрее.
+                                        </p>
+                                        <p className="mt-2">
+                                            Дроны снимают с высоты и летают внутри помещений — FPV-технология.
+                                        </p>
+                                        <p className="mt-2">
+                                            Один полёт — контент для рекламы, отчёт для инвестора или документация для
+                                            страховой.
+                                        </p>
                                     </div>
 
                                     <a
                                         href="#directions"
                                         aria-label="Прокрутить к направлениям"
-                                        className={`mt-8 inline-flex items-center justify-center text-[#C9A84C] transition-opacity duration-500 ${
+                                        className={`mt-5 -translate-y-4 inline-flex flex-col items-center justify-center gap-1 text-[#C9A84C] transition-opacity duration-500 ${
                                             showMobileArrow ? 'opacity-100' : 'pointer-events-none opacity-0'
                                         }`}
                                     >
-                                        <ChevronDown className="h-6 w-6 animate-bounce" />
+                                        <ChevronDown className="h-5 w-5 animate-bounce" />
+                                        <span className="whitespace-nowrap text-[12px] font-medium leading-none">
+                                            19 направлений — найдите своё · от 250 ₾
+                                        </span>
                                     </a>
                                 </div>
                             </div>

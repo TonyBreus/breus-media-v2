@@ -3,7 +3,7 @@ import Link from 'next/link';
 const relatedServices = [
     {
         title: 'Reels для ресторанов',
-        href: '/reels-restaurants',
+        href: '/reels-promo/reels-restaurant',
         text: 'Короткие видео для Instagram и TikTok.',
     },
     {

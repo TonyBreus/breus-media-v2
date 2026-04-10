@@ -35,11 +35,19 @@ export type DroneDirectionRelatedLink = {
 };
 
 export type DroneDirectionSeoConfig = {
+    offers?: {
+        '@type': 'AggregateOffer';
+        priceCurrency: string;
+        lowPrice: string;
+        highPrice: string;
+        offerCount: string;
+    };
+    providerTelephone?: string;
     title: string;
     description: string;
     schemaServiceName: string;
     schemaServiceType: string;
-    areaServed: string[];
+    areaServed: Array<string | { '@type': string; name: string }>;
 };
 
 export type DroneDirectionPageConfig = {
@@ -131,10 +139,22 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
         ],
         seo: {
             title: 'Аэросъёмка в Тбилиси и Батуми | Дрон-услуги — Breus Media',
-            description: 'Профессиональная аэросъёмка в Грузии: недвижимость, стройка, отели, рестораны, туризм и события. 4K, быстрые сроки, выезды по всей стране.',
+            description: 'Аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм и события. 4K, FPV, выезды по всей стране. От 250 ₾.',
             schemaServiceName: 'Аэросъёмка в Грузии',
             schemaServiceType: 'Drone video and photography service',
-            areaServed: ['Tbilisi', 'Batumi', 'Georgia'],
+            offers: {
+                '@type': 'AggregateOffer',
+                priceCurrency: 'GEL',
+                lowPrice: '250',
+                highPrice: '2600',
+                offerCount: '4',
+            },
+            providerTelephone: '+995574619393',
+            areaServed: [
+                { '@type': 'City', name: 'Тбилиси' },
+                { '@type': 'City', name: 'Батуми' },
+                { '@type': 'City', name: 'Кутаиси' },
+            ],
         },
     },
     realEstateService: {

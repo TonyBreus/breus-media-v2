@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 
 type DroneStickyCtaProps = {
     heroId?: string;
+    label?: string;
 };
 
-export function DroneStickyCta({ heroId = 'drone-restaurants-hero' }: DroneStickyCtaProps) {
+export function DroneStickyCta({ heroId = 'drone-restaurants-hero', label = 'Обсудить проект' }: DroneStickyCtaProps) {
     const [isVisible, setIsVisible] = useState(false);
     const rafIdRef = useRef<number | null>(null);
     const tickingRef = useRef(false);
@@ -48,7 +49,7 @@ export function DroneStickyCta({ heroId = 'drone-restaurants-hero' }: DroneStick
                 isVisible ? 'pointer-events-auto translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
             } hover:border-[#FFD23F] hover:bg-[#1a1a1a]`}
         >
-            Обсудить проект
+            {label}
         </a>
     );
 }

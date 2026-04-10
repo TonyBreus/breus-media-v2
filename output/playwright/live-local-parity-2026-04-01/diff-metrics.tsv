@@ -1,0 +1,10 @@
+pair	width	height	MAD	ChangedPct>=8	ChangedPct>=16	ChangedPct>=32	MaxChannelDiff
+live-drone-service-mobile-portrait-full.png	390	17225	27.677	43.814	36.346	28.006	255
+live-real-estate-service-mobile-portrait-full.png	390	13306	20.427	32.142	24.931	20.187	252
+live-drone-service-mobile-landscape-full.png	844	11350	19.540	29.446	22.421	18.736	252
+live-real-estate-service-mobile-landscape-full.png	844	8849	16.952	27.607	19.895	15.554	252
+live-gazeta-mobile-portrait-full.png	390	11608	10.270	24.089	19.472	11.085	255
+live-drone-service-desktop-full.png	1440	8457	17.134	25.358	19.338	16.000	254
+live-real-estate-service-desktop-full.png	1440	7279	12.335	18.907	13.948	11.436	249
+live-gazeta-mobile-landscape-full.png	844	5292	7.319	19.204	12.919	7.183	255
+live-gazeta-desktop-full.png	1440	15080	5.714	14.400	8.943	5.188	255

@@ -18,12 +18,10 @@ export const DroneServicesStitch = () => {
                     }
                 `}</style>
                 <div className="container mx-auto px-6">
-                    <DebugWrapper id={10301} label="Services Header">
-                        <div className="mb-16">
-                            <h2 className="text-3xl font-bold mb-4 text-white">Направления съёмки</h2>
-                            <div className="w-12 h-1 bg-[#D4A017]" />
-                        </div>
-                    </DebugWrapper>
+                    <div className="mb-16">
+                        <h2 className="text-3xl font-bold mb-4 text-white">Направления съёмки</h2>
+                        <div className="w-12 h-1 bg-[#D4A017]" />
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                         {services.map((service, idx) => {
                             const detailsHref =
@@ -67,10 +65,16 @@ export const DroneServicesStitch = () => {
                                             <div className="flex gap-3">
                                                 <Link
                                                     href={detailsHref}
+                                                    className="flex-1 py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center"
+                                                >
+                                                    Открыть услугу
+                                                </Link>
+                                                <a
+                                                    href="#contact"
                                                     className="flex-1 py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center"
                                                 >
-                                                    {service.primaryCtaLabel ?? 'Подробнее'}
-                                                </Link>
+                                                    Обсудить задачу
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

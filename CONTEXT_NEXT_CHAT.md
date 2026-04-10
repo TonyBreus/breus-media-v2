@@ -1,3 +1,13 @@
+✅ drone-service mobile UX polish (10.04.2026) — `components/drone/DroneHeroStitch.tsx`, `components/drone/DroneServicesMobileList.tsx`, `components/drone/DroneServicesStitch.tsx`, `components/drone/MobileBottomBar.tsx`
+  - Mobile hero copy обновлён под новый бриф: усилен оффер-блок (`С земли не видно главного...`, `68% быстрее`, технология FPV, результат для рекламы/инвестора/страховой).
+  - Блок стрелки/подписи в hero переработан: стрелка отдельной строкой над подписью, текст `19 направлений — найдите своё · от 250 ₾`, поднят выше для безопасной зоны экрана.
+  - Mobile список направлений уплотнён для отображения в пределах одного экрана: уменьшены паддинги/гапы, удалён нижний hint-блок, заголовок обновлён на `Направления съёмки`.
+  - Якорный переход к `#directions` стабилизирован (`scroll-mt-20`), ссылки направлений ведут на карточки внутри страницы (`#service-[slug]`), а не на внешние L3.
+  - Для нечётного количества направлений (19) последняя карточка списка растягивается на 2 колонки (убран пустой чёрный блок снизу).
+  - В карточках services (`/drone-service`) вместо одной кнопки `Подробнее` добавлены 2 CTA: `Открыть услугу` + `Обсудить задачу`.
+  - В mobile bottom bar заменены `W/T` на реальные иконки WhatsApp/Telegram и задан фирменный цвет: WhatsApp (`#25D366`), Telegram (`#229ED9`).
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ drone-service mobile hero typewriter + directions list (10.04.2026) — `components/drone/DroneHeroStitch.tsx`, `components/drone/DroneServicesMobileList.tsx`, `app/drone-service/page.tsx`
   - Mobile hero переведён на typewriter-сценарий: `АЭРОСЪЁМКА / ДЛЯ БИЗНЕСА / В ГРУЗИИ` с курсором, одноразовый запуск при монтировании.
   - После печати добавлены staged fade-in слои на mobile: описание (`+400ms`), pill `от 250 ₾` (`+800ms`), chevron к `#directions` (`+1200ms`).
@@ -14,6 +24,25 @@
   - Добавлен mid-page CTA после карточек направлений
   - Проверены все 19 href карточек направлений на существование страниц (0 битых ссылок), для тонких страниц добавлены TODO в `components/drone/droneServicesData.ts`
   - Build: `npm run build` — ✅ clean
+
+✅ drone-service pricing sync from drone-restaurants (10.04.2026) — `components/drone/DronePricingStitch.tsx`
+  - В `DronePricingStitch` пакеты `drone-service` синхронизированы с `app/drone-services/drone-restaurants/page.tsx` по структуре и copy.
+  - Синхронизированы 4 карточки: `Полёт снаружи`, `Пролёт внутри (FPV)`, `Полная съёмка`, `Съёмка с готовым результатом`.
+  - Перенесены `subtitle`, `items`, `note`, CTA `Обсудить этот пакет →` и бейдж `Выгодно` для `Полная съёмка`.
+  - Блок `Дополнительно по задаче` синхронизирован с ресторанной страницей:
+    - `Монтаж Reels до 30 сек (музыка + субтитры): +150 ₾`
+    - `Монтаж ролика 30–60 сек для сайта: +150 ₾`
+    - `360° панорама с воздуха: +80 ₾`
+  - Build: `npm run build` — ✅ clean
+
+✅ drone-service contact form pilot field (10.04.2026) — `components/drone/DroneContactStitch.tsx`
+  - В форму добавлено новое опциональное поле:
+    - label: `ССЫЛКА НА ОБЪЕКТ (необязательно)`
+    - placeholder: `Instagram, сайт, Google Maps — любая ссылка`
+  - Поле `Ваше имя` сделано необязательным (убраны `*` и `required`).
+  - В `Интересующие услуги` заменено значение `Аэросъемка` на `Инспекция`.
+  - Порядок услуг в чипах приведён к согласованному:
+    - `Недвижимость`, `Отели`, `Рестораны`, `Туризм`, `Инспекция`, `Мониторинг`.
 
 ✅ drone-service L2 hub cleanup (09.04.2026) — `app/drone-service/page.tsx`, `constants/droneDirectionPages.ts`, `lib/seo/directionSeo.ts`, `components/drone/DronePricingStitch.tsx`
   - Убраны секции: `DroneSocialProofStitch` (placeholder), `DroneGoogleTrustLite` (Google-отзывы отсутствуют)

@@ -33,11 +33,13 @@ export const buildDirectionJsonLd = (config: DroneDirectionPageConfig, serviceNa
         serviceType: config.seo.schemaServiceType,
         description: config.seo.description,
         areaServed: config.seo.areaServed,
+        ...(config.seo.offers ? { offers: config.seo.offers } : {}),
         url: pageUrl,
         provider: {
             '@type': 'LocalBusiness',
             name: 'Breus Media',
             url: SITE_URL,
+            ...(config.seo.providerTelephone ? { telephone: config.seo.providerTelephone } : {}),
             address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Tbilisi',

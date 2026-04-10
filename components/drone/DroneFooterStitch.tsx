@@ -3,7 +3,19 @@
 import React from 'react';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 
-export const DroneFooterStitch = () => {
+type DroneFooterStitchProps = {
+    missionText?: string;
+    menuTitle?: string;
+    contactLinkLabel?: string;
+    contactTitle?: string;
+};
+
+export const DroneFooterStitch = ({
+    missionText = 'Профессиональная аэросъёмка и визуальные решения для бизнеса в Грузии. Тбилиси, Батуми, Кутаиси.',
+    menuTitle = 'Меню',
+    contactLinkLabel = 'Контакты',
+    contactTitle = 'Контакты',
+}: DroneFooterStitchProps) => {
     return (
         <DebugWrapper id={11000} label="Drone Footer Section">
             <footer className="bg-[#060606] py-16 border-t border-[#2a2a2a]">
@@ -16,7 +28,7 @@ export const DroneFooterStitch = () => {
                         </DebugWrapper>
                         <DebugWrapper id={11002} label="Footer Mission">
                             <p className="text-gray-500 text-sm max-w-sm mb-8 leading-relaxed">
-                                Профессиональная аэросъёмка и визуальные решения для бизнеса в Грузии. Тбилиси, Батуми, Кутаиси.
+                                {missionText}
                             </p>
                         </DebugWrapper>
                         <div className="flex space-x-6">
@@ -39,20 +51,16 @@ export const DroneFooterStitch = () => {
                     </div>
                     <div className="flex flex-col items-center md:items-start">
                         <DebugWrapper id={11003} label="Footer Nav Column">
-                            <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-6 text-white">Меню</h4>
+                            <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-6 text-white">{menuTitle}</h4>
                             <ul className="space-y-4 text-sm text-gray-500">
                                 {[
-                                    { label: 'Контакты', href: '#contact' },
+                                    { label: contactLinkLabel, href: '#contact' },
                                 ].map((item, mIdx) => (
                                     <li key={item.label}>
                                         <DebugWrapper id={11020 + mIdx} label={`Footer Link: ${item.label}`}>
-                                            {item.inactive ? (
-                                                <span className="text-white/40 cursor-default">{item.label}</span>
-                                            ) : (
-                                                <a href={item.href} className="hover:text-white transition-colors">
-                                                    {item.label}
-                                                </a>
-                                            )}
+                                            <a href={item.href} className="hover:text-white transition-colors">
+                                                {item.label}
+                                            </a>
                                         </DebugWrapper>
                                     </li>
                                 ))}
@@ -61,7 +69,7 @@ export const DroneFooterStitch = () => {
                     </div>
                     <div className="flex flex-col items-center md:items-start">
                         <DebugWrapper id={11004} label="Footer Contact Column">
-                            <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-6 text-white">Контакты</h4>
+                            <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-6 text-white">{contactTitle}</h4>
                             <ul className="space-y-4 text-sm text-gray-500">
                                 <li>Tbilisi, Georgia</li>
                                 <li className="text-white font-bold">+995 574 619 393</li>

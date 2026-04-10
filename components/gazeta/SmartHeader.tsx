@@ -219,6 +219,28 @@ export function SmartHeader({
     const aboutHref = "/about";
     const contactHref = isLanding ? "#contact" : "/gazeta#contact";
     const resolvedCtaHref = ctaHref ?? contactHref;
+    const handleCtaClick = (event: React.MouseEvent<HTMLAnchorElement>, closeMobileMenu = false) => {
+        if (closeMobileMenu) {
+            setIsMobileMenuOpen(false);
+        }
+
+        if (!resolvedCtaHref.startsWith("#")) {
+            return;
+        }
+
+        event.preventDefault();
+        const target = document.querySelector(resolvedCtaHref);
+
+        if (!(target instanceof HTMLElement)) {
+            window.location.hash = resolvedCtaHref;
+            return;
+        }
+
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (window.location.hash !== resolvedCtaHref) {
+            window.history.replaceState(null, "", resolvedCtaHref);
+        }
+    };
 
     return (
         <DebugWrapper id={1} label="GlobalHeader (Глобальная Шапка)">
@@ -427,7 +449,7 @@ export function SmartHeader({
 
                         {/* 3. CTA Buttons (206) - Shows different text for mobile/desktop */}
                         <DebugWrapper id={206} label="Button: Обсудить Задачу">
-                            <Link href={resolvedCtaHref} className={`flex items-center justify-center bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all whitespace-nowrap ${isMobileCompactTop ? "px-3 py-1 text-[8px]" : "px-4 py-1.5 md:px-6 md:py-2.5 text-[9px] md:text-[10px]"}`}>
+                            <Link href={resolvedCtaHref} onClick={handleCtaClick} className={`flex items-center justify-center bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all whitespace-nowrap ${isMobileCompactTop ? "px-3 py-1 text-[8px]" : "px-4 py-1.5 md:px-6 md:py-2.5 text-[9px] md:text-[10px]"}`}>
                                 <span className="md:hidden">{copy.ctaMobile}</span>
                                 <span className="hidden md:inline">{copy.ctaDesktop}</span>
                             </Link>
@@ -533,7 +555,7 @@ export function SmartHeader({
 
                                     <Link
                                         href={resolvedCtaHref}
-                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        onClick={(event) => handleCtaClick(event, true)}
                                         className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-[11px] font-black uppercase tracking-[0.22em] text-black transition-colors hover:bg-[#D4AF37]"
                                     >
                                         {copy.ctaDesktop}
