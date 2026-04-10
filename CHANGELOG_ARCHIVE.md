@@ -43,7 +43,8 @@ Append-only архив изменений. Старые записи не уда
 - `npm run build` — ✅ clean
 
 ### Status
-- local ready
+- deployed
+- Deployment URL: https://breus-media-v2.vercel.app
 
 ---
 
