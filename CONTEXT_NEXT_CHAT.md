@@ -1,3 +1,12 @@
+✅ fix(contact+sticky): кнопка → Отправить заявку, sticky → Обсудить задачу, скрывать sticky при форме (11.04.2026) — `components/drone/DroneContactStitch.tsx`, `components/drone/MobileBottomBar.tsx`, `app/drone-service/page.tsx`
+  - В `DroneContactStitch` submit-кнопка обновлена на `Отправить заявку`, на `<form>` добавлен `id=\"contact-form\"`.
+  - В `MobileBottomBar` добавлены `useState/useEffect` и `IntersectionObserver` для скрытия панели при видимой форме (`#contact-form`), при этом все базовые классы позиционирования корневого `div` сохранены.
+  - В `MobileBottomBar` default `primaryLabel` изменён на `Обсудить задачу`.
+  - В `app/drone-service/page.tsx` синхронизированы тексты CTA:
+    - `DroneStickyCta label=\"Обсудить задачу\"`
+    - `MobileBottomBar primaryLabel=\"Обсудить задачу\"`
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(contact): форма обновлена — заголовок, поля, CTA, WhatsApp-ссылка с pretext (11.04.2026) — `components/drone/DroneContactStitch.tsx`
   - Заголовок обновлён на `ОБСУДИМ ВАШУ ЗАДАЧУ` (`text-[20px] md:text-3xl`), подзаголовок переписан и оставлен с `leading-snug` на всех размерах.
   - В `Способ связи` опция `Email` заменена на `Звонок`; placeholder обновлён с кейсом для `Звонок` (`+995 ...`).

@@ -34,7 +34,7 @@ export const DroneContactStitch = () => {
                             </p>
                         </DebugWrapper>
 
-                        <form className="relative z-10 space-y-2.5 md:space-y-5" onSubmit={(e) => e.preventDefault()}>
+                        <form id="contact-form" className="relative z-10 space-y-2.5 md:space-y-5" onSubmit={(e) => e.preventDefault()}>
                             <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-5">
                                 <div className="hidden md:block">
                                     <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55 md:mb-2 md:text-[11px]">
@@ -130,7 +130,7 @@ export const DroneContactStitch = () => {
                                         className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-[#D4A017] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-black transition-colors hover:brightness-105 md:gap-2 md:px-6 md:py-3.5 md:text-sm"
                                     >
                                         <Send className="w-4 h-4" />
-                                        Получить расчёт
+                                        Отправить заявку
                                     </button>
                                 </DebugWrapper>
                                 <DebugWrapper id={10911} label="Contact Telegram CTA">

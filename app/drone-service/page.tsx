@@ -269,8 +269,8 @@ export default function DroneServicePage() {
             <DebugWrapper id={10900} label="Contact Section">
                 <DroneContactStitch />
             </DebugWrapper>
-            <DroneStickyCta heroId="drone-service-hero" label="Обсудить съёмку" />
-            <MobileBottomBar primaryLabel="Обсудить съёмку" />
+            <DroneStickyCta heroId="drone-service-hero" label="Обсудить задачу" />
+            <MobileBottomBar primaryLabel="Обсудить задачу" />
             <DebugWrapper id={11000} label="Footer Section">
                 <DroneFooterStitch />
             </DebugWrapper>

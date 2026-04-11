@@ -1,6 +1,36 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (fix(contact+sticky): кнопка → Отправить заявку, sticky → Обсудить задачу, скрывать sticky при форме)
+### Session Summary
+- Синхронизированы CTA-тексты формы и sticky-элементов на `/drone-service`.
+- Mobile bottom bar теперь скрывается, когда в viewport видна форма `#contact-form`.
+
+### Изменения
+- `components/drone/DroneContactStitch.tsx`
+  - Submit CTA: `Получить расчёт` → `Отправить заявку`.
+  - На `<form>` добавлен `id="contact-form"`.
+- `components/drone/MobileBottomBar.tsx`
+  - Добавлен client-режим (`'use client'`) и React hooks (`useState`, `useEffect`).
+  - Добавлен `IntersectionObserver` на `#contact-form`:
+    - при пересечении форма/viewport: панель скрывается,
+    - вне пересечения: панель показывается.
+  - На корневой `div` добавлен условный `hidden`, при этом исходные классы (`fixed`, `bottom-0`, `z-*`, `lg:hidden` и др.) сохранены без удаления.
+  - Default `primaryLabel`: `Обсудить съёмку` → `Обсудить задачу`.
+- `app/drone-service/page.tsx`
+  - `<DroneStickyCta ... label="Обсудить задачу" />`
+  - `<MobileBottomBar primaryLabel="Обсудить задачу" />`
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему фиксу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (fix(contact): форма обновлена — заголовок, поля, CTA, WhatsApp-ссылка с pretext)
 ### Session Summary
 - Точечно обновлена контактная форма `DroneContactStitch`: переписаны заголовок/подзаголовок, изменены поля способа связи и ссылки на объект, обновлены CTA-тексты.
