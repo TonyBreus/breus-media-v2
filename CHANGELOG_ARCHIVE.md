@@ -1,6 +1,29 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (fix(menu-socials): mobile burger footer icons IG/TG/WA)
+### Session Summary
+- В `SmartHeader` обновлён нижний social-блок мобильного бургер-меню: текстовые сокращения заменены на иконки, LinkedIn удалён.
+
+### Изменения
+- `components/gazeta/SmartHeader.tsx`
+  - В mobile footer (`border-t`) заменён social row:
+    - было: `IG / TG / LI / WA` текстом,
+    - стало: 3 иконки `Instagram / Telegram / WhatsApp`.
+  - Удалена кнопка LinkedIn.
+  - Добавлен импорт `Instagram` из `lucide-react`.
+  - SVG для `Telegram` и `WhatsApp` использованы по аналогии с `components/drone/MobileBottomBar.tsx`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущей правке mobile social блока.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (fix(desktop-drone-service): header/process/intro + flight SEO block)
 ### Session Summary
 - На `/drone-service` выполнен desktop-focused pass: убран дубль `Услуги` в header links, обновлён process-блок, переписан intro-текст под Hero и добавлен технический SEO-блок в `FlightConditions`.

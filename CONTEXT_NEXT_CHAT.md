@@ -1,3 +1,10 @@
+✅ fix(menu-socials): mobile burger footer icons (IG/TG/WA), LinkedIn removed (11.04.2026) — `components/gazeta/SmartHeader.tsx`
+  - В нижнем `border-t` блоке mobile burger меню текстовые кнопки `IG / TG / LI / WA` заменены на 3 иконки: Instagram, Telegram, WhatsApp.
+  - LinkedIn удалён из footer social блока мобильного меню.
+  - Telegram и WhatsApp SVG-иконки перенесены по аналогии с `components/drone/MobileBottomBar.tsx`.
+  - Для Instagram добавлена иконка `Instagram` из `lucide-react`.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(desktop-drone-service): header/process/intro + flight SEO block (11.04.2026) — `components/gazeta/SmartHeader.tsx`, `components/drone/DroneProcessStitch.tsx`, `app/drone-service/page.tsx`, `components/drone/DroneFlightConditionsNote.tsx`
   - В desktop nav `SmartHeader` для `sectionLinks` добавлен фильтр `href !== '#services'`, чтобы убрать дубль пункта `Услуги` (mobile burger без изменений).
   - В `DroneProcessStitch` обновлены названия шагов: `ЗАПРОС`, `ПЛАН`, `СЪЁМКА`, `ПЕРЕДАЧА`; для шага 02 описание изменено на `уточняем зону полёта`.
