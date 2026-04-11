@@ -31,19 +31,20 @@ export const DroneProcessStitch = () => {
         <DebugWrapper id={10500} label="Drone Process Section">
             <section className="py-4 md:py-24 bg-[#0D0D0D]">
                 <div className="container mx-auto px-6">
-                    <div className="md:hidden -mx-2 px-2 py-2 overflow-x-auto">
-                        <div className="flex items-center gap-2 min-w-max">
+                    <div className="md:hidden px-2 py-2">
+                        <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-white/35">Как мы работаем</p>
+                        <div className="flex flex-col">
                             {steps.map((step, idx) => (
-                                <DebugWrapper key={idx} id={10510 + idx} label={`Process Step Compact ${idx + 1}: ${step.title}`}>
-                                    <div className="min-w-[68px] h-9 px-2 rounded-md border border-white/12 bg-white/[0.02] flex items-center justify-center">
-                                        <div className="flex items-center gap-1 whitespace-nowrap leading-none">
-                                            <span className="text-xs text-white/30">{step.number}</span>
-                                            <span className="text-[10px] font-bold text-[#D4A017] uppercase tracking-widest">
-                                                {step.title}
-                                            </span>
-                                        </div>
+                                <React.Fragment key={idx}>
+                                    <div className="flex items-center gap-3 py-2 px-3 rounded-[8px] bg-white/[0.03] border border-white/[0.07]">
+                                        <span className="text-[11px] text-white/25 font-mono w-5 shrink-0">{step.number}</span>
+                                        <span className="text-[12px] font-bold text-[#D4A017] uppercase tracking-widest">{step.title}</span>
+                                        <span className="text-[11px] text-white/45 leading-snug">{step.description}</span>
                                     </div>
-                                </DebugWrapper>
+                                    {idx < steps.length - 1 && (
+                                        <div className="flex justify-center py-0.5 text-white/20 text-xs">↓</div>
+                                    )}
+                                </React.Fragment>
                             ))}
                         </div>
                     </div>

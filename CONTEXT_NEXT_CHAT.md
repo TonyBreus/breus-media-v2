@@ -1,3 +1,9 @@
+✅ fix(process-mobile): горизонтальный скролл → вертикальный список со стрелками (11.04.2026) — `components/drone/DroneProcessStitch.tsx`
+  - В mobile-блоке `DroneProcessStitch` удалён горизонтальный скролл, добавлен вертикальный список шагов (`Заявка → Подготовка → Съёмка → Материал`) с разделителями-стрелками.
+  - Каждый шаг теперь отображает номер, заголовок и короткое описание в компактной карточке (`rounded-[8px]`, `bg-white/[0.03]`, `border-white/[0.07]`).
+  - Desktop-ветка (`hidden md:grid`) и отступы секции `py-4 md:py-24` оставлены без изменений.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(mobile): направления компактнее, процесс без пустого пространства (11.04.2026) — `components/drone/DroneServicesMobileList.tsx`, `components/drone/DroneProcessStitch.tsx`
   - `DroneServicesMobileList`: уплотнён mobile-блок направлений (`py-4`, `gap-1.5`, карточки `rounded-[8px]`, `py-1.5`, `text-[12px]`, стрелка-блок `mt-4`).
   - `DroneProcessStitch`: на mobile сокращены внешние отступы секции (`py-4`), добавлен `py-2` в горизонтальный scroll-контейнер, шаги ужаты до `h-9` и `min-w-[68px]`.
