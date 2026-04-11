@@ -4,10 +4,9 @@ import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DroneHeroStitch } from '@/components/drone/DroneHeroStitch';
 import { DroneServicesMobileList } from '@/components/drone/DroneServicesMobileList';
 import { DroneServicesStitch } from '@/components/drone/DroneServicesStitch';
+import { DroneStatsStrip } from '@/components/drone/DroneStatsStrip';
 import { DroneProcessStitch } from '@/components/drone/DroneProcessStitch';
 import { DroneFlightConditionsNote } from '@/components/drone/DroneFlightConditionsNote';
-import { DroneTrustLite } from '@/components/drone/DroneTrustLite';
-import { DroneMapStitch } from '@/components/drone/DroneMapStitch';
 import { DronePricingStitch } from '@/components/drone/DronePricingStitch';
 import { DroneFAQExpanded } from '@/components/drone/DroneFAQExpanded';
 import { DroneRelatedLinksCompact } from '@/components/drone/DroneRelatedLinksCompact';
@@ -61,6 +60,115 @@ export default function DroneServicePage() {
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
                 />
             ))}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'ItemList',
+                        name: 'Услуги аэросъёмки дроном в Тбилиси',
+                        description:
+                            '18 направлений аэросъёмки для бизнеса в Тбилиси и Грузии — от недвижимости до инспекции объектов. От 250 ₾.',
+                        url: 'https://breus.media/drone-service',
+                        numberOfItems: 18,
+                        itemListElement: [
+                            { '@type': 'ListItem', position: 1, name: 'Недвижимость', url: 'https://breus.media/drone-real-estate' },
+                            {
+                                '@type': 'ListItem',
+                                position: 2,
+                                name: 'Мониторинг стройки',
+                                url: 'https://breus.media/drone-construction-monitoring',
+                            },
+                            { '@type': 'ListItem', position: 3, name: 'FPV Съёмка', url: 'https://breus.media/drone-fpv-cinema' },
+                            {
+                                '@type': 'ListItem',
+                                position: 4,
+                                name: 'Отели и курорты',
+                                url: 'https://breus.media/drone-hotels-tourism',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 5,
+                                name: 'Рестораны',
+                                url: 'https://breus.media/drone-services/drone-restaurants',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 6,
+                                name: 'Туризм и локации',
+                                url: 'https://breus.media/drone-hotels-tourism',
+                            },
+                            { '@type': 'ListItem', position: 7, name: 'Мероприятия', url: 'https://breus.media/drone-weddings-events' },
+                            {
+                                '@type': 'ListItem',
+                                position: 8,
+                                name: 'Инспекция объектов',
+                                url: 'https://breus.media/drone-object-inspection',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 9,
+                                name: 'Мониторинг территорий',
+                                url: 'https://breus.media/drone-services/drone-territory',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 10,
+                                name: 'Съёмка интерьеров и складов',
+                                url: 'https://breus.media/drone-warehouses',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 11,
+                                name: 'Спорт комплексы',
+                                url: 'https://breus.media/drone-services/drone-sport',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 12,
+                                name: 'Реклама и бренд видео',
+                                url: 'https://breus.media/drone-services/drone-brand-video',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 13,
+                                name: 'Автосалоны и шоурумы',
+                                url: 'https://breus.media/drone-services/drone-auto',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 14,
+                                name: 'Агро и виноделие',
+                                url: 'https://breus.media/drone-services/drone-wine',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 15,
+                                name: 'Земельные участки',
+                                url: 'https://breus.media/drone-services/drone-land-sale',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 16,
+                                name: 'Инспекция фасадов',
+                                url: 'https://breus.media/drone-services/drone-facade',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 17,
+                                name: 'Инспекция солнечных панелей',
+                                url: 'https://breus.media/drone-services/drone-solar',
+                            },
+                            {
+                                '@type': 'ListItem',
+                                position: 18,
+                                name: 'Регулярные аэроотчёты',
+                                url: 'https://breus.media/drone-services/drone-reporting',
+                            },
+                        ],
+                    }),
+                }}
+            />
             <DronePageScrollProgress />
             <SmartHeader
                 transparent={true}
@@ -124,6 +232,7 @@ export default function DroneServicePage() {
             <DebugWrapper id={10300} label="Services Section">
                 <DroneServicesStitch />
             </DebugWrapper>
+            <DroneStatsStrip />
 
             {/* ── MID-PAGE CTA ───────────────────────────────────────────── */}
             <section className="bg-[#0D0D0D] py-12">
@@ -145,17 +254,11 @@ export default function DroneServicePage() {
             <DebugWrapper id={10700} label="Pricing Section">
                 <DronePricingStitch />
             </DebugWrapper>
-            <DebugWrapper id={10400} label="Trust Lite Section">
-                <DroneTrustLite trust={pageConfig.trust} />
-            </DebugWrapper>
             <DebugWrapper id={10500} label="Process Section">
                 <DroneProcessStitch />
             </DebugWrapper>
             <DebugWrapper id={10550} label="Flight Conditions Note">
                 <DroneFlightConditionsNote />
-            </DebugWrapper>
-            <DebugWrapper id={10600} label="Map Section">
-                <DroneMapStitch />
             </DebugWrapper>
             <DebugWrapper id={10800} label="FAQ Section">
                 <DroneFAQExpanded />

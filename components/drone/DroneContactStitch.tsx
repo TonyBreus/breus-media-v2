@@ -8,7 +8,7 @@ export const DroneContactStitch = () => {
     const [method, setMethod] = useState<'Telegram' | 'WhatsApp' | 'Email'>('Telegram');
     const [services, setServices] = useState<string[]>([]);
 
-    const serviceOptions = ['Аэросъемка', 'Мониторинг', 'Недвижимость', 'Отели', 'Рестораны', 'Туризм'];
+    const serviceOptions = ['Недвижимость', 'Отели', 'Рестораны', 'Туризм', 'Инспекция', 'Мониторинг'];
 
     const toggleService = (service: string) => {
         setServices((prev) => (prev.includes(service) ? prev.filter((item) => item !== service) : [...prev, service]));
@@ -19,47 +19,46 @@ export const DroneContactStitch = () => {
 
     return (
         <DebugWrapper id={10900} label="Drone Contact Section">
-            <section className="py-16 md:py-20 bg-[#080808]" id="contact">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#141414] via-[#111111] to-[#0d0d0d] border border-[#D4A017]/30 rounded-2xl p-6 md:p-8 overflow-hidden relative">
+            <section className="bg-[#080808] py-6 md:py-20" id="contact">
+                <div className="container mx-auto px-4 md:px-6">
+                    <div className="relative mx-auto max-w-4xl overflow-hidden rounded-xl border border-[#D4A017]/30 bg-gradient-to-br from-[#141414] via-[#111111] to-[#0d0d0d] p-3.5 md:rounded-2xl md:p-8">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,160,23,0.14),transparent_55%)] pointer-events-none" />
                         <DebugWrapper id={10901} label="Contact Header">
-                            <h2 className="text-2xl md:text-3xl font-bold mb-3 text-white tracking-tight">
+                            <h2 className="mb-1.5 text-[22px] font-bold tracking-tight text-white md:text-3xl">
                                 ПОКАЖИТЕ НАМ ВАШ ОБЪЕКТ
                             </h2>
                         </DebugWrapper>
                         <DebugWrapper id={10902} label="Contact Description">
-                            <p className="text-white/70 mb-6 max-w-2xl leading-relaxed text-sm md:text-base">
+                            <p className="mb-3 max-w-2xl text-[12px] leading-snug text-white/70 md:mb-6 md:text-base md:leading-relaxed">
                                 Оставьте контакты и короткий бриф. Подберем формат съемки и вернемся с расчетом в течение
                                 рабочего часа.
                             </p>
                         </DebugWrapper>
 
-                        <form className="space-y-5 relative z-10" onSubmit={(e) => e.preventDefault()}>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div>
-                                    <label className="block text-[11px] uppercase tracking-[0.18em] text-white/55 mb-2">
-                                        Ваше имя *
+                        <form className="relative z-10 space-y-2.5 md:space-y-5" onSubmit={(e) => e.preventDefault()}>
+                            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-5">
+                                <div className="hidden md:block">
+                                    <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55 md:mb-2 md:text-[11px]">
+                                        Ваше имя
                                     </label>
                                     <input
                                         type="text"
-                                        required
                                         placeholder="Иван Иванов"
-                                        className="w-full bg-transparent border-b border-white/25 pb-2.5 text-white placeholder:text-white/35 focus:border-[#D4A017] outline-none transition-colors"
+                                        className="w-full border-b border-white/25 bg-transparent pb-2 text-sm text-white placeholder:text-white/35 outline-none transition-colors focus:border-[#D4A017] md:pb-2.5"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-[11px] uppercase tracking-[0.18em] text-white/55 mb-2">
+                                    <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55 md:mb-2 md:text-[11px]">
                                         Способ связи *
                                     </label>
-                                    <div className="flex gap-3">
+                                    <div className="flex gap-2 md:gap-3">
                                         {(['Telegram', 'WhatsApp', 'Email'] as const).map((option) => (
                                             <button
                                                 key={option}
                                                 type="button"
                                                 onClick={() => setMethod(option)}
-                                                className={`pb-1.5 border-b-2 text-sm transition-colors ${
+                                                className={`border-b-2 pb-1 text-xs transition-colors md:pb-1.5 md:text-sm ${
                                                     method === option
                                                         ? 'border-[#D4A017] text-white'
                                                         : 'border-transparent text-white/45 hover:text-white/80'
@@ -73,16 +72,16 @@ export const DroneContactStitch = () => {
                                         type={method === 'Email' ? 'email' : 'text'}
                                         required
                                         placeholder={contactPlaceholder}
-                                        className="w-full bg-transparent border-b border-white/25 pb-2.5 mt-3 text-white placeholder:text-white/35 focus:border-[#D4A017] outline-none transition-colors"
+                                        className="mt-2.5 w-full border-b border-white/25 bg-transparent pb-2 text-sm text-white placeholder:text-white/35 outline-none transition-colors focus:border-[#D4A017] md:mt-3 md:pb-2.5"
                                     />
                                 </div>
                             </div>
 
-                            <div>
-                                <label className="block text-[11px] uppercase tracking-[0.18em] text-white/55 mb-2.5">
+                            <div className="hidden md:block">
+                                <label className="mb-2 block text-[10px] uppercase tracking-[0.18em] text-white/55 md:mb-2.5 md:text-[11px]">
                                     Интересующие услуги
                                 </label>
-                                <div className="flex flex-wrap gap-2.5">
+                                <div className="flex flex-wrap gap-1.5 md:gap-2.5">
                                     {serviceOptions.map((service) => {
                                         const isActive = services.includes(service);
                                         return (
@@ -90,7 +89,7 @@ export const DroneContactStitch = () => {
                                                 key={service}
                                                 type="button"
                                                 onClick={() => toggleService(service)}
-                                                className={`px-3 py-1.5 rounded-full border text-xs md:text-sm transition-colors ${
+                                                className={`rounded-full border px-2.5 py-1 text-[11px] transition-colors md:px-3 md:py-1.5 md:text-sm ${
                                                     isActive
                                                         ? 'bg-[#D4A017] border-[#D4A017] text-black font-semibold'
                                                         : 'border-white/20 text-white/70 hover:border-white/45 hover:text-white'
@@ -103,22 +102,33 @@ export const DroneContactStitch = () => {
                                 </div>
                             </div>
 
-                            <div>
-                                <label className="block text-[11px] uppercase tracking-[0.18em] text-white/55 mb-2">
-                                    Коротко о задаче
+                            <div className="hidden md:block">
+                                <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55 md:mb-2 md:text-[11px]">
+                                    ССЫЛКА НА ОБЪЕКТ (необязательно)
                                 </label>
-                                <textarea
-                                    rows={3}
-                                    placeholder="Например: обзор ЖК с воздуха и короткий ролик для рекламы."
-                                    className="w-full bg-transparent border-b border-white/25 pb-2.5 text-white placeholder:text-white/35 focus:border-[#D4A017] outline-none transition-colors resize-none"
+                                <input
+                                    type="url"
+                                    placeholder="Instagram, сайт, Google Maps — любая ссылка"
+                                    className="w-full border-b border-white/25 bg-transparent pb-2 text-sm text-white placeholder:text-white/35 outline-none transition-colors focus:border-[#D4A017] md:pb-2.5"
                                 />
                             </div>
 
-                            <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                            <div>
+                                <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55 md:mb-2 md:text-[11px]">
+                                    Коротко о задаче
+                                </label>
+                                <textarea
+                                    rows={2}
+                                    placeholder="Например: обзор ЖК с воздуха и короткий ролик для рекламы."
+                                    className="h-12 w-full resize-none border-b border-white/25 bg-transparent pb-2 text-sm text-white placeholder:text-white/35 outline-none transition-colors focus:border-[#D4A017] md:h-auto md:pb-2.5"
+                                />
+                            </div>
+
+                            <div className="flex flex-col gap-2 pt-0.5 sm:flex-row sm:gap-3 md:pt-1">
                                 <DebugWrapper id={10910} label="Contact Primary CTA">
                                     <button
                                         type="submit"
-                                        className="flex-1 bg-[#D4A017] text-black py-3.5 px-6 rounded-xl font-bold uppercase tracking-[0.12em] text-xs md:text-sm hover:brightness-105 transition-colors flex items-center justify-center gap-2"
+                                        className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-[#D4A017] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-black transition-colors hover:brightness-105 md:gap-2 md:px-6 md:py-3.5 md:text-sm"
                                     >
                                         <Send className="w-4 h-4" />
                                         Отправить
@@ -129,7 +139,7 @@ export const DroneContactStitch = () => {
                                         href="https://wa.me/995574619393"
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="flex-1 border border-white/20 text-white py-3.5 px-6 rounded-xl font-semibold uppercase tracking-[0.12em] text-xs md:text-sm hover:bg-white/5 transition-colors flex items-center justify-center gap-2"
+                                        className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-white/20 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/5 md:gap-2 md:px-6 md:py-3.5 md:text-sm"
                                     >
                                         <MessageCircle className="w-4 h-4" />
                                         WhatsApp
@@ -137,7 +147,7 @@ export const DroneContactStitch = () => {
                                 </DebugWrapper>
                             </div>
 
-                            <p className="text-[11px] text-white/45">
+                            <p className="hidden md:block text-[10px] leading-tight text-white/45 md:text-[11px]">
                                 Нажимая кнопку, вы соглашаетесь на обработку контактов для обратной связи.
                             </p>
                         </form>

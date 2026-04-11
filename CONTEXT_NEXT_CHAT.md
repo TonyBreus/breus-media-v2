@@ -1,3 +1,54 @@
+✅ drone-service pre-deploy: 3 mobile fixes (11.04.2026) — `components/drone/DroneProcessStitch.tsx`, `app/drone-service/page.tsx`, `components/drone/DroneFlightConditionsNote.tsx`, `components/drone/DroneContactStitch.tsx`
+  - Три pre-deploy задачи выполнены (Process compact mobile, MapStitch removed, Contact mobile-fit). Страница готова к деплою.
+  - `DroneProcessStitch`: на мобиле включён компактный горизонтальный ряд шагов, описания и крупные фоновые номера скрыты; desktop-версия сохранена.
+  - `app/drone-service/page.tsx`: удалён рендер секции карты (`DroneMapStitch`), компонент-файл сохранён.
+  - `DroneFlightConditionsNote`: текст упрощён до формулировки про регламент GCAA и проверку зоны до выезда.
+  - `DroneContactStitch`: mobile-форма уплотнена под 390×844; на мобиле скрыты поля `Ваше имя`, `Интересующие услуги`, `Ссылка на объект` и дисклеймер.
+  - Build: `npm run build` — ✅ clean (local ready)
+
+✅ drone-service schema update: ItemList (18 направлений) (11.04.2026) — `app/drone-service/page.tsx`
+  - Добавлен новый JSON-LD `<script type="application/ld+json">` с `@type: ItemList` для страницы `/drone-service`.
+  - Схема вставлена сразу после блока `{jsonLdSchemas.map(...)}` и до `<DronePageScrollProgress />`.
+  - В `ItemList` зафиксированы `numberOfItems: 18` и `itemListElement` из 18 направлений с canonical URL на `breus.media`.
+  - Существующие schema-блоки и остальные секции страницы не изменялись.
+  - Build: `npm run build` — ✅ clean (local ready)
+
+✅ drone-service tiny copy fixes: related label + hero source suffix (11.04.2026) — `components/drone/DroneRelatedLinksCompact.tsx`, `components/drone/DroneHeroStitch.tsx`
+  - В `DroneRelatedLinksCompact` удалён дублирующий строчный лейбл над `h2`; оставлен только заголовок `Другие услуги Breus Media`.
+  - В mobile-блоке `DroneHeroStitch` строка про `68%` уточнена источником: `Объекты с аэровидео продаются на 68% быстрее (MLS / NAR).`
+  - Desktop-hero и структура блока related links не менялись.
+  - Build: `npm run build` — ✅ clean (local ready)
+
+✅ drone-service data cleanup: roof inspection card removed (11.04.2026) — `components/drone/droneServicesData.ts`
+  - Из массива `droneServiceItems` удалена карточка с `title: Инспекция крыш` (`slug: inspekciya-krysh`) по прямому запросу.
+  - Остальные карточки в `droneServicesData.ts` не изменялись.
+  - Сопутствующие компоненты (`Hero`, `Pricing`, `FAQ`) не затрагивались.
+  - Build: `npm run build` — ✅ clean (local ready)
+
+✅ drone-service related links + data fixes (11.04.2026) — `constants/droneDirectionPages.ts`, `components/drone/droneServicesData.ts`, `components/drone/DroneRelatedLinksCompact.tsx`
+  - Для `droneDirectionPages.droneService` полностью заменён массив `relatedLinks` на 4 блока: `360° виртуальные туры`, `Reels и короткое видео`, `Промо-видео`, `AI-визуализация` с новыми `href`.
+  - В `DroneRelatedLinksCompact` обновлён заголовочный блок: eyebrow и `h2` заменены на `Другие услуги Breus Media` (структура и стили без изменений).
+  - В `droneServicesData` обновлены 2 карточки:
+    - `Недвижимость`: `68%` → `94% ... HomeJab` в описании
+    - `Инспекция крыш`: `primaryHref` → `/drone-services/drone-roof-inspection`
+  - `relatedLinks` других страниц, hero/pricing/faq компоненты не изменялись.
+  - Build: `npm run build` — ✅ clean (local ready)
+
+✅ drone-service mobile content cleanup + compact contact form (11.04.2026) — `components/drone/DroneServicesStitch.tsx`, `components/drone/DroneServicesMobileList.tsx`, `components/drone/DroneContactStitch.tsx`
+  - В секции карточек `/drone-service` удалён заголовок `Направления съёмки` и золотая линия над гридом услуг для более чистого перехода от mobile hint к карточкам.
+  - В `DroneServicesMobileList` убран двухстрочный поясняющий текст под списком; оставлен только CTA-якорь `смотреть карточки` со стрелкой на `#services`.
+  - Контактная форма (`DroneContactStitch`) уплотнена под mobile: уменьшены внешние/внутренние отступы, интервалы между полями, размеры чипов, высота textarea и кнопок.
+  - Desktop-поведение сохранено через `md:`-классы; логика полей и отправки не менялась.
+  - Build: `npm run build` — ✅ clean (local ready)
+
+✅ drone-service content batch: stats + faq + mobile hint + trust removal (10.04.2026) — `components/drone/DroneServicesMobileList.tsx`, `components/drone/DroneStatsStrip.tsx`, `app/drone-service/page.tsx`, `components/drone/DroneFAQExpanded.tsx`
+  - В mobile-список направлений (`#directions`) добавлен нижний hint-блок: пояснение про отдельные страницы + bounce-стрелка `смотреть карточки` с якорем `#services`.
+  - На `/drone-service` удалён из рендера блок `DroneTrustLite` («НАМ ДОВЕРЯЮТ») — компонент оставлен в проекте, но не используется на странице.
+  - Добавлен новый блок `DroneStatsStrip` (4 карточки: `68%`, `94%`, `403%`, `73%`) и вставлен между `DroneServicesStitch` и `DronePricingStitch`.
+  - В `DroneFAQExpanded` полностью заменён массив FAQ на 8 новых вопросов/ответов по стоимости, FPV, географии, разрешениям, форматам и срокам.
+  - `DroneHeroStitch.tsx`, `droneServicesData.ts` и pricing-карточки не изменялись.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ drone-service mobile UX polish (10.04.2026) — `components/drone/DroneHeroStitch.tsx`, `components/drone/DroneServicesMobileList.tsx`, `components/drone/DroneServicesStitch.tsx`, `components/drone/MobileBottomBar.tsx`
   - Mobile hero copy обновлён под новый бриф: усилен оффер-блок (`С земли не видно главного...`, `68% быстрее`, технология FPV, результат для рекламы/инвестора/страховой).
   - Блок стрелки/подписи в hero переработан: стрелка отдельной строкой над подписью, текст `19 направлений — найдите своё · от 250 ₾`, поднят выше для безопасной зоны экрана.

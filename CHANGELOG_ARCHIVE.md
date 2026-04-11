@@ -1,6 +1,185 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (drone-service pre-deploy: 3 mobile fixes)
+- DroneProcessStitch: компактный горизонтальный вид на мобиле, описания скрыты
+- DroneMapStitch: удалён из page.tsx (компонент сохранён)
+- DroneFlightConditionsNote: текст заменён на однострочный про GCAA
+- DroneContactStitch: на мобиле скрыты поля «Имя», «Услуги», «Ссылка», дисклеймер; форма влазит в один экран iPhone 14 Pro
+- npm run build: ✅
+- Статус: local ready
+
+---
+
+## 2026-04-11 (drone-service: add ItemList schema with 18 directions)
+### Session Summary
+- На `/drone-service` добавлен отдельный JSON-LD `ItemList` schema для L2-хаба услуг аэросъёмки.
+- Схема вставлена рядом с текущими schema-скриптами в начале `<main>`, без изменений существующих schema-блоков.
+
+### Изменения
+- `app/drone-service/page.tsx`
+  - После `{jsonLdSchemas.map(...)}` добавлен новый `<script type="application/ld+json">` с:
+    - `@type: ItemList`
+    - `name: Услуги аэросъёмки дроном в Тбилиси`
+    - `numberOfItems: 18`
+    - `itemListElement` из 18 `ListItem` (позиции 1–18) с URL на `https://breus.media/...`
+  - Блок размещён до `<DronePageScrollProgress />` как запрошено.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему schema-обновлению.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
+## 2026-04-11 (drone-service: remove duplicate related label + add source to 68% hero line)
+### Session Summary
+- На `/drone-service` выполнены 2 точечные текстовые правки: убран дублирующий строчный лейбл в related-блоке и добавлен источник к mobile-строке про `68%`.
+- Изменения ограничены только `DroneRelatedLinksCompact` и mobile-частью `DroneHeroStitch`.
+
+### Изменения
+- `components/drone/DroneRelatedLinksCompact.tsx`
+  - Удалён `<p>`-лейбл над `h2`, который дублировал заголовок.
+  - `h2` `Другие услуги Breus Media` оставлен без изменений.
+- `components/drone/DroneHeroStitch.tsx`
+  - В mobile-блоке (`block md:hidden`) строка обновлена:
+    - `Объекты с аэровидео продаются на 68% быстрее.` →
+    - `Объекты с аэровидео продаются на 68% быстрее (MLS / NAR).`
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему мини-батчу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
+## 2026-04-11 (drone-service: remove roof inspection card from services data)
+### Session Summary
+- По точечному запросу из `droneServicesData` удалена карточка направления `Инспекция крыш`.
+- Остальные карточки и компоненты страницы не изменялись; выполнена проверка сборкой.
+
+### Изменения
+- `components/drone/droneServicesData.ts`
+  - Удалён объект карточки:
+    - `slug: inspekciya-krysh`
+    - `title: Инспекция крыш`
+  - Другие элементы массива `droneServiceItems` оставлены без изменений.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущей правке.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
+## 2026-04-11 (drone-service related links + roof href + real estate metric update)
+### Session Summary
+- Для `/drone-service` обновлены related-ссылки под актуальные соседние услуги Breus Media и синхронизирован заголовок related-блока.
+- В данных карточек исправлены ссылка `Инспекция крыш` и метрика в описании карточки `Недвижимость`.
+
+### Изменения
+- `constants/droneDirectionPages.ts`
+  - В `droneDirectionPages.droneService.relatedLinks` полностью заменён массив на 4 пункта:
+    - `360° виртуальные туры` → `/360-tours-service`
+    - `Reels и короткое видео` → `/reels-service`
+    - `Промо-видео` → `/promo-video-service`
+    - `AI-визуализация` → `/ai-visualization-service`
+  - Для чистоты после замены удалены неиспользуемые деструктурированные роуты (`hotels`, `restaurants`, `tourism`).
+- `components/drone/DroneRelatedLinksCompact.tsx`
+  - Заголовочная пара текстов обновлена:
+    - eyebrow: `Другие услуги Breus Media`
+    - `h2`: `Другие услуги Breus Media`
+  - Визуальная структура компонента не менялась.
+- `components/drone/droneServicesData.ts`
+  - Карточка `Недвижимость`: в `description` заменено упоминание `68%` на
+    `94% больше просмотров получают объявления с аэрофото — по данным HomeJab.`
+  - Карточка `Инспекция крыш`: `primaryHref` изменён на `/drone-services/drone-roof-inspection`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому батчу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
+## 2026-04-11 (drone-service mobile cleanup: services title removal + compact contact form)
+### Session Summary
+- По мобильному фидбеку убран лишний заголовок перед карточками услуг и очищен нижний hint-блок направлений.
+- Контактная форма на `/drone-service` уплотнена под телефонный экран, чтобы ключевые поля и CTA занимали меньше вертикального пространства.
+
+### Изменения
+- `components/drone/DroneServicesStitch.tsx`
+  - Удалён заголовок `Направления съёмки` и декоративная золотая линия над сеткой карточек `#services`.
+- `components/drone/DroneServicesMobileList.tsx`
+  - Удалён двухстрочный поясняющий текст под grid направлений.
+  - Сохранён якорный CTA `смотреть карточки` со стрелкой на `#services`.
+- `components/drone/DroneContactStitch.tsx`
+  - Проведена mobile-компрессия формы:
+    - уменьшены паддинги секции/карточки
+    - уплотнены интервалы формы и размеры label/input/button/chips
+    - уменьшена высота textarea на mobile
+  - Desktop-поведение сохранено через `md:`-правила.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему батчу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
+## 2026-04-10 (drone-service content batch: stats + faq + mobile hint + trust removal)
+### Session Summary
+- Для `/drone-service` обновлён контентный блок после services: удалён trust-lite, добавлен новый stats strip с 4 метриками и обновлён FAQ до 8 вопросов.
+- В mobile-блок направлений возвращён нижний hint с якорем на карточки услуг, чтобы пользователю было проще перейти к детальному описанию.
+
+### Изменения
+- `components/drone/DroneServicesMobileList.tsx`
+  - Добавлен нижний hint-блок под grid направлений:
+    - текст: `Каждое направление — отдельная страница...`
+    - CTA-якорь: `href="#services"` с `ChevronDown` и подписью `смотреть карточки`
+  - Импорт иконок обновлён: `ChevronRight` + `ChevronDown`.
+- `components/drone/DroneStatsStrip.tsx` (new)
+  - Добавлен новый блок `Аэросъёмка в цифрах` с 4 карточками:
+    - `68%` — `MLS / NAR`
+    - `94%` — `HomeJab, 2025`
+    - `403%` — `Inman / MLS`
+    - `73%` — `NAR`
+  - Стили: тёмный фон, gold-акценты, grid `2 -> 4` колонки.
+- `app/drone-service/page.tsx`
+  - Удалён импорт и рендер `DroneTrustLite`.
+  - Добавлен импорт и рендер `DroneStatsStrip`.
+  - Новый порядок в зоне services/pricing:
+    - `DroneServicesStitch`
+    - `DroneStatsStrip`
+    - `DronePricingStitch`
+- `components/drone/DroneFAQExpanded.tsx`
+  - Полностью заменён FAQ-массив на 8 новых вопросов/ответов (стоимость, FPV, география, GCAA, форматы, сроки, ниши, фото-only).
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому батчу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-10 (drone-service mobile ux polish: anchors, ctas, messenger icons)
 ### Session Summary
 - По живому UX-фидбеку оптимизирован мобильный флоу `/drone-service`: hero-copy, позиционирование стрелки, компактность блока направлений и поведение якорей.
