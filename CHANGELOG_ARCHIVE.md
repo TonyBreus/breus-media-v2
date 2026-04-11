@@ -1,6 +1,28 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (feat(menu): О нас в меню, соцсети + CTA внизу мобильного меню)
+### Session Summary
+- В `SmartHeader` расширено mobile-меню: добавлен пункт `О нас/About` в индустрии и нижняя зона с CTA + соцссылками.
+
+### Изменения
+- `components/gazeta/SmartHeader.tsx`
+  - В `headerCopy.RU.industryNavItems` первым элементом добавлен `{ label: 'О нас', href: '/about' }`.
+  - В `headerCopy.EN.industryNavItems` первым элементом добавлен `{ label: 'About', href: '/about' }`.
+  - Внизу mobile-меню добавлен блок:
+    - CTA `Обсудить задачу` (`href="#contact"`)
+    - соцкнопки `IG / TG / LI / WA` с внешними ссылками.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему фиксу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (fix(header): строка услуг скрыта на мобиле, заголовок меню исправлен)
 ### Session Summary
 - В `SmartHeader` убрана вторая бегущая строка на мобильных экранах и синхронизирован заголовок мобильного меню в RU/EN.

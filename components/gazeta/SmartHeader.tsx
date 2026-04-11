@@ -53,7 +53,10 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         mobileIndustriesLabel: "Индустрии",
         mobileServicesLabel: "Услуги",
         mobileSectionsLabel: "Разделы",
-        industryNavItems: gazetaIndustryNavItems,
+        industryNavItems: [
+            { label: "О нас", href: "/about" },
+            ...gazetaIndustryNavItems,
+        ],
         serviceNavItems: gazetaServiceNavItems,
         tickerLine1: gazetaTickerLine1,
         tickerLine2: gazetaTickerLine2,
@@ -74,6 +77,7 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         mobileServicesLabel: "Services",
         mobileSectionsLabel: "Sections",
         industryNavItems: [
+            { label: "About", href: "/about" },
             { label: "Real Estate", href: "/real-estate-service" },
             { label: "Auto Business", href: "/gazeta/auto" },
             { label: "Hotels", href: "/gazeta/hotels" },
@@ -555,6 +559,33 @@ export function SmartHeader({
                                         </div>
                                     )}
 
+                                </div>
+                                <div className="border-t border-white/10 px-5 py-5 space-y-4">
+                                    <Link
+                                        href="#contact"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="flex w-full items-center justify-center rounded-2xl bg-[#D4A017] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-black"
+                                    >
+                                        Обсудить задачу
+                                    </Link>
+                                    <div className="flex items-center justify-center gap-4 pt-1">
+                                        {[
+                                            { label: "IG", href: "https://www.instagram.com/breusmedia" },
+                                            { label: "TG", href: "https://t.me/breusmedia" },
+                                            { label: "LI", href: "https://www.linkedin.com/company/breusmedia" },
+                                            { label: "WA", href: "https://wa.me/995574619393" },
+                                        ].map((s) => (
+                                            <a
+                                                key={s.label}
+                                                href={s.href}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-[10px] font-bold text-white/50 hover:border-[#D4A017]/50 hover:text-[#D4A017] transition-colors"
+                                            >
+                                                {s.label}
+                                            </a>
+                                        ))}
+                                    </div>
                                 </div>
                             </motion.div>
                         </motion.div>

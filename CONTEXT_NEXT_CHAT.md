@@ -1,3 +1,9 @@
+✅ feat(menu): О нас в меню, соцсети + CTA внизу мобильного меню (11.04.2026) — `components/gazeta/SmartHeader.tsx`
+  - В `headerCopy.RU.industryNavItems` первым пунктом добавлен `О нас` (`/about`).
+  - В `headerCopy.EN.industryNavItems` первым пунктом добавлен `About` (`/about`).
+  - В мобильное меню добавлен нижний блок с CTA `Обсудить задачу` (ссылка `#contact`) и соцкнопками `IG / TG / LI / WA`.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(header): строка услуг скрыта на мобиле, заголовок меню исправлен (11.04.2026) — `components/gazeta/SmartHeader.tsx`
   - В блоке `shouldShowTickers` строка `Running Text Line 2` (`DebugWrapper id=209`) и разделитель перед ней обёрнуты в `hidden md:block`: на mobile скрыты, на desktop сохранены.
   - `Running Text Line 1` (`DebugWrapper id=208`) оставлена без изменений и продолжает отображаться на всех экранах.
