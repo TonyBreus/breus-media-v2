@@ -1,3 +1,9 @@
+✅ fix(mobile): направления компактнее, процесс без пустого пространства (11.04.2026) — `components/drone/DroneServicesMobileList.tsx`, `components/drone/DroneProcessStitch.tsx`
+  - `DroneServicesMobileList`: уплотнён mobile-блок направлений (`py-4`, `gap-1.5`, карточки `rounded-[8px]`, `py-1.5`, `text-[12px]`, стрелка-блок `mt-4`).
+  - `DroneProcessStitch`: на mobile сокращены внешние отступы секции (`py-4`), добавлен `py-2` в горизонтальный scroll-контейнер, шаги ужаты до `h-9` и `min-w-[68px]`.
+  - Desktop-ветка процесса (`md+`) не изменялась.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ feat(footer+contact): FB соцсеть, меню 5 ссылок, теги на мобиле, success-state формы (11.04.2026) — `components/drone/DroneFooterStitch.tsx`, `components/drone/DroneContactStitch.tsx`
   - В `DroneFooterStitch` добавлена третья соцкнопка `FB` (`https://www.facebook.com/breusmedia`) в том же стиле, что `IG/TG`.
   - Footer-меню расширено до 5 ссылок: `Аэросъёмка`, `360° туры`, `Reels и видео`, `AI-визуализация`, `Контакты`.

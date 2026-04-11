@@ -29,13 +29,13 @@ const steps = [
 export const DroneProcessStitch = () => {
     return (
         <DebugWrapper id={10500} label="Drone Process Section">
-            <section className="py-10 md:py-24 bg-[#0D0D0D]">
+            <section className="py-4 md:py-24 bg-[#0D0D0D]">
                 <div className="container mx-auto px-6">
-                    <div className="md:hidden -mx-2 px-2 overflow-x-auto">
+                    <div className="md:hidden -mx-2 px-2 py-2 overflow-x-auto">
                         <div className="flex items-center gap-2 min-w-max">
                             {steps.map((step, idx) => (
                                 <DebugWrapper key={idx} id={10510 + idx} label={`Process Step Compact ${idx + 1}: ${step.title}`}>
-                                    <div className="min-w-[72px] h-10 px-2 rounded-md border border-white/12 bg-white/[0.02] flex items-center justify-center">
+                                    <div className="min-w-[68px] h-9 px-2 rounded-md border border-white/12 bg-white/[0.02] flex items-center justify-center">
                                         <div className="flex items-center gap-1 whitespace-nowrap leading-none">
                                             <span className="text-xs text-white/30">{step.number}</span>
                                             <span className="text-[10px] font-bold text-[#D4A017] uppercase tracking-widest">

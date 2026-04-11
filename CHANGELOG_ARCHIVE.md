@@ -1,6 +1,31 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (fix(mobile): направления компактнее, процесс без пустого пространства)
+### Session Summary
+- На `/drone-service` выполнен mobile compact pass: уплотнены блок направлений и горизонтальная полоска шагов процесса.
+
+### Изменения
+- `components/drone/DroneServicesMobileList.tsx`
+  - Секция: `py-5` → `py-4`.
+  - Grid: `gap-2` → `gap-1.5`.
+  - Карточка направления: `py-2.5` → `py-1.5`, `text-[13px]` → `text-[12px]`, `rounded-[12px]` → `rounded-[8px]`.
+  - Блок со стрелкой: `mt-8` → `mt-4`.
+- `components/drone/DroneProcessStitch.tsx`
+  - Mobile section spacing: `py-10 md:py-24` → `py-4 md:py-24`.
+  - В mobile scroll-контейнер добавлен `py-2` для безопасной зоны debug-бейджей.
+  - Карточка шага: `h-10` → `h-9`, `min-w-[72px]` → `min-w-[68px]`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему батчу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (feat(footer+contact): FB соцсеть, меню 5 ссылок, теги на мобиле, success-state формы)
 ### Session Summary
 - На `/drone-service` обновлены footer и contact: добавлен Facebook, расширено меню, возвращены service-tags на mobile и внедрён success-state формы после отправки.
