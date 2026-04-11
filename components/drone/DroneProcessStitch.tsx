@@ -6,13 +6,13 @@ import { DebugWrapper } from '@/components/debug/DebugWrapper';
 const steps = [
     {
         number: '01',
-        title: 'ЗАДАЧА',
+        title: 'ЗАПРОС',
         description: 'Описываете задачу, объект или локацию — предлагаем подходящий формат.'
     },
     {
         number: '02',
-        title: 'ПОДГОТОВКА',
-        description: 'Согласуем дату, проверяем зону полёта и условия съёмки.'
+        title: 'ПЛАН',
+        description: 'Согласуем дату, уточняем зону полёта и условия съёмки.'
     },
     {
         number: '03',
@@ -21,7 +21,7 @@ const steps = [
     },
     {
         number: '04',
-        title: 'ГОТОВО',
+        title: 'ПЕРЕДАЧА',
         description: 'Передаём готовые файлы удобным способом в согласованный срок.'
     }
 ];
@@ -49,22 +49,25 @@ export const DroneProcessStitch = () => {
                         </div>
                     </div>
 
-                    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-                        {steps.map((step, idx) => (
-                            <DebugWrapper key={idx} id={10510 + idx} label={`Process Step ${idx + 1}: ${step.title}`}>
-                                <div className="relative group">
-                                    <div className="hidden md:block text-6xl font-black text-white/5 absolute -top-10 -left-4 select-none group-hover:text-[#D4A017]/10 transition-colors">
-                                        {step.number}
+                    <div className="hidden md:block">
+                        <p className="mb-8 text-[10px] uppercase tracking-[0.18em] text-white/35">От заявки до готовых файлов</p>
+                        <div className="md:grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+                            {steps.map((step, idx) => (
+                                <DebugWrapper key={idx} id={10510 + idx} label={`Process Step ${idx + 1}: ${step.title}`}>
+                                    <div className="relative group">
+                                        <div className="hidden md:block text-6xl font-black text-white/5 absolute -top-10 -left-4 select-none group-hover:text-[#D4A017]/10 transition-colors">
+                                            {step.number}
+                                        </div>
+                                        <h4 className="text-[#D4A017] font-bold mb-3 relative tracking-widest">
+                                            {step.title}
+                                        </h4>
+                                        <p className="text-sm text-gray-500 leading-relaxed">
+                                            {step.description}
+                                        </p>
                                     </div>
-                                    <h4 className="text-[#D4A017] font-bold mb-3 relative tracking-widest">
-                                        {step.title}
-                                    </h4>
-                                    <p className="hidden md:block text-sm text-gray-500 leading-relaxed">
-                                        {step.description}
-                                    </p>
-                                </div>
-                            </DebugWrapper>
-                        ))}
+                                </DebugWrapper>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>

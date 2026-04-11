@@ -91,7 +91,7 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
             { label: "Aerial Filming", href: "/drone-service" },
             { label: "360° Tours", href: "/gazeta/360-tours" },
             { label: "Promo Video", href: "/gazeta/promo-video" },
-            { label: "Events", href: "/gazeta/events" },
+            { label: "Events", href: "/drone-weddings-events" },
             { label: "AI Content", href: "/gazeta/ai-content" },
             { label: "Reels", href: "/gazeta/reels" },
         ],
@@ -361,7 +361,9 @@ export function SmartHeader({
                             </div>
                         </DebugWrapper>
 
-                        {sectionLinks.map((link, index) => (
+                        {sectionLinks
+                            .filter((link) => link.href !== "#services")
+                            .map((link, index) => (
                             <DebugWrapper key={`${link.label}-${link.href}`} id={210 + index} label={`Link: ${link.label}`}>
                                 <Link href={link.href} className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
                                     {link.label}

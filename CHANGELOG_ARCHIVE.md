@@ -1,6 +1,42 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (fix(desktop-drone-service): header/process/intro + flight SEO block)
+### Session Summary
+- На `/drone-service` выполнен desktop-focused pass: убран дубль `Услуги` в header links, обновлён process-блок, переписан intro-текст под Hero и добавлен технический SEO-блок в `FlightConditions`.
+
+### Изменения
+- `components/gazeta/SmartHeader.tsx`
+  - В desktop nav для `sectionLinks` добавлен фильтр `.filter((link) => link.href !== '#services')`.
+  - Фильтрация применена только в desktop (`hidden md:flex`), mobile menu оставлено без изменений.
+- `components/drone/DroneProcessStitch.tsx`
+  - Шаги обновлены:
+    - `ЗАДАЧА` → `ЗАПРОС`
+    - `ПОДГОТОВКА` → `ПЛАН`
+    - `СЪЁМКА` без изменений
+    - `ГОТОВО` → `ПЕРЕДАЧА`
+  - Для шага 02 описание обновлено на: `Согласуем дату, уточняем зону полёта и условия съёмки.`
+  - В desktop-блок добавлен лейбл `От заявки до готовых файлов`.
+  - В desktop-карточках описание шага сделано видимым (`text-sm text-gray-500` без `hidden`).
+- `app/drone-service/page.tsx`
+  - В desktop intro-секции (`hidden md:block`) абзац заменён на список из 4 тезисов (`ul/li`).
+  - Metadata-строка `DJI Air 3S + Avata 2 · 4K · ...` оставлена без изменений.
+- `components/drone/DroneFlightConditionsNote.tsx`
+  - После текста про GCAA добавлен SEO-техблок с оборудованием:
+    - DJI Air 3S
+    - DJI Avata 2
+    - Insta360 X5
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему desktop pass.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (refactor(menu): реструктура mobile burger menu в SmartHeader)
 ### Session Summary
 - В `SmartHeader` переработана структура mobile dropdown: удалён блок индустрий, добавлена верхняя кнопка `/about`, блок разделов переведён на полный список `sectionLinks` с условным автодобавлением `#contact`.

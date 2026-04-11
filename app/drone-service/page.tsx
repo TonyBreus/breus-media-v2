@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DroneHeroStitch } from '@/components/drone/DroneHeroStitch';
 import { DroneServicesMobileList } from '@/components/drone/DroneServicesMobileList';
@@ -179,25 +178,6 @@ export default function DroneServicePage() {
                     { label: 'FAQ', href: '#faq' },
                 ]}
             />
-            <div className="pointer-events-none absolute left-0 right-0 top-[92px] z-[950]">
-                <div className="container mx-auto px-6">
-                    <nav aria-label="Breadcrumb" className="pointer-events-auto">
-                        <ol className="flex items-center gap-2 text-xs tracking-wide text-white/55">
-                            <li>
-                                <Link href="/" className="transition-colors hover:text-white/80">
-                                    Главная
-                                </Link>
-                            </li>
-                            <li aria-hidden className="text-white/30">
-                                →
-                            </li>
-                            <li aria-current="page" className="text-white/70">
-                                Аэросъёмка
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
             <div id="drone-service-hero">
                 <DebugWrapper id={10100} label="Hero Section">
                     <DroneHeroStitch hero={pageConfig.hero} />
@@ -210,12 +190,12 @@ export default function DroneServicePage() {
             <section className="hidden md:block border-b border-[#2a2a2a] bg-[#080808] py-16">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <p className="text-lg leading-relaxed text-white/78">
-                            Аэросъёмка показывает бизнес с ракурсов, которые невозможны с земли: масштаб здания, территорию,
-                            подход и окружение. Снимаем в Тбилиси и по всей Грузии на DJI Air 3S (съёмка с высоты) и DJI
-                            Avata 2 (пролёт камерой внутри помещений). Результат — видео в 4K и фото, готовые для сайта,
-                            соцсетей, Google Maps и рекламы.
-                        </p>
+                        <ul className="space-y-3 text-white/78 text-[15px] leading-relaxed">
+                            <li>С земли не видно главного: террасу ресторана, масштаб стройки, дефект на крыше.</li>
+                            <li>Объекты с аэровидео продаются на 68% быстрее — по данным MLS / NAR.</li>
+                            <li>Снимаем с высоты и летаем внутри помещений — FPV-технология.</li>
+                            <li>Один полёт — контент для рекламы, отчёт для инвестора или документация для страховой.</li>
+                        </ul>
                         <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/55">
                             <span>DJI Air 3S + Avata 2</span>
                             <span className="text-white/25">·</span>

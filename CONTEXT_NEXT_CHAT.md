@@ -1,3 +1,11 @@
+✅ fix(desktop-drone-service): header/process/intro + flight SEO block (11.04.2026) — `components/gazeta/SmartHeader.tsx`, `components/drone/DroneProcessStitch.tsx`, `app/drone-service/page.tsx`, `components/drone/DroneFlightConditionsNote.tsx`
+  - В desktop nav `SmartHeader` для `sectionLinks` добавлен фильтр `href !== '#services'`, чтобы убрать дубль пункта `Услуги` (mobile burger без изменений).
+  - В `DroneProcessStitch` обновлены названия шагов: `ЗАПРОС`, `ПЛАН`, `СЪЁМКА`, `ПЕРЕДАЧА`; для шага 02 описание изменено на `уточняем зону полёта`.
+  - В desktop-блок процесса добавлен лейбл `От заявки до готовых файлов`; описания шагов сделаны видимыми (`text-sm text-gray-500` без `hidden`).
+  - В desktop intro-блоке `/drone-service` абзац заменён на список из 4 тезисов; metadata-линия `DJI Air 3S + Avata 2 · 4K · ...` сохранена.
+  - В `DroneFlightConditionsNote` добавлен SEO-параграф с техническим блоком по оборудованию (DJI Air 3S / DJI Avata 2 / Insta360 X5).
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ refactor(menu): реструктура mobile burger menu в SmartHeader (11.04.2026) — `components/gazeta/SmartHeader.tsx`
   - В mobile dropdown удалён блок `Индустрии` (`copy.mobileIndustriesLabel` + `copy.industryNavItems`).
   - Первым элементом меню добавлена full-width кнопка `/about` с текстом `{copy.aboutLabel}` (`О Нас` / `About`).
