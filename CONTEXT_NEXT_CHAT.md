@@ -1,3 +1,11 @@
+✅ fix(contact): форма обновлена — заголовок, поля, CTA, WhatsApp-ссылка с pretext (11.04.2026) — `components/drone/DroneContactStitch.tsx`
+  - Заголовок обновлён на `ОБСУДИМ ВАШУ ЗАДАЧУ` (`text-[20px] md:text-3xl`), подзаголовок переписан и оставлен с `leading-snug` на всех размерах.
+  - В `Способ связи` опция `Email` заменена на `Звонок`; placeholder обновлён с кейсом для `Звонок` (`+995 ...`).
+  - Поле `Сайт, Instagram или адрес объекта` открыто на mobile (без `hidden md:block`), тип изменён на `text`, placeholder обновлён.
+  - CTA-блок: submit-кнопка переименована в `Получить расчёт`; secondary CTA превращён в текстовую WhatsApp-ссылку с prefilled message.
+  - Дисклеймер обновлён: `Нажимая кнопку, вы соглашаетесь на обработку контактных данных.`
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ drone-service contact CTA row lock (11.04.2026) — `components/drone/DroneContactStitch.tsx`
   - В форме `DroneContactStitch` контейнер кнопок `Отправить` и `WhatsApp` переведён в постоянный горизонтальный ряд на всех breakpoints.
   - Класс контейнера изменён с `flex flex-col ... sm:flex-row ...` на `flex flex-row gap-2 pt-0.5 md:pt-1`; `flex-1` у обеих кнопок сохранён (50/50).

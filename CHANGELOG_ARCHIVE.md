@@ -1,6 +1,32 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (fix(contact): форма обновлена — заголовок, поля, CTA, WhatsApp-ссылка с pretext)
+### Session Summary
+- Точечно обновлена контактная форма `DroneContactStitch`: переписаны заголовок/подзаголовок, изменены поля способа связи и ссылки на объект, обновлены CTA-тексты.
+- Вторичная CTA-кнопка преобразована в текстовую WhatsApp-ссылку с prefilled message для быстрого старта диалога.
+
+### Изменения
+- `components/drone/DroneContactStitch.tsx`
+  - Заголовок: `ОБСУДИМ ВАШУ ЗАДАЧУ`, размер `text-[20px] md:text-3xl`.
+  - Подзаголовок: новый текст, `leading-snug` на всех размерах.
+  - `Способ связи`: `Email` заменён на `Звонок`; placeholder-логика обновлена с кейсом `Звонок`.
+  - Поле `Сайт, Instagram или адрес объекта` открыто на mobile, тип `text`, новый placeholder.
+  - Submit CTA: `Получить расчёт`.
+  - Secondary CTA: `или написать в WhatsApp`, новый `href` с pretext:
+    - `https://wa.me/995574619393?text=Здравствуйте%2C+меня+интересует+съёмка.+Расскажите+подробнее.`
+  - Дисклеймер: `Нажимая кнопку, вы соглашаетесь на обработку контактных данных.`
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по данному фиксу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (drone-service: contact buttons forced single-row)
 ### Session Summary
 - В `DroneContactStitch` выполнен точечный UX-фикс: кнопки `Отправить` и `WhatsApp` закреплены в одну горизонтальную строку на всех размерах экрана.
