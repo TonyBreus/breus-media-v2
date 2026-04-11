@@ -124,7 +124,7 @@ export const DroneContactStitch = () => {
                                 />
                             </div>
 
-                            <div className="flex flex-col gap-2 pt-0.5 sm:flex-row sm:gap-3 md:pt-1">
+                            <div className="flex flex-row gap-2 pt-0.5 md:pt-1">
                                 <DebugWrapper id={10910} label="Contact Primary CTA">
                                     <button
                                         type="submit"

@@ -1,3 +1,9 @@
+✅ drone-service contact CTA row lock (11.04.2026) — `components/drone/DroneContactStitch.tsx`
+  - В форме `DroneContactStitch` контейнер кнопок `Отправить` и `WhatsApp` переведён в постоянный горизонтальный ряд на всех breakpoints.
+  - Класс контейнера изменён с `flex flex-col ... sm:flex-row ...` на `flex flex-row gap-2 pt-0.5 md:pt-1`; `flex-1` у обеих кнопок сохранён (50/50).
+  - Другие части формы не изменялись.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ drone-service pre-deploy: 3 mobile fixes (11.04.2026) — `components/drone/DroneProcessStitch.tsx`, `app/drone-service/page.tsx`, `components/drone/DroneFlightConditionsNote.tsx`, `components/drone/DroneContactStitch.tsx`
   - Три pre-deploy задачи выполнены (Process compact mobile, MapStitch removed, Contact mobile-fit). Страница готова к деплою.
   - `DroneProcessStitch`: на мобиле включён компактный горизонтальный ряд шагов, описания и крупные фоновые номера скрыты; desktop-версия сохранена.

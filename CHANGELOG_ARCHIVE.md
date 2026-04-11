@@ -1,6 +1,28 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (drone-service: contact buttons forced single-row)
+### Session Summary
+- В `DroneContactStitch` выполнен точечный UX-фикс: кнопки `Отправить` и `WhatsApp` закреплены в одну горизонтальную строку на всех размерах экрана.
+
+### Изменения
+- `components/drone/DroneContactStitch.tsx`
+  - Контейнер CTA-кнопок изменён:
+    - `flex flex-col gap-2.5 pt-0.5 sm:flex-row sm:gap-3 md:pt-1`
+    - →
+    - `flex flex-row gap-2 pt-0.5 md:pt-1`
+  - `flex-1` у обеих кнопок сохранён, ширина остаётся 50/50.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по фиксу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (drone-service pre-deploy: 3 mobile fixes)
 - DroneProcessStitch: компактный горизонтальный вид на мобиле, описания скрыты
 - DroneMapStitch: удалён из page.tsx (компонент сохранён)
