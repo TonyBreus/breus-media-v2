@@ -6,23 +6,23 @@ import { DebugWrapper } from '@/components/debug/DebugWrapper';
 const steps = [
     {
         number: '01',
-        title: 'ЗАЯВКА',
-        description: 'Обсуждаем цели, локацию и техническое задание проекта.'
+        title: 'ЗАДАЧА',
+        description: 'Описываете задачу, объект или локацию — предлагаем подходящий формат.'
     },
     {
         number: '02',
         title: 'ПОДГОТОВКА',
-        description: 'Проверка зон полета (GCAA), погоды и логистики.'
+        description: 'Согласуем дату, проверяем зону полёта и условия съёмки.'
     },
     {
         number: '03',
         title: 'СЪЁМКА',
-        description: 'Работа на объекте. Несколько вылетов для лучшего ракурса.'
+        description: 'Работаем на объекте, делаем несколько проходов — выбираем лучший материал.'
     },
     {
         number: '04',
-        title: 'МАТЕРИАЛ',
-        description: 'Пост-обработка и передача файлов в облако за 24-72 часа.'
+        title: 'ГОТОВО',
+        description: 'Передаём готовые файлы удобным способом в согласованный срок.'
     }
 ];
 
@@ -32,7 +32,7 @@ export const DroneProcessStitch = () => {
             <section className="py-4 md:py-24 bg-[#0D0D0D]">
                 <div className="container mx-auto px-6">
                     <div className="md:hidden px-2 py-2">
-                        <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-white/35">Как мы работаем</p>
+                        <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-white/35">От заявки до готовых файлов</p>
                         <div className="flex flex-col">
                             {steps.map((step, idx) => (
                                 <React.Fragment key={idx}>
