@@ -1,3 +1,10 @@
+✅ feat(footer+contact): FB соцсеть, меню 5 ссылок, теги на мобиле, success-state формы (11.04.2026) — `components/drone/DroneFooterStitch.tsx`, `components/drone/DroneContactStitch.tsx`
+  - В `DroneFooterStitch` добавлена третья соцкнопка `FB` (`https://www.facebook.com/breusmedia`) в том же стиле, что `IG/TG`.
+  - Footer-меню расширено до 5 ссылок: `Аэросъёмка`, `360° туры`, `Reels и видео`, `AI-визуализация`, `Контакты`.
+  - В `DroneContactStitch` добавлен state `submitted` и success-state после submit (✅ + подтверждение по связи в Telegram/WhatsApp).
+  - Блок `Интересующие услуги` снова показывается на mobile (убран `hidden md:block`).
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(contact+sticky): кнопка → Отправить заявку, sticky → Обсудить задачу, скрывать sticky при форме (11.04.2026) — `components/drone/DroneContactStitch.tsx`, `components/drone/MobileBottomBar.tsx`, `app/drone-service/page.tsx`
   - В `DroneContactStitch` submit-кнопка обновлена на `Отправить заявку`, на `<form>` добавлен `id=\"contact-form\"`.
   - В `MobileBottomBar` добавлены `useState/useEffect` и `IntersectionObserver` для скрытия панели при видимой форме (`#contact-form`), при этом все базовые классы позиционирования корневого `div` сохранены.

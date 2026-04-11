@@ -1,6 +1,34 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (feat(footer+contact): FB соцсеть, меню 5 ссылок, теги на мобиле, success-state формы)
+### Session Summary
+- На `/drone-service` обновлены footer и contact: добавлен Facebook, расширено меню, возвращены service-tags на mobile и внедрён success-state формы после отправки.
+
+### Изменения
+- `components/drone/DroneFooterStitch.tsx`
+  - Добавлена соцссылка `FB` (`https://www.facebook.com/breusmedia`) после `TG` в том же визуальном стиле.
+  - Footer-меню заменено на 5 ссылок:
+    - `/drone-service`
+    - `/360-tours-service`
+    - `/reels-service`
+    - `/ai-visualization-service`
+    - `#contact`
+- `components/drone/DroneContactStitch.tsx`
+  - Добавлен state `submitted` и обработчик submit с `setSubmitted(true)`.
+  - Внутри `<form>` добавлен условный рендер success-state (✅ + текст подтверждения).
+  - Блок `Интересующие услуги` снова виден на mobile (удалён `hidden md:block`).
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему батчу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (fix(contact+sticky): кнопка → Отправить заявку, sticky → Обсудить задачу, скрывать sticky при форме)
 ### Session Summary
 - Синхронизированы CTA-тексты формы и sticky-элементов на `/drone-service`.

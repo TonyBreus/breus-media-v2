@@ -7,6 +7,7 @@ import { DebugWrapper } from '@/components/debug/DebugWrapper';
 export const DroneContactStitch = () => {
     const [method, setMethod] = useState<'Telegram' | 'WhatsApp' | 'Звонок'>('Telegram');
     const [services, setServices] = useState<string[]>([]);
+    const [submitted, setSubmitted] = useState(false);
 
     const serviceOptions = ['Недвижимость', 'Отели', 'Рестораны', 'Туризм', 'Инспекция', 'Мониторинг'];
 
@@ -34,7 +35,24 @@ export const DroneContactStitch = () => {
                             </p>
                         </DebugWrapper>
 
-                        <form id="contact-form" className="relative z-10 space-y-2.5 md:space-y-5" onSubmit={(e) => e.preventDefault()}>
+                        <form
+                            id="contact-form"
+                            className="relative z-10 space-y-2.5 md:space-y-5"
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                setSubmitted(true);
+                            }}
+                        >
+                            {submitted ? (
+                                <div className="flex flex-col items-center justify-center py-10 text-center gap-4">
+                                    <div className="text-4xl">✅</div>
+                                    <h3 className="text-white font-bold text-lg">Заявка отправлена!</h3>
+                                    <p className="text-white/60 text-sm max-w-xs leading-relaxed">
+                                        Свяжемся в течение рабочего часа в Telegram или WhatsApp.
+                                    </p>
+                                </div>
+                            ) : (
+                                <>
                             <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-5">
                                 <div className="hidden md:block">
                                     <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55 md:mb-2 md:text-[11px]">
@@ -76,7 +94,7 @@ export const DroneContactStitch = () => {
                                 </div>
                             </div>
 
-                            <div className="hidden md:block">
+                            <div>
                                 <label className="mb-2 block text-[10px] uppercase tracking-[0.18em] text-white/55 md:mb-2.5 md:text-[11px]">
                                     Интересующие услуги
                                 </label>
@@ -149,6 +167,8 @@ export const DroneContactStitch = () => {
                             <p className="hidden md:block text-[10px] leading-tight text-white/45 md:text-[11px]">
                                 Нажимая кнопку, вы соглашаетесь на обработку контактных данных.
                             </p>
+                                </>
+                            )}
                         </form>
                     </div>
                 </div>

@@ -35,6 +35,7 @@ export const DroneFooterStitch = ({
                             {[
                                 { label: 'IG', href: 'https://www.instagram.com/breusmedia' },
                                 { label: 'TG', href: 'https://t.me/breusmedia' },
+                                { label: 'FB', href: 'https://www.facebook.com/breusmedia' },
                             ].map((social, sIdx) => (
                                 <DebugWrapper key={social.label} id={11010 + sIdx} label={`Social Link: ${social.label}`}>
                                     <a
@@ -54,6 +55,10 @@ export const DroneFooterStitch = ({
                             <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-6 text-white">{menuTitle}</h4>
                             <ul className="space-y-4 text-sm text-gray-500">
                                 {[
+                                    { label: 'Аэросъёмка', href: '/drone-service' },
+                                    { label: '360° туры', href: '/360-tours-service' },
+                                    { label: 'Reels и видео', href: '/reels-service' },
+                                    { label: 'AI-визуализация', href: '/ai-visualization-service' },
                                     { label: contactLinkLabel, href: '#contact' },
                                 ].map((item, mIdx) => (
                                     <li key={item.label}>
