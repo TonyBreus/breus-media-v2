@@ -1,6 +1,36 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (fix(ui): мобильное меню + drone-service cleanup)
+### Session Summary
+- В историю добавлены последние точечные правки из чата по mobile меню и `/drone-service`, которые ранее не были отражены в docs.
+
+### Изменения
+- `components/gazeta/SmartHeader.tsx`
+  - В mobile dropdown убраны верхние тексты `Breus Media` и `Навигация Gazeta`.
+  - Скрыт элемент `#205` (`Phone Connect`) на mobile.
+  - Из блока `Разделы` убран пункт `Услуги` (`#services`).
+  - Удалена нижняя CTA-кнопка `Обсудить проект` в мобильном меню.
+- `app/drone-service/page.tsx`
+  - Удалён breadcrumb `Главная → Аэросъёмка` над hero.
+- `components/drone/DroneFooterStitch.tsx`
+  - Соцкнопки заменены на иконки Instagram/Telegram/Facebook/LinkedIn.
+  - Добавлен LinkedIn (`https://www.linkedin.com/company/breusmedia`).
+- `components/drone/DroneContactStitch.tsx`
+  - Обновлены тексты поля соцсетей:
+    - label: `ВАШИ СОЦСЕТИ ИЛИ САЙТ`
+    - placeholder: `@аккаунт, ссылка или название объекта.`
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по этому блоку правок.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (fix(process): тексты шагов обновлены — от заявки до готовых файлов)
 ### Session Summary
 - В `DroneProcessStitch` обновлены тексты шагов процесса и mobile-подзаголовок блока, без изменений структуры и классов.

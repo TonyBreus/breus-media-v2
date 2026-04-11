@@ -1,3 +1,10 @@
+✅ fix(ui): мобильное меню + drone-service cleanup (11.04.2026) — `components/gazeta/SmartHeader.tsx`, `app/drone-service/page.tsx`, `components/drone/DroneFooterStitch.tsx`, `components/drone/DroneContactStitch.tsx`
+  - На `/drone-service` удалён верхний breadcrumb `Главная → Аэросъёмка`.
+  - В `DroneFooterStitch` соцкнопки переведены на иконки Instagram/Telegram/Facebook/LinkedIn; добавлен LinkedIn.
+  - В `DroneContactStitch` обновлены тексты поля соцсетей: `ВАШИ СОЦСЕТИ ИЛИ САЙТ` и placeholder `@аккаунт, ссылка или название объекта.`
+  - В mobile dropdown (`SmartHeader`) удалены верхние тексты `Breus Media` и `Навигация Gazeta`, скрыт элемент `#205` (Phone Connect) на mobile, убран пункт `Услуги` из блока `Разделы`, убрана нижняя CTA-кнопка `Обсудить проект`.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(process): тексты шагов обновлены — от заявки до готовых файлов (11.04.2026) — `components/drone/DroneProcessStitch.tsx`
   - В массиве `steps` обновлены все 4 шага: `ЗАДАЧА`, `ПОДГОТОВКА`, `СЪЁМКА`, `ГОТОВО` с новыми описаниями.
   - В mobile-блоке заголовок изменён с `Как мы работаем` на `От заявки до готовых файлов`.
