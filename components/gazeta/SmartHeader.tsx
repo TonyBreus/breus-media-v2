@@ -49,7 +49,7 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         aiSolutionsLabel: "AI Решения",
         ctaMobile: "Обсудить",
         ctaDesktop: "Обсудить проект",
-        mobileMenuTitle: "Навигация Gazeta",
+        mobileMenuTitle: "Breus Media",
         mobileIndustriesLabel: "Индустрии",
         mobileServicesLabel: "Услуги",
         mobileSectionsLabel: "Разделы",
@@ -69,7 +69,7 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         aiSolutionsLabel: "AI Solutions",
         ctaMobile: "Discuss",
         ctaDesktop: "Discuss Project",
-        mobileMenuTitle: "Gazeta Navigation",
+        mobileMenuTitle: "Breus Media",
         mobileIndustriesLabel: "Industries",
         mobileServicesLabel: "Services",
         mobileSectionsLabel: "Sections",
@@ -369,57 +369,59 @@ export function SmartHeader({
                     {/* RIGHT: Actions */}
                     <div className={`flex items-center flex-shrink-0 relative z-[320] ${isMobileCompactTop ? "gap-2 mt-1" : "gap-2 md:gap-4 lg:gap-6 mt-2"}`}>
                         {/* 1. Contact Dropdown (205) */}
-                        <DebugWrapper id={205} label="Phone Connect">
-                            <div className="relative group" onMouseEnter={() => setIsContactOpen(true)} onMouseLeave={() => setIsContactOpen(false)}>
-                                <button className={`flex items-center justify-center bg-white/10 rounded-full hover:bg-[#D4AF37] transition-colors border border-white/5 group-hover:border-[#D4AF37]/50 ${isMobileCompactTop ? "w-7 h-7" : "w-8 h-8 md:w-10 md:h-10"}`}>
-                                    <Phone className="w-3.5 h-3.5 text-white" />
-                                </button>
+                        <div className="hidden md:block">
+                            <DebugWrapper id={205} label="Phone Connect">
+                                <div className="relative group" onMouseEnter={() => setIsContactOpen(true)} onMouseLeave={() => setIsContactOpen(false)}>
+                                    <button className={`flex items-center justify-center bg-white/10 rounded-full hover:bg-[#D4AF37] transition-colors border border-white/5 group-hover:border-[#D4AF37]/50 ${isMobileCompactTop ? "w-7 h-7" : "w-8 h-8 md:w-10 md:h-10"}`}>
+                                        <Phone className="w-3.5 h-3.5 text-white" />
+                                    </button>
 
-                                <AnimatePresence>
-                                    {isContactOpen && (
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                                            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                                            style={{ originY: 0, originX: 1 }}
-                                            className="absolute top-full right-0 mt-4 w-72 md:w-80 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl z-[1200] overflow-hidden"
-                                        >
-                                            <div className="p-6 flex flex-col gap-4">
-                                                <div className="flex items-start gap-4">
-                                                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center mt-1">
-                                                        <Phone className="w-4 h-4 text-[#D4AF37]" />
+                                    <AnimatePresence>
+                                        {isContactOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                                                style={{ originY: 0, originX: 1 }}
+                                                className="absolute top-full right-0 mt-4 w-72 md:w-80 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl z-[1200] overflow-hidden"
+                                            >
+                                                <div className="p-6 flex flex-col gap-4">
+                                                    <div className="flex items-start gap-4">
+                                                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center mt-1">
+                                                            <Phone className="w-4 h-4 text-[#D4AF37]" />
+                                                        </div>
+                                                        <div className="flex flex-col">
+                                                            <a href="tel:+995574619393" className="text-lg font-bold text-white hover:text-[#D4AF37] transition-colors tracking-wide">+995 574 619 393</a>
+                                                        </div>
                                                     </div>
-                                                    <div className="flex flex-col">
-                                                        <a href="tel:+995574619393" className="text-lg font-bold text-white hover:text-[#D4AF37] transition-colors tracking-wide">+995 574 619 393</a>
+                                                    <div className="h-px w-full bg-white/10 my-1" />
+                                                    {/* Socials */}
+                                                    <div className="flex justify-between items-center px-2">
+                                                        <a href="#" className="flex flex-col items-center gap-1 group/social">
+                                                            <MessageCircle className="w-5 h-5 text-[#25D366] hover:scale-110 transition-transform" />
+                                                            <span className="text-[9px] uppercase font-bold text-gray-400">WhatsApp</span>
+                                                        </a>
+                                                        <a href="#" className="flex flex-col items-center gap-1 group/social">
+                                                            <Send className="w-5 h-5 text-[#0088cc] ml-0.5 hover:scale-110 transition-transform" />
+                                                            <span className="text-[9px] uppercase font-bold text-gray-400">Telegram</span>
+                                                        </a>
+                                                        <a href="#" className="flex flex-col items-center gap-1 group/social">
+                                                            <MessageCircle className="w-5 h-5 text-[#7360f2] hover:scale-110 transition-transform" />
+                                                            <span className="text-[9px] uppercase font-bold text-gray-400">Viber</span>
+                                                        </a>
                                                     </div>
-                                                </div>
-                                                <div className="h-px w-full bg-white/10 my-1" />
-                                                {/* Socials */}
-                                                <div className="flex justify-between items-center px-2">
-                                                    <a href="#" className="flex flex-col items-center gap-1 group/social">
-                                                        <MessageCircle className="w-5 h-5 text-[#25D366] hover:scale-110 transition-transform" />
-                                                        <span className="text-[9px] uppercase font-bold text-gray-400">WhatsApp</span>
-                                                    </a>
-                                                    <a href="#" className="flex flex-col items-center gap-1 group/social">
-                                                        <Send className="w-5 h-5 text-[#0088cc] ml-0.5 hover:scale-110 transition-transform" />
-                                                        <span className="text-[9px] uppercase font-bold text-gray-400">Telegram</span>
-                                                    </a>
-                                                    <a href="#" className="flex flex-col items-center gap-1 group/social">
-                                                        <MessageCircle className="w-5 h-5 text-[#7360f2] hover:scale-110 transition-transform" />
-                                                        <span className="text-[9px] uppercase font-bold text-gray-400">Viber</span>
+                                                    <div className="h-px w-full bg-white/10 my-1" />
+                                                    <a href="mailto:hello@breus.media" className="flex items-center gap-3 px-2 group/mail">
+                                                        <Mail className="w-4 h-4 text-gray-500 group-hover/mail:text-white transition-colors" />
+                                                        <span className="text-sm font-bold text-gray-400 group-hover/mail:text-white transition-colors">hello@breus.media</span>
                                                     </a>
                                                 </div>
-                                                <div className="h-px w-full bg-white/10 my-1" />
-                                                <a href="mailto:hello@breus.media" className="flex items-center gap-3 px-2 group/mail">
-                                                    <Mail className="w-4 h-4 text-gray-500 group-hover/mail:text-white transition-colors" />
-                                                    <span className="text-sm font-bold text-gray-400 group-hover/mail:text-white transition-colors">hello@breus.media</span>
-                                                </a>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
-                        </DebugWrapper>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            </DebugWrapper>
+                        </div>
 
                         {/* 2. Language Switcher (207) */}
                         <DebugWrapper id={207} label="Language Switcher">
@@ -471,10 +473,12 @@ export function SmartHeader({
                         <DebugWrapper id={208} label="Running Text Line 1">
                             <InteractiveTicker items={copy.tickerLine1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
                         </DebugWrapper>
-                        <div className="h-[1px] bg-white/5 w-full" />
-                        <DebugWrapper id={209} label="Running Text Line 2">
-                            <InteractiveTicker items={copy.tickerLine2} direction="right" speed={70} baseId={2090} compact={isMobileCompactTop} />
-                        </DebugWrapper>
+                        <div className="hidden md:block">
+                            <div className="h-[1px] bg-white/5 w-full" />
+                            <DebugWrapper id={209} label="Running Text Line 2">
+                                <InteractiveTicker items={copy.tickerLine2} direction="right" speed={70} baseId={2090} compact={isMobileCompactTop} />
+                            </DebugWrapper>
+                        </div>
                     </div>
                 )}
 
@@ -492,11 +496,7 @@ export function SmartHeader({
                                 exit={{ y: -24, opacity: 0 }}
                                 className="mx-3 mt-3 rounded-[28px] border border-white/10 bg-[#0b0b0b]/95 shadow-2xl"
                             >
-                                <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-                                    <div>
-                                        <p className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37]">Breus Media</p>
-                                        <p className="mt-1 text-sm font-bold uppercase tracking-[0.16em] text-white">{copy.mobileMenuTitle}</p>
-                                    </div>
+                                <div className="flex items-center justify-end border-b border-white/10 px-5 py-4">
                                     <button type="button" className="rounded-full border border-white/10 p-2 text-white" onClick={() => setIsMobileMenuOpen(false)}>
                                         <X className="h-4 w-4" />
                                     </button>
@@ -535,11 +535,13 @@ export function SmartHeader({
                                         </div>
                                     </div>
 
-                                    {sectionLinks.length > 0 && (
+                                    {sectionLinks.filter((link) => link.href !== '#services').length > 0 && (
                                         <div>
                                             <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">{copy.mobileSectionsLabel}</p>
                                             <div className="grid grid-cols-2 gap-3">
-                                                {sectionLinks.map((link) => (
+                                                {sectionLinks
+                                                    .filter((link) => link.href !== '#services')
+                                                    .map((link) => (
                                                     <Link
                                                         key={`${link.label}-${link.href}-mobile`}
                                                         href={link.href}
@@ -553,13 +555,6 @@ export function SmartHeader({
                                         </div>
                                     )}
 
-                                    <Link
-                                        href={resolvedCtaHref}
-                                        onClick={(event) => handleCtaClick(event, true)}
-                                        className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-[11px] font-black uppercase tracking-[0.22em] text-black transition-colors hover:bg-[#D4AF37]"
-                                    >
-                                        {copy.ctaDesktop}
-                                    </Link>
                                 </div>
                             </motion.div>
                         </motion.div>

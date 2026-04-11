@@ -1,3 +1,11 @@
+✅ fix(header): строка услуг скрыта на мобиле, заголовок меню исправлен (11.04.2026) — `components/gazeta/SmartHeader.tsx`
+  - В блоке `shouldShowTickers` строка `Running Text Line 2` (`DebugWrapper id=209`) и разделитель перед ней обёрнуты в `hidden md:block`: на mobile скрыты, на desktop сохранены.
+  - `Running Text Line 1` (`DebugWrapper id=208`) оставлена без изменений и продолжает отображаться на всех экранах.
+  - В `headerCopy` обновлён `mobileMenuTitle`:
+    - RU: `Навигация Gazeta` → `Breus Media`
+    - EN: `Gazeta Navigation` → `Breus Media`
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(ui): мобильное меню + drone-service cleanup (11.04.2026) — `components/gazeta/SmartHeader.tsx`, `app/drone-service/page.tsx`, `components/drone/DroneFooterStitch.tsx`, `components/drone/DroneContactStitch.tsx`
   - На `/drone-service` удалён верхний breadcrumb `Главная → Аэросъёмка`.
   - В `DroneFooterStitch` соцкнопки переведены на иконки Instagram/Telegram/Facebook/LinkedIn; добавлен LinkedIn.

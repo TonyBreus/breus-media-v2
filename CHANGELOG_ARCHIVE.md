@@ -1,6 +1,28 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (fix(header): строка услуг скрыта на мобиле, заголовок меню исправлен)
+### Session Summary
+- В `SmartHeader` убрана вторая бегущая строка на мобильных экранах и синхронизирован заголовок мобильного меню в RU/EN.
+
+### Изменения
+- `components/gazeta/SmartHeader.tsx`
+  - В `shouldShowTickers` разделитель `h-[1px]` и `DebugWrapper id={209}` (`Running Text Line 2`) обёрнуты в `hidden md:block`.
+  - `DebugWrapper id={208}` (`Running Text Line 1`) оставлен без изменений.
+  - В `headerCopy` обновлён `mobileMenuTitle`:
+    - RU: `Навигация Gazeta` → `Breus Media`
+    - EN: `Gazeta Navigation` → `Breus Media`
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему фиксу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (fix(ui): мобильное меню + drone-service cleanup)
 ### Session Summary
 - В историю добавлены последние точечные правки из чата по mobile меню и `/drone-service`, которые ранее не были отражены в docs.
