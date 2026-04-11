@@ -1,3 +1,19 @@
+✅ refactor(menu): реструктура mobile burger menu в SmartHeader (11.04.2026) — `components/gazeta/SmartHeader.tsx`
+  - В mobile dropdown удалён блок `Индустрии` (`copy.mobileIndustriesLabel` + `copy.industryNavItems`).
+  - Первым элементом меню добавлена full-width кнопка `/about` с текстом `{copy.aboutLabel}` (`О Нас` / `About`).
+  - Блок `Услуги` (`copy.mobileServicesLabel` + `copy.serviceNavItems`) оставлен без структурных изменений.
+  - В блоке `Разделы` удалён фильтр `href !== '#services'`: рендерятся все `sectionLinks`.
+  - Добавлена автодобавка `{ label: 'Контакты', href: '#contact' }` в конец mobile-списка разделов, если `#contact` отсутствует.
+  - Нижний `border-t` блок с CTA и соцсетями не изменялся.
+  - Build: `npm run build` — ✅ clean (local ready)
+
+✅ fix(mobile-spacing): сжаты py/mb на мобиле в 4 компонентах drone-service (11.04.2026) — `components/drone/DroneServicesStitch.tsx`, `components/drone/DronePricingStitch.tsx`, `components/drone/DroneFAQExpanded.tsx`, `components/drone/DroneStatsStrip.tsx`
+  - `DroneServicesStitch`: `py-24` → `py-8 md:py-24`.
+  - `DronePricingStitch`: `py-24` → `py-10 md:py-24`, `mb-16` → `mb-8 md:mb-16`, `mt-10` → `mt-6 md:mt-10`, `mt-8` в addons-блоке удалён.
+  - `DroneFAQExpanded`: `py-24` → `py-10 md:py-24`, header `mb-16` → `mb-8 md:mb-16`.
+  - `DroneStatsStrip`: `py-14` → `py-8 md:py-14`, header `mb-8` → `mb-5 md:mb-8`, карточки `py-8` → `py-5 md:py-8`.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ feat(menu): О нас в меню, соцсети + CTA внизу мобильного меню (11.04.2026) — `components/gazeta/SmartHeader.tsx`
   - В `headerCopy.RU.industryNavItems` первым пунктом добавлен `О нас` (`/about`).
   - В `headerCopy.EN.industryNavItems` первым пунктом добавлен `About` (`/about`).

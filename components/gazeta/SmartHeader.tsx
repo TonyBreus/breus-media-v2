@@ -223,6 +223,10 @@ export function SmartHeader({
     const aboutHref = "/about";
     const contactHref = isLanding ? "#contact" : "/gazeta#contact";
     const resolvedCtaHref = ctaHref ?? contactHref;
+    const hasContactSectionLink = sectionLinks.some((link) => link.href === "#contact");
+    const mobileSectionLinks = hasContactSectionLink
+        ? sectionLinks
+        : [...sectionLinks, { label: "Контакты", href: "#contact" }];
     const handleCtaClick = (event: React.MouseEvent<HTMLAnchorElement>, closeMobileMenu = false) => {
         if (closeMobileMenu) {
             setIsMobileMenuOpen(false);
@@ -507,21 +511,13 @@ export function SmartHeader({
                                 </div>
 
                                 <div className="space-y-6 px-5 py-5">
-                                    <div>
-                                        <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">{copy.mobileIndustriesLabel}</p>
-                                        <div className="grid grid-cols-2 gap-3">
-                                            {copy.industryNavItems.map((item) => (
-                                                <Link
-                                                    key={item.label}
-                                                    href={item.href}
-                                                    onClick={() => setIsMobileMenuOpen(false)}
-                                                    className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/78 transition-colors hover:border-[#D4AF37]/40 hover:text-white"
-                                                >
-                                                    {item.label}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </div>
+                                    <Link
+                                        href="/about"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="flex w-full items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/78 hover:border-[#D4AF37]/40 hover:text-white transition-colors"
+                                    >
+                                        {copy.aboutLabel}
+                                    </Link>
 
                                     <div>
                                         <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">{copy.mobileServicesLabel}</p>
@@ -539,13 +535,11 @@ export function SmartHeader({
                                         </div>
                                     </div>
 
-                                    {sectionLinks.filter((link) => link.href !== '#services').length > 0 && (
+                                    {mobileSectionLinks.length > 0 && (
                                         <div>
                                             <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">{copy.mobileSectionsLabel}</p>
                                             <div className="grid grid-cols-2 gap-3">
-                                                {sectionLinks
-                                                    .filter((link) => link.href !== '#services')
-                                                    .map((link) => (
+                                                {mobileSectionLinks.map((link) => (
                                                     <Link
                                                         key={`${link.label}-${link.href}-mobile`}
                                                         href={link.href}

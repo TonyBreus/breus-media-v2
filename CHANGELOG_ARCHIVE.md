@@ -1,6 +1,64 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-11 (refactor(menu): реструктура mobile burger menu в SmartHeader)
+### Session Summary
+- В `SmartHeader` переработана структура mobile dropdown: удалён блок индустрий, добавлена верхняя кнопка `/about`, блок разделов переведён на полный список `sectionLinks` с условным автодобавлением `#contact`.
+
+### Изменения
+- `components/gazeta/SmartHeader.tsx`
+  - Из mobile-части (`space-y-6 px-5 py-5`) удалён блок `Индустрии` (`copy.mobileIndustriesLabel` + `copy.industryNavItems`).
+  - Добавлена full-width кнопка:
+    - `href="/about"`
+    - текст: `copy.aboutLabel` (`О Нас` / `About`)
+    - `onClick={() => setIsMobileMenuOpen(false)}`
+  - Блок `Услуги` (`copy.mobileServicesLabel`, `copy.serviceNavItems`, `grid-cols-2`) оставлен без изменений.
+  - В блоке `Разделы`:
+    - удалён фильтр `href !== '#services'`,
+    - рендерятся все `sectionLinks`,
+    - если `#contact` отсутствует, в конец добавляется `{ label: 'Контакты', href: '#contact' }`.
+  - Нижний `border-t` блок (`Обсудить задачу` + соцссылки) не изменялся.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущей реструктуре mobile меню.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
+## 2026-04-11 (fix(mobile-spacing): сжаты py/mb на мобиле в 4 компонентах drone-service)
+### Session Summary
+- На `/drone-service` выполнен точечный mobile spacing pass: уменьшены вертикальные отступы и интервалы в 4 секциях без изменения desktop поведения.
+
+### Изменения
+- `components/drone/DroneServicesStitch.tsx`
+  - `py-24` → `py-8 md:py-24`.
+- `components/drone/DronePricingStitch.tsx`
+  - `py-24` → `py-10 md:py-24`.
+  - Header container `mb-16` → `mb-8 md:mb-16`.
+  - Addons container `mt-10` → `mt-6 md:mt-10`.
+  - Внутренний addons wrapper: удалён `mt-8`.
+- `components/drone/DroneFAQExpanded.tsx`
+  - `py-24` → `py-10 md:py-24`.
+  - Header block `mb-16` → `mb-8 md:mb-16`.
+- `components/drone/DroneStatsStrip.tsx`
+  - `py-14` → `py-8 md:py-14`.
+  - Header `mb-8` → `mb-5 md:mb-8`.
+  - Cards `py-8` → `py-5 md:py-8`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему фиксу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (feat(menu): О нас в меню, соцсети + CTA внизу мобильного меню)
 ### Session Summary
 - В `SmartHeader` расширено mobile-меню: добавлен пункт `О нас/About` в индустрии и нижняя зона с CTA + соцссылками.
