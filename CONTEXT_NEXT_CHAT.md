@@ -1,3 +1,11 @@
+✅ drone-service EN page created: /drone-service/en (12.04.2026) — `app/drone-service/page.en.tsx`, `app/drone-service/en/page.tsx`, `app/drone-service/DroneServiceContactSectionEn.tsx`, `app/drone-service/page.tsx`, `components/gazeta/SmartHeader.tsx`
+  - Создан новый публичный EN роут `/drone-service/en` через `app/drone-service/en/page.tsx` с реэкспортом EN страницы и metadata.
+  - Добавлен self-contained EN файл `app/drone-service/page.en.tsx`: EN metadata, EN JSON-LD, inline hero/services/stats/pricing/process/flight-zones/FAQ/related-links/footer и локализованный contact flow.
+  - Добавлен локальный client-компонент `app/drone-service/DroneServiceContactSectionEn.tsx` для EN формы с method switch, service chips и success-state.
+  - В `components/gazeta/SmartHeader.tsx` добавлена поддержка lower-case `ru/en/ge` для `initialLang` и `languageLinks`, локализован mobile `Contact` label и CTA в burger-меню.
+  - В RU странице `app/drone-service/page.tsx` добавлен language switch: `ru` ↔ `en`.
+  - Build: `npm run build` — ✅ clean; новый роут `/drone-service/en` присутствует в build output.
+
 ✅ drone-service SEO fixes: locale ru_GE, id=pricing, aria-hidden marquee, Тбилиси районы в FAQ (12.04.2026) — `app/drone-service/page.tsx`, `components/gazeta/SmartHeader.tsx`, `components/drone/DroneFAQExpanded.tsx`, `components/drone/DroneHeroStitch.tsx`
   - В `app/drone-service/page.tsx` `openGraph.locale` обновлён с `ru_RU` на `ru_GE`.
   - В `app/drone-service/page.tsx` pricing-блок обёрнут в `<div id="pricing">`, чтобы якорь `#pricing` в header вёл прямо к секции цен.

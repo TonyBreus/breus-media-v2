@@ -14,7 +14,9 @@ import { useMobilePortrait } from "@/hooks/useMobilePortrait";
 type TickerItemType = string | { text: string; link: string };
 type HeaderSectionLink = { label: string; href: string };
 type HeaderLanguage = "RU" | "EN" | "GE";
-type HeaderLanguageLinks = Partial<Record<HeaderLanguage, string>>;
+type HeaderLanguageAlias = Lowercase<HeaderLanguage>;
+type HeaderLanguageKey = HeaderLanguage | HeaderLanguageAlias;
+type HeaderLanguageLinks = Partial<Record<HeaderLanguageKey, string>>;
 type HeaderNavItem = { label: string; href: string };
 type HeaderCopy = {
     landingAgency: string;
@@ -31,6 +33,7 @@ type HeaderCopy = {
     mobileIndustriesLabel: string;
     mobileServicesLabel: string;
     mobileSectionsLabel: string;
+    contactSectionLabel: string;
     industryNavItems: HeaderNavItem[];
     serviceNavItems: HeaderNavItem[];
     tickerLine1: TickerItemType[];
@@ -53,6 +56,7 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         mobileIndustriesLabel: "Индустрии",
         mobileServicesLabel: "Услуги",
         mobileSectionsLabel: "Разделы",
+        contactSectionLabel: "Контакты",
         industryNavItems: [
             { label: "О нас", href: "/about" },
             ...gazetaIndustryNavItems,
@@ -76,6 +80,7 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         mobileIndustriesLabel: "Industries",
         mobileServicesLabel: "Services",
         mobileSectionsLabel: "Sections",
+        contactSectionLabel: "Contact",
         industryNavItems: [
             { label: "About", href: "/about" },
             { label: "Real Estate", href: "/real-estate-service" },
@@ -112,6 +117,16 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
             { text: "Reels", link: "/reels-service" },
         ],
     },
+};
+
+const normalizeHeaderLanguage = (value?: string): HeaderLanguage => {
+    const normalizedValue = value?.toUpperCase();
+
+    if (normalizedValue === "EN" || normalizedValue === "GE" || normalizedValue === "RU") {
+        return normalizedValue;
+    }
+
+    return "RU";
 };
 
 const TickerItem = ({
@@ -218,8 +233,9 @@ export function SmartHeader({
     ctaHref?: string;
 }) {
     const { scrollY } = useScroll();
+    const normalizedInitialLang = normalizeHeaderLanguage(initialLang);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [lang, setLang] = useState(initialLang);
+    const [lang, setLang] = useState<HeaderLanguage>(normalizedInitialLang);
     const [isLogoVisible, setIsLogoVisible] = useState(!isLanding);
 
     // States for V23 menus
@@ -233,7 +249,7 @@ export function SmartHeader({
     const headerExpandedHeight = isMobileLandscape ? 64 : isMobilePortrait ? 64 : 90;
     const headerCompactHeight = isMobileLandscape ? 56 : isMobilePortrait ? 52 : 70;
     const headerHeight = isScrolled ? headerCompactHeight : headerExpandedHeight;
-    const routeLanguage: HeaderLanguage = initialLang === "EN" ? "EN" : initialLang === "GE" ? "GE" : "RU";
+    const routeLanguage: HeaderLanguage = normalizedInitialLang;
     const copy = headerCopy[routeLanguage === "EN" ? "EN" : "RU"];
 
     useMotionValueEvent(scrollY, "change", (latest) => {
@@ -255,7 +271,7 @@ export function SmartHeader({
     const hasContactSectionLink = sectionLinks.some((link) => link.href === "#contact");
     const mobileSectionLinks = hasContactSectionLink
         ? sectionLinks
-        : [...sectionLinks, { label: "Контакты", href: "#contact" }];
+        : [...sectionLinks, { label: copy.contactSectionLabel, href: "#contact" }];
     const handleCtaClick = (event: React.MouseEvent<HTMLAnchorElement>, closeMobileMenu = false) => {
         if (closeMobileMenu) {
             setIsMobileMenuOpen(false);
@@ -471,7 +487,7 @@ export function SmartHeader({
                                 </button>
                                 <div className="absolute top-full right-0 mt-2 bg-black border border-white/10 hidden group-hover:flex flex-col rounded-xl overflow-hidden shadow-2xl backdrop-blur-xl z-[1200]">
                                     {(["RU", "EN", "GE"] as HeaderLanguage[]).map((l) => {
-                                        const href = languageLinks?.[l];
+                                        const href = languageLinks?.[l] ?? languageLinks?.[l.toLowerCase() as HeaderLanguageAlias];
                                         const className = "px-4 py-2 text-xs text-white hover:bg-[#D4AF37]/20 transition-colors text-left font-bold";
 
                                         return href ? (
@@ -591,7 +607,7 @@ export function SmartHeader({
                                         onClick={() => setIsMobileMenuOpen(false)}
                                         className="flex w-full items-center justify-center rounded-2xl bg-[#D4A017] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-black"
                                     >
-                                        Обсудить задачу
+                                        {copy.ctaDesktop}
                                     </Link>
                                     <div className="flex items-center justify-center gap-4 pt-1">
                                         <a

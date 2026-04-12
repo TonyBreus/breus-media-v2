@@ -1,6 +1,67 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-12 (feat(i18n): add EN version of drone-service page)
+### Session Summary
+- Для `/drone-service` создана полноценная английская версия `/drone-service/en`: EN metadata, EN JSON-LD, локализованные inline-секции страницы и language switch между RU/EN.
+
+### Изменения
+- `app/drone-service/page.en.tsx`
+  - Создан основной EN файл страницы с metadata:
+    - `title`: `Drone Filming for Business in Tbilisi | Breus Media`
+    - `canonical`: `https://breus.media/drone-service/en`
+    - `alternates.languages`: `ru` / `en`
+    - `openGraph.locale`: `en_GE`
+  - Добавлены EN версии:
+    - hero
+    - services mobile list
+    - services grid
+    - stats strip
+    - mid-page CTA
+    - pricing and add-ons
+    - process
+    - flight zones note
+    - FAQ
+    - related services
+    - footer
+  - Для schema.org:
+    - `ItemList` переведён на английский
+    - `buildDirectionJsonLd(...)` вызван с EN `pageConfig`
+    - `OfferCatalog.name` и breadcrumb labels локализованы на английский
+- `app/drone-service/en/page.tsx`
+  - Добавлен публичный EN роут `/drone-service/en`.
+  - Роут реэкспортирует EN страницу и её metadata.
+- `app/drone-service/DroneServiceContactSectionEn.tsx`
+  - Добавлен локальный client-компонент EN контактной секции:
+    - `Telegram / WhatsApp / Call`
+    - EN labels/placeholders
+    - service chips
+    - submit success-state
+    - WhatsApp deeplink с EN сообщением
+- `components/gazeta/SmartHeader.tsx`
+  - Добавлена поддержка lower-case значений в `initialLang` и `languageLinks`:
+    - `ru/en/ge` теперь нормализуются в существующие `RU/EN/GE`
+  - Для burger-меню локализован auto-added contact link:
+    - RU: `Контакты`
+    - EN: `Contact`
+  - Нижний CTA в mobile menu теперь использует локализованный `copy.ctaDesktop`, а не захардкоженный RU текст.
+- `app/drone-service/page.tsx`
+  - В `SmartHeader` добавлен language switch:
+    - `initialLang="ru"`
+    - `languageLinks={{ ru: '/drone-service', en: '/drone-service/en' }}`
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись: `drone-service EN page created: /drone-service/en`.
+
+### Build
+- `npm run build` — ✅ clean
+- В build output подтверждён новый статический роут:
+  - `/drone-service/en`
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-12 (drone-service SEO fixes: locale ru_GE, id=pricing, aria-hidden marquee, Тбилиси районы в FAQ)
 ### Session Summary
 - На `/drone-service` выполнен SEO/accessibility pass: локаль OpenGraph привязана к Грузии, pricing получил прямой якорь, marquee-дубликаты скрыты от assistive tech, FAQ уточнён по районам Тбилиси, а hero получил скрытый H1.

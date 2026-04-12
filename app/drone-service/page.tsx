@@ -172,6 +172,8 @@ export default function DroneServicePage() {
             <SmartHeader
                 transparent={true}
                 isLanding={false}
+                initialLang="ru"
+                languageLinks={{ ru: '/drone-service', en: '/drone-service/en' }}
                 sectionLinks={[
                     { label: 'Услуги', href: '#services' },
                     { label: 'Цены', href: '#pricing' },
