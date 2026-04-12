@@ -38,7 +38,7 @@ export const metadata: Metadata = {
             'Аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм. 4K + FPV. От 250 ₾.',
         url: 'https://breus.media/drone-service',
         siteName: 'Breus Media',
-        locale: 'ru_RU',
+        locale: 'ru_GE',
         type: 'website',
     },
     twitter: {
@@ -95,7 +95,7 @@ export default function DroneServicePage() {
                                 '@type': 'ListItem',
                                 position: 6,
                                 name: 'Туризм и локации',
-                                url: 'https://breus.media/drone-hotels-tourism',
+                                url: 'https://breus.media/drone-services/drone-territory',
                             },
                             { '@type': 'ListItem', position: 7, name: 'Мероприятия', url: 'https://breus.media/drone-weddings-events' },
                             {
@@ -208,9 +208,11 @@ export default function DroneServicePage() {
                 </div>
             </section>
 
-            <DebugWrapper id={10700} label="Pricing Section">
-                <DronePricingStitch />
-            </DebugWrapper>
+            <div id="pricing">
+                <DebugWrapper id={10700} label="Pricing Section">
+                    <DronePricingStitch />
+                </DebugWrapper>
+            </div>
             <DebugWrapper id={10500} label="Process Section">
                 <DroneProcessStitch />
             </DebugWrapper>

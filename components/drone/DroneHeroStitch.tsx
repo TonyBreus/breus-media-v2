@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { Manrope } from 'next/font/google';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
@@ -16,6 +17,7 @@ const ROTATION_MS = 5000;
 const TYPEWRITER_INTERVAL_MS = 40;
 const TYPEWRITER_NEWLINE_PAUSE_MS = 120;
 const MOBILE_HERO_TYPEWRITER_TEXT = 'АЭРОСЪЁМКА\nДЛЯ БИЗНЕСА\nВ ГРУЗИИ';
+const manrope = Manrope({ subsets: ['cyrillic', 'latin'], weight: ['400', '500', '600', '700'] });
 const DESKTOP_HERO_PHRASES = [
     'С земли не видно главного: террасу ресторана, масштаб стройки, дефект на крыше.',
     'Объекты с аэровидео продаются на 68% быстрее (MLS / NAR).',
@@ -124,6 +126,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
     return (
         <DebugWrapper id={10100} label="Drone Hero Section">
             <section className="relative h-[calc(100vh-80px)] min-h-[620px] md:min-h-[680px] overflow-hidden bg-[#080808]">
+                <h1 className="sr-only">Аэросъёмка дроном для бизнеса в Тбилиси — Breus Media</h1>
                 <div className="absolute inset-0 z-0">
                     <AnimatePresence mode="wait">
                         <motion.img
@@ -169,7 +172,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                                         y: visibleDesktopPhrases >= index + 1 ? 0 : 8,
                                                     }}
                                                     transition={{ duration: 0.32, ease: 'easeOut' }}
-                                                    className="text-[15px] text-white/55 leading-relaxed"
+                                                    className={`${manrope.className} antialiased font-normal text-[16px] leading-[1.65] text-white/[0.88]`}
                                                 >
                                                     {phrase}
                                                 </motion.p>
@@ -218,12 +221,12 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                                         {droneServiceItems[currentIndex].title}
                                                     </p>
                                                 </div>
-                                                <p className="text-[15px] text-white/60 leading-relaxed">
+                                                <p className={`${manrope.className} antialiased font-normal text-[16px] leading-[1.65] text-white/[0.88]`}>
                                                     {droneServiceItems[currentIndex].description}
                                                 </p>
                                                 <a
                                                     href={droneServiceItems[currentIndex].primaryHref}
-                                                    className="w-full flex items-center justify-center rounded-[10px] bg-[#D4A017] px-4 py-3 text-[12px] font-bold uppercase tracking-[0.14em] text-black hover:brightness-105 transition-all"
+                                                    className="w-full flex items-center justify-center rounded-[10px] border border-[#D4A017] bg-transparent px-4 py-3 text-[12px] font-bold uppercase tracking-[0.14em] text-[#D4A017] transition-all hover:bg-[#D4A017]/10"
                                                 >
                                                     Открыть услугу
                                                 </a>
@@ -239,23 +242,18 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                                             key={item.slug}
                                                             onClick={() => setCurrentIndex(serviceIndex)}
                                                             className={`w-full text-left rounded-lg px-2.5 py-2 transition-colors ${
-                                                                isActive ? 'bg-white/14' : 'hover:bg-white/8'
+                                                                isActive
+                                                                    ? 'bg-[#D4A017]/16'
+                                                                    : 'hover:bg-white/8'
                                                             }`}
                                                         >
-                                                            <div className="flex items-center gap-2">
-                                                                <span
-                                                                    className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                                                                        isActive ? 'bg-[#D4A017]' : 'bg-white/40'
-                                                                    }`}
-                                                                />
-                                                                <span
-                                                                    className={`text-xs font-semibold leading-tight transition-colors ${
-                                                                        isActive ? 'text-white' : 'text-white/64'
-                                                                    }`}
-                                                                >
-                                                                    {item.title}
-                                                                </span>
-                                                            </div>
+                                                            <span
+                                                                className={`text-xs font-semibold leading-tight transition-colors ${
+                                                                    isActive ? 'text-[#D4A017]' : 'text-white/70'
+                                                                }`}
+                                                            >
+                                                                {item.title}
+                                                            </span>
                                                         </button>
                                                     );
                                                 })}
@@ -323,13 +321,13 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                     onClick={handleScrollToNextSection}
                     animate={{ y: [0, 6, 0] }}
                     transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                    className="hidden md:flex absolute bottom-3 left-1/2 z-30 -translate-x-1/2 flex-col items-center text-2xl text-white/70 transition-colors hover:text-white"
+                    className="hidden md:flex absolute bottom-3 left-1/2 z-30 -translate-x-1/2 flex-col items-center text-[18px] text-white/70 transition-colors hover:text-white"
                 >
                     <span>↓</span>
-                    <span className="hidden md:block text-[10px] text-white/30 tracking-[0.14em] mt-1">
-                        18 направлений ↓
+                    <span className="hidden md:block text-[15px] text-white tracking-[0.14em] mt-1">
+                        18 направлений
                     </span>
-                    <span className="hidden md:block text-[9px] text-white/22 tracking-[0.1em] mt-0.5">
+                    <span className="hidden md:block text-[14px] text-[#D4A017] tracking-[0.1em] mt-0.5">
                         от 250 ₾ · Тбилиси · Батуми · Кутаиси
                     </span>
                 </motion.button>

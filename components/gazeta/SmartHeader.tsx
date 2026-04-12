@@ -114,7 +114,17 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
     },
 };
 
-const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; debugId?: number; compact?: boolean }) => {
+const TickerItem = ({
+    item,
+    debugId,
+    compact = false,
+    isDuplicate = false,
+}: {
+    item: TickerItemType;
+    debugId?: number;
+    compact?: boolean;
+    isDuplicate?: boolean;
+}) => {
     const { setHoveredService } = useHeroStore();
     const isObj = typeof item === 'object';
     const text = isObj ? item.text : item;
@@ -123,6 +133,7 @@ const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; 
     const content = (
         <DebugWrapper id={debugId ?? 0} label={text} className="inline-flex items-center h-full shrink-0">
             <span
+                aria-hidden={isDuplicate}
                 onMouseEnter={() => {
                     if (shouldUseHoverPreview) {
                         setHoveredService(text);
@@ -142,7 +153,16 @@ const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; 
         </DebugWrapper>
     );
 
-    return isObj ? <Link href={item.link} className="inline-flex items-center h-full shrink-0">{content}</Link> : content;
+    return isObj ? (
+        <Link
+            href={item.link}
+            className="inline-flex items-center h-full shrink-0"
+            aria-hidden={isDuplicate}
+            tabIndex={isDuplicate ? -1 : undefined}
+        >
+            {content}
+        </Link>
+    ) : content;
 };
 
 const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId, compact = false }: { items: TickerItemType[], direction?: "left" | "right", speed?: number, baseId?: number, compact?: boolean }) => {
@@ -159,8 +179,17 @@ const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId, comp
                 {[...items, ...items, ...items, ...items].map((item, i) => {
                     const idText = typeof item === 'object' ? item.text : item;
                     const itemIndex = i % items.length;
+                    const copyIndex = Math.floor(i / items.length);
                     const debugId = baseId ? baseId + itemIndex + 1 : undefined;
-                    return <TickerItem key={`${idText}-${i}`} item={item} debugId={debugId} compact={compact} />;
+                    return (
+                        <TickerItem
+                            key={`${idText}-${i}`}
+                            item={item}
+                            debugId={debugId}
+                            compact={compact}
+                            isDuplicate={copyIndex > 0}
+                        />
+                    );
                 })}
             </motion.div>
         </div>

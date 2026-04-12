@@ -1,3 +1,27 @@
+✅ drone-service SEO fixes: locale ru_GE, id=pricing, aria-hidden marquee, Тбилиси районы в FAQ (12.04.2026) — `app/drone-service/page.tsx`, `components/gazeta/SmartHeader.tsx`, `components/drone/DroneFAQExpanded.tsx`, `components/drone/DroneHeroStitch.tsx`
+  - В `app/drone-service/page.tsx` `openGraph.locale` обновлён с `ru_RU` на `ru_GE`.
+  - В `app/drone-service/page.tsx` pricing-блок обёрнут в `<div id="pricing">`, чтобы якорь `#pricing` в header вёл прямо к секции цен.
+  - В `app/drone-service/page.tsx` исправлен `ItemList` schema URL для пункта `Туризм и локации` на `https://breus.media/drone-services/drone-territory`.
+  - В `components/gazeta/SmartHeader.tsx` дублирующиеся копии ticker-элементов внутри `InteractiveTicker` помечены как декоративные: `aria-hidden="true"` и `tabIndex={-1}` для duplicate-link копий.
+  - В `components/drone/DroneFAQExpanded.tsx` обновлён ответ про выезды: добавлены районы Тбилиси и уточнение, что отдельно обсуждается только выезд за пределы Тбилиси.
+  - В `components/drone/DroneHeroStitch.tsx` добавлен скрытый семантический `h1` для SEO: `Аэросъёмка дроном для бизнеса в Тбилиси — Breus Media`.
+  - Build: `npm run build` — ✅ clean (local ready)
+
+✅ docs-sync(cards): локальная картинка фасадов + финальный порядок 18 карточек (12.04.2026) — `components/drone/droneServicesData.ts`, `public/media/drone-service/drone-facade-2.png`
+  - Для карточки `Инспекция фасадов` внешний Unsplash URL заменён на локальное изображение `public/media/drone-service/drone-facade-2.png`, взятое из `services-images/drone-facade/final/2.png`.
+  - Через поля `order` зафиксирован финальный порядок всех 18 карточек на странице: `Недвижимость`, `Мониторинг стройки`, `Отели & Курорты`, `Рестораны`, `Регулярные аэроотчёты`, `Земельные участки`, `Реклама и бренд видео`, `Автосалоны и шоурумы`, `Инспекция фасадов`, `Туризм и локации`, `Мероприятия`, `Инспекция объектов`, `FPV Съёмка`, `Съёмка интерьеров и складов`, `Инспекция солнечных панелей`, `Спорт комплексы`, `Мониторинг территорий`, `Агро и виноделие`.
+  - Эксперимент с нижним hero-списком на 18 направлений был откатан; текущим состоянием остаётся компактный блок на 4 пункта.
+  - Build: `npm run build` — ✅ clean (local ready)
+
+✅ docs-sync(hero+services): зафиксированы незадокументированные правки Hero + карточек направлений (12.04.2026) — `components/drone/DroneHeroStitch.tsx`, `components/drone/DroneServicesStitch.tsx`, `components/drone/droneServicesData.ts`
+  - `DroneHeroStitch`: подключён `Manrope` и применён к 4 desktop-фразам слева и описанию в правой hero-карточке (`16px/1.65`, мягкий белый), кнопка `Открыть услугу` переведена в outlined-стиль.
+  - `DroneHeroStitch`: мини-карусель справа обновлена (убраны точки; активный пункт — жёлтый текст + жёлтая подложка), подпись под стрелкой уплотнена и приведена к виду `18 направлений` + `от 250 ₾ · Тбилиси · Батуми · Кутаиси`.
+  - `DroneServicesStitch`: расширен контейнер карточек до `max-w-[1400px]` (карточки шире при прежних `gap`), убран визуальный верхний заголовок секции.
+  - `DroneServicesStitch`: единая типографика всех карточек приведена к стилю первых тестовых (`Manrope` для title/audience/description/tags), кнопки `Открыть услугу`/`Обсудить задачу` возвращены в стандартный вариант.
+  - `droneServicesData`: массово обновлены подзаголовки и жёлтые теги по карточкам (`Недвижимость`, `FPV`, `Отели`, `Рестораны`, `Туризм`, `Мероприятия`, `Инспекция объектов`, `Мониторинг территорий`, `Интерьеры и склады`, `Спорт`, `Бренд-видео`, `Автосалоны`, `Агро`, `Земельные участки`, `Инспекция фасадов`, `Инспекция солнечных панелей`, `Регулярные аэроотчёты`); для `Недвижимость` также обновлено описание с референсом HomeJab.
+  - `droneServicesData`: в текущем diff отсутствует карточка `Инспекция крыш` (`id: 16`) — зафиксировано как актуальное состояние массива.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(hero): убран дубль строки, правая колонка растянута, отступы подправлены (12.04.2026) — `components/drone/DroneHeroStitch.tsx`
   - Удалена дублирующая metadata-строка под левой кнопкой `Обсудить задачу`.
   - Правая колонка desktop hero растянута на высоту контейнера: `hidden lg:flex flex-col justify-between py-0 h-full`.
