@@ -1,3 +1,11 @@
+✅ fix(hero): убран дубль строки, правая колонка растянута, отступы подправлены (12.04.2026) — `components/drone/DroneHeroStitch.tsx`
+  - Удалена дублирующая metadata-строка под левой кнопкой `Обсудить задачу`.
+  - Правая колонка desktop hero растянута на высоту контейнера: `hidden lg:flex flex-col justify-between py-0 h-full`.
+  - Внутренняя карточка услуги (`motion.div`) переведена в `flex-1 flex flex-col ...` для заполнения высоты.
+  - Нижний отступ hero уменьшен: `pb-16` → `pb-8`.
+  - Под стрелкой добавлена дополнительная строка: `от 250 ₾ · Тбилиси · Батуми · Кутаиси`.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(hero): layout прижат к краям, фразы уменьшены, кнопки перераспределены, карточка увеличена (12.04.2026) — `components/drone/DroneHeroStitch.tsx`
   - Desktop hero выровнен к краям: `justify-start`, уменьшены верхние отступы (`pt-20 md:pt-24`), снято центрирование контейнера и текста.
   - Desktop grid обновлён на `lg:grid-cols-[55%_42%] lg:gap-[3%]`, фразы в левой колонке уменьшены до `text-[15px] text-white/55 leading-relaxed`.

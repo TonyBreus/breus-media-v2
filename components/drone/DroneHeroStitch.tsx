@@ -143,7 +143,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                 </div>
 
                 <div className="container mx-auto px-6 relative z-10 h-full">
-                    <div className="h-full flex items-center justify-start pt-20 md:pt-24 pb-16">
+                    <div className="h-full flex items-center justify-start pt-20 md:pt-24 pb-8">
                         <div className="w-full text-left">
                             <div className="hidden md:block">
                                 <div className="grid md:grid-cols-1 md:gap-6 lg:grid-cols-[55%_42%] lg:gap-[3%] text-left">
@@ -183,9 +183,6 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                             >
                                                 Обсудить задачу
                                             </a>
-                                            <p className="text-[11px] text-white/30 tracking-wide">
-                                                18 направлений · от 250 ₾ · Тбилиси · Батуми · Кутаиси
-                                            </p>
                                         </div>
                                     </div>
 
@@ -203,7 +200,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                         </DebugWrapper>
                                     </div>
 
-                                    <div className="hidden lg:flex flex-col justify-center gap-4 py-6">
+                                    <div className="hidden lg:flex flex-col justify-between py-0 h-full">
                                         <AnimatePresence mode="wait">
                                             <motion.div
                                                 key={droneServiceItems[currentIndex].slug}
@@ -211,7 +208,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, y: -10 }}
                                                 transition={{ duration: 0.4 }}
-                                                className="flex flex-col gap-4"
+                                                className="flex-1 flex flex-col gap-4"
                                             >
                                                 <div>
                                                     <p className="text-[11px] uppercase tracking-[0.22em] text-[#D4A017] font-bold mb-1">
@@ -331,6 +328,9 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                     <span>↓</span>
                     <span className="hidden md:block text-[10px] text-white/30 tracking-[0.14em] mt-1">
                         18 направлений ↓
+                    </span>
+                    <span className="hidden md:block text-[9px] text-white/22 tracking-[0.1em] mt-0.5">
+                        от 250 ₾ · Тбилиси · Батуми · Кутаиси
                     </span>
                 </motion.button>
             </section>

@@ -1,6 +1,32 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-12 (fix(hero): убран дубль строки, правая колонка растянута, отступы подправлены)
+### Session Summary
+- В `DroneHeroStitch` выполнен дополнительный desktop-пасс: убран дубль metadata-строки, правая колонка растянута по высоте, скорректированы нижние отступы hero и подпись под стрелкой.
+
+### Изменения
+- `components/drone/DroneHeroStitch.tsx`
+  - Удалён дублирующий текст под левой CTA-кнопкой:
+    - `18 направлений · от 250 ₾ · Тбилиси · Батуми · Кутаиси`
+  - Правая desktop-колонка обновлена:
+    - `hidden lg:flex flex-col justify-center gap-4 py-6` → `hidden lg:flex flex-col justify-between py-0 h-full`
+    - `motion.div` получил `flex-1` (`className="flex-1 flex flex-col gap-4"`), чтобы карточка заполняла высоту.
+  - В hero-контейнере уменьшен нижний отступ:
+    - `pb-16` → `pb-8`
+  - Под desktop-стрелкой добавлена новая строка:
+    - `от 250 ₾ · Тбилиси · Батуми · Кутаиси`
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему hero-fix.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-12 (fix(hero): layout прижат к краям, фразы уменьшены, кнопки перераспределены, карточка увеличена)
 ### Session Summary
 - В `DroneHeroStitch` выполнен desktop-pass: layout прижат к краям, левый текстовый блок стал компактнее, CTA перераспределены, правая карточка усилена по типографике.
