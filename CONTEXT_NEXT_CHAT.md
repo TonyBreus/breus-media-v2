@@ -1,3 +1,11 @@
+✅ fix(hero): layout прижат к краям, фразы уменьшены, кнопки перераспределены, карточка увеличена (12.04.2026) — `components/drone/DroneHeroStitch.tsx`
+  - Desktop hero выровнен к краям: `justify-start`, уменьшены верхние отступы (`pt-20 md:pt-24`), снято центрирование контейнера и текста.
+  - Desktop grid обновлён на `lg:grid-cols-[55%_42%] lg:gap-[3%]`, фразы в левой колонке уменьшены до `text-[15px] text-white/55 leading-relaxed`.
+  - Под левым блоком добавлены CTA `Обсудить задачу` (`#contact`) и metadata-линия `18 направлений · от 250 ₾ · Тбилиси · Батуми · Кутаиси`.
+  - В правой карточке оставлена только одна full-width кнопка `Открыть услугу`; увеличены `category/title/description` (`11px / 3xl / 15px`).
+  - Под desktop-стрелкой добавлена подпись `18 направлений ↓`.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(hero+page): убран вводный блок под hero, десктоп карточка ниши восстановлена (12.04.2026) — `app/drone-service/page.tsx`, `components/drone/DroneHeroStitch.tsx`
   - В `app/drone-service/page.tsx` полностью удалена секция `ВВОДНЫЙ ТЕКСТ + TRUST STRIP` между hero и `DebugWrapper id={10300}`.
   - В `DroneHeroStitch` desktop grid изменён на пропорцию `lg:grid-cols-[3fr_2fr]`.

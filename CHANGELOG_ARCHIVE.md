@@ -1,6 +1,39 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-12 (fix(hero): layout прижат к краям, фразы уменьшены, кнопки перераспределены, карточка увеличена)
+### Session Summary
+- В `DroneHeroStitch` выполнен desktop-pass: layout прижат к краям, левый текстовый блок стал компактнее, CTA перераспределены, правая карточка усилена по типографике.
+
+### Изменения
+- `components/drone/DroneHeroStitch.tsx`
+  - Основной desktop-контейнер переведён с центрирования на прижатый layout:
+    - `justify-center` → `justify-start`
+    - `pt-28 md:pt-32` → `pt-20 md:pt-24`
+    - `w-full max-w-4xl text-center` → `w-full text-left`
+    - grid: `lg:grid-cols-[3fr_2fr] lg:gap-10` → `lg:grid-cols-[55%_42%] lg:gap-[3%]`
+  - Фразы в левой колонке уменьшены:
+    - `text-[22px] text-white/62 leading-[1.32]` → `text-[15px] text-white/55 leading-relaxed`
+  - Под фразами добавлен левый CTA-блок:
+    - кнопка `Обсудить задачу` (`#contact`)
+    - строка `18 направлений · от 250 ₾ · Тбилиси · Батуми · Кутаиси`
+  - В правой карточке удалена secondary-кнопка `Обсудить задачу`; оставлена одна full-width `Открыть услугу`.
+  - В правой карточке увеличены тексты:
+    - category `text-[11px]`
+    - title `text-3xl`
+    - description `text-[15px] text-white/60 leading-relaxed`
+  - В desktop-кнопку-стрелку добавлена подпись: `18 направлений ↓`.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему hero-pass.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-12 (fix(hero+page): убран вводный блок под hero, десктоп карточка ниши восстановлена)
 ### Session Summary
 - На `/drone-service` убран промежуточный desktop-вводный блок под hero, а в `DroneHeroStitch` восстановлена компактная desktop-карточка ниши с CTA.
