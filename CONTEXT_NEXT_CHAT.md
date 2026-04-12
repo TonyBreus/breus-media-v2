@@ -1,3 +1,10 @@
+✅ feat(hero): Split Hero — текст слева, карусель из актуальных данных справа, убраны модели дронов, добавлены 4 фразы и 18 направлений (12.04.2026) — `components/drone/DroneHeroStitch.tsx`
+  - Desktop hero переведён в split-layout: слева заголовок/4 тезиса/CTA `Обсудить проект` + metadata-строка; справа — карусель по `droneServiceItems`.
+  - Удалён legacy-блок `DebugWrapper id=10180` (компактный навигатор/модели дронов).
+  - Hero tagline (`DebugWrapper id=10101`) теперь показывает `price` активного направления вместо статичного текста.
+  - Таймер ротации оставлен `5000ms`, обновление индекса синхронизировано с `droneServiceItems.length`.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ fix(menu-socials): mobile burger footer icons (IG/TG/WA), LinkedIn removed (11.04.2026) — `components/gazeta/SmartHeader.tsx`
   - В нижнем `border-t` блоке mobile burger меню текстовые кнопки `IG / TG / LI / WA` заменены на 3 иконки: Instagram, Telegram, WhatsApp.
   - LinkedIn удалён из footer social блока мобильного меню.

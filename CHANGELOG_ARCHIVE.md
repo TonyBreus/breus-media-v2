@@ -1,6 +1,30 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-12 (feat(hero): Split Hero — текст слева, карусель справа)
+### Session Summary
+- `DroneHeroStitch` переработан в split-hero: слева акцентный текстовый блок и CTA, справа карусель актуальных направлений из `droneServiceItems`.
+
+### Изменения
+- `components/drone/DroneHeroStitch.tsx`
+  - Удалён legacy-блок `DebugWrapper id={10180}` (модели дронов/компактный навигатор).
+  - Desktop структура заменена на split-layout:
+    - левая колонка: `h1`, 4 тезиса, CTA `Обсудить проект`, metadata-строка `DJI Air 3S + Avata 2 · 4K · ...`.
+    - правая колонка: карусель направления с `category/title/description` и быстрыми кнопками (первые 6 услуг).
+  - Hero tagline (`DebugWrapper id={10101}`) переведён на динамический `price` активного направления.
+  - Таймер ротации оставлен `5000ms`, переключение привязано к `droneServiceItems.length`.
+  - Логика mobile typewriter-блока сохранена.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему hero-рефактору.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-11 (fix(menu-socials): mobile burger footer icons IG/TG/WA)
 ### Session Summary
 - В `SmartHeader` обновлён нижний social-блок мобильного бургер-меню: текстовые сокращения заменены на иконки, LinkedIn удалён.

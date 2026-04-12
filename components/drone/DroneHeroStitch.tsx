@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
@@ -16,44 +16,31 @@ const ROTATION_MS = 5000;
 const TYPEWRITER_INTERVAL_MS = 40;
 const TYPEWRITER_NEWLINE_PAUSE_MS = 120;
 const MOBILE_HERO_TYPEWRITER_TEXT = 'АЭРОСЪЁМКА\nДЛЯ БИЗНЕСА\nВ ГРУЗИИ';
+const DESKTOP_HERO_PHRASES = [
+    'С земли не видно главного: террасу ресторана, масштаб стройки, дефект на крыше.',
+    'Объекты с аэровидео продаются на 68% быстрее — по данным MLS / NAR.',
+    'Снимаем с высоты и летаем внутри помещений — FPV-технология.',
+    'Один полёт — контент для рекламы, отчёт для инвестора или документация для страховой.',
+];
 
 export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
-    const heroServices = useMemo(
-        () => [...droneServiceItems].sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id)),
-        []
-    );
-
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [typedCharsCount, setTypedCharsCount] = useState(0);
     const [typewriterDone, setTypewriterDone] = useState(false);
     const [showMobileDescription, setShowMobileDescription] = useState(false);
     const [showMobileArrow, setShowMobileArrow] = useState(false);
-    const rotationRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
     useEffect(() => {
-        setActiveIndex(0);
-    }, [heroServices.length]);
-
-    const restartRotation = useCallback(() => {
-        if (rotationRef.current) {
-            clearInterval(rotationRef.current);
-        }
-        if (heroServices.length <= 1) {
+        if (droneServiceItems.length <= 1) {
             return;
         }
-        rotationRef.current = setInterval(() => {
-            setActiveIndex((prev) => (prev + 1) % heroServices.length);
+        const rotationInterval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % droneServiceItems.length);
         }, ROTATION_MS);
-    }, [heroServices.length]);
-
-    useEffect(() => {
-        restartRotation();
         return () => {
-            if (rotationRef.current) {
-                clearInterval(rotationRef.current);
-            }
+            clearInterval(rotationInterval);
         };
-    }, [restartRotation]);
+    }, []);
 
     useEffect(() => {
         let timeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -98,40 +85,19 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
         };
     }, [typewriterDone]);
 
-    const safeActiveIndex = heroServices.length > 0 ? activeIndex % heroServices.length : 0;
-    const activeService = heroServices[safeActiveIndex] ?? droneServiceItems[0];
-
-    const sellingLine = useMemo(() => {
-        const leadSentence = activeService?.description?.split(/[.!?]/)[0]?.trim();
-        return leadSentence ? `${leadSentence}.` : activeService?.description ?? '';
-    }, [activeService?.description]);
-
-    const supportLine = useMemo(() => {
-        const introLead = hero.intro.split(/[.!?]/)[0]?.trim();
-        if (!introLead) {
-            return '';
+    useEffect(() => {
+        if (currentIndex < droneServiceItems.length) {
+            return;
         }
-        return `${introLead}.`;
-    }, [hero.intro]);
+        setCurrentIndex(0);
+    }, [currentIndex]);
 
     const typedMobileLines = useMemo(
         () => MOBILE_HERO_TYPEWRITER_TEXT.slice(0, typedCharsCount).split('\n'),
         [typedCharsCount]
     );
 
-    const visibleCount = Math.min(4, heroServices.length);
-    const visibleIndices = useMemo(() => {
-        if (heroServices.length <= visibleCount) {
-            return heroServices.map((_, index) => index);
-        }
-        const start = (safeActiveIndex - 1 + heroServices.length) % heroServices.length;
-        return Array.from({ length: visibleCount }, (_, offset) => (start + offset) % heroServices.length);
-    }, [heroServices, safeActiveIndex, visibleCount]);
-
-    const handleSelectService = (index: number) => {
-        setActiveIndex(index);
-        restartRotation();
-    };
+    const activeService = droneServiceItems[currentIndex] ?? droneServiceItems[0];
 
     const handleScrollToNextSection = () => {
         const nextSection = document.getElementById('services');
@@ -174,48 +140,84 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.34, ease: 'easeOut' }}
-                                        className="px-2"
+                                        className="px-2 md:grid md:grid-cols-1 md:gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-10 md:text-center lg:text-left"
                                     >
-                                        <DebugWrapper id={10101} label="Hero Tagline">
-                                            <span className="text-[#D4A017] font-bold tracking-[0.28em] text-[10px] md:text-xs mb-3 block uppercase">
-                                                {hero.eyebrow}
-                                            </span>
-                                        </DebugWrapper>
+                                        <div>
+                                            <DebugWrapper id={10101} label="Hero Tagline">
+                                                <span className="text-[#D4A017] font-bold tracking-[0.28em] text-[10px] md:text-xs mb-3 block uppercase">
+                                                    {activeService.price}
+                                                </span>
+                                            </DebugWrapper>
 
-                                        <DebugWrapper id={10110} label={`Hero Title: ${activeService.title}`}>
-                                            <h1 className="text-[40px] md:text-6xl lg:text-[80px] font-bold leading-[0.92] text-white mb-4">
-                                                {activeService.title}
-                                            </h1>
-                                        </DebugWrapper>
+                                            <DebugWrapper id={10110} label={`Hero Title: ${activeService.title}`}>
+                                                <h1 className="text-[40px] md:text-6xl lg:text-[80px] font-bold leading-[0.92] text-white mb-4">
+                                                    {activeService.title}
+                                                </h1>
+                                            </DebugWrapper>
 
-                                        <DebugWrapper id={10102} label="Hero Description">
-                                            <p className="text-base md:text-2xl text-white/88 max-w-3xl mx-auto leading-relaxed">
-                                                {sellingLine}
+                                            <div className="hidden lg:flex flex-col gap-1.5 mb-6">
+                                                {DESKTOP_HERO_PHRASES.map((phrase, i) => (
+                                                    <p key={i} className="text-sm text-white/55 leading-snug border-b border-white/[0.06] pb-1.5 last:border-0">
+                                                        {phrase}
+                                                    </p>
+                                                ))}
+                                            </div>
+
+                                            <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4 mt-8 md:mt-10">
+                                                <DebugWrapper id={10120} label="Hero Primary CTA">
+                                                    <Link
+                                                        href="#contact"
+                                                        className="bg-[#D4A017] text-black px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-white transition-all"
+                                                    >
+                                                        Обсудить проект
+                                                    </Link>
+                                                </DebugWrapper>
+                                            </div>
+
+                                            <p className="hidden lg:block text-[11px] text-white/25 tracking-wide mt-3">
+                                                DJI Air 3S + Avata 2 · 4K · Тбилиси · Батуми · Кутаиси · от 250 ₾ · 18 направлений
                                             </p>
-                                            {supportLine && (
-                                                <p className="text-sm md:text-lg text-white/62 mt-2 max-w-2xl mx-auto">
-                                                    {supportLine}
-                                                </p>
-                                            )}
-                                        </DebugWrapper>
+                                        </div>
 
-                                        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-8 md:mt-10">
-                                            <DebugWrapper id={10120} label="Hero Primary CTA">
-                                                <Link
-                                                    href={activeService.primaryHref}
-                                                    className="bg-[#D4A017] text-black px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-white transition-all"
+                                        <div className="hidden lg:flex flex-col gap-3 py-6">
+                                            <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-1">
+                                                НАПРАВЛЕНИЯ · {droneServiceItems.length} УСЛУГ
+                                            </p>
+                                            <AnimatePresence mode="wait">
+                                                <motion.div
+                                                    key={droneServiceItems[currentIndex].slug}
+                                                    initial={{ opacity: 0, y: 8 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -8 }}
+                                                    transition={{ duration: 0.4 }}
+                                                    className="border-l-2 border-[#D4A017] pl-5"
                                                 >
-                                                    Подробнее
-                                                </Link>
-                                            </DebugWrapper>
-                                            <DebugWrapper id={10121} label="Hero Secondary CTA">
-                                                <Link
-                                                    href="#services"
-                                                    className="border border-white/25 hover:border-[#D4A017] text-white px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest transition-all"
-                                                >
-                                                    Подобрать услугу
-                                                </Link>
-                                            </DebugWrapper>
+                                                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#D4A017] font-bold mb-1">
+                                                        {droneServiceItems[currentIndex].category}
+                                                    </p>
+                                                    <p className="text-xl font-bold text-white uppercase leading-tight mb-2">
+                                                        {droneServiceItems[currentIndex].title}
+                                                    </p>
+                                                    <p className="text-sm text-white/50 leading-relaxed max-w-xs">
+                                                        {droneServiceItems[currentIndex].description}
+                                                    </p>
+                                                </motion.div>
+                                            </AnimatePresence>
+                                            <div className="flex gap-1.5 mt-2 flex-wrap">
+                                                {droneServiceItems.slice(0, 6).map((item, i) => (
+                                                    <button
+                                                        key={item.slug}
+                                                        onClick={() => setCurrentIndex(i)}
+                                                        className={`text-[9px] uppercase tracking-widest px-2 py-1 rounded border transition-colors ${
+                                                            currentIndex === i
+                                                                ? 'border-[#D4A017] text-[#D4A017]'
+                                                                : 'border-white/10 text-white/30 hover:border-white/30'
+                                                        }`}
+                                                    >
+                                                        {item.title.split(' ')[0]}
+                                                    </button>
+                                                ))}
+                                            </div>
                                         </div>
                                     </motion.div>
                                 </AnimatePresence>
@@ -244,7 +246,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                             крыше.
                                         </p>
                                         <p className="mt-2">
-                                            Объекты с аэровидео продаются на 68% быстрее.
+                                            Объекты с аэровидео продаются на 68% быстрее (MLS / NAR).
                                         </p>
                                         <p className="mt-2">
                                             Дроны снимают с высоты и летают внутри помещений — FPV-технология.
@@ -264,7 +266,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                     >
                                         <ChevronDown className="h-5 w-5 animate-bounce" />
                                         <span className="whitespace-nowrap text-[12px] font-medium leading-none">
-                                            19 направлений — найдите своё · от 250 ₾
+                                            18 направлений — найдите своё · от 250 ₾
                                         </span>
                                     </a>
                                 </div>
@@ -272,40 +274,6 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                         </div>
                     </div>
                 </div>
-
-                <DebugWrapper id={10180} label="Compact Service Navigator">
-                    <div className="hidden lg:flex absolute left-[max(24px,calc(50%-560px))] bottom-12 w-52 flex-col gap-1.5 rounded-xl border border-white/12 bg-black/40 backdrop-blur-md p-2.5 z-20">
-                        {visibleIndices.map((serviceIndex) => {
-                            const service = heroServices[serviceIndex];
-                            const isActive = serviceIndex === safeActiveIndex;
-                            return (
-                                <button
-                                    key={service.slug}
-                                    type="button"
-                                    onClick={() => handleSelectService(serviceIndex)}
-                                    className={`w-full text-left rounded-lg px-2.5 py-2 transition-colors ${
-                                        isActive ? 'bg-white/14' : 'hover:bg-white/8'
-                                    }`}
-                                >
-                                    <div className="flex items-center gap-2">
-                                        <span
-                                            className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                                                isActive ? 'bg-[#D4A017]' : 'bg-white/40'
-                                            }`}
-                                        />
-                                        <span
-                                            className={`text-xs font-semibold leading-tight transition-colors ${
-                                                isActive ? 'text-white' : 'text-white/64'
-                                            }`}
-                                        >
-                                            {service.title}
-                                        </span>
-                                    </div>
-                                </button>
-                            );
-                        })}
-                    </div>
-                </DebugWrapper>
 
                 <motion.button
                     type="button"
