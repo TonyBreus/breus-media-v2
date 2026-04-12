@@ -16,12 +16,6 @@ const ROTATION_MS = 5000;
 const TYPEWRITER_INTERVAL_MS = 40;
 const TYPEWRITER_NEWLINE_PAUSE_MS = 120;
 const MOBILE_HERO_TYPEWRITER_TEXT = 'АЭРОСЪЁМКА\nДЛЯ БИЗНЕСА\nВ ГРУЗИИ';
-const DESKTOP_HERO_PHRASES = [
-    'С земли не видно главного: террасу ресторана, масштаб стройки, дефект на крыше.',
-    'Объекты с аэровидео продаются на 68% быстрее — по данным MLS / NAR.',
-    'Снимаем с высоты и летаем внутри помещений — FPV-технология.',
-    'Один полёт — контент для рекламы, отчёт для инвестора или документация для страховой.',
-];
 
 export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -140,7 +134,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.34, ease: 'easeOut' }}
-                                        className="px-2 md:grid md:grid-cols-1 md:gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-10 md:text-center lg:text-left"
+                                        className="px-2 md:grid md:grid-cols-1 md:gap-6 lg:grid-cols-[3fr_2fr] lg:gap-10 md:text-center lg:text-left"
                                     >
                                         <div>
                                             <DebugWrapper id={10101} label="Hero Tagline">
@@ -150,18 +144,10 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                             </DebugWrapper>
 
                                             <DebugWrapper id={10110} label={`Hero Title: ${activeService.title}`}>
-                                                <h1 className="text-[40px] md:text-6xl lg:text-[80px] font-bold leading-[0.92] text-white mb-4">
+                                                <h1 className="text-5xl md:text-7xl font-bold leading-[0.92] text-white mb-4">
                                                     {activeService.title}
                                                 </h1>
                                             </DebugWrapper>
-
-                                            <div className="hidden lg:flex flex-col gap-1.5 mb-6">
-                                                {DESKTOP_HERO_PHRASES.map((phrase, i) => (
-                                                    <p key={i} className="text-sm text-white/55 leading-snug border-b border-white/[0.06] pb-1.5 last:border-0">
-                                                        {phrase}
-                                                    </p>
-                                                ))}
-                                            </div>
 
                                             <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4 mt-8 md:mt-10">
                                                 <DebugWrapper id={10120} label="Hero Primary CTA">
@@ -173,45 +159,54 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                                     </Link>
                                                 </DebugWrapper>
                                             </div>
-
-                                            <p className="hidden lg:block text-[11px] text-white/25 tracking-wide mt-3">
-                                                DJI Air 3S + Avata 2 · 4K · Тбилиси · Батуми · Кутаиси · от 250 ₾ · 18 направлений
-                                            </p>
                                         </div>
 
-                                        <div className="hidden lg:flex flex-col gap-3 py-6">
-                                            <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-1">
-                                                НАПРАВЛЕНИЯ · {droneServiceItems.length} УСЛУГ
-                                            </p>
+                                        <div className="hidden lg:flex flex-col justify-center gap-4 py-6">
                                             <AnimatePresence mode="wait">
                                                 <motion.div
                                                     key={droneServiceItems[currentIndex].slug}
-                                                    initial={{ opacity: 0, y: 8 }}
+                                                    initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
-                                                    exit={{ opacity: 0, y: -8 }}
+                                                    exit={{ opacity: 0, y: -10 }}
                                                     transition={{ duration: 0.4 }}
-                                                    className="border-l-2 border-[#D4A017] pl-5"
+                                                    className="rounded-[16px] border border-white/10 bg-white/[0.03] p-6 flex flex-col gap-4"
                                                 >
-                                                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#D4A017] font-bold mb-1">
-                                                        {droneServiceItems[currentIndex].category}
-                                                    </p>
-                                                    <p className="text-xl font-bold text-white uppercase leading-tight mb-2">
-                                                        {droneServiceItems[currentIndex].title}
-                                                    </p>
-                                                    <p className="text-sm text-white/50 leading-relaxed max-w-xs">
+                                                    <div>
+                                                        <p className="text-[10px] uppercase tracking-[0.22em] text-[#D4A017] font-bold mb-1">
+                                                            {droneServiceItems[currentIndex].category}
+                                                        </p>
+                                                        <p className="text-2xl font-bold text-white uppercase leading-tight">
+                                                            {droneServiceItems[currentIndex].title}
+                                                        </p>
+                                                    </div>
+                                                    <p className="text-sm text-white/55 leading-relaxed">
                                                         {droneServiceItems[currentIndex].description}
                                                     </p>
+                                                    <div className="flex gap-3">
+                                                        <a
+                                                            href={droneServiceItems[currentIndex].primaryHref}
+                                                            className="flex-1 flex items-center justify-center rounded-[10px] bg-[#D4A017] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-black hover:brightness-105 transition-all"
+                                                        >
+                                                            Открыть
+                                                        </a>
+                                                        <a
+                                                            href="#contact"
+                                                            className="flex-1 flex items-center justify-center rounded-[10px] border border-white/20 px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white hover:bg-white/5 transition-all"
+                                                        >
+                                                            Подобрать
+                                                        </a>
+                                                    </div>
                                                 </motion.div>
                                             </AnimatePresence>
-                                            <div className="flex gap-1.5 mt-2 flex-wrap">
+                                            <div className="flex flex-wrap gap-1.5">
                                                 {droneServiceItems.slice(0, 6).map((item, i) => (
                                                     <button
                                                         key={item.slug}
                                                         onClick={() => setCurrentIndex(i)}
-                                                        className={`text-[9px] uppercase tracking-widest px-2 py-1 rounded border transition-colors ${
+                                                        className={`text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full border transition-colors ${
                                                             currentIndex === i
-                                                                ? 'border-[#D4A017] text-[#D4A017]'
-                                                                : 'border-white/10 text-white/30 hover:border-white/30'
+                                                                ? 'border-[#D4A017] text-[#D4A017] bg-[#D4A017]/10'
+                                                                : 'border-white/10 text-white/30 hover:border-white/30 hover:text-white/60'
                                                         }`}
                                                     >
                                                         {item.title.split(' ')[0]}

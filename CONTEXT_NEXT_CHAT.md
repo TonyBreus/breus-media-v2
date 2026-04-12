@@ -1,3 +1,10 @@
+✅ fix(hero+page): убран вводный блок под hero, десктоп карточка ниши восстановлена (12.04.2026) — `app/drone-service/page.tsx`, `components/drone/DroneHeroStitch.tsx`
+  - В `app/drone-service/page.tsx` полностью удалена секция `ВВОДНЫЙ ТЕКСТ + TRUST STRIP` между hero и `DebugWrapper id={10300}`.
+  - В `DroneHeroStitch` desktop grid изменён на пропорцию `lg:grid-cols-[3fr_2fr]`.
+  - Левая колонка hero упрощена: оставлены `price`, `title` и CTA `Обсудить проект`; удалены 4 фразы и metadata-строка.
+  - Правая desktop-колонка заменена на карточку ниши (`category/title/description`) с кнопками `Открыть` и `Подобрать` + чипы направлений.
+  - Build: `npm run build` — ✅ clean (local ready)
+
 ✅ feat(hero): Split Hero — текст слева, карусель из актуальных данных справа, убраны модели дронов, добавлены 4 фразы и 18 направлений (12.04.2026) — `components/drone/DroneHeroStitch.tsx`
   - Desktop hero переведён в split-layout: слева заголовок/4 тезиса/CTA `Обсудить проект` + metadata-строка; справа — карусель по `droneServiceItems`.
   - Удалён legacy-блок `DebugWrapper id=10180` (компактный навигатор/модели дронов).

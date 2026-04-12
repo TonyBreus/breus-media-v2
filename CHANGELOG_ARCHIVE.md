@@ -1,6 +1,32 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-12 (fix(hero+page): убран вводный блок под hero, десктоп карточка ниши восстановлена)
+### Session Summary
+- На `/drone-service` убран промежуточный desktop-вводный блок под hero, а в `DroneHeroStitch` восстановлена компактная desktop-карточка ниши с CTA.
+
+### Изменения
+- `app/drone-service/page.tsx`
+  - Полностью удалена секция между комментарием `ВВОДНЫЙ ТЕКСТ + TRUST STRIP` и `DebugWrapper id={10300}`.
+- `components/drone/DroneHeroStitch.tsx`
+  - Desktop grid обновлён до `lg:grid-cols-[3fr_2fr]`.
+  - Левая колонка очищена до базового набора: `price` (`motion.span`), `title` (`motion.h1`), CTA `Обсудить проект`.
+  - Размер заголовка приведён к `text-5xl md:text-7xl`.
+  - Правая колонка заменена на карточку ниши:
+    - `category/title/description`
+    - кнопки `Открыть` (`primaryHref`) и `Подобрать` (`#contact`)
+    - чипы быстрых направлений (первые 6 элементов).
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущим правкам hero+page.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-12 (feat(hero): Split Hero — текст слева, карусель справа)
 ### Session Summary
 - `DroneHeroStitch` переработан в split-hero: слева акцентный текстовый блок и CTA, справа карусель актуальных направлений из `droneServiceItems`.

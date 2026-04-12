@@ -186,29 +186,6 @@ export default function DroneServicePage() {
 
             <DroneServicesMobileList />
 
-            {/* ── ВВОДНЫЙ ТЕКСТ + TRUST STRIP ───────────────────────────── */}
-            <section className="hidden md:block border-b border-[#2a2a2a] bg-[#080808] py-16">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <ul className="space-y-3 text-white/78 text-[15px] leading-relaxed">
-                            <li>С земли не видно главного: террасу ресторана, масштаб стройки, дефект на крыше.</li>
-                            <li>Объекты с аэровидео продаются на 68% быстрее — по данным MLS / NAR.</li>
-                            <li>Снимаем с высоты и летаем внутри помещений — FPV-технология.</li>
-                            <li>Один полёт — контент для рекламы, отчёт для инвестора или документация для страховой.</li>
-                        </ul>
-                        <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/55">
-                            <span>DJI Air 3S + Avata 2</span>
-                            <span className="text-white/25">·</span>
-                            <span>4K</span>
-                            <span className="text-white/25">·</span>
-                            <span>Тбилиси · Батуми · Кутаиси</span>
-                            <span className="text-white/25">·</span>
-                            <span className="text-[#FFD23F]">от 250 ₾</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <DebugWrapper id={10300} label="Services Section">
                 <DroneServicesStitch />
             </DebugWrapper>
