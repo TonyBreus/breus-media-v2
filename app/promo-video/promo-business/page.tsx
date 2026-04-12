@@ -998,7 +998,7 @@ export default function PromoBusinessPage() {
                                 — серия вертикальных роликов для Instagram и TikTok.
                             </li>
                             <li>
-                                <Link href="/business-service" className="text-[#D4A017] hover:text-white transition-colors">
+                                <Link href="#contact" className="text-[#D4A017] hover:text-white transition-colors">
                                     Контент для бизнеса
                                 </Link>{' '}
                                 — полный спектр видеоконтента для компаний и брендов.

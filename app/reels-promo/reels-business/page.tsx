@@ -358,7 +358,7 @@ const relatedServices = [
     },
     {
         title: 'Промо-видео для бизнеса',
-        href: '/business-service',
+        href: '#contact',
         text: 'Полный спектр видеоконтента для бизнеса: от имиджа до рекламных форматов.',
     },
     {

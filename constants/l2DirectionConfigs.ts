@@ -9,7 +9,6 @@ const {
     tourism,
     clinics,
     auto,
-    customBusiness,
     tours360,
     promoVideo,
     reels,
@@ -205,7 +204,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             relatedLinks: [
                 { href: '/restaurants-service', title: 'Рестораны', description: 'Контент для гастропространств и заведений.' },
                 { href: '/tourism-service', title: 'Туризм', description: 'Маршруты, локации и travel-визуал.' },
-                { href: '/business-service', title: 'Бизнес', description: 'Упаковка коммерческих объектов и брендов.' },
+                { href: '#contact', title: 'Бизнес', description: 'Упаковка коммерческих объектов и брендов.' },
                 { href: droneService, title: 'Аэросъёмка', description: 'Каталог aerial-форматов Breus Media.' },
                 { href: '/real-estate-service', title: 'Недвижимость', description: 'Страница направления недвижимости.' },
             ],
@@ -401,7 +400,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             relatedLinks: [
                 { href: '/hotels-service', title: 'Отели', description: 'Hospitality-контент для размещения и бронирования.' },
                 { href: '/tourism-service', title: 'Туризм', description: 'Контент для маршрутов и travel-проектов.' },
-                { href: '/business-service', title: 'Бизнес', description: 'Коммерческая digital-упаковка бренда.' },
+                { href: '#contact', title: 'Бизнес', description: 'Коммерческая digital-упаковка бренда.' },
                 { href: droneService, title: 'Аэросъёмка', description: 'Съёмка локации, террасы и окружения.' },
                 { href: restaurants, title: 'Рестораны в Gazeta', description: 'Gazeta-направление ресторанного контента.' },
             ],
@@ -606,7 +605,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             relatedLinks: [
                 { href: '/hotels-service', title: 'Отели', description: 'Контент для размещения и проживания.' },
                 { href: '/restaurants-service', title: 'Рестораны', description: 'Визуал для гастро-точек маршрута.' },
-                { href: '/business-service', title: 'Бизнес', description: 'Упаковка коммерческих объектов.' },
+                { href: '#contact', title: 'Бизнес', description: 'Упаковка коммерческих объектов.' },
                 { href: droneService, title: 'Аэросъёмка', description: 'Обзорные и cinematic aerial форматы.' },
                 { href: tourism, title: 'Туризм в Gazeta', description: 'Gazeta-направление tourism-контента.' },
             ],
@@ -809,7 +808,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             trustBadges: ['Клиники', 'Стоматологии', 'Эстетика', 'Wellness центры', 'Частные практики', 'Медбренды'],
             trustLocation: 'Тбилиси + выезд по Грузии по согласованию',
             relatedLinks: [
-                { href: '/business-service', title: 'Бизнес', description: 'Digital-упаковка коммерческих проектов.' },
+                { href: '#contact', title: 'Бизнес', description: 'Digital-упаковка коммерческих проектов.' },
                 { href: '/auto-service', title: 'Автобизнес', description: 'Контент для объектов с офлайн-точками.' },
                 { href: '/hotels-service', title: 'Отели', description: 'Сервисная подача пространств и атмосферы.' },
                 { href: droneService, title: 'Аэросъёмка', description: 'Aerial-форматы для объектов и локаций.' },
@@ -1016,7 +1015,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             trustBadges: ['Дилеры', 'Автоплощадки', 'Премиум-сегмент', 'Сервисы', 'Детейлинг', 'Автобренды'],
             trustLocation: 'Тбилиси + выезд по Грузии по согласованию',
             relatedLinks: [
-                { href: '/business-service', title: 'Бизнес', description: 'Универсальная digital-упаковка объектов.' },
+                { href: '#contact', title: 'Бизнес', description: 'Универсальная digital-упаковка объектов.' },
                 { href: '/clinics-service', title: 'Клиники', description: 'Сервисный контент с акцентом на доверие.' },
                 { href: '/restaurants-service', title: 'Рестораны', description: 'Кейс регулярного short-form потока.' },
                 { href: droneService, title: 'Аэросъёмка', description: 'Aerial-пролёты для площадок и объектов.' },
@@ -1228,7 +1227,6 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/clinics-service', title: 'Клиники', description: 'Сервисная визуальная подача и доверие.' },
                 { href: '/hotels-service', title: 'Отели', description: 'Hospitality-кейс визуальной упаковки.' },
                 { href: '/restaurants-service', title: 'Рестораны', description: 'Регулярный short-form и промо-контент.' },
-                { href: customBusiness, title: 'Ваш бизнес в Gazeta', description: 'Gazeta-направление custom business.' },
             ],
             seoTitle: 'Контент для бизнеса в Тбилиси | Business Service — Breus Media',
             seoDescription: 'Видео, aerial, reels, 360° и digital-упаковка для бизнеса и коммерческих объектов в Грузии.',
@@ -1392,7 +1390,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/auto-service', title: 'Автобизнес', description: 'Имиджевые и обзорные промо для автонаправления.' },
                 { href: '/tourism-service', title: 'Туризм', description: 'Промо для маршрутов, локаций и турпродуктов.' },
                 { href: '/clinics-service', title: 'Клиники', description: 'Промо-видео для усиления доверия к сервису.' },
-                { href: '/business-service', title: 'Ваш бизнес', description: 'Промо-формат для коммерческих и бренд-задач.' },
+                { href: '#contact', title: 'Ваш бизнес', description: 'Промо-формат для коммерческих и бренд-задач.' },
             ],
             seoTitle: 'Промо-видео для бизнеса и брендов в Тбилиси | Promo Video Service — Breus Media',
             seoDescription:
@@ -1659,7 +1657,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/hotels-service', title: 'Отели', description: 'Подача интерьеров и среды гостеприимства до фактической съёмки.' },
                 { href: '/restaurants-service', title: 'Рестораны', description: 'Визуалы для меню, delivery и digital-материалов заведений.' },
                 { href: '/auto-service', title: 'Автобизнес', description: 'Подача автомобилей, шоурумов и площадок для запуска продаж.' },
-                { href: '/business-service', title: 'Ваш бизнес', description: 'AI-визуал под коммерческую упаковку, рекламу и презентации.' },
+                { href: '#contact', title: 'Ваш бизнес', description: 'AI-визуал под коммерческую упаковку, рекламу и презентации.' },
                 {
                     href: '/promo-video-service',
                     title: 'Промо-видео для туризма',
@@ -1953,7 +1951,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/auto-service', title: 'Автобизнес', description: 'Контент для обзоров, новинок и презентации площадки.' },
                 { href: '/tourism-service', title: 'Туризм', description: 'Reels для маршрутов, локаций и travel-продвижения.' },
                 { href: '/clinics-service', title: 'Клиники', description: 'Короткий формат для доверия и объяснения услуг.' },
-                { href: '/business-service', title: 'Ваш бизнес', description: 'Регулярный контент-поток для брендов и сервисов.' },
+                { href: '#contact', title: 'Ваш бизнес', description: 'Регулярный контент-поток для брендов и сервисов.' },
             ],
             seoTitle: 'Reels и Shorts для бизнеса и брендов в Тбилиси | Reels Service — Breus Media',
             seoDescription:
@@ -2230,7 +2228,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                 { href: '/auto-service', title: 'Автобизнес', description: 'Визуал для автосалонов, площадок и шоурумов.' },
                 { href: '/tourism-service', title: 'Туризм', description: 'Подача туристических локаций и маршрутов.' },
                 { href: '/clinics-service', title: 'Клиники', description: 'Визуальная подача пространства и среды клиники.' },
-                { href: '/business-service', title: 'Ваш бизнес', description: 'Подход для офисов, студий и коммерческих пространств.' },
+                { href: '#contact', title: 'Ваш бизнес', description: 'Подход для офисов, студий и коммерческих пространств.' },
             ],
             seoTitle: '360° туры для бизнеса и объектов в Тбилиси | 360 Tours Service — Breus Media',
             seoDescription:

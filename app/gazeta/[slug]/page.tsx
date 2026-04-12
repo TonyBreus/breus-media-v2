@@ -21,7 +21,6 @@ const slugToL2Config: Partial<Record<string, keyof typeof l2DirectionConfigs>> =
     clinics: "clinicsService",
     auto: "autoService",
     it: "businessService",
-    "custom-business": "businessService",
     "promo-video": "promoVideoService",
     "ai-content": "aiVisualizationService",
     reels: "reelsService",

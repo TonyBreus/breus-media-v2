@@ -29,11 +29,10 @@ export const gazetaDetailRoutes = {
     auto: "/gazeta/auto",
     tourism: "/gazeta/tourism",
     clinics: "/gazeta/clinics",
-    it: "/business-service",
-    customBusiness: "/gazeta/custom-business",
+    it: "/gazeta/it",
     tours360: "/gazeta/360-tours",
     promoVideo: "/gazeta/promo-video",
-    events: "/gazeta/events",
+    events: "/drone-weddings-events",
     aiContent: "/gazeta/ai-content",
     reels: "/gazeta/reels",
 } as const;
@@ -47,7 +46,6 @@ export const gazetaNicheLandingRoutes: Record<string, string> = {
     "05": "/tourism-service",
     "06": "/clinics-service",
     "07": gazetaDetailRoutes.it,
-    "08": "/business-service",
 };
 
 export const gazetaIndustryNavItems: GazetaNavItem[] = [
@@ -58,7 +56,6 @@ export const gazetaIndustryNavItems: GazetaNavItem[] = [
     { label: "Туризм", href: gazetaDetailRoutes.tourism },
     { label: "Клиники", href: gazetaDetailRoutes.clinics },
     { label: "IT", href: gazetaDetailRoutes.it },
-    { label: "Ваш бизнес", href: gazetaDetailRoutes.customBusiness },
 ];
 
 export const gazetaServiceNavItems: GazetaNavItem[] = [
@@ -77,7 +74,6 @@ export const gazetaTickerLine1 = [
     { text: "РЕСТОРАНЫ", link: "/restaurants-service" },
     { text: "ТУРИЗМ", link: "/tourism-service" },
     { text: "КЛИНИКИ", link: "/clinics-service" },
-    { text: "ВАШ БИЗНЕС", link: "/business-service" },
 ];
 
 export const gazetaTickerLine2 = [
@@ -213,7 +209,7 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Employer-branding и team content",
             "AI-контент для LinkedIn и launch-кампаний",
         ],
-        allServicesHref: "/business-service",
+        allServicesHref: "/gazeta#contact",
         services: [
             { title: "Имиджевое видео бизнеса", price: "Brand Video · от 300 ₾" },
             { title: "Контент для сайта и рекламы", price: "Performance Pack · от 450 ₾" },
@@ -276,7 +272,7 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             { title: "Reels и Shorts с события", price: "Short-form · от 450 ₾", primaryHref: "/reels-service" },
             { title: "Аэросъёмка площадки", price: "Drone · от 400 ₾", primaryHref: "/drone-service" },
             { title: "AI-упаковка контента", price: "AI Content · от 300 ₾", primaryHref: "/ai-visualization-service" },
-            { title: "Полный пакет для события", price: "Пакет · по задаче", primaryHref: "/business-service" },
+            { title: "Полный пакет для события", price: "Пакет · по задаче", primaryHref: "/gazeta#contact" },
         ],
     },
     "ai-content": {
@@ -315,25 +311,6 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             { title: "Reels для автобизнеса", price: "Reels · по задаче", primaryHref: "/reels-promo/reels-auto" },
             { title: "Reels для туризма", price: "Reels · по задаче", primaryHref: "/reels-promo/reels-tourism" },
             { title: "Reels для клиник", price: "Reels · по задаче", primaryHref: "/reels-promo/reels-clinic" },
-        ],
-    },
-    "custom-business": {
-        eyebrow: "Ваш бизнес",
-        title: "Контент под вашу задачу",
-        subtitle: "Собираем подходящий пакет для ниш, которые не укладываются в типовой список: от разовой съёмки до постоянного контент-потока.",
-        highlights: [
-            "Разбор задачи и подбор формата под бизнес",
-            "Стартовый пакет: видео, фото и короткие форматы",
-            "AI-упаковка для запуска или теста гипотез",
-            "Ежемесячное производство контента под рост",
-        ],
-        allServicesHref: "/business-service",
-        services: [
-            { title: "Имиджевое видео бизнеса", price: "Brand Video · от 300 ₾" },
-            { title: "Контент для сайта и рекламы", price: "Performance Pack · от 450 ₾" },
-            { title: "Reels и Shorts", price: "Short-form · от 450 ₾" },
-            { title: "360° туры", price: "360° · от 550 ₾", primaryHref: "/360-tour-business" },
-            { title: "Съёмка пространства / объекта", price: "Space Content · от 500 ₾" },
         ],
     },
 };

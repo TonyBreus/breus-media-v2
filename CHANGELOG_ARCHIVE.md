@@ -4212,6 +4212,59 @@ Append-only архив изменений. Старые записи не уда
 
 ---
 
+## 2026-04-13 (gazeta cleanup: niche 08 removed, IT cards fixed, business routes retired)
+### Session Summary
+- На Gazeta выполнен cleanup-проход в один коммит: удалена ниша `08` (`Ваш бизнес`), niche `07` возвращён к IT-специфичным карточкам, `/business-service` и `/gazeta/custom-business` переведены на редирект в `/gazeta#contact`, а ticker line 1 скрыт на mobile.
+
+### Изменения
+- `components/gazeta/NichesStack.tsx`
+  - Удалена ниша `08` (`Ваш бизнес`) из массива `niches`.
+  - Для ниши `07` оставлены только 6 IT-карточек:
+    - `Продуктовое видео`
+    - `Кейс-стади в видео`
+    - `Видео для инвесторов`
+    - `AI-контент для LinkedIn и X`
+    - `Корпоративная съёмка`
+    - `Reels для IT-бренда`
+  - Ссылки niche `07`, которые вели на `/business-service`, заменены на `#contact`.
+  - Из `l2NicheToConfigKey` удалены `07` и `08`, чтобы `NichesStack` больше не подменял IT-карточки данными `businessService`.
+  - Карточка `Мероприятия` в niche `00` оставлена на `/drone-weddings-events`; route существует.
+- `components/gazeta/SmartHeader.tsx`
+  - Ticker line 1 (`DebugWrapper id=208`) обёрнут в `hidden md:block`, поэтому на mobile скрыт, а на desktop поведение не меняется.
+  - В EN navigation `IT` переведён на `/gazeta/it`.
+  - Удалены оставшиеся EN `Your Business` nav/ticker entries.
+- `constants/gazetaRoutes.ts`
+  - `gazetaDetailRoutes.it`: `/business-service` → `/gazeta/it`.
+  - Удалён `customBusiness` route key.
+  - Из `gazetaNicheLandingRoutes` удалён mapping для `08`.
+  - Из `gazetaIndustryNavItems`, `gazetaTickerLine1` и `gazetaCategoryPagesBySlug` удалены `Ваш бизнес` / `custom-business`.
+  - На IT Gazeta page `allServicesHref` переведён на `/gazeta#contact`.
+  - В category-page `events` карточка `Полный пакет для события` переведена с `/business-service` на `/gazeta#contact`.
+- `constants/l2DirectionConfigs.ts`
+  - Во всех user-facing related links на L2-страницах `/business-service` заменён на `#contact`.
+  - Из `businessService.page.relatedLinks` удалён `customBusiness`-переход.
+  - Удалён `customBusiness` import из `gazetaDetailRoutes`.
+- `app/business-service/page.tsx`
+  - Вместо рендера страницы теперь серверный `redirect('/gazeta#contact')`.
+- `app/gazeta/custom-business/page.tsx`
+  - Добавлен новый redirect-route на `/gazeta#contact`.
+- `app/gazeta/[slug]/page.tsx`
+  - Удалён slug mapping `"custom-business": "businessService"`.
+- `app/gazeta/it/page.tsx`
+  - Удалён старый static redirect на `/business-service`, чтобы `/gazeta/it` снова открывался через dynamic route `app/gazeta/[slug]/page.tsx`.
+- `app/reels-promo/reels-business/page.tsx`, `app/promo-video/promo-business/page.tsx`
+  - Локальные business-links заменены на `#contact`, потому что у обеих страниц есть собственный contact section.
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись по текущему cleanup-проходу.
+
+### Build
+- `npm run build` — ✅ clean
+
+### Status
+- local ready
+
+---
+
 ## 2026-04-10 (drone-service pricing sync from drone-restaurants)
 ### Session Summary
 - На L2-хабе `/drone-service` тарифные карточки синхронизированы с текущей витриной `/drone-services/drone-restaurants`.

@@ -1,3 +1,12 @@
+✅ Gazeta cleanup: niche 08 removed, IT cards fixed, business routes retired, ticker line 1 hidden on mobile (13.04.2026) — `components/gazeta/NichesStack.tsx`, `components/gazeta/SmartHeader.tsx`, `constants/gazetaRoutes.ts`, `constants/l2DirectionConfigs.ts`, `app/business-service/page.tsx`, `app/gazeta/custom-business/page.tsx`, `app/gazeta/[slug]/page.tsx`
+  - В `NichesStack` удалена ниша `08` (`Ваш бизнес`); после cleanup массив ниш содержит `8` элементов (`00–07`), а стек шагов — `10` элементов вместе с FAQ и формой.
+  - Для ниши `07` оставлены только IT-специфичные карточки; ссылки с `/business-service` внутри IT-карточек заменены на `#contact`, а override через `businessService` для `07/08` убран, чтобы рендерились локальные IT-карточки.
+  - В `SmartHeader` ticker line 1 (`DebugWrapper id=208`) скрыт на mobile через `hidden md:block`; desktop ticker-поведение сохранено.
+  - `gazetaDetailRoutes.it` переведён на `/gazeta/it`; `Ваш бизнес` / `customBusiness` убраны из Gazeta nav/ticker/category-map, а глобальные CTA/related links на `/business-service` заменены на `#contact` или `/gazeta#contact` по контексту страницы.
+  - `/business-service` и `/gazeta/custom-business` теперь редиректят на `/gazeta#contact`; статический redirect-файл `app/gazeta/it/page.tsx` удалён, чтобы `/gazeta/it` снова открывался через dynamic Gazeta route.
+  - Карточка `Мероприятия` в niche `00` оставлена с ссылкой `/drone-weddings-events`, потому что route существует.
+  - Build: `npm run build` — ✅ clean; проверены redirect headers для `/business-service` и `/gazeta/custom-business`.
+
 ✅ drone-service EN page created: /drone-service/en (12.04.2026) — `app/drone-service/page.en.tsx`, `app/drone-service/en/page.tsx`, `app/drone-service/DroneServiceContactSectionEn.tsx`, `app/drone-service/page.tsx`, `components/gazeta/SmartHeader.tsx`
   - Создан новый публичный EN роут `/drone-service/en` через `app/drone-service/en/page.tsx` с реэкспортом EN страницы и metadata.
   - Добавлен self-contained EN файл `app/drone-service/page.en.tsx`: EN metadata, EN JSON-LD, inline hero/services/stats/pricing/process/flight-zones/FAQ/related-links/footer и локализованный contact flow.

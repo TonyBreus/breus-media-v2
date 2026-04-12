@@ -89,8 +89,7 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
             { label: "Restaurants", href: "/gazeta/restaurants" },
             { label: "Tourism", href: "/gazeta/tourism" },
             { label: "Clinics", href: "/gazeta/clinics" },
-            { label: "IT", href: "/business-service" },
-            { label: "Your Business", href: "/gazeta/custom-business" },
+            { label: "IT", href: "/gazeta/it" },
         ],
         serviceNavItems: [
             { label: "Aerial Filming", href: "/drone-service" },
@@ -107,7 +106,6 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
             { text: "RESTAURANTS", link: "/restaurants-service" },
             { text: "TOURISM", link: "/tourism-service" },
             { text: "CLINICS", link: "/clinics-service" },
-            { text: "YOUR BUSINESS", link: "/business-service" },
         ],
         tickerLine2: [
             { text: "Aerial Filming", link: "/drone-service" },
@@ -525,9 +523,11 @@ export function SmartHeader({
                         : transparent
                             ? 'bg-transparent border-transparent'
                             : 'bg-zinc-950/40 backdrop-blur-sm'}`}>
-                        <DebugWrapper id={208} label="Running Text Line 1">
-                            <InteractiveTicker items={copy.tickerLine1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
-                        </DebugWrapper>
+                        <div className="hidden md:block">
+                            <DebugWrapper id={208} label="Running Text Line 1">
+                                <InteractiveTicker items={copy.tickerLine1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
+                            </DebugWrapper>
+                        </div>
                         <div className="hidden md:block">
                             <div className="h-[1px] bg-white/5 w-full" />
                             <DebugWrapper id={209} label="Running Text Line 2">

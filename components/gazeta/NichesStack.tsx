@@ -16,7 +16,6 @@ const {
     aiContent,
     auto,
     clinics,
-    customBusiness,
     droneService,
     objectInspection,
     events,
@@ -267,28 +266,11 @@ const niches = [
             subheading: "Продакшн видео, кейс-стади и AI-визуал для IT-компаний и стартапов в Грузии",
             services: [
                 { title: "Продуктовое видео", desc: "Демо-ролик продукта или приложения — для инвесторов, сайта и App Store", link: "/promo-video-service" },
-                { title: "Кейс-стади в видео", desc: "История клиента до/после внедрения вашего продукта. Лучший B2B-контент", link: "/business-service" },
+                { title: "Кейс-стади в видео", desc: "История клиента до/после внедрения вашего продукта. Лучший B2B-контент", link: "#contact" },
                 { title: "Видео для инвесторов", desc: "Pitch-видео стартапа: команда, продукт, рынок. 60–120 сек", link: "/promo-video-service" },
                 { title: "AI-контент для LinkedIn и X", desc: "Регулярный контент: новости компании, мнения экспертов, продуктовые обновления", link: "/ai-visual/ai-brand" },
-                { title: "Корпоративная съёмка", desc: "Команда, офис, культура компании — для найма, PR и партнёрств", link: "/business-service" },
-                { title: "Reels для IT-бренда", desc: "Короткие видео о продукте, команде и технологиях для Instagram и TikTok", link: "/reels-promo/reels-clinic" }
-            ]
-        }
-    },
-    {
-        id: "08",
-        title: "Ваш бизнес",
-        img: "https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=1600&q=80",
-        detailedContent: {
-            heading: "ВАШ БИЗНЕС",
-            subheading: "Не нашли свою нишу? Мы делаем контент для любого бизнеса — обсудим вашу задачу",
-            services: [
-                { title: "Расскажите о вашем проекте", desc: "Опишите задачу — предложим формат, сроки и стоимость под ваш бюджет", link: "/business-service" },
-                { title: "Пакет «Старт»", desc: "Видео + фото + 5 Reels для нового бизнеса. Всё необходимое для запуска", link: "/business-service" },
-                { title: "Разовая съёмка", desc: "Один выезд — фото, видео, дрон. Всё в одном визите от 500 GEL", link: "/business-service" },
-                { title: "AI-упаковка с нуля", desc: "Контент без съёмки: AI-визуал, сценарии, тексты, дизайн для соцсетей", link: "/ai-visual/ai-brand" },
-                { title: "Ежемесячный контент", desc: "Абонемент на регулярный контент — не думаете о соцсетях, мы делаем всё", link: "/business-service" },
-                { title: "Обсудить проект →", desc: "Напишите нам в WhatsApp — ответим за 15 минут", link: "https://wa.me/995574619393" }
+                { title: "Корпоративная съёмка", desc: "Команда, офис, культура компании — для найма, PR и партнёрств", link: "#contact" },
+                { title: "Reels для IT-бренда", desc: "Короткие видео о продукте, команде и технологиях для Instagram и TikTok", link: "/reels-promo/reels-business" }
             ]
         }
     },
@@ -407,8 +389,6 @@ const l2NicheToConfigKey: Partial<Record<string, keyof typeof l2DirectionConfigs
     "04": "autoService",
     "05": "tourismService",
     "06": "clinicsService",
-    "07": "businessService",
-    "08": "businessService",
 };
 
 const canonicalServicesByNicheId: Partial<Record<string, ServiceItem[]>> = {
