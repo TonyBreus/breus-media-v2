@@ -4943,3 +4943,43 @@ Append-only архив изменений. Старые записи не уда
 
 ### Build
 - Проверено: ошибка парсинга исправлена.
+
+---
+
+## 2026-04-17 (align drone-restaurants to hotels reference structure)
+### Session Summary
+- `/drone-services/drone-restaurants` приведена к эталонной структуре `/drone-hotels-tourism`.
+- Сокращён и сфокусирован контентный слой: удалены дубли и шаблонные SEO-блоки, сохранены ключевые секции и якоря.
+
+### Изменения
+- `app/drone-services/drone-restaurants/page.tsx`
+  - Hero:
+    - Заменены 2 абзаца на уникальные ресторанные формулировки.
+    - Убраны дубли текста с отельной страницей.
+  - Данные/типы:
+    - Удалены `RoleCard`, `SeoAnswer`.
+    - Удалены массивы: `audienceCards`, `roleScenarios`, `nicheMistakes`, `freeImprovements`, `shootChecklist`, `seoAnswers`, `shortQA`.
+    - Добавлены `StatCard` и `statsCards` (4 карточки с внешними источниками).
+  - Секции:
+    - Добавлена секция `Что говорят цифры` сразу после `Как это выглядит`.
+    - Удалены секции: `Кому это нужно`, `Типичные ошибки...`, `Что сделать прямо сейчас — бесплатно`, `Чеклист...`, `Подробные ответы...`, `Коротко о главном`.
+    - Удалены вне-эталонные постпрайсинг-блоки: `Как выбрать пакет`, `Post-pricing CTA`.
+    - Оставлен один FAQ-блок через `FaqSection`.
+    - Порядок после Hero выровнен под эталон: форматы → цифры → problems → what-is → deliverables → примеры → Mid-CTA1 → process note → process → pricing + comparison → FAQ → why-us → niches → Mid-CTA2 → Грузия+правила → related → геоблок → pre-contact → форма.
+    - `Где мы снимаем в Тбилиси` перемещён вниз (после `Смежные услуги`, перед `Pre-contact CTA`).
+  - FAQ:
+    - `faqItems` сокращён с 16 до 13 вопросов.
+    - Удалены вопросы: про «большие/дорогие рестораны», «только фото/только видео», «в каких районах Тбилиси снимаете».
+    - Обновлён вопрос/ответ: `Подходят ли кадры для Instagram, Wolt, Glovo, Google Maps и рекламы?`.
+  - Schema/тексты:
+    - `faqSchema` синхронизирован через генерацию из `faqItems`.
+    - Удалены упоминания `Google Business Profile`.
+    - Удалены упоминания `Батуми`/`Batumi` в `page.tsx` (включая schema/copy).
+  - Contact:
+    - В блоке `#contact` заменён локальный `DroneRestaurantsContactForm` на `DroneContactStitch preselectedServices={['drone']}`.
+
+- `CONTEXT_NEXT_CHAT.md`
+  - Добавлена верхняя запись о выравнивании `/drone-services/drone-restaurants` под эталон `/drone-hotels-tourism`.
+
+- `CHANGELOG_ARCHIVE.md`
+  - Добавлена эта append-only запись.

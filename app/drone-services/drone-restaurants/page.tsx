@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
+import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 import { FaqSection } from '@/components/shared/FaqSection';
 import { ProcessNote } from '@/components/shared/ProcessNote';
@@ -8,7 +9,6 @@ import { DronePageProgress } from '@/components/drone-restaurants/DronePageProgr
 import { DroneStickyCta } from '@/components/drone-restaurants/DroneStickyCta';
 import { MobileBottomBar } from '@/components/drone-restaurants/MobileBottomBar';
 import { ScrollArrow } from '@/components/drone-restaurants/ScrollArrow';
-import { DroneRestaurantsContactForm } from '@/components/drone-restaurants/DroneRestaurantsContactForm';
 import { HeroSlideshow } from '@/components/drone-restaurants/HeroSlideshow';
 import { FormatExamplesSlideshow } from '@/components/drone-restaurants/FormatExamplesSlideshow';
 import formatExampleOne from '@/services-images/drone-restaurants/final/4.png';
@@ -21,11 +21,6 @@ type FaqItem = {
 };
 
 type CardItem = {
-    title: string;
-    text: string;
-};
-
-type RoleCard = {
     title: string;
     text: string;
 };
@@ -58,37 +53,13 @@ type NicheCard = {
     deliverables: string;
 };
 
-type SeoAnswer = {
-    question: string;
-    answer: string;
+type StatCard = {
+    stat: string;
+    label: string;
+    description: string;
+    source: string;
+    sourceUrl: string;
 };
-
-const audienceCards: RoleCard[] = [
-    {
-        title: 'Владелец ресторана или кафе',
-        text: 'Нужен свежий визуальный материал после открытия, ремонта или смены концепции.',
-    },
-    {
-        title: 'Управляющий заведения',
-        text: 'Ищете контент для сайта и карточки в Google Maps, который покажет место убедительнее.',
-    },
-    {
-        title: 'Маркетолог ресторана',
-        text: 'Нужны видео для Instagram и Stories, а также фото и ролики для рекламы.',
-    },
-    {
-        title: 'Владелец rooftop-бара или площадки для мероприятий',
-        text: 'Есть эффектное пространство, которое сложно передать обычными фотографиями.',
-    },
-    {
-        title: 'Ресторан со скрытым входом',
-        text: 'Хотите помочь гостям визуально понять, как вас найти — где вход, куда идти, что ждёт внутри.',
-    },
-    {
-        title: 'Ресторан перед сезоном или запуском',
-        text: 'Нужен готовый набор фото и видео быстро и с понятным результатом.',
-    },
-];
 
 const problemCards: CardItem[] = [
     {
@@ -140,33 +111,6 @@ const optionalAddons: string[] = [
     'Формат под задачу: горизонтальный, вертикальный или оба',
 ];
 
-const roleScenarios: CardItem[] = [
-    {
-        title: 'Ресторан открылся или обновился',
-        text: 'Первый визуальный комплект о новом пространстве: один визит, базовый kit.',
-    },
-    {
-        title: 'Rooftop или терраса перед сезоном',
-        text: 'Актуальный контент на апрель–май, когда гости ищут места «с видом».',
-    },
-    {
-        title: 'Venue для мероприятий',
-        text: 'Видео зала и outdoor-зон для переписки с организаторами частных событий.',
-    },
-    {
-        title: 'Нестандартная локация',
-        text: 'Скрытый двор, верхний этаж, сложный вход — дрон объясняет путь визуально.',
-    },
-    {
-        title: 'Обновление Google Business Profile',
-        text: 'Видео в карточке повышает видимость и выделяет заведение среди соседей.',
-    },
-    {
-        title: 'Контент для рекламы и таргетинга',
-        text: 'Вертикальные clips с сильным первым кадром — база для Instagram и TikTok.',
-    },
-];
-
 const formatExampleCards = [
     { image: formatExampleOne, alt: 'Ресторан с террасой на крыше в Тбилиси — аэросъёмка дроном, вид на улицу и вход' },
     { image: formatExampleTwo, alt: 'FPV-пролёт по интерьеру ресторана — съёмка дроном внутри зала' },
@@ -177,24 +121,28 @@ const formatExampleSlides = [formatExampleOne, formatExampleTwo, formatExampleTh
 
 const whyUsCards: CardItem[] = [
     {
-        title: 'Снимаем так, чтобы гость захотел прийти',
-        text: 'Мы думаем не о красивом пролёте, а о том, чтобы будущий гость понял: где находится место, какая там атмосфера и что его ждёт внутри.',
+        title: 'Снимаем так, чтобы гость дошёл до брони столика',
+        text: 'Человек в ленте за 3 секунды решает: идём сюда вечером или листаем дальше. Мы снимаем не ради красивого пролёта, а ради того, чтобы будущий гость понял: где находится ресторан, какая там атмосфера, терраса или зал, кухня, район вокруг.',
     },
     {
-        title: 'Показываем место как маршрут гостя',
-        text: 'Снимаем так, как гость приходит в первый раз: район и улица → вход → зал → терраса или крыша. Одно видео — и человек понимает всё.',
+        title: 'Показываем ресторан как маршрут гостя',
+        text: 'Снимаем так, как гость приходит в первый раз: улица и район → вход → зал или терраса → кухня или открытый мангал, если это часть концепции. Одно видео — и человек понимает, куда он придёт.',
     },
     {
-        title: 'Материалы под площадки',
-        text: 'Выдаём набор сразу под сайт, Reels, Google Business Profile и рекламу.',
+        title: 'Кадры работают в Instagram, Wolt, Glovo и Google Maps',
+        text: 'Из одной съёмки получаете Reels для соцсетей, вертикаль для сторис, горизонтальный ролик для сайта и карточки в Google Maps, статичные кадры для Wolt и Glovo. Ничего не переснимаем отдельно под каждую площадку.',
     },
     {
         title: 'Небольшая команда и быстрый контакт',
-        text: 'Без лишних слоёв коммуникации: договорённости и правки проходят быстрее.',
+        text: 'Без лишних слоёв коммуникации: договорённости и правки проходят быстрее. Связаться можно напрямую — отвечаем в тот же день.',
     },
     {
         title: 'Локальный опыт Тбилиси',
-        text: 'Понимаем дворы, скрытые входы, rooftop-концепции и узкие улицы старого города.',
+        text: 'Знаем дворы Сололаки и Ваке, rooftop-концепции, узкие улицы старого города и где нельзя летать без согласования. На локации приезжаем подготовленными — не тратим ваше время на разведку.',
+    },
+    {
+        title: 'Снимаем в рабочие часы ресторана',
+        text: 'Договариваемся на время между сервисами или на момент, когда зал уже оформлен, но гостей ещё нет. Не мешаем работе кухни и не вытаскиваем персонал из смены.',
     },
 ];
 
@@ -284,20 +232,6 @@ const addonPricing: string[] = [
     '360° панорама с воздуха: +80 ₾',
 ];
 
-const comparisonPackageLabels: string[] = ['Снаружи', 'FPV', 'Полная', 'Под ключ'];
-
-const comparisonRows = [
-    { parameter: 'Цена', values: ['250 ₾', '350 ₾', '500 ₾', 'от 900 ₾'] },
-    { parameter: 'Аэровидео 4K', values: ['✓', '—', '✓', '✓'] },
-    { parameter: 'FPV-пролёт внутри', values: ['—', '✓', '✓', '✓'] },
-    { parameter: 'Фото', values: ['10+', '—', '10+', '20+'] },
-    { parameter: 'Монтаж', values: ['—', '—', '—', '✓'] },
-    { parameter: 'Ролики под соцсети', values: ['—', '—', '—', '✓'] },
-    { parameter: 'Видео для Google Maps', values: ['—', '—', '—', '✓'] },
-    { parameter: 'Время на объекте', values: ['~1,5 ч', '~1,5 ч', '~2,5 ч', 'по задаче'] },
-    { parameter: 'Передача файлов', values: ['от 24 ч', 'от 24 ч', 'от 24 ч', 'от 48 ч'] },
-];
-
 const relatedServices: RelatedService[] = [
     {
         title: '360° виртуальный тур для ресторана',
@@ -321,45 +255,52 @@ const relatedServices: RelatedService[] = [
     },
 ];
 
-const nicheMistakes: string[] = [
-    'Снимать только еду и не показывать пространство.',
-    'Публиковать видео, у которого скучное начало — зритель проматывает за первую секунду.',
-    'Снимать в пиковые часы с шумом и случайными людьми в кадре.',
-    'Использовать один и тот же монтаж для сайта и для Instagram вместо адаптации под формат.',
-    'Не обновлять контент при смене сезона, ремонте или новом меню.',
-];
-
-const freeImprovements: string[] = [
-    'Проверьте, есть ли у вас видео в карточке Google Maps.',
-    'Поставьте в первые фото Instagram вход, зал и террасу, а не только блюда.',
-    'Добавьте короткий Stories-тизер: улица → вход → зал.',
-    'Если вход сложный, выложите видео-ориентир «как нас найти».',
-    'Стимулируйте гостей публиковать Reels с тегом вашего заведения.',
-];
-
-const shootChecklist: string[] = [
-    'Определили, что показываем: фасад / терраса / rooftop / интерьер',
-    'Выбрали время с минимальным числом гостей',
-    'Подготовили вывеску и входную зону',
-    'Проверили, что терраса или летняя зона в рабочем состоянии',
-    'Определили, куда пойдут материалы: сайт, Instagram, Google Maps, реклама',
-    'Решили, нужна ли съёмка пролётом по залу',
-    'Согласовали время с командой заведения',
-    'Назначили человека, который встречает съёмочную команду',
-    'Подготовили удобный способ передачи файлов (Google Drive / WeTransfer)',
-    'Понимаете, какой пакет вам подходит',
+const statsCards: StatCard[] = [
+    {
+        stat: '74%',
+        label: 'выбирают заведение',
+        description: 'гостей используют соцсети, чтобы решить, куда пойти поесть. Видео и визуал в профиле — ключевой аргумент при выборе.',
+        source: 'Cropink Restaurant Social Media Report 2025',
+        sourceUrl: 'https://cropink.com/restaurant-social-media-statistics',
+    },
+    {
+        stat: '57%',
+        label: 'бронируют через соцсети',
+        description: 'диниров хотя бы раз совершали бронь столика через Instagram или Facebook. Наличие визуала в профиле напрямую связано с этим сценарием.',
+        source: 'Cropink Restaurant Social Media Report 2025',
+        sourceUrl: 'https://cropink.com/restaurant-social-media-statistics',
+    },
+    {
+        stat: '×2',
+        label: 'выше охват Reels',
+        description: 'по сравнению со статичными фото у ресторанов в Instagram. Короткие видео — главный драйвер новых гостей.',
+        source: 'Ion Hospitality Instagram Benchmark 2026',
+        sourceUrl: 'https://www.ionhospitality.com/2026/04/14/restaurant-instagram-marketing-ideas-real-results/',
+    },
+    {
+        stat: '×2.7',
+        label: 'больше доверия',
+        description: 'заведениям с полным профилем в Google Maps. Видеоконтент в карточке повышает вероятность выбора на 50%.',
+        source: 'Google Maps listing guidance',
+        sourceUrl: 'https://support.google.com/business/answer/6124108',
+    },
 ];
 
 const faqItems: FaqItem[] = [
     {
-        question: 'Что именно даёт дрон-съёмка ресторану?',
+        question: 'Что именно вы снимаете для ресторанов?',
         answer:
-            'Она показывает атмосферу, вход, планировку, террасу, rooftop и окружение заведения — то, что обычные фотографии часто объясняют хуже. Гость заранее понимает, куда он идёт.',
+            'Снимаем экстерьер и интерьер, кухню, подачу блюд, бар, атмосферу, terrace / rooftop-зоны и общие кадры для рекламы, соцсетей и сайта.',
     },
     {
-        question: 'Это только для больших или дорогих ресторанов?',
+        question: 'Можно ли снять дрон, интерьер и короткие вертикальные ролики в одном проекте?',
         answer:
-            'Нет. Небольшое кафе с хорошей атмосферой или интересным двором может выглядеть убедительно в видео так же, как крупное заведение.',
+            'Да. При необходимости объединяем аэросъёмку, интерьерные кадры и короткие вертикальные видео для Reels, Stories и рекламных размещений в один съёмочный пакет.',
+    },
+    {
+        question: 'Подходят ли кадры для Instagram, Wolt, Glovo, Google Maps и рекламы?',
+        answer:
+            'Да. Из одной съёмки делаем вертикальные Reels и Stories для Instagram и TikTok, горизонтальные ролики для сайта, видео для карточки в Google Maps, статичные кадры для Wolt, Glovo и рекламных кампаний. Без дополнительных выездов.',
     },
     {
         question: 'Чем дрон-съёмка отличается от обычного видео на камеру?',
@@ -377,11 +318,6 @@ const faqItems: FaqItem[] = [
             'Обычно нет. Подбираем окно, которое минимально мешает работе: до открытия, в тихие часы или в согласованный слот.',
     },
     {
-        question: 'Где ещё можно использовать то, что мы снимем?',
-        answer:
-            'На сайте, в Google Business Profile, в рекламных объявлениях, в переписке с клиентами и организаторами мероприятий, а также в презентации заведения.',
-    },
-    {
         question: 'Сколько стоит аэросъёмка ресторана в Тбилиси?',
         answer:
             'Аэросъёмка с высоты — 250 ₾. Пролёт FPV-дроном внутри — 350 ₾. Полная съёмка за один визит — 500 ₾. В этих пакетах вы получаете фото и видео в 4K. Съёмка с монтажом и роликами под соцсети — от 900 ₾. К любому пакету можно добавить монтаж Reels (+150 ₾), ролик для сайта (+150 ₾) или 360° панораму (+80 ₾).',
@@ -394,7 +330,7 @@ const faqItems: FaqItem[] = [
     {
         question: 'Сколько времени занимает съёмка?',
         answer:
-            'Съёмка ресторана занимает 1–3 часа на месте, монтаж и выдача — 3–7 рабочих дней.',
+            'Съёмка занимает от 1 до 3 часов в зависимости от задачи. Видеофайлы без монтажа — от 24 часов. Готовый контент с монтажом и обработкой — от 3 до 7 рабочих дней.',
     },
     {
         question: 'Нужны ли разрешения на полёты в Тбилиси?',
@@ -407,93 +343,14 @@ const faqItems: FaqItem[] = [
             'Следим за прогнозом заранее. При сильном ветре или осадках переносим съёмку на ближайший подходящий день без доплат.',
     },
     {
-        question: 'Можно ли заказать только фото или только видео?',
-        answer:
-            'Да. Базовый состав можно адаптировать под вашу задачу и площадки публикации.',
-    },
-    {
         question: 'Работаете ли вы за пределами Тбилиси?',
         answer:
-            'Да. Снимаем в Батуми, Кутаиси и других локациях Грузии по договорённости с учётом выезда.',
+            'Да. Работаем по всей Грузии по договорённости. Стоимость выезда зависит от расстояния и логистики — уточняем на этапе брифа.',
     },
     {
-        question: 'В каких районах Тбилиси вы снимаете?',
+        question: 'Есть ли договор?',
         answer:
-            'По всему городу: Старый Тбилиси, Мтацминда, Вера, Сабуртало, Ваке, Авлабари, Чугурети, Марджанишвили и другие районы. Также снимаем в Батуми, Кутаиси и Кахетии.',
-    },
-];
-
-const seoAnswers: SeoAnswer[] = [
-    {
-        question: 'Сколько стоит съёмка ресторана дроном в Тбилиси?',
-        answer:
-            'Аэросъёмка с высоты — 250 ₾. Пролёт FPV-дроном внутри — 350 ₾. Полная съёмка за один визит — 500 ₾. В этих пакетах вы получаете фото и видео в 4K, готовые к использованию. Съёмка с монтажом, роликами и фото под соцсети — от 900 ₾ (передача от 48 часов, монтаж включён). К любому пакету можно добавить монтаж Reels (+150 ₾), ролик для сайта (+150 ₾) или 360° панораму (+80 ₾).',
-    },
-    {
-        question: 'Нужны ли разрешения для съёмки дроном над рестораном в Тбилиси?',
-        answer:
-            'Да. В Грузии полёты дронов регулируются Авиационной администрацией Грузии (GCAA). В городских зонах есть ограничения воздушного пространства. Мы берём на себя проверку зоны и все необходимые согласования — вам не нужно ничего оформлять.',
-    },
-    {
-        question: 'Как дрон-съёмка помогает ресторану привлекать гостей?',
-        answer:
-            'Видеосъёмка ресторана дроном отвечает на вопрос гостя «а что там вообще?» ещё до визита: показывает фасад, вход, террасу и зал в движении. Для ресторанов со скрытыми входами или необычной локацией в Тбилиси это особенно важно — гость понимает, что его ждёт, и решается прийти.',
-    },
-    {
-        question: 'Можно ли снимать дроном внутри ресторана?',
-        answer:
-            'Да, для интерьеров используем компактную FPV-камеру, которая пролетает по залу. Перед съёмкой приезжаем на осмотр — оцениваем высоту потолков, планировку и безопасность, и согласуем маршрут.',
-    },
-    {
-        question: 'Что получает ресторан после съёмки?',
-        answer:
-            'Основной ролик для сайта, короткие видео для Instagram / TikTok / Stories, обработанные фотографии и видео для карточки в Google Maps. Всё в папке, разложенной по назначению. Формат и количество зависят от выбранного пакета.',
-    },
-    {
-        question: 'Сколько времени занимает съёмка и когда будут готовы файлы?',
-        answer:
-            'Съёмка занимает от 1 до 3 часов в зависимости от задачи. Файлы в 4K без монтажа — от 24 часов. Готовые ролики с монтажом и обработкой — от 3 до 7 рабочих дней.',
-    },
-    {
-        question: 'Подходит ли дрон-съёмка для сезонного запуска или открытия ресторана?',
-        answer:
-            'Да, это один из самых частых сценариев. Перед сезоном или после ремонта мы снимаем за один визит полный комплект: аэровидео, FPV-пролёт, фото и нарезки для соцсетей. Готовые файлы можно сразу использовать в рекламе, на сайте и в Google Maps — контент появляется вместе с запуском.',
-    },
-    {
-        question: 'Вы снимаете только рестораны или также кафе и бары?',
-        answer:
-            'Снимаем любые заведения: рестораны, кафе, бары, винные бары, rooftop-площадки и площадки для мероприятий. Формат съёмки адаптируем под размер и особенности пространства — от небольшого кафе с уютным двором до крупного ресторана с несколькими залами.',
-    },
-];
-
-const shortQA: { q: string; a: string }[] = [
-    {
-        q: 'Сколько стоит аэросъёмка ресторана в Тбилиси?',
-        a: 'От 250 ₾ за съёмку с воздуха. Полная съёмка снаружи и внутри — 500 ₾. С монтажом и готовыми роликами — от 900 ₾.',
-    },
-    {
-        q: 'Что входит в съёмку ресторана дроном?',
-        a: 'Аэровидео и аэрофото в 4K, FPV-пролёт по залу, фотографии с цветокоррекцией. В пакете с монтажом — готовые ролики под соцсети и Google Maps.',
-    },
-    {
-        q: 'Можно ли снимать дроном внутри ресторана?',
-        a: 'Да. Для интерьеров используем компактный FPV-дрон DJI Avata 2. Маршрут согласуем заранее.',
-    },
-    {
-        q: 'Сколько времени занимает съёмка ресторана?',
-        a: 'От 1,5 до 2,5 часов на объекте. Готовые файлы без монтажа — от 24 часов, с монтажом — 3–7 рабочих дней.',
-    },
-    {
-        q: 'Нужно ли разрешение на полёт дрона в Тбилиси?',
-        a: 'Да, полёты регулирует GCAA. Мы берём все согласования на себя.',
-    },
-    {
-        q: 'Для чего ресторану дрон-видео?',
-        a: 'Показать гостю пространство до визита: фасад, вход, террасу, зал. Видео работает на сайте, в соцсетях и карточке Google Maps.',
-    },
-    {
-        q: 'Вы снимаете только в Тбилиси?',
-        a: 'Нет. Также снимаем в Батуми, Кутаиси, Кахетии и других регионах Грузии.',
+            'Да, для постоянной или разовой работы мы заключаем договор на оказание услуг. В нём фиксируются основные условия сотрудничества, формат работы и порядок взаиморасчётов.',
     },
 ];
 
@@ -539,120 +396,14 @@ const nicheCards: NicheCard[] = [
 const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-        {
-            '@type': 'Question',
-            name: 'Сколько стоит аэросъёмка ресторана в Тбилиси?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Аэросъёмка с высоты — 250 ₾. Пролёт FPV-дроном внутри — 350 ₾. Полная съёмка за один визит — 500 ₾. Фото и видео в 4K. Съёмка с монтажом под соцсети — от 900 ₾. К любому пакету можно добавить монтаж Reels (+150 ₾), ролик для сайта (+150 ₾) или 360° панораму (+80 ₾).',
-            },
+    mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.answer,
         },
-        {
-            '@type': 'Question',
-            name: 'Нужны ли разрешения для съёмки дроном над рестораном в Тбилиси?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Да. Breus Media работает в соответствии с правилами Агентства гражданской авиации Грузии (GCAA). Разрешительную подготовку берём на себя — клиенту ничего дополнительно оформлять не нужно.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Можно ли снимать внутри ресторана?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Да, для интерьеров используем FPV-камеру DJI Avata 2. Перед съёмкой оцениваем пространство и согласуем маршрут, чтобы результат получился точным.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Нужно ли закрывать ресторан во время съёмки?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Обычно нет. Мы подбираем окно съёмки до открытия или в тихие часы, чтобы минимально мешать работе заведения.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Сколько времени занимает съёмка и монтаж?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Съёмка на месте занимает 1–3 часа. Монтаж и выдача готовых материалов — 3–7 рабочих дней в зависимости от пакета.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Что если в день съёмки будет плохая погода?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Мы следим за прогнозом заранее. При неподходящих условиях переносим съёмку на ближайший подходящий день без доплат.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Работаете ли вы в других городах Грузии помимо Тбилиси?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Да. Снимаем в Батуми, Кутаиси и других локациях по договорённости, с учётом выезда.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Что именно получаю после съёмки?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Основной ролик, короткие видео в вертикальном и горизонтальном формате, фотографии с цветокоррекцией. Файлы разложены по назначению: сайт, соцсети, Google Business Profile. Всё готово к публикации.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Можно ли заказать только фото или только видео?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Да. Стандартный пакет включает оба формата, но состав можно обсудить под конкретную задачу.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Как дрон помогает ресторану привлекать гостей?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Видео с дрона отвечает на вопрос гостя «как там вообще?» — до визита. Это ускоряет принятие решения, особенно для ресторанов со скрытым расположением, rooftop-зонами или необычными дворами.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Какое оборудование используется?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'DJI Air 3S для внешней аэросъёмки (4K) и DJI Avata 2 для FPV-элементов в интерьере. Все материалы проходят цветокоррекцию перед выдачей.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'В каких районах Тбилиси вы снимаете рестораны?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'По всему городу: Старый Тбилиси, Мтацминда, Вера, Сабуртало, Ваке, Авлабари, Чугурети, Марджанишвили и другие районы. Также работаем в Батуми, Кутаиси и Кахетии.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Подходит ли дрон-съёмка для сезонного запуска или открытия ресторана?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Да. За один визит снимаем полный комплект: аэровидео, FPV-пролёт, фото и нарезки для соцсетей. Готовые файлы можно использовать сразу — в рекламе, на сайте и в Google Maps.',
-            },
-        },
-        {
-            '@type': 'Question',
-            name: 'Вы снимаете только рестораны или также кафе и бары?',
-            acceptedAnswer: {
-                '@type': 'Answer',
-                text: 'Снимаем любые заведения: рестораны, кафе, бары, винные бары, rooftop-площадки и площадки для мероприятий. Формат адаптируем под размер и особенности пространства.',
-            },
-        },
-    ],
+    })),
 };
 
 const serviceSchema = {
@@ -660,7 +411,7 @@ const serviceSchema = {
     '@type': 'Service',
     name: 'Аэросъёмка ресторанов и HoReCa в Тбилиси',
     description:
-        'Дрон-съёмка и FPV-видео для ресторанов, кафе, баров и hospitality-объектов в Тбилиси. Показываем фасад, вход, террасу, rooftop и интерьер. Готовые материалы под сайт, Instagram, Google Business Profile и рекламу.',
+        'Дрон-съёмка и FPV-видео для ресторанов, кафе, баров и hospitality-объектов в Тбилиси. Показываем фасад, вход, террасу, rooftop и интерьер. Готовые материалы под сайт, Instagram, Google Maps и рекламу.',
     provider: {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
@@ -675,11 +426,6 @@ const serviceSchema = {
         {
             '@type': 'City',
             name: 'Tbilisi',
-            containedInPlace: { '@type': 'Country', name: 'Georgia' },
-        },
-        {
-            '@type': 'City',
-            name: 'Batumi',
             containedInPlace: { '@type': 'Country', name: 'Georgia' },
         },
         {
@@ -847,14 +593,11 @@ export default function DroneRestaurantsPage() {
                                 </p>
 
                                 <p className="mb-3 break-inside-avoid">
-                                    Мы снимаем, монтируем и запускаем рекламу — полный цикл. А также передаём готовое,
-                                    что подходит для Instagram, TikTok, Facebook, Google Maps, Google Business Profile
-                                    и вашего сайта.
+                                    Из одной съёмки вы получаете кадры для Instagram, TikTok, Reels, сайта, карточки в Google Maps и доставки на Wolt и Glovo — без повторных выездов и переделок под каждую площадку.
                                 </p>
 
                                 <p className="mb-0 break-inside-avoid text-white/84">
-                                    Один съёмочный день — и у вас есть визуальная база, которая работает на вас год и
-                                    дольше.
+                                    Один визит в заведение — и у вас есть материал под все каналы. Снимаем в тихие часы, не мешая сервису и не вытягивая команду из смены.
                                 </p>
                             </div>
 
@@ -919,6 +662,38 @@ export default function DroneRestaurantsPage() {
                 </div>
             </section>
 
+            {/* ── ЧТО ГОВОРЯТ ЦИФРЫ ──────────────────────────────────────────────── */}
+            <section className="border-b border-[#2a2a2a] bg-[#080808] py-20">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-3xl">
+                        <h2 className="text-3xl font-bold md:text-4xl">Что говорят цифры</h2>
+                        <p className="mt-4 leading-relaxed text-white/70">
+                            Гость выбирает ресторан ещё до того, как откроет меню. Исследования показывают, насколько визуальный контент в соцсетях и Google влияет на это решение.
+                        </p>
+                    </div>
+                    <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+                        {statsCards.map((item) => (
+                            <article key={item.stat} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                <p className="text-5xl font-bold tracking-tight text-[#FFD23F]">{item.stat}</p>
+                                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-white/70">{item.label}</p>
+                                <p className="mt-4 text-sm leading-relaxed text-white/72">{item.description}</p>
+                                <a
+                                    href={item.sourceUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-5 inline-flex items-center text-xs font-semibold text-white/50 transition-colors hover:text-[#FFD23F]"
+                                >
+                                    Источник: {item.source} →
+                                </a>
+                            </article>
+                        ))}
+                    </div>
+                    <p className="mt-8 max-w-4xl text-xs leading-relaxed text-white/45">
+                        Цифры приведены из открытых отраслевых отчётов. Конкретный эффект для вашего ресторана зависит от концепции, аудитории и каналов публикации.
+                    </p>
+                </div>
+            </section>
+
             {/* ── ЧТО ОБЫЧНО ГОВОРЯТ ПЕРЕД СЪЁМКОЙ ─────────────────────────────────── */}
             <section id="problems" className="border-b border-[#2a2a2a] bg-[#080808] py-24">
                 <div className="container mx-auto px-6">
@@ -937,7 +712,7 @@ export default function DroneRestaurantsPage() {
                 </div>
             </section>
 
-            {/* ── ЧТО СНИМАЕМ И ЧТО ЭТО РЕШАЕТ (MERGED) ──────────────────────────── */}
+            {/* ── ЧТО СНИМАЕМ И ЧТО ЭТО РЕШАЕТ ──────────────────────────── */}
             <section id="what-is" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl">
@@ -976,7 +751,7 @@ export default function DroneRestaurantsPage() {
                 </div>
             </section>
 
-            {/* ── ЧТО ВЫ ПОЛУЧАЕТЕ (MERGED deliverables) ──────────────────────────── */}
+            {/* ── ЧТО ВЫ ПОЛУЧАЕТЕ ──────────────────────────── */}
             <section id="deliverables" className="border-b border-[#2a2a2a] bg-[#080808] py-24">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
@@ -1183,7 +958,7 @@ export default function DroneRestaurantsPage() {
                     <div className="mt-8 rounded-[16px] border border-[#FFD23F]/30 bg-[#121212] p-6">
                         <h3 className="text-xl font-bold text-white">Дополнительно по задаче</h3>
                         <p className="mt-3 leading-relaxed text-white/70">
-                            Из одной съёмки можно собрать не только основной материал, но и дополнительные форматы под сайт, соцсети, Google Business Profile и продажи.
+                            Из одной съёмки можно собрать не только основной материал, но и дополнительные форматы под сайт, соцсети, Google Maps и продажи.
                         </p>
                         <ul className="mt-6 grid gap-4 md:grid-cols-2">
                             {addonPricing.map((item) => (
@@ -1202,22 +977,7 @@ export default function DroneRestaurantsPage() {
                     <div className="max-w-3xl">
                         <h2 className="text-2xl font-bold md:text-3xl">Сравнение пакетов</h2>
                     </div>
-                    <div className="mt-8 space-y-3 md:hidden">
-                        {comparisonRows.map((row) => (
-                            <article key={row.parameter} className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-4">
-                                <p className="text-sm font-semibold text-white">{row.parameter}</p>
-                                <div className="mt-3 grid grid-cols-2 gap-2">
-                                    {row.values.map((value, index) => (
-                                        <div key={`${row.parameter}-${comparisonPackageLabels[index]}`} className="rounded-[10px] border border-[#2a2a2a] bg-[#0D0D0D] px-3 py-2">
-                                            <p className="text-[10px] uppercase tracking-[0.14em] text-white/55">{comparisonPackageLabels[index]}</p>
-                                            <p className={`mt-1 text-sm ${index === 2 ? 'font-semibold text-[#FFD23F]' : 'text-white/80'}`}>{value}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </article>
-                        ))}
-                    </div>
-                    <div className="mt-8 hidden overflow-x-auto md:block">
+                    <div className="mt-8 overflow-x-auto">
                         <table className="w-full min-w-[640px] text-sm text-white/80">
                             <thead>
                                 <tr className="border-b border-[#2a2a2a] text-left text-xs uppercase tracking-[0.16em] text-white/50">
@@ -1298,55 +1058,28 @@ export default function DroneRestaurantsPage() {
                 </div>
             </section>
 
-            {/* ── ПОМОЩНИК ВЫБОРА ПАКЕТА ─────────────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-14">
-                <div className="container mx-auto px-6">
-                    <div className="mx-auto max-w-3xl">
-                        <h3 className="text-xl font-bold md:text-2xl">Как выбрать пакет</h3>
-                        <div className="mt-6 space-y-3 text-sm leading-relaxed text-white/76">
-                            <p>
-                                → Нужна только съёмка с воздуха, монтаж сделаете сами —{' '}
-                                <strong className="text-white">Полёт снаружи, 250 ₾</strong>
-                            </p>
-                            <p>
-                                → Хотите показать зал изнутри одним пролётом —{' '}
-                                <strong className="text-white">FPV внутри, 350 ₾</strong>
-                            </p>
-                            <p>
-                                → Нужно и снаружи, и внутри за один визит —{' '}
-                                <strong className="text-white">Полная съёмка, 500 ₾</strong>
-                            </p>
-                            <p>
-                                → Хотите получить готовые ролики, фото и видео для Google Maps —{' '}
-                                <strong className="text-white">Готовый результат, от 900 ₾</strong>
-                            </p>
-                            <p className="pt-2 text-white/55">Не уверены? Напишите — подберём формат за 5 минут.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ── POST-PRICING CTA ─────────────────────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-10">
-                <div className="container mx-auto px-6">
-                    <div className="flex flex-col gap-5 rounded-[14px] border border-[#FFD23F]/35 bg-[#131313] p-6 md:flex-row md:items-center md:justify-between md:p-8">
-                        <p className="max-w-2xl leading-relaxed text-white/80">
-                            Не уверены, какой пакет подойдёт? Напишите о заведении — скажем, что имеет смысл снимать
-                            и что войдёт в бюджет.
-                        </p>
-                        <a
-                            href="#contact"
-                            className="inline-flex items-center justify-center rounded-[10px] bg-[#D4A017] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
-                        >
-                            Написать о задаче
-                        </a>
-                    </div>
-                </div>
-            </section>
-
             {/* ── FAQ ──────────────────────────────────────────────────────────────── */}
             <FaqSection id="faq" items={faqItems} title="Частые вопросы" />
 
+            {/* ── КАК МЫ ПОДХОДИМ К СЪЁМКЕ ─────────────────────────────────────────── */}
+            <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-3xl">
+                        <h2 className="text-3xl font-bold md:text-4xl">Как мы подходим к съёмке</h2>
+                    </div>
+
+                    <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                        {whyUsCards.map((card) => (
+                            <article key={card.title} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                <h3 className="text-lg font-bold text-white">{card.title}</h3>
+                                <p className="mt-3 text-sm leading-relaxed text-white/72">{card.text}</p>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── ТИПЫ ЗАВЕДЕНИЙ И СЦЕНАРИИ ─────────────────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
@@ -1374,87 +1107,87 @@ export default function DroneRestaurantsPage() {
                 </div>
             </section>
 
-            {/* ── КАК МЫ ПОДХОДИМ К СЪЁМКЕ ─────────────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
+            {/* ── МИД-КТА 2 ────────────────────────────────────────────────────────── */}
+            <section className="border-b border-[#2a2a2a] bg-[#080808] py-10">
                 <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Как мы подходим к съёмке</h2>
-                    </div>
-
-                    <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                        {whyUsCards.map((card) => (
-                            <article key={card.title} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">{card.title}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{card.text}</p>
-                            </article>
-                        ))}
+                    <div className="flex flex-col gap-5 rounded-[14px] border border-[#FFD23F]/35 bg-[#131313] p-6 md:flex-row md:items-center md:justify-between md:p-8">
+                        <p className="max-w-2xl leading-relaxed text-white/80">
+                            Нашли свой формат заведения в списке? Расскажите про ресторан — предложим пакет, маршрут съёмки и удобное время.
+                        </p>
+                        <div className="flex flex-wrap gap-3">
+                            <a
+                                href="#contact"
+                                className="inline-flex items-center justify-center rounded-[10px] bg-[#D4A017] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
+                            >
+                                Обсудить задачу
+                            </a>
+                            <a
+                                href="https://wa.me/995574619393"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center justify-center rounded-[10px] border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F]"
+                            >
+                                Написать в WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* ════════════════════════════════════════════════════════════════════════
-                НИЖНИЙ ИНФОРМАЦИОННЫЙ СЛОЙ
-            ════════════════════════════════════════════════════════════════════════ */}
-
-            {/* ── КОМУ ЭТО НУЖНО ───────────────────────────────────────────────────── */}
+            {/* ── ГРУЗИЯ + ПРАВИЛА ПОЛЁТОВ ─────────────────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
                 <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Кому это нужно</h2>
-                    </div>
+                    <div className="grid gap-8 lg:grid-cols-2">
+                        <div className="rounded-[20px] border border-[#FFD23F]/28 bg-[#111111] p-8">
+                            <h2 className="text-2xl font-bold md:text-3xl">Почему в Тбилиси визуал работает особенно сильно</h2>
+                            <p className="mt-5 leading-relaxed text-white/74">
+                                Многие заведения Тбилиси спрятаны во дворах, на этажах, за неприметными дверями — это атмосферно, но гостю сложно понять, куда идти. Дрон закрывает этот пробел: показывает квартал, вход и пространство сверху.
+                            </p>
+                            <p className="mt-4 leading-relaxed text-white/74">
+                                Rooftop-концепции в центре, летние террасы на берегу Куры, внутренние дворы Сололаки и Ваке — все эти детали считываются только с воздуха.
+                            </p>
+                            <p className="mt-4 leading-relaxed text-white/74">
+                                Для ресторанов со скрытым входом или нестандартной локацией аэросъёмка работает как навигация — гость заранее видит маршрут.
+                            </p>
+                        </div>
 
-                    <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                        {audienceCards.map((card) => (
-                            <article key={card.title} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">{card.title}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{card.text}</p>
-                            </article>
-                        ))}
+                        <div className="rounded-[20px] border border-[#2a2a2a] bg-[#111111] p-8">
+                            <h2 className="text-2xl font-bold md:text-3xl">Как мы работаем с правилами полётов</h2>
+                            <p className="mt-5 leading-relaxed text-white/74">
+                                Работаем в рамках правил Georgian Civil Aviation Agency (GCAA). Дрон зарегистрирован. Максимальная высота — 120 м.
+                            </p>
+                            <p className="mt-4 leading-relaxed text-white/74">
+                                Для съёмок в центре, рядом с посольствами или в чувствительных зонах проверяем ограничения заранее и предлагаем сценарий, который даёт нужный кадр без рисков.
+                            </p>
+                            <p className="mt-4 leading-relaxed text-white/74">
+                                Съёмка с гостями: работаем в тихие часы, фокусируемся на пространстве — без нарушения приватности.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* ── ПОЧЕМУ В ТБИЛИСИ ЭТО ОСОБЕННО ВАЖНО ─────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-4xl rounded-[20px] border border-[#FFD23F]/28 bg-[#111111] p-8">
-                        <h2 className="text-3xl font-bold md:text-4xl">Почему в Тбилиси это особенно важно</h2>
-                        <p className="mt-5 leading-relaxed text-white/74">
-                            В Тбилиси многие рестораны спрятаны: во дворах, на этажах, в переулках старого города, за
-                            неприметными дверями. Это атмосферно, но гостю бывает сложно понять, куда идти и что его
-                            ждёт.
-                        </p>
-                        <p className="mt-4 leading-relaxed text-white/74">
-                            Дрон закрывает этот пробел: показывает квартал, вход и пространство сверху, делая заведение
-                            понятным для нового человека.
-                        </p>
-                        <ul className="mt-6 space-y-2 text-sm leading-relaxed text-white/82">
-                            <li>• Вид на Мтацминда, Нарикалу или реку — панорама считывается сразу.</li>
-                            <li>• Внутренние дворы и балконы старых кварталов становятся видимыми для гостя.</li>
-                            <li>• Rooftop-концепции в центре и на Авлабари показывают масштаб локации.</li>
-                            <li>• Летние террасы на берегу Куры легче продвигать до начала сезона.</li>
-                            <li>• Ресторан в подвале или на верхнем этаже получает ясный визуальный маршрут.</li>
-                        </ul>
-                        <p className="mt-6 text-sm leading-relaxed text-white/74">
-                            Работаем в Тбилиси, Батуми и других локациях Грузии по согласованию.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* ── ТИПИЧНЫЕ ОШИБКИ ──────────────────────────────────────────────────── */}
+            {/* ── СМЕЖНЫЕ УСЛУГИ ───────────────────────────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Типичные ошибки в визуальном продвижении ресторана</h2>
+                        <h2 className="text-3xl font-bold md:text-4xl">Смежные услуги</h2>
+                        <p className="mt-4 leading-relaxed text-white/70">
+                            Если вам нужна не только съёмка с воздуха, а полноценный набор контента для заведения — эту съёмку можно дополнить другими форматами.
+                        </p>
                     </div>
 
-                    <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
-                        {nicheMistakes.map((item, index) => (
-                            <article key={item} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-5">
-                                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">Ошибка {index + 1}</p>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{item}</p>
-                            </article>
+                    <div className="mt-10 grid gap-5 md:grid-cols-2">
+                        {relatedServices.map((service) => (
+                            <Link
+                                key={service.href}
+                                href={service.href}
+                                className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6 transition-colors hover:border-[#FFD23F]/50"
+                            >
+                                <h3 className="text-lg font-bold text-white">{service.title}</h3>
+                                <p className="mt-3 text-sm leading-relaxed text-white/72">{service.text}</p>
+                                <p className="mt-4 text-sm font-semibold text-[#FFD23F]">Подробнее →</p>
+                            </Link>
                         ))}
                     </div>
                 </div>
@@ -1492,121 +1225,12 @@ export default function DroneRestaurantsPage() {
                 </div>
             </section>
 
-            {/* ── ЧТО СДЕЛАТЬ ПРЯМО СЕЙЧАС — БЕСПЛАТНО ────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Что сделать прямо сейчас — бесплатно</h2>
-                    </div>
-
-                    <ul className="mt-10 grid gap-5 md:grid-cols-2">
-                        {freeImprovements.map((item, index) => (
-                            <li key={item} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6 text-sm leading-relaxed text-white/76">
-                                <span className="mr-2 font-bold text-[#FFD23F]">{index + 1}.</span>
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </section>
-
-            {/* ── ЧЕКЛИСТ ПЕРЕД СЪЁМКОЙ ────────────────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Чеклист перед съёмкой</h2>
-                    </div>
-
-                    <ul className="mt-10 grid gap-4 md:grid-cols-2">
-                        {shootChecklist.map((item) => (
-                            <li key={item} className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-5 text-sm leading-relaxed text-white/78">
-                                □ {item}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </section>
-
-            {/* ── ПОДРОБНЫЕ ОТВЕТЫ НА ЧАСТЫЕ ВОПРОСЫ ──────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
-                <div className="container mx-auto px-6">
-                    <details className="group max-w-4xl">
-                        <summary className="cursor-pointer list-none">
-                            <div className="flex items-center justify-between">
-                                <h2 className="text-3xl font-bold md:text-4xl">Подробные ответы на частые вопросы</h2>
-                                <span className="ml-4 shrink-0 text-2xl text-[#FFD23F] transition-transform group-open:rotate-45">+</span>
-                            </div>
-                            <p className="mt-3 text-sm text-white/50">Нажмите, чтобы развернуть</p>
-                        </summary>
-
-                        <div className="mt-10 space-y-5">
-                            {seoAnswers.map((item) => (
-                                <article key={item.question} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                    <h3 className="text-lg font-bold text-white">{item.question}</h3>
-                                    <p className="mt-4 text-sm leading-relaxed text-white/74">{item.answer}</p>
-                                </article>
-                            ))}
-                        </div>
-                    </details>
-                </div>
-            </section>
-
-            {/* ── КОРОТКИЕ ОТВЕТЫ ДЛЯ AI-ПОИСКА ─────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
-                <div className="container mx-auto px-6">
-                    <details className="group max-w-3xl">
-                        <summary className="cursor-pointer list-none">
-                            <div className="flex items-center justify-between">
-                                <h2 className="text-2xl font-bold md:text-3xl">Коротко о главном</h2>
-                                <span className="ml-4 shrink-0 text-2xl text-[#FFD23F] transition-transform group-open:rotate-45">+</span>
-                            </div>
-                            <p className="mt-3 text-sm text-white/50">Нажмите, чтобы развернуть</p>
-                        </summary>
-                        <div className="mt-8 space-y-5">
-                            {shortQA.map((item) => (
-                                <div key={item.q}>
-                                    <p className="font-bold text-white">{item.q}</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-white/72">{item.a}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </details>
-                </div>
-            </section>
-
-            {/* ── СМЕЖНЫЕ УСЛУГИ ───────────────────────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Смежные услуги</h2>
-                        <p className="mt-4 leading-relaxed text-white/70">
-                            Если вам нужна не только съёмка с воздуха, а полноценный набор контента для заведения — эту съёмку можно дополнить другими форматами.
-                        </p>
-                    </div>
-
-                    <div className="mt-10 grid gap-5 md:grid-cols-2">
-                        {relatedServices.map((service) => (
-                            <Link
-                                key={service.href}
-                                href={service.href}
-                                className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6 transition-colors hover:border-[#FFD23F]/50"
-                            >
-                                <h3 className="text-lg font-bold text-white">{service.title}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{service.text}</p>
-                                <p className="mt-4 text-sm font-semibold text-[#FFD23F]">Подробнее →</p>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* ── PRE-CONTACT CTA ──────────────────────────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-16">
                 <div className="container mx-auto px-6">
                     <div className="mx-auto max-w-3xl text-center">
                         <p className="text-lg leading-relaxed text-white/78">
-                            Если вы дочитали до этого места, значит вопрос с визуальным контентом актуален.
-                            Заказать съёмку ресторана дроном в Тбилиси — просто: расскажите о заведении, и мы предложим конкретный формат.
+                            Если вы дочитали до этого места, значит вопрос с визуальным контентом для ресторана актуален. Следующий шаг — расскажите о заведении, и мы предложим конкретный формат.
                         </p>
                         <a
                             href="#contact"
@@ -1619,57 +1243,7 @@ export default function DroneRestaurantsPage() {
             </section>
 
             {/* ── КОНТАКТ ──────────────────────────────────────────────────────────── */}
-            <section
-                id="contact"
-                className="scroll-mt-20 bg-[#0D0D0D] py-20 lg:scroll-mt-24"
-            >
-                <div className="container mx-auto px-6">
-                    <div className="mx-auto max-w-5xl rounded-[24px] border border-[#FFD23F]/25 bg-gradient-to-br from-[#151515] via-[#111111] to-[#0c0c0c] p-6 md:p-8 lg:p-10">
-                        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-                            <div>
-                                <h2 className="text-3xl font-bold text-white md:text-4xl">Обсудить задачу</h2>
-                                <p className="mt-4 max-w-xl leading-relaxed text-white/72">
-                                    Расскажите о заведении — скажем, какой формат подойдёт и в какой бюджет это
-                                    укладывается.
-                                </p>
-
-                                <div className="mt-8 rounded-[18px] border border-white/10 bg-white/[0.03] p-5">
-                                    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Написать напрямую</p>
-                                    <div className="mt-4 flex flex-wrap gap-3">
-                                        <a
-                                            href="https://wa.me/995574619393"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
-                                        >
-                                            WhatsApp
-                                        </a>
-                                        <a
-                                            href="https://t.me/breusmedia"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
-                                        >
-                                            Telegram
-                                        </a>
-                                        <a
-                                            href="https://www.instagram.com/breusmedia"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/82 transition-colors hover:border-white/35"
-                                        >
-                                            @breusmedia
-                                        </a>
-                                    </div>
-                                    <p className="mt-4 text-sm leading-relaxed text-white/55">Тбилиси, Грузия</p>
-                                </div>
-                            </div>
-
-                            <DroneRestaurantsContactForm />
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <DroneContactStitch preselectedServices={['drone']} />
 
             <DroneStickyCta />
             <MobileBottomBar />

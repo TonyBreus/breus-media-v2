@@ -1,3 +1,16 @@
+✅ /drone-services/drone-restaurants: выравнивание по эталону /drone-hotels-tourism (17.04.2026)
+- **Файл:** `app/drone-services/drone-restaurants/page.tsx`
+- **Сделано:**
+  - `/drone-services/drone-restaurants` приведена к эталонной структуре `/drone-hotels-tourism`.
+  - Удалены: `audienceCards`, `roleScenarios`, `nicheMistakes`, `freeImprovements`, `shootChecklist`, `seoAnswers`, `shortQA`.
+  - Добавлены: блок статистики `Что говорят цифры`, `Mid-CTA 2`, секция `Грузия + правила полётов`.
+  - Геоблок `Где мы снимаем в Тбилиси` перемещён вниз: после `Смежные услуги`, перед `Pre-contact CTA`.
+  - `faqItems` сокращён до 13 вопросов; удалены дублирующие вопросы, обновлён вопрос про Instagram/Wolt/Glovo/Google Maps.
+  - В Hero переписаны 2 абзаца (без зеркального текста с отелями).
+  - В `#contact` подключён `DroneContactStitch` с `preselectedServices={['drone']}`.
+  - В `page.tsx` удалены все вхождения `Google Business Profile`, `Батуми`, `Batumi`.
+- **Результат:** обе ключевые L3-дрон-страницы теперь соответствуют единой структуре — шаблон готов для масштабирования на винные отели, спорт, авто, туризм.
+
 ✅ /drone-hotels-tourism: verified stats + удаление Batumi из schema (17.04.2026)
 - **Файл:** `app/drone-hotels-tourism/page.tsx`
 - **Что обновлено:**
