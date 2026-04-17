@@ -18,7 +18,7 @@ export function HeroSection() {
     const scale = useTransform(scrollYProgress, [0, 0.4, 1], [1, 0.25, 0.25]);
 
     // Animate straight up until it goes out of screen
-    const yTranslate = useTransform(scrollYProgress, [0, 0.4, 1], ["65vh", "-60vh", "-60vh"]);
+    const yTranslate = useTransform(scrollYProgress, [0, 0.4, 1], ["70vh", "-60vh", "-60vh"]);
 
     // Fade out original opacity ONLY for the scroll indicator down arrow
     const indicatorOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
@@ -27,11 +27,11 @@ export function HeroSection() {
         <DebugWrapper id={11} label="Hero Section">
             <section ref={containerRef} className="relative w-full h-[100vh] overflow-x-clip">
                 {/* Kinetic Text anchored perfectly under the header, translating to become the logo */}
-                <DebugWrapper id={13} label="Kinetic Typography" className="fixed w-full flex justify-center z-[70] pointer-events-none top-[64px] left-0 md:mt-0">
-                    <motion.h1
+                <DebugWrapper id={13} label="Kinetic Typography" className="fixed top-[64px] left-0 z-[70] flex w-full justify-center pointer-events-none">
+                    <motion.div
                         style={{ scale, y: yTranslate, transformOrigin: 'top center' }}
-                        className="text-[12vw] sm:text-[14vw] font-black leading-none tracking-[0.2em] md:tracking-[0.4em] lg:tracking-[0.5em] uppercase whitespace-nowrap font-sans text-white drop-shadow-md"
-                        aria-label="Breus Media"
+                        className="text-[11vw] font-black leading-none tracking-[0.04em] md:tracking-[0.18em] lg:tracking-[0.22em] uppercase whitespace-nowrap font-sans text-white drop-shadow-md"
+                        aria-hidden="true"
                     >
                         {TITLE_CHARS.map((char, i) => (
                             <motion.span
@@ -51,7 +51,7 @@ export function HeroSection() {
                                 {char === " " ? "\u00A0" : char}
                             </motion.span>
                         ))}
-                    </motion.h1>
+                    </motion.div>
                 </DebugWrapper>
 
                 <div className="sticky top-0 w-full h-screen overflow-hidden flex items-end justify-center bg-zinc-950">
@@ -70,29 +70,37 @@ export function HeroSection() {
                             <source src="/media/hero/video/breus-hero-demo.mp4" type="video/mp4" />
                             {/* Fallback: shows poster (black bg) if file is missing — no layout break */}
                         </video>
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                        {/* Bottom-to-top darkening for BREUS MEDIA readability */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+                        {/* Top darkening for H1/subtitle readability */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-transparent to-transparent" />
                     </DebugWrapper>
 
-                    {/* SEO Content Block — upper half of screen, fades on scroll */}
+                    {/* SEO Content Block — centered, fades on scroll */}
                     <motion.div
                         style={{ opacity: indicatorOpacity }}
-                        className="absolute top-[15%] left-0 w-full flex flex-col items-center text-center px-6 z-10 pointer-events-none"
+                        className="absolute top-[12%] left-0 w-full flex flex-col items-center text-center px-5 z-10 md:top-[14%]"
                     >
-                        <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white mb-3 leading-tight drop-shadow-2xl max-w-3xl md:max-w-4xl mx-auto">
-                            Агентство визуального продакшена <br className="hidden sm:block" />
-                            и <span className="text-[#D4AF37]">AI-контента</span> в Тбилиси
+                        {/* H1 — extrabold, -0.02em, clamp */}
+                        <h1 className="mx-auto mb-[clamp(12px,2.5vw,22px)] max-w-[15ch] text-[clamp(1.5rem,7vw,4.5rem)] font-extrabold uppercase leading-[1.08] tracking-[-0.02em] text-[#F5F4F0] [text-shadow:0_2px_24px_rgba(0,0,0,0.9)] md:max-w-[22ch]">
+                            Агентство визуального продакшена и <span className="text-[#C9A84C]">AI-контента</span> в Тбилиси
                         </h1>
-                        <p className="text-xs md:text-sm text-white/60 font-medium mb-6 max-w-xl leading-relaxed">
-                            Видео, аэросъёмка, 360-туры и AI-контент для недвижимости,
-                            отелей, ресторанов и брендов по всей Грузии
+
+                        {/* Разделитель */}
+                        <div className="w-10 h-px bg-[#C9A84C]/40 mb-[clamp(10px,2vw,18px)]" />
+
+                        {/* H2 — semibold, двустрочный тезис */}
+                        <p className="mb-[clamp(10px,2.5vw,20px)] max-w-[26ch] text-[clamp(1rem,4vw,1.75rem)] font-semibold leading-[1.3] tracking-[-0.01em] text-[#F5F4F0] [text-shadow:0_1px_12px_rgba(0,0,0,0.95)] md:max-w-none">
+                            Снимаем бизнес с земли и с воздуха.<br />
+                            Монтируем, упаковываем, добавляем AI.
                         </p>
-                        <motion.a
-                            href="#contact"
-                            whileHover={{ scale: 1.05 }}
-                            className="pointer-events-auto bg-white text-black font-black uppercase tracking-widest px-6 py-3 text-xs hover:bg-[#D4AF37] transition-colors shadow-2xl"
-                        >
-                            Обсудить проект
-                        </motion.a>
+
+                        {/* Body — 400 weight, #C8C7C2, 1.65 line-height */}
+                        <p className="mb-[clamp(12px,3vw,24px)] max-w-[32ch] text-[clamp(0.875rem,2.5vw,1.125rem)] font-normal leading-[1.65] text-[#C8C7C2] [text-shadow:0_1px_10px_rgba(0,0,0,0.9)] md:max-w-[48ch]">
+                            От рекламной кампании и ведения соцсетей —<br className="hidden sm:block" /> до мониторинга стройки и инвестиционного пакета.
+                        </p>
+
+
                     </motion.div>
 
                     {/* Scroll Down Indicator */}

@@ -29,8 +29,8 @@ const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; 
                     }
                 }}
                 className={`inline-flex items-center leading-none shrink-0 cursor-pointer font-bold uppercase text-[#D4AF37]/70 hover:text-white transition-colors whitespace-nowrap ${compact
-                    ? "px-2 text-[8px] tracking-[0.12em]"
-                    : "px-4 md:px-8 text-xs md:text-sm tracking-widest"}`}
+                    ? "px-3 text-[15px] tracking-[0.12em]"
+                    : "px-6 md:px-10 text-sm md:text-base tracking-widest"}`}
             >
                 {text}
             </span>
@@ -47,7 +47,7 @@ const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId, comp
             <div className={`pointer-events-none absolute right-0 top-0 z-10 h-full bg-gradient-to-l from-zinc-950 to-transparent ${compact ? "w-8" : "w-12"}`} />
 
             <motion.div
-                className={`flex items-center ${compact ? "py-0.5 min-h-[18px]" : "py-3.5"}`}
+                className={`flex items-center ${compact ? "py-2 min-h-[36px]" : "py-3"}`}
                 animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
                 transition={{ repeat: Infinity, ease: "linear", duration: speed }}
             >
@@ -77,13 +77,14 @@ export function MarqueeSection() {
             : null
     ) : null;
 
-    const line1 = [
-        { text: "НЕДВИЖИМОСТЬ", link: "/real-estate-service" },
-        "АВТОБИЗНЕС", "ОТЕЛИ", "РЕСТОРАНЫ", "ТУРИЗМ", "КЛИНИКИ", "IT"
-    ];
     const line2 = [
+        { text: "НЕДВИЖИМОСТЬ", link: "/real-estate-service" },
+        { text: "ОТЕЛИ", link: "/hotels-service" },
+        "РЕСТОРАНЫ", "ТУРИЗМ", "КЛИНИКИ", "IT",
         { text: "Аэросъемка", link: "/drone-service" },
-        { text: "360° Туры", link: "/360-tours-service" }, "Промо Видео", "Мероприятия", "AI Content", "Reels"
+        { text: "360° Туры", link: "/360-tours-service" },
+        { text: "Reels", link: "/reels-service" },
+        { text: "AI Content", link: "/ai-visualization-service" },
     ];
 
     const { scrollY } = useScroll();
@@ -181,12 +182,8 @@ export function MarqueeSection() {
                 >
                     {/* INTERACTIVE TICKERS */}
                     <div className="relative z-[50] w-full">
-                        <DebugWrapper id={208} label="Running Text Line 1">
-                            <InteractiveTicker items={line1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
-                        </DebugWrapper>
-                        <div className="h-[1px] bg-white/10 w-full" />
-                        <DebugWrapper id={209} label="Running Text Line 2">
-                            <InteractiveTicker items={line2} direction="right" speed={70} baseId={2090} compact={isMobileCompactTop} />
+                        <DebugWrapper id={209} label="Running Text Universal">
+                            <InteractiveTicker items={line2} direction="left" speed={60} baseId={2090} compact={isMobileCompactTop} />
                         </DebugWrapper>
                     </div>
                 </motion.div>

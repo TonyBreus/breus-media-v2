@@ -38,14 +38,17 @@ export const gazetaDetailRoutes = {
 } as const;
 
 export const gazetaNicheLandingRoutes: Record<string, string> = {
-    "00": gazetaDetailRoutes.droneService,
-    "01": "/real-estate-service",
-    "02": "/hotels-service",
-    "03": "/restaurants-service",
-    "04": "/auto-service",
-    "05": "/tourism-service",
-    "06": "/clinics-service",
-    "07": gazetaDetailRoutes.it,
+    "02": gazetaDetailRoutes.droneService,
+    "03": "/360-tours-service",
+    "04": "/reels-service",
+    "05": "/ai-visualization-service",
+    "06": "/real-estate-service",
+    "07": "/hotels-service",
+    "08": "/restaurants-service",
+    "09": "/auto-service",
+    "10": "/tourism-service",
+    "11": "/clinics-service",
+    "12": gazetaDetailRoutes.it,
 };
 
 export const gazetaIndustryNavItems: GazetaNavItem[] = [
@@ -196,7 +199,7 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             { title: "Видео для врача / направления", price: "Expert Video · от 400 ₾", primaryHref: "/promo-video/promo-doctor" },
             { title: "Съёмка интерьера и кабинетов", price: "Photo + Video · от 450 ₾", primaryHref: "/promo-video/clinic-interior" },
             { title: "Reels для клиники", price: "Reels · от 450 ₾", primaryHref: "/reels-promo/reels-clinic" },
-            { title: "360° тур для клиник", price: "360° · от 500 ₾", primaryHref: "/360-tour-clinics" },
+            { title: "360° туры для клиник", price: "360° · от 500 ₾", primaryHref: "/360-tour-clinics" },
         ],
     },
     it: {
@@ -209,7 +212,6 @@ export const gazetaCategoryPagesBySlug: Record<string, GazetaCategoryPage> = {
             "Employer-branding и team content",
             "AI-контент для LinkedIn и launch-кампаний",
         ],
-        allServicesHref: "/gazeta#contact",
         services: [
             { title: "Имиджевое видео бизнеса", price: "Brand Video · от 300 ₾" },
             { title: "Контент для сайта и рекламы", price: "Performance Pack · от 450 ₾" },
