@@ -7,7 +7,7 @@ type DroneStickyCtaProps = {
     label?: string;
 };
 
-export function DroneStickyCta({ heroId = 'drone-restaurants-hero', label = 'Обсудить проект' }: DroneStickyCtaProps) {
+export function DroneStickyCta({ heroId = 'drone-restaurants-hero', label = 'Обсудить задачу' }: DroneStickyCtaProps) {
     const [isVisible, setIsVisible] = useState(false);
     const rafIdRef = useRef<number | null>(null);
     const tickingRef = useRef(false);

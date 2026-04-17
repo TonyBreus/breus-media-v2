@@ -206,8 +206,8 @@ const processSteps: ProcessStep[] = [
     },
     {
         step: 'Шаг 2',
-        title: 'Осмотр места',
-        text: 'Приезжаем на место, смотрим откуда лучше снимать, проверяем свет и безопасность полёта.',
+        title: 'Подготовка',
+        text: 'Согласовываем маршрут, время съёмки и особенности локации. Для горных или нестандартных зон — проверяем разрешения заранее.',
     },
     {
         step: 'Шаг 3',
@@ -793,6 +793,8 @@ export default function DroneRestaurantsPage() {
                 transparent={true}
                 isLanding={false}
                 ctaHref="#contact"
+                ctaLabel="Обсудить задачу"
+                singleTickerMode={true}
                 languageLinks={{
                     RU: '/drone-services/drone-restaurants',
                     EN: '/drone-services/drone-restaurants/en',
@@ -861,7 +863,7 @@ export default function DroneRestaurantsPage() {
                                     href="#contact"
                                     className="inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
                                 >
-                                    Обсудить проект
+                                    Обсудить задачу
                                 </a>
                                 <a
                                     href="#pricing"
@@ -1087,7 +1089,7 @@ export default function DroneRestaurantsPage() {
                                 href="#contact"
                                 className="inline-flex items-center justify-center rounded-[10px] bg-[#D4A017] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
                             >
-                                Обсудить проект
+                                Обсудить задачу
                             </a>
                             <a
                                 href="#pricing"
@@ -1610,7 +1612,7 @@ export default function DroneRestaurantsPage() {
                             href="#contact"
                             className="mt-8 inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
                         >
-                            Обсудить проект
+                            Обсудить задачу
                         </a>
                     </div>
                 </div>
@@ -1625,7 +1627,7 @@ export default function DroneRestaurantsPage() {
                     <div className="mx-auto max-w-5xl rounded-[24px] border border-[#FFD23F]/25 bg-gradient-to-br from-[#151515] via-[#111111] to-[#0c0c0c] p-6 md:p-8 lg:p-10">
                         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
                             <div>
-                                <h2 className="text-3xl font-bold text-white md:text-4xl">Обсудить проект</h2>
+                                <h2 className="text-3xl font-bold text-white md:text-4xl">Обсудить задачу</h2>
                                 <p className="mt-4 max-w-xl leading-relaxed text-white/72">
                                     Расскажите о заведении — скажем, какой формат подойдёт и в какой бюджет это
                                     укладывается.
