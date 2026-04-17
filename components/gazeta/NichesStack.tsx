@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { DebugWrapper } from "../debug/DebugWrapper";
 import { motion, useScroll, useTransform, AnimatePresence, MotionValue } from "framer-motion";
-import { Send, MessageCircle, ArrowUpRight, ArrowDown, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Send, MessageCircle, ArrowDown, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, LayoutGrid, X, Instagram, Facebook, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { gazetaDetailRoutes, gazetaNicheLandingRoutes } from "@/constants/gazetaRoutes";
 import { l2DirectionConfigs } from "@/constants/l2DirectionConfigs";
@@ -30,16 +30,38 @@ const {
     tours360,
 } = gazetaDetailRoutes;
 
-const niches = [
+const introIndustries = [
+    { title: "Одежда и производство" },
+    { title: "Туризм и экскурсии" },
+    { title: "Аренда и прокат" },
+    { title: "Авто сервисы / детейлинг" },
+    { title: "Недвижимость в Таиланде" },
+    { title: "Отели и апартаменты" },
+    { title: "Retail и продуктовый контент" },
+    { title: "Фитнес и тренерство" },
+    { title: "Спорт-комплексы и теннис" },
+    { title: "Самолётные туры" },
+    { title: "Рыбалка и рыболовный туризм" },
+    { title: "Мототуры" },
+];
+
+const niches: NicheItem[] = [
     {
-        id: "00",
+        id: "01",
+        title: "Агентство",
+        isIntro: true,
+        img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80",
+    },
+    {
+        id: "02",
         title: "АЭРОСЪЁМКА",
         centerText: "АЭРОСЪЁМКА",
         img: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=1600&q=80",
         detailedContent: {
-            eyebrow: "Тбилиси • Батуми • Вся Грузия",
-            heading: "УСЛУГИ АЭРОСЪЁМКИ",
-            subheading: "Комплексные решения аэросъёмки для бизнеса и частных лиц. Тбилиси, Батуми и вся Грузия.",
+            eyebrow: "",
+            heading: "Аэросъёмка",
+            subheading: "Съёмка с дрона в Тбилиси и по Грузии",
+            introNote: "Облёты объектов, съёмка стройки, интерьеров с FPV-дрона и готовые ролики — под задачи бизнеса и частные проекты.",
             services: [
                 {
                     title: "Недвижимость",
@@ -128,33 +150,73 @@ const niches = [
         }
     },
     {
-        id: "01",
+        id: "03",
+        title: "360° ТУРЫ",
+        centerText: "360° ТУРЫ",
+        img: "https://images.unsplash.com/photo-1494526585095-c41746248156?w=1600&q=80",
+        detailedContent: {
+            eyebrow: "",
+            heading: "360° туры",
+            subheading: "Виртуальные 360° туры по Грузии",
+            introNote: "Интерактивные туры, в которых зритель заходит внутрь и осматривается — для отелей, ресторанов, офисов, квартир и открытых локаций.",
+            services: []
+        }
+    },
+    {
+        id: "04",
+        title: "REELS",
+        centerText: "REELS",
+        img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1600&q=80",
+        detailedContent: {
+            heading: "Reels",
+            subheading: "Вертикальные видео для соцсетей",
+            introNote: "Ролики до 60 секунд под нишу и задачу — для брендов, заведений и объектов в Тбилиси и по Грузии.",
+            services: []
+        }
+    },
+    {
+        id: "05",
+        title: "AI КОНТЕНТ",
+        centerText: "AI КОНТЕНТ",
+        img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1600&q=80",
+        detailedContent: {
+            eyebrow: "",
+            heading: "AI-контент",
+            subheading: "AI-визуализация для бизнеса в Грузии",
+            introNote: "Генерация интерьеров, фасадов, товаров и концепций — когда нужно показать то, что ещё не построено, не снято или существует только в идее.",
+            services: []
+        }
+    },
+    {
+        id: "06",
         title: "Недвижимость",
         img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80",
         detailedContent: {
-            heading: "НЕДВИЖИМОСТЬ",
-            subheading: "Аэросъёмка, 360-туры и видео для риелторов и застройщиков — объекты с видео продаются на 68% быстрее",
+            heading: "Недвижимость",
+            subheading: "Видео для недвижимости в Тбилиси и Грузии",
+            introNote: "Аэросъёмка, 360° туры и ролики для риелторов и застройщиков — объекты с видео получают больше просмотров и быстрее выходят на показ.",
             services: [
                 { title: "Видео для риелторов", desc: "Съёмка квартиры или дома: интерьер, экстерьер, район. Монтаж за 3–5 дней. От 400 GEL", link: "/drone-real-estate" },
                 { title: "Видео для застройщиков", desc: "Презентационные ролики ЖК, рендеры и реальная съёмка для продаж и инвесторов", link: "/drone-real-estate" },
                 { title: "Аэросъёмка объектов", desc: "DJI Air 3S, 4K. Облёт фасада, территории и района. 94% больше просмотров объявления", link: "/drone-real-estate" },
-                { title: "360° виртуальные туры", desc: "Интерактивный тур по объекту. Загрузка на SS.ge, MyHome.ge и ваш сайт", link: "/360-tour-real-estate" },
+                { title: "360° виртуальные туры", eyebrow: "Риэлтор · Застройщик · Агент", desc: "Покажите объект инвестору до выезда. Виртуальный тур заменяет первичный осмотр и приводит на встречу уже заинтересованного покупателя.", meta: "Показ · Планировка · Конверсия", link: "/360-tour-real-estate" },
                 { title: "Мониторинг стройки", desc: "Ежемесячные дрон-облёты с GPS-привязкой и PDF-отчётом для банков и инвесторов", link: "/drone-construction-monitoring" },
                 { title: "AI-упаковка объявлений", desc: "Улучшение фото, описания для порталов, Reels для соцсетей агентства", link: "/ai-visual/ai-real-estate" }
             ]
         }
     },
     {
-        id: "02",
+        id: "07",
         title: "Отели",
         img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80",
         detailedContent: {
-            heading: "ОТЕЛИ",
-            subheading: "Видеотуры, аэросъёмка и Reels для отелей Грузии — гости бронируют там, где видят атмосферу",
+            heading: "Отели",
+            subheading: "Съёмка для отелей и гостевых домов Грузии",
+            introNote: "Видеотуры, аэросъёмка и Reels — гость бронирует там, где видит номер, территорию и атмосферу, а не только цену.",
             services: [
                 { title: "Видеотур по отелю", desc: "Номера, ресторан, бассейн, вид — cinematic видео 2–4 мин для сайта и Booking", link: "/drone-hotels-tourism" },
                 { title: "Аэросъёмка территории", desc: "Дрон над отелем, парком и побережьем. Показывает локацию лучше любых слов", link: "/drone-hotels-tourism" },
-                { title: "360° тур по номерам", desc: "Виртуальный тур который можно встроить на сайт, Booking и Google Maps", link: "/360-tour-hotels" },
+                { title: "360° туры для отелей", desc: "Виртуальный тур который можно встроить на сайт, Booking и Google Maps", link: "/360-tour-hotels" },
                 { title: "Reels и сезонный контент", desc: "Ежемесячный контент-пакет: 8–12 вертикальных видео под Instagram и TikTok", link: "/reels-promo/reels-hotel" },
                 { title: "SMM для отеля", desc: "Ведение Instagram и TikTok — контент-план, съёмка, монтаж, коммуникация", link: "/drone-hotels-tourism" },
                 { title: "AI-перевод и локализация", desc: "Описания номеров и постов на 3–5 языках через AI — для иностранных гостей", link: "/ai-content/hotel-ai-descriptions" }
@@ -162,12 +224,13 @@ const niches = [
         }
     },
     {
-        id: "03",
+        id: "08",
         title: "Рестораны",
         img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80",
         detailedContent: {
-            heading: "РЕСТОРАНЫ",
-            subheading: "Reels, фуд-видео и брендовый контент для ресторанов — гости идут туда, где видят атмосферу и еду",
+            heading: "Рестораны",
+            subheading: "Видео для ресторанов и кафе Тбилиси",
+            introNote: "Reels, фуд-съёмка и брендовое видео для ресторанов, кафе и баров — люди приходят туда, где видят еду, свет и настроение.",
             services: [
                 { title: "Фуд-видео и фото", desc: "Съёмка блюд, подачи и процесса приготовления. Для меню, сайта и соцсетей", link: "/drone-services/drone-restaurants" },
                 { title: "Атмосферный ролик", desc: "Видео 60–90 сек: интерьер, команда, гости, кухня. Для Instagram и Google Maps", link: "/drone-services/drone-restaurants" },
@@ -179,12 +242,13 @@ const niches = [
         }
     },
     {
-        id: "04",
+        id: "09",
         title: "Авто бизнес",
         img: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80",
         detailedContent: {
-            heading: "АВТО БИЗНЕС",
-            subheading: "Видеосъёмка автосалонов, дроны для стоянок и AI-контент — покупатели выбирают авто глазами",
+            heading: "Авто",
+            subheading: "Съёмка для автосалонов и автобизнеса в Грузии",
+            introNote: "Видео, аэросъёмка и AI-визуал для автосалонов, стоянок и сервисов — машину выбирают глазами, карточка с видео работает лучше фото.",
             services: [
                 { title: "Обзорное видео автомобиля", desc: "Внешний вид, интерьер, динамика — видео 60–90 сек для продаж и соцсетей", link: "/drone-services/drone-auto" },
                 { title: "Аэросъёмка дилерского центра", desc: "Дрон над салоном и стоянкой — масштаб и статус для рекламы и сайта", link: "/drone-services/drone-auto" },
@@ -196,12 +260,13 @@ const niches = [
         }
     },
     {
-        id: "05",
+        id: "10",
         title: "Туризм",
         img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80",
         detailedContent: {
-            heading: "ТУРИЗМ",
-            subheading: "Аэросъёмка и видеогиды по Грузии — для турагентств, гидов и локаций по всей стране",
+            heading: "Туризм",
+            subheading: "Видео для туризма и локаций Грузии",
+            introNote: "Аэросъёмка маршрутов, видеогиды и ролики локаций — для турагентств, гидов и операторов, работающих по стране.",
             services: [
                 { title: "Аэросъёмка локаций", desc: "Горы, побережье, города — cinematic дрон-видео для туристических маршрутов", link: "/drone-hotels-tourism" },
                 { title: "Видеогид по маршруту", desc: "Документальный ролик 3–7 мин о туре или направлении. Для YouTube и сайта", link: "/reels-promo/reels-tourism" },
@@ -213,12 +278,13 @@ const niches = [
         }
     },
     {
-        id: "06",
+        id: "11",
         title: "Клиники",
         img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600&q=80",
         detailedContent: {
-            heading: "КЛИНИКИ",
-            subheading: "Видео и AI-контент для медицинских центров — пациент выбирает клинику до первого звонка",
+            heading: "Клиники",
+            subheading: "Съёмка для клиник и бьюти-центров Тбилиси",
+            introNote: "Видеовизитки, 360° туры и ролики для медицинских и бьюти-центров — пациент выбирает клинику по тому, как она выглядит, ещё до первого звонка.",
             services: [
                 {
                     title: "Имиджевое видео клиники",
@@ -230,7 +296,7 @@ const niches = [
                     primaryCtaLabel: "Открыть услугу",
                 },
                 {
-                    title: "360° тур для клиник",
+                    title: "360° туры для клиник",
                     desc: "Интерактивная презентация пространства клиники для снижения тревожности до визита.",
                     link: "/360-tour-clinics",
                 },
@@ -245,11 +311,6 @@ const niches = [
                     link: "/reels-promo/reels-clinic",
                 },
                 {
-                    title: "AI-упаковка контента",
-                    desc: "Описания, тексты и адаптация под digital-каналы.",
-                    link: "/clinics-service#service-ai-upakovka-kontenta",
-                },
-                {
                     title: "Видео для врача / направления",
                     desc: "Подходит для презентации специалиста и услуг.",
                     link: "/promo-video/promo-doctor",
@@ -258,18 +319,19 @@ const niches = [
         }
     },
     {
-        id: "07",
+        id: "12",
         title: "IT",
         img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80",
         detailedContent: {
             heading: "IT",
-            subheading: "Продакшн видео, кейс-стади и AI-визуал для IT-компаний и стартапов в Грузии",
+            subheading: "Видео для IT-компаний и личных брендов Грузии",
+            introNote: "Продакшн, кейсы и AI-визуал для IT, стартапов и фаундеров — от продуктовых роликов до съёмки команды и офиса.",
             services: [
                 { title: "Продуктовое видео", desc: "Демо-ролик продукта или приложения — для инвесторов, сайта и App Store", link: "/promo-video-service" },
                 { title: "Кейс-стади в видео", desc: "История клиента до/после внедрения вашего продукта. Лучший B2B-контент", link: "#contact" },
                 { title: "Видео для инвесторов", desc: "Pitch-видео стартапа: команда, продукт, рынок. 60–120 сек", link: "/promo-video-service" },
                 { title: "AI-контент для LinkedIn и X", desc: "Регулярный контент: новости компании, мнения экспертов, продуктовые обновления", link: "/ai-visual/ai-brand" },
-                { title: "Корпоративная съёмка", desc: "Команда, офис, культура компании — для найма, PR и партнёрств", link: "#contact" },
+                { title: "Корпоративная съёмка", desc: "Команда, офис, культура компании — для найма, PR и партрнёрств", link: "#contact" },
                 { title: "Reels для IT-бренда", desc: "Короткие видео о продукте, команде и технологиях для Instagram и TikTok", link: "/reels-promo/reels-business" }
             ]
         }
@@ -282,14 +344,88 @@ type StackStepNavItem = {
 };
 
 const stackStepNavItems: StackStepNavItem[] = [
-    ...niches.map((niche) => ({ id: niche.id, title: niche.title })),
-    { id: "09", title: "Частые вопросы" },
-    { id: "10", title: "Форма связи" },
+    { id: "01", title: "Агентство" },
+    ...niches.filter(niche => niche.id !== "01").map((niche) => ({ id: niche.id, title: niche.title })),
+    { id: "13", title: "Частые вопросы" },
+    { id: "14", title: "Форма связи" },
 ];
 
-const DEFAULT_STICKY_TOP_PX = 184;
-const PORTRAIT_STICKY_TOP_PX = 104;
-const LANDSCAPE_STICKY_TOP_PX = 84;
+const StackSectionHeader = ({
+    activeStepIndex,
+    sectionHeaderClassName,
+    onNavigateToStep,
+}: {
+    activeStepIndex: number;
+    sectionHeaderClassName: string;
+    onNavigateToStep: (index: number) => void;
+}) => {
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const activeItemRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const container = scrollContainerRef.current;
+        const activeEl = activeItemRef.current;
+        if (container && activeEl) {
+            const containerHalfWidth = container.clientWidth / 2;
+            const itemHalfWidth = activeEl.clientWidth / 2;
+            const targetScrollLeft = activeEl.offsetLeft - containerHalfWidth + itemHalfWidth;
+            container.scrollTo({ left: Math.max(0, targetScrollLeft), behavior: 'smooth' });
+        }
+    }, [activeStepIndex]);
+
+    const sectionHeaderIndexClassName = "text-[#D4AF37] font-bold mr-1 md:mr-2";
+
+    return (
+        <div 
+            ref={scrollContainerRef}
+            className={`shrink-0 ${sectionHeaderClassName} overflow-x-auto whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
+        >
+            <div className="flex items-center gap-2 md:gap-[14px]">
+                {stackStepNavItems.map((step, stepIdx) => {
+                    const isActive = stepIdx === activeStepIndex;
+                    const isClickable = !isActive;
+                    
+                    const content = (
+                        <>
+                            <span className={isActive ? sectionHeaderIndexClassName : "text-[#D4AF37]/50 mr-1 md:mr-2 transition-colors group-hover:text-[#D4AF37]"}>{step.id}</span>
+                            <span>{step.title}</span>
+                        </>
+                    );
+
+                    const navItem = isClickable ? (
+                        <button
+                            type="button"
+                            onClick={() => onNavigateToStep(stepIdx)}
+                            className="min-w-0 flex items-center text-white/50 hover:text-white transition-colors cursor-pointer group"
+                        >
+                            {content}
+                        </button>
+                    ) : (
+                        <div
+                            ref={activeItemRef}
+                            className="min-w-0 flex items-center text-[#D4AF37]"
+                        >
+                            {content}
+                        </div>
+                    );
+
+                    return (
+                        <React.Fragment key={step.id}>
+                            {navItem}
+                            {stepIdx < stackStepNavItems.length - 1 && (
+                                <span className="text-[#D4AF37]/30 text-[10px] md:text-[12px] select-none font-bold" aria-hidden="true">·</span>
+                            )}
+                        </React.Fragment>
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
+
+const DEFAULT_STICKY_TOP_PX = 70;   // SmartHeader compact 70px
+const PORTRAIT_STICKY_TOP_PX = 52; // SmartHeader compact 52px
+const LANDSCAPE_STICKY_TOP_PX = 56; // SmartHeader compact 56px
 const PORTRAIT_STACK_PREVIEW_PX = 28;
 const LANDSCAPE_STACK_PREVIEW_PX = 22;
 
@@ -327,6 +463,7 @@ type NicheItem = {
     centerText?: string;
     img: string;
     detailedContent?: DetailedContent;
+    isIntro?: boolean;
 };
 
 type StackCardProps = {
@@ -339,16 +476,158 @@ type StackCardProps = {
     isMobileLandscape: boolean;
     isMobilePortrait: boolean;
     onNavigateToStep: (targetIndex: number) => void;
+    activeStepIndex: number;
+};
+
+type CanonicalCardCopy = {
+    category: string;
+    description: string;
+    price: string;
+    eyebrow: string;
+    meta: string;
+};
+
+const normalizeCardTitle = (value?: string) =>
+    (value ?? "")
+        .toLowerCase()
+        .replace(/ё/g, "е")
+        .replace(/\s+/g, " ")
+        .trim();
+
+const canonical360ByTitle = new Map<string, CanonicalCardCopy>(
+    l2DirectionConfigs.tours360Service.data.services.map((service) => [
+        normalizeCardTitle(service.title),
+        {
+            category: service.category,
+            description: service.description,
+            price: service.price,
+            eyebrow: service.category,
+            meta: service.price,
+        },
+    ])
+);
+
+const canonicalReelsByTitle = new Map<string, CanonicalCardCopy>(
+    l2DirectionConfigs.reelsService.data.services.map((service) => [
+        normalizeCardTitle(service.title),
+        {
+            category: service.category,
+            description: service.description,
+            price: service.price,
+            eyebrow: service.category,
+            meta: service.price,
+        },
+    ])
+);
+
+const canonicalReelsByHref = new Map<string, CanonicalCardCopy>(
+    l2DirectionConfigs.reelsService.data.services
+        .filter((service) => Boolean(service.primaryHref))
+        .map((service) => [
+            service.primaryHref!,
+            {
+                category: service.category,
+                description: service.description,
+                price: service.price,
+                eyebrow: service.category,
+                meta: service.price,
+            },
+        ])
+);
+
+const canonicalAiByTitle = new Map<string, CanonicalCardCopy>(
+    l2DirectionConfigs.aiVisualizationService.data.services.map((service) => [
+        normalizeCardTitle(service.title),
+        {
+            category: service.category,
+            description: service.description,
+            price: service.price,
+            eyebrow: service.category,
+            meta: service.price,
+        },
+    ])
+);
+
+const canonicalAiByHref = new Map<string, CanonicalCardCopy>(
+    l2DirectionConfigs.aiVisualizationService.data.services
+        .filter((service) => Boolean(service.primaryHref))
+        .map((service) => [
+            service.primaryHref!,
+            {
+                category: service.category,
+                description: service.description,
+                price: service.price,
+                eyebrow: service.category,
+                meta: service.price,
+            },
+        ])
+);
+
+const canonicalAerialByTitle = new Map<string, CanonicalCardCopy>(
+    droneServiceItems.map((service) => [
+        normalizeCardTitle(service.title),
+        {
+            category: service.category,
+            description: service.description,
+            price: service.price,
+            eyebrow: service.category,
+            meta: service.price,
+        },
+    ])
+);
+
+const canonicalAerialByHref = new Map<string, CanonicalCardCopy>(
+    droneServiceItems
+        .filter((service) => Boolean(service.primaryHref))
+        .map((service) => [
+            service.primaryHref!,
+            {
+                category: service.category,
+                description: service.description,
+                price: service.price,
+                eyebrow: service.category,
+                meta: service.price,
+            },
+        ])
+);
+
+const getCanonicalCopy = (title?: string) => {
+    const normalizedTitle = normalizeCardTitle(title);
+    return (
+        canonical360ByTitle.get(normalizedTitle) ??
+        canonicalReelsByTitle.get(normalizedTitle) ??
+        canonicalAiByTitle.get(normalizedTitle) ??
+        canonicalAerialByTitle.get(normalizedTitle)
+    );
+};
+
+const getCanonicalCopyWithHref = (title?: string, href?: string) => {
+    if (href && canonicalReelsByHref.has(href)) {
+        return canonicalReelsByHref.get(href);
+    }
+    if (href && canonicalAiByHref.has(href)) {
+        return canonicalAiByHref.get(href);
+    }
+    if (href && canonicalAerialByHref.has(href)) {
+        return canonicalAerialByHref.get(href);
+    }
+    return getCanonicalCopy(title);
 };
 
 const toStackServiceFromL2 = (service: L2ServiceItem, fallbackLink: string): ServiceItem => ({
+    ...(getCanonicalCopyWithHref(service.title, service.primaryHref)
+        ? {
+              eyebrow: getCanonicalCopyWithHref(service.title, service.primaryHref)!.eyebrow,
+              meta: getCanonicalCopyWithHref(service.title, service.primaryHref)!.meta,
+          }
+        : {}),
     slug: service.slug,
     title: service.title,
-    desc: service.description,
+    desc: getCanonicalCopyWithHref(service.title, service.primaryHref)?.description ?? service.description,
     link: service.primaryHref ?? fallbackLink,
     img: service.image,
-    category: service.category,
-    price: service.price,
+    category: getCanonicalCopyWithHref(service.title, service.primaryHref)?.category ?? service.category,
+    price: getCanonicalCopyWithHref(service.title, service.primaryHref)?.price ?? service.price,
     primaryCtaLabel: service.primaryCtaLabel,
     cta: service.primaryCtaLabel,
     tag: service.tag,
@@ -361,41 +640,52 @@ const toStackServiceFromDrone = (service: DroneServiceItem): ServiceItem => ({
     desc: service.description,
     link: service.primaryHref,
     img: service.image,
-    category: service.category,
-    price: service.price,
+    category: getCanonicalCopyWithHref(service.title, service.primaryHref)?.category ?? service.category,
+    price: getCanonicalCopyWithHref(service.title, service.primaryHref)?.price ?? service.price,
     primaryCtaLabel: service.primaryCtaLabel,
     cta: service.primaryCtaLabel,
+    eyebrow: getCanonicalCopyWithHref(service.title, service.primaryHref)?.eyebrow,
+    meta: getCanonicalCopyWithHref(service.title, service.primaryHref)?.meta,
     tag: service.tag,
     featured: service.featured,
 });
 
 const toStackServiceFromRealEstate = (service: RealEstateServiceItem): ServiceItem => ({
+    ...(getCanonicalCopyWithHref(service.title, service.primaryHref)
+        ? {
+              eyebrow: getCanonicalCopyWithHref(service.title, service.primaryHref)!.eyebrow,
+              meta: getCanonicalCopyWithHref(service.title, service.primaryHref)!.meta,
+          }
+        : {}),
     slug: service.slug,
     title: service.title,
-    desc: service.description,
+    desc: getCanonicalCopyWithHref(service.title, service.primaryHref)?.description ?? service.description,
     link: service.primaryHref ?? "/real-estate-service",
     img: service.image,
-    category: service.category,
-    price: service.price,
+    category: getCanonicalCopyWithHref(service.title, service.primaryHref)?.category ?? service.category,
+    price: getCanonicalCopyWithHref(service.title, service.primaryHref)?.price ?? service.price,
     primaryCtaLabel: service.primaryCtaLabel,
     cta: service.primaryCtaLabel,
     tag: service.tag,
     featured: service.featured,
 });
-
 const l2NicheToConfigKey: Partial<Record<string, keyof typeof l2DirectionConfigs>> = {
-    "02": "hotelsService",
-    "03": "restaurantsService",
-    "04": "autoService",
-    "05": "tourismService",
-    "06": "clinicsService",
+    "03": "tours360Service",
+    "04": "reelsService",
+    "05": "aiVisualizationService",
+    "07": "hotelsService",
+    "08": "restaurantsService",
+    "09": "autoService",
+    "10": "tourismService",
+    "11": "clinicsService",
+    "12": "businessService",
 };
 
 const canonicalServicesByNicheId: Partial<Record<string, ServiceItem[]>> = {
-    "00": [...droneServiceItems]
+    "02": [...droneServiceItems]
         .sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id))
         .map(toStackServiceFromDrone),
-    "01": [...realEstateServiceItems]
+    "06": [...realEstateServiceItems]
         .sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id))
         .map(toStackServiceFromRealEstate),
 };
@@ -438,12 +728,12 @@ const MaybeDebugWrapper = ({
 const buildAllServicesCard = (niche: NicheItem): ServiceItem | null => {
     const link = gazetaNicheLandingRoutes[niche.id];
 
-    if (!link) {
+    if (!link || niche.id === "12") {
         return null;
     }
 
-    const isAerialNiche = niche.id === "00";
-    const isRealEstateNiche = niche.id === "01";
+    const isAerialNiche = niche.id === "02";
+    const isRealEstateNiche = niche.id === "06";
     const defaultDesc = `Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «${niche.title}».`;
 
     return {
@@ -596,23 +886,36 @@ const clampLinesStyle = (lines: number): React.CSSProperties => ({
     overflow: "hidden",
 });
 
-const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeight, isMobileLandscape, isMobilePortrait, onNavigateToStep }: StackCardProps) => {
+const chunkItems = <T,>(items: T[], size: number): T[][] => {
+    if (size <= 0) return [items];
+
+    const chunks: T[][] = [];
+    for (let i = 0; i < items.length; i += size) {
+        chunks.push(items.slice(i, i + size));
+    }
+    return chunks;
+};
+
+const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeight, isMobileLandscape, isMobilePortrait, onNavigateToStep, activeStepIndex }: StackCardProps) => {
     const contentScrollRef = useRef<HTMLDivElement | null>(null);
     const servicesRailRef = useRef<HTMLDivElement | null>(null);
+    const servicesCardsContainerRef = useRef<HTMLDivElement | null>(null);
     const lastTouchYRef = useRef<number | null>(null);
     const [innerScrollProgress, setInnerScrollProgress] = useState(0);
     const [isPhoneViewport, setIsPhoneViewport] = useState(false);
-    const isAerialScreen = niche.id === "00";
-    const isAerialCompactScreen = niche.id === "00";
-    const isRealEstateScreen = niche.id === "01";
-    const isCompactNicheScreen = niche.id !== "00";
+    const isAerialScreen = niche.id === "02";
+    const isAerialCompactScreen = niche.id === "02";
+    const isAerialOrToursScreen = niche.id === "02" || niche.id === "03";
+    const isRealEstateScreen = niche.id === "06";
+    const isReelsScreen = niche.id === "04";
+    const isCompactNicheScreen = niche.id !== "02";
     const showDebugOverlays = !isAerialScreen;
     const screenLink = gazetaNicheLandingRoutes[niche.id];
     const allServicesCard = buildAllServicesCard(niche);
     const sourceServices = canonicalServicesByNicheId[niche.id] ?? niche.detailedContent?.services ?? [];
     const limitedServices = sourceServices.slice(0, 5);
-    const shouldRenderDetailedHeading = niche.id !== "00" && !isDuplicateIndustryHeading(niche);
-    const shouldRenderDetailedEyebrow = niche.id !== "00";
+    const shouldRenderDetailedHeading = Boolean(niche.detailedContent?.heading);
+    const shouldRenderDetailedEyebrow = niche.id !== "02";
     const services = niche.detailedContent
         ? [
             ...limitedServices,
@@ -649,35 +952,33 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         ? "p-6 pt-20 md:p-12 md:pt-20 xl:px-8 xl:py-3 xl:pt-14"
         : "p-6 pt-20 md:p-12 lg:p-20";
     const contentWrapperClassName = isAerialCompactScreen
-        ? "min-h-full flex flex-col max-w-[1500px] mx-auto w-full pb-0"
+        ? "min-h-full flex flex-col max-w-[1500px] mx-auto w-full pb-10"
         : isCompactNicheScreen
         ? "min-h-full flex flex-col max-w-[1500px] mx-auto w-full pb-2"
         : "min-h-full flex flex-col justify-center max-w-[1500px] mx-auto w-full pb-10";
     const headingBlockClassName = isAerialCompactScreen
-        ? "max-w-4xl mb-4 md:mb-6 mt-4 md:mt-0 xl:mb-3"
+        ? "max-w-4xl mb-4 md:mb-6 mt-4 md:mt-0 xl:mb-3 text-center mx-auto"
         : isRealEstateScreen
-        ? "max-w-4xl mb-2 md:mb-6 mt-1 md:mt-0 xl:mb-2"
+        ? "max-w-4xl mb-2 md:mb-6 mt-1 md:mt-0 xl:mb-2 text-center mx-auto"
+        : isReelsScreen
+        ? "max-w-4xl mb-4 md:mb-6 mt-4 md:mt-0 xl:mb-3 text-center mx-auto"
         : isCompactNicheScreen
-        ? "max-w-4xl mb-4 md:mb-6 mt-4 md:mt-0 xl:mb-3"
-        : "max-w-4xl mb-10 md:mb-14 mt-4 md:mt-0";
+        ? "max-w-4xl mb-4 md:mb-6 mt-4 md:mt-0 xl:mb-3 text-center mx-auto"
+        : "max-w-4xl mb-10 md:mb-14 mt-4 md:mt-0 text-center mx-auto";
     const headingClassName = isAerialCompactScreen
         ? "font-sans font-black tracking-tight uppercase text-white drop-shadow-2xl text-4xl md:text-6xl lg:text-7xl xl:text-[42px] max-w-4xl mb-4 md:mb-5 xl:mb-2 leading-[0.95]"
         : isCompactNicheScreen
         ? "font-sans font-black tracking-tight uppercase text-white drop-shadow-2xl text-4xl md:text-6xl xl:text-5xl max-w-4xl mb-3 xl:mb-2 leading-[0.96]"
         : "font-sans font-black tracking-tighter uppercase text-white drop-shadow-2xl text-4xl md:text-6xl lg:text-7xl max-w-4xl mb-4 md:mb-5";
     const subheadingClassName = isAerialCompactScreen
-        ? "text-base md:text-xl lg:text-2xl xl:text-base text-white/84 max-w-3xl xl:max-w-4xl leading-relaxed xl:leading-snug font-medium"
+        ? "text-white/88 max-w-[62ch] leading-[1.34] font-semibold tracking-[0.01em] mx-auto text-[clamp(1.04rem,1.95vw,1.44rem)]"
         : isCompactNicheScreen
-        ? "text-base md:text-xl xl:text-lg text-white/84 max-w-4xl leading-snug font-medium"
-        : "text-base md:text-xl lg:text-2xl text-white/84 max-w-3xl leading-relaxed font-medium";
+        ? "text-white/87 max-w-[62ch] leading-[1.34] font-semibold tracking-[0.01em] mx-auto text-[clamp(1.02rem,1.65vw,1.34rem)]"
+        : "text-white/86 max-w-[60ch] leading-[1.36] font-semibold tracking-[0.01em] mx-auto text-[clamp(1.02rem,1.55vw,1.3rem)]";
     const introNoteClassName = isAerialCompactScreen
         ? "mt-4 md:mt-5 max-w-2xl xl:max-w-3xl text-sm md:text-base xl:text-[12px] text-white/58 leading-relaxed xl:leading-snug"
         : "mt-4 md:mt-5 max-w-2xl text-sm md:text-base text-white/58 leading-relaxed";
-    const servicesGridClassName = isAerialScreen
-        ? "md:grid-cols-3 xl:grid-cols-5 xl:grid-rows-2 gap-4 md:gap-5 xl:gap-2.5"
-        : isCompactNicheScreen
-            ? "md:grid-cols-2 xl:grid-cols-4 xl:grid-rows-2 gap-4 md:gap-4 xl:gap-3"
-            : "xl:grid-cols-3 gap-4 md:gap-5 xl:gap-6";
+    const servicesGridClassName = "md:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-5 xl:gap-2.5";
     const mobileServicesGridClassName = isMobileLandscape
         ? "grid-cols-4 gap-2 md:grid-cols-4"
         : `grid-cols-2 gap-2 sm:grid-cols-2 ${servicesGridClassName}`;
@@ -694,18 +995,19 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         ? "pt-16 pb-20"
         : "";
     const useMobileHorizontalServicesRail = isMobileCompactTop && Boolean(niche.detailedContent);
-    const shouldUseInnerVerticalScroll = !useMobileHorizontalServicesRail;
-    const showMobileRailArrows = useMobileHorizontalServicesRail && services.length > 1;
+    const useDesktopHorizontalServicesRail = !isMobileCompactTop && Boolean(niche.detailedContent);
+    const useHorizontalServicesRail = useMobileHorizontalServicesRail || useDesktopHorizontalServicesRail;
+    const shouldUseInnerVerticalScroll = !useHorizontalServicesRail;
+    const mobileServiceColumns = useMobileHorizontalServicesRail
+        ? chunkItems(services, 2)
+        : [];
+    const showMobileRailArrows = useMobileHorizontalServicesRail
+        ? mobileServiceColumns.length > 1
+        : useDesktopHorizontalServicesRail
+        ? sourceServices.length > 4
+        : services.length > 1;
     const prevStep = index > 0 ? stackStepNavItems[index - 1] : null;
-    const sectionHeaderClassName = isMobileLandscape
-        ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold text-white z-20 absolute top-0 left-0 shadow-lg"
-        : isMobilePortrait
-        ? "h-8 w-full bg-zinc-900 border-b border-white/20 flex items-center px-4 uppercase tracking-[0.18em] text-[10px] font-bold text-white z-20 absolute top-0 left-0 shadow-lg"
-        : "h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold text-white z-20 absolute top-0 left-0 shadow-lg";
-    const sectionHeaderLabelClassName = "min-w-0 flex items-center";
-    const sectionHeaderLabelInteractiveClassName = `${sectionHeaderLabelClassName} cursor-pointer hover:text-[#D4AF37] transition-colors`;
-    const sectionBodyPaddingTopClassName = isMobileLandscape ? "pt-6" : isMobilePortrait ? "pt-8" : "pt-12";
-    const sectionHeaderIndexClassName = isMobileCompactTop ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4";
+    const sectionBodyPaddingTopClassName = "";
     const showTopBackButton = isMobileCompactTop && Boolean(prevStep);
     const backButtonUiId = getBackButtonUiId(niche.id);
     const topStaticNavOffsetClassName = isMobileLandscape ? "top-7" : "top-9";
@@ -717,9 +1019,18 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
             : `services-horizontal-rail -mx-2 flex items-stretch gap-2 overflow-x-auto overscroll-x-contain px-4 pb-2 snap-x snap-mandatory touch-pan-x scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
                 isMobileLandscape ? "pt-1" : "pt-2"
             }`
-        : `grid ${mobileServicesGridClassName}`;
-    const mobileRailShellClassName = useMobileHorizontalServicesRail
+        : useDesktopHorizontalServicesRail
+            ? `services-horizontal-rail flex items-stretch gap-4 md:gap-5 xl:gap-5 overflow-x-auto overscroll-x-contain pb-4 snap-x snap-mandatory touch-pan-x scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden relative z-10 pt-2 mx-10 md:mx-12 xl:mx-14`
+            : limitedServices.length < 5
+                ? `flex flex-wrap justify-center gap-4 md:gap-5 xl:gap-2.5 px-4 md:px-0`
+                : `grid ${mobileServicesGridClassName}`;
+    const mobileRailShellClassName = useMobileHorizontalServicesRail || useDesktopHorizontalServicesRail
         ? `relative ${isRealEstateScreen && isMobileCompactTop ? (isMobileLandscape ? "-mt-1 px-3" : "-mt-2 px-4") : ""}`
+        : "";
+    const mobileRailColumnClassName = useMobileHorizontalServicesRail
+        ? isMobileLandscape
+            ? "basis-[calc(100%-5.25rem)] min-w-[calc(100%-5.25rem)] max-w-[calc(100%-5.25rem)] shrink-0 snap-center flex flex-col gap-2.5"
+            : "basis-[calc(100%-4.5rem)] min-w-[calc(100%-4.5rem)] max-w-[calc(100%-4.5rem)] shrink-0 snap-center flex flex-col gap-3"
         : "";
     const mobileRailArrowVerticalClassName =
         isRealEstateScreen && isMobileCompactTop ? "top-[28%]" : "top-1/2";
@@ -728,14 +1039,18 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
             ? isMobileLandscape
                 ? "-left-5"
                 : "-left-6"
-            : "left-0";
+            : useDesktopHorizontalServicesRail
+                ? "-left-1 md:-left-1"
+                : "left-0";
     const mobileRailRightArrowOffsetClassName =
         isRealEstateScreen && isMobileCompactTop
             ? isMobileLandscape
                 ? "-right-5"
                 : "-right-6"
-            : "right-0";
-    const shouldAnimateMobileRailArrows = isRealEstateScreen && isMobileCompactTop;
+            : useDesktopHorizontalServicesRail
+                ? "-right-1 md:-right-1"
+                : "right-0";
+    const shouldAnimateMobileRailArrows = (isRealEstateScreen && isMobileCompactTop) || useDesktopHorizontalServicesRail;
 
     useEffect(() => {
         const updateViewportKind = () => {
@@ -850,13 +1165,405 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         const maxScrollLeft = Math.max(0, rail.scrollWidth - rail.clientWidth);
         if (maxScrollLeft <= 0) return;
 
-        const step = Math.max(140, Math.round(rail.clientWidth * (isMobileLandscape ? 0.56 : 0.78)));
+        const step = useDesktopHorizontalServicesRail
+            ? Math.max(240, Math.round(rail.clientWidth))
+            : Math.max(140, Math.round(rail.clientWidth * (isMobileLandscape ? 0.56 : 0.78)));
         const delta = direction === "left" ? -step : step;
         const targetLeft = Math.max(0, Math.min(maxScrollLeft, rail.scrollLeft + delta));
         rail.scrollTo({
             left: targetLeft,
             behavior: "smooth",
         });
+    };
+
+    useEffect(() => {
+        const normalizeServiceCardHeights = () => {
+            const container = servicesCardsContainerRef.current;
+            if (!container) return;
+
+            const cards = Array.from(container.querySelectorAll<HTMLElement>(".service-card-target"));
+            if (!cards.length) return;
+
+            cards.forEach((card) => card.style.removeProperty("height"));
+            const tallestCardHeight = Math.max(...cards.map((card) => card.offsetHeight));
+            if (!Number.isFinite(tallestCardHeight) || tallestCardHeight <= 0) return;
+
+            cards.forEach((card) => {
+                card.style.height = `${tallestCardHeight}px`;
+            });
+        };
+
+        const run = () => {
+            if (typeof window === "undefined") return;
+            window.requestAnimationFrame(normalizeServiceCardHeights);
+        };
+
+        run();
+        window.addEventListener("resize", run);
+
+        const observer = typeof ResizeObserver !== "undefined" ? new ResizeObserver(run) : null;
+        const container = servicesCardsContainerRef.current;
+        if (observer && container) {
+            observer.observe(container);
+            container.querySelectorAll(".service-card-target").forEach((card) => observer.observe(card));
+        }
+
+        return () => {
+            window.removeEventListener("resize", run);
+            observer?.disconnect();
+        };
+    }, [
+        niche.id,
+        sourceServices.length,
+        useMobileHorizontalServicesRail,
+        useDesktopHorizontalServicesRail,
+        isMobileLandscape,
+    ]);
+
+    const renderServiceCard = (svc: ServiceItem, serviceIndex: number) => {
+        const serviceId = 8400 + (index * 10) + serviceIndex;
+        const isAllServicesCard = svc.variant === "all-services";
+        const suggestedCardDetails = isAllServicesCard ? {} : getSuggestedCardDetails(niche, svc);
+        const cardImage = svc.img || niche.img;
+        const cardSlug = svc.slug || (svc.title ? svc.title.toLowerCase().replace(/[^a-zа-я0-9]+/gi, "-") : `card-${niche.id}-${serviceIndex}`);
+        const isExternalServiceLink = isExternalHref(svc.link);
+        const cardTag = svc.tag || suggestedCardDetails.tag;
+        const cardTagAccent = svc.tagAccent ?? suggestedCardDetails.tagAccent ?? false;
+        const cardEyebrow = svc.eyebrow || suggestedCardDetails.eyebrow || niche.title;
+        const isRealEstateReferenceCard = false; // unified card style — matches niche 00
+        const isRealEstatePriceEnabledCard = isRealEstateReferenceCard && !isAllServicesCard;
+        const shouldUseTwoLinePrice = isRealEstatePriceEnabledCard && isPhoneViewport;
+        const singleCtaLabel: string | null = null; // unified dual-button style
+        const isSingleCtaExperimentCard = false;
+        const useContactAnchorForSingleCta = serviceId === 8411;
+        const normalizedCategory = isRealEstateReferenceCard && svc.category
+            ? svc.category.replace(/\s*[·•|]\s*/g, "\n")
+            : svc.category;
+        const formattedPriceText =
+            isRealEstatePriceEnabledCard && svc.price
+                ? svc.price
+                    .replace(/\bgeo\s*context\b/gi, "GEO")
+                    .replace(/\bконтекст\b/gi, "")
+                    .replace(/\s{2,}/g, " ")
+                    .replace(" · ", shouldUseTwoLinePrice ? "\n" : " · ")
+                : svc.price;
+        const formattedTitle = svc.title;
+
+        if (useMobileHorizontalServicesRail) {
+            const mobileCardClassName = `service-card-target group relative flex ${
+                isAerialOrToursScreen
+                    ? isMobileLandscape
+                        ? "min-h-[220px]"
+                        : "min-h-[248px]"
+                    : "min-h-[158px]"
+            } overflow-hidden rounded-[20px] border bg-[#111214]/96 shadow-[0_18px_40px_rgba(0,0,0,0.28)] transition-all ${
+                cardTagAccent || svc.featured ? "border-[#D4A017]/55" : "border-white/12"
+            }`;
+            const mobilePrimaryActionClassName = isMobileLandscape
+                ? "w-full rounded-xl border border-white/15 px-2.5 py-1.5 text-center text-[8px] font-bold uppercase tracking-[0.11em] text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                : "w-full rounded-xl border border-white/15 px-2.5 py-2 text-center text-[9px] font-bold uppercase tracking-[0.11em] text-white transition-colors hover:border-white hover:bg-white hover:text-black";
+            const mobileSecondaryActionClassName = isMobileLandscape
+                ? "w-full rounded-xl bg-[#D4A017] px-2.5 py-1.5 text-center text-[8px] font-bold uppercase tracking-[0.11em] text-black transition-colors hover:bg-white"
+                : "w-full rounded-xl bg-[#D4A017] px-2.5 py-2 text-center text-[9px] font-bold uppercase tracking-[0.11em] text-black transition-colors hover:bg-white";
+
+            const mobileCardBody = (
+                <>
+                    <div className="relative w-[39%] min-w-[39%] overflow-hidden bg-neutral-900">
+                        {isExternalServiceLink ? (
+                            <a href={svc.link} target="_blank" rel="noreferrer" className="block h-full">
+                                <img
+                                    src={cardImage}
+                                    alt={svc.title || niche.title}
+                                    className="h-full w-full object-cover opacity-70 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-90"
+                                />
+                            </a>
+                        ) : (
+                            <Link href={svc.link} className="block h-full">
+                                <img
+                                    src={cardImage}
+                                    alt={svc.title || niche.title}
+                                    className="h-full w-full object-cover opacity-70 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-90"
+                                />
+                            </Link>
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/70" />
+                        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/80 to-transparent" />
+                        {cardTag && (
+                            <div className="absolute left-2 top-2">
+                                <span className={`inline-flex rounded-full px-2 py-1 text-[8px] font-bold uppercase tracking-[0.14em] ${
+                                    cardTagAccent ? "bg-[#D4A017] text-black" : "bg-black/55 text-white backdrop-blur-sm"
+                                }`}>
+                                    {cardTag}
+                                </span>
+                            </div>
+                        )}
+                    </div>
+                    <div className="flex min-w-0 flex-1 flex-col p-3">
+                        <div className="mb-2 flex items-start justify-between gap-2">
+                            <span className="max-w-[14ch] text-[8px] font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
+                                {cardEyebrow}
+                            </span>
+                            <span className="shrink-0 text-[8px] uppercase tracking-[0.18em] text-white/35">
+                                {niche.id}
+                            </span>
+                        </div>
+                        {formattedTitle && (
+                            <h3 className="mb-1.5 text-[14px] font-black uppercase leading-[1.04] text-white transition-colors group-hover:text-[#D4AF37]">
+                                <span>{formattedTitle}</span>
+                            </h3>
+                        )}
+                        {normalizedCategory ? (
+                            <div className="mb-1 text-[9px] uppercase tracking-[0.11em] text-white/35">
+                                {normalizedCategory}
+                            </div>
+                        ) : null}
+                        <p className="mb-2 text-[10px] leading-[1.28] text-white/72">
+                            {svc.desc}
+                        </p>
+                        <div className="mt-auto border-t border-white/10 pt-2">
+                            {formattedPriceText ? (
+                                <div className="mb-2 text-[8px] font-bold uppercase tracking-[0.12em] text-[#F2C94C]">
+                                    {formattedPriceText}
+                                </div>
+                            ) : null}
+                            <div className="flex flex-col gap-1.5">
+                                {isSingleCtaExperimentCard ? (
+                                    useContactAnchorForSingleCta ? (
+                                        <a href="#contact" className={mobileSecondaryActionClassName}>
+                                            {singleCtaLabel}
+                                        </a>
+                                    ) : isExternalServiceLink ? (
+                                        <a href={svc.link} target="_blank" rel="noreferrer" className={mobileSecondaryActionClassName}>
+                                            {singleCtaLabel}
+                                        </a>
+                                    ) : (
+                                        <Link href={svc.link} className={mobileSecondaryActionClassName}>
+                                            {singleCtaLabel}
+                                        </Link>
+                                    )
+                                ) : (
+                                    <>
+                                        {isExternalServiceLink ? (
+                                            <a href={svc.link} target="_blank" rel="noreferrer" className={mobilePrimaryActionClassName}>
+                                                {svc.primaryCtaLabel ?? "Открыть услугу"}
+                                            </a>
+                                        ) : (
+                                            <Link href={svc.link} className={mobilePrimaryActionClassName}>
+                                                {svc.primaryCtaLabel ?? "Открыть услугу"}
+                                            </Link>
+                                        )}
+                                        {!isAllServicesCard ? (
+                                            <a href="#contact" className={mobileSecondaryActionClassName}>
+                                                Обсудить задачу
+                                            </a>
+                                        ) : null}
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </>
+            );
+
+            return (
+                <MaybeDebugWrapper enabled={showDebugOverlays} key={cardSlug} id={serviceId} label={`Service Card: ${svc.title || svc.tag}`}>
+                    <article id={`service-${cardSlug}`} className={mobileCardClassName}>
+                        {mobileCardBody}
+                    </article>
+                </MaybeDebugWrapper>
+            );
+        }
+
+        const unifiedRealEstateCardHeightClassName =
+            isRealEstateReferenceCard && isMobileCompactTop
+                ? isMobileLandscape
+                    ? "h-[248px]"
+                    : "h-[352px]"
+                : "h-full";
+        const sectionUniformHeightClassName = isAerialOrToursScreen
+            ? isMobileLandscape
+                ? "min-h-[332px]"
+                : useDesktopHorizontalServicesRail
+                    ? "h-[640px]"
+                    : "min-h-[388px]"
+            : "";
+        const servicePageParityCardClassName = `service-card-target w-full scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col ${unifiedRealEstateCardHeightClassName} ${sectionUniformHeightClassName} ${isAerialOrToursScreen && useDesktopHorizontalServicesRail ? "h-full" : ""} ${svc.featured ? "gold-glow border-[#D4A017]/50" : ""}`;
+        const servicePageParityCardStyle = svc.featured
+            ? { boxShadow: "0 0 20px rgba(212, 160, 23, 0.2)" }
+            : undefined;
+        const hideHighlightedPriceLine = false;
+        const servicePageImageHeightClassName = isMobileCompactTop
+            ? isMobileLandscape
+                ? "h-16"
+                : isRealEstateReferenceCard
+                ? "h-[82px]"
+                : "h-[88px]"
+            : isMobileLandscape
+            ? "h-16"
+            : "h-24 sm:h-36";
+        const servicePageBodyClassName = isMobileLandscape
+            ? isRealEstateReferenceCard
+                ? "px-2 pt-2 pb-2 flex-grow flex flex-col"
+                : "px-2 pt-1.5 pb-1.5 flex-grow flex flex-col"
+            : isRealEstateReferenceCard
+            ? "px-2.5 pt-2.5 pb-2.5 sm:px-4 sm:pt-4 sm:pb-3.5 flex-grow flex flex-col"
+            : "px-2.5 pt-2.5 pb-2.5 sm:px-4 sm:pt-4 sm:pb-3.5 flex-grow flex flex-col";
+        const servicePageTitleClassName = isMobileLandscape
+            ? `text-[11px] font-bold leading-tight mb-1 ${svc.featured ? "text-[#D4A017]" : "text-white"}`
+            : isRealEstateReferenceCard
+            ? `text-[16.5px] sm:text-[18.5px] font-bold mb-1.5 leading-tight ${svc.featured ? "text-[#D4A017]" : "text-white"}`
+            : `text-sm sm:text-lg font-bold mb-1 ${svc.featured ? "text-[#D4A017]" : "text-white"}`;
+        const servicePageCategoryClassName = isMobileLandscape
+            ? "text-[8px] text-gray-500 uppercase tracking-[0.12em] mb-1.5"
+            : isRealEstateReferenceCard
+            ? "text-[11.5px] text-gray-500 uppercase tracking-[0.11em] mb-1.5 leading-tight"
+            : "text-[10px] text-gray-500 uppercase tracking-wider mb-2";
+        const servicePageDescriptionClassName = isAerialOrToursScreen
+            ? isMobileLandscape
+                ? "text-[10px] text-gray-400 mb-2 leading-tight"
+                : "text-xs sm:text-sm text-gray-400 mb-3 leading-snug"
+            : isMobileLandscape
+            ? "text-[10px] text-gray-400 mb-2 leading-tight"
+            : isRealEstateReferenceCard
+            ? "text-[12px] text-gray-300 mb-2 leading-[1.22]"
+            : "text-xs sm:text-sm text-gray-400 mb-3 leading-snug";
+        const servicePagePriceClassName = isMobileLandscape
+            ? isRealEstatePriceEnabledCard
+                ? `mb-1 block w-full border-t border-[#2a2a2a] pt-1.5 text-[7.5px] text-[#F2C94C] font-bold uppercase tracking-[0.1em] leading-tight ${shouldUseTwoLinePrice ? "whitespace-pre-line" : "whitespace-nowrap"}`
+                : "pt-2 border-t border-[#2a2a2a] text-[8px] text-[#D4A017] font-bold uppercase tracking-[0.12em] mb-2"
+            : isRealEstatePriceEnabledCard
+            ? `mb-1.5 block w-full border-t border-[#2a2a2a] pt-2 text-[8.5px] text-[#F2C94C] font-bold uppercase tracking-[0.1em] leading-tight ${shouldUseTwoLinePrice ? "whitespace-pre-line" : "whitespace-nowrap"}`
+            : "pt-3 border-t border-[#2a2a2a] text-[10px] text-[#D4A017] font-bold uppercase tracking-wider mb-4";
+        const servicePageActionsClassName = "flex flex-col gap-1.5 lg:flex-row lg:gap-3";
+        const servicePageBottomSpacerClassName = isRealEstateReferenceCard
+            ? isMobileLandscape
+                ? "h-1.5"
+                : "h-2"
+            : "";
+        const servicePagePrimaryActionClassName = isMobileLandscape
+            ? "w-full py-1.5 px-1.5 border border-white/20 rounded-md text-[8px] font-bold uppercase tracking-[0.1em] text-white hover:bg-white hover:text-black transition-colors text-center"
+            : isRealEstateReferenceCard
+            ? "w-full py-[7px] px-2 border border-white/20 rounded-lg text-[9px] font-bold uppercase tracking-[0.1em] text-white hover:bg-white hover:text-black transition-colors text-center"
+            : "w-full py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center";
+        const servicePageSecondaryActionClassName = isMobileLandscape
+            ? "w-full py-1.5 px-1.5 bg-[#D4A017] text-black rounded-md text-[8px] font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center"
+            : isRealEstateReferenceCard
+            ? "w-full py-[7px] px-2 bg-[#D4A017] text-black rounded-lg text-[9px] font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center"
+            : "w-full py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center";
+        const servicePageParityCardBody = (
+            <>
+                <div className={`${servicePageImageHeightClassName} bg-neutral-800 overflow-hidden relative`}>
+                    {isExternalServiceLink ? (
+                        <a href={svc.link} target="_blank" rel="noreferrer" className="block h-full">
+                            <img
+                                src={cardImage}
+                                alt={svc.title || niche.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-50 group-hover:opacity-80"
+                            />
+                        </a>
+                    ) : (
+                        <Link href={svc.link} className="block h-full">
+                            <img
+                                src={cardImage}
+                                alt={svc.title || niche.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-50 group-hover:opacity-80"
+                            />
+                        </Link>
+                    )}
+                    {svc.tag && (
+                        <div className={`absolute ${isMobileLandscape ? "top-2 left-2" : "top-4 left-4"} flex gap-2`}>
+                            <span className={`px-2 py-1 rounded ${isMobileLandscape ? "text-[8px]" : "text-[10px]"} font-bold ${svc.tag === "HOT" ? "bg-[#D4A017] text-black" : "bg-black/50 text-white backdrop-blur"}`}>
+                                {svc.tag}
+                            </span>
+                        </div>
+                    )}
+                </div>
+                <div className={servicePageBodyClassName}>
+                    <h3 className={servicePageTitleClassName}>
+                        {isExternalServiceLink ? (
+                            <a href={svc.link} target="_blank" rel="noreferrer" className="hover:text-[#D4A017] transition-colors">
+                                <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
+                                    {formattedTitle}
+                                </span>
+                            </a>
+                        ) : (
+                            <Link href={svc.link} className="hover:text-[#D4A017] transition-colors">
+                                <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
+                                    {formattedTitle}
+                                </span>
+                            </Link>
+                        )}
+                    </h3>
+                    {normalizedCategory ? (
+                        <div className={`${servicePageCategoryClassName} ${isRealEstateReferenceCard ? "whitespace-pre-line" : ""}`} style={isRealEstateReferenceCard ? clampLinesStyle(3) : undefined}>
+                            {normalizedCategory}
+                        </div>
+                    ) : null}
+                    <p className={servicePageDescriptionClassName} style={isRealEstateReferenceCard ? clampLinesStyle(3) : undefined}>{svc.desc}</p>
+                    <div className="mt-auto">
+                        {formattedPriceText && !hideHighlightedPriceLine ? (
+                            <div className={servicePagePriceClassName} style={shouldUseTwoLinePrice ? clampLinesStyle(2) : undefined}>
+                                {formattedPriceText}
+                            </div>
+                        ) : null}
+                        {!formattedPriceText && isAllServicesCard && isRealEstateReferenceCard ? (
+                            <div className="mb-1.5 block w-full border-t border-[#2a2a2a] pt-2 text-[8.5px] leading-tight opacity-0 select-none">
+                                spacer
+                            </div>
+                        ) : null}
+                        {servicePageBottomSpacerClassName ? (
+                            <div className={servicePageBottomSpacerClassName} aria-hidden="true" />
+                        ) : null}
+                        <div className={servicePageActionsClassName}>
+                            {isSingleCtaExperimentCard ? (
+                                useContactAnchorForSingleCta ? (
+                                    <a href="#contact" className={servicePageSecondaryActionClassName}>
+                                        {singleCtaLabel}
+                                    </a>
+                                ) : isExternalServiceLink ? (
+                                    <a href={svc.link} target="_blank" rel="noreferrer" className={servicePageSecondaryActionClassName}>
+                                        {singleCtaLabel}
+                                    </a>
+                                ) : (
+                                    <Link href={svc.link} className={servicePageSecondaryActionClassName}>
+                                        {singleCtaLabel}
+                                    </Link>
+                                )
+                            ) : (
+                                <>
+                                    {isExternalServiceLink ? (
+                                        <a href={svc.link} target="_blank" rel="noreferrer" className={servicePagePrimaryActionClassName}>
+                                            {svc.primaryCtaLabel ?? "Открыть услугу"}
+                                        </a>
+                                    ) : (
+                                        <Link href={svc.link} className={servicePagePrimaryActionClassName}>
+                                            {svc.primaryCtaLabel ?? "Открыть услугу"}
+                                        </Link>
+                                    )}
+                                    {!isAllServicesCard ? (
+                                        <a href="#contact" className={servicePageSecondaryActionClassName}>
+                                            Обсудить задачу
+                                        </a>
+                                    ) : null}
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </>
+        );
+
+        return (
+            <MaybeDebugWrapper enabled={showDebugOverlays} key={cardSlug} id={serviceId} label={`Service Card: ${svc.title || svc.tag}`}>
+                <article
+                    id={`service-${cardSlug}`}
+                    className={servicePageParityCardClassName}
+                    style={servicePageParityCardStyle}
+                >
+                    {servicePageParityCardBody}
+                </article>
+            </MaybeDebugWrapper>
+        );
     };
 
     return (
@@ -868,42 +1575,132 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                 top: stickyTop,
                 height: stickyHeight
             }}
-            className="sticky left-0 w-full overflow-hidden bg-black border-t border-white/20"
+            className="sticky left-0 w-full overflow-hidden bg-black border-t border-white/20 scroll-mt-28 md:scroll-mt-40"
         >
-            {/* Card Header (Accordion Tab) */}
-            <MaybeDebugWrapper enabled={showDebugOverlays} id={index === 0 ? 999 : 8000 + index} label={`Niche Header Row: ${niche.id}`}>
-                <div className={sectionHeaderClassName}>
-                    {screenLink ? (
-                        <Link href={screenLink} className={sectionHeaderLabelInteractiveClassName}>
-                            <span className={sectionHeaderIndexClassName}>{niche.id}</span>
-                            <span className="truncate">{niche.title}</span>
-                        </Link>
-                    ) : (
-                        <div className={sectionHeaderLabelClassName}>
-                            <span className={sectionHeaderIndexClassName}>{niche.id}</span>
-                            <span className="truncate">{niche.title}</span>
-                        </div>
-                    )}
-                </div>
-            </MaybeDebugWrapper>
 
             {/* Card Body (Image) */}
             <div className={`relative w-full h-full ${sectionBodyPaddingTopClassName} bg-zinc-800`}>
-                <MaybeDebugWrapper enabled={showDebugOverlays} id={index === 0 ? 900 : 8100 + index} label={`Niche Background: ${niche.id}`} className="absolute inset-0 z-0">
-                    <div className="w-full h-full">
-                        <img
-                            src={niche.img}
-                            alt={niche.title}
-                            className="w-full h-full object-cover scale-[1.02] brightness-[0.82] contrast-[1.08] saturate-[1.05]"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-br from-black/82 via-black/42 to-black/78" />
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_24%,rgba(212,175,55,0.12),transparent_30%)]" />
-                        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/58 to-transparent" /> {/* Darkened background slightly for better text readability */}
+                {niche.isIntro ? (
+                    <div className="absolute inset-0 z-0 bg-black flex flex-col justify-center bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80')] bg-cover bg-center">
+                        <div className="absolute inset-0 bg-black/90 backdrop-blur-md" />
+                        <div className="relative z-10 grid w-full max-w-[1400px] mx-auto grid-cols-1 md:grid-cols-12 gap-5 px-6 py-5 md:py-10 md:px-10">
+                            <div className="md:col-span-5 flex flex-col h-full">
+                                <div className="flex-1 flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.025] p-6 md:p-8 shadow-2xl backdrop-blur-sm">
+                                    <div>
+                                        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.28em] text-[#D4AF37]">Об Агентстве</p>
+                                        <h2 className="text-[1.75rem] md:text-[2.2rem] font-black leading-[1.1] tracking-tight text-white">
+                                            Производство контента,
+                                            <br />
+                                            <span className="text-[#D4AF37]">которое работает на задачу.</span>
+                                        </h2>
+                                        <div className="mt-6 space-y-4 text-[14px] leading-relaxed text-white/68 font-medium">
+                                            <p>
+                                                Breus Media — агентство визуального продакшена и AI-контента для бизнеса. Мы работаем с компаниями, которым важно, чтобы контент двигал клиента к следующему шагу: заявке, звонку, бронированию, покупке.
+                                            </p>
+                                            <p>
+                                                В арсенале агентства: аэросъёмка, промо-видео, 360°-туры, reels, AI-визуализации и
+                                                контентные пакеты. Работа начинается с задачи — формат подбирается под неё, а не наоборот.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="mt-8 flex flex-wrap gap-3">
+                                        <Link
+                                            href="/about"
+                                            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-white transition-all hover:bg-white/10 hover:border-[#D4AF37]/60 hover:text-[#D4AF37]"
+                                        >
+                                            Об Агентстве подробнее
+                                            <Send size={12} strokeWidth={2.5} />
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="md:col-span-7 flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.025] p-6 md:p-8 shadow-2xl backdrop-blur-sm">
+                                <div className="mb-5 md:mb-6">
+                                    <h3 className="text-[1.1rem] md:text-[1.3rem] font-bold leading-[1.2] tracking-tight text-white">
+                                        Выберите свою нишу — <span className="text-[#D4AF37]">или начните с формата.</span>
+                                    </h3>
+                                </div>
+                                <div className="grid grid-cols-2 gap-8 md:gap-12">
+                                    <div className="flex flex-col">
+                                        <ul className="flex flex-col">
+                                            {[
+                                                { label: "Недвижимость", idx: 5 },
+                                                { label: "Отели", idx: 6 },
+                                                { label: "Рестораны", idx: 7 },
+                                                { label: "Туризм", idx: 9 },
+                                                { label: "Клиники", idx: 10 },
+                                                { label: "Автобизнес", idx: 8 },
+                                                { label: "IT", idx: 11 }
+                                            ].map((item) => (
+                                                <li key={item.label} className="py-3 text-[15px] xl:text-[16px] font-medium border-b border-white/5">
+                                                    <button 
+                                                        onClick={() => onNavigateToStep(item.idx)}
+                                                        className="w-full text-left text-white/90 hover:text-[#D4AF37] hover:translate-x-1 transition-all duration-300 flex justify-between items-center group"
+                                                    >
+                                                        {item.label}
+                                                        <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <ul className="flex flex-col">
+                                            {[
+                                                { label: "Аэросъёмка", idx: 1 },
+                                                { label: "Промо-видео", idx: null },
+                                                { label: "Reels", idx: 3 },
+                                                { label: "360°-туры", idx: 2 },
+                                                { label: "AI-визуализация", idx: 4 }
+                                            ].map((item) => (
+                                                <li key={item.label} className="py-3 text-[15px] xl:text-[16px] font-medium border-b border-white/5">
+                                                    {item.idx !== null ? (
+                                                        <button 
+                                                            onClick={() => onNavigateToStep(item.idx!)}
+                                                            className="w-full text-left text-white/90 hover:text-[#D4AF37] hover:translate-x-1 transition-all duration-300 flex justify-between items-center group"
+                                                        >
+                                                            {item.label}
+                                                            <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
+                                                        </button>
+                                                    ) : (
+                                                        <span className="text-white/40 cursor-default">{item.label}</span>
+                                                    )}
+                                                </li>
+                                            ))}
+                                            <li className="py-3 text-[15px] xl:text-[16px] font-medium text-[#D4AF37] border-b border-white/5">
+                                                <a href="#contact" className="hover:text-white transition-colors cursor-pointer w-full inline-block">
+                                                    Ваш формат &rarr;
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="mt-8 flex justify-center w-full">
+                                    <p className="text-white/40 text-[12px] xl:text-[13px] tracking-wide text-center font-medium">
+                                        Другая отрасль или формат — <a href="#contact" className="text-[#D4AF37] transition-colors underline decoration-white/20 underline-offset-4 hover:text-white">напишите</a>, найдём решение.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </MaybeDebugWrapper>
+                ) : (
+                    <MaybeDebugWrapper enabled={showDebugOverlays} id={index === 0 ? 900 : 8100 + index} label={`Niche Background: ${niche.id}`} className="absolute inset-0 z-0">
+                        <div className="w-full h-full">
+                            <img
+                                src={niche.img}
+                                alt={niche.title}
+                                className="w-full h-full object-cover scale-[1.02] brightness-[0.82] contrast-[1.08] saturate-[1.05]"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-black/82 via-black/42 to-black/78" />
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_24%,rgba(212,175,55,0.12),transparent_30%)]" />
+                            <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/58 to-transparent" />
+                        </div>
+                    </MaybeDebugWrapper>
+                )}
 
                 {showTopBackButton && prevStep && (
-                    <div className={`absolute ${topStaticNavOffsetClassName} left-0 right-0 z-[73] flex justify-center`}>
+                    <div className={`hidden md:flex absolute ${topStaticNavOffsetClassName} left-0 right-0 z-[73] justify-center`}>
                         <div className="relative inline-flex">
                             <UiIdBadge id={backButtonUiId} />
                             <button
@@ -932,7 +1729,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                         onTouchEnd={handleInnerTouchEnd}
                         className={`absolute inset-0 z-10 text-white ${
                             shouldUseInnerVerticalScroll
-                                ? "overflow-y-auto overscroll-y-contain touch-pan-y custom-scrollbar"
+                                ? "overflow-y-auto touch-pan-y custom-scrollbar"
                                 : "overflow-y-hidden touch-pan-y"
                         } ${contentPaddingClassName} ${mobileContentPaddingOverrideClassName}`}
                     >
@@ -959,7 +1756,9 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                             {niche.detailedContent.heading}
                                         </h2>
                                     )}
-                                    <p className={subheadingClassName}>
+                                    <p
+                                        className={subheadingClassName}
+                                    >
                                         {niche.detailedContent.subheading}
                                     </p>
                                     {niche.detailedContent.introNote && (
@@ -993,317 +1792,62 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         </motion.button>
                                     )}
                                     <div
-                                        ref={useMobileHorizontalServicesRail ? servicesRailRef : undefined}
-                                        data-services-rail={useMobileHorizontalServicesRail ? "true" : undefined}
+                                        ref={(node) => {
+                                            servicesCardsContainerRef.current = node;
+                                            if (useHorizontalServicesRail) {
+                                                servicesRailRef.current = node;
+                                            }
+                                        }}
+                                        data-services-rail={useHorizontalServicesRail ? "true" : undefined}
                                         className={mobileRailContainerClassName}
-                                        style={useMobileHorizontalServicesRail ? { touchAction: "pan-x" } : undefined}
+                                        style={useHorizontalServicesRail ? { touchAction: "pan-x" } : undefined}
                                     >
-                                    {services.map((svc: ServiceItem, i: number) => {
-                                        // Start unique IDs from 8400+ range, isolated by index (e.g., 8410, 8420)
-                                        const serviceId = 8400 + (index * 10) + i;
-                                        const isAllServicesCard = svc.variant === "all-services";
-                                        const isAerialAllServicesCard = niche.id === "00" && isAllServicesCard;
-                                        const isCompactAllServicesCard = isCompactNicheScreen && isAllServicesCard;
-                                        const suggestedCardDetails = isAllServicesCard ? {} : getSuggestedCardDetails(niche, svc);
-                                        const cardTag = svc.tag || suggestedCardDetails.tag;
-                                        const cardTagAccent = svc.tagAccent ?? suggestedCardDetails.tagAccent ?? false;
-                                        const cardImage = svc.img || niche.img;
-                                        const cardSlug = svc.slug || (svc.title ? svc.title.toLowerCase().replace(/[^a-zа-я0-9]+/gi, "-") : `card-${niche.id}-${i}`);
-                                        const isExternalServiceLink = isExternalHref(svc.link);
-                                        const cardEyebrow = svc.eyebrow || suggestedCardDetails.eyebrow || niche.title;
-                                        const cardMeta = svc.meta || suggestedCardDetails.meta || (isAllServicesCard ? "Вся страница направления" : "Форматы и детали");
-                                        const cardCta = svc.cta || suggestedCardDetails.cta || (isAllServicesCard ? "Открыть страницу" : "Открыть услугу");
-                                        const isRealEstateReferenceCard = isRealEstateScreen && serviceId >= 8410 && serviceId <= 8415;
-                                        const isRealEstatePriceEnabledCard = isRealEstateReferenceCard && !isAllServicesCard;
-                                        const shouldUseTwoLinePrice = isRealEstatePriceEnabledCard && isPhoneViewport;
-                                        const singleCtaLabel =
-                                            serviceId === 8412
-                                                ? "Смотреть примеры"
-                                                : serviceId === 8411
-                                                ? "Узнать стоимость"
-                                                : serviceId === 8410
-                                                ? "Открыть услугу"
-                                                : null;
-                                        const isSingleCtaExperimentCard = Boolean(singleCtaLabel);
-                                        const useContactAnchorForSingleCta = serviceId === 8411;
-                                        const cardGridClassName = useMobileHorizontalServicesRail
-                                            ? isRealEstateScreen
-                                                ? "basis-[calc((100%-0.375rem)/2)] min-w-[calc((100%-0.375rem)/2)] max-w-[calc((100%-0.375rem)/2)] shrink-0 snap-start"
-                                                : "basis-[calc(50%-0.25rem)] min-w-[calc(50%-0.25rem)] max-w-[calc(50%-0.25rem)] shrink-0 snap-start"
-                                            : "";
-                                        const cardSurfaceClassName = isCompactAllServicesCard || isAerialAllServicesCard
-                                            ? "bg-[linear-gradient(135deg,rgba(16,16,18,0.94),rgba(28,28,32,0.9))] shadow-[0_26px_60px_rgba(0,0,0,0.38)]"
-                                            : "bg-zinc-950/72 shadow-[0_20px_50px_rgba(0,0,0,0.32)]";
-                                        const cardFrameClassName = cardTagAccent || isCompactAllServicesCard || isAerialAllServicesCard
-                                            ? "border-[#D4AF37]/55 ring-1 ring-[#D4AF37]/30"
-                                            : "border-white/12";
-                                        const cardMinHeightClassName = isAerialCompactScreen
-                                            ? "min-h-[150px] sm:min-h-[220px] xl:min-h-[126px]"
-                                            : isCompactNicheScreen
-                                            ? "min-h-[150px] sm:min-h-[220px] xl:min-h-[132px]"
-                                            : "min-h-[150px] sm:min-h-[220px] xl:min-h-[238px]";
-                                        const cardClassName = `relative overflow-hidden border transition-all group backdrop-blur-md flex flex-col justify-between h-full hover:-translate-y-1 rounded-[24px] ${cardMinHeightClassName} ${cardGridClassName} ${cardSurfaceClassName} ${cardFrameClassName} hover:border-[#D4AF37]/85`;
-                                        const cardBody = (
-                                            <>
-                                                {cardImage && (
+                                        {useMobileHorizontalServicesRail
+                                            ? mobileServiceColumns.map((column, columnIndex) => (
+                                                <div key={`column-${niche.id}-${columnIndex}`} className={mobileRailColumnClassName}>
+                                                    {column.map((svc, columnItemIndex) =>
+                                                        renderServiceCard(svc, columnIndex * 2 + columnItemIndex)
+                                                    )}
+                                                </div>
+                                            ))
+                                            : useDesktopHorizontalServicesRail
+                                                ? (
                                                     <>
-                                                        <img src={cardImage} className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 z-0 text-transparent scale-100 group-hover:scale-105 brightness-[0.88] contrast-[1.04] ${isCompactAllServicesCard || isAerialAllServicesCard ? 'opacity-26 group-hover:opacity-34' : 'opacity-38 group-hover:opacity-54'}`} alt="" aria-hidden="true" />
-                                                        <div className={`absolute inset-0 z-0 ${isCompactAllServicesCard || isAerialAllServicesCard ? 'bg-gradient-to-r from-zinc-950 via-zinc-950/92 to-zinc-900/78' : 'bg-gradient-to-t from-zinc-950 via-zinc-950/74 to-zinc-950/24'}`} />
-                                                        <div className={`absolute inset-0 z-0 ${isCompactAllServicesCard || isAerialAllServicesCard ? 'bg-[radial-gradient(circle_at_82%_24%,rgba(212,175,55,0.18),transparent_28%)]' : 'bg-gradient-to-r from-black/44 via-transparent to-black/18'}`} />
+                                                        {sourceServices.map((svc, i) => (
+                                                            <div key={svc.slug || i} data-rail-item="true" className="flex w-[calc(25%-12px)] md:w-[calc(25%-15px)] shrink-0 snap-start">
+                                                                {renderServiceCard(svc, i)}
+                                                            </div>
+                                                        ))}
+                                                        <div className="w-px shrink-0 pointer-events-none" aria-hidden="true" />
                                                     </>
-                                                )}
-                                                <div className={`relative z-10 flex h-full flex-col ${isAerialCompactScreen ? 'p-5 md:p-6 xl:p-3' : isCompactNicheScreen ? 'p-5 md:p-6 xl:p-4' : 'p-5 md:p-6 xl:p-7'}`}>
-                                                    <div className={`${isAerialCompactScreen ? 'mb-5 xl:mb-2.5' : isCompactNicheScreen ? 'mb-5 xl:mb-3' : 'mb-5 xl:mb-6'} flex items-start justify-between gap-3`}>
-                                                        <div className="flex flex-wrap gap-2">
-                                                            {cardTag && (
-                                                                <span className={`inline-flex items-center px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.22em] rounded-full ${cardTagAccent ? 'bg-[#D4AF37] text-black' : 'bg-white/12 text-white group-hover:bg-[#D4AF37] group-hover:text-black transition-colors'}`}>
-                                                                    {cardTag}
-                                                                </span>
-                                                            )}
-                                                            <span className={`inline-flex items-center px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] rounded-full border ${isCompactAllServicesCard || isAerialAllServicesCard ? 'bg-[#D4AF37]/14 text-[#F1D784] border-[#D4AF37]/30' : 'bg-black/30 text-white/72 border-white/10'}`}>
-                                                                {cardEyebrow}
-                                                            </span>
-                                                        </div>
-                                                        <span className="text-[10px] uppercase tracking-[0.22em] text-white/38 group-hover:text-white/55 transition-colors shrink-0">
-                                                            {niche.id}
-                                                        </span>
-                                                    </div>
-                                                    {svc.title && (
-                                                        <h3 className={`font-black group-hover:text-[#D4AF37] transition-colors uppercase tracking-[0.1em] leading-tight ${isAerialCompactScreen ? 'mb-2 text-base md:text-lg xl:text-[12px]' : isCompactNicheScreen ? 'mb-2 text-base md:text-lg xl:text-[15px]' : 'mb-3 text-base md:text-lg'} ${isCompactAllServicesCard || isAerialAllServicesCard ? 'max-w-[20ch] text-lg md:text-[22px] xl:text-[12px]' : isAerialCompactScreen ? 'max-w-[18ch]' : isCompactNicheScreen ? 'max-w-[22ch]' : 'max-w-[16ch]'}`}>
-                                                            {svc.title}
-                                                        </h3>
-                                                    )}
-                                                    <p className={`${isAerialCompactScreen ? 'text-sm md:text-[15px] xl:text-[10px] leading-[1.22] max-h-[3.66em] overflow-hidden' : isCompactNicheScreen ? 'text-sm md:text-[15px] xl:text-[13px] leading-[1.35] max-h-[4.1em] overflow-hidden' : 'text-sm md:text-[15px] xl:text-base leading-[1.72]'} text-white/82 font-medium ${isAerialCompactScreen ? 'mb-3 xl:mb-2' : isCompactNicheScreen ? 'mb-3 xl:mb-2.5' : 'mb-5 xl:mb-6'} flex-1 ${isCompactAllServicesCard || isAerialAllServicesCard ? 'max-w-[72ch] xl:max-w-[88ch]' : isAerialScreen || isAerialAllServicesCard ? 'max-w-[30ch] xl:max-w-[32ch]' : isCompactNicheScreen ? 'max-w-[38ch]' : 'max-w-[34ch]'}`}>
-                                                        {svc.desc}
-                                                    </p>
-                                                    <div className={`mt-auto ${isAerialCompactScreen ? 'pt-3 xl:pt-1.5' : isCompactNicheScreen ? 'pt-3 xl:pt-2' : 'pt-4'} border-t border-white/10 flex items-center justify-between gap-3`}>
-                                                        <div className={`${isAerialCompactScreen ? 'text-[11px] xl:text-[8px]' : isCompactNicheScreen ? 'text-[11px] xl:text-[9px]' : 'text-[11px]'} uppercase tracking-[0.16em] ${isCompactAllServicesCard || isAerialAllServicesCard ? 'text-[#F1D784]' : 'text-[#D4AF37]'}`}>
-                                                            {cardMeta}
-                                                        </div>
-                                                        <div className={`inline-flex items-center gap-1.5 uppercase tracking-[0.18em] text-white/78 group-hover:text-white transition-colors ${isAerialCompactScreen ? 'text-[11px] xl:text-[8px]' : isCompactNicheScreen ? 'text-[11px] xl:text-[9px]' : 'text-[11px]'}`}>
-                                                            <span>{cardCta}</span>
-                                                            <ArrowUpRight className="w-3.5 h-3.5" />
-                                                        </div>
-                                                    </div>
+                                                )
+                                                : limitedServices.map((svc, i) => (
+                                                <div key={svc.slug || i} className={limitedServices.length < 5 ? "w-full md:w-[320px] xl:w-[320px]" : "w-full"}>
+                                                    {renderServiceCard(svc, i)}
                                                 </div>
-                                            </>
-                                        );
-                                        const unifiedRealEstateCardHeightClassName =
-                                            isRealEstateReferenceCard && isMobileCompactTop
-                                                ? isMobileLandscape
-                                                    ? "h-[248px]"
-                                                    : "h-[352px]"
-                                                : "h-full";
-                                        const servicePageParityCardClassName = `service-card-target w-full scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col ${unifiedRealEstateCardHeightClassName} ${svc.featured ? 'gold-glow border-[#D4A017]/50' : ''}`;
-                                        const servicePageParityCardStyle = svc.featured
-                                            ? { boxShadow: "0 0 20px rgba(212, 160, 23, 0.2)" }
-                                            : undefined;
-                                        const hideHighlightedPriceLine = false;
-                                        const servicePageImageHeightClassName = isMobileCompactTop
-                                            ? isMobileLandscape
-                                                ? isRealEstateReferenceCard
-                                                    ? "h-16"
-                                                    : "h-16"
-                                                : isRealEstateReferenceCard
-                                                ? "h-[82px]"
-                                                : "h-[88px]"
-                                            : isMobileLandscape
-                                            ? "h-16"
-                                            : "h-24 sm:h-36";
-                                        const servicePageBodyClassName = isMobileLandscape
-                                            ? isRealEstateReferenceCard
-                                                ? "px-2 pt-2 pb-2 flex-grow flex flex-col"
-                                                : "px-2 pt-1.5 pb-1.5 flex-grow flex flex-col"
-                                            : isRealEstateReferenceCard
-                                            ? "px-2.5 pt-2.5 pb-2.5 sm:px-4 sm:pt-4 sm:pb-3.5 flex-grow flex flex-col"
-                                            : "px-2.5 pt-2.5 pb-2.5 sm:px-4 sm:pt-4 sm:pb-3.5 flex-grow flex flex-col";
-                                        const servicePageTitleClassName = isMobileLandscape
-                                            ? `text-[11px] font-bold leading-tight mb-1 ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`
-                                            : isRealEstateReferenceCard
-                                            ? `text-[16.5px] sm:text-[18.5px] font-bold mb-1.5 leading-tight ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`
-                                            : `text-sm sm:text-lg font-bold mb-1 ${svc.featured ? 'text-[#D4A017]' : 'text-white'}`;
-                                        const servicePageCategoryClassName = isMobileLandscape
-                                            ? "text-[8px] text-gray-500 uppercase tracking-[0.12em] mb-1.5"
-                                            : isRealEstateReferenceCard
-                                            ? "text-[11.5px] text-gray-500 uppercase tracking-[0.11em] mb-1.5 leading-tight"
-                                            : "text-[10px] text-gray-500 uppercase tracking-wider mb-2";
-                                        const servicePageDescriptionClassName = isMobileLandscape
-                                            ? "text-[10px] text-gray-400 mb-2 leading-tight max-h-[3.8em] overflow-hidden"
-                                            : isRealEstateReferenceCard
-                                            ? "text-[12px] text-gray-300 mb-2 leading-[1.22]"
-                                            : "text-xs sm:text-sm text-gray-400 mb-3 leading-snug max-h-[4.2em] overflow-hidden";
-                                        const servicePagePriceClassName = isMobileLandscape
-                                            ? isRealEstatePriceEnabledCard
-                                                ? `mb-1 block w-full border-t border-[#2a2a2a] pt-1.5 text-[7.5px] text-[#F2C94C] font-bold uppercase tracking-[0.1em] leading-tight ${shouldUseTwoLinePrice ? "whitespace-pre-line" : "whitespace-nowrap"}`
-                                                : "pt-2 border-t border-[#2a2a2a] text-[8px] text-[#D4A017] font-bold uppercase tracking-[0.12em] mb-2"
-                                            : isRealEstatePriceEnabledCard
-                                            ? `mb-1.5 block w-full border-t border-[#2a2a2a] pt-2 text-[8.5px] text-[#F2C94C] font-bold uppercase tracking-[0.1em] leading-tight ${shouldUseTwoLinePrice ? "whitespace-pre-line" : "whitespace-nowrap"}`
-                                            : "pt-3 border-t border-[#2a2a2a] text-[10px] text-[#D4A017] font-bold uppercase tracking-wider mb-4";
-                                        const servicePageActionsClassName = "flex flex-col gap-1.5 lg:flex-row lg:gap-3";
-                                        const servicePageBottomSpacerClassName = isRealEstateReferenceCard
-                                            ? isMobileLandscape
-                                                ? "h-1.5"
-                                                : "h-2"
-                                            : "";
-                                        const servicePagePrimaryActionClassName = isMobileLandscape
-                                            ? "w-full py-1.5 px-1.5 border border-white/20 rounded-md text-[8px] font-bold uppercase tracking-[0.1em] text-white hover:bg-white hover:text-black transition-colors text-center"
-                                            : isRealEstateReferenceCard
-                                            ? "w-full py-[7px] px-2 border border-white/20 rounded-lg text-[9px] font-bold uppercase tracking-[0.1em] text-white hover:bg-white hover:text-black transition-colors text-center"
-                                            : "w-full py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center";
-                                        const servicePageSecondaryActionClassName = isMobileLandscape
-                                            ? "w-full py-1.5 px-1.5 bg-[#D4A017] text-black rounded-md text-[8px] font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center"
-                                            : isRealEstateReferenceCard
-                                            ? "w-full py-[7px] px-2 bg-[#D4A017] text-black rounded-lg text-[9px] font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center"
-                                            : "w-full py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center";
-                                        const normalizedCategory = isRealEstateReferenceCard && svc.category
-                                            ? svc.category.replace(/\s*[·•|]\s*/g, "\n")
-                                            : svc.category;
-                                        const formattedPriceText =
-                                            isRealEstatePriceEnabledCard && svc.price
-                                                ? svc.price
-                                                    .replace(/\bgeo\s*context\b/gi, "GEO")
-                                                    .replace(/\bконтекст\b/gi, "")
-                                                    .replace(/\s{2,}/g, " ")
-                                                    .replace(" · ", shouldUseTwoLinePrice ? "\n" : " · ")
-                                                : svc.price;
-                                        const formattedTitle = svc.title;
-                                        const servicePageParityCardBody = (
-                                            <>
-                                                <div className={`${servicePageImageHeightClassName} bg-neutral-800 overflow-hidden relative`}>
-                                                    {isExternalServiceLink ? (
-                                                        <a href={svc.link} target="_blank" rel="noreferrer" className="block h-full">
-                                                            <img
-                                                                src={cardImage}
-                                                                alt={svc.title || niche.title}
-                                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-50 group-hover:opacity-80"
-                                                            />
-                                                        </a>
-                                                    ) : (
-                                                        <Link href={svc.link} className="block h-full">
-                                                            <img
-                                                                src={cardImage}
-                                                                alt={svc.title || niche.title}
-                                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-50 group-hover:opacity-80"
-                                                            />
-                                                        </Link>
-                                                    )}
-                                                    {svc.tag && (
-                                                        <div className={`absolute ${isMobileLandscape ? "top-2 left-2" : "top-4 left-4"} flex gap-2`}>
-                                                            <span className={`px-2 py-1 rounded ${isMobileLandscape ? "text-[8px]" : "text-[10px]"} font-bold ${svc.tag === 'HOT' ? 'bg-[#D4A017] text-black' : 'bg-black/50 text-white backdrop-blur'}`}>
-                                                                {svc.tag}
-                                                            </span>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                                <div className={servicePageBodyClassName}>
-                                                    <h3 className={servicePageTitleClassName}>
-                                                        {isExternalServiceLink ? (
-                                                            <a href={svc.link} target="_blank" rel="noreferrer" className="hover:text-[#D4A017] transition-colors">
-                                                                <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
-                                                                    {formattedTitle}
-                                                                </span>
-                                                            </a>
-                                                        ) : (
-                                                            <Link href={svc.link} className="hover:text-[#D4A017] transition-colors">
-                                                                <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
-                                                                    {formattedTitle}
-                                                                </span>
-                                                            </Link>
-                                                        )}
-                                                    </h3>
-                                                    {normalizedCategory ? (
-                                                        <div className={`${servicePageCategoryClassName} ${isRealEstateReferenceCard ? "whitespace-pre-line" : ""}`} style={isRealEstateReferenceCard ? clampLinesStyle(3) : undefined}>
-                                                            {normalizedCategory}
-                                                        </div>
-                                                    ) : null}
-                                                    <p className={servicePageDescriptionClassName} style={isRealEstateReferenceCard ? clampLinesStyle(3) : undefined}>{svc.desc}</p>
-                                                    <div className="mt-auto">
-                                                        {svc.price && !hideHighlightedPriceLine ? (
-                                                            <div className={servicePagePriceClassName} style={shouldUseTwoLinePrice ? clampLinesStyle(2) : undefined}>
-                                                                {formattedPriceText}
-                                                            </div>
-                                                        ) : null}
-                                                        {!svc.price && isAllServicesCard && isRealEstateReferenceCard ? (
-                                                            <div className="mb-1.5 block w-full border-t border-[#2a2a2a] pt-2 text-[8.5px] leading-tight opacity-0 select-none">
-                                                                spacer
-                                                            </div>
-                                                        ) : null}
-                                                        {servicePageBottomSpacerClassName ? (
-                                                            <div className={servicePageBottomSpacerClassName} aria-hidden="true" />
-                                                        ) : null}
-                                                        <div className={servicePageActionsClassName}>
-                                                            {isSingleCtaExperimentCard ? (
-                                                                useContactAnchorForSingleCta ? (
-                                                                    <a
-                                                                        href="#contact"
-                                                                        className={servicePageSecondaryActionClassName}
-                                                                    >
-                                                                        {singleCtaLabel}
-                                                                    </a>
-                                                                ) : isExternalServiceLink ? (
-                                                                    <a
-                                                                        href={svc.link}
-                                                                        target="_blank"
-                                                                        rel="noreferrer"
-                                                                        className={servicePageSecondaryActionClassName}
-                                                                    >
-                                                                        {singleCtaLabel}
-                                                                    </a>
-                                                                ) : (
-                                                                    <Link
-                                                                        href={svc.link}
-                                                                        className={servicePageSecondaryActionClassName}
-                                                                    >
-                                                                        {singleCtaLabel}
-                                                                    </Link>
-                                                                )
-                                                            ) : (
-                                                                <>
-                                                                    {isExternalServiceLink ? (
-                                                                        <a
-                                                                            href={svc.link}
-                                                                            target="_blank"
-                                                                            rel="noreferrer"
-                                                                            className={servicePagePrimaryActionClassName}
-                                                                        >
-                                                                            {svc.primaryCtaLabel ?? "Открыть услугу"}
-                                                                        </a>
-                                                                    ) : (
-                                                                        <Link
-                                                                            href={svc.link}
-                                                                            className={servicePagePrimaryActionClassName}
-                                                                        >
-                                                                            {svc.primaryCtaLabel ?? "Открыть услугу"}
-                                                                        </Link>
-                                                                    )}
-                                                                    {!isAllServicesCard ? (
-                                                                        <a
-                                                                            href="#contact"
-                                                                            className={servicePageSecondaryActionClassName}
-                                                                        >
-                                                                            Обсудить задачу
-                                                                        </a>
-                                                                    ) : null}
-                                                                </>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </>
-                                        );
-                                        return (
-                                            <MaybeDebugWrapper enabled={showDebugOverlays} key={cardSlug} id={serviceId} label={`Service Card: ${svc.title || svc.tag}`} className={cardGridClassName || undefined}>
-                                                <article
-                                                    id={`service-${cardSlug}`}
-                                                    className={servicePageParityCardClassName}
-                                                    style={servicePageParityCardStyle}
-                                                >
-                                                    {servicePageParityCardBody}
-                                                </article>
-                                            </MaybeDebugWrapper>
-                                        );
-                                    })}
+                                            ))}
                                     </div>
+                                    {allServicesCard && (
+                                        <Link
+                                            href={allServicesCard.link}
+                                            className={`mt-2.5 flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-black/50 py-[15px] text-[11px] font-bold uppercase tracking-[0.22em] text-white/65 backdrop-blur-sm transition-all duration-200 hover:border-[#D4A017]/50 hover:text-[#D4A017] hover:bg-[#D4A017]/5 ${useDesktopHorizontalServicesRail ? "mx-10 md:mx-12 xl:mx-14" : "w-full"}`}
+                                        >
+                                            <span>{({
+                                                "02": "Все услуги аэросъёмки",
+                                                "03": "Все услуги — 360° Туры",
+                                                "04": "Все услуги — Reels",
+                                                "05": "Все услуги — AI Контент",
+                                                "06": "Все услуги недвижимости",
+                                                "07": "Все услуги — Отели",
+                                                "08": "Все услуги — Рестораны",
+                                                "09": "Все услуги — Авто",
+                                                "10": "Все услуги — Туризм",
+                                                "11": "Все услуги — Клиники",
+                                                "12": "Все услуги — IT",
+                                            } as Record<string, string>)[niche.id] ?? "Все услуги"}</span>
+                                            <ChevronRight className="h-3.5 w-3.5 opacity-55" />
+                                        </Link>
+                                    )}
                                     {showMobileRailArrows && (
                                         <motion.button
                                             type="button"
@@ -1337,9 +1881,16 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                         className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
                     >
                         <DebugWrapper id={index === 0 ? 901 : 8200 + index} label={`Niche Center Text: ${niche.id}`}>
-                            <h2 className="text-4xl md:text-7xl font-sans font-black tracking-tighter uppercase text-white drop-shadow-2xl">
-                                {niche.centerText || niche.title}
-                            </h2>
+                            <div className="flex flex-col items-center gap-1.5 md:gap-3 px-6 text-center">
+                                <h2 className="text-4xl md:text-7xl font-sans font-black tracking-tighter uppercase text-white drop-shadow-2xl opacity-10">
+                                    {niche.title}
+                                </h2>
+                                {(niche.detailedContent as unknown as DetailedContent | undefined)?.subheading && (
+                                    <p className="text-[10px] md:text-sm font-bold uppercase tracking-[0.2em] text-[#D4AF37] opacity-20 drop-shadow-md">
+                                        {(niche.detailedContent as unknown as DetailedContent).subheading}
+                                    </p>
+                                )}
+                            </div>
                         </DebugWrapper>
                     </motion.div>
                 )}
@@ -1383,11 +1934,11 @@ const faqItems = [
     }
 ];
 
-const FAQAccordionItem = ({ item, isOpen, onToggle }: { item: { q: string; a: string }; isOpen: boolean; onToggle: () => void }) => (
+const FAQAccordionItem = ({ item, isOpen, onToggle }: { item: { q: string, a: string }; isOpen: boolean, onToggle: () => void }) => (
     <div className="border-b border-white/10 last:border-b-0">
         <button
             onClick={onToggle}
-            className="w-full flex items-center justify-between py-5 md:py-6 text-left group"
+            className="w-full flex items-center justify-between py-3 md:py-3.5 text-left group"
         >
             <span className="text-sm md:text-lg font-bold tracking-wide text-white group-hover:text-[#D4AF37] transition-colors pr-4">
                 {item.q}
@@ -1409,7 +1960,7 @@ const FAQAccordionItem = ({ item, isOpen, onToggle }: { item: { q: string; a: st
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                 >
-                    <p className="text-sm md:text-base text-gray-400 leading-relaxed pb-5 md:pb-6 pr-12 font-medium">
+                    <p className="text-sm md:text-base text-gray-400 leading-relaxed pb-3 md:pb-4 pr-12 font-medium">
                         {item.a}
                     </p>
                 </motion.div>
@@ -1426,7 +1977,8 @@ const FAQCard = ({
     stickyHeight,
     isMobileLandscape,
     isMobilePortrait,
-    onNavigateToStep
+    onNavigateToStep,
+    activeStepIndex
 }: {
     index: number,
     scrollYProgress: MotionValue<number>,
@@ -1435,7 +1987,8 @@ const FAQCard = ({
     stickyHeight: string,
     isMobileLandscape: boolean,
     isMobilePortrait: boolean,
-    onNavigateToStep: (targetIndex: number) => void
+    onNavigateToStep: (targetIndex: number) => void,
+    activeStepIndex: number
 }) => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
@@ -1473,42 +2026,30 @@ const FAQCard = ({
         onNavigateToStep(index + 1);
     };
 
+    const sectionHeaderClassName = isMobilePortrait
+        ? "px-4 pt-4 pb-2 border-b border-white/10"
+        : isMobileLandscape
+        ? "px-4 pt-2.5 pb-1.5 border-b border-white/10"
+        : "px-6 md:px-12 pt-6 md:pt-8 pb-4 border-b border-white/10";
+    const sectionHeaderIndexClassName = "text-[#D4AF37] font-bold mr-1 md:mr-2";
+
     return (
         <motion.div
-            id="niche-step-09"
-            style={{ y, zIndex: index, top: stickyTop, height: stickyHeight }}
-            className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
+            id="niche-step-13"
+            style={{
+                y,
+                zIndex: index,
+                top: stickyTop,
+                height: stickyHeight
+            }}
+            className="flex flex-col sticky left-0 w-full overflow-hidden bg-zinc-950 border-t border-white/20 scroll-mt-28 md:scroll-mt-40"
         >
             {/* JSON-LD Schema */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
-
-            {/* Card Header */}
-            <div className={isMobileLandscape
-                ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold shrink-0 z-20"
-                : isMobilePortrait
-                ? "h-8 w-full bg-zinc-900 border-b border-white/20 flex items-center px-4 uppercase tracking-[0.18em] text-[10px] font-bold shrink-0 z-20"
-                : "h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold shrink-0 z-20"}>
-                <span className={isMobileLandscape || isMobilePortrait ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4"}>09</span>
-                <span>Частые вопросы</span>
-            </div>
-            {isMobileCompactTop && prevStep && (
-                <div className={`absolute ${topStaticNavOffsetClassName} left-0 right-0 z-[73] flex justify-center`}>
-                    <button
-                        type="button"
-                        onClick={handlePrevClick}
-                        className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
-                        aria-label={`Перейти к секции ${prevStep.id} ${prevStep.title}`}
-                    >
-                        <ArrowDown className="h-3 w-3 -rotate-180 text-[#D4AF37]" />
-                        <span className="text-white/60">Назад</span>
-                        <span className="text-[#D4AF37]">{prevStep.id}</span>
-                        <span className="text-white">{prevStep.title}</span>
-                    </button>
-                </div>
-            )}
+            {/* Кнопка НАЗАД скрыта на мобиле */}
             {isMobileCompactTop && nextStep && (
                 <div className="absolute bottom-2 left-0 right-0 z-[73] flex justify-center">
                     <button
@@ -1526,8 +2067,8 @@ const FAQCard = ({
             )}
 
             {/* FAQ Content */}
-            <div className="flex-1 overflow-y-auto overscroll-y-contain touch-pan-y px-6 py-10 md:px-12 md:py-16 max-w-4xl mx-auto w-full custom-scrollbar">
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white mb-10 md:mb-14">
+            <div className="flex-1 overflow-y-auto touch-pan-y px-6 py-6 md:px-12 md:py-8 max-w-4xl mx-auto w-full custom-scrollbar pb-10">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tight text-white mb-4 md:mb-6">
                     Частые <span className="text-[#D4AF37]">вопросы</span>
                 </h2>
 
@@ -1554,7 +2095,8 @@ const FormCard = ({
     stickyHeight,
     isMobileLandscape,
     isMobilePortrait,
-    onNavigateToStep
+    onNavigateToStep,
+    activeStepIndex
 }: {
     index: number,
     scrollYProgress: MotionValue<number>,
@@ -1563,10 +2105,12 @@ const FormCard = ({
     stickyHeight: string,
     isMobileLandscape: boolean,
     isMobilePortrait: boolean,
-    onNavigateToStep: (targetIndex: number) => void
+    onNavigateToStep: (targetIndex: number) => void,
+    activeStepIndex: number
 }) => {
-    const [method, setMethod] = useState("Telegram");
+    const [method, setMethod] = useState<'Telegram' | 'WhatsApp' | 'Mail'>('Telegram');
     const [services, setServices] = useState<string[]>([]);
+    const [submitted, setSubmitted] = useState(false);
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
     const prevStep = index > 0 ? stackStepNavItems[index - 1] : null;
     const topStaticNavOffsetClassName = isMobileLandscape ? "top-7" : "top-9";
@@ -1589,102 +2133,152 @@ const FormCard = ({
         onNavigateToStep(index - 1);
     };
 
+
+
     return (
         <motion.div
-            id="niche-step-10"
-            style={{ y, zIndex: index, top: stickyTop, height: stickyHeight }}
-            className="sticky left-0 w-full flex flex-col bg-zinc-950 text-white overflow-hidden border-t border-white/20"
+            id="niche-step-14"
+            style={{
+                y,
+                zIndex: index,
+                top: stickyTop,
+                height: stickyHeight
+            }}
+            className="flex flex-col sticky left-0 w-full overflow-hidden bg-zinc-950 border-t border-white/20 scroll-mt-28 md:scroll-mt-40"
         >
-            <div id="contact" className="absolute top-0" />
-            <div className={isMobileLandscape
-                ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center px-3 uppercase tracking-[0.16em] text-[9px] font-bold shrink-0 z-20"
-                : isMobilePortrait
-                ? "h-8 w-full bg-zinc-900 border-b border-white/20 flex items-center px-4 uppercase tracking-[0.18em] text-[10px] font-bold shrink-0 z-20"
-                : "h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center px-6 uppercase tracking-widest text-xs font-bold shrink-0 z-20"}>
-                <span className={isMobileLandscape || isMobilePortrait ? "text-[#D4AF37] mr-2" : "text-[#D4AF37] mr-4"}>10</span>
-                <span>Форма связи</span>
-            </div>
-            {isMobileCompactTop && prevStep && (
-                <div className={`absolute ${topStaticNavOffsetClassName} left-0 right-0 z-[73] flex justify-center`}>
-                    <button
-                        type="button"
-                        onClick={handlePrevClick}
-                        className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
-                        aria-label={`Перейти к секции ${prevStep.id} ${prevStep.title}`}
-                    >
-                        <ArrowDown className="h-3 w-3 -rotate-180 text-[#D4AF37]" />
-                        <span className="text-white/60">Назад</span>
-                        <span className="text-[#D4AF37]">{prevStep.id}</span>
-                        <span className="text-white">{prevStep.title}</span>
-                    </button>
-                </div>
-            )}
+            <div id="contact" className="absolute top-0 pointer-events-none" />
 
-            <div className="flex-1 overflow-y-auto overscroll-y-contain touch-pan-y px-6 py-12 md:px-12 md:py-16 max-w-5xl mx-auto w-full custom-scrollbar">
-                <DebugWrapper id={8942} label="Form Title">
-                    <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-12">
-                        Готов усилить <br className="hidden md:block" />
-                        <span className="text-[#D4AF37]">цифровое</span> присутствие?
+            {/* Кнопка НАЗАД скрыта на мобиле */}
+
+            <div className="flex-1 overflow-y-auto touch-pan-y px-4 pt-3 md:px-8 md:pt-4 w-full custom-scrollbar pb-2 md:pb-4">
+                <div className="flex min-h-full flex-col">
+                    <div className="relative mx-auto w-full max-w-4xl overflow-hidden rounded-xl border border-[#D4A017]/30 bg-gradient-to-br from-[#141414] via-[#111111] to-[#0d0d0d] p-5 md:min-h-[66vh] md:rounded-2xl md:p-8">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,160,23,0.14),transparent_55%)] pointer-events-none" />
+
+                    <h2 className="relative z-10 mb-2 text-[20px] font-black tracking-tight text-white md:text-3xl uppercase">
+                        ОБСУДИМ <span className="text-[#D4AF37]">ВАШУ ЗАДАЧУ</span>
                     </h2>
-                </DebugWrapper>
+                    <p className="relative z-10 mb-6 max-w-2xl text-[12px] leading-snug text-white/70 md:text-[14px]">
+                        Оставьте контакт и пару слов о задаче — предложим формат и вернёмся с расчётом.
+                    </p>
 
-                <form className="space-y-10 pb-10" onSubmit={(e) => e.preventDefault()}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <label className="block text-xs uppercase tracking-widest text-white/50 mb-2">Ваше Имя *</label>
-                            <input type="text" placeholder="Иван Иванов" className="w-full bg-transparent border-b border-white/20 pb-2 focus:border-[#D4AF37] transition-colors outline-none font-medium text-white" required />
-                        </div>
-                        <div>
-                            <label className="block text-xs uppercase tracking-widest text-white/50 mb-2">Способ связи *</label>
-                            <div className="flex gap-4">
-                                {["Telegram", "WhatsApp", "Mail"].map((m) => (
-                                    <button key={m} type="button" onClick={() => setMethod(m)} className={`pb-2 border-b-2 transition-colors font-medium ${method === m ? 'border-[#D4AF37] text-white' : 'border-transparent text-white/40 hover:text-white/80'}`}>{m}</button>
-                                ))}
+                    <form
+                        className="relative z-10 space-y-5"
+                        onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
+                    >
+                        {submitted ? (
+                            <div className="flex flex-col items-center justify-center py-12 text-center gap-4">
+                                <div className="text-5xl animate-bounce">✅</div>
+                                <h3 className="text-white font-bold text-xl">Заявка отправлена!</h3>
+                                <p className="text-white/60 text-sm max-w-xs leading-relaxed">
+                                    Специалист свяжется с вами в течение рабочего часа.
+                                </p>
                             </div>
-                            <input type={method === "Mail" ? "email" : "text"} placeholder={method === "Mail" ? "hello@example.com" : "@username / +995..."} className="w-full bg-transparent border-b border-white/20 pb-2 mt-4 focus:border-[#D4AF37] transition-colors outline-none font-medium text-white" required />
-                        </div>
-                    </div>
+                        ) : (
+                            <>
+                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                    <div>
+                                        <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55">Ваше имя</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Иван Иванов"
+                                            className="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-[#D4A017]"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55">Способ связи *</label>
+                                        <div className="flex gap-4">
+                                            {(['Telegram', 'WhatsApp', 'Звонок'] as const).map((option) => (
+                                                <button
+                                                    key={option}
+                                                    type="button"
+                                                    onClick={() => setMethod(option as any)}
+                                                    className={`border-b-2 pb-1 text-[11px] transition-colors ${
+                                                        method === option ? 'border-[#D4A017] text-white' : 'border-transparent text-white/40 hover:text-white/70'
+                                                    }`}
+                                                >
+                                                    {option}
+                                                </button>
+                                            ))}
+                                        </div>
+                                        <input
+                                            type="text"
+                                            required
+                                            placeholder={method === 'WhatsApp' ? '+995 ...' : '@username'}
+                                            className="mt-2 w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-[#D4A017]"
+                                        />
+                                    </div>
+                                </div>
 
-                    <div>
-                        <label className="block text-xs uppercase tracking-widest text-white/50 mb-4">Интересующие услуги</label>
-                        <div className="flex flex-wrap gap-3">
-                            {["Дрон", "360 тур", "Reels", "SMM контент", "Google Maps", "Event"].map((svc) => (
-                                <button key={svc} type="button" onClick={() => toggleService(svc)} className={`px-4 py-2 rounded-full border text-sm transition-all ${services.includes(svc) ? 'bg-[#D4AF37] border-[#D4AF37] text-black font-bold' : 'border-white/20 text-white/60 hover:border-white hover:text-white'}`}>{svc}</button>
-                            ))}
-                        </div>
-                    </div>
+                                <div>
+                                    <label className="mb-3 block text-[10px] uppercase tracking-[0.18em] text-white/55">Интересующие услуги</label>
+                                    <div className="flex flex-wrap gap-2">
+                                        {['Аэросъёмка', 'Промо-видео', 'Reels', '360°-туры', 'AI-контент', 'Недвижимость', 'Отели', 'Рестораны', 'Туризм', 'Клиники', 'Автобизнес'].map((svc) => (
+                                            <button
+                                                key={svc}
+                                                type="button"
+                                                onClick={() => toggleService(svc)}
+                                                className={`rounded-full border px-3 py-1 text-[10px] transition-colors ${
+                                                    services.includes(svc) ? 'bg-[#D4A017] border-[#D4A017] text-black font-bold' : 'border-white/10 text-white/50 hover:border-white/30 hover:text-white'
+                                                }`}
+                                            >
+                                                {svc}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
 
-                    <div>
-                        <label className="block text-xs uppercase tracking-widest text-white/50 mb-2">Ваша ниша</label>
-                        <select className="w-full bg-transparent border-b border-white/20 pb-2 focus:border-[#D4AF37] transition-colors outline-none font-medium appearance-none text-white">
-                            <option value="" className="bg-zinc-900">Выберите нишу...</option>
-                            <option value="realestate" className="bg-zinc-900">Недвижимость</option>
-                            <option value="hotels" className="bg-zinc-900">Отели</option>
-                            <option value="restaurants" className="bg-zinc-900">Рестораны</option>
-                            <option value="auto" className="bg-zinc-900">Авто бизнес</option>
-                            <option value="tourism" className="bg-zinc-900">Туризм</option>
-                            <option value="clinics" className="bg-zinc-900">Клиники</option>
-                            <option value="it" className="bg-zinc-900">IT</option>
-                            <option value="other" className="bg-zinc-900">Другое</option>
-                        </select>
-                    </div>
+                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                    <div>
+                                        <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55">Ваши соцсети или сайт</label>
+                                        <input
+                                            type="text"
+                                            placeholder="@аккаунт или сайт"
+                                            className="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder:text-white/30 outline-none focus:border-[#D4A017]"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55">Коротко о задаче</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Напр: обзор ЖК с воздуха..."
+                                            className="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder:text-white/30 outline-none focus:border-[#D4A017]"
+                                        />
+                                    </div>
+                                </div>
 
-                    <div>
-                        <label className="block text-xs uppercase tracking-widest text-white/50 mb-2">Коротко о задаче</label>
-                        <textarea placeholder="Например: Нужно снять дрон тур для нового ЖК" rows={3} className="w-full bg-transparent border-b border-white/20 pb-2 focus:border-[#D4AF37] transition-colors outline-none font-medium resize-none text-white" />
-                    </div>
+                                <div className="flex flex-col gap-4 pt-2 md:flex-row md:items-center">
+                                    <button
+                                        type="submit"
+                                        className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#D4A017] py-3.5 text-[11px] font-black uppercase tracking-[0.2em] text-black transition-all hover:scale-[1.02] active:scale-[0.98]"
+                                    >
+                                        <Send className="w-4 h-4" />
+                                        ОТПРАВИТЬ ЗАЯВКУ
+                                    </button>
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span className="text-[10px] uppercase tracking-widest text-white/20">или</span>
+                                        <a
+                                            href="https://wa.me/995574619393"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="flex items-center gap-2 text-[11px] font-bold text-[#D4A017] hover:brightness-125"
+                                        >
+                                            <MessageCircle className="w-4 h-4" />
+                                            НАПИСАТЬ В WHATSAPP
+                                        </a>
+                                    </div>
+                                </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                        <button type="submit" className="flex-1 bg-white text-black font-black uppercase tracking-widest py-4 px-8 flex justify-center items-center gap-2 hover:bg-[#D4AF37] transition-colors">
-                            <Send className="w-5 h-5" /> Написать
-                        </button>
-                        <a href="https://wa.me/995574619393" target="_blank" rel="noreferrer" className="flex-1 border border-white/20 text-white font-bold uppercase tracking-widest py-4 px-8 flex justify-center items-center gap-2 hover:bg-white/5 transition-colors">
-                            <MessageCircle className="w-5 h-5" /> WhatsApp
-                        </a>
-                    </div>
-                </form>
+                                <p className="text-[9px] leading-relaxed text-white/20 uppercase tracking-[0.1em]">
+                                    Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных.
+                                </p>
+                            </>
+                        )}
+                    </form>
+                </div>
             </div>
-        </motion.div>
+        </div>
+    </motion.div>
     );
 };
 
@@ -1694,6 +2288,8 @@ export function NichesStack() {
     const isMobilePortrait = useMobilePortrait();
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
     const [activeStepIndex, setActiveStepIndex] = useState(0);
+    const [isStackVisible, setIsStackVisible] = useState(false);
+    const [isQuickNavOpen, setIsQuickNavOpen] = useState(false);
     const stickyTopPx = isMobileLandscape
         ? LANDSCAPE_STICKY_TOP_PX
         : isMobilePortrait
@@ -1705,22 +2301,23 @@ export function NichesStack() {
         ? PORTRAIT_STACK_PREVIEW_PX
         : 0;
     const stickyTop = `${stickyTopPx}px`;
+    const headerHeight = isMobileLandscape ? 24 : isMobilePortrait ? 32 : 48;
+    const cardStickyTopPx = stickyTopPx + headerHeight;
+    const cardStickyTop = `${cardStickyTopPx}px`;
     const stickyHeight = `calc(100vh - ${stickyTopPx + mobileStackPreviewPx}px)`;
-    const totalSteps = niches.length + 2; // +1 Placeholder (09), +1 Form (10)
+    const totalSteps = niches.length + 2; 
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
     });
 
     const getActiveStepIndex = () => {
-        if (typeof window === "undefined") return 0;
-        const containerEl = containerRef.current;
-        if (!containerEl) return 0;
-
-        const containerTop = containerEl.getBoundingClientRect().top + window.scrollY;
-        const relativeScroll = window.scrollY - containerTop;
-        const rawIndex = Math.round(relativeScroll / window.innerHeight);
-        return Math.max(0, Math.min(totalSteps - 1, rawIndex));
+        const progress = scrollYProgress.get();
+        // Calculate index based on progress (0 to 1) and total steps
+        // Math.floor(progress * totalSteps) gives the current step
+        // We handle the edge case where progress is exactly 1
+        const rawIndex = Math.floor(progress * totalSteps);
+        return Math.min(totalSteps - 1, Math.max(0, rawIndex));
     };
 
     const scrollToNicheStep = (targetIndex: number) => {
@@ -1743,10 +2340,12 @@ export function NichesStack() {
             return false;
         };
 
-        const containerTop = containerEl.getBoundingClientRect().top + window.scrollY;
-        const coarseTargetY = containerTop + clampedIndex * window.innerHeight + 1;
+        const coarseTargetY = Math.max(
+            0,
+            window.scrollY + targetEl.getBoundingClientRect().top - stickyTopPx
+        );
         window.scrollTo({
-            top: Math.max(0, coarseTargetY),
+            top: coarseTargetY,
             behavior: "smooth",
         });
 
@@ -1760,8 +2359,6 @@ export function NichesStack() {
     };
 
     useEffect(() => {
-        if (!isMobileCompactTop) return;
-
         const syncActiveStep = () => {
             setActiveStepIndex(getActiveStepIndex());
         };
@@ -1774,7 +2371,46 @@ export function NichesStack() {
             window.removeEventListener("scroll", syncActiveStep);
             window.removeEventListener("resize", syncActiveStep);
         };
-    }, [isMobileCompactTop, totalSteps]);
+    }, [totalSteps]);
+
+    useEffect(() => {
+        if (!isMobileCompactTop) {
+            setIsStackVisible(false);
+            return;
+        }
+
+        const syncVisibility = () => {
+            const rect = containerRef.current?.getBoundingClientRect();
+            if (!rect) {
+                setIsStackVisible(false);
+                return;
+            }
+
+            setIsStackVisible(rect.top < window.innerHeight - 96 && rect.bottom > stickyTopPx + 64);
+        };
+
+        syncVisibility();
+        window.addEventListener("scroll", syncVisibility, { passive: true });
+        window.addEventListener("resize", syncVisibility);
+
+        return () => {
+            window.removeEventListener("scroll", syncVisibility);
+            window.removeEventListener("resize", syncVisibility);
+        };
+    }, [isMobileCompactTop, stickyTopPx]);
+
+    useEffect(() => {
+        if (!isMobileCompactTop || typeof document === "undefined") return;
+
+        const originalOverflow = document.body.style.overflow;
+        if (isQuickNavOpen) {
+            document.body.style.overflow = "hidden";
+        }
+
+        return () => {
+            document.body.style.overflow = originalOverflow;
+        };
+    }, [isMobileCompactTop, isQuickNavOpen]);
 
     const handleFloatingScrollControl = (direction: "up" | "down") => {
         const currentIndex = getActiveStepIndex();
@@ -1815,11 +2451,9 @@ export function NichesStack() {
         }
     };
 
+    const activeMobileStep = stackStepNavItems[activeStepIndex] ?? stackStepNavItems[0];
     const activeMobileNextStep = stackStepNavItems[activeStepIndex + 1] ?? null;
-    const showGlobalMobileNextButton =
-        isMobileCompactTop &&
-        activeStepIndex < niches.length &&
-        Boolean(activeMobileNextStep);
+    const showMobileQuickDock = isMobileCompactTop && isStackVisible && Boolean(activeMobileStep);
     const globalBottomNextOffsetClassName = isMobileLandscape
         ? "bottom-[calc(env(safe-area-inset-bottom,0px)+0.9rem)]"
         : "bottom-[calc(env(safe-area-inset-bottom,0px)+1.15rem)]";
@@ -1838,20 +2472,20 @@ export function NichesStack() {
                                 type="button"
                                 onClick={() => handleFloatingScrollControl("up")}
                                 className="flex h-6 w-6 items-center justify-center rounded-full border border-white/25 bg-zinc-900/80 text-white hover:border-[#D4AF37]/70 hover:text-[#D4AF37] transition-colors"
-                                aria-label={`Прокрутить вверх. Текущий шаг ${stackStepNavItems[activeStepIndex]?.id ?? "00"}`}
+                                aria-label={`Прокрутить вверх. Текущий шаг ${stackStepNavItems[activeStepIndex]?.id ?? "01"}`}
                             >
                                 <ChevronUp className="h-3.5 w-3.5" />
                             </button>
                             <div className="h-8 w-px bg-gradient-to-b from-[#D4AF37]/10 via-[#D4AF37]/70 to-[#D4AF37]/10" />
                             <div className="text-[9px] font-black uppercase tracking-[0.12em] text-[#D4AF37]">
-                                {stackStepNavItems[activeStepIndex]?.id ?? "00"}
+                                {stackStepNavItems[activeStepIndex]?.id ?? "01"}
                             </div>
                             <div className="h-8 w-px bg-gradient-to-b from-[#D4AF37]/10 via-[#D4AF37]/70 to-[#D4AF37]/10" />
                             <button
                                 type="button"
                                 onClick={() => handleFloatingScrollControl("down")}
                                 className="flex h-6 w-6 items-center justify-center rounded-full border border-white/25 bg-zinc-900/80 text-white hover:border-[#D4AF37]/70 hover:text-[#D4AF37] transition-colors"
-                                aria-label={`Прокрутить вниз. Текущий шаг ${stackStepNavItems[activeStepIndex]?.id ?? "00"}`}
+                                aria-label={`Прокрутить вниз. Текущий шаг ${stackStepNavItems[activeStepIndex]?.id ?? "01"}`}
                             >
                                 <ChevronDown className="h-3.5 w-3.5" />
                             </button>
@@ -1859,26 +2493,139 @@ export function NichesStack() {
                     </div>
                 </div>
             )}
-            {showGlobalMobileNextButton && activeMobileNextStep && (
-                <div className={`fixed ${globalBottomNextOffsetClassName} left-0 right-0 z-[220] flex justify-center pointer-events-none`}>
-                    <div className="relative inline-flex">
+            {showMobileQuickDock && activeMobileStep && (
+                <div className={`fixed ${globalBottomNextOffsetClassName} left-0 right-0 z-[220] flex justify-center px-3 pointer-events-none`}>
+                    <div className="pointer-events-auto relative inline-flex w-full max-w-sm items-center gap-2 rounded-[26px] border border-white/15 bg-black/78 p-2 shadow-[0_24px_70px_rgba(0,0,0,0.45)] backdrop-blur-xl">
                         <UiIdBadge id={GLOBAL_NEXT_BUTTON_UI_ID} />
                         <button
                             type="button"
-                            onClick={handleGlobalNextStepClick}
-                            data-ui-id={GLOBAL_NEXT_BUTTON_UI_ID}
-                            data-ui-name="GAZETA_NEXT_9200"
-                            className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.14em] backdrop-blur-md hover:border-[#D4AF37]/70 hover:text-white transition-colors"
-                            aria-label={`Перейти к секции ${activeMobileNextStep.id} ${activeMobileNextStep.title}`}
+                            onClick={() => setIsQuickNavOpen(true)}
+                            className="flex min-w-0 flex-1 items-center justify-between rounded-[18px] border border-white/10 bg-white/[0.04] px-3 py-2 text-left transition-colors hover:border-[#D4AF37]/40"
+                            aria-label="Открыть навигацию по секциям Gazeta"
                         >
-                            <span className="text-white/60">Далее</span>
-                            <span className="text-[#D4AF37]">{activeMobileNextStep.id}</span>
-                            <span className="text-white">{activeMobileNextStep.title}</span>
-                            <ArrowDown className="h-3 w-3 text-[#D4AF37]" />
+                            <div className="min-w-0">
+                                <div className="text-[8px] font-bold uppercase tracking-[0.18em] text-white/42">
+                                    Раздел
+                                </div>
+                                <div className="truncate text-[10px] font-bold uppercase tracking-[0.14em] text-white">
+                                    <span className="mr-1 text-[#D4AF37]">{activeMobileStep.id}</span>
+                                    {activeMobileStep.title}
+                                </div>
+                            </div>
+                            <LayoutGrid className="h-4 w-4 shrink-0 text-[#D4AF37]" />
                         </button>
+                        {activeMobileNextStep ? (
+                            <button
+                                type="button"
+                                onClick={handleGlobalNextStepClick}
+                                data-ui-id={GLOBAL_NEXT_BUTTON_UI_ID}
+                                data-ui-name="GAZETA_NEXT_9200"
+                                className="inline-flex shrink-0 items-center gap-1 rounded-[18px] border border-white/20 px-3 py-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white transition-colors hover:border-[#D4AF37]/70"
+                                aria-label={`Перейти к секции ${activeMobileNextStep.id} ${activeMobileNextStep.title}`}
+                            >
+                                <span className="text-white/60">Далее</span>
+                                <span className="text-[#D4AF37]">{activeMobileNextStep.id}</span>
+                                <ArrowDown className="h-3 w-3 text-[#D4AF37]" />
+                            </button>
+                        ) : (
+                            <a
+                                href="#contact"
+                                className="inline-flex shrink-0 items-center gap-1 rounded-[18px] bg-[#D4AF37] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.14em] text-black"
+                            >
+                                Контакт
+                            </a>
+                        )}
                     </div>
                 </div>
             )}
+            <AnimatePresence>
+                {isQuickNavOpen && isMobileCompactTop && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[260] bg-black/72 backdrop-blur-md"
+                    >
+                        <motion.div
+                            initial={{ y: 32, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 32, opacity: 0 }}
+                            transition={{ duration: 0.24, ease: "easeOut" }}
+                            className="absolute inset-x-3 bottom-[calc(env(safe-area-inset-bottom,0px)+5.4rem)] mx-auto max-w-md rounded-[30px] border border-white/12 bg-[#070707]/96 shadow-[0_28px_80px_rgba(0,0,0,0.55)]"
+                        >
+                            <div className="flex items-start justify-between border-b border-white/10 px-5 py-4">
+                                <div>
+                                    <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#D4AF37]">
+                                        Навигация
+                                    </p>
+                                    <p className="mt-2 max-w-[22ch] text-sm leading-relaxed text-white/72">
+                                        Быстрый переход по нишам, FAQ и форме без длинной прокрутки.
+                                    </p>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsQuickNavOpen(false)}
+                                    className="rounded-full border border-white/10 p-2 text-white/72 transition-colors hover:border-[#D4AF37]/40 hover:text-white"
+                                    aria-label="Закрыть навигацию"
+                                >
+                                    <X className="h-4 w-4" />
+                                </button>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3 p-5">
+                                {stackStepNavItems.map((step, stepIndex) => {
+                                    const isActive = stepIndex === activeStepIndex;
+                                    return (
+                                        <button
+                                            key={`${step.id}-${step.title}`}
+                                            type="button"
+                                            onClick={() => {
+                                                setIsQuickNavOpen(false);
+                                                scrollToNicheStep(stepIndex);
+                                            }}
+                                            className={`rounded-[20px] border px-3 py-3 text-left transition-colors ${
+                                                isActive
+                                                    ? "border-[#D4AF37]/55 bg-[#D4AF37]/10"
+                                                    : "border-white/10 bg-white/[0.03] hover:border-[#D4AF37]/35"
+                                            }`}
+                                        >
+                                            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D4AF37]">
+                                                {step.id}
+                                            </div>
+                                            <div className="mt-1 text-[12px] font-bold uppercase leading-tight text-white">
+                                                {step.title}
+                                            </div>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* 
+                GLOBAL NAVIGATION HEADER 
+                Sticky at the top, shared by all 14 steps.
+                This prevents duplicate renders and "ghosting" when cards stack.
+            */}
+            <div 
+                className="sticky z-[100] w-full"
+                style={{ top: `${stickyTopPx}px` }}
+            >
+                <div className={isMobileLandscape 
+                    ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center shadow-lg"
+                    : isMobilePortrait
+                    ? "h-8 w-full bg-zinc-900 border-b border-white/20 flex items-center shadow-lg"
+                    : "h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center shadow-lg"
+                }>
+                    <StackSectionHeader
+                        activeStepIndex={activeStepIndex}
+                        sectionHeaderClassName="w-full h-full flex items-center px-4 md:px-6 uppercase tracking-widest text-[9px] md:text-xs font-bold text-white overflow-hidden"
+                        onNavigateToStep={scrollToNicheStep}
+                    />
+                </div>
+            </div>
+
             {niches.map((niche, index) => (
                 <Card
                     key={niche.id}
@@ -1886,32 +2633,35 @@ export function NichesStack() {
                     index={index}
                     scrollYProgress={scrollYProgress}
                     totalSteps={totalSteps}
-                    stickyTop={stickyTop}
+                    stickyTop={cardStickyTop}
                     stickyHeight={stickyHeight}
                     isMobileLandscape={isMobileLandscape}
                     isMobilePortrait={isMobilePortrait}
                     onNavigateToStep={scrollToNicheStep}
+                    activeStepIndex={activeStepIndex}
                 />
             ))}
             <FAQCard
                 index={niches.length}
                 scrollYProgress={scrollYProgress}
                 totalSteps={totalSteps}
-                stickyTop={stickyTop}
+                stickyTop={cardStickyTop}
                 stickyHeight={stickyHeight}
                 isMobileLandscape={isMobileLandscape}
                 isMobilePortrait={isMobilePortrait}
                 onNavigateToStep={scrollToNicheStep}
+                activeStepIndex={activeStepIndex}
             />
             <FormCard
                 index={niches.length + 1}
                 scrollYProgress={scrollYProgress}
                 totalSteps={totalSteps}
-                stickyTop={stickyTop}
+                stickyTop={cardStickyTop}
                 stickyHeight={stickyHeight}
                 isMobileLandscape={isMobileLandscape}
                 isMobilePortrait={isMobilePortrait}
                 onNavigateToStep={scrollToNicheStep}
+                activeStepIndex={activeStepIndex}
             />
         </div>
     );

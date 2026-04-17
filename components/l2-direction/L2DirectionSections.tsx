@@ -264,14 +264,15 @@ export const L2DirectionServices = ({ heading, services }: L2DirectionServicesPr
                             <div className="w-12 h-1 bg-[#D4A017]" />
                         </div>
                     </DebugWrapper>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div className={sortedServices.length < 4 ? "flex flex-wrap justify-center gap-6" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"}>
                         {sortedServices.map((service, idx) => (
-                            <DebugWrapper key={service.slug} id={10310 + idx} label={`Service Card: ${service.title}`}>
-                                <article
-                                    id={`service-${service.slug}`}
-                                    className={`service-card-target scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col ${service.featured ? 'gold-glow border-[#D4A017]/50' : ''}`}
-                                    style={service.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : {}}
-                                >
+                            <div key={service.slug} className={sortedServices.length < 4 ? "w-full md:w-[320px] lg:w-[350px]" : ""}>
+                                <DebugWrapper id={10310 + idx} label={`Service Card: ${service.title}`}>
+                                    <article
+                                        id={`service-${service.slug}`}
+                                        className={`service-card-target h-full scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col ${service.featured ? 'gold-glow border-[#D4A017]/50' : ''}`}
+                                        style={service.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : {}}
+                                    >
                                     <div className="h-40 bg-neutral-800 overflow-hidden relative">
                                         {service.primaryHref ? (
                                             <Link href={service.primaryHref} className="block h-full">
@@ -336,8 +337,9 @@ export const L2DirectionServices = ({ heading, services }: L2DirectionServicesPr
                                     </div>
                                 </article>
                             </DebugWrapper>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
+                </div>
                 </div>
             </section>
         </DebugWrapper>
