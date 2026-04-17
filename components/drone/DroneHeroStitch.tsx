@@ -132,7 +132,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                         <motion.img
                             key={activeService.slug}
                             src={activeService.image || hero.heroImage}
-                            alt={activeService.title || hero.h1}
+                            alt="Аэросъёмка дроном для бизнеса в Тбилиси — Breus Media"
                             initial={{ opacity: 0, scale: 1.06 }}
                             animate={{ opacity: 0.64, scale: 1 }}
                             exit={{ opacity: 0 }}

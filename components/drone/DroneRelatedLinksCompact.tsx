@@ -5,18 +5,19 @@ import type { DroneDirectionRelatedLink } from '@/constants/droneDirectionPages'
 
 type DroneRelatedLinksCompactProps = {
     links: DroneDirectionRelatedLink[];
+    title?: string;
 };
 
-export const DroneRelatedLinksCompact = ({ links }: DroneRelatedLinksCompactProps) => {
+export const DroneRelatedLinksCompact = ({
+    links,
+    title = 'Другие услуги Breus Media',
+}: DroneRelatedLinksCompactProps) => {
     return (
         <DebugWrapper id={10850} label="Related Links Section">
             <section className="py-16 bg-[#080808] border-t border-[#2a2a2a]">
                 <div className="container mx-auto px-6">
                     <div className="mb-8">
-                        <p className="text-[11px] uppercase tracking-[0.24em] text-[#D4A017] font-bold mb-3">
-                            Смежные направления
-                        </p>
-                        <h2 className="text-2xl font-bold text-white">Что еще может подойти вашему объекту</h2>
+                        <h2 className="text-2xl font-bold text-white">{title}</h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                         {links.map((link, idx) => (

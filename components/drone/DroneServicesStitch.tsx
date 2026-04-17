@@ -2,26 +2,25 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { Manrope } from 'next/font/google';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 import { droneServiceItems } from '@/components/drone/droneServicesData';
+
+const manrope = Manrope({ subsets: ['cyrillic', 'latin'], weight: ['400', '500', '600', '700'] });
 
 export const DroneServicesStitch = () => {
     const services = [...droneServiceItems].sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id));
 
     return (
         <DebugWrapper id={10300} label="Drone Services Section">
-            <section className="py-24 bg-[#080808]" id="services">
+            <section className="py-8 md:py-24 bg-[#080808]" id="services">
                 <style jsx>{`
                     .service-card-target:target {
                         border-color: rgba(212, 160, 23, 0.9) !important;
                         box-shadow: 0 0 0 1px rgba(212, 160, 23, 0.4), 0 0 28px rgba(212, 160, 23, 0.22);
                     }
                 `}</style>
-                <div className="container mx-auto px-6">
-                    <div className="mb-16">
-                        <h2 className="text-3xl font-bold mb-4 text-white">Направления съёмки</h2>
-                        <div className="w-12 h-1 bg-[#D4A017]" />
-                    </div>
+                <div className="mx-auto w-full max-w-[1400px] px-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                         {services.map((service, idx) => {
                             const detailsHref =
@@ -49,17 +48,17 @@ export const DroneServicesStitch = () => {
                                         )}
                                     </div>
                                     <div className="px-5 pt-5 pb-4 flex-grow flex flex-col">
-                                        <h3 className={`text-lg font-bold mb-1 ${service.featured ? 'text-[#D4A017]' : 'text-white'}`}>
+                                        <h3 className={`${manrope.className} text-[20px] font-bold leading-[1.3] tracking-[-0.01em] text-white mb-1`}>
                                             {service.title}
                                         </h3>
-                                        <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-2">
+                                        <div className={`${manrope.className} text-[11px] font-semibold tracking-[0.12em] uppercase text-white/[0.45] mb-2`}>
                                             {service.category}
                                         </div>
-                                        <p className="text-gray-400 text-sm mb-3 leading-snug">
+                                        <p className={`${manrope.className} antialiased text-[14px] font-normal leading-[1.65] text-white/[0.82] mb-3`}>
                                             {service.description}
                                         </p>
                                         <div className="mt-auto">
-                                            <div className="pt-3 border-t border-[#2a2a2a] text-[10px] text-[#D4A017] font-bold uppercase tracking-wider mb-4">
+                                            <div className={`${manrope.className} pt-3 border-t border-[#2a2a2a] text-[11px] font-bold tracking-[0.1em] uppercase text-[#F5C518] mb-4`}>
                                                 {service.price}
                                             </div>
                                             <div className="flex gap-3">

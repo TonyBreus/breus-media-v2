@@ -9,7 +9,7 @@ export const DroneContactStitch = () => {
     const [services, setServices] = useState<string[]>([]);
     const [submitted, setSubmitted] = useState(false);
 
-    const serviceOptions = ['Недвижимость', 'Отели', 'Рестораны', 'Туризм', 'Инспекция', 'Мониторинг'];
+    const serviceOptions = ['Аэросъёмка', 'Промо-видео', 'Reels', '360°-туры', 'AI-контент', 'Недвижимость', 'Отели', 'Рестораны', 'Туризм', 'Клиники', 'Автобизнес'];
 
     const toggleService = (service: string) => {
         setServices((prev) => (prev.includes(service) ? prev.filter((item) => item !== service) : [...prev, service]));
@@ -20,7 +20,7 @@ export const DroneContactStitch = () => {
 
     return (
         <DebugWrapper id={10900} label="Drone Contact Section">
-            <section className="bg-[#080808] py-6 md:py-20" id="contact">
+            <section className="bg-[#080808] scroll-mt-[116px] py-5 md:scroll-mt-24 md:py-20" id="contact">
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="relative mx-auto max-w-4xl overflow-hidden rounded-xl border border-[#D4A017]/30 bg-gradient-to-br from-[#141414] via-[#111111] to-[#0d0d0d] p-3.5 md:rounded-2xl md:p-8">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,160,23,0.14),transparent_55%)] pointer-events-none" />
@@ -121,11 +121,11 @@ export const DroneContactStitch = () => {
 
                             <div>
                                 <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55 md:mb-2 md:text-[11px]">
-                                    Сайт, Instagram или адрес объекта
+                                    ВАШИ СОЦСЕТИ ИЛИ САЙТ
                                 </label>
                                 <input
                                     type="text"
-                                    placeholder="Ссылка, локация или @аккаунт — разберёмся быстрее"
+                                    placeholder="@аккаунт, ссылка или название объекта."
                                     className="w-full border-b border-white/25 bg-transparent pb-2 text-sm text-white placeholder:text-white/35 outline-none transition-colors focus:border-[#D4A017] md:pb-2.5"
                                 />
                             </div>

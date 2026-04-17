@@ -59,8 +59,7 @@ export type DroneDirectionPageConfig = {
     seo: DroneDirectionSeoConfig;
 };
 
-const { droneService, monitoringStroiki, realEstate, hotels, restaurants, tourism, tours360, promoVideo } =
-    gazetaDetailRoutes;
+const { droneService, monitoringStroiki, realEstate, tours360, promoVideo } = gazetaDetailRoutes;
 
 export const droneDirectionPages: Record<'droneService' | 'realEstateService', DroneDirectionPageConfig> = {
     droneService: {
@@ -112,29 +111,24 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
         },
         relatedLinks: [
             {
-                href: monitoringStroiki,
-                title: 'Мониторинг стройки',
-                description: 'Регулярные облёты и отчётность по этапам.',
+                title: '360° виртуальные туры',
+                href: '/360-tours-service',
+                description: 'Интерактивные панорамы для сайта, Booking и удалённых показов.',
             },
             {
-                href: realEstate,
-                title: 'Недвижимость',
-                description: 'Контент для продаж и презентации объектов.',
+                title: 'Reels и короткое видео',
+                href: '/reels-service',
+                description: 'Короткие ролики для Instagram, TikTok и Shorts — под алгоритмы платформ.',
             },
             {
-                href: hotels,
-                title: 'Отели и курорты',
-                description: 'Визуал для Booking, сайта и соцсетей.',
+                title: 'Промо-видео',
+                href: '/promo-video-service',
+                description: 'Полноценный рекламный ролик для сайта, презентации или запуска.',
             },
             {
-                href: restaurants,
-                title: 'Рестораны',
-                description: 'Атмосферный контент и внешняя локация.',
-            },
-            {
-                href: tourism,
-                title: 'Туризм',
-                description: 'Cinematic-съёмка маршрутов и локаций.',
+                title: 'AI-визуализация',
+                href: '/ai-visualization-service',
+                description: 'Рендеры, визуализации и AI-контент для маркетинга и продаж.',
             },
         ],
         seo: {

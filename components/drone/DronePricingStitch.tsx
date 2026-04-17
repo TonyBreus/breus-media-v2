@@ -74,8 +74,8 @@ const addons = [
 export const DronePricingStitch = () => {
     return (
         <DebugWrapper id={10700} label="Drone Pricing Section">
-            <section className="py-24 bg-[#0D0D0D]" id="pricing">
-                <div className="container mx-auto px-6 text-center mb-16">
+            <section className="py-10 md:py-24 bg-[#0D0D0D]" id="pricing">
+                <div className="container mx-auto px-6 text-center mb-8 md:mb-16">
                     <DebugWrapper id={10701} label="Pricing Header">
                         <h2 className="text-3xl font-bold mb-4 text-white">Пакеты и цены</h2>
                     </DebugWrapper>
@@ -124,9 +124,9 @@ export const DronePricingStitch = () => {
                         </DebugWrapper>
                     ))}
                 </div>
-                <div className="container mx-auto mt-10 px-6">
+                <div className="container mx-auto mt-6 md:mt-10 px-6">
                     <DebugWrapper id={10730} label="Pricing Addons">
-                        <div className="mt-8 rounded-[16px] border border-[#FFD23F]/30 bg-[#121212] p-6">
+                        <div className="rounded-[16px] border border-[#FFD23F]/30 bg-[#121212] p-6">
                             <h3 className="text-xl font-bold text-white">Дополнительно по задаче</h3>
                             <p className="mt-3 leading-relaxed text-white/70">
                                 Из одной съёмки можно собрать не только основной материал, но и дополнительные форматы под сайт, соцсети, Google
