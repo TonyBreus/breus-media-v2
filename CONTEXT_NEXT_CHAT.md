@@ -1,3 +1,228 @@
+✅ SmartHeader + drone-restaurants + drone-hotels-tourism: UX-унификация (17.04.2026)
+- **SmartHeader** (`components/gazeta/SmartHeader.tsx`):
+  - Новый проп `ctaLabel?: string` — переопределяет текст CTA в хедере и мобильном меню
+  - `singleTickerMode`: тикер теперь виден на мобиле (`block` вместо `hidden md:block`)
+  - Бургер-меню: «Промо Видео» и «Мероприятия» убраны из мобильного списка услуг
+- **MobileBottomBar** (`components/drone-restaurants/MobileBottomBar.tsx`):
+  - `'use client'` + IntersectionObserver (скрытие у контактной формы)
+  - SVG-иконки WhatsApp (зелёный) и Telegram (синий) — эталон как на `/drone-service`
+  - Стандарт применяется на `/drone-services/drone-restaurants` и `/drone-hotels-tourism`
+- **drone-restaurants** (`app/drone-services/drone-restaurants/page.tsx`):
+  - `singleTickerMode={true}`, `ctaLabel="Обсудить задачу"` в SmartHeader
+  - Все «Обсудить проект» → «Обсудить задачу»
+  - Шаг 2: «Осмотр места» → «Подготовка»
+- **drone-hotels-tourism** (`app/drone-hotels-tourism/page.tsx`):
+  - `singleTickerMode={true}`, `ctaLabel="Обсудить задачу"` в SmartHeader
+  - Все «Обсудить съёмку» / «Обсудить проект» → «Обсудить задачу»
+  - Секция цен: новые тексты всех 4 пакетов, аддоны (Reels +150 ₾, убрано «10 фото»)
+  - Заголовок аддонов: «Дополнительно по задаче» + вводный абзац
+- **Сборка:** `npm run build` — 0 ошибок, 87 страниц
+
+✅ Drone Hotels Tourism: правки текста в разделе проблем (17.04.2026) — `app/drone-hotels-tourism/page.tsx`
+- **Изменения в массиве problemCards:**
+  - Строка 63: "но конкуренты тоже" → "но у конкурентов тоже" (грамматическое уточнение)
+  - Строка 71: "одна съёмка не закрывает всё" → "одна съёмка закрывает всё" (изменение смысла)
+  - Строка 80: "общение на русском и английском" → "общение на грузинском, русском и английском" (добавление языка)
+- **Сборка:** `npm run build` — 0 ошибок, 87 страниц
+- **Проверка:** локально на `localhost:3200/drone-hotels-tourism`
+
+✅ Gazeta: синхронизация карточек и фиксы скролла 12/13/14 (16.04.2026) — `components/gazeta/NichesStack.tsx`, `constants/l2DirectionConfigs.ts`, `components/real-estate-service/realEstateServicesData.ts`, `components/drone/DroneFooterStitch.tsx`
+- **Синхронизация карточек (эталон Gazeta):**
+  - По секциям `03/04/05/06` синхронизированы названия/подзаголовки/описания/теги с L2-страницами по кнопке `Все услуги`.
+  - Для устойчивости добавлена каноникализация аэросъёмки по `href` (в дополнение к title), чтобы дубли не расходились при вариативных названиях.
+- **Массовые текстовые правки карточек:**
+  - Недвижимость: обновлены карточки `Аэросъёмка недвижимости`, `Видеотур объекта`, `Презентационное видео ЖК`, `Рекламный ролик для ЖК`.
+  - 360°: унифицированы формулировки:
+    - `360° туры для отелей`
+    - `360° туры для автобизнеса`
+    - `360° туры для ресторанов`
+    - `360° туры для туризма и локаций`
+    - `360° туры для клиник`
+  - AI/клиники:
+    - удалена карточка `AI-упаковка контента` из клиник (и в Gazeta, и в L2-конфиге клиник);
+    - подзаголовок клиник обновлён на: `Видео для медицинских центров — пациент выбирает клинику до первого звонка`.
+  - Туризм (секция): обновлён subheading на версию без «по Грузии».
+  - Ресторанная AI-карточка: `AI-упаковка меню и описаний` → `AI-карточки, меню и delivery-упаковка`.
+- **UI/scroll фиксы:**
+  - Устранён конфликт перехода по навигации секций `12/13/14`:
+    - возвращена корректная высота стека `totalSteps * 100vh`;
+    - переход по шагам переведён на расчёт от фактической позиции целевого блока (без грубого `index * vh`).
+  - Оптимизирован зазор между формой и футером:
+    - уменьшены нижние паддинги формы;
+    - подкорректирован верхний отступ футера `DroneFooterStitch`.
+- **Проверка:**
+  - Все изменения валидировались на `localhost:3200`.
+  - После ключевых правок выполнялся `npm run build` (успешно).
+
+✅ Gazeta: эталонизация карточек 02/03/04 + масштабирование дублей + обновление AI секции 05 (16.04.2026) — `constants/l2DirectionConfigs.ts`, `components/gazeta/NichesStack.tsx`
+- **Эталон секции 03 (360° туры)**:
+  - Карточки `360° туры для недвижимости/отелей/ресторанов/автобизнеса/туризма и локаций/клиник/бизнеса` обновлены по финальным текстам пользователя.
+  - Для секции 03 выровнены карточки по высоте и скорректирована логика desktop scroll, чтобы в окне стабильно читались 4 карточки без обрезки.
+- **Синхронизация дублей 360°**:
+  - В `NichesStack` добавлена каноникализация карточек из секции `03` на остальные секции (06–12): одинаковый title → одинаковые eyebrow/desc/meta.
+- **Эталон секции 04 (Reels)**:
+  - Обновлены карточки `Reels для недвижимости/отелей/ресторанов/автобизнеса/туризма/клиник/бизнеса/риелтора`.
+  - Добавлена каноникализация Reels-карточек из секции `04` для дублей в других секциях:
+    - по совпадению title;
+    - по `href` (`/reels-promo/...`) для случаев вариативных заголовков.
+- **Эталон секции 02 (Аэросъёмка)**:
+  - Применено то же правило: карточки секции `02` используются как источник истины для одноимённых дублей в других секциях.
+- **Секция 05 (AI-контент) — массовое обновление карточек**:
+  - Обновлены тексты и, где нужно, названия карточек:
+    - `AI-визуализация недвижимости`
+    - `AI staging и виртуальная меблировка`
+    - `AI-визуализация пространств и интерьеров`
+    - `AI-продуктовый визуал`
+    - `AI-визуал для автобизнеса`
+    - `AI-карточки, меню и delivery-упаковка`
+    - `AI-визуал для брендов и маркетинга`
+    - `AI-описания для отеля`
+    - `AI-упаковка туристических предложений`
+- **Проверка**:
+  - Основная валидация выполнялась на `http://localhost:3200/gazeta` (рабочий порт пользователя).
+  - Тексты и вхождения дополнительно сверялись через `curl`/`rg` по dev-выдаче.
+
+✅ NichesStack: Обновление карточки "360° виртуальные туры" в недвижимости (16.04.2026) — `components/gazeta/NichesStack.tsx`
+- **Карточка 360° туров для недвижимости (секция 06)**:
+  - Подзаголовок (eyebrow): "Риэлтор · Застройщик · Агент"
+  - Описание (desc): "Покажите объект инвестору до выезда. 360° тур заменяет первичный осмотр и приводит на встречу уже заинтересованного покупателя."
+  - Теги (meta): "Показ, Планировка, Конверсия"
+
+✅ NichesStack: Форматирование субзаголовков + изменение размера шрифта (16.04.2026) — `components/gazeta/NichesStack.tsx`
+- **Удаление геолокаций из субзаголовков**: Убраны упоминания "Тбилиси, Батуми и вся Грузия" из трёх секций для универсализации контента:
+  - Секция `02` (АЭРОСЪЁМКА): "Комплексные решения аэросъёмки для бизнеса и частных лиц."
+  - Секция `03` (360° туры): "Интерактивные 360° туры для пространств, объектов и локаций"
+  - Секция `12` (IT): "Продакшн видео, кейс-стади и AI-визуал для IT-компаний и стартапов"
+- **Увеличение размера шрифта для АЭРОСЪЁМКА**: Добавлено встроенное CSS-свойство `font-size: clamp(1.352rem, 5vw, 2.028rem)` (мобиль 21.63px, макс 32.45px) исключительно для секции `02` через условие `isAerialCompactScreen`.
+
+✅ Bugfix: DebugWrapper layout + NichesStack TypeScript (16.04.2026) — `components/debug/DebugWrapper.tsx`, `components/gazeta/NichesStack.tsx`
+- **DebugWrapper**: В debug-режиме `relative group` переопределял `fixed`/`absolute`/`sticky` из className (Tailwind CSS-порядок: `relative` побеждал). Добавлена проверка — `relative` не добавляется если className уже содержит позиционирование.
+- **NichesStack TypeScript 5.9**: Исправлены 3 ошибки: (1) `niche.detailedContent` narrowed to `undefined`/`never` в else-ветке — решено через `as unknown as DetailedContent`; (2) мёртвая ветка `method === 'Звонок'` при типе `'Telegram' | 'WhatsApp' | 'Mail'` — удалена; (3) `activeStepIndex` не передавался в FormCard — добавлен.
+- **Rebuild**: `NEXT_PUBLIC_DEBUG_MODE=false npm run build` — ✅ 0 ошибок. Тёмная полоса вверху hero и красные debug-рамки устранены.
+
+✅ NichesStack: Оптимизация терминального экрана и футера (16.04.2026) — `components/gazeta/NichesStack.tsx`, `app/gazeta/page.tsx`, `components/drone/DroneFooterStitch.tsx`
+- **Уменьшение верхнего отступа**: Убран `justify-end` в контейнере формы, что позволило поднять её выше. Верхний отступ сокращен ~в 3 раза (`pt-4 md:pt-6`), убирая лишнее пустое пространство между навигацией и формой.
+- **Интеграция с футером**: Футер теперь визуально следует сразу за формой. Установлено фиксированное расстояние в **40px** между нижней границей формы и текстом футера (Меню/Контакты).
+- **Правка верстки**: Добавлен недостающий закрывающий `</div>` в `NichesStack.tsx`, исправляющий ошибку парсинга после рефакторинга.
+- **Spacing Strategy**: Использовано сочетание `pb-10` в контейнере формы и `pt-4` в футере для чистого и предсказуемого зазора без использования перекрывающих отрицательных отступов.
+
+
+- **Восстановление 13/14**: Секции "Частые вопросы" и "Форма связи" возвращены в основной стек и приведены к общему стилю.
+- **Shared Header**: Введен компонент `StackSectionHeader` для унификации заголовков всех 14 карточек.
+- **Carousel Logic**: Реализована авто-прокрутка заголовка. Активный таб теперь всегда плавно выезжает в центр экрана при скролле.
+- **Highlighting Fix**: Исправлен баг, из-за которого на Desktop не подсвечивались активные пункты меню. Теперь индекс отслеживается на всех устройствах.
+- **Унификация UI**: Стили FAQ и Forms (отступы, шрифты, трекинг) теперь идентичны основным карточкам ниш.
+
+✅ NichesStack: расширение до 12 ниш + новые секции 03/04/05 (15.04.2026) — `components/gazeta/NichesStack.tsx`, `constants/gazetaRoutes.ts`
+
+  **Новая нумерация секций (01–12):**
+  - `00` — Аэросъёмка (повторная нумерация пользователем)
+  - `01` — Агентство (intro, isIntro: true)
+  - `02` — Аэросъёмка (было `00`)
+  - `03` — 360° Туры (НОВАЯ секция, маршрут: `/360-tours-service`, конфиг: `tours360Service`)
+  - `04` — Reels (НОВАЯ секция, маршрут: `/reels-service`, конфиг: `reelsService`)
+  - `05` — AI Контент (НОВАЯ секция, маршрут: `/ai-visualization-service`, конфиг: `aiVisualizationService`)
+  - `06` — Недвижимость (было `02`/`06`)
+  - `07` — Отели (было `03`, конфиг: `hotelsService`)
+  - `08` — Рестораны (было `04`, конфиг: `restaurantsService`)
+  - `09` — Авто (было `05`, конфиг: `autoService`)
+  - `10` — Туризм (было `07`, конфиг: `tourismService`)
+  - `11` — Клиники (было `08`, конфиг: `clinicsService`)
+  - `12` — IT (было `09`, конфиг: `businessService`)
+
+  **Навигация (`stackStepNavItems`):**
+  - Частые вопросы → ID `13` (было `10`)
+  - Форма связи → ID `14` (было `11`)
+
+  **Кнопки "Все услуги" (`buildAllServicesCard`):**
+  - `02` → «Все услуги аэросъёмки»
+  - `03` → «Все услуги — 360° Туры»
+  - `04` → «Все услуги — Reels»
+  - `05` → «Все услуги — AI Контент»
+  - `06` → «Все услуги недвижимости»
+  - `07`–`12` → соответствующие ниши
+
+  **Маршруты (`gazetaNicheLandingRoutes`):**
+  - Все 10 ниш (`02`–`12`) прописаны с корректными путями
+
+  **Секция 04 (Reels) — UI-правки:**
+  - Удалена строка `eyebrow: "Short-form видео"` из `detailedContent`
+  - Heading «REELS & SHORTS» и subheading по центру (`text-center mx-auto`) через новый флаг `isReelsScreen`
+
+  **Условия Card-компонента:**
+  - `isAerialScreen` / `isAerialCompactScreen` / `shouldRenderDetailedHeading/Eyebrow` обновлены на `niche.id !== "00"` (вместо `"02"`) в соответствии с пользовательским рефактором ID
+  - Добавлена константа `isReelsScreen = niche.id === "04"` для центрирования heading-блока
+  - `buildAllServicesCard` возвращает `null` для ID `"12"` (IT) вместо `"09"`
+
+  - Build: проверка не запускалась (Hot Reload в dev-режиме)
+
+✅ Gazeta rebranding: Studio → Agency & NichesStack Intro integration (15.04.2026) — `components/gazeta/NichesStack.tsx`, `app/gazeta/page.tsx`
+
+  - **Rebranding**: Все упоминания «Студия» заменены на «Агентство» (Agency) в интро-блоке и навигации Gazeta.
+  - **NichesStack integration**: Блок «Студия» (теперь «Агентство») официально интегрирован в `NichesStack` как Шаг 0.
+  - **Animation Fix**: Унифицирована анимация скролла — интро-блок теперь является статичным «фундаментом» стека, на который накладываются последующие ниши (Adoratorio-style), убран независимый параллакс и «прыжки» при скролле.
+  - **UI/UX Cleanup**: Удалён заголовок «Нишевой опыт» для чистоты интерфейса. Выровнены высоты колонок в интро-блоке (описание агентства vs грид тематического опыта).
+  - **Code Cleanup**: Удалён неиспользуемый компонент `components/gazeta/StudioSectionZero.tsx`.
+  - **Environment**: Локальный сервер переведён на `npm run dev` (порт 3200) для работы Fast Refresh.
+  - Build: ✅ clean.
+
+✅ gazeta UI polish batch (14.04.2026) — `components/gazeta/StudioSectionZero.tsx`, `components/gazeta/HeroSection.tsx`, `components/gazeta/NichesStack.tsx`
+  - **StudioSectionZero**: хедер «0 СТУДИЯ» приведён к `h-12 text-xs tracking-widest px-6` на десктопе — совпадает с хедерами ниш 00–10. Убраны блоки процесса «01 Бриф → 04 Упаковка» (массив `processSteps` и рендер-грид). В карточках ниш удалены эмодзи и описания — оставлены только названия.
+  - **HeroSection**: трекинг кинетического «BREUS MEDIA» снижен с `md:tracking-[0.4em] lg:tracking-[0.5em]` до `md:tracking-[0.18em] lg:tracking-[0.22em]` — текст больше не обрезается краями вьюпорта на 1280px. Статичная жёлтая стрелка `↓` внутри CTA-блока удалена; остался только круглый scroll-индикатор внизу экрана.
+  - **NichesStack шаг 10**: паддинги формы сжаты (`md:px-12 md:py-20` → `md:px-8 md:py-4`, карточка `md:p-8` → `md:p-5`, `md:space-y-5` → `md:space-y-2.5`) — форма теперь не требует скролла на типичном ноутбуке (780px+ viewport).
+  - Build: ✅ clean; 87 страниц, 0 ошибок.
+
+✅ build verify (14.04.2026): `npm run build` — ✅ clean; 87 страниц, 0 ошибок.
+  - Уточнение: предыдущие записи указывали "81 страницу" — фактически в проекте 87 роутов (включая `/drone-service/en`, `/drone-services/drone-restaurants/en`, `/drone-services/`, `/promo-video/`, `/promo-video/promo-business`, `/reels-promo/reels-business`). Все эти страницы были в коде ранее, просто не учтены в счётчике.
+  - Незакоммиченных изменений кода: 20 файлов (ModifiedM) + 11 новых компонентов/файлов (Untracked). Все изменения задокументированы в CONTEXT_NEXT_CHAT.md и CHANGELOG_ARCHIVE.md.
+
+✅ gazeta section 0 (Студия): переведена из «внутреннего окна» в full-width экран как 00 (14.04.2026) — `components/gazeta/StudioSectionZero.tsx`
+  - Убран контейнер-«окно»: `max-w`, скругление внешней рамки и боковые внешние отступы.
+  - Секция теперь заполняет ширину страницы слева направо: `w-full` + `border-y` как цельный экранный блок.
+  - Header-полоса `0 СТУДИЯ` и основная двухколоночная композиция растянуты на всю ширину, сохраняя desktop-only режим (`hidden md:block`).
+  - CTA `Как мы работаем` переведён на `#niches` (desktop-якорь), чтобы ссылка не вела в mobile-only цель.
+  - Build: ✅ clean; 0 ошибок.
+
+✅ gazeta niches 00–07: единый стиль карточек, 5 карточек + кнопка «Все услуги» (14.04.2026) — `components/gazeta/NichesStack.tsx`
+  - `servicesGridClassName` упрощён до единого: `"md:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-5 xl:gap-2.5"` для всех ниш
+  - Десктоп рендер: `limitedServices.map(...)` для всех ниш (5 карточек без allServicesCard)
+  - Кнопка «Все услуги» показывается под гридом для всех ниш с нишевым текстом: 00→аэросъёмки, 01→недвижимости, 02–07→«Все услуги — {название}»
+  - `isRealEstateReferenceCard = false`, `singleCtaLabel = null`, `isSingleCtaExperimentCard = false` — убраны все спецпути нише 01
+  - Build: ✅ clean; 0 ошибок.
+
+✅ gazeta niche 01: унифицированы карточки под стиль нише 00 (14.04.2026) — `components/gazeta/NichesStack.tsx`
+  - `isRealEstateReferenceCard = false` — убраны все спецстили (нестандартные размеры шрифтов, многострочная категория, цена-чип, single-CTA эксперимент)
+  - `singleCtaLabel = null`, `isSingleCtaExperimentCard = false` — все карточки получили двойные кнопки "ОТКРЫТЬ УСЛУГУ + ОБСУДИТЬ ЗАДАЧУ"
+  - Grid нише 01: `xl:grid-cols-5` (было `xl:grid-cols-4 xl:grid-rows-2`)
+  - Десктоп рендер: `limitedServices` (5 карточек) + кнопка "Все услуги недвижимости →" → `/real-estate-service`
+  - Мобиль (horizontal rail) — без изменений
+  - Build: ✅ clean; 0 ошибок.
+
+✅ gazeta niche 00: «Все услуги» → кнопка под 5 карточками, убран xl:grid-rows-2 (14.04.2026) — `components/gazeta/NichesStack.tsx`
+  - Десктоп: grid ниши 00 рендерит только 5 карточек (limitedServices), после грида — одна wide кнопка `Все услуги аэросъёмки →` → `/drone-service`.
+  - Убран `xl:grid-rows-2` — он резервировал пустую вторую строку (393px), из-за чего контент переполнял панель и кнопка была скрыта за скроллом.
+  - Мобиль (horizontal rail) — без изменений.
+  - Build: ✅ clean; 0 ошибок.
+
+✅ gazeta redesign: MarqueeSection, HeroSection, SmartHeader, NichesStack, MobileChooser, /drone-service ticker (14.04.2026) — `components/gazeta/MarqueeSection.tsx`, `components/gazeta/HeroSection.tsx`, `components/gazeta/SmartHeader.tsx`, `components/gazeta/NichesStack.tsx`, `components/gazeta/GazetaMobileStepChooser.tsx`, `app/gazeta/page.tsx`, `app/drone-service/page.tsx`
+  - **MarqueeSection**: переделан в универсальную одну строку для всех устройств (было две отдельные). Добавлены кликабельные ссылки для ниш и форматов: `НЕДВИЖИМОСТЬ→/real-estate-service`, `ОТЕЛИ→/hotels-service`, `Аэросъёмка→/drone-service`, `360° Туры→/360-tours-service`, `Reels→/reels-service`, `AI Content→/ai-visualization-service`. Высота и размер текста удвоены.
+  - **HeroSection**: восстановлена кинетическая типографика "BREUS MEDIA" на мобиле (убрано `hidden md:flex` → `flex`); `yTranslate` скорректирован (`["70vh", "-60vh", "-60vh"]`) чтобы текст не перекрывал контент. Обновлён hero copy на трёхстрочную структуру: заголовок `АГЕНТСТВО ВИЗУАЛЬНОГО ПРОДАКШЕНА И AI-КОНТЕНТА В ТБИЛИСИ`, подзаголовок, описание. Применена типографика из `breus_media_typography_guide.md`: цвета `#F5F4F0`, `#C9A84C` gold, `#C8C7C2`, `#7A7977`; `clamp()` для font-size. CTA `ВЫБЕРИТЕ СВОЁ НАПРАВЛЕНИЕ ↓` стала анимированной (pulsing opacity + bouncing arrow) и кликабельной — плавный скролл к `#niches-nav`. Убран устаревший блок "Видео, аэросъёмка...".
+  - **SmartHeader**: из левого угла в начальном состоянии убраны все тексты (агентство, продакшен, AI); оставлен только `<div className="flex-1" />`. Фон хедера при `isLanding` полностью прозрачный (убрана полоса). Порог появления логотипа снижен с 80% до 20% viewport height — логотип появляется, когда кинетический "BREUS MEDIA" проходит уровень часов. Анимация входа логотипа: `opacity 0→1, x -10→0`. В скроллированном состоянии в брендинге только ссылка `Breus Media`, без eyebrow и subtitle.
+  - **GazetaMobileStepChooser**: полностью переписан как двухколоночный навигатор. `id="niches-nav"` (цель CTA), `bg-zinc-950`. Левая колонка `ПО НИШЕ` — 7 ниш с ссылками; правая колонка `ПО ФОРМАТУ` — 6 форматов с ссылками, хедер "Ваш формат →" в gold. Футер: "Другая отрасль или формат — напишите, найдём решение."
+  - **NichesStack**: шаг 10 (форма) полностью перерисован в стиле DroneContactStitch: градиентная карточка `from-[#141414] via-[#111111] to-[#0d0d0d]`, рамка `border-[#D4A017]/30`, радиальное свечение, heading "ОБСУДИМ ВАШУ ЗАДАЧУ", золотая кнопка отправки. Добавлен state `submitted`. Кнопки "НАЗАД" полностью скрыты на мобиле (`{isMobileCompactTop && prevStep && ...}` заменён на комментарий `replace_all: true`). Кнопка topBack обёрнута в `hidden md:flex`.
+  - **app/gazeta/page.tsx**: NichesStack скрыт на мобиле (`hidden md:block`), Chooser виден везде. Добавлена мобильная форма DroneContactStitch (`md:hidden`, order 4). MarqueeSection сначала убрана, затем возвращена только для десктопа (`hidden md:block`, order 2). Удалена дублирующая desktop-секция с DroneContactStitch (form в NichesStack шаге 10 достаточна). Мобильный флоу: Hero → Chooser → Форма → About → Footer.
+  - **app/drone-service/page.tsx**: добавлен `import { MarqueeSection }` и `<MarqueeSection />` между DroneHeroStitch и DroneServicesMobileList. MarqueeSection появляется при скролле (через scroll-trigger механизм компонента).
+  - Build: `npm run build` — ✅ clean; 87 страниц, 0 ошибок.
+
+✅ drone-service EN hero parity: inline hero replaced with `DroneHeroStitchEn` (13.04.2026) — `components/drone/DroneHeroStitchEn.tsx`, `app/drone-service/page.en.tsx`
+  - Создан новый EN-компонент `DroneHeroStitchEn` как структурная/поведенческая копия RU `DroneHeroStitch` (mobile fullscreen hero + typewriter, desktop split с интерактивной правой панелью и мини-каруселью).
+  - В `DroneHeroStitchEn` переведены все hardcoded hero-строки: typewriter фразы, desktop/mobile буллеты, CTA, sr-only `h1`, alt/aria, подписи `18 directions` и `from 250 ₾ · Tbilisi · Batumi · Kutaisi`.
+  - Правая desktop-панель в EN использует тот же источник `droneServiceItems`, но с локальным slug→EN map (title/category/description/price; для `restorany` добавлен EN `primaryHref`).
+  - В `app/drone-service/page.en.tsx` удалён весь inline hero `<section id="drone-service-hero">...</section>` и заменён на компонентный вызов:
+    - `<div id="drone-service-hero"><DroneHeroStitchEn hero={pageConfig.hero} /></div>`
+  - Остальные EN-секции страницы не изменялись.
+  - Build: `npm run build` — ✅ clean; `/drone-service/en` присутствует в build output.
+
 ✅ Gazeta cleanup: niche 08 removed, IT cards fixed, business routes retired, ticker line 1 hidden on mobile (13.04.2026) — `components/gazeta/NichesStack.tsx`, `components/gazeta/SmartHeader.tsx`, `constants/gazetaRoutes.ts`, `constants/l2DirectionConfigs.ts`, `app/business-service/page.tsx`, `app/gazeta/custom-business/page.tsx`, `app/gazeta/[slug]/page.tsx`
   - В `NichesStack` удалена ниша `08` (`Ваш бизнес`); после cleanup массив ниш содержит `8` элементов (`00–07`), а стек шагов — `10` элементов вместе с FAQ и формой.
   - Для ниши `07` оставлены только IT-специфичные карточки; ссылки с `/business-service` внутри IT-карточек заменены на `#contact`, а override через `businessService` для `07/08` убран, чтобы рендерились локальные IT-карточки.
@@ -6,6 +231,13 @@
   - `/business-service` и `/gazeta/custom-business` теперь редиректят на `/gazeta#contact`; статический redirect-файл `app/gazeta/it/page.tsx` удалён, чтобы `/gazeta/it` снова открывался через dynamic Gazeta route.
   - Карточка `Мероприятия` в niche `00` оставлена с ссылкой `/drone-weddings-events`, потому что route существует.
   - Build: `npm run build` — ✅ clean; проверены redirect headers для `/business-service` и `/gazeta/custom-business`.
+
+✅ drone-service EN refactor: page.en switched from inline sections to EN components (13.04.2026) — `app/drone-service/page.en.tsx`, `components/drone/DroneStatsStripEn.tsx`, `components/drone/DronePricingStitchEn.tsx`, `components/drone/DroneProcessStitchEn.tsx`, `components/drone/DroneFlightConditionsNoteEn.tsx`, `components/drone/DroneFAQExpandedEn.tsx`, `components/drone/DroneFooterStitchEn.tsx`, `components/drone/DroneRelatedLinksCompact.tsx`
+  - Созданы новые EN-компоненты рядом с RU: stats, pricing, process, flight note, FAQ и footer.
+  - `app/drone-service/page.en.tsx` больше не держит inline секции stats/pricing/process/flight note/faq/related/footer и собирается из EN-компонентов по той же схеме, что RU страница.
+  - `components/drone/DroneRelatedLinksCompact.tsx` расширен новым `title?: string` с RU default для совместимости со всеми RU страницами.
+  - EN related-links теперь рендерятся через `DroneRelatedLinksCompact` с `title="Other Breus Media services"`.
+  - Build: `npm run build` — ✅ clean; `/drone-service/en` присутствует в build output.
 
 ✅ drone-service EN page created: /drone-service/en (12.04.2026) — `app/drone-service/page.en.tsx`, `app/drone-service/en/page.tsx`, `app/drone-service/DroneServiceContactSectionEn.tsx`, `app/drone-service/page.tsx`, `components/gazeta/SmartHeader.tsx`
   - Создан новый публичный EN роут `/drone-service/en` через `app/drone-service/en/page.tsx` с реэкспортом EN страницы и metadata.

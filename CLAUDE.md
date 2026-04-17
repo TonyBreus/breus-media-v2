@@ -25,10 +25,11 @@ NEXT_PUBLIC_DEBUG_MODE=false PORT=3200 npm run start
 ```
 
 Key landing components:
-- `components/gazeta/HeroSection.tsx` — kinetic typography + framer-motion stagger
-- `components/gazeta/NichesStack.tsx` — sticky industry stack 00–08 + FAQ + form
-- `components/gazeta/SmartHeader.tsx` — sticky header with RU/EN language switch
-- `components/gazeta/MarqueeSection.tsx` — ticker lines
+- `components/gazeta/HeroSection.tsx` — kinetic typography + framer-motion stagger; "BREUS MEDIA" visible on mobile; CTA scrolls to #niches-nav
+- `components/gazeta/NichesStack.tsx` — sticky industry stack 00–08 + FAQ + form (desktop only; hidden on mobile)
+- `components/gazeta/SmartHeader.tsx` — sticky header with RU/EN language switch; initial left section empty; logo appears at 20% scroll
+- `components/gazeta/MarqueeSection.tsx` — single-line ticker with clickable links (desktop only on /gazeta; all devices on /drone-service)
+- `components/gazeta/GazetaMobileStepChooser.tsx` — two-column niche/format chooser, id="niches-nav" (mobile UX entry point)
 - `components/gazeta/AboutSection.tsx` — about block
 
 ## Hard rules — never break
@@ -75,4 +76,4 @@ Drone showcase (EN): `app/drone-services/drone-restaurants/en/page.tsx`
 Use these as the template for: drone-hotels · drone-sport · drone-wine · drone-tourism · drone-auto
 
 ## Current build status
-81 pages · 0 errors · Last commit: 07.04.2026
+87 pages · 0 errors · Last session: 14.04.2026
