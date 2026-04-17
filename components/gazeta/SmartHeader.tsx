@@ -221,6 +221,8 @@ export function SmartHeader({
     initialLang = "RU",
     languageLinks,
     ctaHref,
+    ctaLabel,
+    singleTickerMode = false,
 }: {
     transparent?: boolean;
     isLanding?: boolean;
@@ -229,6 +231,8 @@ export function SmartHeader({
     initialLang?: string;
     languageLinks?: HeaderLanguageLinks;
     ctaHref?: string;
+    ctaLabel?: string;
+    singleTickerMode?: boolean;
 }) {
     const { scrollY } = useScroll();
     const normalizedInitialLang = normalizeHeaderLanguage(initialLang);
@@ -257,9 +261,9 @@ export function SmartHeader({
 
         if (isLanding) {
             const vh = typeof window !== "undefined" ? window.innerHeight : 800;
-            // Text exits screen around 80vh of scroll (scrollYProgress=0.4 in Hero)
-            if (latest > vh * 0.8 && !isLogoVisible) setIsLogoVisible(true);
-            else if (latest <= vh * 0.8 && isLogoVisible) setIsLogoVisible(false);
+            // Logo appears as soon as kinetic text reaches the clock/header level (~20% scroll)
+            if (latest > vh * 0.2 && !isLogoVisible) setIsLogoVisible(true);
+            else if (latest <= vh * 0.2 && isLogoVisible) setIsLogoVisible(false);
         }
     });
 
@@ -297,27 +301,15 @@ export function SmartHeader({
         <DebugWrapper id={1} label="GlobalHeader (Глобальная Шапка)">
             <header className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-300 ${isScrolled
                 ? 'bg-black/95 backdrop-blur-md shadow-2xl border-b border-white/10'
-                : transparent
+                : (transparent || isLanding)
                     ? 'bg-transparent'
                     : 'bg-black/40 backdrop-blur-sm'}`}
                 style={{ height: `${headerHeight}px` }}>
 
                 {/* --- INITIAL VIEW (Not Scrolled) --- */}
                 <div className={`absolute inset-0 w-full h-full flex items-center transition-all duration-300 ${isMobileCompactTop ? "px-3" : "px-6"} ${isScrolled ? 'opacity-0 pointer-events-none scale-95 delay-0' : 'opacity-100 scale-100 delay-100'}`}>
-                    {/* LEFT SECTION */}
-                    <DebugWrapper id={2} label="Left Section" className="flex-1">
-                        {isLanding && (
-                            <Link href="/gazeta" className={`relative flex items-center hover:opacity-85 transition-opacity ${isMobileCompactTop ? "h-5" : "h-6"}`}>
-                                {/* Agency Text */}
-                                <div className="absolute inset-0 flex flex-col justify-center">
-                                    <span className={`font-serif leading-none tracking-wide text-white ${isMobileCompactTop ? "text-[14px]" : "text-[18px] md:text-2xl"}`}>{copy.landingAgency}</span>
-                                    <span className={`text-[#D4AF37] uppercase mt-0.5 whitespace-nowrap ${isMobileCompactTop ? "text-[7px] tracking-[0.14em]" : "text-[8px] md:text-[10px] tracking-widest"}`}>
-                                        {copy.landingAgencySubtitle}
-                                    </span>
-                                </div>
-                            </Link>
-                        )}
-                    </DebugWrapper>
+                    {/* LEFT SECTION — intentionally empty */}
+                    <div className="flex-1" />
 
                     {/* CENTER SECTION */}
                     <DebugWrapper id={3} label="Center Section" className={`flex-1 flex justify-center items-start ${isMobileCompactTop ? "-mt-1" : "pt-1"}`}>
@@ -339,32 +331,23 @@ export function SmartHeader({
                     style={{ height: `${headerCompactHeight}px` }}
                     className={`w-full px-2 md:px-10 flex justify-between items-center transition-all duration-300 relative z-[300] ${isScrolled ? 'opacity-100 scale-100 delay-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
 
-                    {/* LEFT: Branding */}
+                    {/* LEFT: Branding — logo only */}
                     <DebugWrapper id={200} label="Agency Branding">
-                        <div className="flex flex-col justify-center items-start flex-shrink-0 mr-2 md:mr-0 opacity-100 transition-opacity">
-                            {/* Subtext and branding visible. */}
-                            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] mb-0.5 ml-1 font-bold">{copy.compactAgencyEyebrow}</span>
-                            {/* Logo text appears when Element 13 scrolls out */}
-                            <div className="h-[20px] md:h-[28px] w-[110px] md:w-[160px] relative flex items-center">
-                                <AnimatePresence>
-                                    {isLogoVisible && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 10 }}
-                                            transition={{ duration: 0.3 }}
-                                            className="absolute left-0"
-                                        >
-                                            <Link href="/gazeta" className="text-lg md:text-[22px] font-black uppercase tracking-tighter leading-none hover:opacity-80 transition-opacity text-white whitespace-nowrap">
-                                                Breus Media
-                                            </Link>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
-                            <span className="text-[8px] md:text-[10px] uppercase tracking-wider text-gray-400 mt-0.5 ml-1 leading-tight">
-                                <span className="text-[#D4AF37]">{copy.compactAgencySubtitle}</span> & <span className="text-[#D4AF37]">AI</span>
-                            </span>
+                        <div className="flex items-center flex-shrink-0 mr-2 md:mr-0">
+                            <AnimatePresence>
+                                {isLogoVisible && (
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -10 }}
+                                        transition={{ duration: 0.25 }}
+                                    >
+                                        <Link href="/gazeta" className="text-lg md:text-[22px] font-black uppercase tracking-tighter leading-none hover:opacity-80 transition-opacity text-white whitespace-nowrap">
+                                            Breus Media
+                                        </Link>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                     </DebugWrapper>
 
@@ -505,8 +488,8 @@ export function SmartHeader({
                         {/* 3. CTA Buttons (206) - Shows different text for mobile/desktop */}
                         <DebugWrapper id={206} label="Button: Обсудить Задачу">
                             <Link href={resolvedCtaHref} onClick={handleCtaClick} className={`flex items-center justify-center bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all whitespace-nowrap ${isMobileCompactTop ? "px-3 py-1 text-[8px]" : "px-4 py-1.5 md:px-6 md:py-2.5 text-[9px] md:text-[10px]"}`}>
-                                <span className="md:hidden">{copy.ctaMobile}</span>
-                                <span className="hidden md:inline">{copy.ctaDesktop}</span>
+                                <span className="md:hidden">{ctaLabel ?? copy.ctaMobile}</span>
+                                <span className="hidden md:inline">{ctaLabel ?? copy.ctaDesktop}</span>
                             </Link>
                         </DebugWrapper>
 
@@ -523,17 +506,27 @@ export function SmartHeader({
                         : transparent
                             ? 'bg-transparent border-transparent'
                             : 'bg-zinc-950/40 backdrop-blur-sm'}`}>
-                        <div className="hidden md:block">
-                            <DebugWrapper id={208} label="Running Text Line 1">
-                                <InteractiveTicker items={copy.tickerLine1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
-                            </DebugWrapper>
-                        </div>
-                        <div className="hidden md:block">
-                            <div className="h-[1px] bg-white/5 w-full" />
-                            <DebugWrapper id={209} label="Running Text Line 2">
-                                <InteractiveTicker items={copy.tickerLine2} direction="right" speed={70} baseId={2090} compact={isMobileCompactTop} />
-                            </DebugWrapper>
-                        </div>
+                        {singleTickerMode ? (
+                            <div className="block">
+                                <DebugWrapper id={208} label="Running Text Combined">
+                                    <InteractiveTicker items={[...copy.tickerLine1, ...copy.tickerLine2]} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
+                                </DebugWrapper>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="hidden md:block">
+                                    <DebugWrapper id={208} label="Running Text Line 1">
+                                        <InteractiveTicker items={copy.tickerLine1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
+                                    </DebugWrapper>
+                                </div>
+                                <div className="hidden md:block">
+                                    <div className="h-[1px] bg-white/5 w-full" />
+                                    <DebugWrapper id={209} label="Running Text Line 2">
+                                        <InteractiveTicker items={copy.tickerLine2} direction="right" speed={70} baseId={2090} compact={isMobileCompactTop} />
+                                    </DebugWrapper>
+                                </div>
+                            </>
+                        )}
                     </div>
                 )}
 
@@ -569,7 +562,7 @@ export function SmartHeader({
                                     <div>
                                         <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">{copy.mobileServicesLabel}</p>
                                         <div className="grid grid-cols-2 gap-3">
-                                            {copy.serviceNavItems.map((item) => (
+                                            {copy.serviceNavItems.filter(item => item.label !== "Промо Видео" && item.label !== "Мероприятия").map((item) => (
                                                 <Link
                                                     key={item.label}
                                                     href={item.href}
@@ -607,7 +600,7 @@ export function SmartHeader({
                                         onClick={() => setIsMobileMenuOpen(false)}
                                         className="flex w-full items-center justify-center rounded-2xl bg-[#D4A017] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-black"
                                     >
-                                        {copy.ctaDesktop}
+                                        {ctaLabel ?? copy.ctaDesktop}
                                     </Link>
                                     <div className="flex items-center justify-center gap-4 pt-1">
                                         <a
