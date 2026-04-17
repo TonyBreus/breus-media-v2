@@ -30,8 +30,11 @@ export const DebugWrapper = ({
     return <>{children}</>;
   }
 
+  // Don't add `relative` if className already has a position that would be overridden
+  const hasOverridingPosition = /\b(fixed|absolute|sticky)\b/.test(className);
+
   return (
-    <div data-debug-wrapper className={`relative group ${className}`} style={style}>
+    <div data-debug-wrapper className={`${hasOverridingPosition ? '' : 'relative '}group ${className}`} style={style}>
       {/* Debug Badge */}
       <div data-debug-badge className="absolute top-0 left-0 bg-red-500 text-white text-[10px] leading-none font-bold px-1.5 py-1 rounded-br shadow-md border-r border-b border-red-700 z-[9999] pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-200">
         #{id}

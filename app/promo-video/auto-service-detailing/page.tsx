@@ -1055,7 +1055,7 @@ export default function AutoServiceDetailingPage() {
                             </li>
                             <li>
                                 <Link href="/360-tour-auto" className="text-[#D4A017] hover:text-white transition-colors">
-                                    360° тур для автобизнеса
+                                    360° туры для автобизнеса
                                 </Link>{' '}
                                 — виртуальный осмотр студии или сервиса до визита клиента.
                             </li>
@@ -1080,7 +1080,7 @@ export default function AutoServiceDetailingPage() {
                         <p className="text-sm text-white/75 leading-relaxed">
                             Если хотите, чтобы клиент мог «зайти» в сервис онлайн ещё до звонка, посмотрите{' '}
                             <Link href="/360-tour-auto" className="text-[#D4A017] hover:text-white transition-colors">
-                                360° тур для автобизнеса
+                                360° туры для автобизнеса
                             </Link>
                             .
                         </p>

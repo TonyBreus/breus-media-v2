@@ -466,7 +466,7 @@ const relatedServices: RelatedService[] = [
         href: '/drone-services/drone-events',
     },
     {
-        title: '360° тур для туризма',
+        title: '360° туры для туризма и локаций',
         text: 'Иммерсивный виртуальный тур по винодельне для сайта, карт и туристических платформ.',
         href: '/360-tour-service/360-tour-tourism',
     },
@@ -566,7 +566,7 @@ const navigationLinks: NavLink[] = [
     { label: 'Аэросъёмка отелей и курортов', href: '/drone-hotels-tourism' },
     { label: 'FPV-съёмка', href: '/drone-fpv-cinema' },
     { label: 'Аэросъёмка мероприятий', href: '/drone-services/drone-events' },
-    { label: '360° тур для туризма', href: '/360-tour-service/360-tour-tourism' },
+    { label: '360° туры для туризма и локаций', href: '/360-tour-service/360-tour-tourism' },
     { label: 'Все услуги аэросъёмки', href: '/drone-services' },
 ];
 
