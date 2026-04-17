@@ -4,12 +4,48 @@ import React, { useState } from 'react';
 import { MessageCircle, Send } from 'lucide-react';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 
-export const DroneContactStitch = () => {
-    const [method, setMethod] = useState<'Telegram' | 'WhatsApp' | 'Звонок'>('Telegram');
-    const [services, setServices] = useState<string[]>([]);
-    const [submitted, setSubmitted] = useState(false);
+type ServiceOption = {
+    id: string;
+    label: string;
+};
 
-    const serviceOptions = ['Аэросъёмка', 'Промо-видео', 'Reels', '360°-туры', 'AI-контент', 'Недвижимость', 'Отели', 'Рестораны', 'Туризм', 'Клиники', 'Автобизнес'];
+type DroneContactStitchProps = {
+    preselectedServices?: string[];
+};
+
+const serviceOptions: ServiceOption[] = [
+    { id: 'drone', label: 'Аэросъёмка' },
+    { id: 'promo-video', label: 'Промо-видео' },
+    { id: 'reels', label: 'Reels' },
+    { id: 'tours-360', label: '360°-туры' },
+    { id: 'ai-content', label: 'AI-контент' },
+    { id: 'real-estate', label: 'Недвижимость' },
+    { id: 'hotels', label: 'Отели' },
+    { id: 'restaurants', label: 'Рестораны' },
+    { id: 'tourism', label: 'Туризм' },
+    { id: 'clinics', label: 'Клиники' },
+    { id: 'auto', label: 'Автобизнес' },
+];
+
+export const DroneContactStitch = ({ preselectedServices }: DroneContactStitchProps) => {
+    const [method, setMethod] = useState<'Telegram' | 'WhatsApp' | 'Звонок'>('Telegram');
+    const [services, setServices] = useState<string[]>(() => {
+        if (!preselectedServices?.length) {
+            return [];
+        }
+
+        const selected = new Set<string>();
+        preselectedServices.forEach((rawValue) => {
+            const value = rawValue.trim().toLowerCase();
+            const matched = serviceOptions.find((option) => option.id === value || option.label.toLowerCase() === value);
+            if (matched) {
+                selected.add(matched.label);
+            }
+        });
+
+        return Array.from(selected);
+    });
+    const [submitted, setSubmitted] = useState(false);
 
     const toggleService = (service: string) => {
         setServices((prev) => (prev.includes(service) ? prev.filter((item) => item !== service) : [...prev, service]));
@@ -100,19 +136,19 @@ export const DroneContactStitch = () => {
                                 </label>
                                 <div className="flex flex-wrap gap-1.5 md:gap-2.5">
                                     {serviceOptions.map((service) => {
-                                        const isActive = services.includes(service);
+                                        const isActive = services.includes(service.label);
                                         return (
                                             <button
-                                                key={service}
+                                                key={service.id}
                                                 type="button"
-                                                onClick={() => toggleService(service)}
+                                                onClick={() => toggleService(service.label)}
                                                 className={`rounded-full border px-2.5 py-1 text-[11px] transition-colors md:px-3 md:py-1.5 md:text-sm ${
                                                     isActive
                                                         ? 'bg-[#D4A017] border-[#D4A017] text-black font-semibold'
                                                         : 'border-white/20 text-white/70 hover:border-white/45 hover:text-white'
                                                 }`}
                                             >
-                                                {service}
+                                                {service.label}
                                             </button>
                                         );
                                     })}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
+import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 import { FaqSection } from '@/components/shared/FaqSection';
 import { ProcessNote } from '@/components/shared/ProcessNote';
@@ -9,7 +10,6 @@ import { DronePageProgress } from '@/components/drone-hotels-tourism/DronePagePr
 import { DroneStickyCta } from '@/components/drone-hotels-tourism/DroneStickyCta';
 import { MobileBottomBar } from '@/components/drone-restaurants/MobileBottomBar';
 import { ScrollArrow } from '@/components/drone-restaurants/ScrollArrow';
-import { DroneRestaurantsContactForm } from '@/components/drone-restaurants/DroneRestaurantsContactForm';
 import { FormatExamplesSlideshow } from '@/components/drone-restaurants/FormatExamplesSlideshow';
 import formatExampleOne from '@/services-images/drone-restaurants/final/4.png';
 import formatExampleTwo from '@/services-images/drone-restaurants/final/2.png';
@@ -53,6 +53,14 @@ type RelatedService = {
     text: string;
 };
 
+type StatCard = {
+    stat: string;
+    label: string;
+    description: string;
+    source: string;
+    sourceUrl: string;
+};
+
 const problemCards: CardItem[] = [
     {
         title: '«На Booking выглядим как все — хорошие фото, но у конкурентов тоже»',
@@ -73,6 +81,10 @@ const problemCards: CardItem[] = [
     {
         title: '«Не понимаю, что заказать и сколько стоит»',
         text: 'На странице — три пакета с ценами, составом и сроками. Расчёт под ваш объект — бесплатно.',
+    },
+    {
+        title: '«Думаю об этом уже полгода, но всё никак не соберусь»',
+        text: 'Стартуем с короткого брифа — за 15 минут. Подскажем, с какого формата начать, чтобы получить первый результат за один съёмочный день и без долгих согласований.',
     },
 ];
 
@@ -185,13 +197,13 @@ const nicheCards: NicheCard[] = [
         deliverables: 'Основной ролик + видео для соцсетей + фотографии для Booking.',
     },
     {
-        title: 'Курортный отель (Батуми / Чёрное море)',
-        pain: 'Главная ценность — море и побережье, но фото с земли это не передаёт.',
-        solution: 'Аэровидео береговой линии, бассейна, территории с высоты.',
+        title: 'Винный отель в Кахетии',
+        pain: 'Главная ценность — виноградники, погреб и панорама долины, но с земли это не снять.',
+        solution: 'Аэровидео виноградников, терминалов виноделия, подхода к отелю и видов на Алазанскую долину.',
         deliverables: 'Кинематографичный ролик + 3–5 видео для соцсетей + 30+ фотографий.',
     },
     {
-        title: 'Горный / эко-отель (Казбеги, Местиа, Кахетия)',
+        title: 'Горный отель (Казбеги, Гудаури, Бакуриани)',
         pain: 'Пейзаж вокруг — главный продукт, его нельзя показать с земли.',
         solution: 'Съёмка горного контекста, путь к отелю, виды из номеров сверху.',
         deliverables: 'Кинематографичный ролик + фотографии.',
@@ -235,7 +247,7 @@ const whyUsCards: CardItem[] = [
     },
     {
         title: 'Вид из окна — главный кадр',
-        text: 'Снимаем то, что гость увидит со своего балкона: море в Батуми, горы в Гудаури, крыши старого Тбилиси. Вид из номера — аргумент, ради которого бронируют конкретный отель, а не соседний.',
+        text: 'Снимаем то, что гость увидит со своего балкона: виноградники Кахетии, горы в Гудаури, крыши старого Тбилиси. Вид из номера — аргумент, ради которого бронируют конкретный отель, а не соседний.',
     },
     {
         title: 'Кадры живут дольше одного сезона',
@@ -273,6 +285,37 @@ const formatExampleCards = [
 ];
 
 const formatExampleSlides = [formatExampleOne, formatExampleTwo, formatExampleThree];
+
+const statsCards: StatCard[] = [
+    {
+        stat: '86%',
+        label: 'путешественников',
+        description: 'смотрят видео про направление перед бронированием отеля.',
+        source: 'Think with Google',
+        sourceUrl: 'https://www.thinkwithgoogle.com/consumer-insights/consumer-trends/travel-video-content/',
+    },
+    {
+        stat: '×4',
+        label: 'больше запросов',
+        description: 'получают карточки размещения с видеоконтентом по сравнению с листингами без видео.',
+        source: 'Mediakix / Revfine',
+        sourceUrl: 'https://www.revfine.com/video-marketing-hotels/',
+    },
+    {
+        stat: '+20–30%',
+        label: 'к конверсии',
+        description: 'добавляет качественное видео на OTA-площадках вроде Booking и Expedia.',
+        source: 'Hotel industry benchmarks',
+        sourceUrl: 'https://skift.com/',
+    },
+    {
+        stat: '×7',
+        label: 'взаимодействий',
+        description: 'получает карточка в Google Maps с видео по сравнению с карточкой, где только фото.',
+        source: 'Google Business Profile data',
+        sourceUrl: 'https://support.google.com/business/answer/6124108',
+    },
+];
 
 const faqItems: FaqItem[] = [
     {
@@ -318,7 +361,7 @@ const faqItems: FaqItem[] = [
     {
         question: 'Работаете ли вы за пределами Тбилиси?',
         answer:
-            'Да. Батуми, Казбеги, Кахетия, Местиа и другие регионы — по договорённости. Стоимость выезда зависит от расстояния и логистики — уточняем на этапе брифа.',
+            'Да. Кахетия, Казбеги, Гудаури и Бакуриани — по договорённости. Стоимость выезда зависит от расстояния и логистики — уточняем на этапе брифа.',
     },
     {
         question: 'В какую погоду летает дрон?',
@@ -571,6 +614,40 @@ export default function DroneHotelsTourismPage() {
                                 ]}
                             />
                         </div>
+                    </div>
+                </section>
+            </DebugWrapper>
+
+            {/* ── ЧТО ГОВОРЯТ ЦИФРЫ ──────────────────────────────────────────────── */}
+            <DebugWrapper id={385115} label="Stats Section">
+                <section className="border-b border-[#2a2a2a] bg-[#080808] py-20">
+                    <div className="container mx-auto px-6">
+                        <div className="max-w-3xl">
+                            <h2 className="text-3xl font-bold md:text-4xl">Что говорят цифры</h2>
+                            <p className="mt-4 leading-relaxed text-white/70">
+                                Видео — не украшение, а инструмент бронирования. Исследования показывают, насколько оно меняет поведение будущего гостя.
+                            </p>
+                        </div>
+                        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+                            {statsCards.map((item) => (
+                                <article key={item.stat} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                    <p className="tracking-tight text-5xl font-bold text-[#FFD23F]">{item.stat}</p>
+                                    <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-white/70">{item.label}</p>
+                                    <p className="mt-4 text-sm leading-relaxed text-white/72">{item.description}</p>
+                                    <a
+                                        href={item.sourceUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="mt-5 inline-flex items-center text-xs font-semibold text-white/50 transition-colors hover:text-[#FFD23F]"
+                                    >
+                                        Источник: {item.source} →
+                                    </a>
+                                </article>
+                            ))}
+                        </div>
+                        <p className="mt-8 max-w-4xl text-xs leading-relaxed text-white/45">
+                            Цифры приведены из открытых отраслевых отчётов и исследований Google. Конкретный эффект для вашего отеля зависит от качества исходного пространства, канала публикации и контекста кампании.
+                        </p>
                     </div>
                 </section>
             </DebugWrapper>
@@ -1083,7 +1160,7 @@ export default function DroneHotelsTourismPage() {
                                     Тбилиси — исторические кварталы, ущелье реки и современные отели в одном кадре.
                                 </p>
                                 <p className="mt-4 leading-relaxed text-white/74">
-                                    Батуми — черноморское побережье, пальмы и ультрасовременные resort-комплексы.
+                                    Гудаури и Бакуриани — горнолыжные склоны зимой, альпийские луга летом. Resort-отели в естественной декорации.
                                 </p>
                                 <p className="mt-4 leading-relaxed text-white/74">
                                     Казбеги и горные регионы — кавказские вершины как фон для boutique-отелей. Ничего подобного нет поблизости.
@@ -1148,6 +1225,38 @@ export default function DroneHotelsTourismPage() {
                 </section>
             </DebugWrapper>
 
+            {/* ── ГДЕ МЫ СНИМАЕМ В ГРУЗИИ ──────────────────────────────────────── */}
+            <DebugWrapper id={385365} label="Geography Section">
+                <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
+                    <div className="container mx-auto px-6">
+                        <div className="max-w-3xl">
+                            <h2 className="text-3xl font-bold md:text-4xl">Где мы снимаем в Грузии</h2>
+                            <p className="mt-4 leading-relaxed text-white/70">
+                                Работаем в регионах, где расположены большинство отелей и курортов. Знаем особенности каждой локации — свет, погодные окна, ограничения полётов.
+                            </p>
+                        </div>
+                        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                            {[
+                                { region: 'Тбилиси', note: 'Городские и бутик-отели, исторические кварталы, Мтацминда.' },
+                                { region: 'Кахетия', note: 'Винные отели, виноградники, Алазанская долина, монастыри.' },
+                                { region: 'Казбеги и Степанцминда', note: 'Высокогорные отели на фоне кавказских вершин.' },
+                                { region: 'Гудаури', note: 'Горнолыжные resort-отели, трассы, панорамы Крестового перевала.' },
+                                { region: 'Бакуриани', note: 'Семейные курорты, альпийские луга летом, склоны зимой.' },
+                                { region: 'Апарт-отели и Airbnb по всей Грузии', note: 'Несколько объектов за один выезд — пакетный график съёмки.' },
+                            ].map((item) => (
+                                <article key={item.region} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
+                                    <h3 className="text-lg font-bold text-white">{item.region}</h3>
+                                    <p className="mt-3 text-sm leading-relaxed text-white/72">{item.note}</p>
+                                </article>
+                            ))}
+                        </div>
+                        <p className="mt-8 text-sm leading-relaxed text-white/55">
+                            Логистика и условия выезда обсуждаются на этапе брифа. Для регулярного сотрудничества с сетями — отдельные условия.
+                        </p>
+                    </div>
+                </section>
+            </DebugWrapper>
+
             {/* ── PRE-CONTACT CTA ──────────────────────────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-16">
                 <div className="container mx-auto px-6">
@@ -1168,61 +1277,7 @@ export default function DroneHotelsTourismPage() {
 
             {/* ── КОНТАКТ ──────────────────────────────────────────────────────────── */}
             <DebugWrapper id={385380} label="Contact Section">
-                <section id="contact" className="bg-[#0D0D0D] py-20">
-                    <div className="container mx-auto px-6">
-                        <div className="mx-auto max-w-5xl rounded-[24px] border border-[#FFD23F]/25 bg-gradient-to-br from-[#151515] via-[#111111] to-[#0c0c0c] p-6 md:p-8 lg:p-10">
-                            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-                                <div>
-                                    <h2 className="text-3xl font-bold text-white md:text-4xl">Обсудить задачу</h2>
-                                    <p className="mt-4 max-w-xl leading-relaxed text-white/72">
-                                        Напишите тип объекта и регион — вернёмся с расчётом, маршрутом полётов и
-                                        рекомендованным пакетом в течение 2 часов.
-                                    </p>
-
-                                    <div className="mt-8 rounded-[18px] border border-white/10 bg-white/[0.03] p-5">
-                                        <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Написать напрямую</p>
-                                        <div className="mt-4 flex flex-wrap gap-3">
-                                            <a
-                                                href="https://wa.me/995574619393"
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
-                                            >
-                                                WhatsApp
-                                            </a>
-                                            <a
-                                                href="https://t.me/breusmedia"
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
-                                            >
-                                                Telegram
-                                            </a>
-                                            <a
-                                                href="mailto:hello@breus.media"
-                                                className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/82 transition-colors hover:border-white/35"
-                                            >
-                                                hello@breus.media
-                                            </a>
-                                        </div>
-                                        <p className="mt-4 text-sm leading-relaxed text-white/55">
-                                            Отвечаем ежедневно с 9:00 до 21:00.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <DroneRestaurantsContactForm
-                                    contactLabel="Телефон / WhatsApp / Telegram"
-                                    businessLabel="Тип объекта и регион"
-                                    businessPlaceholder="Например: бутик-отель в Тбилиси / курорт в Батуми / сеть апарт-отелей"
-                                    deadlineLabel="Задача и платформы"
-                                    deadlinePlaceholder="Сайт, Booking, Reels, YouTube, рекламная кампания"
-                                    submitLabel="Отправить заявку"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <DroneContactStitch preselectedServices={['drone']} />
             </DebugWrapper>
 
             <DroneStickyCta {...({ heroId: 'drone-hotels-tourism-hero' } as any)} />
