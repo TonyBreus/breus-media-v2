@@ -1,6 +1,31 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-17 (fix: drone-hotels-tourism verified stats + remove Batumi from schema)
+
+### Session Summary
+- Перед деплоем обновлены статистические карточки на проверенные источники и удалён Batumi из `serviceSchema`.
+
+### Изменения
+- `app/drone-hotels-tourism/page.tsx`
+  - `serviceSchema.areaServed`:
+    - было: строка с `... Батуми ...`
+    - стало: `['Tbilisi', 'Kakheti', 'Kazbegi', 'Gudauri', 'Bakuriani', 'Georgia']`
+  - `statsCards` заменён полностью:
+    - `65%` — `Google / Ipsos, Traveler's Road to Decision`
+      - `https://www.thinkwithgoogle.com/marketing-strategies/video/travel-content-takes-off-on-youtube/`
+    - `×2.7` — `Google Business Profile, official data`
+      - `https://support.google.com/business/answer/6124108`
+    - `2 из 3` — `Think with Google / YouTube research`
+      - `https://www.thinkwithgoogle.com/consumer-insights/consumer-trends/travel-video-content/`
+    - `1.5–5%` — `Hotel Benchmark / RMS Cloud industry data`
+      - `https://www.rmscloud.com/blog/improve-your-hotel-booking-conversion-rate`
+
+### Verification
+- `npm run build` — ✅ успешно, без ошибок.
+- `rg "Batumi|Батуми" app/drone-hotels-tourism/page.tsx` — 0 вхождений.
+- JSON-LD скрипт страницы не содержит Batumi.
+
 ## 2026-04-17 (enhance: drone-hotels-tourism stats, geography, form preselect, Batumi cleanup)
 
 ### Session Summary

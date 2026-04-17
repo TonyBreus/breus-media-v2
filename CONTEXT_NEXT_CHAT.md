@@ -1,3 +1,18 @@
+✅ /drone-hotels-tourism: verified stats + удаление Batumi из schema (17.04.2026)
+- **Файл:** `app/drone-hotels-tourism/page.tsx`
+- **Что обновлено:**
+  - `serviceSchema.areaServed` переведён в массив и очищен от Batumi:
+    - `["Tbilisi", "Kakheti", "Kazbegi", "Gudauri", "Bakuriani", "Georgia"]`
+  - `statsCards` полностью заменён на подтверждённые цифры и источники:
+    - `65%` — Google/Ipsos Traveler's Road to Decision
+    - `×2.7` — Google Business Profile official data
+    - `2 из 3` — Think with Google / YouTube research
+    - `1.5–5%` — RMS Cloud Hotel Benchmark
+- **Проверка:**
+  - `npm run build` — успешно, 0 ошибок
+  - `rg "Batumi|Батуми" app/drone-hotels-tourism/page.tsx` — 0 вхождений
+  - В JSON-LD страницы Batumi удалён.
+
 ✅ /drone-hotels-tourism: stats + geography + preselect в форме (17.04.2026)
 - **Файлы:** `app/drone-hotels-tourism/page.tsx`, `components/drone/DroneContactStitch.tsx`
 - **Контент и структура:**
