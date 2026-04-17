@@ -1,3 +1,36 @@
+✅ /drone-hotels-tourism: финальная полировка эталонной L3-структуры (17.04.2026)
+- **Файл:** `app/drone-hotels-tourism/page.tsx`
+- `/drone-hotels-tourism` приведена к эталонной структуре: удалены дубли FAQ, убраны стоп-слова, добавлен mid-CTA после niches, прокинуты `languageLinks` и `heroId`.
+- **Что сделано:**
+  - Hero: переписаны 2 финальных абзаца; из Hero убрано упоминание `Google Business Profile`.
+  - `problemCards`: удалена карточка про EN-коммуникацию (осталось 5 карточек).
+  - `deliverablesDefault`: удалён пункт про GCAA; добавлены финальные формулировки 4 пунктов.
+  - `whyUsCards`: убран суффикс `(универсальный)` в карточке «Быстрый контакт, без лишних слоёв».
+  - `faqItems`: удалён дубль про иностранные отели/сети; добавлены 3 новых вопроса (Booking edge, pre-opening, split winter/summer shoots).
+  - Удалены дубль-секции: `Extended FAQ Section` (`seoAnswers`) и `Short Answers Section` (`shortQA`).
+  - Добавлен новый `mid-CTA` сразу после `Niches Section`.
+  - `SmartHeader`: добавлены `languageLinks` (`RU`, `EN`) перед `sectionLinks`.
+  - `DroneStickyCta`: передан `heroId` из страницы (`drone-hotels-tourism-hero`) без изменений компонентов.
+- **Сборка:** `npm run build` — успешно, 0 ошибок.
+- **Следующий шаг:** привести `/drone-services/drone-restaurants` к той же структуре.
+
+✅ drone-restaurants + drone-hotels-tourism: контентная унификация (17.04.2026)
+- **Файлы:** `app/drone-services/drone-restaurants/page.tsx`, `app/drone-hotels-tourism/page.tsx`
+- **Сравнение пакетов:**
+  - На `/drone-services/drone-restaurants` убран отдельный мобильный карточный рендер таблицы; оставлена единая таблица с `overflow-x-auto` (как на `/drone-hotels-tourism`).
+  - На `/drone-hotels-tourism` обновлены строки таблицы: `Фото` (`10+ / — / 10+ / 20+`), `Видео для Google Maps`, `Время на объекте` (`~1,5 / ~1,5 / ~2,5`), передача файлов (`от 24 ч / ... / от 48 ч`).
+- **Блок "Как выбрать пакет":**
+  - Обновлены формулировки в обоих страницах под единый стиль и сценарии использования.
+- **FAQ / Q&A:**
+  - `/drone-services/drone-restaurants`: добавлены 3 новых верхних FAQ (что снимаете, комбинированный пакет, пригодность форматов), добавлен FAQ `Есть ли договор?`, удалены устаревшие FAQ про «что даёт дрон-съёмка» и «где ещё использовать материалы», обновлены ответы по срокам и географии.
+  - `/drone-hotels-tourism`: удалён FAQ-блок `Как получить Film in Georgia rebate?`; обновлён FAQ про работу с иностранными отелями/сетями; обновлён FAQ `Есть ли договор?`.
+- **Блок "Как мы подходим к съёмке":**
+  - `/drone-services/drone-restaurants`: полностью переписаны карточки `whyUsCards` под новую ресторанную версию, добавлен отдельный пункт `Снимаем в рабочие часы ресторана`.
+  - `/drone-hotels-tourism`: полностью переписаны карточки `whyUsCards` под новую отельную версию (Booking/Google Maps/вид из окна/долгоживущий контент).
+- **Дополнительные текстовые правки (`/drone-hotels-tourism`):**
+  - Убраны конкретные названия дронов из описания форматов (`Air 3S`, `Avata 2`) в FAQ-ответе.
+  - Обновлён ценовой FAQ-абзац на новую версию (4K, аддоны и цены).
+
 ✅ SmartHeader + drone-restaurants + drone-hotels-tourism: UX-унификация (17.04.2026)
 - **SmartHeader** (`components/gazeta/SmartHeader.tsx`):
   - Новый проп `ctaLabel?: string` — переопределяет текст CTA в хедере и мобильном меню
