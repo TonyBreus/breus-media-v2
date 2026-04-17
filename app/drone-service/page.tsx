@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
+import { MarqueeSection } from '@/components/gazeta/MarqueeSection';
 import { DroneHeroStitch } from '@/components/drone/DroneHeroStitch';
 import { DroneServicesMobileList } from '@/components/drone/DroneServicesMobileList';
 import { DroneServicesStitch } from '@/components/drone/DroneServicesStitch';
@@ -174,6 +175,7 @@ export default function DroneServicePage() {
                 isLanding={false}
                 initialLang="ru"
                 languageLinks={{ ru: '/drone-service', en: '/drone-service/en' }}
+                singleTickerMode={true}
                 sectionLinks={[
                     { label: 'Услуги', href: '#services' },
                     { label: 'Цены', href: '#pricing' },
@@ -185,6 +187,7 @@ export default function DroneServicePage() {
                     <DroneHeroStitch hero={pageConfig.hero} />
                 </DebugWrapper>
             </div>
+
 
             <DroneServicesMobileList />
 

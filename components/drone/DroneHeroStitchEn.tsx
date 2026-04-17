@@ -1,0 +1,490 @@
+'use client';
+
+import React, { useEffect, useMemo, useState } from 'react';
+import { Manrope } from 'next/font/google';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
+import { DebugWrapper } from '@/components/debug/DebugWrapper';
+import { droneServiceItems } from '@/components/drone/droneServicesData';
+import type { DroneDirectionHeroConfig } from '@/constants/droneDirectionPages';
+
+type DroneHeroStitchEnProps = {
+    hero: DroneDirectionHeroConfig;
+};
+
+const ROTATION_MS = 5000;
+const TYPEWRITER_INTERVAL_MS = 40;
+const TYPEWRITER_NEWLINE_PAUSE_MS = 120;
+const MOBILE_HERO_TYPEWRITER_TEXT = 'DRONE FILMING\nFOR REAL ESTATE\nFOR HOTELS\nFOR GEORGIA';
+const manrope = Manrope({ subsets: ['cyrillic', 'latin'], weight: ['400', '500', '600', '700'] });
+const DESKTOP_HERO_PHRASES = [
+    'From the ground you miss the key things: a restaurant terrace, construction scale, a roof defect.',
+    'Properties with aerial video sell 68% faster (MLS / NAR).',
+    'Drones shoot from above and fly inside spaces - FPV technology.',
+    'One flight: content for ads, a report for investors, or documentation for insurance.',
+];
+
+const serviceCopyBySlug: Record<
+    string,
+    {
+        title: string;
+        category: string;
+        description: string;
+        price: string;
+        primaryHref?: string;
+    }
+> = {
+    nedvizhimost: {
+        title: 'Real Estate',
+        category: 'REALTORS · DEVELOPERS · SALES',
+        description:
+            'Aerial photos and video for listings and investor presentations. Listings with aerial photos get 94% more views according to HomeJab.',
+        price: '4K · MYHOME.GE · SS.GE',
+    },
+    'monitoring-stroiki': {
+        title: 'Construction Monitoring',
+        category: 'DEVELOPERS · BANKS · CONTRACTORS',
+        description:
+            'Construction is moving - but what is really happening on site? Regular flyovers document progress and give investors a clear picture without site visits.',
+        price: '4K · GPS · REPORTS',
+    },
+    'fpv-semka': {
+        title: 'FPV Filming',
+        category: 'WAREHOUSES · FACTORIES · LOGISTICS',
+        description:
+            'We show commercial space from the inside in one shot - from the entrance to the deepest zone. Tenants and investors understand the object before the meeting.',
+        price: '4K · INDOOR · FLY-THROUGH',
+    },
+    'oteli-kurorty': {
+        title: 'Hotels & Resorts',
+        category: 'BOOKING · VIEWS · APART-HOTELS',
+        description:
+            'Guests book with their eyes. We film hotels, terraces and views so the Booking page works harder on its own.',
+        price: '4K · ATMOSPHERE · PROMO',
+    },
+    restorany: {
+        title: 'Restaurants',
+        category: 'TERRACES · LOCATION · ATMOSPHERE',
+        description:
+            'A rooftop terrace, a green courtyard, the location within the district - all of that is visible from the air. Guests understand where they are going before they reserve a table.',
+        price: '4K · REELS · STORIES',
+        primaryHref: '/drone-services/drone-restaurants/en',
+    },
+    turizm: {
+        title: 'Tourism & Locations',
+        category: 'NATURE · ROUTES · GLAMPING',
+        description:
+            'Mountains, castles and canyons across Georgia - we film destinations from above for tour operators, hotels and personal brands.',
+        price: '4K · EXCURSIONS · LANDSCAPES',
+    },
+    meropriyatiya: {
+        title: 'Events',
+        category: 'EVENTS · OPENINGS · WEDDINGS',
+        description:
+            'From the ground you see the crowd. From above you see scale, energy and the atmosphere of the event. Ready video can be delivered within 48 hours.',
+        price: '4K · SPORTS · EVENTS',
+    },
+    'inspekciya-obektov': {
+        title: 'Object Inspection',
+        category: 'FACADES · ROOFS · INDUSTRIAL SITES',
+        description:
+            'If an object needs to be checked outside, above or in a hard-to-reach area, the drone documents every zone safely and without interrupting operations.',
+        price: '4K · COMPLEXES · DOCUMENTATION',
+    },
+    'kontrol-territorii': {
+        title: 'Territory Monitoring',
+        category: 'LANDSCAPE · QUARRIES · PERIMETER',
+        description:
+            'Large sites are hard to control from the ground. Regular flyovers with GPS reference create a complete map of changes without another field visit.',
+        price: 'GPS · REPORTS · WEEKLY',
+    },
+    'interiery-sklady': {
+        title: 'Interiors & Warehouses',
+        category: 'SHOWROOMS · RETAIL · TENANTS',
+        description:
+            'The drone flies through aisles, openings and workshops where a tripod camera cannot go. One take makes the whole space readable.',
+        price: 'SHOWROOMS · LAYOUT · FPV',
+    },
+    'sport-kompleksy': {
+        title: 'Sports Complexes',
+        category: 'STADIUMS · ARENAS · TENNIS COURTS',
+        description:
+            'A sports venue only feels large from above. We film fields, stands and infrastructure for websites, investors and social media.',
+        price: '4K · 60FPS · BROADCAST',
+    },
+    'reklama-brand-video': {
+        title: 'Advertising & Brand Video',
+        category: 'BRANDS · CORPORATE · PRODUCTS',
+        description:
+            'Aerial shots, a plan and editing in one project. Video that works in ads, on the website and across social platforms.',
+        price: '4K · PROMO · EDITING',
+    },
+    'aerosyemka-dlya-avto-i-avtosalonov': {
+        title: 'Car Dealerships & Showrooms',
+        category: 'CAR LOTS · DEALERS · NETWORKS',
+        description:
+            'Buyers choose with their eyes. We show the full inventory, lot and dealership infrastructure in one fly-through.',
+        price: '4K · SALES · DEMO',
+    },
+    'agro-i-vinodelie': {
+        title: 'Agriculture & Winemaking',
+        category: 'BRANDS · INVESTORS · PRODUCERS',
+        description:
+            'Georgian wine starts in the vineyard. We film vineyards and agricultural sites for crop monitoring, sales materials and brand promotion.',
+        price: 'ANALYTICS · CONTROL · AGRI BUSINESS',
+    },
+    'zemelnye-uchastki': {
+        title: 'Land Plots',
+        category: 'DEVELOPERS · INVESTORS · LAND SALES',
+        description:
+            'Boundaries, terrain, surroundings and access - all shown in one flight. It sells faster than any text description.',
+        price: 'VALUATION · SALES · PANORAMA',
+    },
+    'inspekciya-fasadov': {
+        title: 'Facade Inspection',
+        category: 'OPERATIONS · ENGINEERS · FACADES',
+        description:
+            'A full facade flyover with video - no scaffolding, no risk for staff and no need to stop work on site. Material is delivered to your specialists.',
+        price: 'DIAGNOSTICS · JOINTS · DEFECTS',
+    },
+    'inspekciya-solnechnyh-paneley': {
+        title: 'Solar Panel Inspection',
+        category: 'ENERGY · OPERATORS · INVESTORS',
+        description:
+            'Dust and damage can reduce panel output by up to 30%. One video flyover gives your engineer a full picture without climbing onto the roof.',
+        price: 'CONTROL · DIAGNOSTICS · EFFICIENCY',
+    },
+    'regulyarnye-aerootchety': {
+        title: 'Regular Aerial Reports',
+        category: 'BANKS · INVESTORS · MANAGEMENT',
+        description:
+            'Scheduled flyovers with GPS-based reports let investors and managers track site progress without visiting the object in person.',
+        price: '4K · GPS · PROGRESS',
+    },
+};
+
+export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [typedCharsCount, setTypedCharsCount] = useState(0);
+    const [typewriterDone, setTypewriterDone] = useState(false);
+    const [showMobileDescription, setShowMobileDescription] = useState(false);
+    const [showMobileArrow, setShowMobileArrow] = useState(false);
+    const [visibleDesktopPhrases, setVisibleDesktopPhrases] = useState(0);
+
+    const serviceItemsEn = useMemo(
+        () =>
+            droneServiceItems.map((item) => {
+                const translation = serviceCopyBySlug[item.slug];
+
+                return {
+                    ...item,
+                    title: translation?.title ?? item.title,
+                    category: translation?.category ?? item.category,
+                    description: translation?.description ?? item.description,
+                    price: translation?.price ?? item.price,
+                    primaryHref: translation?.primaryHref ?? item.primaryHref,
+                };
+            }),
+        []
+    );
+
+    useEffect(() => {
+        if (serviceItemsEn.length <= 1) {
+            return;
+        }
+        const rotationInterval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % serviceItemsEn.length);
+        }, ROTATION_MS);
+        return () => {
+            clearInterval(rotationInterval);
+        };
+    }, [serviceItemsEn.length]);
+
+    useEffect(() => {
+        let timeoutId: ReturnType<typeof setTimeout> | null = null;
+        let nextIndex = 0;
+
+        const typeNext = () => {
+            if (nextIndex >= MOBILE_HERO_TYPEWRITER_TEXT.length) {
+                setTypewriterDone(true);
+                return;
+            }
+
+            const nextChar = MOBILE_HERO_TYPEWRITER_TEXT[nextIndex];
+            nextIndex += 1;
+            setTypedCharsCount(nextIndex);
+
+            timeoutId = setTimeout(
+                typeNext,
+                nextChar === '\n' ? TYPEWRITER_NEWLINE_PAUSE_MS : TYPEWRITER_INTERVAL_MS
+            );
+        };
+
+        timeoutId = setTimeout(typeNext, TYPEWRITER_INTERVAL_MS);
+
+        return () => {
+            if (timeoutId !== null) {
+                clearTimeout(timeoutId);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!typewriterDone) {
+            return;
+        }
+
+        const descriptionTimer = setTimeout(() => setShowMobileDescription(true), 400);
+        const arrowTimer = setTimeout(() => setShowMobileArrow(true), 1200);
+        const desktopPhraseTimers = DESKTOP_HERO_PHRASES.map((_, index) =>
+            setTimeout(() => setVisibleDesktopPhrases(index + 1), 400 + index * 260)
+        );
+
+        return () => {
+            clearTimeout(descriptionTimer);
+            clearTimeout(arrowTimer);
+            desktopPhraseTimers.forEach((timer) => clearTimeout(timer));
+        };
+    }, [typewriterDone]);
+
+    useEffect(() => {
+        if (currentIndex < serviceItemsEn.length) {
+            return;
+        }
+        setCurrentIndex(0);
+    }, [currentIndex, serviceItemsEn.length]);
+
+    const typedMobileLines = useMemo(
+        () => MOBILE_HERO_TYPEWRITER_TEXT.slice(0, typedCharsCount).split('\n'),
+        [typedCharsCount]
+    );
+    const miniCarouselCount = Math.min(4, serviceItemsEn.length);
+    const miniCarouselIndices = useMemo(() => {
+        if (serviceItemsEn.length <= miniCarouselCount) {
+            return serviceItemsEn.map((_, index) => index);
+        }
+        const start = (currentIndex - 1 + serviceItemsEn.length) % serviceItemsEn.length;
+        return Array.from({ length: miniCarouselCount }, (_, offset) => (start + offset) % serviceItemsEn.length);
+    }, [currentIndex, miniCarouselCount, serviceItemsEn]);
+
+    const activeService = serviceItemsEn[currentIndex] ?? serviceItemsEn[0];
+
+    const handleScrollToNextSection = () => {
+        const nextSection = document.getElementById('services');
+        if (!nextSection) {
+            return;
+        }
+
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    return (
+        <DebugWrapper id={10100} label="Drone Hero Section EN">
+            <section className="relative h-[calc(100vh-80px)] min-h-[620px] md:min-h-[680px] overflow-hidden bg-[#080808]">
+                <h1 className="sr-only">Drone Filming Services in Tbilisi | Breus Media</h1>
+                <div className="absolute inset-0 z-0">
+                    <AnimatePresence mode="wait">
+                        <motion.img
+                            key={activeService.slug}
+                            src={activeService.image || hero.heroImage}
+                            alt="Drone Filming Services in Tbilisi | Breus Media"
+                            initial={{ opacity: 0, scale: 1.06 }}
+                            animate={{ opacity: 0.64, scale: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.65, ease: 'easeOut' }}
+                            className="h-full w-full object-cover"
+                        />
+                    </AnimatePresence>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_52%,rgba(212,160,23,0.22),transparent_56%)]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#040404]/82 via-[#070707]/52 to-[#070707]/90" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#070707]/62 via-transparent to-[#070707]/58" />
+                </div>
+
+                <div className="container relative z-10 mx-auto h-full px-6">
+                    <div className="flex h-full items-center justify-start pb-8 pt-20 md:pt-24">
+                        <div className="w-full text-left">
+                            <div className="hidden md:block">
+                                <div className="grid text-left md:grid-cols-1 md:gap-6 lg:grid-cols-[55%_42%] lg:gap-[3%]">
+                                    <div className="hidden lg:block lg:-ml-8">
+                                        <div className="min-h-[200px] text-5xl font-bold uppercase leading-[0.92] text-white md:text-7xl">
+                                            {typedMobileLines.map((line, index) => (
+                                                <div key={`desktop-typed-line-${index}`} className={index === 3 ? 'text-[#C9A84C]' : ''}>
+                                                    {line || '\u00A0'}
+                                                </div>
+                                            ))}
+                                            {!typewriterDone && (
+                                                <span className="ml-1 inline-block align-baseline text-[#C9A84C] animate-pulse">|</span>
+                                            )}
+                                        </div>
+
+                                        <div className="mt-4 flex flex-col gap-2">
+                                            {DESKTOP_HERO_PHRASES.map((phrase, index) => (
+                                                <motion.p
+                                                    key={`desktop-phrase-${index}`}
+                                                    initial={{ opacity: 0, y: 8 }}
+                                                    animate={{
+                                                        opacity: visibleDesktopPhrases >= index + 1 ? 1 : 0,
+                                                        y: visibleDesktopPhrases >= index + 1 ? 0 : 8,
+                                                    }}
+                                                    transition={{ duration: 0.32, ease: 'easeOut' }}
+                                                    className={`${manrope.className} antialiased text-[16px] font-normal leading-[1.65] text-white/[0.88]`}
+                                                >
+                                                    {phrase}
+                                                </motion.p>
+                                            ))}
+                                        </div>
+
+                                        <div className="mt-6 flex flex-col gap-3">
+                                            <a
+                                                href="#contact"
+                                                className="inline-flex w-fit items-center justify-center rounded-[12px] bg-[#D4A017] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.18em] text-black transition-all hover:brightness-105"
+                                            >
+                                                Discuss Project
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div className="hidden md:block lg:hidden">
+                                        <DebugWrapper id={10101} label="Hero Tagline">
+                                            <span className="mb-3 block text-[10px] font-bold uppercase tracking-[0.28em] text-[#D4A017] md:text-xs">
+                                                {activeService.price}
+                                            </span>
+                                        </DebugWrapper>
+
+                                        <DebugWrapper id={10110} label={`Hero Title: ${activeService.title}`}>
+                                            <h1 className="mb-4 text-5xl font-bold leading-[0.92] text-white md:text-7xl">
+                                                {activeService.title}
+                                            </h1>
+                                        </DebugWrapper>
+                                    </div>
+
+                                    <div className="hidden h-full flex-col justify-between py-0 lg:flex">
+                                        <AnimatePresence mode="wait">
+                                            <motion.div
+                                                key={serviceItemsEn[currentIndex].slug}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -10 }}
+                                                transition={{ duration: 0.4 }}
+                                                className="flex flex-1 flex-col gap-4"
+                                            >
+                                                <div>
+                                                    <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.22em] text-[#D4A017]">
+                                                        {serviceItemsEn[currentIndex].category}
+                                                    </p>
+                                                    <p className="text-3xl font-bold uppercase leading-tight text-white">
+                                                        {serviceItemsEn[currentIndex].title}
+                                                    </p>
+                                                </div>
+                                                <p className={`${manrope.className} antialiased text-[16px] font-normal leading-[1.65] text-white/[0.88]`}>
+                                                    {serviceItemsEn[currentIndex].description}
+                                                </p>
+                                                <a
+                                                    href={serviceItemsEn[currentIndex].primaryHref}
+                                                    className="flex w-full items-center justify-center rounded-[10px] border border-[#D4A017] bg-transparent px-4 py-3 text-[12px] font-bold uppercase tracking-[0.14em] text-[#D4A017] transition-all hover:bg-[#D4A017]/10"
+                                                >
+                                                    Open service
+                                                </a>
+                                            </motion.div>
+                                        </AnimatePresence>
+                                        <div className="w-[260px] rounded-[14px] border border-white/12 bg-black/35 p-2.5 backdrop-blur-sm">
+                                            <div className="flex flex-col gap-1.5">
+                                                {miniCarouselIndices.map((serviceIndex) => {
+                                                    const item = serviceItemsEn[serviceIndex];
+                                                    const isActive = serviceIndex === currentIndex;
+                                                    return (
+                                                        <button
+                                                            key={item.slug}
+                                                            onClick={() => setCurrentIndex(serviceIndex)}
+                                                            className={`w-full rounded-lg px-2.5 py-2 text-left transition-colors ${
+                                                                isActive ? 'bg-[#D4A017]/16' : 'hover:bg-white/8'
+                                                            }`}
+                                                        >
+                                                            <span
+                                                                className={`text-xs font-semibold leading-tight transition-colors ${
+                                                                    isActive ? 'text-[#D4A017]' : 'text-white/70'
+                                                                }`}
+                                                            >
+                                                                {item.title}
+                                                            </span>
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="block px-1 md:hidden">
+                                <div className="mx-auto max-w-[320px] text-left">
+                                    <div className="min-h-[124px] text-[34px] font-bold uppercase leading-[1.02] tracking-[0.06em] text-white">
+                                        {typedMobileLines.map((line, index) => (
+                                            <div key={`typed-line-${index}`} className={index === 3 ? 'text-[#C9A84C]' : ''}>
+                                                {line || '\u00A0'}
+                                            </div>
+                                        ))}
+                                        {!typewriterDone && (
+                                            <span className="ml-1 inline-block align-baseline text-[#C9A84C] animate-pulse">|</span>
+                                        )}
+                                    </div>
+
+                                    <div
+                                        className={`mt-0 text-[15px] font-medium leading-relaxed text-white/80 transition-opacity duration-500 ${
+                                            showMobileDescription ? 'opacity-100' : 'opacity-0'
+                                        }`}
+                                    >
+                                        <p>
+                                            From the ground you miss the key things: a restaurant terrace, construction
+                                            scale, a roof defect.
+                                        </p>
+                                        <p className="mt-2">
+                                            Properties with aerial video sell 68% faster (MLS / NAR).
+                                        </p>
+                                        <p className="mt-2">
+                                            Drones shoot from above and fly inside spaces - FPV technology.
+                                        </p>
+                                        <p className="mt-2">
+                                            One flight: content for ads, a report for investors, or documentation for
+                                            insurance.
+                                        </p>
+                                    </div>
+
+                                    <a
+                                        href="#directions"
+                                        aria-label="Scroll to directions"
+                                        className={`mt-5 -translate-y-4 inline-flex flex-col items-center justify-center gap-1 text-[#C9A84C] transition-opacity duration-500 ${
+                                            showMobileArrow ? 'opacity-100' : 'pointer-events-none opacity-0'
+                                        }`}
+                                    >
+                                        <ChevronDown className="h-5 w-5 animate-bounce" />
+                                        <span className="whitespace-nowrap text-[12px] font-medium leading-none">
+                                            18 directions - find yours · from 250 ₾
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <motion.button
+                    type="button"
+                    aria-label="Scroll to the next section"
+                    onClick={handleScrollToNextSection}
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute bottom-3 left-1/2 z-30 hidden -translate-x-1/2 flex-col items-center text-[18px] text-white/70 transition-colors hover:text-white md:flex"
+                >
+                    <span>↓</span>
+                    <span className="mt-1 hidden text-[15px] tracking-[0.14em] text-white md:block">
+                        18 directions
+                    </span>
+                    <span className="mt-0.5 hidden text-[14px] tracking-[0.1em] text-[#D4A017] md:block">
+                        from 250 ₾ · Tbilisi · Batumi · Kutaisi
+                    </span>
+                </motion.button>
+            </section>
+        </DebugWrapper>
+    );
+};
