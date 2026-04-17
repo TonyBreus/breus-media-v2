@@ -288,32 +288,32 @@ const formatExampleSlides = [formatExampleOne, formatExampleTwo, formatExampleTh
 
 const statsCards: StatCard[] = [
     {
-        stat: '86%',
-        label: 'путешественников',
-        description: 'смотрят видео про направление перед бронированием отеля.',
-        source: 'Think with Google',
+        stat: '65%',
+        label: 'выбирают направление',
+        description: 'путешественников, смотревших travel-видео, делают это именно в момент выбора destination. Ещё 54% — при выборе конкретного места размещения.',
+        source: "Google / Ipsos, Traveler's Road to Decision",
+        sourceUrl: 'https://www.thinkwithgoogle.com/marketing-strategies/video/travel-content-takes-off-on-youtube/',
+    },
+    {
+        stat: '×2.7',
+        label: 'больше доверия',
+        description: 'бизнесам с полным профилем в Google Business Profile. Вероятность того, что пользователь рассмотрит покупку, выше в среднем в 2.7 раза — и на 50% выше при наличии визуального контента.',
+        source: 'Google Business Profile, official data',
+        sourceUrl: 'https://support.google.com/business/answer/6124108',
+    },
+    {
+        stat: '2 из 3',
+        label: 'смотрят видео о поездке',
+        description: 'американских пользователей смотрят travel-видео онлайн, когда задумываются о поездке. Видео — не украшение, а этап принятия решения.',
+        source: 'Think with Google / YouTube research',
         sourceUrl: 'https://www.thinkwithgoogle.com/consumer-insights/consumer-trends/travel-video-content/',
     },
     {
-        stat: '×4',
-        label: 'больше запросов',
-        description: 'получают карточки размещения с видеоконтентом по сравнению с листингами без видео.',
-        source: 'Mediakix / Revfine',
-        sourceUrl: 'https://www.revfine.com/video-marketing-hotels/',
-    },
-    {
-        stat: '+20–30%',
-        label: 'к конверсии',
-        description: 'добавляет качественное видео на OTA-площадках вроде Booking и Expedia.',
-        source: 'Hotel industry benchmarks',
-        sourceUrl: 'https://skift.com/',
-    },
-    {
-        stat: '×7',
-        label: 'взаимодействий',
-        description: 'получает карточка в Google Maps с видео по сравнению с карточкой, где только фото.',
-        source: 'Google Business Profile data',
-        sourceUrl: 'https://support.google.com/business/answer/6124108',
+        stat: '1.5–5%',
+        label: 'коридор конверсии',
+        description: 'отельных сайтов: средняя конверсия 1.5–2.5%, топ-сайты достигают 3–5%. Визуальный контент — один из главных факторов, двигающих цифру вверх.',
+        source: 'Hotel Benchmark / RMS Cloud industry data',
+        sourceUrl: 'https://www.rmscloud.com/blog/improve-your-hotel-booking-conversion-rate',
     },
 ];
 
@@ -423,7 +423,7 @@ const serviceSchema = {
             addressCountry: 'GE',
         },
     },
-    areaServed: 'Тбилиси, Батуми, Казбеги, Кахетия, Грузия',
+    areaServed: ['Tbilisi', 'Kakheti', 'Kazbegi', 'Gudauri', 'Bakuriani', 'Georgia'],
     offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'GEL',
