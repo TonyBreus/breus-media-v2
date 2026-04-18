@@ -1,3 +1,109 @@
+✅ /drone-services/drone-restaurants: parity sync RU с эталоном drone-hotels (2026-04-18)
+  - `app/drone-services/drone-restaurants/page.tsx`:
+    - «Примеры по форматам»: h2 → `text-3xl md:text-4xl`; `<img>` → `<Image fill sizes="(max-width: 768px) 100vw, 33vw">` (импорт `next/image` добавлен).
+    - Добавлена секция «Как выбрать пакет» (между таблицей «Сравнение пакетов» и FAQ): 4 строки-подсказки с целевыми пакетами 250 / 350 / 500 / от 900 ₾ и фоллбэк.
+    - «Сравнение пакетов»: h2 выровнен до `text-3xl md:text-4xl`.
+    - Schema: `localBusinessSchema['@id'] = https://breus.media/#organization`; `serviceSchema.provider = { '@id': ... }`; `areaServed` → плоский массив `['Tbilisi','Kakheti','Telavi','Sighnaghi','Mtskheta','Kutaisi','Georgia']`; + `category: 'Aerial Videography for Hospitality'`.
+  - Тексты Hero / Problems / Process / Pricing / FAQ / Niches не тронуты (финальные).
+  - `page.en.tsx` не изменялся — отдельным заходом.
+  - Build: `npm run build` — ✅ clean (88 pages); GET /drone-services/drone-restaurants → 200 и все три блока подтверждены в HTML.
+
+✅ /drone-hotels-tourism/en: English version of the drone hotels page (2026-04-18)
+  - Создан `app/drone-hotels-tourism/en/page.tsx` — полный EN-перевод источника.
+  - Мирроринг структуры: те же импорты, классы, DebugWrapper id, компоненты (SmartHeader с languageLinks RU/EN, DroneStickyCta, PackageCta, HeroBackgroundMountains, MobileBottomBar, FormatExamplesSlideshow, ScrollArrow, DronePageProgress, ProcessNote, FaqSection, DroneContactStitch, DroneFooterStitch).
+  - Добавлен `<LangSetter lang="en" />` в начало JSX; импорт из `@/components/common/LangSetter`.
+  - Stats/schemas: цифры, URL и source names сохранены; описания и labels переведены; faqSchema / serviceSchema / localBusinessSchema / breadcrumbSchema — EN-версии с canonical на `/drone-hotels-tourism/en`, `inLanguage: 'en'`, `locale: 'en_US'`.
+  - Тон: B2B, концизно; исключены forbidden words (professional, unique, best, premium, high-quality), stop-concepts (raw footage, venue, aerial layer, content-as-deliverable).
+  - Google Maps: "Google Maps listing / profile" (не "Google Business Profile").
+  - География: Tbilisi, Kakheti, Kazbegi, Gudauri, Bakuriani — без Batumi.
+  - Цены: GEL (₾) как primary, опциональный USD-эквивалент в скобках в pricing-карточках (250 ₾ (~$90), 350 ₾ (~$130), 500 ₾ (~$185), from 900 ₾ (~$335)).
+  - Metadata: "Drone Videography for Hotels in Georgia | FPV Hotel Tours Tbilisi | Breus Media"; alternates.languages ru-RU/en-US/x-default настроены.
+  - PackageCta: label → "Discuss this package →", packageName — английское имя пакета (Exterior Flight / Interior FPV Flight / Full Shoot / Shoot with Finished Result), sessionStorage-логика без изменений.
+
+✅ /drone-hotels-tourism: header/ticker/flag/status bar final polish + CTA visibility (2026-04-18)
+  - `components/gazeta/SmartHeader.tsx`:
+    - Добавлены page-level opt-in пропсы:
+      - `showMobilePrimaryCta?: boolean`
+      - `showDesktopPrimaryCta?: boolean`
+      - `mobileQuickLink?: { label: string; href: string }`
+      - `mobileMinimalCenterTime?: boolean`
+      - `showDesktopNavTime?: boolean`
+      - `stickyTickerUnderHeader?: boolean`
+    - На странице отелей включена конфигурация:
+      - mobile CTA скрыта (`showMobilePrimaryCta={false}`)
+      - desktop CTA в шапке скрыта (`showDesktopPrimaryCta={false}`)
+      - mobile quick button `ЦЕНЫ` (anchor `#pricing`, smooth scroll)
+      - time-status в mobile center и desktop nav
+      - ticker immediate + sticky under header
+    - В статус-связке оставлены только `[flag] [green pulse dot] [time]` (без `Tbilisi/Тбилиси` в minimal mode).
+    - Удалена вертикальная линия между флагом и временем; зелёная точка выровнена по центру с симметричными отступами (`mx-3`) от флага и часов.
+    - Ticker обновлён:
+      - hero state: `bg-transparent` + `backdrop-blur(12px)` + тонкие `border-y`
+      - sticky/scrolled state: `bg-black/80` + плавный transition
+      - удалены debug-wrapper плашки из контента тикера (нет `#208x` внутри самой строки)
+      - добавлены разделители `•`
+      - hover: замедление движения строки + лёгкое усиление яркости текста
+      - итоговая типографика: все слова в одном жёлтом цвете (outline-черeдование убрано, цвет зафиксирован инлайном).
+  - `components/drone-restaurants/MobileBottomBar.tsx`:
+    - Добавлены опции:
+      - `heroId?: string`
+      - `revealAfterHero?: boolean`
+      - `smoothVisibility?: boolean`
+    - Логика для отелей: hidden на старте, reveal после полного выхода hero, hide при возврате в hero, и hide при видимой форме контакта.
+  - `components/common/AnimatedFlag.tsx`:
+    - Компонент переведён на PNG-эмблему `services-images/gazeta/flag-badge.png`.
+    - Очистка контейнера от лишних «рамочных» эффектов, `mix-blend-screen`, `object-contain`.
+    - Текущий размер: width `64px` (доминирующий X2-скейл относительно раннего состояния), высота auto.
+    - Добавлена анимация «на ветру» (`flag-wave`, 3.8s, infinite).
+  - `app/drone-hotels-tourism/page.tsx`:
+    - Подключены новые пропсы `SmartHeader` и `MobileBottomBar` только для этой страницы.
+  - Проверка:
+    - Многократно прогнан `npm run build` — ✅ успешно.
+    - Локальный сервер перезапускался после ключевых блоков правок на `http://localhost:3200`.
+
+✅ /drone-hotels-tourism: package CTA prefill in contact form (2026-04-18)
+  - Добавлен `components/drone-hotels-tourism/PackageCta.tsx` (`'use client'`) для кнопок в pricing-карточках.
+  - `PackageCta` пишет шаблон в `sessionStorage` (`drone-hotels-tourism-prefill-message`) и плавно скроллит к `#contact`.
+  - В `app/drone-hotels-tourism/page.tsx` заменена только кнопка `Обсудить этот пакет →` внутри `pricingCards.map()` на `<PackageCta ... />`.
+  - В `components/drone/DroneContactStitch.tsx` добавлен optional проп `initialMessage?: string`.
+  - `textarea` в поле «Коротко о задаче» сделан controlled: `message` + `setMessage`, `id="contact-message"`.
+  - Начальное значение: `useState(initialMessage ?? '')`; при mount на `/drone-hotels-tourism` читается sessionStorage-префилл и очищается.
+  - Поведение остальных CTA (например, «Обсудить задачу») сохранено: поле остаётся пустым, если пакет не выбран.
+  - Build: `npm run build` — ✅ успешно.
+
+✅ Visual polish pass 2: drone-hotels-tourism remaining audit fixes (2026-04-18)
+  - «Что снимаем»: grid-cols-1 sm:grid-cols-2 lg:grid-cols-3, убран col-span-2, text-center, mx-auto max-w-4xl
+  - Hero: h1 max-w-5xl → max-w-4xl
+  - Process h3: text-lg → text-xl
+  - Локации h3: уже text-lg (без изменений)
+  - Hero overlay: значений ≥0.85 нет — не меняем (overlay page-level 0.15/0.55)
+  - FAQ мобильный шрифт: компонент внешний, не трогаем
+  - Sticky bar pb-20: уже на main (без изменений)
+  - Build: npm run build — ✅ clean
+
+✅ Visual polish: drone-hotels-tourism typography & spacing audit fixes (2026-04-18)
+  - H2 унифицированы до text-3xl md:text-4xl (строки 828, 972)
+  - H3 в "Что говорят" подняты до text-lg md:text-xl
+  - Deliverables: радиусы 16/12px, H3 text-lg унифицированы
+  - Лид-абзац "Что снимаем" выделен text-lg text-white/85
+  - Hero pb-24 → pb-16, секция после Hero py-16 → py-12
+  - Stats source opacity 50→60, disclaimer 45→55
+  - Pricing md:grid-cols-2 fallback добавлен
+  - CTA кнопки py-3.5 для тач-таргета
+  - Geography section py-24 → py-16 (средняя из трёх тяжёлых секций в конце)
+  - Build: npm run build — ✅ clean
+
+✅ Root layout SEO: metadataBase, Organization JSON-LD, OG defaults (18.04.2026) — `app/layout.tsx`, `components/common/LangSetter.tsx`, EN pages
+  - Добавлен `metadataBase: https://breus.media` в корневом layout.
+  - Добавлен минимальный Organization JSON-LD с @id=https://breus.media/#organization (мерджится с L3 schema по одинаковому @id).
+  - Обновлены OG defaults (siteName, locale ru_GE, url) и twitter defaults (`summary_large_image`, `@breusmedia`).
+  - Обновлён root fallback description на нейтральный брендовый.
+  - Создан `components/common/LangSetter.tsx` для установки `document.documentElement.lang` на EN-страницах (клиентский, после гидратации).
+  - Подключён LangSetter на существующие EN-страницы-источники: `/drone-service/page.en.tsx`, `/drone-services/drone-restaurants/page.en.tsx`.
+  - `app/drone-hotels-tourism/en/page.tsx` в репозитории отсутствует — пропущен без создания файла.
+  - ⚠️ Долгосрочно: стоит мигрировать на `app/[lang]/` структуру для правильного серверного `<html lang>` — отложено отдельным коммитом.
+  - Build: `npm run build` — ✅ успешно (есть предсуществующий warning: `Using edge runtime on a page currently disables static generation for that page`).
+
 ✅ /drone-services/drone-restaurants: выравнивание по эталону /drone-hotels-tourism (17.04.2026)
 - **Файл:** `app/drone-services/drone-restaurants/page.tsx`
 - **Сделано:**
@@ -1601,3 +1707,25 @@
 1) сравни `/gazeta` на live и local именно по hero-анимации и количеству бегущих строк,  
 2) не делай деплой без явной команды `DEPLOY NOW`,  
 3) после правок обнови контекст + архив.
+
+## UPDATE — 2026-04-17 (drone-hotels-tourism SEO/GEO polish)
+- Обновлена страница `app/drone-hotels-tourism/page.tsx`:
+  - Hero-фон переведён со стокового Unsplash на локальный SVG-компонент `HeroBackgroundMountains`.
+  - Metadata обновлены: новые `title/description`, добавлены `alternates.languages` (`ru-RU`, `en-US`, `x-default`), добавлен `twitter` block.
+  - SEO-текстовые правки: `hospitality` -> RU-формулировки, `Google Business Profile` -> `карточку в Google Maps`, `visual-продукта` -> нейтральная формулировка, точечные правки в `nicheCards`.
+  - Schema.org правки: `Service.offers.highPrice` = `900`, `provider` связан через `@id`, `LocalBusiness` получил `@id`, добавлен `BreadcrumbList` и его JSON-LD script.
+  - В блоке `formatExampleCards` заменён нативный `<img>` на `next/image`, обновлены alt-тексты.
+  - Убран `as any` в `DroneStickyCta` вызове: теперь `heroId=\"drone-hotels-tourism-hero\"`.
+- Созданы новые файлы:
+  - `components/drone-hotels-tourism/HeroBackgroundMountains.tsx` (декоративный SVG фон для Hero).
+  - `app/drone-hotels-tourism/opengraph-image.tsx` (OG image route через `ImageResponse`).
+  - `public/og/drone-hotels-tourism.png` (статический PNG-ассет 1200x630).
+- Обновлён `components/drone-hotels-tourism/DroneStickyCta.tsx`: добавлен опциональный prop `heroId?: string`, дефолт сохранён (`drone-hotels-tourism-hero`), логика видимости осталась прежней.
+- Проверка related routes (`relatedServices`) выполнена: все 4 маршрута существуют (`reels-promo/reels-hotel`, `360-tour-hotels`, `promo-video/promo-hotel`, `drone-fpv-cinema`), отсутствующих route нет.
+
+## Stats fix: drone-hotels-tourism
+- Обнаружены мёртвые URL в 3 из 4 Stats-карточках (Think with Google статьи перемещены, support.google.com не содержит 2.7x).
+- Обнаружено дублирование исследования (65% и 2 из 3 — одно и то же Google/Ipsos 2014).
+- Заменены на 4 карточки с верифицированными URL из 3 разных источников.
+- Все цифры прямо про отели или smart-связаны (Google Maps trust = универсально для LocalBusiness).
+- Источники: Expedia (через paulreiffer.com × 2 карточки), Google (через searchendurance.com), Hotel Tech Report (через rmscloud.com).

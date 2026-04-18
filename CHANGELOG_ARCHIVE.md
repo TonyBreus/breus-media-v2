@@ -1,6 +1,94 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-18 (drone-restaurants RU parity sync with drone-hotels эталон)
+- `app/drone-services/drone-restaurants/page.tsx`:
+  - Секция «Примеры по форматам»: h2 выровнен до `text-3xl md:text-4xl`; `<img>` заменён на Next `<Image fill sizes>` — импорт `next/image` добавлен.
+  - Добавлена новая секция «Как выбрать пакет» (помощник выбора пакета) после таблицы «Сравнение пакетов» и перед FAQ: 4 строки с целевыми пакетами 250 / 350 / 500 / от 900 ₾ и фоллбэк-подсказкой.
+  - Заголовок «Сравнение пакетов» приведён к общему размеру `text-3xl md:text-4xl`.
+  - Schema-усиление: `localBusinessSchema` получил `@id: https://breus.media/#organization`; `serviceSchema.provider` сведён к `{ '@id': ... }` (ссылка на LocalBusiness); `areaServed` расширен до плоского массива `['Tbilisi','Kakheti','Telavi','Sighnaghi','Mtskheta','Kutaisi','Georgia']`; добавлен `category: 'Aerial Videography for Hospitality'`.
+- Build: `npm run build` — ✅ clean (88 pages).
+- Verification: GET /drone-services/drone-restaurants → 200, наличие «Примеры по форматам», «Как выбрать пакет» и нового размера h2 для «Сравнение пакетов» подтверждено в HTML.
+
+## 2026-04-18 (drone-hotels-tourism/en: English version of the page)
+- Создан `app/drone-hotels-tourism/en/page.tsx` — полноценный EN-перевод RU-источника.
+- Мирроринг структуры: те же импорты, Tailwind-классы, DebugWrapper id, компоненты (SmartHeader, DroneStickyCta, PackageCta, HeroBackgroundMountains, MobileBottomBar, FormatExamplesSlideshow, ScrollArrow, DronePageProgress, ProcessNote, FaqSection, DroneContactStitch, DroneFooterStitch).
+- Добавлен `<LangSetter lang="en" />` (импорт из `@/components/common/LangSetter`).
+- SmartHeader languageLinks: RU → `/drone-hotels-tourism`, EN → `/drone-hotels-tourism/en`.
+- Metadata (EN): title "Drone Videography for Hotels in Georgia | FPV Hotel Tours Tbilisi | Breus Media", canonical `/drone-hotels-tourism/en`, openGraph locale en_US, alternates.languages настроены.
+- JSON-LD: faqSchema / serviceSchema / localBusinessSchema / breadcrumbSchema переведены; service URL и breadcrumb items указывают на `/en`; `inLanguage: 'en'` в serviceSchema. Stat numbers / source URLs / source names в statsCards сохранены без изменений.
+- Copywriting: B2B, concise tone; не используются "professional", "high-quality", "best", "unique", "premium", "raw footage", "venue", "aerial layer", "content" в смысле deliverables. "Google Maps listing / profile" вместо "Google Business Profile". Batumi не упоминается (только Tbilisi, Kakheti, Kazbegi, Gudauri, Bakuriani).
+- Pricing: сохранены 250 / 350 / 500 / from 900 ₾; добавлен USD-эквивалент в скобках в pricing-карточках (~$90 / ~$130 / ~$185 / ~$335). Сравнительная таблица и add-ons — только ₾.
+- PackageCta: `label="Discuss this package →"`, `packageName` на английском; sessionStorage-логика сохранена.
+
+## 2026-04-18 (visual polish pass 2: drone-hotels-tourism remaining audit fixes)
+- «Что снимаем» ul: grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 + text-center + mx-auto max-w-4xl, убран col-span-2.
+- Hero h1: max-w-5xl → max-w-4xl.
+- Process card h3: text-lg → text-xl.
+- Локации «Где мы снимаем» h3 уже text-lg — без изменений.
+- HeroBackgroundMountains: overlay-значений ≥0.85 не найдено — оставлено как есть.
+- FAQ (внешний компонент) и sticky bar pb-20 (уже стоит) не требуют правок.
+- Build: npm run build — ✅ clean.
+
+## 2026-04-18 (visual polish: drone-hotels-tourism typography & spacing audit fixes)
+- H2 унифицированы до text-3xl md:text-4xl (Примеры по форматам, Сравнение пакетов).
+- H3 в "Что обычно говорят перед съёмкой" подняты до text-lg md:text-xl.
+- Deliverables: радиусы внешних карточек 16px, внутренних 12px; H3 text-lg во всех трёх карточках.
+- Лид-абзац "Что снимаем" выделен text-lg text-white/85.
+- Hero pb-24 md:pb-28 → pb-16 md:pb-20; секция "Как это выглядит" py-16 → py-12.
+- Stats: source link opacity 50→60, disclaimer 45→55.
+- Pricing grid: добавлен grid-cols-1 md:grid-cols-2 fallback к xl:grid-cols-4.
+- CTA кнопки Mid-CTA py-3 → py-3.5, кнопка внутри Pricing карточки py-2.5 → py-3.
+- Geography (Где мы снимаем) py-24 → py-16 для разрыва ритма трёх тяжёлых секций в конце.
+- Build: npm run build — ✅ clean.
+
+## 2026-04-18 (feat/fix/refine: root SEO defaults + Organization JSON-LD + EN LangSetter pattern)
+
+### Session Summary
+- Внесены структурные SEO/GEO правки в root layout без визуальных изменений страниц.
+- Добавлен временный EN-паттерн через client-side `LangSetter` для корректировки `document.documentElement.lang` после гидратации.
+
+### Изменения
+- `app/layout.tsx`
+  - добавлен `metadataBase: new URL('https://breus.media')`;
+  - root `description` обновлён на нейтральный брендовый fallback;
+  - добавлены root defaults:
+    - `openGraph.type = website`
+    - `openGraph.siteName = Breus Media`
+    - `openGraph.locale = ru_GE`
+    - `openGraph.url = https://breus.media`
+    - `twitter.card = summary_large_image`
+    - `twitter.site = @breusmedia`
+  - в `<body>` перед children добавлен минимальный Organization JSON-LD:
+    - `@id = https://breus.media/#organization`
+    - `name = Breus Media`
+    - `url = https://breus.media`
+  - поле `logo` в root schema не добавлялось (в `public/` нет явного публичного logo-файла для schema).
+
+- `components/common/LangSetter.tsx`
+  - создан client component:
+    - на `useEffect` выставляет `document.documentElement.lang = lang`.
+
+- EN pages
+  - `app/drone-service/page.en.tsx`: добавлены import + `<LangSetter lang="en" />`.
+  - `app/drone-services/drone-restaurants/page.en.tsx`: добавлены import + `<LangSetter lang="en" />`.
+  - `app/drone-service/en/page.tsx` и `app/drone-services/drone-restaurants/en/page.tsx` не менялись (re-export).
+  - `app/drone-hotels-tourism/en/page.tsx` отсутствует — пропущен без создания.
+
+- Документация
+  - `CONTEXT_NEXT_CHAT.md`: добавлена верхняя запись по SEO/LangSetter фиксам.
+  - `CHANGELOG_ARCHIVE.md`: добавлена эта архивная запись.
+
+### Verification
+- `npm run build` — ✅ успешно.
+- Build log: присутствует warning `Using edge runtime on a page currently disables static generation for that page` (предсуществующий, не связан с текущими правками).
+- `.next/server/app` содержит артефакты OG-маршрута для `drone-hotels-tourism/opengraph-image`.
+- Server HTML проверки (`next start` + curl):
+  - root: `og:url=https://breus.media`, `og:site_name=Breus Media`, `og:locale=ru_GE`, root Organization JSON-LD присутствует с `@id=https://breus.media/#organization`;
+  - `/drone-hotels-tourism`: `<html lang="ru">`, canonical `https://breus.media/drone-hotels-tourism`, корректный `og:url`, root Organization JSON-LD присутствует;
+  - `/drone-service/en`: серверно `<html lang="ru">` (ожидаемо), canonical/og:url корректны для EN URL.
+
+
 ## 2026-04-17 (fix: drone-hotels-tourism verified stats + remove Batumi from schema)
 
 ### Session Summary
@@ -4983,3 +5071,23 @@ Append-only архив изменений. Старые записи не уда
 
 - `CHANGELOG_ARCHIVE.md`
   - Добавлена эта append-only запись.
+
+---
+
+## 2026-04-17 — stats fix drone-hotels-tourism
+- fix(stats): replace 2 dead Think with Google URLs with working sources
+- fix(stats): replace support.google.com 2.7x URL with searchendurance.com
+- fix(stats): deduplicate Google/Ipsos 2014 research (was in 2 cards under different numbers)
+- feat(stats): add 2 new Expedia-sourced hotel-specific stats (+60% bookings, ×2 engagement)
+- refine(stats): simplify RMS Cloud conversion to verified 1.5-2.5% (drop unsourced 3-5%)
+
+---
+
+## 2026-04-18 — drone-hotels-tourism package CTA message prefill
+- feat(contact): add `components/drone-hotels-tourism/PackageCta.tsx` to prefill message for pricing package CTA clicks
+- feat(contact): wire pricing-card CTA in `/drone-hotels-tourism` to `PackageCta` (`label`, `packageName`, `packagePrice`)
+- feat(form): extend `DroneContactStitch` props with optional `initialMessage?: string`
+- feat(form): make task textarea controlled with `message` state initialized from `initialMessage ?? ''`
+- feat(form): add `id=\"contact-message\"` on task textarea for stable target semantics
+- feat(form): on mount, read one-time sessionStorage key `drone-hotels-tourism-prefill-message` (only on `/drone-hotels-tourism`) and sync it into React state, then clear key
+- chore(verification): run `npm run build` successfully after changes

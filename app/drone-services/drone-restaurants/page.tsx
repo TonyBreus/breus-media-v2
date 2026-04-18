@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
@@ -413,27 +414,9 @@ const serviceSchema = {
     description:
         'Дрон-съёмка и FPV-видео для ресторанов, кафе, баров и hospitality-объектов в Тбилиси. Показываем фасад, вход, террасу, rooftop и интерьер. Готовые материалы под сайт, Instagram, Google Maps и рекламу.',
     provider: {
-        '@type': 'LocalBusiness',
-        name: 'Breus Media',
-        url: 'https://breus.media',
-        address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Тбилиси',
-            addressCountry: 'GE',
-        },
+        '@id': 'https://breus.media/#organization',
     },
-    areaServed: [
-        {
-            '@type': 'City',
-            name: 'Tbilisi',
-            containedInPlace: { '@type': 'Country', name: 'Georgia' },
-        },
-        {
-            '@type': 'City',
-            name: 'Kutaisi',
-            containedInPlace: { '@type': 'Country', name: 'Georgia' },
-        },
-    ],
+    areaServed: ['Tbilisi', 'Kakheti', 'Telavi', 'Sighnaghi', 'Mtskheta', 'Kutaisi', 'Georgia'],
     offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'GEL',
@@ -442,12 +425,14 @@ const serviceSchema = {
         offerCount: '4',
     },
     serviceType: 'Drone Photography and Videography',
+    category: 'Aerial Videography for Hospitality',
     url: 'https://breus.media/drone-services/drone-restaurants',
 };
 
 const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
+    '@id': 'https://breus.media/#organization',
     name: 'Breus Media',
     description: 'Медиапродакшн в Тбилиси. Аэросъёмка, FPV-видео, 360° виртуальные туры, Reels и AI-визуализация для бизнеса.',
     url: 'https://breus.media',
@@ -837,13 +822,19 @@ export default function DroneRestaurantsPage() {
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-16">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <h2 className="text-2xl font-bold md:text-3xl">Примеры по форматам</h2>
+                        <h2 className="text-3xl font-bold md:text-4xl">Примеры по форматам</h2>
                     </div>
                     <div className="mt-8 grid gap-5 md:grid-cols-3">
                         {formatExampleCards.map((item, index) => (
                             <div key={index} className="overflow-hidden rounded-[16px] border border-[#2a2a2a] bg-[#141414]">
                                 <div className="relative aspect-video">
-                                    <img src={item.image.src} alt={item.alt} className="h-full w-full object-cover" />
+                                    <Image
+                                        src={item.image}
+                                        alt={item.alt}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        className="object-cover"
+                                    />
                                 </div>
                             </div>
                         ))}
@@ -975,7 +966,7 @@ export default function DroneRestaurantsPage() {
             <section className="border-b border-[#2a2a2a] bg-[#080808] py-16">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <h2 className="text-2xl font-bold md:text-3xl">Сравнение пакетов</h2>
+                        <h2 className="text-3xl font-bold md:text-4xl">Сравнение пакетов</h2>
                     </div>
                     <div className="mt-8 overflow-x-auto">
                         <table className="w-full min-w-[640px] text-sm text-white/80">
@@ -1054,6 +1045,36 @@ export default function DroneRestaurantsPage() {
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── ПОМОЩНИК ВЫБОРА ПАКЕТА ─────────────────────────────────────────── */}
+            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-14">
+                <div className="container mx-auto px-6">
+                    <div className="mx-auto max-w-3xl">
+                        <h3 className="text-xl font-bold md:text-2xl">Как выбрать пакет</h3>
+                        <div className="mt-6 space-y-3 text-sm leading-relaxed text-white/76">
+                            <p>
+                                → Нужна только съёмка фасада и подхода к ресторану —{' '}
+                                <strong className="text-white">Полёт снаружи, 250 ₾</strong>
+                            </p>
+                            <p>
+                                → Нужно показать зал, бар и движение внутри пространства —{' '}
+                                <strong className="text-white">Пролёт внутри (FPV), 350 ₾</strong>
+                            </p>
+                            <p>
+                                → Нужны внешний вид и движение внутри за один визит —{' '}
+                                <strong className="text-white">Полная съёмка, 500 ₾</strong>
+                            </p>
+                            <p>
+                                → Нужны готовые ролики, фото, видео для Instagram, Google Maps и сайта —{' '}
+                                <strong className="text-white">Готовый результат, от 900 ₾</strong>
+                            </p>
+                            <p className="pt-2 text-white/55">
+                                Не уверены? Опишите ресторан, и мы подберём вариант под задачу и бюджет.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
