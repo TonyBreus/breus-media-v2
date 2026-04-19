@@ -11,6 +11,8 @@ type ServiceOption = {
 
 type DroneContactStitchProps = {
     preselectedServices?: string[];
+    heading?: string;
+    description?: string;
 };
 
 const serviceOptions: ServiceOption[] = [
@@ -27,7 +29,7 @@ const serviceOptions: ServiceOption[] = [
     { id: 'auto', label: 'Автобизнес' },
 ];
 
-export const DroneContactStitch = ({ preselectedServices }: DroneContactStitchProps) => {
+export const DroneContactStitch = ({ preselectedServices, heading, description }: DroneContactStitchProps) => {
     const [method, setMethod] = useState<'Telegram' | 'WhatsApp' | 'Звонок'>('Telegram');
     const [services, setServices] = useState<string[]>(() => {
         if (!preselectedServices?.length) {
@@ -62,12 +64,12 @@ export const DroneContactStitch = ({ preselectedServices }: DroneContactStitchPr
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,160,23,0.14),transparent_55%)] pointer-events-none" />
                         <DebugWrapper id={10901} label="Contact Header">
                             <h2 className="mb-1.5 text-[20px] font-bold tracking-tight text-white md:text-3xl">
-                                ОБСУДИМ ВАШУ ЗАДАЧУ
+                                {heading ?? 'ОБСУДИМ ВАШУ ЗАДАЧУ'}
                             </h2>
                         </DebugWrapper>
                         <DebugWrapper id={10902} label="Contact Description">
                             <p className="mb-3 max-w-2xl text-[12px] leading-snug text-white/70 md:mb-6 md:text-base">
-                                Оставьте контакт и пару слов о задаче — предложим формат и вернёмся с расчётом.
+                                {description ?? 'Оставьте контакт и пару слов о задаче — предложим формат и вернёмся с расчётом.'}
                             </p>
                         </DebugWrapper>
 
