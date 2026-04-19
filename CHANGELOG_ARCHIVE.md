@@ -1,6 +1,90 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-19 — /drone-services/drone-real-estate: новая L3-страница RU (аэросъёмка недвижимости и ЖК)
+- feat(drone-real-estate): создан `app/drone-services/drone-real-estate/page.tsx` (989 строк) + `layout.tsx` (22 строки) по эталону `drone-restaurants`
+- feat(drone-real-estate): Hero (H1 + italic подзаголовок + 2-предложения лид + две CTA `#contact`/`#pricing`)
+- feat(drone-real-estate): «Для кого» (3 карточки: риелторы, застройщики, собственники/инвесторы)
+- feat(drone-real-estate): statsCards (4 шт.) с внешними ссылками target=_blank rel=noopener: Redfin/Matterport, Google Street View, Matterport Industry Report, ScienceDirect
+- feat(drone-real-estate): problemCards (4), Deliverables (3 группы), nicheCards (5), processSteps (5), whyUsCards (6)
+- feat(drone-real-estate): pricing 250/350/500/от 900 ₾ + addons (+150/+150/+80 ₾)
+- feat(drone-real-estate): shortQa (4), faqItems (7), relatedServices (4)
+- feat(drone-real-estate): Schema.org — Service (priceRange "250 ₾ – 900 ₾", GEL) + FAQPage + BreadcrumbList + LocalBusiness (+995 574 619 393)
+- feat(drone-real-estate): metadata в layout.tsx — title/description/canonical/openGraph ru_RU
+- chore: переиспользованы готовые компоненты (DroneStickyCta, MobileBottomBar, FormatExamplesSlideshow, FaqSection, ProcessNote, DroneContactStitch, DroneFooterStitch, SmartHeader); новых компонентов не создавалось
+- chore: STOP-LIST grep — 0 совпадений; Батуми не упомянут; только DJI Air 3S / Avata 2 в тексте; «лучший маршрут» → «оптимальный маршрут»
+- chore: build → ✅ 89 страниц, 0 ошибок TypeScript
+- note: изображения временно из `services-images/drone-restaurants/final/` (1–4.png) — заменить на `drone-real-estate/final/` когда будут готовы
+
+---
+
+## 2026-04-19 — /360-tour-hotels полная перезапись, эталон кластера 360° туров
+- feat(360-tour-hotels): перезаписан `app/360-tour-hotels/page.tsx` (919 строк) — монолитная архитектура по образцу drone-hotels-tourism
+- feat(360-tour-hotels): Hero с H1, italic SEO-подзаголовком, 3 лид-абзацами, двумя CTA
+- feat(360-tour-hotels): Stats Strip — 4 карточки (до +67% бронирований / в 5–10 раз время на сайте / 52% возвращаются / ×2 Google Maps); sourceUrl='#' — ссылки будут уточнены
+- feat(360-tour-hotels): блок сравнения фото / видео / 360° тур (таблица 5 строк)
+- feat(360-tour-hotels): Problem Cards (6 шт.) — возражения отельеров
+- feat(360-tour-hotels): Deliverables — ссылка + iframe + Booking + Google Maps + hotspot
+- feat(360-tour-hotels): блок «Два взгляда» — перелинковка с аэросъёмкой без CTA
+- feat(360-tour-hotels): Zone Cards (6 шт., id=zones) — номера, люкс, лобби, СПА, MICE, ресторан
+- feat(360-tour-hotels): Process (4 шага, id=process)
+- feat(360-tour-hotels): Pricing (3 пакета: от 200 / от 450 / от 900 ₾, id=pricing) + 3 addon
+- feat(360-tour-hotels): Niche Cards (5 шт.) — типы объектов
+- feat(360-tour-hotels): FAQ (10 вопросов, id=faq)
+- feat(360-tour-hotels): Related Services (4 карточки) — аэросъёмка / reels / промовидео / 360-рестораны
+- feat(360-tour-hotels): DroneContactStitch (id=contact, preselectedServices=['360'])
+- feat(360-tour-hotels): Schema.org — Service + LocalBusiness + BreadcrumbList + FaqSchema
+- feat(360-tour-hotels): Metadata полные (title/description/og/twitter/alternates/canonical)
+- feat(360-tour-hotels): SmartHeader — languageLinks RU/EN, sectionLinks 5 якорей
+- refactor(360-tour-hotels): удалены все старые Tour*-импорты
+- chore: build → ✅ 88 страниц, 0 ошибок TypeScript
+- note: цены (200/450/900 ₾) и sourceUrl='#' — плейсхолдеры, уточнит Антон
+
+---
+
+## 2026-04-19 (drone-restaurants EN sync + route fix + ticker cleanup)
+- `app/drone-services/drone-restaurants/page.en.tsx`:
+  - `SmartHeader` приведён к эталону hotel EN:
+    - `singleTickerMode={true}`
+    - `tickerAfterFirstScroll={false}`
+    - `showMobilePrimaryCta={false}`
+    - `showDesktopPrimaryCta={false}`
+    - `mobileQuickLink={{ label: 'PRICING', href: '#pricing' }}`
+    - `mobileMinimalCenterTime={true}`
+    - `showDesktopNavTime={true}`
+    - `stickyTickerUnderHeader={true}`
+    - `ctaLabel="Discuss the brief"`
+  - Контактная секция переведена на единый компонент:
+    - `DroneRestaurantsContactForm` удалён
+    - добавлен `DroneContactStitch preselectedServices={['restaurants']} lang="en"`
+  - Footer переведён на EN-стандарт через `DroneFooterStitch lang="en"` (без ручных override-пропсов).
+  - Sticky CTA и MobileBottomBar: `Discuss Project` → `Discuss the brief`.
+
+- `app/drone-services/drone-restaurants/en/page.tsx`:
+  - Восстановлен файл роута (`re-export` на `../page.en`) для исправления `404` на `/drone-services/drone-restaurants/en`.
+
+- `components/gazeta/SmartHeader.tsx`:
+  - Добавлен новый проп `tickerExcludeTexts?: string[]` для точечного исключения элементов бегущей строки.
+  - Тикер-фильтрация применена к single/double ticker режимам.
+
+- `app/drone-services/drone-restaurants/page.en.tsx`:
+  - Для EN-страницы ресторанов добавлен `tickerExcludeTexts={['Promo Video']}`.
+  - Итог: пункт `Promo Video` убран из верхней бегущей строки только на этом маршруте.
+
+- Verification:
+  - Dev server на `:3200` поднят.
+  - По live-логам: `GET /drone-services/drone-restaurants/en 200` (после восстановления `en/page.tsx`).
+  - Mobile header tuning:
+    - `components/common/AnimatedFlag.tsx`: флаг поддерживает корректное масштабирование через `w-full` внутри контейнера.
+    - `components/gazeta/SmartHeader.tsx`:
+      - уменьшен флаг в mobile-minimal time-блоке (`w-[44px]`);
+      - уменьшен и приближен индикатор-точка к флагу (`mx-1.5 h-2 w-2`);
+      - блок времени сдвинут левее (`left-[44%]`) в обоих мобильных состояниях шапки;
+      - в mini-режиме часы рендерятся без секунд.
+    - `components/gazeta/TimeWidget.tsx`:
+      - добавлены пропы `showSeconds` и `compact`;
+      - mini-режим показывает `HH:MM` и более компактный трекинг/размер, чтобы исключить наезд на языковой переключатель.
+
 ## 2026-04-18 (drone-restaurants RU parity sync with drone-hotels эталон)
 - `app/drone-services/drone-restaurants/page.tsx`:
   - Секция «Примеры по форматам»: h2 выровнен до `text-3xl md:text-4xl`; `<img>` заменён на Next `<Image fill sizes>` — импорт `next/image` добавлен.

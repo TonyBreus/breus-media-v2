@@ -1,3 +1,29 @@
+✅ /drone-services/drone-real-estate: новая L3-страница RU (2026-04-19)
+  - `app/drone-services/drone-real-estate/page.tsx` (989 строк) + `layout.tsx` (22 строки) созданы по эталону `drone-restaurants`.
+  - Блоки: Hero (H1 + italic подзаголовок + 2-лид) → «Для кого» (3) → statsCards (4, с внешними ссылками target=_blank rel=noopener на Redfin/Matterport, Google Street View, Matterport Industry Report, ScienceDirect) → problemCards (4) → Deliverables (3 группы: Аэрослой / FPV / Полный комплект) → nicheCards (5) → processSteps (5) → whyUsCards (6) → pricingCards (4: 250/350/500/от 900 ₾) + addons (+150/+150/+80) → shortQa (4) → faqItems (7) → relatedServices (4) → DroneContactStitch.
+  - Schema.org (4): Service (priceRange "250 ₾ – 900 ₾", GEL, areaServed Tbilisi/Georgia) + FAQPage (все 7 вопросов) + BreadcrumbList (Главная → Аэросъёмка → Недвижимость) + LocalBusiness (+995 574 619 393).
+  - Metadata в layout.tsx: title / description / canonical (`https://breus.media/drone-services/drone-real-estate`) / openGraph ru_RU.
+  - Переиспользованы готовые компоненты: SmartHeader, DronePageProgress, DroneStickyCta, MobileBottomBar, ScrollArrow, HeroSlideshow, FormatExamplesSlideshow, FaqSection, ProcessNote, DroneContactStitch, DroneFooterStitch. Новых компонентов не создавалось.
+  - Hard constraints: STOP-LIST grep — 0 совпадений (профессиональный, качественный, лучший, уникальный, cinematic, premium, venue, HoReCa, Батуми, RTK, ортофото, NDVI, LiDAR, тепловизор, Cinelifter); оборудование — только DJI Air 3S / Avata 2; цены ≥ floors.
+  - Изображения: временно из `services-images/drone-restaurants/final/` (1–4.png) — в папке `drone-real-estate/final/` пока только `1.png`. Заменить когда Антон подложит финальные кадры.
+  - Build: `NEXT_PUBLIC_DEBUG_MODE=false npm run build` → ✅ 89 страниц (+2 от предыдущих 87), 0 ошибок.
+  - Не задеплоено. Ждём команду «DEPLOY NOW» для `git push origin main`.
+
+✅ /360-tour-hotels: полная перезапись страницы — эталон кластера 360° туров (2026-04-19)
+  - `app/360-tour-hotels/page.tsx` (919 строк) перезаписан с нуля.
+  - Архитектура: монолитная page.tsx в стиле `drone-hotels-tourism`, все данные — массивы в начале файла.
+  - Все старые `Tour*`-компоненты (TourHero, TourWhatIs и др.) удалены из импортов.
+  - Переиспользованы без форка: `SmartHeader`, `DroneContactStitch`, `DroneFooterStitch`, `DronePageProgress`, `DroneStickyCta`, `MobileBottomBar`, `FaqSection`, `DebugWrapper`, `PackageCta`, `ScrollArrow`.
+  - Блоки страницы: Hero → Stats (4 карточки) → Сравнение фото/видео/тур → Problem Cards (6) → Deliverables → Связь с аэросъёмкой → Zone Cards (6, id=zones) → Process (4 шага, id=process) → Pricing (3 пакета + addons, id=pricing) → Niche Cards (5) → FAQ (10 вопросов, id=faq) → Related Services → DroneContactStitch (id=contact).
+  - Metadata: title/description/og/twitter/alternates полные. canonical = https://breus.media/360-tour-hotels.
+  - Schema.org: Service (360 Degree Virtual Tour, GEL 200–900), LocalBusiness (из drone-hotels-tourism), BreadcrumbList (Главная → 360° туры → /360-tours-service → текущая), FaqSchema из faqItems.
+  - SmartHeader: languageLinks RU/EN, sectionLinks: Зоны/Процесс/Цены/FAQ/Контакты.
+  - Prices: 200 / 450 / 900 ₾ (все ≥ 200 ₾ — плейсхолдеры, Антон уточнит позже).
+  - stat sourceUrl: '#' — Антон принесёт реальные URL исследований.
+  - Build: `npm run build` → ✅ 88 страниц, 0 ошибок.
+  - Страница — эталон для последующих 360° страниц: рестораны, клиники, недвижимость, туризм.
+  - Старый файл `360-tour-hotels.tsx` и компоненты `components/360-tour-hotels/Tour*` не удалялись.
+
 ✅ /drone-services/drone-restaurants: parity sync RU с эталоном drone-hotels (2026-04-18)
   - `app/drone-services/drone-restaurants/page.tsx`:
     - «Примеры по форматам»: h2 → `text-3xl md:text-4xl`; `<img>` → `<Image fill sizes="(max-width: 768px) 100vw, 33vw">` (импорт `next/image` добавлен).
