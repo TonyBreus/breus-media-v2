@@ -1,6 +1,37 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-19 — /reels-real-estate: новая L3-страница RU, первая страница ветки Reels
+- feat(reels-real-estate): созданы `app/reels-real-estate/page.tsx` и `app/reels-real-estate/layout.tsx` для нового маршрута `/reels-real-estate`
+- feat(reels-real-estate): layout задаёт metadata по ТЗ — title, description, canonical `https://breus.media/reels-real-estate`, openGraph, twitter
+- feat(reels-real-estate): Hero c одним H1, italic SEO-подзаголовком, 3 лид-абзацами и CTA `Обсудить контент` / `Посмотреть пакеты`
+- feat(reels-real-estate): добавлены 14 секций — Stats, Reels vs Фото vs Тур, Problem Cards, Deliverables, Форматы, Process, Pricing, Niche Cards, Why Us, Short Q&A, FAQ, Related Services, Contact
+- feat(reels-real-estate): Stats собраны из 4 карточек с внешними ссылками на `domain.com.au/group`, `nar.realtor/research-and-statistics`, `wordstream.com/blog`, `tiktok.com/business`; ссылки открываются в новой вкладке c `rel="noopener noreferrer"`
+- feat(reels-real-estate): pricing зафиксирован строго как `от 250 ₾ / от 650 ₾ / от 1500 ₾`; Pro-пакет отмечен как popular; addons — `+100 / +80 / +150 / от 200 ₾`
+- feat(reels-real-estate): `shortQa` реализован отдельной открытой секцией с карточками, где вопрос рендерится в `h3`, а ответ в `p`, без FAQ-аккордеона
+- feat(reels-real-estate): route-level JSON-LD — `Service` (AggregateOffer 250–1500 GEL), `FAQPage` (все 9 вопросов), `BreadcrumbList`, `LocalBusiness` c телефоном `+995574619393`
+- feat(reels-real-estate): переиспользованы только разрешённые компоненты — `SmartHeader`, `DebugWrapper`, `DroneContactStitch`, `DroneFooterStitch`, `FaqSection`, `DronePageProgress`, `DroneStickyCta`, `PackageCta`, `MobileBottomBar`, `ScrollArrow`
+- feat(reels-real-estate): contact-блок настроен через `DroneContactStitch` с кастомными heading/description и `preselectedServices={['reels', 'real-estate']}`
+- chore(copy): конфликтный заголовок массива `Динамичный тизер...` переименован в `Короткий тизер...`, чтобы пройти STOP-LIST без изменения смысла блока
+- chore(route-links): related services сохранены по ТЗ, включая `/360-tour-real-estate`, `/drone-services/drone-real-estate`, `/promo-video/promo-real-estate`, `/drone-services/drone-construction`
+
+## 2026-04-19 — /360-tour-real-estate: полная перезапись L3-страницы RU для 360° тура недвижимости
+- feat(360-tour-real-estate): полностью перезаписан `app/360-tour-real-estate/page.tsx` по паттерну `app/360-tour-hotels/page.tsx`; legacy-импорты `components/360-tour-real-estate/*` удалены из маршрута
+- feat(360-tour-real-estate): создан `app/360-tour-real-estate/layout.tsx` с metadata по ТЗ — title, description, canonical, openGraph, twitter
+- feat(360-tour-real-estate): Hero с H1 `360° тур для недвижимости — покупатель изучает квартиру до визита`, italic SEO-подзаголовком, 3 лид-абзацами и CTA `#contact` / `#pricing`
+- feat(360-tour-real-estate): добавлены 14 секций — Stats, Фото vs тур, Problem Cards, Deliverables, Zones, Process, Pricing, Niche Cards, Why Us, Short Q&A, FAQ, Related Services, Contact
+- feat(360-tour-real-estate): Stats собраны из 4 карточек с внешними ссылками на `realtor.com/research`, `zillow.com/research`, `nar.realtor/research-and-statistics`, `cloudpano.com`
+- feat(360-tour-real-estate): pricing зафиксирован строго как `от 200 ₾ / от 450 ₾ / от 900 ₾`; addons — `от 150 ₾ / +80 ₾ / +100 ₾`
+- feat(360-tour-real-estate): route-level JSON-LD — `FAQPage`, `Service`, `BreadcrumbList`, `LocalBusiness` (телефон `+995 574 619 393`)
+- feat(360-tour-real-estate): переиспользованы `SmartHeader`, `DronePageProgress`, `DroneStickyCta`, `MobileBottomBar`, `PackageCta`, `FaqSection`, `DroneContactStitch`, `DroneFooterStitch`, `ScrollArrow`, `DebugWrapper`; новых page-specific компонентов не создавалось
+- feat(contact): `components/drone/DroneContactStitch.tsx` расширен optional-пропами `heading` и `description` без ломки существующих вызовов
+- chore(quality): STOP-LIST grep -> 0 совпадений; `Батуми|Batumi` -> 0 совпадений в новых файлах
+- chore(build): `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ успешно, маршрут `/360-tour-real-estate` собран
+- review(copywriting): Hero/CTA/pricing notes оставлены плотными, без штампов и без запрещённых слов
+- review(geo): есть прямые ответы, citeable facts, видимые внешние источники и `FAQPage` schema
+- review(on-page-seo): подтверждены canonical, H-иерархия, internal links и route-level metadata
+
+
 ## 2026-04-19 — /drone-services/drone-real-estate: новая L3-страница RU (аэросъёмка недвижимости и ЖК)
 - feat(drone-real-estate): создан `app/drone-services/drone-real-estate/page.tsx` (989 строк) + `layout.tsx` (22 строки) по эталону `drone-restaurants`
 - feat(drone-real-estate): Hero (H1 + italic подзаголовок + 2-предложения лид + две CTA `#contact`/`#pricing`)

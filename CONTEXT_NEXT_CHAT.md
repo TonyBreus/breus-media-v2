@@ -1,3 +1,44 @@
+✅ /reels-real-estate: новая L3-страница RU, первая страница ветки Reels (2026-04-19)
+- Созданы `app/reels-real-estate/page.tsx` и `app/reels-real-estate/layout.tsx`.
+- Паттерн страницы повторяет эталон `app/360-tour-hotels/page.tsx`: монолитная `page.tsx`, route-level metadata, переиспользование только заданных компонентов.
+- Переиспользованы: `SmartHeader`, `DebugWrapper`, `DroneContactStitch`, `DroneFooterStitch`, `FaqSection`, `DronePageProgress`, `DroneStickyCta`, `PackageCta`, `MobileBottomBar`, `ScrollArrow`.
+- Структура страницы: Hero (`id=reels-real-estate-hero`) -> Stats (`#stats`) -> Reels vs Фото vs Тур -> Problem Cards -> Deliverables -> Форматы (`#formats`) -> Process (`#process`) -> Pricing (`#pricing`) -> Niche Cards -> Why Us -> Short Q&A -> FAQ (`#faq`) -> Related Services -> Contact (`#contact`).
+- `layout.tsx` задаёт metadata строго по ТЗ: title, description, canonical, openGraph, twitter.
+- Hero: H1 `Reels для риелторов и застройщиков — входящий поток заявок без бюджета на рекламу`, italic SEO-подзаголовок, 3 лид-абзаца и CTA `#contact` / `#pricing`.
+- Stats: 4 карточки с внешними ссылками на Domain Group / NAR / WordStream / TikTok for Business; все ссылки `target="_blank"` + `rel="noopener noreferrer"`.
+- `shortQa` вынесен в отдельную открытую секцию на карточках с семантикой `h3` + `p`, без аккордеона.
+- Schema.org: `Service`, `FAQPage`, `BreadcrumbList`, `LocalBusiness` через `script[type="application/ld+json"]`; телефон в schema `+995574619393`.
+- Contact: `DroneContactStitch` с кастомным heading `Есть объект или проект ЖК — обсудим контент` и описанием про объект / аудиторию / каналы.
+- Pricing зафиксирован строго: `от 250 ₾`, `от 650 ₾`, `от 1500 ₾`; add-ons: `+100 / +80 / +150 / от 200 ₾`.
+- Ограничения: новых компонентов не создавалось; Батуми не упоминается; из конфликтного массива заголовок `Динамичный тизер...` нейтрализован до `Короткий тизер...`, чтобы пройти STOP-LIST при неизменном смысле.
+- После создания страницы требуется: `NEXT_PUBLIC_DEBUG_MODE=false npm run build`, grep по STOP-LIST / Батуми, затем коммит `feat(reels-real-estate): L3-страница Reels для недвижимости RU, первая страница ветки Reels`; push не делать до команды `DEPLOY NOW`.
+
+✅ /360-tour-real-estate: полная перезапись L3-страницы RU по эталону /360-tour-hotels (2026-04-19)
+- `app/360-tour-real-estate/page.tsx` полностью перезаписан как монолитная page.tsx без зависимости от `components/360-tour-real-estate/*`.
+- Создан `app/360-tour-real-estate/layout.tsx` с route-level metadata: title, description, canonical, openGraph, twitter по ТЗ.
+- Переиспользованы только заданные компоненты: `SmartHeader`, `DebugWrapper`, `DroneContactStitch`, `DroneFooterStitch`, `FaqSection`, `DronePageProgress`, `DroneStickyCta`, `PackageCta`, `MobileBottomBar`, `ScrollArrow`.
+- Структура страницы: Hero (`id=tour-real-estate-hero`) -> Stats -> Фото vs тур -> Problem Cards -> Deliverables -> Zones (`#zones`) -> Process (`#process`) -> Pricing (`#pricing`) -> Niche Cards -> Why Us -> Short Q&A -> FAQ (`#faq`) -> Related Services -> Contact (`#contact`).
+- Hero: H1 + italic SEO-подзаголовок + 3 лид-абзаца + CTA `#contact` / `#pricing`.
+- Stats: 4 карточки с верифицированными внешними ссылками на Realtor / Zillow / NAR / CloudPano (`target=_blank`, `rel=noopener noreferrer`).
+- Pricing: пакеты строго `200 / 450 / 900 ₾`, addons `150 / +80 / +100 ₾`; в карточках используется `PackageCta`.
+- Schema.org: 4 route-specific объекта — `FAQPage`, `Service`, `BreadcrumbList`, `LocalBusiness`; дополнительно на странице остаётся root `Organization` из `app/layout.tsx`.
+- `components/drone/DroneContactStitch.tsx` расширен обратносовместимо: добавлены optional props `heading?: string` и `description?: string`; дефолтное поведение старых страниц сохранено.
+- Contact-блок настроен под ТЗ: heading `Есть объект — обсудим тур`, description про объект/зоны/маршрут/пакет, `preselectedServices={['360', 'real-estate']}`.
+- Hard checks: STOP-LIST grep -> 0 совпадений; `Батуми|Batumi` -> 0 совпадений в новых файлах; H1 -> 1; build -> ✅ `NEXT_PUBLIC_DEBUG_MODE=false npm run build`.
+- Copywriting review:
+  - Hero и CTA держат один оффер: дистанционный осмотр до визита.
+  - Pricing note и short answers без воды и без стоп-слов.
+  - Самая сильная формулировка above-the-fold: «покупатель изучает квартиру до визита» — оставлена как основной promise.
+- GEO review:
+  - В первом экране есть прямое определение сценария использования и AI-citeable факты.
+  - Виден Q&A слой (`shortQa` + `faqItems`) и `FAQPage` schema.
+  - Есть внешние источники Realtor / Zillow / NAR / CloudPano, пригодные для цитирования AI-поиском.
+- On-page SEO review:
+  - `layout.tsx` задаёт canonical, OG, twitter.
+  - Заголовочная иерархия выровнена: 1 x `h1`, секционные `h2`, карточки `h3`.
+  - Есть внутренняя перелинковка в related services; пустых `sourceUrl` нет.
+- Не задеплоено. После коммита ждём только явную команду `DEPLOY NOW`.
+
 ✅ /drone-services/drone-real-estate: новая L3-страница RU (2026-04-19)
   - `app/drone-services/drone-real-estate/page.tsx` (989 строк) + `layout.tsx` (22 строки) созданы по эталону `drone-restaurants`.
   - Блоки: Hero (H1 + italic подзаголовок + 2-лид) → «Для кого» (3) → statsCards (4, с внешними ссылками target=_blank rel=noopener на Redfin/Matterport, Google Street View, Matterport Industry Report, ScienceDirect) → problemCards (4) → Deliverables (3 группы: Аэрослой / FPV / Полный комплект) → nicheCards (5) → processSteps (5) → whyUsCards (6) → pricingCards (4: 250/350/500/от 900 ₾) + addons (+150/+150/+80) → shortQa (4) → faqItems (7) → relatedServices (4) → DroneContactStitch.
