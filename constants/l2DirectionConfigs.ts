@@ -1,6 +1,29 @@
 import type { L2DirectionConfig, L2DirectionKey, L2MapConfig, L2ProcessStep, L2StatItem } from '@/components/l2-direction/types';
 import type { DroneDirectionPageConfig } from '@/constants/droneDirectionPages';
 import { gazetaDetailRoutes } from '@/constants/gazetaRoutes';
+import reelsRealEstateImageTwo from '@/services-images/reels-real-estate/final/2.png';
+import reelsRestaurantImageOne from '@/services-images/reels-restaurant/final/1.png';
+import reelsClinicImageOne from '@/services-images/reels-clinic/final/1.png';
+import reelsClinicImageTwo from '@/services-images/reels-clinic/final/2.png';
+import reelsClinicImageThree from '@/services-images/reels-clinic/final/3.png';
+import reelsClinicImageFour from '@/services-images/reels-clinic/final/4.png';
+import reelsClinicImageFive from '@/services-images/reels-clinic/final/5.png';
+import reelsAutoImageOne from '@/services-images/reels-auto/final/1.png';
+import autoImageOne from '@/services-images/auto/final/1.png';
+import autoImageTwo from '@/services-images/auto/final/2.png';
+import autoImageThree from '@/services-images/auto/final/3.png';
+import aiRealEstateImageOne from '@/services-images/ai-real-estate/final/1.png';
+import aiStagingImageOne from '@/services-images/ai-staging/final/1.png';
+import aiProductImageOne from '@/services-images/ai-product/final/1.png';
+import aiInteriorImageOne from '@/services-images/ai-interior/final/1.png';
+import aiAutoImageOne from '@/services-images/ai-auto/final/1.png';
+import aiMenuDeliveryImageOne from '@/services-images/ai-menu-delivery/final/1.png';
+import aiBrandImageOne from '@/services-images/ai-brand/final/1.png';
+import hotelAiDescriptionsImageOne from '@/services-images/hotel-ai-descriptions/final/1.png';
+import hotelsContentImageOne from '@/services-images/hotels-content/final/1.png';
+import promoRestaurantImageOne from '@/services-images/promo-restaurant/final/1.png';
+import tourismImageThree from '@/services-images/tourism /final/3.png';
+import tourismImageFour from '@/services-images/tourism /final/4.png';
 
 const {
     droneService,
@@ -225,10 +248,10 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 1,
                     slug: 'videotur-otelya',
                     title: 'Видеотур по отелю',
-                    category: 'Сайт · Booking · Соцсети',
-                    description: 'Короткий cinematic-ролик для сайта, Booking и соцсетей.',
-                    price: 'Cinematic · от 350 ₾',
-                    image: 'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=1200&q=80',
+                    category: 'САЙТ · BOOKING · СОЦСЕТИ',
+                    description: 'Презентация инфраструктуры, интерьеров и уровня обслуживания. Раскрываем концепцию комплекса через плавные кадры и эстетику деталей.',
+                    price: 'АГРЕГАТОРЫ · ЭСТЕТИКА · ИНТЕРЬЕР',
+                    image: '/media/drone-service/hotels-resorts-5.png',
                     primaryHref: '/promo-video/promo-hotel',
                     tag: 'HOT',
                     featured: true,
@@ -237,11 +260,11 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     id: 2,
                     order: 2,
                     slug: 'aerosemka-territorii',
-                    title: 'Аэросъёмка территории',
-                    category: 'Локация · Масштаб · Вид',
-                    description: 'Показывает локацию, масштаб, бассейн, парковку, вид и окружение.',
-                    price: 'Drone · от 400 ₾',
-                    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=80',
+                    title: 'Аэросъёмка отелей и курортов',
+                    category: 'Instagram · Виды · Апарт-отели',
+                    description: 'Гость бронирует глазами. Снимаем отель, террасы и виды так, чтобы страница на Booking работала сама.',
+                    price: '4K · Атмосфера · Промо',
+                    image: 'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=1200&q=80',
                     primaryHref: '/drone-hotels-tourism',
                 },
                 {
@@ -263,7 +286,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     category: 'Instagram · TikTok · Ads',
                     description: 'Короткие ролики для Instagram, TikTok и рекламы.',
                     price: 'Short-form · от 450 ₾',
-                    image: 'https://images.unsplash.com/photo-1455587734955-081b22074882?w=1200&q=80',
+                    image: tourismImageFour.src,
                     primaryHref: '/reels-promo/reels-hotel',
                 },
                 {
@@ -271,10 +294,10 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 5,
                     slug: 'sezonnyy-kontent-paket',
                     title: 'Сезонный контент-пакет',
-                    category: 'Лето · Зима · Праздники',
-                    description: 'Съёмка под лето, зиму, праздники и спецпредложения.',
-                    price: 'Пакет · от 650 ₾',
-                    image: 'https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?w=1200&q=80',
+                    category: 'МАРКЕТИНГ · ИВЕНТЫ · РЕКЛАМА',
+                    description: 'Регулярное обновление медиабазы. Транслируем то, что происходит прямо сейчас: от шезлонгов у бассейна до уюта у камина. Свежие кадры подогревают интерес и мотивируют аудиторию приехать именно в этом месяце.',
+                    price: 'ДИНАМИКА · МЕДИАПЛАН · ВОВЛЕЧЕНИЕ',
+                    image: hotelsContentImageOne.src,
                     primaryHref: '/reels-promo/hotel-seasonal-content',
                 },
                 {
@@ -285,7 +308,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     category: 'Тексты · Мультиязычность · OTA',
                     description: 'Тексты и адаптация материалов под разные языки и площадки.',
                     price: 'AI Content · от 300 ₾',
-                    image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&q=80',
+                    image: hotelAiDescriptionsImageOne.src,
                     primaryHref: '/ai-content/hotel-ai-descriptions',
                 },
             ],
@@ -393,7 +416,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             h1: 'Контент для ресторанов и гастропроектов',
             intro: 'Видео, reels, интерьерная съёмка и визуальный контент для ресторанов, кафе, веранд и гастропространств: Тбилиси + выезд по Грузии по согласованию.',
             heroImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1800&q=80',
-            panelServiceSlugs: ['imidzhevoe-video-restorana', 'reels-socseti', 'aerosemka-lokacii'],
+            panelServiceSlugs: ['aerosemka-lokacii', 'tur-360-restoranov', 'ai-upakovka-menyu-opisaniy'],
             trustHeading: 'Нам доверяют в HoReCa',
             trustBadges: ['Рестораны', 'Кафе', 'Rooftop', 'Гастробары', 'Сети заведений', 'Гастропроекты'],
             trustLocation: 'Тбилиси + выезд по Грузии по согласованию',
@@ -417,75 +440,19 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
             servicesHeading: 'Услуги для ресторанов и гастропроектов',
             services: [
                 {
-                    id: 1,
-                    order: 1,
-                    slug: 'imidzhevoe-video-restorana',
-                    title: 'Имиджевое видео ресторана',
-                    category: 'Атмосфера · Свет · Подача',
-                    description: 'Атмосферный ролик про пространство, свет, подачу и вайб места.',
-                    price: 'Brand Video · от 300 ₾',
-                    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80',
-                    primaryHref: '/promo-video/promo-restaurant',
-                    featured: true,
-                    tag: 'HOT',
-                },
-                {
-                    id: 2,
-                    order: 2,
-                    slug: 'reels-socseti',
-                    title: 'Reels для соцсетей',
-                    category: 'Instagram · TikTok · Promo',
-                    description: 'Короткие ролики для Instagram, TikTok и промо.',
-                    price: 'Short-form · от 350 ₾',
-                    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80',
-                    primaryHref: '/reels-promo/reels-restaurant',
-                },
-                {
                     id: 3,
-                    order: 3,
+                    order: 1,
                     slug: 'aerosemka-lokacii',
                     title: 'Аэросъёмка локации',
                     category: 'Rooftop · Веранда · Видовые точки',
                     description: 'Подходит для веранд, rooftop, курортных и видовых объектов.',
                     price: 'Drone · от 400 ₾',
-                    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1200&q=80',
+                    image: '/media/drone-service/restaurants-3.png',
                     primaryHref: '/drone-services/drone-restaurants',
                 },
                 {
-                    id: 4,
-                    order: 4,
-                    slug: 'semka-interera-podachi',
-                    title: 'Съёмка интерьера и подачи',
-                    category: 'Сайт · Афиши · Delivery',
-                    description: 'Кадры для сайта, афиш, delivery и рекламных макетов.',
-                    price: 'Photo + Video · от 450 ₾',
-                    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1200&q=80',
-                    primaryHref: '/promo-video/restaurant-interior-food',
-                },
-                {
-                    id: 5,
-                    order: 5,
-                    slug: 'kontent-paket-na-mesyac',
-                    title: 'Контент-пакет на месяц',
-                    category: 'Серии · Акции · Контент-план',
-                    description: 'Съёмка сериями под акции, сезон и контент-план.',
-                    price: 'Пакет · от 550 ₾',
-                    image: 'https://images.unsplash.com/photo-1515669097368-22e68427d265?w=1200&q=80',
-                    primaryHref: '/reels-promo/restaurant-content-pack',
-                },
-                {
-                    id: 6,
-                    order: 6,
-                    slug: 'ai-upakovka-menyu-opisaniy',
-                    title: 'AI-карточки, меню и delivery-упаковка',
-                    category: 'Ресторан · Доставка · Меню.',
-                    description: 'Тексты, подписи и оформление под digital-каналы.',
-                    price: 'AI Content · от 300 ₾',
-                    image: 'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=1200&q=80',
-                },
-                {
                     id: 7,
-                    order: 7,
+                    order: 2,
                     slug: 'tur-360-restoranov',
                     title: '360° туры для ресторанов',
                     category: 'HoReCa · Банкетный зал.',
@@ -493,6 +460,63 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     price: '360° · от 500 ₾',
                     image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80',
                     primaryHref: '/360-tour-restaurants',
+                },
+                {
+                    id: 6,
+                    order: 3,
+                    slug: 'ai-upakovka-menyu-opisaniy',
+                    title: 'AI-карточки, меню и delivery-упаковка',
+                    category: 'Ресторан · Доставка · Меню.',
+                    description: 'Тексты, подписи и оформление под digital-каналы.',
+                    price: 'AI Content · от 300 ₾',
+                    image: aiMenuDeliveryImageOne.src,
+                },
+                {
+                    id: 2,
+                    order: 4,
+                    slug: 'reels-socseti',
+                    title: 'Reels для соцсетей',
+                    category: 'Instagram · TikTok · Promo',
+                    description: 'Короткие ролики для Instagram, TikTok и промо.',
+                    price: 'Short-form · от 350 ₾',
+                    image: reelsRestaurantImageOne.src,
+                    primaryHref: '/reels-promo/reels-restaurant',
+                },
+                {
+                    id: 1,
+                    order: 5,
+                    slug: 'imidzhevoe-video-restorana',
+                    title: 'Имиджевое видео ресторана',
+                    category: 'БРЕНД · КОНЦЕПЦИЯ · ЭМОЦИИ',
+                    description: 'Визуальная визитка вашего гастропроекта. Передаем эстетику вечера, звон бокалов, динамику зала и уровень сервиса, чтобы зритель захотел стать частью этого события.',
+                    price: 'ПРЕЗЕНТАЦИЯ · СТИЛЬ · ПРОДАКШЕН',
+                    image: promoRestaurantImageOne.src,
+                    primaryHref: '/promo-video/promo-restaurant',
+                    featured: true,
+                    tag: 'HOT',
+                },
+                {
+                    id: 4,
+                    order: 6,
+                    slug: 'semka-interera-podachi',
+                    title: 'Съёмка интерьера и подачи',
+                    category: 'АГРЕГАТОРЫ · МЕНЮ · САЙТ',
+                    description: 'Сочные макро-кадры текстур и правильный свет для каждого ингредиента. Формируем базу материалов, которая вызывает голод и напрямую повышает средний чек в онлайн-заказах.',
+                    price: 'ФУДСТАЙЛИНГ · АППЕТИТ · ДЕТАЛИ',
+                    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1200&q=80',
+                    primaryHref: '/promo-video/restaurant-interior-food',
+                },
+                {
+                    id: 5,
+                    order: 7,
+                    slug: 'kontent-paket-na-mesyac',
+                    title: 'Контент-пакет на месяц',
+                    category: 'СТРАТЕГИЯ · ОХВАТЫ · РЕГУЛЯРНОСТЬ',
+                    description:
+                        'Комплексное пополнение визуальной базы. Системная работа гарантирует бесперебойные касания с подписчиками, формирует лояльность и освобождает график ресторатора от рутины.',
+                    price: 'АУТСОРС · УДЕРЖАНИЕ · СТАБИЛЬНОСТЬ',
+                    image: 'https://images.unsplash.com/photo-1515669097368-22e68427d265?w=1200&q=80',
+                    primaryHref: '/reels-promo/restaurant-content-pack',
                 },
             ],
             processSteps: makeCommonProcessSteps('для ресторана и гастропроекта'),
@@ -626,10 +650,11 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 1,
                     slug: 'video-tura-marshruta',
                     title: 'Видео тура или маршрута',
-                    category: 'Сайт · Реклама · Promo',
-                    description: 'Эмоциональный ролик для сайта и рекламы.',
-                    price: 'Cinematic · от 350 ₾',
-                    image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1200&q=80',
+                    category: 'ПУТЕВОДИТЕЛЬ · АНОНС · ВИЗИТКА',
+                    description:
+                        'Детальная визуализация программы от старта до финала. Передаем ритм поездки и уровень организации, чтобы путешественник легко принял решение о покупке места в группе.',
+                    price: 'ЭКСПЕДИЦИЯ · ВПЕЧАТЛЕНИЯ · ПОГРУЖЕНИЕ',
+                    image: tourismImageThree.src,
                     primaryHref: '/promo-video/promo-tourism-route',
                     featured: true,
                     tag: 'HOT',
@@ -650,9 +675,10 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 3,
                     slug: 'kontent-glemping-baza',
                     title: 'Контент для глэмпинга / базы',
-                    category: 'Проживание · Outdoor · Отдых',
-                    description: 'Материалы для проживания, отдыха и outdoor-форматов.',
-                    price: 'Package · от 500 ₾',
+                    category: 'ЭКОТУРИЗМ · ИНФРАСТРУКТУРА · ЗАГОРОД',
+                    description:
+                        'Раскрываем эстетику уединения и комфорт диких мест. Фокус на панорамных видах, уютных элементах и качестве сервиса помогает обосновать высокий чек и обеспечить плотную запись.',
+                    price: 'ЭСТЕТИКА · ДЕТАЛИ · УЕДИНЕНИЕ',
                     image: 'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=1200&q=80',
                 },
                 {
@@ -671,9 +697,10 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 5,
                     slug: 'promo-ekskursii-aktivnosti',
                     title: 'Промо для экскурсии / активности',
-                    category: 'Adventure · Wine tours · City',
-                    description: 'Подходит для adventure, wine tours, city experiences.',
-                    price: 'Promo · от 550 ₾',
+                    category: 'ГИДЫ · ДЕГУСТАЦИИ · ЭКСТРИМ',
+                    description:
+                        'Короткий метр, раскрывающий суть вашего предложения. Показываем драйв активного досуга, вкус гастрономических открытий и харизму ведущего, мотивируя аудиторию сразу забронировать свободную дату.',
+                    price: 'ДИНАМИКА · ТРАДИЦИИ · ВОВЛЕЧЕНИЕ',
                     image: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1200&q=80',
                     primaryHref: '/promo-video/promo-excursion',
                 },
@@ -831,10 +858,11 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 1,
                     slug: 'imidzhevoe-video-kliniki',
                     title: 'Имиджевое видео клиники',
-                    category: 'Пространство · Оборудование · Подход',
-                    description: 'Показывает пространство, оборудование, подход и атмосферу.',
-                    price: 'Brand Video · от 350 ₾',
-                    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80',
+                    category: 'СТАТУС · ТЕХНОЛОГИИ · ЗАБОТА',
+                    description:
+                        'Визуальная презентация вашего центра. Транслируем высокий уровень сервиса, стерильность и передовое оснащение, чтобы человек с порога чувствовал себя в абсолютной безопасности.',
+                    price: 'БРЕНД · НАДЕЖНОСТЬ · ПРЕМИУМ',
+                    image: reelsClinicImageTwo.src,
                     featured: true,
                     tag: 'HOT',
                     primaryHref: '/promo-video/promo-clinic',
@@ -845,10 +873,11 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 2,
                     slug: 'video-vracha-napravleniya',
                     title: 'Видео для врача / направления',
-                    category: 'Личный бренд · Услуги',
-                    description: 'Подходит для презентации специалиста и услуг.',
-                    price: 'Expert Video · от 400 ₾',
-                    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&q=80',
+                    category: 'СПЕЦИАЛИСТ · ЗНАКОМСТВО · КОНСУЛЬТАЦИЯ',
+                    description:
+                        'Раскрываем профессионализм и эмпатию конкретного сотрудника. Формат интервью или обзора методик лечения сокращает дистанцию и располагает аудиторию к записи на прием.',
+                    price: 'ЭМПАТИЯ · КВАЛИФИКАЦИЯ · ОПЫТ',
+                    image: reelsClinicImageThree.src,
                     primaryHref: '/promo-video/promo-doctor',
                 },
                 {
@@ -856,10 +885,11 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 3,
                     slug: 'semka-interera-kabinetov',
                     title: 'Съёмка интерьера и кабинетов',
-                    category: 'Сайт · Реклама · Соцсети',
-                    description: 'Материалы для сайта, рекламы и соцсетей.',
-                    price: 'Photo + Video · от 450 ₾',
-                    image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&q=80',
+                    category: 'КАРТЫ · КАТАЛОГ · НАВИГАЦИЯ',
+                    description:
+                        'Детальная фиксация рабочих зон и холлов. Правильный свет подчеркивает чистоту и комфорт, помогая клиенту заочно познакомиться с условиями приема.',
+                    price: 'ЭСТЕТИКА · ЧИСТОТА · ДЕТАЛИ',
+                    image: reelsClinicImageFour.src,
                     primaryHref: '/promo-video/clinic-interior',
                     primaryCtaLabel: 'Открыть услугу',
                 },
@@ -871,7 +901,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     category: 'Digital presence · Short-form',
                     description: 'Короткий контент для digital-присутствия.',
                     price: 'Reels · от 450 ₾',
-                    image: 'https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=1200&q=80',
+                    image: reelsClinicImageOne.src,
                     primaryHref: '/reels-promo/reels-clinic',
                 },
                 {
@@ -879,9 +909,10 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 5,
                     slug: 'kontent-esteticheskih-uslug',
                     title: 'Контент для эстетических услуг',
-                    category: 'Beauty · Skin · Dental · Wellness',
-                    description: 'Подходит для beauty/skin/dental/wellness направлений.',
-                    price: 'Package · от 600 ₾',
+                    category: 'ЛИЦО · ТЕЛО · АППАРАТЫ',
+                    description:
+                        'Искусство создания красоты через плавные линии и макро-детали. Упор на тактичность процесса и безупречность финального штриха. Визуал заставляет человека заочно влюбиться в свое будущее отражение в зеркале.',
+                    price: 'ГАРМОНИЯ · ИЗЯЩЕСТВО · РЕЗУЛЬТАТ',
                     image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80',
                 },
                 {
@@ -892,7 +923,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     category: 'Медцентр · Стоматология · Доверие',
                     description: 'Интерактивная презентация пространства клиники для снижения тревожности до визита.',
                     price: '360° · от 500 ₾',
-                    image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&q=80',
+                    image: reelsClinicImageFive.src,
                     primaryHref: '/360-tour-clinics',
                 },
             ],
@@ -1027,10 +1058,11 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 1,
                     slug: 'video-dilerskogo-centra',
                     title: 'Видео дилерского центра',
-                    category: 'Сайт · Реклама · Имидж',
-                    description: 'Имиджевый ролик для сайта и рекламы.',
-                    price: 'Brand Video · от 300 ₾',
-                    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&q=80',
+                    category: 'БРЕНД · ДОВЕРИЕ · ПРЕЗЕНТАЦИЯ',
+                    description:
+                        'Отражение статуса вашей компании. Передаем архитектуру здания, комфорт клиентских зон и прозрачность работы механиков. Качественная картинка закрепляет уверенность автовладельца еще до первого приезда.',
+                    price: 'РЕПУТАЦИЯ · ПРОДАКШЕН · МАСШТАБ',
+                    image: autoImageTwo.src,
                     primaryHref: '/promo-video/promo-car-dealer',
                     featured: true,
                     tag: 'HOT',
@@ -1043,7 +1075,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     category: 'Масштаб · Ассортимент · Инфраструктура',
                     description: 'Показывает масштаб, ассортимент и инфраструктуру.',
                     price: 'Drone · от 400 ₾',
-                    image: 'https://images.unsplash.com/photo-1549924231-f129b911e442?w=1200&q=80',
+                    image: '/media/drone-service/auto-showroom-1.png',
                     primaryHref: '/drone-services/drone-auto',
                 },
                 {
@@ -1054,7 +1086,8 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     category: 'Social · Ads · Short-form',
                     description: 'Короткие ролики для соцсетей и ads.',
                     price: 'Reels · от 450 ₾',
-                    image: 'https://images.unsplash.com/photo-1542282088-fe8426682b8f?w=1200&q=80',
+                    image: reelsAutoImageOne.src,
+                    imagePosition: 'center 35%',
                     primaryHref: '/reels-promo/reels-auto',
                 },
                 {
@@ -1062,8 +1095,9 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 4,
                     slug: 'obzornyy-kontent-modelyam',
                     title: 'Обзорный контент по моделям',
-                    category: 'Автоцентры · Премиум площадки',
-                    description: 'Подходит для автоцентров и премиальных площадок.',
+                    category: 'КАТАЛОГ · СОЦСЕТИ · ТРАФИК',
+                    description:
+                        'Детальная фиксация конкретного кузова и интерьера. Делаем акцент на материалах, технологиях и линиях дизайна. Подобный подход прогревает зрителя и провоцирует прямой звонок менеджеру.',
                     price: 'Model Showcase · от 500 ₾',
                     image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80',
                     primaryHref: '/promo-video/auto-model-review',
@@ -1073,10 +1107,11 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 5,
                     slug: 'kontent-servisa-deteylinga',
                     title: 'Контент для сервиса / детейлинга',
-                    category: 'Процесс · Качество · Уровень',
-                    description: 'Показывает процесс, аккуратность и уровень работы.',
-                    price: 'Service Content · от 550 ₾',
-                    image: 'https://images.unsplash.com/photo-1607861716497-e65ab29fc7ac?w=1200&q=80',
+                    category: 'ЭКСПЕРТНОСТЬ · ТРАНСФОРМАЦИЯ · СТАНДАРТЫ',
+                    description:
+                        'Фокус на квалификации команды и идеальной чистоте рабочих зон. Показываем этапы сложного ухода так, чтобы владелец премиального авто без сомнений оставил вам ключи.',
+                    price: 'ПРЕОБРАЖЕНИЕ · РЕМЗОНА · НАДЕЖНОСТЬ',
+                    image: autoImageOne.src,
                     primaryHref: '/promo-video/auto-service-detailing',
                 },
                 {
@@ -1084,9 +1119,10 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 6,
                     slug: 'ai-upakovka-obyavleniy',
                     title: 'AI-упаковка объявлений',
-                    category: 'Тексты · Digital · Listings',
-                    description: 'Тексты, описания и digital-адаптация.',
-                    price: 'AI Content · от 300 ₾',
+                    category: 'КЛАССИФАЙДЫ · КОНВЕРСИЯ · ГЕНЕРАЦИЯ',
+                    description:
+                        'Умная обработка исходников и создание продающих сценариев под поисковые алгоритмы. Нейросети ускоряют публикацию и делают каждую позицию в выдаче максимально кликабельной.',
+                    price: 'АЛГОРИТМЫ · НЕЙРОСЕТИ · АВТОМАТИЗАЦИЯ',
                     image: 'https://images.unsplash.com/photo-1542362567-b07e54358753?w=1200&q=80',
                 },
                 {
@@ -1097,7 +1133,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     category: 'Шоурум · Салон · Интерактив',
                     description: 'Интерактивный формат для онлайн-презентации салона, площадки и шоурума.',
                     price: '360° · от 500 ₾',
-                    image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80',
+                    image: autoImageThree.src,
                     primaryHref: '/360-tour-auto',
                 },
             ],
@@ -1235,9 +1271,10 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     order: 1,
                     slug: 'imidzhevoe-video-biznesa',
                     title: 'Имиджевое видео',
-                    category: 'Brand · Trust · Positioning',
-                    description: 'Визуальная подача ценности бизнеса — команда, пространство, продукт.',
-                    price: 'Brand Video · от 300 ₾',
+                    category: 'ИНВЕСТИЦИИ · РЕПУТАЦИЯ · НАЙМ',
+                    description:
+                        'Упаковка сложных технологических решений в понятный визуальный язык. Транслируем миссию проекта для успешного питчинга перед инвесторами и привлечения топовых разработчиков в штат.',
+                    price: 'ИННОВАЦИИ · СМЫСЛЫ · МАСШТАБ',
                     image: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80',
                     featured: true,
                     tag: 'Старт',
@@ -1262,7 +1299,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     category: 'Interactive · Site · Sales',
                     description: 'Интерактивная презентация пространства, офиса или коммерческого объекта.',
                     price: '360° · от 550 ₾',
-                    image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?w=1200&q=80',
+                    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80',
                     primaryHref: '/360-tour-business',
                 },
             ],
@@ -1682,7 +1719,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Покажите покупателю готовый объект до завершения стройки или ремонта. AI-рендер превращает чертежи и эскизы в фотореалистичные изображения для сайта, объявлений и презентаций без съёмочной группы.',
                     price: 'Рендер · Котлован · Превью',
-                    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
+                    image: aiRealEstateImageOne.src,
                     featured: true,
                     tag: 'HOT',
                     primaryHref: '/ai-visual/ai-real-estate',
@@ -1696,7 +1733,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Пустая квартира продаётся дольше и дешевле — покупатель не видит потенциала в голых стенах. AI staging расставляет мебель и декор на изображении без грузовика, без фотографа, без аренды реквизита.',
                     price: 'Интерьер · Презентация · Продажа',
-                    image: 'https://images.unsplash.com/photo-1493666438817-866a91353ca9?w=1200&q=80',
+                    image: aiStagingImageOne.src,
                     primaryHref: '/ai-visual/ai-staging',
                 },
                 {
@@ -1708,7 +1745,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Концепция есть — показать её инвесторам и команде нечем. AI-визуализация превращает референсы и описание в фотореалистичный образ будущего пространства для Instagram, сайта и рекламного кабинета.',
                     price: 'Презентация · Пространство · Ремонт',
-                    image: 'https://images.unsplash.com/photo-1465800872432-2f9858056029?w=1200&q=80',
+                    image: aiInteriorImageOne.src,
                     primaryHref: '/ai-visual/ai-interior',
                 },
                 {
@@ -1720,7 +1757,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Профессиональные изображения для листинга и рекламы — без съёмочной группы. AI-визуал передаёт качество и детали товара так, как нужно покупателю при выборе онлайн.',
                     price: 'Продукт · Съёмка · E-commerce',
-                    image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?w=1200&q=80',
+                    image: aiProductImageOne.src,
                     primaryHref: '/ai-visual/ai-product',
                 },
                 {
@@ -1732,7 +1769,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Покупатель принимает первое решение по фото — машина на парковке не продаёт. AI заменяет случайный фон на премиальную студию: правильный свет, нейтральная среда, готовые файлы для MyAuto, Instagram и баннеров.',
                     price: 'Авто-фото · MyAuto · Новинка',
-                    image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80',
+                    image: aiAutoImageOne.src,
                     primaryHref: '/ai-visual/ai-auto',
                 },
                 {
@@ -1744,7 +1781,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Аппетитные изображения блюд помогают продавать через сайт, агрегаторы и соцсети. AI-визуалы дают готовые карточки без фотографа, без студии и без постановочной съёмки.',
                     price: 'Glovo · Фуд-фото · Wolt',
-                    image: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=1200&q=80',
+                    image: aiMenuDeliveryImageOne.src,
                     primaryHref: '/ai-visual/ai-menu-delivery',
                 },
                 {
@@ -1756,7 +1793,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Реклама и контент нужны постоянно, а съёмка под каждую задачу слишком медленная и дорогая. AI-визуал создаёт готовые изображения для кампаний, лендингов и соцсетей в нужном стиле — без съёмочной группы.',
                     price: 'Соцсети · AI-визуал · Бюджет',
-                    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80',
+                    image: aiBrandImageOne.src,
                     primaryHref: '/ai-visual/ai-brand',
                 },
                 {
@@ -1768,7 +1805,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'На Booking описание часто решает, забронирует гость или уйдёт. Мы создаём и редактируем тексты для объекта, номеров и услуг на русском, английском и грузинском языках — понятно для алгоритмов и для живого читателя.',
                     price: 'Отель · Тексты · Мультиязычность',
-                    image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&q=80',
+                    image: hotelAiDescriptionsImageOne.src,
                     primaryHref: '/ai-content/hotel-ai-descriptions',
                 },
                 {
@@ -1972,7 +2009,8 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Короткий ролик привлекает покупателя быстрее любого объявления. Динамичный видеоформат выделяет предложение среди конкурентов и приводит целевой запрос напрямую.',
                     price: 'Охват · Просмотры · Район',
-                    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
+                    image: reelsRealEstateImageTwo.src,
+                    imagePosition: 'center 42%',
                     featured: true,
                     tag: 'HOT',
                     primaryHref: '/reels-promo/reels-real-estate',
@@ -1986,7 +2024,8 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Гость выбирает отель глазами — покажите номер, вид и территорию за 30 секунд. Ролик в ленте конвертирует просмотр в прямой запрос быстрее любого баннера.',
                     price: 'Бронирование · Атмосфера · Туризм',
-                    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80',
+                    image: tourismImageFour.src,
+                    imagePosition: 'center 36%',
                     primaryHref: '/reels-promo/reels-hotel',
                 },
                 {
@@ -1998,7 +2037,8 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Покажите блюдо, настроение и повод прийти за 30 секунд. Вертикальный ролик в ленте приводит гостей быстрее любой наружной рекламы.',
                     price: 'Акции · Меню · Трафик',
-                    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80',
+                    image: reelsRestaurantImageOne.src,
+                    imagePosition: 'center 38%',
                     primaryHref: '/reels-promo/reels-restaurant',
                 },
                 {
@@ -2010,7 +2050,8 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Новая модель продаётся через эмоцию, а не через характеристики. Вертикальный формат доносит ценность предложения до подписчика раньше, чем он откроет сайт конкурента.',
                     price: 'Продажи · Охват · Видеообзор',
-                    image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80',
+                    image: reelsAutoImageOne.src,
+                    imagePosition: 'center 35%',
                     primaryHref: '/reels-promo/reels-auto',
                 },
                 {
@@ -2022,7 +2063,8 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Покажите природу, атмосферу и outdoor-опыт так, чтобы зритель захотел оказаться там прямо сейчас. Короткое видео продаёт направление быстрее любого лендинга.',
                     price: 'Outdoor · Сезон · Приключение',
-                    image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1200&q=80',
+                    image: tourismImageThree.src,
+                    imagePosition: 'center 32%',
                     primaryHref: '/reels-promo/reels-tourism',
                 },
                 {
@@ -2034,7 +2076,8 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Короткое видео объясняет процедуру и снимает страх до первого визита. Регулярный контент в ленте формирует репутацию эксперта и приводит новых пациентов без рекламного бюджета.',
                     price: 'Доверие · Медконтент · Здоровье',
-                    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80',
+                    image: reelsClinicImageOne.src,
+                    imagePosition: 'center 34%',
                     primaryHref: '/reels-promo/reels-clinic',
                 },
                 {
@@ -2047,6 +2090,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                         'Покажите продукт, команду и ценности. Видео формирует образ компании быстрее любого сайта. Регулярный формат удерживает аудиторию в ленте и превращает подписчика в покупателя.',
                     price: 'Бренд · Контент-поток · Охват',
                     image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80',
+                    imagePosition: 'center 30%',
                     primaryHref: '/reels-promo/reels-business',
                 },
                 {
@@ -2058,7 +2102,8 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description: 'Личный аккаунт агента — главный инструмент входящих заявок. Регулярные короткие видео строят репутацию эксперта и приводят клиентов без звонков.',
                     price: 'Личный-бренд · Воронка · Недвижимость',
                     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
-                    primaryHref: '/reels-promo/reels-realtor',
+                    imagePosition: 'center 33%',
+                    primaryHref: '/reels-real-estate',
                 },
             ],
             processSteps: [
@@ -2310,7 +2355,7 @@ export const l2DirectionConfigs: Record<L2DirectionKey, L2DirectionConfig> = {
                     description:
                         'Покажите стерильность и уровень оборудования онлайн. Открытость клиники до визита конвертирует сомневающегося пациента в запись.',
                     price: 'Кабинет · Здоровье · Безопасность',
-                    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80',
+                    image: reelsClinicImageFive.src,
                     primaryHref: '/360-tour-clinics',
                 },
                 {

@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { DebugWrapper } from "../debug/DebugWrapper";
 import { motion, useScroll, useTransform, AnimatePresence, MotionValue } from "framer-motion";
-import { Send, MessageCircle, ArrowDown, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, LayoutGrid, X, Instagram, Facebook, Linkedin } from "lucide-react";
+import { ArrowDown, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, LayoutGrid, X, Instagram, Facebook, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { gazetaDetailRoutes, gazetaNicheLandingRoutes } from "@/constants/gazetaRoutes";
 import { l2DirectionConfigs } from "@/constants/l2DirectionConfigs";
@@ -11,6 +11,9 @@ import { droneServiceItems, type DroneServiceItem } from "@/components/drone/dro
 import { realEstateServiceItems, type RealEstateServiceItem } from "@/components/real-estate-service/realEstateServicesData";
 import { useMobileLandscape } from "@/hooks/useMobileLandscape";
 import { useMobilePortrait } from "@/hooks/useMobilePortrait";
+import { DroneContactStitch } from "@/components/drone/DroneContactStitch";
+import { GazetaMinimalFooter } from "@/components/gazeta/GazetaMinimalFooter";
+import aiMenuDeliveryImageTwo from "@/services-images/ai-menu-delivery/final/2.png";
 
 const {
     aiContent,
@@ -215,7 +218,7 @@ const niches: NicheItem[] = [
             introNote: "Видеотуры, аэросъёмка и Reels — гость бронирует там, где видит номер, территорию и атмосферу, а не только цену.",
             services: [
                 { title: "Видеотур по отелю", desc: "Номера, ресторан, бассейн, вид — cinematic видео 2–4 мин для сайта и Booking", link: "/drone-hotels-tourism" },
-                { title: "Аэросъёмка территории", desc: "Дрон над отелем, парком и побережьем. Показывает локацию лучше любых слов", link: "/drone-hotels-tourism" },
+                { title: "Отели & Курорты", desc: "Гость бронирует глазами. Снимаем отель, террасы и виды так, чтобы страница на Booking работала сама.", link: "/drone-hotels-tourism" },
                 { title: "360° туры для отелей", desc: "Виртуальный тур который можно встроить на сайт, Booking и Google Maps", link: "/360-tour-hotels" },
                 { title: "Reels и сезонный контент", desc: "Ежемесячный контент-пакет: 8–12 вертикальных видео под Instagram и TikTok", link: "/reels-promo/reels-hotel" },
                 { title: "SMM для отеля", desc: "Ведение Instagram и TikTok — контент-план, съёмка, монтаж, коммуникация", link: "/drone-hotels-tourism" },
@@ -388,7 +391,7 @@ const StackSectionHeader = ({
                     const content = (
                         <>
                             <span className={isActive ? sectionHeaderIndexClassName : "text-[#D4AF37]/50 mr-1 md:mr-2 transition-colors group-hover:text-[#D4AF37]"}>{step.id}</span>
-                            <span>{step.title}</span>
+                            <span>{step.title.toLocaleUpperCase("ru-RU")}</span>
                         </>
                     );
 
@@ -439,6 +442,7 @@ type ServiceItem = {
     desc: string;
     link: string;
     img?: string;
+    imagePosition?: string;
     category?: string;
     price?: string;
     primaryCtaLabel?: string;
@@ -625,7 +629,31 @@ const toStackServiceFromL2 = (service: L2ServiceItem, fallbackLink: string): Ser
     title: service.title,
     desc: getCanonicalCopyWithHref(service.title, service.primaryHref)?.description ?? service.description,
     link: service.primaryHref ?? fallbackLink,
-    img: service.image,
+    img:
+        service.slug === "tury-360-nedvizhimost"
+            ? "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80"
+            : service.slug === "reels-rieltor"
+            ? "/media/gazeta/reels-realtor-1.png"
+            : service.slug === "promo-ekskursii-aktivnosti"
+            ? "/media/gazeta/tourism-1.png"
+            : service.slug === "ai-upakovka-predlozheniy-tourism" || service.slug === "ai-upakovka-predlozheniy"
+            ? "/media/gazeta/tourism-2.png"
+            : service.slug === "tury-360-turizm"
+            ? "/media/gazeta/360-tour-2.png"
+            : service.slug === "tur-360-turizma"
+            ? "/media/gazeta/360-tour-2.png"
+            : service.slug === "tur-360-klinik"
+            ? "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80"
+            : service.slug === "aerosemka-lokacii"
+            ? "/media/gazeta/360-tour-1.png"
+            : service.slug === "tur-360-nomera"
+            ? "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80"
+            : service.slug === "videotur-otelya"
+            ? "/media/gazeta/360-real-estate-2.png"
+            : service.slug === "aerosemka-territorii"
+            ? "/media/drone-service/hotels-resorts-5.png"
+            : service.image,
+    imagePosition: service.imagePosition,
     category: getCanonicalCopyWithHref(service.title, service.primaryHref)?.category ?? service.category,
     price: getCanonicalCopyWithHref(service.title, service.primaryHref)?.price ?? service.price,
     primaryCtaLabel: service.primaryCtaLabel,
@@ -661,7 +689,12 @@ const toStackServiceFromRealEstate = (service: RealEstateServiceItem): ServiceIt
     title: service.title,
     desc: getCanonicalCopyWithHref(service.title, service.primaryHref)?.description ?? service.description,
     link: service.primaryHref ?? "/real-estate-service",
-    img: service.image,
+    img:
+        service.slug === "prodazha-kvartir"
+            ? "/media/gazeta/360-real-estate-1.png"
+            : service.slug === "reels-rieltor"
+            ? "/media/gazeta/reels-realtor-1.png"
+            : service.image,
     category: getCanonicalCopyWithHref(service.title, service.primaryHref)?.category ?? service.category,
     price: getCanonicalCopyWithHref(service.title, service.primaryHref)?.price ?? service.price,
     primaryCtaLabel: service.primaryCtaLabel,
@@ -723,6 +756,53 @@ const MaybeDebugWrapper = ({
             {children}
         </DebugWrapper>
     );
+};
+
+const DESKTOP_OPEN_SERVICE_ALLOWLIST = new Set<string>([
+    "02:nedvizhimost",
+    "02:oteli-kurorty",
+    "02:restorany",
+    "03:tury-360-nedvizhimost",
+    "03:tury-360-oteli",
+    "04:reels-rieltor",
+    "07:tur-360-nomera",
+    "06:virtual-360",
+    "06:aero-rayon",
+    "08:aerosemka-lokacii",
+    "07:aerosemka-territorii",
+    "10:aerosemka-lokacii",
+]);
+
+const DESKTOP_OPEN_SERVICE_HREF_OVERRIDES: Record<string, string> = {
+    "02:nedvizhimost": "/drone-services/drone-real-estate",
+    "03:tury-360-nedvizhimost": "/360-tour-real-estate",
+    "03:tury-360-oteli": "/360-tour-hotels",
+    "04:reels-rieltor": "/reels-real-estate",
+    "07:tur-360-nomera": "/360-tour-hotels",
+    "06:virtual-360": "/360-tour-real-estate",
+    "06:aero-rayon": "/drone-services/drone-real-estate",
+    "08:aerosemka-lokacii": "/drone-services/drone-restaurants",
+    "07:aerosemka-territorii": "/drone-hotels-tourism",
+    "10:aerosemka-lokacii": "/drone-hotels-tourism",
+};
+
+const OPEN_SERVICE_CTA_LABEL = "открыть услугу";
+
+const isOpenServiceCard = (nicheId: string, service: ServiceItem, isDesktopViewport: boolean) => {
+    if (service.variant === "all-services") {
+        return false;
+    }
+
+    const label = (service.primaryCtaLabel ?? service.cta ?? "").trim().toLowerCase();
+    if (label === OPEN_SERVICE_CTA_LABEL) {
+        return true;
+    }
+
+    if (!isDesktopViewport || !service.slug) {
+        return false;
+    }
+
+    return DESKTOP_OPEN_SERVICE_ALLOWLIST.has(`${nicheId}:${service.slug}`);
 };
 
 const buildAllServicesCard = (niche: NicheItem): ServiceItem | null => {
@@ -903,17 +983,82 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
     const lastTouchYRef = useRef<number | null>(null);
     const [innerScrollProgress, setInnerScrollProgress] = useState(0);
     const [isPhoneViewport, setIsPhoneViewport] = useState(false);
+    const [cardImageCarouselTick, setCardImageCarouselTick] = useState(0);
     const isAerialScreen = niche.id === "02";
     const isAerialCompactScreen = niche.id === "02";
     const isAerialOrToursScreen = niche.id === "02" || niche.id === "03";
     const isRealEstateScreen = niche.id === "06";
     const isReelsScreen = niche.id === "04";
+    const isUnifiedTopTextScreen = ["02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"].includes(niche.id);
     const isCompactNicheScreen = niche.id !== "02";
+    const isDesktopViewport = !isMobileLandscape && !isMobilePortrait;
     const showDebugOverlays = !isAerialScreen;
     const screenLink = gazetaNicheLandingRoutes[niche.id];
     const allServicesCard = buildAllServicesCard(niche);
-    const sourceServices = canonicalServicesByNicheId[niche.id] ?? niche.detailedContent?.services ?? [];
-    const limitedServices = sourceServices.slice(0, 5);
+    const geoHighlightByNicheId: Record<string, string> = {
+        "02": "в Тбилиси и по Грузии",
+        "03": "по Грузии",
+        "04": "в Тбилиси и по Грузии",
+        "05": "в Грузии",
+        "06": "в Тбилиси и Грузии",
+        "07": "Грузии",
+        "08": "Тбилиси",
+        "09": "в Грузии",
+        "10": "Грузии",
+        "11": "Тбилиси",
+        "12": "Грузии",
+    };
+    const baseSourceServices = canonicalServicesByNicheId[niche.id] ?? niche.detailedContent?.services ?? [];
+    const sourceServices =
+        isDesktopViewport && niche.id === "02"
+            ? (() => {
+                const monitoringIndex = baseSourceServices.findIndex((service) => service.slug === "monitoring-stroiki");
+                const restaurantsIndex = baseSourceServices.findIndex((service) => service.slug === "restorany");
+                if (monitoringIndex === -1 || restaurantsIndex === -1 || monitoringIndex > restaurantsIndex) {
+                    return baseSourceServices;
+                }
+
+                const reordered = [...baseSourceServices];
+                const [monitoringCard] = reordered.splice(monitoringIndex, 1);
+                reordered.splice(restaurantsIndex + 1, 0, monitoringCard);
+                return reordered;
+            })()
+            : baseSourceServices;
+    const prioritizedSourceServices = (() => {
+        const openServiceCards: ServiceItem[] = [];
+        const otherCards: ServiceItem[] = [];
+
+        for (const service of sourceServices) {
+            if (isOpenServiceCard(niche.id, service, isDesktopViewport)) {
+                openServiceCards.push(service);
+            } else {
+                otherCards.push(service);
+            }
+        }
+
+        return [...openServiceCards, ...otherCards];
+    })();
+    const orderedSourceServices =
+        niche.id === "10"
+            ? (() => {
+                  const targetIndex = prioritizedSourceServices.findIndex((service) => service.slug === "tur-360-turizma");
+                  if (targetIndex <= 1) return prioritizedSourceServices;
+                  const reordered = [...prioritizedSourceServices];
+                  const [target] = reordered.splice(targetIndex, 1);
+                  reordered.splice(1, 0, target);
+                  return reordered;
+              })()
+            : niche.id === "11"
+            ? (() => {
+                  const targetIndex = prioritizedSourceServices.findIndex((service) => service.slug === "tur-360-klinik");
+                  if (targetIndex <= 0) return prioritizedSourceServices;
+                  const reordered = [...prioritizedSourceServices];
+                  const [target] = reordered.splice(targetIndex, 1);
+                  reordered.unshift(target);
+                  return reordered;
+              })()
+            : prioritizedSourceServices;
+    const limitedServices = orderedSourceServices.slice(0, 5);
     const shouldRenderDetailedHeading = Boolean(niche.detailedContent?.heading);
     const shouldRenderDetailedEyebrow = niche.id !== "02";
     const services = niche.detailedContent
@@ -1006,6 +1151,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         : useDesktopHorizontalServicesRail
         ? sourceServices.length > 4
         : services.length > 1;
+    const shouldCenterDesktopRail = useDesktopHorizontalServicesRail && sourceServices.length < 4;
     const prevStep = index > 0 ? stackStepNavItems[index - 1] : null;
     const sectionBodyPaddingTopClassName = "";
     const showTopBackButton = isMobileCompactTop && Boolean(prevStep);
@@ -1020,7 +1166,11 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                 isMobileLandscape ? "pt-1" : "pt-2"
             }`
         : useDesktopHorizontalServicesRail
-            ? `services-horizontal-rail flex items-stretch gap-4 md:gap-5 xl:gap-5 overflow-x-auto overscroll-x-contain pb-4 snap-x snap-mandatory touch-pan-x scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden relative z-10 pt-2 mx-10 md:mx-12 xl:mx-14`
+            ? `services-horizontal-rail flex items-stretch gap-4 md:gap-5 xl:gap-5 overflow-x-auto overscroll-x-contain pb-4 snap-x snap-mandatory touch-pan-x scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden relative z-10 pt-2 ${
+                isReelsScreen ? "mx-2 md:mx-3 xl:mx-4" : "mx-10 md:mx-12 xl:mx-14"
+            } ${
+                shouldCenterDesktopRail ? "justify-center" : ""
+            }`
             : limitedServices.length < 5
                 ? `flex flex-wrap justify-center gap-4 md:gap-5 xl:gap-2.5 px-4 md:px-0`
                 : `grid ${mobileServicesGridClassName}`;
@@ -1040,7 +1190,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                 ? "-left-5"
                 : "-left-6"
             : useDesktopHorizontalServicesRail
-                ? "-left-1 md:-left-1"
+                ? "-left-11 md:-left-12 xl:-left-14"
                 : "left-0";
     const mobileRailRightArrowOffsetClassName =
         isRealEstateScreen && isMobileCompactTop
@@ -1048,7 +1198,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                 ? "-right-5"
                 : "-right-6"
             : useDesktopHorizontalServicesRail
-                ? "-right-1 md:-right-1"
+                ? "-right-11 md:-right-12 xl:-right-14"
                 : "right-0";
     const shouldAnimateMobileRailArrows = (isRealEstateScreen && isMobileCompactTop) || useDesktopHorizontalServicesRail;
 
@@ -1067,6 +1217,16 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         return () => {
             window.removeEventListener("resize", updateViewportKind);
             window.removeEventListener("orientationchange", updateViewportKind);
+        };
+    }, []);
+
+    useEffect(() => {
+        const intervalId = window.setInterval(() => {
+            setCardImageCarouselTick((prev) => prev + 1);
+        }, 5000);
+
+        return () => {
+            window.clearInterval(intervalId);
         };
     }, []);
 
@@ -1223,10 +1383,25 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
     const renderServiceCard = (svc: ServiceItem, serviceIndex: number) => {
         const serviceId = 8400 + (index * 10) + serviceIndex;
         const isAllServicesCard = svc.variant === "all-services";
+        const desktopPolicyKey = svc.slug ? `${niche.id}:${svc.slug}` : "";
+        const isServiceOpenAllowed =
+            !isAllServicesCard && Boolean(svc.slug) && DESKTOP_OPEN_SERVICE_ALLOWLIST.has(desktopPolicyKey);
+        const serviceOpenHref = isServiceOpenAllowed
+            ? (DESKTOP_OPEN_SERVICE_HREF_OVERRIDES[desktopPolicyKey] ?? svc.link)
+            : "";
+        const isServiceOpenExternal = isServiceOpenAllowed ? isExternalHref(serviceOpenHref) : false;
         const suggestedCardDetails = isAllServicesCard ? {} : getSuggestedCardDetails(niche, svc);
         const cardImage = svc.img || niche.img;
         const cardSlug = svc.slug || (svc.title ? svc.title.toLowerCase().replace(/[^a-zа-я0-9]+/gi, "-") : `card-${niche.id}-${serviceIndex}`);
-        const isExternalServiceLink = isExternalHref(svc.link);
+        const shouldRotateMenuDeliveryImage =
+            svc.slug === "ai-kartochki-menyu-delivery" ||
+            svc.slug === "ai-upakovka-menyu-opisaniy";
+        const renderedCardImage = shouldRotateMenuDeliveryImage
+            ? cardImageCarouselTick % 2 === 0
+                ? cardImage
+                : aiMenuDeliveryImageTwo.src
+            : cardImage;
+        const isExternalServiceLink = isServiceOpenExternal;
         const cardTag = svc.tag || suggestedCardDetails.tag;
         const cardTagAccent = svc.tagAccent ?? suggestedCardDetails.tagAccent ?? false;
         const cardEyebrow = svc.eyebrow || suggestedCardDetails.eyebrow || niche.title;
@@ -1247,7 +1422,20 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                     .replace(/\s{2,}/g, " ")
                     .replace(" · ", shouldUseTwoLinePrice ? "\n" : " · ")
                 : svc.price;
+        const usesDesktopAspectImage = useDesktopHorizontalServicesRail;
         const formattedTitle = svc.title;
+        const mobileCardImageInteractiveClassName =
+            "h-full w-full object-cover opacity-90 saturate-[1.1] contrast-[1.05] transition-transform duration-500 group-hover:scale-105 group-hover:opacity-100";
+        const mobileCardImageStaticClassName =
+            "h-full w-full object-cover opacity-90 saturate-[1.1] contrast-[1.05] transition-transform duration-500";
+        const serviceCardImageInteractiveClassName =
+            usesDesktopAspectImage
+                ? "w-full h-full object-cover saturate-[1.1] contrast-[1.05] opacity-100"
+                : "w-full h-full object-cover saturate-[1.1] contrast-[1.05] group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100";
+        const serviceCardImageStaticClassName =
+            usesDesktopAspectImage
+                ? "w-full h-full object-cover saturate-[1.1] contrast-[1.05] opacity-100"
+                : "w-full h-full object-cover saturate-[1.1] contrast-[1.05] transition-transform duration-500 opacity-90";
 
         if (useMobileHorizontalServicesRail) {
             const mobileCardClassName = `service-card-target group relative flex ${
@@ -1269,22 +1457,28 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
             const mobileCardBody = (
                 <>
                     <div className="relative w-[39%] min-w-[39%] overflow-hidden bg-neutral-900">
-                        {isExternalServiceLink ? (
-                            <a href={svc.link} target="_blank" rel="noreferrer" className="block h-full">
+                        {isServiceOpenAllowed && isExternalServiceLink ? (
+                            <a href={serviceOpenHref} target="_blank" rel="noreferrer" className="block h-full">
                                 <img
-                                    src={cardImage}
+                                    src={renderedCardImage}
                                     alt={svc.title || niche.title}
-                                    className="h-full w-full object-cover opacity-70 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-90"
+                                    className={mobileCardImageInteractiveClassName}
                                 />
                             </a>
-                        ) : (
-                            <Link href={svc.link} className="block h-full">
+                        ) : isServiceOpenAllowed ? (
+                            <Link href={serviceOpenHref} className="block h-full">
                                 <img
-                                    src={cardImage}
+                                    src={renderedCardImage}
                                     alt={svc.title || niche.title}
-                                    className="h-full w-full object-cover opacity-70 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-90"
+                                    className={mobileCardImageInteractiveClassName}
                                 />
                             </Link>
+                        ) : (
+                            <img
+                                src={renderedCardImage}
+                                alt={svc.title || niche.title}
+                                className={mobileCardImageStaticClassName}
+                            />
                         )}
                         <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/70" />
                         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/80 to-transparent" />
@@ -1309,7 +1503,19 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                         </div>
                         {formattedTitle && (
                             <h3 className="mb-1.5 text-[14px] font-black uppercase leading-[1.04] text-white transition-colors group-hover:text-[#D4AF37]">
-                                <span>{formattedTitle}</span>
+                                {isServiceOpenAllowed ? (
+                                    isExternalServiceLink ? (
+                                        <a href={serviceOpenHref} target="_blank" rel="noreferrer">
+                                            <span>{formattedTitle}</span>
+                                        </a>
+                                    ) : (
+                                        <Link href={serviceOpenHref}>
+                                            <span>{formattedTitle}</span>
+                                        </Link>
+                                    )
+                                ) : (
+                                    <span>{formattedTitle}</span>
+                                )}
                             </h3>
                         )}
                         {normalizedCategory ? (
@@ -1343,15 +1549,16 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                     )
                                 ) : (
                                     <>
-                                        {isExternalServiceLink ? (
-                                            <a href={svc.link} target="_blank" rel="noreferrer" className={mobilePrimaryActionClassName}>
+                                        {isServiceOpenAllowed ? (
+                                            isExternalServiceLink ? (
+                                            <a href={serviceOpenHref} target="_blank" rel="noreferrer" className={mobilePrimaryActionClassName}>
                                                 {svc.primaryCtaLabel ?? "Открыть услугу"}
                                             </a>
                                         ) : (
-                                            <Link href={svc.link} className={mobilePrimaryActionClassName}>
+                                            <Link href={serviceOpenHref} className={mobilePrimaryActionClassName}>
                                                 {svc.primaryCtaLabel ?? "Открыть услугу"}
                                             </Link>
-                                        )}
+                                        )) : null}
                                         {!isAllServicesCard ? (
                                             <a href="#contact" className={mobileSecondaryActionClassName}>
                                                 Обсудить задачу
@@ -1398,6 +1605,8 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                 : isRealEstateReferenceCard
                 ? "h-[82px]"
                 : "h-[88px]"
+            : useDesktopHorizontalServicesRail
+            ? "aspect-video h-auto"
             : isMobileLandscape
             ? "h-16"
             : "h-24 sm:h-36";
@@ -1453,22 +1662,37 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         const servicePageParityCardBody = (
             <>
                 <div className={`${servicePageImageHeightClassName} bg-neutral-800 overflow-hidden relative`}>
-                    {isExternalServiceLink ? (
-                        <a href={svc.link} target="_blank" rel="noreferrer" className="block h-full">
-                            <img
-                                src={cardImage}
-                                alt={svc.title || niche.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-50 group-hover:opacity-80"
-                            />
+                    {isServiceOpenAllowed && isServiceOpenExternal ? (
+                        <a href={serviceOpenHref} target="_blank" rel="noreferrer" className="block h-full">
+                            <div className="h-full w-full">
+                                <img
+                                    src={renderedCardImage}
+                                    alt={svc.title || niche.title}
+                                    className={serviceCardImageInteractiveClassName}
+                                    style={svc.imagePosition && !usesDesktopAspectImage ? { objectPosition: svc.imagePosition } : undefined}
+                                />
+                            </div>
                         </a>
-                    ) : (
-                        <Link href={svc.link} className="block h-full">
-                            <img
-                                src={cardImage}
-                                alt={svc.title || niche.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-50 group-hover:opacity-80"
-                            />
+                    ) : isServiceOpenAllowed ? (
+                        <Link href={serviceOpenHref} className="block h-full">
+                            <div className="h-full w-full">
+                                <img
+                                    src={renderedCardImage}
+                                    alt={svc.title || niche.title}
+                                    className={serviceCardImageInteractiveClassName}
+                                    style={svc.imagePosition && !usesDesktopAspectImage ? { objectPosition: svc.imagePosition } : undefined}
+                                />
+                            </div>
                         </Link>
+                    ) : (
+                        <div className="h-full w-full">
+                            <img
+                                src={renderedCardImage}
+                                alt={svc.title || niche.title}
+                                className={serviceCardImageStaticClassName}
+                                style={svc.imagePosition && !usesDesktopAspectImage ? { objectPosition: svc.imagePosition } : undefined}
+                            />
+                        </div>
                     )}
                     {svc.tag && (
                         <div className={`absolute ${isMobileLandscape ? "top-2 left-2" : "top-4 left-4"} flex gap-2`}>
@@ -1480,18 +1704,22 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                 </div>
                 <div className={servicePageBodyClassName}>
                     <h3 className={servicePageTitleClassName}>
-                        {isExternalServiceLink ? (
-                            <a href={svc.link} target="_blank" rel="noreferrer" className="hover:text-[#D4A017] transition-colors">
+                        {isServiceOpenAllowed && isServiceOpenExternal ? (
+                            <a href={serviceOpenHref} target="_blank" rel="noreferrer" className="hover:text-[#D4A017] transition-colors">
                                 <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
                                     {formattedTitle}
                                 </span>
                             </a>
-                        ) : (
-                            <Link href={svc.link} className="hover:text-[#D4A017] transition-colors">
+                        ) : isServiceOpenAllowed ? (
+                            <Link href={serviceOpenHref} className="hover:text-[#D4A017] transition-colors">
                                 <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
                                     {formattedTitle}
                                 </span>
                             </Link>
+                        ) : (
+                            <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
+                                {formattedTitle}
+                            </span>
                         )}
                     </h3>
                     {normalizedCategory ? (
@@ -1531,15 +1759,17 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                 )
                             ) : (
                                 <>
-                                    {isExternalServiceLink ? (
-                                        <a href={svc.link} target="_blank" rel="noreferrer" className={servicePagePrimaryActionClassName}>
-                                            {svc.primaryCtaLabel ?? "Открыть услугу"}
-                                        </a>
-                                    ) : (
-                                        <Link href={svc.link} className={servicePagePrimaryActionClassName}>
-                                            {svc.primaryCtaLabel ?? "Открыть услугу"}
-                                        </Link>
-                                    )}
+                                    {isServiceOpenAllowed ? (
+                                        isServiceOpenExternal ? (
+                                            <a href={serviceOpenHref} target="_blank" rel="noreferrer" className={servicePagePrimaryActionClassName}>
+                                                {svc.primaryCtaLabel ?? "Открыть услугу"}
+                                            </a>
+                                        ) : (
+                                            <Link href={serviceOpenHref} className={servicePagePrimaryActionClassName}>
+                                                {svc.primaryCtaLabel ?? "Открыть услугу"}
+                                            </Link>
+                                        )
+                                    ) : null}
                                     {!isAllServicesCard ? (
                                         <a href="#contact" className={servicePageSecondaryActionClassName}>
                                             Обсудить задачу
@@ -1582,46 +1812,49 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
             <div className={`relative w-full h-full ${sectionBodyPaddingTopClassName} bg-zinc-800`}>
                 {niche.isIntro ? (
                     <div className="absolute inset-0 z-0 bg-black flex flex-col justify-center bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80')] bg-cover bg-center">
-                        <div className="absolute inset-0 bg-black/90 backdrop-blur-md" />
-                        <div className="relative z-10 grid w-full max-w-[1400px] mx-auto grid-cols-1 md:grid-cols-12 gap-5 px-6 py-5 md:py-10 md:px-10">
-                            <div className="md:col-span-5 flex flex-col h-full">
-                                <div className="flex-1 flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.025] p-6 md:p-8 shadow-2xl backdrop-blur-sm">
+                        <div className="absolute inset-0 bg-black/88" />
+                        <div className="relative z-10 mx-auto grid w-full max-w-[1520px] grid-cols-1 gap-5 px-3 py-4 md:grid-cols-[44fr_56fr] md:px-2 md:py-8 lg:px-3 xl:px-4">
+                            <div className="flex h-full flex-col">
+                                <div className="flex h-full flex-col justify-between rounded-[24px] border border-white/10 bg-[#07090D] px-8 py-6 xl:px-9">
                                     <div>
-                                        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.28em] text-[#D4AF37]">Об Агентстве</p>
-                                        <h2 className="text-[1.75rem] md:text-[2.2rem] font-black leading-[1.1] tracking-tight text-white">
-                                            Производство контента,
+                                        <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.24em] text-[#D4AF37]">Об Агентстве</p>
+                                        <h2 className="text-[clamp(1.98rem,3.65vw,3.98rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.01em] text-white">
+                                            Производство
                                             <br />
-                                            <span className="text-[#D4AF37]">которое работает на задачу.</span>
+                                            контента,
+                                            <br />
+                                            <span className="text-[#D4AF37]">которое работает</span>
+                                            <br />
+                                            <span className="text-[#D4AF37]">на задачу.</span>
                                         </h2>
-                                        <div className="mt-6 space-y-4 text-[14px] leading-relaxed text-white/68 font-medium">
-                                            <p>
+                                        <div className="mt-4 h-px w-16 bg-[#D4AF37]/85" />
+                                        <div className="mt-5 space-y-4 text-[clamp(0.95rem,0.98vw,1.14rem)] leading-[1.45] font-medium">
+                                            <p className="text-white/78">
                                                 Breus Media — агентство визуального продакшена и AI-контента для бизнеса. Мы работаем с компаниями, которым важно, чтобы контент двигал клиента к следующему шагу: заявке, звонку, бронированию, покупке.
                                             </p>
-                                            <p>
-                                                В арсенале агентства: аэросъёмка, промо-видео, 360°-туры, reels, AI-визуализации и
-                                                контентные пакеты. Работа начинается с задачи — формат подбирается под неё, а не наоборот.
+                                            <p className="text-white/68">
+                                                В арсенале агентства: аэросъёмка, промо-видео, 360°-туры, reels, AI-визуализации и контентные пакеты. Работа начинается с задачи — формат подбирается под неё, а не наоборот.
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="mt-8 flex flex-wrap gap-3">
+                                    <div className="mt-5 flex flex-wrap gap-3">
                                         <Link
                                             href="/about"
-                                            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-white transition-all hover:bg-white/10 hover:border-[#D4AF37]/60 hover:text-[#D4AF37]"
+                                            className="inline-flex items-center rounded-[12px] bg-[#D4AF37] px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0F1218] transition-colors hover:bg-[#E0BC4A]"
                                         >
                                             Об Агентстве подробнее
-                                            <Send size={12} strokeWidth={2.5} />
                                         </Link>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="md:col-span-7 flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.025] p-6 md:p-8 shadow-2xl backdrop-blur-sm">
-                                <div className="mb-5 md:mb-6">
-                                    <h3 className="text-[1.1rem] md:text-[1.3rem] font-bold leading-[1.2] tracking-tight text-white">
+                            <div className="flex h-full flex-col rounded-[24px] border border-white/10 bg-[#07090D] px-8 py-6 xl:px-9">
+                                <div className="mb-5">
+                                    <h3 className="text-[1.26rem] md:text-[1.95rem] font-bold leading-[1.1] tracking-[-0.01em] text-white">
                                         Выберите свою нишу — <span className="text-[#D4AF37]">или начните с формата.</span>
                                     </h3>
                                 </div>
-                                <div className="grid grid-cols-2 gap-8 md:gap-12">
+                                <div className="grid flex-1 grid-cols-2 gap-9">
                                     <div className="flex flex-col">
                                         <ul className="flex flex-col">
                                             {[
@@ -1633,13 +1866,13 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                                 { label: "Автобизнес", idx: 8 },
                                                 { label: "IT", idx: 11 }
                                             ].map((item) => (
-                                                <li key={item.label} className="py-3 text-[15px] xl:text-[16px] font-medium border-b border-white/5">
-                                                    <button 
+                                                <li key={item.label} className="border-b border-white/10 py-2.5 text-[15px] xl:text-[16px]">
+                                                    <button
                                                         onClick={() => onNavigateToStep(item.idx)}
-                                                        className="w-full text-left text-white/90 hover:text-[#D4AF37] hover:translate-x-1 transition-all duration-300 flex justify-between items-center group"
+                                                        className="flex w-full items-center justify-between text-left font-medium text-white transition-colors hover:text-[#D4AF37]"
                                                     >
-                                                        {item.label}
-                                                        <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
+                                                        <span>{item.label}</span>
+                                                        <span className="text-white/65">›</span>
                                                     </button>
                                                 </li>
                                             ))}
@@ -1649,36 +1882,32 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         <ul className="flex flex-col">
                                             {[
                                                 { label: "Аэросъёмка", idx: 1 },
-                                                { label: "Промо-видео", idx: null },
                                                 { label: "Reels", idx: 3 },
                                                 { label: "360°-туры", idx: 2 },
                                                 { label: "AI-визуализация", idx: 4 }
                                             ].map((item) => (
-                                                <li key={item.label} className="py-3 text-[15px] xl:text-[16px] font-medium border-b border-white/5">
-                                                    {item.idx !== null ? (
-                                                        <button 
-                                                            onClick={() => onNavigateToStep(item.idx!)}
-                                                            className="w-full text-left text-white/90 hover:text-[#D4AF37] hover:translate-x-1 transition-all duration-300 flex justify-between items-center group"
-                                                        >
-                                                            {item.label}
-                                                            <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
-                                                        </button>
-                                                    ) : (
-                                                        <span className="text-white/40 cursor-default">{item.label}</span>
-                                                    )}
+                                                <li key={item.label} className="border-b border-white/10 py-2.5 text-[15px] xl:text-[16px]">
+                                                    <button
+                                                        onClick={() => onNavigateToStep(item.idx)}
+                                                        className="flex w-full items-center justify-between text-left font-medium text-white transition-colors hover:text-[#D4AF37]"
+                                                    >
+                                                        <span>{item.label}</span>
+                                                        <span className="text-white/65">›</span>
+                                                    </button>
                                                 </li>
                                             ))}
-                                            <li className="py-3 text-[15px] xl:text-[16px] font-medium text-[#D4AF37] border-b border-white/5">
-                                                <a href="#contact" className="hover:text-white transition-colors cursor-pointer w-full inline-block">
-                                                    Ваш формат &rarr;
+                                            <li className="border-b border-white/10 py-2.5 text-[15px] xl:text-[16px]">
+                                                <a href="#contact" className="flex w-full items-center justify-between font-medium text-[#D4AF37] transition-colors hover:text-white">
+                                                    <span>Ваш формат &rarr;</span>
+                                                    <span className="text-[#D4AF37]">›</span>
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="mt-8 flex justify-center w-full">
-                                    <p className="text-white/40 text-[12px] xl:text-[13px] tracking-wide text-center font-medium">
-                                        Другая отрасль или формат — <a href="#contact" className="text-[#D4AF37] transition-colors underline decoration-white/20 underline-offset-4 hover:text-white">напишите</a>, найдём решение.
+                                <div className="mt-5 flex w-full justify-center">
+                                    <p className="text-center text-[12px] font-medium tracking-wide text-white/48 xl:text-[13px]">
+                                        Другая отрасль или формат — <a href="#contact" className="text-[#D4AF37] transition-colors hover:text-white">напишите</a>, найдём решение.
                                     </p>
                                 </div>
                             </div>
@@ -1752,21 +1981,73 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         </p>
                                     )}
                                     {shouldRenderDetailedHeading && (
-                                        <h2 className={headingClassName}>
+                                        <h2
+                                            className={
+                                                isUnifiedTopTextScreen
+                                                    ? "text-[clamp(1.63rem,5.06vw,4.08rem)] md:text-[clamp(2.04rem,4.4vw,4.85rem)] leading-[0.93] font-extrabold uppercase tracking-[-0.018em] text-white font-sans"
+                                                    : headingClassName
+                                            }
+                                        >
                                             {niche.detailedContent.heading}
                                         </h2>
                                     )}
-                                    <p
-                                        className={subheadingClassName}
-                                    >
-                                        {niche.detailedContent.subheading}
-                                    </p>
+                                    {isUnifiedTopTextScreen ? (
+                                        <p className="mt-2 text-[clamp(1.02rem,1.96vw,1.7rem)] md:text-[clamp(1.15rem,1.79vw,1.87rem)] font-semibold leading-[1.28] text-white">
+                                            {(() => {
+                                                const subheading = niche.detailedContent?.subheading ?? "";
+                                                const highlight = geoHighlightByNicheId[niche.id];
+                                                if (!highlight || !subheading.includes(highlight)) return subheading;
+                                                const [before, after] = subheading.split(highlight);
+                                                return (
+                                                    <>
+                                                        {before}
+                                                        <span className="text-[#D4AF37]">{highlight}</span>
+                                                        {after}
+                                                    </>
+                                                );
+                                            })()}
+                                        </p>
+                                    ) : (
+                                        <p className={subheadingClassName}>
+                                            {niche.detailedContent.subheading}
+                                        </p>
+                                    )}
                                     {niche.detailedContent.introNote && (
-                                        <p className={introNoteClassName}>
+                                        <p
+                                            className={
+                                                isUnifiedTopTextScreen
+                                                    ? "mt-2 text-[clamp(0.94rem,1.3vw,1.24rem)] md:text-[clamp(1rem,1.15vw,1.3rem)] leading-[1.45] text-white/68"
+                                                    : introNoteClassName
+                                            }
+                                        >
                                             {niche.detailedContent.introNote}
                                         </p>
                                     )}
                                 </div>
+
+                                {allServicesCard && niche.id === "02" && (
+                                    <div className="mt-3 mb-3 flex justify-center">
+                                        <Link
+                                            href={allServicesCard.link}
+                                            className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-black/50 px-7 py-[13px] text-[11px] font-bold uppercase tracking-[0.22em] text-white/72 backdrop-blur-sm transition-all duration-200 hover:border-[#D4A017]/50 hover:text-[#D4A017] hover:bg-[#D4A017]/5"
+                                        >
+                                            <span>{({
+                                                "02": "Все услуги аэросъёмки",
+                                                "03": "Все услуги — 360° Туры",
+                                                "04": "Все услуги — Reels",
+                                                "05": "Все услуги — AI Контент",
+                                                "06": "Все услуги недвижимости",
+                                                "07": "Все услуги — Отели",
+                                                "08": "Все услуги — Рестораны",
+                                                "09": "Все услуги — Авто",
+                                                "10": "Все услуги — Туризм",
+                                                "11": "Все услуги — Клиники",
+                                                "12": "Все услуги — IT",
+                                            } as Record<string, string>)[niche.id] ?? "Все услуги"}</span>
+                                            <ChevronRight className="h-3.5 w-3.5 opacity-55" />
+                                        </Link>
+                                    </div>
+                                )}
 
                                 <div className={mobileRailShellClassName}>
                                     {showMobileRailArrows && (
@@ -1813,12 +2094,22 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                             : useDesktopHorizontalServicesRail
                                                 ? (
                                                     <>
-                                                        {sourceServices.map((svc, i) => (
-                                                            <div key={svc.slug || i} data-rail-item="true" className="flex w-[calc(25%-12px)] md:w-[calc(25%-15px)] shrink-0 snap-start">
+                                                        {orderedSourceServices.map((svc, i) => (
+                                                            <div
+                                                                key={svc.slug || i}
+                                                                data-rail-item="true"
+                                                                className={`flex shrink-0 snap-start ${
+                                                                    isReelsScreen
+                                                                        ? "w-[calc(25%-15px)] md:w-[calc(25%-16px)]"
+                                                                        : "w-[calc(25%-12px)] md:w-[calc(25%-15px)]"
+                                                                }`}
+                                                            >
                                                                 {renderServiceCard(svc, i)}
                                                             </div>
                                                         ))}
-                                                        <div className="w-px shrink-0 pointer-events-none" aria-hidden="true" />
+                                                        {!shouldCenterDesktopRail && (
+                                                            <div className="w-px shrink-0 pointer-events-none" aria-hidden="true" />
+                                                        )}
                                                     </>
                                                 )
                                                 : limitedServices.map((svc, i) => (
@@ -1827,27 +2118,6 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                                 </div>
                                             ))}
                                     </div>
-                                    {allServicesCard && (
-                                        <Link
-                                            href={allServicesCard.link}
-                                            className={`mt-2.5 flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-black/50 py-[15px] text-[11px] font-bold uppercase tracking-[0.22em] text-white/65 backdrop-blur-sm transition-all duration-200 hover:border-[#D4A017]/50 hover:text-[#D4A017] hover:bg-[#D4A017]/5 ${useDesktopHorizontalServicesRail ? "mx-10 md:mx-12 xl:mx-14" : "w-full"}`}
-                                        >
-                                            <span>{({
-                                                "02": "Все услуги аэросъёмки",
-                                                "03": "Все услуги — 360° Туры",
-                                                "04": "Все услуги — Reels",
-                                                "05": "Все услуги — AI Контент",
-                                                "06": "Все услуги недвижимости",
-                                                "07": "Все услуги — Отели",
-                                                "08": "Все услуги — Рестораны",
-                                                "09": "Все услуги — Авто",
-                                                "10": "Все услуги — Туризм",
-                                                "11": "Все услуги — Клиники",
-                                                "12": "Все услуги — IT",
-                                            } as Record<string, string>)[niche.id] ?? "Все услуги"}</span>
-                                            <ChevronRight className="h-3.5 w-3.5 opacity-55" />
-                                        </Link>
-                                    )}
                                     {showMobileRailArrows && (
                                         <motion.button
                                             type="button"
@@ -1875,9 +2145,9 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                             </div>
                         </MaybeDebugWrapper>
                     </div>
-                ) : (
+                ) : index === 0 ? null : (
                     <motion.div
-                        style={{ opacity: index === 0 ? opacity : 1 }}
+                        style={{ opacity: 1 }}
                         className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
                     >
                         <DebugWrapper id={index === 0 ? 901 : 8200 + index} label={`Niche Center Text: ${niche.id}`}>
@@ -2108,9 +2378,6 @@ const FormCard = ({
     onNavigateToStep: (targetIndex: number) => void,
     activeStepIndex: number
 }) => {
-    const [method, setMethod] = useState<'Telegram' | 'WhatsApp' | 'Mail'>('Telegram');
-    const [services, setServices] = useState<string[]>([]);
-    const [submitted, setSubmitted] = useState(false);
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
     const prevStep = index > 0 ? stackStepNavItems[index - 1] : null;
     const topStaticNavOffsetClassName = isMobileLandscape ? "top-7" : "top-9";
@@ -2121,12 +2388,6 @@ const FormCard = ({
     const entryEnd = start + stepSize * 0.08;
 
     const y = useTransform(scrollYProgress, [entryStart, entryEnd], ["100%", "0%"]);
-
-    const toggleService = (s: string) => {
-        setServices((prev) =>
-            prev.includes(s) ? prev.filter((item) => item !== s) : [...prev, s]
-        );
-    };
 
     const handlePrevClick = () => {
         if (!prevStep) return;
@@ -2150,134 +2411,14 @@ const FormCard = ({
 
             {/* Кнопка НАЗАД скрыта на мобиле */}
 
-            <div className="flex-1 overflow-y-auto touch-pan-y px-4 pt-3 md:px-8 md:pt-4 w-full custom-scrollbar pb-2 md:pb-4">
-                <div className="flex min-h-full flex-col">
-                    <div className="relative mx-auto w-full max-w-4xl overflow-hidden rounded-xl border border-[#D4A017]/30 bg-gradient-to-br from-[#141414] via-[#111111] to-[#0d0d0d] p-5 md:min-h-[66vh] md:rounded-2xl md:p-8">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,160,23,0.14),transparent_55%)] pointer-events-none" />
-
-                    <h2 className="relative z-10 mb-2 text-[20px] font-black tracking-tight text-white md:text-3xl uppercase">
-                        ОБСУДИМ <span className="text-[#D4AF37]">ВАШУ ЗАДАЧУ</span>
-                    </h2>
-                    <p className="relative z-10 mb-6 max-w-2xl text-[12px] leading-snug text-white/70 md:text-[14px]">
-                        Оставьте контакт и пару слов о задаче — предложим формат и вернёмся с расчётом.
-                    </p>
-
-                    <form
-                        className="relative z-10 space-y-5"
-                        onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
-                    >
-                        {submitted ? (
-                            <div className="flex flex-col items-center justify-center py-12 text-center gap-4">
-                                <div className="text-5xl animate-bounce">✅</div>
-                                <h3 className="text-white font-bold text-xl">Заявка отправлена!</h3>
-                                <p className="text-white/60 text-sm max-w-xs leading-relaxed">
-                                    Специалист свяжется с вами в течение рабочего часа.
-                                </p>
-                            </div>
-                        ) : (
-                            <>
-                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                                    <div>
-                                        <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55">Ваше имя</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Иван Иванов"
-                                            className="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-[#D4A017]"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55">Способ связи *</label>
-                                        <div className="flex gap-4">
-                                            {(['Telegram', 'WhatsApp', 'Звонок'] as const).map((option) => (
-                                                <button
-                                                    key={option}
-                                                    type="button"
-                                                    onClick={() => setMethod(option as any)}
-                                                    className={`border-b-2 pb-1 text-[11px] transition-colors ${
-                                                        method === option ? 'border-[#D4A017] text-white' : 'border-transparent text-white/40 hover:text-white/70'
-                                                    }`}
-                                                >
-                                                    {option}
-                                                </button>
-                                            ))}
-                                        </div>
-                                        <input
-                                            type="text"
-                                            required
-                                            placeholder={method === 'WhatsApp' ? '+995 ...' : '@username'}
-                                            className="mt-2 w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-[#D4A017]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label className="mb-3 block text-[10px] uppercase tracking-[0.18em] text-white/55">Интересующие услуги</label>
-                                    <div className="flex flex-wrap gap-2">
-                                        {['Аэросъёмка', 'Промо-видео', 'Reels', '360°-туры', 'AI-контент', 'Недвижимость', 'Отели', 'Рестораны', 'Туризм', 'Клиники', 'Автобизнес'].map((svc) => (
-                                            <button
-                                                key={svc}
-                                                type="button"
-                                                onClick={() => toggleService(svc)}
-                                                className={`rounded-full border px-3 py-1 text-[10px] transition-colors ${
-                                                    services.includes(svc) ? 'bg-[#D4A017] border-[#D4A017] text-black font-bold' : 'border-white/10 text-white/50 hover:border-white/30 hover:text-white'
-                                                }`}
-                                            >
-                                                {svc}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                                    <div>
-                                        <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55">Ваши соцсети или сайт</label>
-                                        <input
-                                            type="text"
-                                            placeholder="@аккаунт или сайт"
-                                            className="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder:text-white/30 outline-none focus:border-[#D4A017]"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-white/55">Коротко о задаче</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Напр: обзор ЖК с воздуха..."
-                                            className="w-full border-b border-white/20 bg-transparent py-2 text-sm text-white placeholder:text-white/30 outline-none focus:border-[#D4A017]"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col gap-4 pt-2 md:flex-row md:items-center">
-                                    <button
-                                        type="submit"
-                                        className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#D4A017] py-3.5 text-[11px] font-black uppercase tracking-[0.2em] text-black transition-all hover:scale-[1.02] active:scale-[0.98]"
-                                    >
-                                        <Send className="w-4 h-4" />
-                                        ОТПРАВИТЬ ЗАЯВКУ
-                                    </button>
-                                    <div className="flex items-center justify-center gap-2">
-                                        <span className="text-[10px] uppercase tracking-widest text-white/20">или</span>
-                                        <a
-                                            href="https://wa.me/995574619393"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="flex items-center gap-2 text-[11px] font-bold text-[#D4A017] hover:brightness-125"
-                                        >
-                                            <MessageCircle className="w-4 h-4" />
-                                            НАПИСАТЬ В WHATSAPP
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <p className="text-[9px] leading-relaxed text-white/20 uppercase tracking-[0.1em]">
-                                    Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных.
-                                </p>
-                            </>
-                        )}
-                    </form>
-                </div>
+            <div className="flex-1 overflow-y-auto touch-pan-y px-4 pt-2 md:px-8 md:pt-2 w-full custom-scrollbar pb-0">
+                <section className="snap-start min-h-full h-full flex flex-col">
+                    <DroneContactStitch />
+                    <div className="-mx-4 mt-auto w-auto md:-mx-8">
+                        <GazetaMinimalFooter />
+                    </div>
+                </section>
             </div>
-        </div>
     </motion.div>
     );
 };
@@ -2325,37 +2466,31 @@ export function NichesStack() {
         const clampedIndex = Math.max(0, Math.min(totalSteps - 1, targetIndex));
         const targetStep = stackStepNavItems[clampedIndex];
         if (!targetStep) return;
-        const targetEl = document.getElementById(`niche-step-${targetStep.id}`);
         const containerEl = containerRef.current;
-        if (!targetEl || !containerEl) return;
+        if (!containerEl) return;
 
-        const alignToSticky = (behavior: ScrollBehavior) => {
-            const delta = targetEl.getBoundingClientRect().top - stickyTopPx;
-            if (Math.abs(delta) <= 1) return true;
-
+        // Sticky sections can report unstable viewport coordinates while stacked.
+        // We scroll by container progress, so each nav item always maps to a
+        // deterministic position in the stack track (01..14).
+        const containerTopY = window.scrollY + containerEl.getBoundingClientRect().top;
+        const containerScrollRange = Math.max(0, containerEl.scrollHeight - window.innerHeight);
+        if (containerScrollRange > 0) {
+            const targetProgress = clampedIndex / totalSteps;
+            const targetY = containerTopY + containerScrollRange * targetProgress;
             window.scrollTo({
-                top: Math.max(0, window.scrollY + delta),
-                behavior,
+                top: Math.max(containerTopY, Math.min(containerTopY + containerScrollRange, targetY)),
+                behavior: "smooth",
             });
-            return false;
-        };
+            return;
+        }
 
-        const coarseTargetY = Math.max(
-            0,
-            window.scrollY + targetEl.getBoundingClientRect().top - stickyTopPx
-        );
+        const targetEl = document.getElementById(`niche-step-${targetStep.id}`);
+        if (!targetEl) return;
+        const fallbackTargetY = Math.max(0, window.scrollY + targetEl.getBoundingClientRect().top - cardStickyTopPx);
         window.scrollTo({
-            top: coarseTargetY,
+            top: fallbackTargetY,
             behavior: "smooth",
         });
-
-        window.setTimeout(() => {
-            if (!alignToSticky("auto")) {
-                window.setTimeout(() => {
-                    alignToSticky("auto");
-                }, 80);
-            }
-        }, 420);
     };
 
     useEffect(() => {

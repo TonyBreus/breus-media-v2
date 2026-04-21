@@ -1,6 +1,25 @@
 # CHANGELOG ARCHIVE — Breus Media
 Append-only архив изменений. Старые записи не удаляются.
 
+## 2026-04-21 — /gazeta: iterative IAB fixes (hero stack, ordering, image overrides)
+- feat(gazeta/hero): первый экран `/gazeta` приведён к варианту 5 (единый текстовый стек, отдельная geo-строка, сохранён единый акцент на AI).
+- style(gazeta/hero): geo-label `В ТБИЛИСИ` переведён в компактный прямоугольный secondary accent с тонкой жёлтой рамкой/текстом (без тёмной pill-подложки).
+- style(gazeta/hero): выполнены микро-коррекции масштаба и ритма по комментариям — geo-label увеличен поэтапно (+30%, затем +20%), subheadline/supporting увеличены на ~10%, боковые отступы выровнены симметрично.
+- style(gazeta/aerosemka): в блоке `02` зафиксирован трёхуровневый текстовый стек; H1 уменьшен на 25%, затем верхний текстовый блок ещё на 15% по IAB-итерациям.
+- feat(gazeta/order): в `components/gazeta/NichesStack.tsx` добавлены приоритетные перестановки карточек:
+  - niche `10`: `tur-360-turizma` принудительно на позицию №2;
+  - niche `11`: `tur-360-klinik` принудительно на позицию №1.
+- feat(gazeta/images): закреплены slug-based image overrides в `toStackServiceFromL2` / `toStackServiceFromRealEstate`:
+  - `reels-rieltor` -> `/media/gazeta/reels-realtor-1.png` (как карточка `8457`);
+  - `promo-ekskursii-aktivnosti` -> `/media/gazeta/tourism-1.png`;
+  - `videotur-otelya` -> `/media/gazeta/360-real-estate-2.png`;
+  - `ai-upakovka-predlozheniy-tourism` и `ai-upakovka-predlozheniy` -> `/media/gazeta/tourism-2.png`;
+  - `tury-360-turizm` и `tur-360-turizma` -> `/media/gazeta/360-tour-2.png`;
+  - `aerosemka-lokacii` -> `/media/gazeta/360-tour-1.png`;
+  - `prodazha-kvartir` -> `/media/gazeta/360-real-estate-1.png`.
+- feat(assets): добавлены/обновлены файлы в `public/media/gazeta/`: `reels-realtor-1.png`, `tourism-1.png`, `tourism-2.png`, `360-tour-1.png`, `360-tour-2.png`, `360-real-estate-1.png`, `360-real-estate-2.png`.
+- chore(verification): локальная проверка `http://localhost:3200/gazeta` -> `HTTP/1.1 200 OK`.
+
 ## 2026-04-19 — /reels-real-estate: новая L3-страница RU, первая страница ветки Reels
 - feat(reels-real-estate): созданы `app/reels-real-estate/page.tsx` и `app/reels-real-estate/layout.tsx` для нового маршрута `/reels-real-estate`
 - feat(reels-real-estate): layout задаёт metadata по ТЗ — title, description, canonical `https://breus.media/reels-real-estate`, openGraph, twitter
@@ -5206,3 +5225,100 @@ Append-only архив изменений. Старые записи не уда
 - feat(form): add `id=\"contact-message\"` on task textarea for stable target semantics
 - feat(form): on mount, read one-time sessionStorage key `drone-hotels-tourism-prefill-message` (only on `/drone-hotels-tourism`) and sync it into React state, then clear key
 - chore(verification): run `npm run build` successfully after changes
+
+---
+
+## 2026-04-20 (gazeta CTA/menu cleanup + desktop routing policy)
+- `/drone-hotels-tourism/en`:
+  - removed `(~$...)` price equivalents from EN pricing cards in both source files (`page.tsx` and `drone-hotel-page-en.tsx`).
+- `/drone-service`:
+  - hid `Промо видео` ticker item via `tickerExcludeTexts`.
+- `/gazeta`:
+  - removed intro overlay `element 901` that visually overlapped the section.
+  - forced uppercase in sticky top step line labels.
+  - removed `Промо-видео` from:
+    - desktop intro chooser (`NichesStack`),
+    - mobile chooser (`GazetaMobileStepChooser`),
+    - contact service chips (`NichesStack` form + `DroneContactStitch`).
+  - removed language `GE` from header language dropdown.
+  - removed `Promo Video` and `Events/Мероприятия` from `Услуги` menu (EN+RU sources).
+  - removed top section link `Ниши` from `/gazeta` page config (element `#210` gone).
+  - implemented desktop-only CTA gating policy in `NichesStack`:
+    - allowlist + hard href overrides for selected L3 cards,
+    - hide `Открыть услугу` for non-allowed cards,
+    - keep only `Все услуги аэросъёмки` bottom button (niche `02`).
+  - additional UX exceptions applied:
+    - restored `Открыть услугу` for `02:nedvizhimost`, `02:oteli-kurorty`, `02:restorany`;
+    - set `02:nedvizhimost` route to `/drone-services/drone-real-estate`;
+    - aligned desktop image/title links with override route logic.
+  - reordered aerial cards on desktop so `monitoring-stroiki` appears after `restorany`.
+
+## 2026-04-20 (gazeta: restore Open CTA for 360 cards on desktop)
+- `components/gazeta/NichesStack.tsx`:
+  - added `03:tury-360-nedvizhimost` and `03:tury-360-oteli` to desktop open-service allowlist.
+  - added hard route overrides:
+    - `03:tury-360-nedvizhimost` -> `/360-tour-real-estate`
+    - `03:tury-360-oteli` -> `/360-tour-hotels`
+- outcome:
+  - restored `Открыть услугу` button for cards:
+    - `360° туры для недвижимости`
+    - `360° туры для отелей`
+
+## 2026-04-20 (gazeta: hotels/restaurants cards copy + image parity with drone-service)
+- `constants/l2DirectionConfigs.ts`:
+  - Hotels:
+    - updated `aerosemka-territorii` title to `Аэросъёмка отелей и курортов`;
+    - synced hotels card copy/tags to requested wording;
+    - set `aerosemka-territorii` image equal to `videotur-otelya` image URL.
+  - `videotur-otelya`: replaced description and tags with new brief text.
+  - `sezonnyy-kontent-paket`: replaced subtitle/description/tags with marketing-focused version.
+  - Restaurants:
+    - set `aerosemka-lokacii` image to `/media/drone-service/restaurants-3.png` for parity with drone-service card.
+    - updated `imidzhevoe-video-restorana` subtitle/description/tags.
+    - updated `semka-interera-podachi` subtitle/description/tags.
+- verification:
+  - build passed after edits (`npm run build`);
+  - local runtime check: `curl -I http://localhost:3200/gazeta` -> `200 OK`.
+
+## 2026-04-21 (gazeta: image sync batch + sticky top nav click fix)
+### Session Summary
+- Выполнена пакетная синхронизация изображений карточек по IAB-комментариям.
+- Исправлена нестабильная кликабельность верхней sticky-навигации шагов `01–14` на `/gazeta`.
+
+### Изменения
+- `constants/l2DirectionConfigs.ts`
+  - `autoService`:
+    - `video-dilerskogo-centra` -> `services-images/auto/final/2.png`
+    - `aerosemka-avtoploshadki` -> `/media/drone-service/auto-showroom-1.png`
+    - `kontent-servisa-deteylinga` -> `services-images/auto/final/1.png`
+    - `tur-360-avtobiznesa` -> `services-images/auto/final/3.png`
+  - `hotelsService`:
+    - `sezonnyy-kontent-paket` -> `services-images/hotels-content/final/1.png`
+  - `restaurantsService`:
+    - `imidzhevoe-video-restorana` -> `services-images/promo-restaurant/final/1.png`
+  - `clinicsService`:
+    - `imidzhevoe-video-kliniki` -> `services-images/reels-clinic/final/2.png`
+    - `video-vracha-napravleniya` -> `services-images/reels-clinic/final/3.png`
+    - `reels-kliniki` -> `services-images/reels-clinic/final/1.png`
+    - `semka-interera-kabinetov` -> `services-images/reels-clinic/final/4.png`
+    - `tur-360-klinik` -> `services-images/reels-clinic/final/5.png`
+  - `tours360Service`:
+    - `tury-360-kliniki` -> `services-images/reels-clinic/final/5.png`
+  - `businessService`:
+    - `tury-360` синхронизирован по изображению с карточкой `#8426`.
+  - Добавлены импорты ассетов:
+    - `autoImageOne`, `autoImageTwo`, `autoImageThree`
+    - `hotelsContentImageOne`
+    - `promoRestaurantImageOne`
+    - `reelsClinicImageTwo`, `reelsClinicImageThree`, `reelsClinicImageFour`, `reelsClinicImageFive`
+- `components/gazeta/NichesStack.tsx`
+  - переписан `scrollToNicheStep`:
+    - переход по шагу рассчитывается через прогресс контейнера (`targetIndex / totalSteps`) и `containerScrollRange`,
+    - сохранён fallback на прямой scroll к `niche-step-*`.
+  - эффект: клики по элементам `01–14` в sticky-ленте работают предсказуемо и попадают в нужный блок.
+- `CONTEXT_NEXT_CHAT.md`
+  - добавлена синхронизированная запись с полным перечнем изменений.
+
+### Verification
+- Локальный runtime после правок: `curl -I http://localhost:3200/gazeta` -> `HTTP/1.1 200 OK`.
+- Hot reload/compile успешен на локальном сервере (`PORT=3200`).
