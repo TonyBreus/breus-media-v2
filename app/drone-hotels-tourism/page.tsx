@@ -5,15 +5,15 @@ import { DebugWrapper } from '@/components/debug/DebugWrapper';
 import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 import { FaqSection } from '@/components/shared/FaqSection';
-import { ProcessNote } from '@/components/shared/ProcessNote';
 import { DronePageProgress } from '@/components/drone-hotels-tourism/DronePageProgress';
-import { DroneStickyCta } from '@/components/drone-hotels-tourism/DroneStickyCta';
-import { MobileBottomBar } from '@/components/drone-restaurants/MobileBottomBar';
+import { PackageCta } from '@/components/drone-hotels-tourism/PackageCta';
 import { ScrollArrow } from '@/components/drone-restaurants/ScrollArrow';
-import { FormatExamplesSlideshow } from '@/components/drone-restaurants/FormatExamplesSlideshow';
-import formatExampleOne from '@/services-images/drone-restaurants/final/4.png';
-import formatExampleTwo from '@/services-images/drone-restaurants/final/2.png';
-import formatExampleThree from '@/services-images/drone-restaurants/final/3.png';
+import { FormatExamplesSlideshow } from '@/components/drone-hotels-tourism/FormatExamplesSlideshow';
+import formatExampleOne from '@/services-images/drone-hotels-tourism/final/1.png';
+import formatExampleTwo from '@/services-images/drone-hotels-tourism/final/2.png';
+import formatExampleThree from '@/services-images/drone-hotels-tourism/final/3.png';
+import { DroneStickyCta } from '@/components/drone-hotels-tourism/DroneStickyCta';
+import HeroBackgroundMountains from '@/components/drone-hotels-tourism/HeroBackgroundMountains';
 
 type FaqItem = {
     question: string;
@@ -215,104 +215,61 @@ const nicheCards: NicheCard[] = [
         deliverables: 'Фотографии с воздуха + короткий ролик.',
     },
     {
-        title: 'Тревел-контент и туроператоры',
-        pain: 'Нужен destination-ролик, который продаёт Грузию как направление.',
+        title: 'Тревел-проекты и туроператоры',
+        pain: 'Нужен destination-ролик, который продаёт Грузию как направление путешествия.',
         solution: 'Аэросъёмка локаций, пейзажей, культурных объектов и природных зон.',
         deliverables: 'Основной ролик + серия видео для соцсетей.',
     },
     {
         title: 'Международная отельная сеть',
         pain: 'Нужен локальный оператор с правильным workflow и коммуникацией на EN.',
-        solution: 'Продакшн-пакет, подробная смета по пунктам, исходники, работа в рамках GCAA.',
+        solution: 'Продакшн-пакет, подробная смета по пунктам, оригинальные 4K видеоматериалы, работа в рамках GCAA.',
         deliverables: 'По списку кадров, форматы под стандарты сети.',
-    },
-];
-
-const whyUsCards: CardItem[] = [
-    {
-        title: 'Снимаем так, чтобы гость забронировал номер',
-        text: 'Решение о бронировании принимается за несколько секунд пролистывания — на Booking, в Instagram, на сайте. Мы снимаем не ради красивого пролёта, а чтобы будущий гость понял: где находится отель, какой вид из окна, что вокруг — море, горы, центр города, и что ждёт его внутри.',
-    },
-    {
-        title: 'Два формата съёмки из одного визита',
-        text: 'Плавные кадры снаружи с воздуха + пролёт камерой внутри по лобби, ресторану и общим зонам — там, где это уместно. Не нужно два выезда и два согласования с отельной командой.',
-    },
-    {
-        title: 'Кадры под Booking, сайт, Instagram и карточку в Google Maps',
-        text: 'Из одной съёмки — вертикальные Reels, горизонтальные ролики для сайта и Booking, статичные кадры для карточки в Google Maps и рекламных кампаний. Один съёмочный день закрывает все каналы.',
-    },
-    {
-        title: 'Быстрый контакт, без лишних слоёв',
-        text: 'Бриф, правки и вопросы решаются напрямую. Небольшая команда — значит быстрее и проще в общении.',
-    },
-    {
-        title: 'Вид из окна — главный кадр',
-        text: 'Снимаем то, что гость увидит со своего балкона: виноградники Кахетии, горы в Гудаури, крыши старого Тбилиси. Вид из номера — аргумент, ради которого бронируют конкретный отель, а не соседний.',
-    },
-    {
-        title: 'Кадры живут дольше одного сезона',
-        text: 'Снимаем так, чтобы видео работало минимум год — без привязки к конкретному событию или сезонному оформлению. Вы получаете материал, который не устареет через три месяца.',
     },
 ];
 
 const relatedServices: RelatedService[] = [
     {
-        title: 'Reels для отелей',
-        href: '/reels-promo/reels-hotel',
-        text: 'Короткие вертикальные ролики для регулярного контента, сезонных обновлений и анонсов спецпредложений.',
-    },
-    {
-        title: '360° виртуальные туры для отелей',
+        title: '360° виртуальный тур для отеля',
         href: '/360-tour-hotels',
-        text: 'Интерактивные туры для сайта и площадок бронирования (Booking, Airbnb), чтобы гость мог детально изучить пространство до бронирования.',
+        text: 'Интерактивные 8K туры для сайта и площадок бронирования (Booking, Airbnb), чтобы гость мог детально изучить пространство до бронирования.',
     },
     {
-        title: 'Промо-видео для отеля',
-        href: '/promo-video/promo-hotel',
-        text: 'Когда нужен не только аэрослой, а полноценная история про атмосферу, сервис и характер объекта.',
+        title: 'Reels для отеля и курорта',
+        href: '/reels-promo/reels-hotel',
+        text: 'Динамичные вертикальные ролики номеров, спа, террас и сервиса для охватов в Instagram и прямых бронирований.',
     },
-    {
-        title: 'FPV-съёмка и кинодроны',
-        href: '/drone-fpv-cinema',
-        text: 'Динамичные FPV-пролёты и cinematic aerials для рекламных кампаний, брендового контента и фестивалей.',
-    },
-];
-
-const formatExampleCards = [
-    { image: formatExampleOne, alt: 'Пример аэросъёмки отеля в Тбилиси — формат 1' },
-    { image: formatExampleTwo, alt: 'Пример аэросъёмки отеля в Тбилиси — формат 2' },
-    { image: formatExampleThree, alt: 'Пример аэросъёмки отеля в Тбилиси — формат 3' },
 ];
 
 const formatExampleSlides = [formatExampleOne, formatExampleTwo, formatExampleThree];
 
 const statsCards: StatCard[] = [
     {
-        stat: '65%',
-        label: 'выбирают направление',
-        description: 'путешественников, смотревших travel-видео, делают это именно в момент выбора destination. Ещё 54% — при выборе конкретного места размещения.',
-        source: "Google / Ipsos, Traveler's Road to Decision",
-        sourceUrl: 'https://www.thinkwithgoogle.com/marketing-strategies/video/travel-content-takes-off-on-youtube/',
+        stat: '+60%',
+        label: 'больше бронирований',
+        description: 'получают отели с качественными профессиональными фотографиями по сравнению с теми, кто обходится типовыми кадрами. Исследование Expedia по hospitality-листингам.',
+        source: 'Expedia study, via Paul Reiffer (hospitality photography)',
+        sourceUrl: 'https://www.paulreiffer.com/2025/05/does-great-photography-really-drive-luxury-hotel-bookings/',
+    },
+    {
+        stat: '×2',
+        label: 'выше вовлечённость',
+        description: 'у отельных листингов с 20+ профессиональными изображениями — по сравнению с листингами, где мало фото или они низкого качества. На Airbnb-объектах с профессиональной съёмкой рост бронирований доходит до +33%.',
+        source: 'Expedia study, via Paul Reiffer (hospitality photography)',
+        sourceUrl: 'https://www.paulreiffer.com/2025/05/does-great-photography-really-drive-luxury-hotel-bookings/',
     },
     {
         stat: '×2.7',
         label: 'больше доверия',
-        description: 'бизнесам с полным профилем в Google Business Profile. Вероятность того, что пользователь рассмотрит покупку, выше в среднем в 2.7 раза — и на 50% выше при наличии визуального контента.',
-        source: 'Google Business Profile, official data',
-        sourceUrl: 'https://support.google.com/business/answer/6124108',
+        description: 'бизнесам с полностью заполненной карточкой в Google Maps. Google официально сообщает: пользователи в среднем в 2.7 раза чаще считают такие бизнесы достойными доверия, и на 70% чаще собираются их посетить.',
+        source: 'Google, official Google Business statistics',
+        sourceUrl: 'https://searchendurance.com/google-business-profile-statistics/',
     },
     {
-        stat: '2 из 3',
-        label: 'смотрят видео о поездке',
-        description: 'американских пользователей смотрят travel-видео онлайн, когда задумываются о поездке. Видео — не украшение, а этап принятия решения.',
-        source: 'Think with Google / YouTube research',
-        sourceUrl: 'https://www.thinkwithgoogle.com/consumer-insights/consumer-trends/travel-video-content/',
-    },
-    {
-        stat: '1.5–5%',
-        label: 'коридор конверсии',
-        description: 'отельных сайтов: средняя конверсия 1.5–2.5%, топ-сайты достигают 3–5%. Визуальный контент — один из главных факторов, двигающих цифру вверх.',
-        source: 'Hotel Benchmark / RMS Cloud industry data',
+        stat: '1.5–2.5%',
+        label: 'средняя конверсия сайта',
+        description: 'отельных сайтов, по данным Hotel Tech Report. Это значит: из 100 человек, попавших на страницу бронирования, в среднем 1-2 завершают резерв. Качественный визуал — один из главных факторов, двигающих эту цифру вверх.',
+        source: 'Hotel Tech Report, via RMS Cloud',
         sourceUrl: 'https://www.rmscloud.com/blog/improve-your-hotel-booking-conversion-rate',
     },
 ];
@@ -331,17 +288,12 @@ const faqItems: FaqItem[] = [
     {
         question: 'Чем FPV-пролёт отличается от обычного аэровидео?',
         answer:
-            'Обычный дрон снимает плавные стабильные панорамы снаружи — фасад, территория, вид с высоты. FPV-дрон может работать внутри: лобби, коридор, pool area — и создаёт непрерывный иммерсивный кадр. Это опция, а не обязательная часть каждого пакета.',
+            'Обычный дрон снимает плавные стабильные панорамы снаружи — фасад, территория, вид с высоты. FPV-дрон может работать внутри: лобби, коридор, pool area — и создаёт непрерывный кадр от первого лица. Это опция, а не обязательная часть каждого пакета.',
     },
     {
         question: 'Подходит ли контент для Booking, Airbnb и других площадок бронирования?',
         answer:
             'Да. Отдаём в форматах, которые принимают основные площадки: JPG / WebP для фото, MP4 для видео. Горизонтальные версии для сайта и YouTube, вертикальные для Reels и мобильных площадок бронирования. Адаптируем под ваши требования.',
-    },
-    {
-        question: 'Нужно ли закрывать отель на время съёмки?',
-        answer:
-            'Нет. Подбираем съёмочное окно, которое минимально пересекается с активным потоком гостей: раннее утро, время между заездами или согласованный технический слот.',
     },
     {
         question: 'Сколько стоит дрон-съёмка отеля в Тбилиси?',
@@ -354,39 +306,9 @@ const faqItems: FaqItem[] = [
             'Съёмка занимает от 1 до 3 часов в зависимости от задачи. Видеофайлы без монтажа — от 24 часов. Готовый контент с монтажом и обработкой — от 3 до 7 рабочих дней.',
     },
     {
-        question: 'Можно ли снять сразу несколько объектов?',
-        answer:
-            'Да. Если у вас несколько апарт-отелей или объектов в одном городе — обсудим пакет на несколько съёмок. При регулярном сотрудничестве цена за объект ниже.',
-    },
-    {
-        question: 'Работаете ли вы за пределами Тбилиси?',
-        answer:
-            'Да. Кахетия, Казбеги, Гудаури и Бакуриани — по договорённости. Стоимость выезда зависит от расстояния и логистики — уточняем на этапе брифа.',
-    },
-    {
-        question: 'В какую погоду летает дрон?',
-        answer:
-            'При ветре до 10–12 м/с и без осадков. Горные регионы обсуждаем отдельно — там своя специфика погоды и высотные ограничения. Если условия не позволяют — переносим без доплат.',
-    },
-    {
         question: 'Нужны ли разрешения на полёты в Тбилиси?',
         answer:
             'Да. Полёты дронов регулируются Авиационной администрацией Грузии (GCAA). Проверка воздушного пространства и все необходимые согласования — на нас. Вам не нужно ничего оформлять.',
-    },
-    {
-        question: 'Как дрон помогает выделиться на Booking и похожих площадках?',
-        answer:
-            'Booking показывает карточки плотной сеткой из одинаковых фотографий. Аэровидео и пролёт по территории сразу выдёргивают карточку — гость видит масштаб, природу вокруг, расположение. Это особенно работает для курортных и горных отелей, где главная ценность находится вне здания.',
-    },
-    {
-        question: 'Что снимать, если отель ещё строится или открывается?',
-        answer:
-            'На этапе pre-opening снимаем территорию, ландшафт, виды — готовим визуальную базу ещё до запуска. Это же видео работает потом в рекламе и на площадках бронирования. Часть кадров можно обновить после открытия, без полной пересъёмки.',
-    },
-    {
-        question: 'Можно ли снять экстерьер зимой и интерьер отдельно летом?',
-        answer:
-            'Да. Если погода или сезон не позволяют снять всё сразу, делим съёмку на два этапа. На каждом этапе фиксируем цвет и свет так, чтобы итоговые ролики смотрелись цельно.',
     },
     {
         question: 'Есть ли договор?',
@@ -413,22 +335,16 @@ const serviceSchema = {
     '@type': 'Service',
     name: 'Дрон-съёмка отелей и туризма в Тбилиси',
     description:
-        'Аэросъёмка и FPV-видео для отелей, курортов и hospitality-объектов в Тбилиси и Грузии. Контент для сайта, Booking и площадок бронирования, соцсетей.',
+        'Аэросъёмка и FPV-видео для отелей, курортов и туристических объектов в Тбилиси и Грузии. Материалы для сайта, Booking и площадок бронирования, соцсетей.',
     provider: {
-        '@type': 'LocalBusiness',
-        name: 'Breus Media',
-        address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Тбилиси',
-            addressCountry: 'GE',
-        },
+        '@id': 'https://breus.media/#organization',
     },
     areaServed: ['Tbilisi', 'Kakheti', 'Kazbegi', 'Gudauri', 'Bakuriani', 'Georgia'],
     offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'GEL',
         lowPrice: '250',
-        highPrice: '2600',
+        highPrice: '900',
         offerCount: '4',
     },
     serviceType: 'Drone Photography and Videography',
@@ -438,10 +354,11 @@ const serviceSchema = {
 const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
+    '@id': 'https://breus.media/#organization',
     name: 'Breus Media',
-    description: 'Медиапродакшн в Тбилиси. Аэросъёмка, FPV-видео, 360° виртуальные туры и контент для hospitality и туризма.',
+    description: 'Медиапродакшн в Тбилиси. Аэросъёмка, FPV-видео, 360° виртуальные туры и съёмки для отелей и туризма.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -457,21 +374,56 @@ const localBusinessSchema = {
     openingHours: 'Mo-Su 09:00-20:00',
 };
 
+const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+        {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Главная',
+            item: 'https://breus.media',
+        },
+        {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Туризм и отели',
+            item: 'https://breus.media/tourism-service',
+        },
+        {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Аэросъёмка отелей и курортов',
+            item: 'https://breus.media/drone-hotels-tourism',
+        },
+    ],
+};
+
 export const metadata: Metadata = {
-    title: 'Дрон-съёмка отелей и курортов в Тбилиси | Аэровидео для hospitality | Breus Media',
+    title: 'Дрон-съёмка отелей и курортов в Тбилиси и Грузии | Breus Media',
     description:
-        'Аэросъёмка и FPV-видео для отелей, курортов и hospitality-объектов в Тбилиси и Грузии. Контент для сайта, Booking и соцсетей. От 250 ₾.',
+        'Аэросъёмка и FPV-видео для отелей, курортов и туристических объектов в Тбилиси и по Грузии. Материалы для сайта, Booking и соцсетей. От 250 ₾.',
     alternates: {
         canonical: 'https://breus.media/drone-hotels-tourism',
+        languages: {
+            'ru-RU': 'https://breus.media/drone-hotels-tourism',
+            'en-US': 'https://breus.media/drone-hotels-tourism/en',
+            'x-default': 'https://breus.media/drone-hotels-tourism',
+        },
     },
     openGraph: {
-        title: 'Дрон-съёмка отелей в Тбилиси | Breus Media',
+        title: 'Аэросъёмка отелей в Грузии | Breus Media',
         description:
-            'Аэросъёмка и FPV-видео для отелей и курортов в Тбилиси от 250 ₾. Контент для Booking, сайта и Reels. Снаружи, внутри и под ключ.',
+            'Аэросъёмка и FPV-видео для отелей и курортов в Тбилиси от 250 ₾. Материалы для Booking, сайта и Reels. Снаружи, внутри и под ключ.',
         url: 'https://breus.media/drone-hotels-tourism',
         siteName: 'Breus Media',
         locale: 'ru_RU',
         type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Аэросъёмка отелей в Грузии | Breus Media',
+        description: 'Дрон + FPV для Booking, сайта и соцсетей. От 250 ₾.',
     },
 };
 
@@ -485,6 +437,13 @@ export default function DroneHotelsTourismPage() {
                 isLanding={false}
                 ctaLabel="Обсудить задачу"
                 singleTickerMode={true}
+                tickerAfterFirstScroll={false}
+                showMobilePrimaryCta={true}
+                showDesktopPrimaryCta={false}
+                mobileQuickLink={{ label: 'ЦЕНЫ', href: '#pricing' }}
+                mobileMinimalCenterTime={true}
+                showDesktopNavTime={true}
+                stickyTickerUnderHeader={true}
                 languageLinks={{
                     RU: '/drone-hotels-tourism',
                     EN: '/drone-hotels-tourism/en',
@@ -501,64 +460,37 @@ export default function DroneHotelsTourismPage() {
             <DebugWrapper id={385100} label="Hero Section">
                 <section
                     id="drone-hotels-tourism-hero"
-                    className="relative isolate overflow-hidden border-b border-[#2a2a2a] bg-[#080808] pb-24 pt-36 md:pb-28 md:pt-44"
+                    className="relative isolate overflow-hidden border-b border-[#2a2a2a] bg-[#080808] pb-16 pt-36 md:pb-20 md:pt-44"
                 >
-                    <div
-                        aria-hidden
-                        className="absolute inset-0 bg-cover bg-center opacity-25"
-                        style={{
-                            backgroundImage:
-                                "url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=80')",
-                        }}
-                    />
-                    <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,210,63,0.24),transparent_38%),linear-gradient(180deg,rgba(8,8,8,0.35),rgba(8,8,8,0.94)_65%,#080808)]" />
+                    <div aria-hidden className="absolute inset-0">
+                        <HeroBackgroundMountains />
+                    </div>
+                    <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,8,0.15),rgba(8,8,8,0.55)_75%,#080808)]" />
                     <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FFD23F]/60 to-transparent" />
 
                     <div className="container relative mx-auto px-6">
                         <div className="grid items-end gap-12 lg:grid-cols-[minmax(0,1.1fr)_360px]">
                             <div>
-                                <h1 className="max-w-5xl text-4xl font-bold leading-[0.92] md:text-6xl lg:text-7xl">
+                                <h1 className="max-w-4xl text-4xl font-bold leading-[0.92] md:text-6xl lg:text-7xl">
                                     Аэросъёмка отелей и курортов в Тбилиси и по всей Грузии
                                 </h1>
 
-                                <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/78 md:text-xl">
-                                    Отели всё чаще выбирают по видео — ещё до того, как человек нажал «забронировать».
-                                </p>
-
-                                <p className="mt-5 max-w-3xl text-sm leading-relaxed text-white/70 md:text-lg">
-                                    Фотографии есть у всех, но они не передают масштаб территории, вид с крыши, путь от
-                                    ворот до лобби. Дрон снимает это с высоты и в движении — гость понимает, куда едет,
-                                    ещё на этапе выбора.
-                                </p>
-
-                                <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/70 md:text-lg">
-                                    FPV-камера идёт дальше — она пролетает через арку, скользит над бассейном, проходит
-                                    сквозь лобби за одно непрерывное движение. Несколько секунд — и человек чувствует
-                                    пространство так, как почувствует его вживую.
-                                </p>
-
-                                <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/70 md:text-lg">
-                                    Из одной съёмки вы получаете материал под Booking, сайт, Instagram, TikTok и
-                                    карточку в Google Maps — всё в нужных форматах, без дополнительных согласований.
-                                </p>
-
-                                <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/62 md:text-base">
-                                    Один выезд закрывает и фасад, и территорию, и общие зоны — видеобаза отеля готова
-                                    к новому сезону заранее.
+                                <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/78 md:text-xl">
+                                    Покажите отель так, чтобы гость забронировал до визита. 4K-видео с воздуха + пролёт камерой внутри. Материал под Booking, сайт и соцсети — за один выезд.
                                 </p>
 
                                 <div className="mt-10 flex flex-wrap gap-3">
                                     <a
                                         href="#contact"
-                                        className="inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
+                                        className="inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-8 py-4 text-sm font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
                                     >
-                                        Обсудить задачу
+                                        Обсудить съёмку
                                     </a>
                                     <a
                                         href="#pricing"
-                                        className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F]"
+                                        className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-8 py-4 text-sm font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F]"
                                     >
-                                        Посмотреть цены
+                                        Посмотреть пакеты
                                     </a>
                                 </div>
                             </div>
@@ -596,7 +528,7 @@ export default function DroneHotelsTourismPage() {
 
             {/* ── КАК ЭТО ВЫГЛЯДИТ ──────────────────────────────────────────────── */}
             <DebugWrapper id={385110} label="How It Looks Section">
-                <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-16">
+                <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-12">
                     <div className="container mx-auto px-6">
                         <div className="max-w-3xl">
                             <h2 className="text-3xl font-bold md:text-4xl">Как это выглядит</h2>
@@ -625,7 +557,7 @@ export default function DroneHotelsTourismPage() {
                         <div className="max-w-3xl">
                             <h2 className="text-3xl font-bold md:text-4xl">Что говорят цифры</h2>
                             <p className="mt-4 leading-relaxed text-white/70">
-                                Видео — не украшение, а инструмент бронирования. Исследования показывают, насколько оно меняет поведение будущего гостя.
+                                Визуальный контент — это не украшение, а прямой инструмент бронирования. Исследования Expedia, Google и Hotel Tech Report показывают, как сильно качество съёмки влияет на решение будущего гостя.
                             </p>
                         </div>
                         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -638,15 +570,15 @@ export default function DroneHotelsTourismPage() {
                                         href={item.sourceUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="mt-5 inline-flex items-center text-xs font-semibold text-white/50 transition-colors hover:text-[#FFD23F]"
+                                        className="mt-5 inline-flex items-center text-xs font-semibold text-white/60 transition-colors hover:text-[#FFD23F]"
                                     >
                                         Источник: {item.source} →
                                     </a>
                                 </article>
                             ))}
                         </div>
-                        <p className="mt-8 max-w-4xl text-xs leading-relaxed text-white/45">
-                            Цифры приведены из открытых отраслевых отчётов и исследований Google. Конкретный эффект для вашего отеля зависит от качества исходного пространства, канала публикации и контекста кампании.
+                        <p className="mt-8 max-w-4xl text-xs leading-relaxed text-white/55">
+                            Цифры приведены из открытых исследований Expedia, Google и Hotel Tech Report. Конкретный эффект для вашего отеля зависит от качества исходного пространства, типа кадров, канала публикации и контекста кампании.
                         </p>
                     </div>
                 </section>
@@ -663,7 +595,7 @@ export default function DroneHotelsTourismPage() {
                         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                             {problemCards.map((card) => (
                                 <article key={card.title} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                    <h3 className="text-base font-bold text-white">{card.title}</h3>
+                                    <h3 className="text-lg font-bold text-white md:text-xl">{card.title}</h3>
                                     <p className="mt-3 text-sm leading-relaxed text-white/72">{card.text}</p>
                                 </article>
                             ))}
@@ -672,52 +604,6 @@ export default function DroneHotelsTourismPage() {
                 </section>
             </DebugWrapper>
 
-            {/* ── ЧТО СНИМАЕМ И ЧТО ЭТО РЕШАЕТ ───────────────────────────────────── */}
-            <DebugWrapper id={385140} label="What We Shoot Section">
-                <section id="what-is" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
-                    <div className="container mx-auto px-6">
-                        <div className="max-w-4xl">
-                            <h2 className="text-3xl font-bold md:text-4xl">Что снимаем — и какую задачу это решает</h2>
-                            <p className="mt-5 leading-relaxed text-white/72">
-                                Аэросъёмка отеля — это не просто кадр сверху. Мы показываем объект в том порядке, в
-                                котором его воспринимает будущий гость: расположение в городе или природе → фасад →
-                                территория → ключевые зоны → атмосфера.
-                            </p>
-                            <p className="mt-4 leading-relaxed text-white/72">
-                                Дрон фиксирует внешний контекст: как выглядит отель с высоты, какие у него виды, как он
-                                вписан в ландшафт или городскую среду. Для горного отеля — горный хребет за номерами.
-                                Для курорта — береговая линия и бассейн. Для городского объекта — расположение в
-                                квартале, соседство с достопримечательностями.
-                            </p>
-                            <p className="mt-4 leading-relaxed text-white/72">
-                                FPV-камера добавляет движение внутри: проход через лобби, связь зон, глубину
-                                пространства.
-                            </p>
-                            <p className="mt-4 leading-relaxed text-white/72">
-                                Дрон-видео не заменяет рекламу, но отвечает на главный вопрос гостя при выборе отеля —
-                                «а как там вообще?». Чем быстрее человек это понимает, тем быстрее он бронирует.
-                            </p>
-                            <ul className="mt-6 grid gap-3 md:grid-cols-2">
-                                <li className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] px-4 py-4 text-sm leading-relaxed text-white/78">
-                                    Гость, который ни разу не был, заранее понимает куда едет.
-                                </li>
-                                <li className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] px-4 py-4 text-sm leading-relaxed text-white/78">
-                                    Природное окружение или панорама перестают быть «тайным преимуществом».
-                                </li>
-                                <li className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] px-4 py-4 text-sm leading-relaxed text-white/78">
-                                    Карточка на Booking получает видео — выделяется среди похожих объектов.
-                                </li>
-                                <li className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] px-4 py-4 text-sm leading-relaxed text-white/78">
-                                    Сезонный контент готов к публикации без долгих согласований.
-                                </li>
-                                <li className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] px-4 py-4 text-sm leading-relaxed text-white/78 md:col-span-2">
-                                    Менеджер по продажам отправляет ссылку вместо папки с фотографиями.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </DebugWrapper>
 
             {/* ── ЧТО ВЫ ПОЛУЧАЕТЕ ─────────────────────────────────────────────────── */}
             <DebugWrapper id={385160} label="Deliverables Section">
@@ -734,7 +620,7 @@ export default function DroneHotelsTourismPage() {
                         </div>
 
                         <div className="mt-10 grid gap-5 lg:grid-cols-3">
-                            <article className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
+                            <article className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
                                 <h3 className="text-lg font-bold text-white">Что входит в каждый пакет</h3>
                                 <ul className="mt-5 space-y-3 text-sm leading-relaxed text-white/72">
                                     {deliverablesDefault.map((item) => (
@@ -750,7 +636,7 @@ export default function DroneHotelsTourismPage() {
                             </article>
 
                             <article className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-xl font-bold text-white">Как устроены файлы</h3>
+                                <h3 className="text-lg font-bold text-white">Как устроены файлы</h3>
                                 <div className="mt-5 grid gap-4 sm:grid-cols-2">
                                     {[
                                         { name: 'Сайт', desc: 'Основной ролик и фотографии для страниц сайта' },
@@ -758,7 +644,7 @@ export default function DroneHotelsTourismPage() {
                                         { name: 'Google Maps', desc: 'Короткий ролик и фото для карточки отеля' },
                                         { name: 'Архив', desc: 'Все исходники — для будущего использования' },
                                     ].map((folder) => (
-                                        <div key={folder.name} className="rounded-[14px] border border-[#2a2a2a] bg-[#0D0D0D] p-5">
+                                        <div key={folder.name} className="rounded-[12px] border border-[#2a2a2a] bg-[#0D0D0D] p-5">
                                             <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">
                                                 {folder.name}
                                             </p>
@@ -789,26 +675,6 @@ export default function DroneHotelsTourismPage() {
                 </section>
             </DebugWrapper>
 
-            {/* ── ПРИМЕРЫ ПО ФОРМАТАМ ────────────────────────────────────────────── */}
-            <DebugWrapper id={385170} label="Format Examples Section">
-                <section className="border-b border-[#2a2a2a] bg-[#080808] py-16">
-                    <div className="container mx-auto px-6">
-                        <div className="max-w-3xl">
-                            <h2 className="text-2xl font-bold md:text-3xl">Примеры по форматам</h2>
-                        </div>
-                        <div className="mt-8 grid gap-5 md:grid-cols-3">
-                            {formatExampleCards.map((item, index) => (
-                                <div key={index} className="overflow-hidden rounded-[16px] border border-[#2a2a2a] bg-[#141414]">
-                                    <div className="relative aspect-video">
-                                        <img src={item.image.src} alt={item.alt} className="h-full w-full object-cover" />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            </DebugWrapper>
-
             {/* ── МИД-КТА ──────────────────────────────────────────────────────────── */}
             <DebugWrapper id={385180} label="Mid CTA Section">
                 <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-10">
@@ -820,13 +686,13 @@ export default function DroneHotelsTourismPage() {
                             <div className="flex flex-wrap gap-3">
                                 <a
                                     href="#contact"
-                                    className="inline-flex items-center justify-center rounded-[10px] bg-[#D4A017] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
+                                    className="inline-flex items-center justify-center rounded-[10px] bg-[#D4A017] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
                                 >
                                     Обсудить задачу
                                 </a>
                                 <a
                                     href="#pricing"
-                                    className="inline-flex items-center justify-center rounded-[10px] border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F]"
+                                    className="inline-flex items-center justify-center rounded-[10px] border border-white/20 px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F]"
                                 >
                                     Посмотреть цены
                                 </a>
@@ -834,11 +700,6 @@ export default function DroneHotelsTourismPage() {
                         </div>
                     </div>
                 </section>
-            </DebugWrapper>
-
-            {/* ── PROCESS NOTE ─────────────────────────────────────────────────────── */}
-            <DebugWrapper id={385200} label="Process Note Section">
-                <ProcessNote text="Съёмка среднего отеля — 2–3 часа на объекте. Работы в отеле не останавливаются." />
             </DebugWrapper>
 
             {/* ── КАК ПРОХОДИТ РАБОТА ──────────────────────────────────────────────── */}
@@ -853,7 +714,7 @@ export default function DroneHotelsTourismPage() {
                             {processSteps.map((step) => (
                                 <article key={step.step} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
                                     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">{step.step}</p>
-                                    <h3 className="mt-3 text-lg font-bold text-white">{step.title}</h3>
+                                    <h3 className="mt-3 text-xl font-bold text-white">{step.title}</h3>
                                     <p className="mt-3 text-sm leading-relaxed text-white/72">{step.text}</p>
                                 </article>
                             ))}
@@ -864,61 +725,63 @@ export default function DroneHotelsTourismPage() {
 
             {/* ── ПАКЕТЫ И ЦЕНЫ ────────────────────────────────────────────────────── */}
             <DebugWrapper id={385240} label="Pricing Section">
-                <section id="pricing" className="border-b border-[#2a2a2a] bg-[#080808] py-24">
+                <section id="pricing" className="scroll-mt-16 md:scroll-mt-20 pt-5 pb-20 border-b border-[#2a2a2a] bg-[#080808]">
                     <div className="container mx-auto px-6">
                         <div className="max-w-3xl">
-                            <h2 className="text-3xl font-bold md:text-4xl">Пакеты и цены</h2>
-                            <p className="mt-4 leading-relaxed text-white/70">Цены фиксированные, в грузинских лари (₾). Без скрытых доплат. Выбирайте пакет под свою задачу — от базовой съёмки до полного цикла.</p>
-                            <p className="mt-2 text-sm leading-relaxed text-white/55">
-                                Все фото и видео вы получаете в 4K — готовыми к использованию. К любому пакету можно добавить монтаж под соцсети, сайт и Google Maps, музыкальное сопровождение, субтитры на нужных языках и панорамы 360°.
+                            <h2 className="text-2xl font-bold text-white md:text-3xl lg:text-4xl">Пакеты и цены</h2>
+                            <p className="mt-2 text-xs leading-relaxed text-white/75 md:text-sm">
+                                Цены фиксированные, в лари (₾). Все фото и видео в 4K. Доступен монтаж Reels для соцсетей, горизонтальный промо-ролик 16:9, панорамы 360° и видео для карточек на Booking и Google Maps.
                             </p>
                         </div>
 
-                        <div className="mt-10 grid gap-5 xl:grid-cols-4">
+                        <div className="mt-5 grid gap-4 xl:grid-cols-4 xl:gap-5">
                             {pricingCards.map((card) => (
                                 <article
                                     key={card.title}
-                                    className={`flex flex-col rounded-[20px] border p-6 ${
+                                    className={`flex flex-col rounded-[20px] border p-4.5 md:p-5 ${
                                         card.popular
                                             ? 'border-[#FFD23F]/55 bg-[linear-gradient(180deg,rgba(255,210,63,0.1),rgba(20,20,20,1)_28%)]'
                                             : 'border-[#2a2a2a] bg-[#141414]'
                                     }`}
                                 >
-                                    <div className="flex items-start justify-between gap-4">
-                                        <div>
-                                            <h3 className="text-xl font-bold text-white">{card.title}</h3>
-                                            <p className="mt-2 text-sm text-white/64">{card.subtitle}</p>
-                                        </div>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-white md:text-xl">{card.title}</h3>
+                                        <p className="mt-1.5 text-xs text-white/64">{card.subtitle}</p>
+                                    </div>
+                                    <div className="mt-3.5 flex items-center gap-2 md:mt-4 md:gap-3">
+                                        <p className="text-2xl font-bold text-[#FFD23F] md:text-3xl">{card.price}</p>
                                         {card.popular ? (
-                                            <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/12 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">
-                                                Выгодно
+                                            <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/12 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">
+                                                Чаще всего выбирают
                                             </span>
                                         ) : null}
                                     </div>
-                                    <p className="mt-6 text-3xl font-bold text-[#FFD23F]">{card.price}</p>
-                                    <ul className="mt-6 flex-1 space-y-3 text-sm leading-relaxed text-white/72">
+                                    <ul className="mt-4 flex-1 space-y-1.5 text-xs leading-relaxed text-white/72 md:mt-4.5 md:space-y-2 md:text-[13px]">
                                         {card.items.map((item) => (
                                             <li key={item}>✓ {item}</li>
                                         ))}
                                     </ul>
-                                    {card.note && <p className="mt-5 text-sm leading-relaxed text-white/58">{card.note}</p>}
-                                    <a
-                                        href="#contact"
-                                        className="mt-6 inline-flex items-center justify-center rounded-[10px] border border-white/20 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F] hover:text-[#FFD23F]"
-                                    >
-                                        Обсудить этот пакет →
-                                    </a>
+                                    {card.note && <p className="mt-3 text-xs leading-relaxed text-white/58 md:mt-3.5">{card.note}</p>}
+                                    <PackageCta
+                                        label="Обсудить этот пакет →"
+                                        packageName={card.title}
+                                        packagePrice={card.price}
+                                        lang="ru"
+                                        className="mt-4 inline-flex items-center justify-center rounded-[10px] border border-white/20 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F] hover:text-[#FFD23F] md:mt-5 md:py-2.5"
+                                    />
                                 </article>
                             ))}
                         </div>
 
-                        <div className="mt-8 rounded-[16px] border border-[#FFD23F]/30 bg-[#121212] p-6">
-                            <h3 className="text-xl font-bold text-white">Дополнительно по задаче</h3>
-                            <p className="mt-2 text-sm leading-relaxed text-white/55">Из одной съёмки можно собрать не только основной материал, но и дополнительные форматы под сайт, соцсети, Google Business Profile и продажи.</p>
-                            <div className="mt-6 grid gap-4 md:grid-cols-2">
+                        <div className="mt-6 rounded-[16px] border border-[#FFD23F]/30 bg-[#121212] p-5 md:p-6">
+                            <h3 className="text-lg font-bold text-white md:text-xl">Дополнительно по задаче</h3>
+                            <p className="mt-2 text-xs leading-relaxed text-white/70 md:text-sm">
+                                Из одной съёмки можно собрать не только основной материал, но и дополнительные форматы под сайт, соцсети, карточку в Google Maps и продажи.
+                            </p>
+                            <div className="mt-4 grid gap-3 md:grid-cols-3">
                                 {addonPricing.map((item) => (
-                                    <div key={item} className="rounded-[12px] border border-[#2a2a2a] bg-[#0D0D0D] p-4">
-                                        <p className="text-sm leading-relaxed text-white/78">{item}</p>
+                                    <div key={item} className="rounded-[12px] border border-[#2a2a2a] bg-[#0D0D0D] p-3.5 text-xs leading-relaxed text-white/78 md:text-sm">
+                                        {item}
                                     </div>
                                 ))}
                             </div>
@@ -932,7 +795,7 @@ export default function DroneHotelsTourismPage() {
                 <section className="border-b border-[#2a2a2a] bg-[#080808] py-16">
                     <div className="container mx-auto px-6">
                         <div className="max-w-3xl">
-                            <h2 className="text-2xl font-bold md:text-3xl">Сравнение пакетов</h2>
+                            <h2 className="text-3xl font-bold md:text-4xl">Сравнение пакетов</h2>
                         </div>
                         <div className="mt-8 overflow-x-auto">
                             <table className="w-full min-w-[640px] text-sm text-white/80">
@@ -1012,54 +875,8 @@ export default function DroneHotelsTourismPage() {
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                </section>
-            </DebugWrapper>
-
-            {/* ── ПОМОЩНИК ВЫБОРА ПАКЕТА ─────────────────────────────────────────── */}
-            <DebugWrapper id={385255} label="Package Picker Section">
-                <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-14">
-                    <div className="container mx-auto px-6">
-                        <div className="mx-auto max-w-3xl">
-                            <h3 className="text-xl font-bold md:text-2xl">Как выбрать пакет</h3>
-                            <div className="mt-6 space-y-3 text-sm leading-relaxed text-white/76">
-                                <p>
-                                    → Нужна только съёмка территории и фасада —{' '}
-                                    <strong className="text-white">Полёт снаружи, 250 ₾</strong>
-                                </p>
-                                <p>
-                                    → Нужно показать лобби и связку внутренних зон —{' '}
-                                    <strong className="text-white">FPV внутри, 350 ₾</strong>
-                                </p>
-                                <p>
-                                    → Нужны внешний вид объекта и движение внутри за один визит —{' '}
-                                    <strong className="text-white">Полная съёмка, 500 ₾</strong>
-                                </p>
-                                <p>
-                                    → Нужны готовые ролики, фото, видео для Google Maps и для площадок размещения —{' '}
-                                    <strong className="text-white">Готовый результат, от 900 ₾</strong>
-                                </p>
-                                <p className="pt-2 text-white/55">Не уверены? Опишете объект, и мы подберём вариант под задачу и бюджет.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </DebugWrapper>
-
-            {/* ── POST-PRICING CTA ─────────────────────────────────────────────────── */}
-            <DebugWrapper id={385260} label="Post-Pricing CTA Section">
-                <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-10">
-                    <div className="container mx-auto px-6">
-                        <div className="flex flex-col gap-5 rounded-[14px] border border-[#FFD23F]/35 bg-[#131313] p-6 md:flex-row md:items-center md:justify-between md:p-8">
-                            <p className="max-w-2xl leading-relaxed text-white/80">
-                                Не уверены, какой пакет подойдёт? Напишите про отель — скажем, что имеет смысл снимать и что войдёт в бюджет.
-                            </p>
-                            <a
-                                href="#contact"
-                                className="inline-flex items-center justify-center rounded-[10px] bg-[#D4A017] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
-                            >
-                                Написать о задаче
-                            </a>
+                        <div className="flex items-center gap-1.5 text-xs text-white/45 md:hidden mt-4">
+                            <span>⟷</span> <span>Свайпайте таблицу влево-вправо для сравнения</span>
                         </div>
                     </div>
                 </section>
@@ -1068,26 +885,6 @@ export default function DroneHotelsTourismPage() {
             {/* ── FAQ ──────────────────────────────────────────────────────────────── */}
             <DebugWrapper id={385280} label="FAQ Section">
                 <FaqSection id="faq" items={faqItems} title="Частые вопросы" />
-            </DebugWrapper>
-
-            {/* ── КАК МЫ ПОДХОДИМ К СЪЁМКЕ ─────────────────────────────────────────── */}
-            <DebugWrapper id={385300} label="Why Us Section">
-                <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
-                    <div className="container mx-auto px-6">
-                        <div className="max-w-3xl">
-                            <h2 className="text-3xl font-bold md:text-4xl">Как мы подходим к съёмке</h2>
-                        </div>
-
-                        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                            {whyUsCards.map((card) => (
-                                <article key={card.title} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                    <h3 className="text-lg font-bold text-white">{card.title}</h3>
-                                    <p className="mt-3 text-sm leading-relaxed text-white/72">{card.text}</p>
-                                </article>
-                            ))}
-                        </div>
-                    </div>
-                </section>
             </DebugWrapper>
 
             {/* ── ТИПЫ ОБЪЕКТОВ И СЦЕНАРИИ ─────────────────────────────────────────── */}
@@ -1137,7 +934,7 @@ export default function DroneHotelsTourismPage() {
                                 Обсудить задачу
                             </a>
                             <a
-                                href="https://wa.me/995574619393"
+                                href="https://wa.me/995501103183?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%B0%D1%8D%D1%80%D0%BE%D1%81%D1%8A%D1%91%D0%BC%D0%BA%D0%B0%20%D0%BE%D1%82%D0%B5%D0%BB%D1%8F."
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-flex items-center justify-center rounded-[10px] border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F]"
@@ -1169,7 +966,7 @@ export default function DroneHotelsTourismPage() {
                                     Кахетия — виноградники, монастыри и горы. Идеально для эко-отелей и тревел-контента.
                                 </p>
                                 <p className="mt-6 rounded-[12px] border border-[#FFD23F]/25 bg-[#0d0d0d] px-4 py-3 text-sm leading-relaxed text-white/82">
-                                    Georgia (country) offers 20–25% cash rebate on qualified production expenses through the Film in Georgia programme. Ask us how this applies to your hotel campaign.
+                                    Грузия предлагает возврат 20–25% от расходов на съёмку через программу Film in Georgia. Спросите нас, как это применить к вашему отельному проекту.
                                 </p>
                             </div>
 
@@ -1200,7 +997,7 @@ export default function DroneHotelsTourismPage() {
                         <div className="max-w-3xl">
                             <h2 className="text-3xl font-bold md:text-4xl">Смежные услуги</h2>
                             <p className="mt-4 leading-relaxed text-white/70">
-                                Дрон-съёмка — один из слоёв visual-продукта отеля. При необходимости комбинируем с другими форматами.
+                                Дрон-съёмка — одно из направлений визуальной работы отеля. При необходимости комбинируем с другими форматами съёмки.
                             </p>
                         </div>
 
@@ -1227,7 +1024,7 @@ export default function DroneHotelsTourismPage() {
 
             {/* ── ГДЕ МЫ СНИМАЕМ В ГРУЗИИ ──────────────────────────────────────── */}
             <DebugWrapper id={385365} label="Geography Section">
-                <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
+                <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-16">
                     <div className="container mx-auto px-6">
                         <div className="max-w-3xl">
                             <h2 className="text-3xl font-bold md:text-4xl">Где мы снимаем в Грузии</h2>
@@ -1280,16 +1077,16 @@ export default function DroneHotelsTourismPage() {
                 <DroneContactStitch preselectedServices={['drone']} />
             </DebugWrapper>
 
-            <DroneStickyCta {...({ heroId: 'drone-hotels-tourism-hero' } as any)} />
-            <MobileBottomBar primaryLabel="Обсудить задачу" />
-
             <DebugWrapper id={385400} label="Footer Section">
                 <DroneFooterStitch />
             </DebugWrapper>
 
+            <DroneStickyCta heroId="drone-hotels-tourism-hero" />
+
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
         </main>
     );
 }
