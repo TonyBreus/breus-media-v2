@@ -180,6 +180,9 @@ export function GazetaMobileStepChooser({ lang = "ru" }: GazetaMobileStepChooser
 
         // Ensure horizontal swipe is dominant and above 50px threshold
         if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+            // Ignore edge swipes to avoid conflict with Safari back/forward gesture
+            if (touchStartX.current < 30 || touchStartX.current > window.innerWidth - 30) return;
+
             if (deltaX < 0 && activeTab === "services") {
                 // Swipe Left -> switch to industries
                 setActiveTab("industries");
@@ -252,13 +255,13 @@ export function GazetaMobileStepChooser({ lang = "ru" }: GazetaMobileStepChooser
                                     className="group cursor-pointer flex flex-col transition-transform duration-300 hover:scale-[1.02] active:scale-[0.97]"
                                 >
                                     {/* Full-bleed Photo with Title Inside */}
-                                    <div className="relative h-[100px] sm:h-[110px] w-full overflow-hidden rounded-[14px] bg-[#121216]">
+                                    <div className="relative h-[110px] sm:h-[120px] w-full overflow-hidden rounded-[14px] bg-[#121216]">
                                         <Image
                                             src={card.image}
                                             alt={card.title}
                                             fill
                                             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 380px"
-                                            className="h-[100px] sm:h-[110px] w-full object-cover rounded-[14px] transition-transform duration-700 group-hover:scale-108"
+                                            className="h-[110px] sm:h-[120px] w-full object-cover rounded-[14px] transition-transform duration-700 group-hover:scale-108"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent transition-opacity duration-300 group-hover:opacity-95" />
 

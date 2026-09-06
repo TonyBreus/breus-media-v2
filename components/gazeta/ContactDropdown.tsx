@@ -39,13 +39,9 @@ export function ContactDropdown() {
                         {/* Phones */}
                         <div className="flex flex-col gap-2">
                             <span className="text-white/50 uppercase text-xs tracking-wider">Numbers</span>
-                            <a href="tel:+995574619393" className="hover:text-[#D4AF37] transition-colors flex justify-between">
+                            <a href="tel:+995501103183" className="hover:text-[#D4AF37] transition-colors flex justify-between">
                                 <span>GEO/EN</span>
-                                <span className="font-mono">+995 574 619 393</span>
-                            </a>
-                            <a href="tel:+79991234567" className="hover:text-[#D4AF37] transition-colors flex justify-between">
-                                <span>RU</span>
-                                <span className="font-mono">+7 999 123 45 67</span>
+                                <span className="font-mono">+995 501 103 183</span>
                             </a>
                         </div>
 
@@ -55,14 +51,11 @@ export function ContactDropdown() {
                         <div className="flex flex-col gap-2">
                             <span className="text-white/50 uppercase text-xs tracking-wider">Messengers</span>
                             <div className="flex gap-4">
-                                <a href="#" className="hover:text-[#D4AF37] transition-colors p-1" title="WhatsApp">
+                                <a href="https://wa.me/995501103183" target="_blank" rel="noreferrer" className="hover:text-[#D4AF37] transition-colors p-1" title="WhatsApp">
                                     <MessageCircle className="w-5 h-5" />
                                 </a>
-                                <a href="#" className="hover:text-[#D4AF37] transition-colors p-1" title="Telegram">
+                                <a href="https://t.me/breusmedia" target="_blank" rel="noreferrer" className="hover:text-[#D4AF37] transition-colors p-1" title="Telegram">
                                     <Send className="w-5 h-5" />
-                                </a>
-                                <a href="#" className="hover:text-[#D4AF37] transition-colors p-1" title="Viber">
-                                    <Phone className="w-5 h-5" /> {/* Placeholder for Viber */}
                                 </a>
                             </div>
                         </div>
