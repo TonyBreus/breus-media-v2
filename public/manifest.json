@@ -1,0 +1,25 @@
+{
+  "name": "Антон 2.0 — Ритм Дня",
+  "short_name": "Антон 2.0",
+  "description": "Автономный Канбан-дашборд и ритм дня Антона Бреуса к цели $100k/год",
+  "start_url": "/kanban",
+  "scope": "/kanban",
+  "display": "standalone",
+  "background_color": "#07080B",
+  "theme_color": "#07080B",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
