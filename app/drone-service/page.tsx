@@ -8,6 +8,8 @@ import { DroneWhyUsSection } from '@/components/drone/DroneWhyUsSection';
 import { DroneProcessStitch } from '@/components/drone/DroneProcessStitch';
 import { DroneFlightConditionsNote } from '@/components/drone/DroneFlightConditionsNote';
 import { DronePricingStitch } from '@/components/drone/DronePricingStitch';
+import { DroneTechHub } from '@/components/drone/DroneTechHub';
+
 import { DroneFAQExpanded } from '@/components/drone/DroneFAQExpanded';
 import { DroneRelatedLinksCompact } from '@/components/drone/DroneRelatedLinksCompact';
 import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
@@ -245,6 +247,10 @@ export default function DroneServicePage() {
                 <DroneFlightConditionsNote />
             </DebugWrapper>
             <DebugWrapper id={10800} label="FAQ Section">
+            <DebugWrapper id={10600} label="Tech Hub Section">
+                <DroneTechHub />
+            </DebugWrapper>
+
                 <DroneFAQExpanded />
             </DebugWrapper>
             <DebugWrapper id={10850} label="Related Links Section">

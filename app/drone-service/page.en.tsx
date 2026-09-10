@@ -9,6 +9,8 @@ import { DroneStatsStripEn } from '@/components/drone/DroneStatsStripEn';
 import { DronePricingStitchEn } from '@/components/drone/DronePricingStitchEn';
 import { DroneProcessStitchEn } from '@/components/drone/DroneProcessStitchEn';
 import { DroneFlightConditionsNoteEn } from '@/components/drone/DroneFlightConditionsNoteEn';
+import { DroneTechHubEn } from '@/components/drone/DroneTechHubEn';
+
 import { DroneFAQExpandedEn } from '@/components/drone/DroneFAQExpandedEn';
 import { DroneRelatedLinksCompact } from '@/components/drone/DroneRelatedLinksCompact';
 import { relatedLinksEn } from '@/components/drone/droneRelatedLinksEn';
@@ -491,6 +493,8 @@ export default function DroneServicePageEn() {
 
             <DroneProcessStitchEn />
             <DroneFlightConditionsNoteEn />
+            <DroneTechHubEn />
+
             <DroneFAQExpandedEn />
             <DroneRelatedLinksCompact links={relatedLinksEn} title="Other Breus Media services" />
 
