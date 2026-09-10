@@ -52,17 +52,29 @@ const plans = [
         popular: true,
     },
     {
+        title: 'Aerial + Editing',
+        price: 'from 500 ₾',
+        subtitle: 'Exterior aerial shoot with edited video (no indoor FPV)',
+        items: [
+            'Planned flight route over the property',
+            'Short edited video for website and social media',
+            '15+ retouched exterior photos',
+            'Delivery of final materials — from 48 hours',
+        ],
+        note: 'Perfect when you need to showcase the scale, location, and facade, but indoor shooting is not required.',
+    },
+    {
         title: 'Ready-to-Use Result',
         price: 'from 700 ₾',
         subtitle: 'Aerial + indoor FPV + editing + photography',
         items: [
             'Tailored flight routing',
-            'Up to 3 mins of edited video — split for Website, Reels, and TikTok',
+            'Up to 2 mins of edited video formatted for website and social media',
             '20+ retouched photos',
             'Video for Google Maps listing',
             'Delivery from 48 hours',
         ],
-        note: 'Best for business — you get fully packaged content ready to publish without hiring external editors.',
+        note: 'Turnkey package. You get a full spectrum of video materials, ready to publish without extra editing costs.',
     },
 ] satisfies PricingCard[];
 
