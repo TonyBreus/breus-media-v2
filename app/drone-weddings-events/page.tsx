@@ -100,7 +100,7 @@ const painCards: PainCard[] = [
     },
     {
         title: 'Боль 3',
-        role: 'Event venue / wedding venue',
+        role: 'Свадебная или event-площадка',
         text: '«Площадка выглядит сильнее всего сверху, но клиенты редко видят её масштаб, подъезд, природу и окружение.»',
     },
     {
@@ -128,7 +128,7 @@ const benefitCards: BenefitCard[] = [
     },
     {
         title: 'Помогает площадке и организатору',
-        text: 'Материал можно использовать не только для пары или заказчика, но и для venue-маркетинга, reels, stories и будущих продаж.',
+        text: 'Материал можно использовать не только для пары или заказчика, но и для маркетинга площадки, reels, stories и будущих продаж.',
         detail: 'Одна съёмка закрывает сразу несколько задач после события.',
     },
     {
@@ -146,7 +146,7 @@ const benefitCards: BenefitCard[] = [
 const deliverablePackages: PackageCard[] = [
     {
         title: 'БАЗОВЫЙ',
-        subtitle: 'Свадьба / камерный private event / venue content',
+        subtitle: 'Свадьба / камерное мероприятие / контент площадки',
         items: [
             '1 highlight-ролик 30–60 сек',
             '3–5 вертикальных Reels 10–20 сек',
@@ -170,12 +170,12 @@ const deliverablePackages: PackageCard[] = [
     },
     {
         title: 'ПРОДАКШН',
-        subtitle: 'Destination wedding / luxury venue / крупный event по таймингу',
+        subtitle: 'Выездная свадьба / премиум-площадка / крупное событие по таймингу',
         items: [
             'Pre-production: бриф, сценарий полётов, проверка ограничений',
             'Full coverage воздушной части по согласованным окнам',
             'Highlight + набор коротких клипов под платформы',
-            'RAW / исходники по запросу',
+            'Оригинальные 4K видеоматериалы по запросу',
             'Line-item смета',
             'Коммуникация RU/EN',
             'Сценарий с учётом локации, гостей и ограничений GCAA',
@@ -203,7 +203,7 @@ const nicheCards: NicheCard[] = [
         deliverables: 'Структурированный aerial coverage plan + финальные материалы.',
     },
     {
-        title: 'Wedding venue / ресторан / загородная площадка',
+        title: 'Свадебная локация / ресторан / загородный комплекс',
         pain: 'Клиент не видит весь потенциал места с уровня земли.',
         solution: 'Aerial hero-кадры территории, подъезда, церемониальной зоны, террас, природы и окружающего ландшафта.',
         deliverables: 'Короткий promo hero + reels + фото площадки.',
@@ -211,8 +211,8 @@ const nicheCards: NicheCard[] = [
     {
         title: 'Corporate event / brand event',
         pain: 'Нужен event recap, который выглядит масштабно и современно, но без риска и «дрон ради эффекта».',
-        solution: 'Establishing shots, crowd energy с безопасной дистанции, входные группы, venue reveal, outdoor-сцены по плану.',
-        deliverables: 'Recap clips + vertical edits + venue/context shots.',
+        solution: 'Establishing shots, crowd energy с безопасной дистанции, входные группы, обзор площадки, outdoor-сцены по плану.',
+        deliverables: 'Recap clips + vertical edits + кадры площадки и контекста.',
     },
     {
         title: 'Частный outdoor event',
@@ -250,7 +250,7 @@ const beginnerFaqItems: FaqItem[] = [
             'Для свадеб чаще основа — плавные cinematic кадры на Air 3S. FPV на Avata 2 используем точечно, только где это уместно и безопасно. Такой баланс даёт и спокойную картинку, и динамику без перегруза.',
     },
     {
-        question: 'Можно ли снимать venue-контент отдельно от дня свадьбы?',
+        question: 'Можно ли снимать контент площадки отдельно от дня свадьбы?',
         answer:
             'Да. Часто это даже удобнее: отдельно снимаем площадку в спокойном режиме для promo-материалов, а в день события берём только короткий aerial layer по заранее согласованным окнам.',
     },
@@ -331,7 +331,7 @@ const pricingCards: PricingCard[] = [
     {
         title: 'БАЗОВЫЙ',
         price: 'от 450 ₾',
-        subtitle: 'Свадьба / private event / venue content',
+        subtitle: 'Свадьба / частное мероприятие / контент локации',
         items: [
             'Highlight 30–60 сек',
             '3–5 Reels 10–20 сек',
@@ -355,12 +355,12 @@ const pricingCards: PricingCard[] = [
     {
         title: 'ПРОДАКШН',
         price: 'от 2 000 ₾',
-        subtitle: 'Destination wedding / luxury venue / крупный event',
+        subtitle: 'Выездная свадьба / премиум-площадка / крупное событие',
         items: [
             'Pre-production и сценарий полётов',
             'Full coverage воздушной части',
             'Highlight + короткие клипы',
-            'RAW по запросу',
+            'Оригинальный массив съёмки по запросу',
             'Line-item смета',
             'RU/EN коммуникация',
         ],
@@ -542,7 +542,7 @@ export default function DroneWeddingsEventsPage() {
                                 </div>
 
                                 <p className="mt-6 text-sm leading-relaxed text-white/58">
-                                    Съёмка свадьбы или event venue обычно занимает 1–3 часа для воздушной части. Монтаж —
+                                    Съёмка свадьбы или event-площадки обычно занимает 1–3 часа для воздушной части. Монтаж —
                                     48–72 часа.
                                 </p>
                             </div>
@@ -566,7 +566,7 @@ export default function DroneWeddingsEventsPage() {
                                     </div>
                                     <ul className="space-y-2 text-sm leading-relaxed text-white/72">
                                         <li>Aerial highlights + establishing shots</li>
-                                        <li>Wedding / venue / event content</li>
+                                        <li>Контент свадьбы / площадки / мероприятия</li>
                                         <li>Работаем по правилам GCAA</li>
                                     </ul>
                                 </div>
@@ -745,7 +745,7 @@ export default function DroneWeddingsEventsPage() {
                             <h2 className="text-3xl font-bold md:text-4xl">Почему Грузия — сильная локация для свадеб и events</h2>
                             <p className="mt-5 leading-relaxed text-white/74">
                                 Тбилиси — старый город, холмы, видовые площадки, винтажная архитектура и современные
-                                venues в одном городе.
+                                локации в одном городе.
                             </p>
                             <p className="mt-4 leading-relaxed text-white/74">
                                 Кахетия — винодельни, поля, горы и тёплый свет. Идеально для destination weddings и
@@ -867,7 +867,7 @@ export default function DroneWeddingsEventsPage() {
                                     className={`rounded-[20px] border p-6 ${
                                         card.popular
                                             ? 'border-[#FFD23F]/55 bg-[linear-gradient(180deg,rgba(255,210,63,0.1),rgba(20,20,20,1)_28%)]'
-                                            : 'border-[#2a2a2a] bg-[#141414]'
+                                             : 'border-[#2a2a2a] bg-[#141414]'
                                     }`}
                                 >
                                     <div className="flex items-start justify-between gap-4">
@@ -916,7 +916,7 @@ export default function DroneWeddingsEventsPage() {
             </DebugWrapper>
 
             <DebugWrapper id={386400} label="Process Note Section">
-                <ProcessNote text="Съёмка свадьбы или event venue обычно занимает 1–3 часа для воздушной части. Монтаж — 48–72 часа." />
+                <ProcessNote text="Съёмка свадьбы или event-площадки обычно занимает 1–3 часа для воздушной части. Монтаж — 48–72 часа." />
             </DebugWrapper>
 
             <DebugWrapper id={386420} label="Process Section">
@@ -985,7 +985,7 @@ export default function DroneWeddingsEventsPage() {
                                         <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Напрямую</p>
                                         <div className="mt-4 flex flex-wrap gap-3">
                                             <a
-                                                href="https://wa.me/995574619393"
+                                                href="https://wa.me/995501103183"
                                                 target="_blank"
                                                 rel="noreferrer"
                                                 className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
@@ -1033,7 +1033,7 @@ export default function DroneWeddingsEventsPage() {
                                             <select className="w-full rounded-[14px] border border-white/12 bg-[#121212] px-4 py-3 text-white outline-none transition-colors focus:border-[#FFD23F]/55">
                                                 <option>Свадьба</option>
                                                 <option>Private event</option>
-                                                <option>Venue-контент</option>
+                                                <option>Контент для площадок</option>
                                                 <option>Corporate / brand event</option>
                                                 <option>Destination event</option>
                                             </select>

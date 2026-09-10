@@ -153,8 +153,8 @@ export default function HeaderV15() {
                                         {/* Phone */}
                                         <div className="flex items-center gap-4 pb-4 border-b border-white/10">
                                             <Phone className="w-5 h-5 text-white stroke-[1.5]" />
-                                            <a href="tel:+995555000000" className="text-lg font-bold tracking-widest text-white hover:text-brand transition-colors">
-                                                +995 555 00 00 00
+                                            <a href="tel:+995501103183" className="text-lg font-bold tracking-widest text-white hover:text-brand transition-colors">
+                                                +995 501 10 31 83
                                             </a>
                                         </div>
 

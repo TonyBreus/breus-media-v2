@@ -160,7 +160,7 @@ const deliverablesDocs: string[] = [
 
 const formatItems: string[] = [
     'Видео: MP4, H.264/H.265, разрешение 4K (3840×2160), 24/30 fps',
-    'Фото: JPG высокое качество, исходники RAW по запросу',
+    'Фото: JPG высокое качество, несжатые исходники по запросу',
     'Ортофото: JPG или GeoTIFF (с геопривязкой — по запросу)',
     'Архив передаётся через Google Drive или WeTransfer',
 ];
@@ -411,7 +411,7 @@ const pricingPackages: PricingPackage[] = [
         ],
         addons: [
             'Ежемесячный мониторинг (договор от 3 выездов): от 390 ₾/выезд',
-            'RAW-исходники: +150 ₾',
+            'Оригинальные 4K видеоматериалы: +150 ₾',
             'Вертикальные форматы для Reels (9:16): +120 ₾',
         ],
         timeline: '7–10 рабочих дней',
@@ -447,7 +447,7 @@ const relatedServiceLinks = [
 const mistakes: string[] = [
     'Снимать объект только с земли и считать это полноценной презентацией.',
     'Думать, что аэросъёмка нужна только «красивым» объектам.',
-    'Публиковать сырой материал без монтажной логики.',
+    'Публиковать неотредактированный материал без монтажной логики.',
     'Летать без разрешения в зонах рядом с аэропортом.',
     'Не делать кровельную инспекцию перед сдачей в аренду.',
     'Снимать один раз и не обновлять материалы по мере изменений объекта.',
@@ -538,7 +538,7 @@ const serviceSchema = {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
         url: 'https://breus.media',
-        telephone: '+995574619393',
+        telephone: '+995501103183',
         address: {
             '@type': 'PostalAddress',
             addressLocality: 'Тбилиси',
@@ -565,7 +565,7 @@ const localBusinessSchema = {
     name: 'Breus Media',
     description: 'Аэросъёмка, FPV-видео, 360° туры и визуальные решения для бизнеса в Тбилиси.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -1138,7 +1138,7 @@ export default function DroneWarehousesPage() {
                                     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Контакты</p>
                                     <div className="mt-4 flex flex-wrap gap-3">
                                         <a
-                                            href="https://wa.me/995574619393"
+                                            href="https://wa.me/995501103183"
                                             target="_blank"
                                             rel="noreferrer"
                                             className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
@@ -1146,10 +1146,10 @@ export default function DroneWarehousesPage() {
                                             WhatsApp / Telegram
                                         </a>
                                         <a
-                                            href="tel:+995574619393"
+                                            href="tel:+995501103183"
                                             className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/82 transition-colors hover:border-white/35"
                                         >
-                                            +995 574 619 393
+                                            +995 501 103 183
                                         </a>
                                     </div>
                                     <p className="mt-4 text-sm leading-relaxed text-white/55">Тбилиси, Грузия</p>

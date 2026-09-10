@@ -150,7 +150,7 @@ export function DroneServiceContactSectionEn() {
                                         Send Request
                                     </button>
                                     <a
-                                        href={`https://wa.me/995574619393?text=${encodeURIComponent(whatsappMessage)}`}
+                                        href={`https://wa.me/995501103183?text=${encodeURIComponent(whatsappMessage)}`}
                                         target="_blank"
                                         rel="noreferrer"
                                         className="inline-flex flex-1 items-center justify-center gap-2 text-[11px] text-white/55 transition-colors hover:text-white/85 md:text-sm"

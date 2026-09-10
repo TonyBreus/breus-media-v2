@@ -50,6 +50,22 @@ export const RealEstateHeroStitch = ({ hero }: RealEstateHeroStitchProps) => {
     const safeActiveIndex = heroServices.length > 0 ? activeIndex % heroServices.length : 0;
     const activeService = heroServices[safeActiveIndex] ?? realEstateServiceItems[0];
 
+    const READY_L3_URLS = [
+        '/drone-hotels-tourism',
+        '/drone-services/drone-restaurants',
+        '/drone-services/drone-real-estate',
+        '/360-tour-hotels',
+        '/360-tour-real-estate',
+        '/reels-real-estate',
+        '/drone-hotels-tourism/en',
+        '/drone-services/drone-restaurants/en',
+        '/drone-services/drone-real-estate/en',
+        '/360-tour-hotels/en',
+        '/360-tour-real-estate/en',
+        '/reels-real-estate/en'
+    ];
+    const showPrimaryCta = activeService?.primaryHref ? READY_L3_URLS.includes(activeService.primaryHref) : false;
+
     const sellingLine = useMemo(() => {
         const leadSentence = activeService?.description?.split(/[.!?]/)[0]?.trim();
         return leadSentence ? `${leadSentence}.` : activeService?.description ?? '';
@@ -135,7 +151,7 @@ export const RealEstateHeroStitch = ({ hero }: RealEstateHeroStitchProps) => {
 
                                     <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-8 md:mt-10">
                                         <DebugWrapper id={10120} label="Hero Primary CTA">
-                                            {activeService.primaryHref ? (
+                                            {showPrimaryCta && activeService.primaryHref ? (
                                                 <Link
                                                     href={activeService.primaryHref}
                                                     className="bg-[#D4A017] text-black px-7 md:px-9 py-3.5 rounded-[12px] font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-white transition-all"

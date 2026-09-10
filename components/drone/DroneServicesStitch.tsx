@@ -1,36 +1,120 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Manrope } from 'next/font/google';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
-import { droneServiceItems } from '@/components/drone/droneServicesData';
+import { DRONE_OPEN_SERVICE_SLUGS, droneServiceItems, getDroneServiceSortRank } from '@/components/drone/droneServicesData';
 
 const manrope = Manrope({ subsets: ['cyrillic', 'latin'], weight: ['400', '500', '600', '700'] });
 
+type ServiceCategory = {
+    id: string;
+    label: string;
+    icon: string;
+    slugs?: string[];
+};
+
+const SERVICE_CATEGORIES: ServiceCategory[] = [
+    { id: 'all', label: 'Все направления', icon: '✦' },
+    {
+        id: 'real-estate',
+        label: 'Недвижимость и стройка',
+        icon: '🏗️',
+        slugs: ['nedvizhimost', 'monitoring-stroiki', 'zemelnye-uchastki', 'inspekciya-fasadov', 'interiery-sklady'],
+    },
+    {
+        id: 'hospitality',
+        label: 'Отели, рестораны и ивенты',
+        icon: '🏨',
+        slugs: ['oteli-kurorty', 'restorany', 'meropriyatiya'],
+    },
+    {
+        id: 'inspection',
+        label: 'Инспекции и агро',
+        icon: '⚡',
+        slugs: ['inspekciya-obektov', 'kontrol-territorii', 'inspekciya-solnechnyh-paneley', 'agro-i-vinodelie', 'regulyarnye-aerootchety'],
+    },
+    {
+        id: 'creative',
+        label: 'FPV, бренд и авто',
+        icon: '🎬',
+        slugs: ['fpv-semka', 'reklama-brand-video', 'aerosyemka-dlya-avto-i-avtosalonov', 'sport-kompleksy'],
+    },
+];
+
 export const DroneServicesStitch = () => {
-    const services = [...droneServiceItems].sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id));
+    const [activeCategory, setActiveCategory] = useState<string>('all');
+    const services = [...droneServiceItems].sort((a, b) => getDroneServiceSortRank(a) - getDroneServiceSortRank(b));
+    const openServiceSlugSet = new Set<string>(DRONE_OPEN_SERVICE_SLUGS);
+    const activeCategoryObj = SERVICE_CATEGORIES.find((c) => c.id === activeCategory);
 
     return (
         <DebugWrapper id={10300} label="Drone Services Section">
-            <section className="py-8 md:py-24 bg-[#080808]" id="services">
+            <section className="py-10 md:py-24 bg-[#080808]" id="services">
                 <style jsx>{`
                     .service-card-target:target {
                         border-color: rgba(212, 160, 23, 0.9) !important;
                         box-shadow: 0 0 0 1px rgba(212, 160, 23, 0.4), 0 0 28px rgba(212, 160, 23, 0.22);
                     }
                 `}</style>
-                <div className="mx-auto w-full max-w-[1400px] px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+                {/* ── Section Header with GEO/AEO Answer Capsule ── */}
+                <div className="mx-auto w-full max-w-[1400px] px-6 mb-6 md:mb-8 text-center md:text-left">
+                    <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-[#D4A017] font-semibold mb-1">
+                        18 форматов для любого бизнеса
+                    </p>
+                    <h2 className="text-2xl md:text-4xl font-bold text-white mb-2">
+                        Направления аэросъёмки в Грузии
+                    </h2>
+                    <p className="max-w-2xl text-xs md:text-sm text-white/65 leading-relaxed">
+                        Специализированные форматы аэросъёмки под задачи девелоперов, отельеров, рестораторов и производств в Тбилиси и регионах. Выберите нишу или смотрите все карточки.
+                    </p>
+                </div>
+
+                {/* ── Niche Category Filter Chips ── */}
+                <div className="mx-auto w-full max-w-[1400px] px-6 mb-6 md:mb-8">
+                    <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x">
+                        {SERVICE_CATEGORIES.map((cat) => {
+                            const count = cat.id === 'all'
+                                ? services.length
+                                : services.filter((s) => cat.slugs?.includes(s.slug)).length;
+                            const isActive = activeCategory === cat.id;
+
+                            return (
+                                <button
+                                    key={cat.id}
+                                    type="button"
+                                    onClick={() => setActiveCategory(cat.id)}
+                                    className={`shrink-0 snap-start flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-all border ${
+                                        isActive
+                                            ? 'bg-[#D4A017] border-[#D4A017] text-black shadow-[0_2px_14px_rgba(212,160,23,0.35)]'
+                                            : 'bg-white/[0.04] border-white/12 text-white/70 hover:border-white/30 hover:text-white'
+                                    }`}
+                                >
+                                    <span>{cat.icon}</span>
+                                    <span>{cat.label}</span>
+                                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${isActive ? 'bg-black/20 text-black font-bold' : 'bg-white/10 text-white/50'}`}>
+                                        {count}
+                                    </span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                <div className="mx-auto w-full px-6">
+                    <div className="flex gap-4 md:gap-5 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory">
                         {services.map((service, idx) => {
-                            const detailsHref =
-                                service.slug === 'inspekciya-obektov' ? '/drone-object-inspection' : service.primaryHref;
+                            const detailsHref = service.primaryHref;
+                            const hasOpenServiceCta = openServiceSlugSet.has(service.slug);
+                            const isMatch = activeCategory === 'all' || (activeCategoryObj?.slugs?.includes(service.slug) ?? false);
 
                             return (
                                 <DebugWrapper key={service.slug} id={10310 + idx} label={`Service Card: ${service.title}`}>
                                 <article
                                     id={`service-${service.slug}`}
-                                    className={`service-card-target scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col ${service.featured ? 'gold-glow border-[#D4A017]/50' : ''}`}
+                                    className={`snap-center shrink-0 w-[85vw] sm:w-[320px] xl:w-[300px] service-card-target scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex-col ${isMatch ? 'flex' : 'hidden'} ${service.featured ? 'gold-glow border-[#D4A017]/50' : ''}`}
                                     style={service.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : {}}
                                 >
                                     <div className="h-40 bg-neutral-800 overflow-hidden relative">
@@ -46,31 +130,51 @@ export const DroneServicesStitch = () => {
                                                 </span>
                                             </div>
                                         )}
+                                        {service.slug === 'nedvizhimost' && (
+                                            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-5 pb-3 pt-10">
+                                                <h3 className={`${manrope.className} text-[20px] font-bold leading-[1.2] tracking-[-0.01em] text-white`}>
+                                                    {service.title}
+                                                </h3>
+                                            </div>
+                                        )}
                                     </div>
-                                    <div className="px-5 pt-5 pb-4 flex-grow flex flex-col">
-                                        <h3 className={`${manrope.className} text-[20px] font-bold leading-[1.3] tracking-[-0.01em] text-white mb-1`}>
-                                            {service.title}
-                                        </h3>
-                                        <div className={`${manrope.className} text-[11px] font-semibold tracking-[0.12em] uppercase text-white/[0.45] mb-2`}>
+                                    <div className="px-5 pt-3 pb-3 md:pt-5 md:pb-4 flex-grow flex flex-col">
+                                        {service.slug !== 'nedvizhimost' && (
+                                            <h3 className={`${manrope.className} mt-2 md:mt-0 text-[20px] font-bold leading-[1.2] tracking-[-0.01em] text-white mb-0.5 md:mb-1`}>
+                                                {service.title}
+                                            </h3>
+                                        )}
+                                        <div className={`${manrope.className} text-[11px] font-semibold tracking-[0.12em] uppercase text-white/[0.45] mb-1 md:mb-2`}>
                                             {service.category}
                                         </div>
-                                        <p className={`${manrope.className} antialiased text-[14px] font-normal leading-[1.65] text-white/[0.82] mb-3`}>
+                                        <p className={`${manrope.className} antialiased text-[14px] font-normal leading-[1.32] md:leading-[1.65] text-white/[0.82] mb-1.5 md:mb-3`}>
                                             {service.description}
                                         </p>
                                         <div className="mt-auto">
-                                            <div className={`${manrope.className} pt-3 border-t border-[#2a2a2a] text-[11px] font-bold tracking-[0.1em] uppercase text-[#F5C518] mb-4`}>
-                                                {service.price}
+                                            <div className={`${manrope.className} pt-2 md:pt-3 border-t border-[#2a2a2a] flex items-center justify-between gap-2 text-[11px] mb-2 md:mb-4`}>
+                                                <span className="font-bold tracking-[0.08em] uppercase text-[#F5C518]">{service.price}</span>
+                                                {service.specs && (
+                                                    <span className="font-medium tracking-[0.05em] uppercase text-white/40 text-[10px] truncate">{service.specs}</span>
+                                                )}
                                             </div>
                                             <div className="flex gap-3">
+                                                {hasOpenServiceCta ? (
                                                 <Link
                                                     href={detailsHref}
-                                                    className="flex-1 py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center"
+                                                    className="flex-1 py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center"
                                                 >
                                                     Открыть услугу
                                                 </Link>
+                                                ) : null}
                                                 <a
                                                     href="#contact"
-                                                    className="flex-1 py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center"
+                                                    onClick={() => {
+                                                        if (typeof window !== 'undefined' && service.title) {
+                                                            window.dispatchEvent(new CustomEvent('breus-select-service', { detail: { serviceTitle: service.title } }));
+                                                            try { sessionStorage.setItem('breus_contact_prefill_service', service.title); } catch {}
+                                                        }
+                                                    }}
+                                                    className={`py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center ${hasOpenServiceCta ? 'flex-1' : 'w-full'}`}
                                                 >
                                                     Обсудить задачу
                                                 </a>

@@ -94,7 +94,7 @@ export function DroneContact() {
                             Отправить
                         </button>
                         <a
-                            href="https://wa.me/995574619393"
+                            href="https://wa.me/995501103183"
                             target="_blank"
                             rel="noreferrer"
                             className="flex-1 border border-white/20 text-white font-bold uppercase tracking-wider py-4 px-8 rounded-lg flex justify-center items-center gap-2 hover:bg-white/5 transition-all"

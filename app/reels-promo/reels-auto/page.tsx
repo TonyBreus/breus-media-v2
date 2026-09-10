@@ -52,9 +52,9 @@ const CANONICAL_URL = 'https://breus.media/reels-promo/reels-auto';
 const PAGE_TITLE = 'Reels для автобизнеса в Тбилиси — ролики для соцсетей | Breus Media';
 const PAGE_DESCRIPTION =
     'Профессиональные Reels для автосалонов, детейлинга и автосервисов в Тбилиси. 10-20 роликов за один день. Органический охват на MyAuto-аудиторию. От 350 ₾.';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 const SITE_URL = 'https://breus.media';
 
 const VIDEO_EMBED_URL = 'https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4';

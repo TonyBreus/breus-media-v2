@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
-import { MarqueeSection } from '@/components/gazeta/MarqueeSection';
 import { DroneHeroStitch } from '@/components/drone/DroneHeroStitch';
-import { DroneServicesMobileList } from '@/components/drone/DroneServicesMobileList';
 import { DroneServicesStitch } from '@/components/drone/DroneServicesStitch';
 import { DroneStatsStrip } from '@/components/drone/DroneStatsStrip';
+import { DroneTasksSection } from '@/components/drone/DroneTasksSection';
+import { DroneWhyUsSection } from '@/components/drone/DroneWhyUsSection';
 import { DroneProcessStitch } from '@/components/drone/DroneProcessStitch';
 import { DroneFlightConditionsNote } from '@/components/drone/DroneFlightConditionsNote';
 import { DronePricingStitch } from '@/components/drone/DronePricingStitch';
@@ -13,18 +13,33 @@ import { DroneRelatedLinksCompact } from '@/components/drone/DroneRelatedLinksCo
 import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 import { DronePageScrollProgress } from '@/components/drone/DronePageScrollProgress';
-import { DroneStickyCta } from '@/components/drone/DroneStickyCta';
-import { MobileBottomBar } from '@/components/drone/MobileBottomBar';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 import { droneServiceItems } from '@/components/drone/droneServicesData';
+import { droneFaqItems } from '@/components/drone/droneFaqData';
 import { droneDirectionPages } from '@/constants/droneDirectionPages';
+import { gazetaDroneServiceTickerExcludeTexts } from '@/constants/gazetaRoutes';
 import { buildDirectionJsonLd } from '@/lib/seo/directionSeo';
 
 const pageConfig = droneDirectionPages.droneService;
-const jsonLdSchemas = buildDirectionJsonLd(
-    pageConfig,
-    droneServiceItems.map((service) => service.title)
-);
+const droneFaqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: droneFaqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.answer,
+        },
+    })),
+};
+const jsonLdSchemas = [
+    ...buildDirectionJsonLd(
+        pageConfig,
+        droneServiceItems.map((service) => service.title)
+    ),
+    droneFaqJsonLd,
+];
 
 export const metadata: Metadata = {
     title: 'Аэросъёмка дроном для бизнеса в Тбилиси | Breus Media',
@@ -175,7 +190,9 @@ export default function DroneServicePage() {
                 isLanding={false}
                 initialLang="ru"
                 languageLinks={{ ru: '/drone-service', en: '/drone-service/en' }}
+                ctaHref="#contact"
                 singleTickerMode={true}
+                tickerExcludeTexts={gazetaDroneServiceTickerExcludeTexts}
                 sectionLinks={[
                     { label: 'Услуги', href: '#services' },
                     { label: 'Цены', href: '#pricing' },
@@ -188,30 +205,32 @@ export default function DroneServicePage() {
                 </DebugWrapper>
             </div>
 
-
-            <DroneServicesMobileList />
+            <DroneStatsStrip />
 
             <DebugWrapper id={10300} label="Services Section">
                 <DroneServicesStitch />
             </DebugWrapper>
-            <DroneStatsStrip />
 
             {/* ── MID-PAGE CTA ───────────────────────────────────────────── */}
             <section className="bg-[#0D0D0D] py-12">
                 <div className="container mx-auto px-6">
                     <div className="mx-auto max-w-2xl text-center">
                         <p className="text-lg leading-relaxed text-white/78">
-                            Не нашли свою нишу? Расскажите задачу — подберём формат и рассчитаем бюджет.
+                            Не нашли свою нишу? Расскажите задачу — подберём формат аэросъёмки под объект, локацию,
+                            рекламу или отчёт.
                         </p>
                         <a
                             href="#contact"
                             className="mt-6 inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
                         >
-                            Обсудить проект
+                            Обсудить задачу
                         </a>
                     </div>
                 </div>
             </section>
+
+            <DroneTasksSection />
+            <DroneWhyUsSection />
 
             <div id="pricing">
                 <DebugWrapper id={10700} label="Pricing Section">
@@ -233,11 +252,10 @@ export default function DroneServicePage() {
             <DebugWrapper id={10900} label="Contact Section">
                 <DroneContactStitch />
             </DebugWrapper>
-            <DroneStickyCta heroId="drone-service-hero" label="Обсудить задачу" />
-            <MobileBottomBar primaryLabel="Обсудить задачу" />
             <DebugWrapper id={11000} label="Footer Section">
                 <DroneFooterStitch />
             </DebugWrapper>
+            
         </main>
     );
 }

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
+import { PackageCta } from '@/components/drone-hotels-tourism/PackageCta';
 import { FaqSection } from '@/components/shared/FaqSection';
 import { ProcessNote } from '@/components/shared/ProcessNote';
 import { DronePageProgress } from '@/components/drone-restaurants/DronePageProgress';
@@ -235,24 +236,19 @@ const addonPricing: string[] = [
 
 const relatedServices: RelatedService[] = [
     {
-        title: '360° виртуальный тур для ресторана',
-        href: '/360-tour-restaurants',
-        text: 'Интерактивная прогулка по залу — гость крутит камеру сам. Хорошо дополняет видео с дрона.',
-    },
-    {
-        title: 'Аэросъёмка отелей',
+        title: 'Аэросъёмка отелей и курортов',
         href: '/drone-hotels-tourism',
         text: 'Если ресторан часть отеля или курортного комплекса, снимаем всё в одном визите.',
     },
     {
-        title: 'Reels и короткие видео для ресторанов',
-        href: '/reels-promo/reels-restaurant',
-        text: 'Дрон показывает ресторан сверху, а Reels — живую энергию внутри.',
+        title: '360° виртуальный тур для недвижимости',
+        href: '/360-tour-real-estate',
+        text: 'Интерактивная прогулка по пространству — гость или покупатель крутит камеру сам.',
     },
     {
-        title: 'FPV-съёмка',
-        href: '/drone-fpv-cinema',
-        text: 'Кинематографичный пролёт камерой через пространство — зритель «проходит» через зал своими глазами.',
+        title: 'Reels для риелторов и заведений',
+        href: '/reels-promo/reels-realtor',
+        text: 'Короткие вертикальные ролики для Instagram и TikTok — живая атмосфера и подача.',
     },
 ];
 
@@ -436,7 +432,7 @@ const localBusinessSchema = {
     name: 'Breus Media',
     description: 'Медиапродакшн в Тбилиси. Аэросъёмка, FPV-видео, 360° виртуальные туры, Reels и AI-визуализация для бизнеса.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -467,8 +463,8 @@ const breadcrumbSchema = {
         {
             '@type': 'ListItem',
             position: 2,
-            name: 'Дрон-услуги',
-            item: 'https://breus.media/drone-services',
+            name: 'Рестораны и бары',
+            item: 'https://breus.media/restaurants-service',
         },
         {
             '@type': 'ListItem',
@@ -591,13 +587,13 @@ export default function DroneRestaurantsPage() {
                                     href="#contact"
                                     className="inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
                                 >
-                                    Обсудить задачу
+                                    Обсудить съёмку
                                 </a>
                                 <a
                                     href="#pricing"
                                     className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F]"
                                 >
-                                    Посмотреть цены
+                                    Посмотреть пакеты
                                 </a>
                             </div>
                         </div>
@@ -936,12 +932,13 @@ export default function DroneRestaurantsPage() {
                                     ))}
                                 </ul>
                                 {card.note && <p className="mt-4 text-xs leading-relaxed text-white/58 md:mt-5 md:text-sm">{card.note}</p>}
-                                <a
-                                    href="#contact"
+                                <PackageCta
+                                    label="Обсудить этот пакет →"
+                                    packageName={card.title}
+                                    packagePrice={card.price}
+                                    lang="ru"
                                     className="mt-5 inline-flex items-center justify-center rounded-[10px] border border-white/20 px-5 py-2 text-[11px] font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F] hover:text-[#FFD23F] md:mt-6 md:py-2.5 md:text-xs"
-                                >
-                                    Обсудить этот пакет →
-                                </a>
+                                />
                             </article>
                         ))}
                     </div>
@@ -1143,7 +1140,7 @@ export default function DroneRestaurantsPage() {
                                 Обсудить задачу
                             </a>
                             <a
-                                href="https://wa.me/995574619393"
+                                href="https://wa.me/995501103183"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-flex items-center justify-center rounded-[10px] border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F]"
@@ -1268,6 +1265,7 @@ export default function DroneRestaurantsPage() {
 
             <DroneStickyCta />
             <MobileBottomBar />
+            
             <DroneFooterStitch />
 
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />

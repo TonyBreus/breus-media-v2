@@ -1,16 +1,19 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
+import { PackageCta } from '@/components/drone-hotels-tourism/PackageCta';
 import { FaqSection } from '@/components/shared/FaqSection';
 import { ProcessNote } from '@/components/shared/ProcessNote';
 import { DronePageProgress } from '@/components/drone-restaurants/DronePageProgress';
 import { DroneStickyCta } from '@/components/drone-restaurants/DroneStickyCta';
 import { MobileBottomBar } from '@/components/drone-restaurants/MobileBottomBar';
 import { ScrollArrow } from '@/components/drone-restaurants/ScrollArrow';
-import { DroneRestaurantsContactForm } from '@/components/drone-restaurants/DroneRestaurantsContactForm';
+import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
 import { HeroSlideshow } from '@/components/drone-restaurants/HeroSlideshow';
 import { FormatExamplesSlideshow } from '@/components/drone-restaurants/FormatExamplesSlideshow';
+import LangSetter from '@/components/common/LangSetter';
 import formatExampleOne from '@/services-images/drone-restaurants/final/4.png';
 import formatExampleTwo from '@/services-images/drone-restaurants/final/2.png';
 import formatExampleThree from '@/services-images/drone-restaurants/final/3.png';
@@ -259,24 +262,19 @@ const addonPricing: string[] = [
 
 const relatedServices: RelatedService[] = [
     {
-        title: '360° virtual tour for restaurants',
-        href: '/360-tour-restaurants',
-        text: 'An interactive walk-through of the space. Guests control the view themselves. It pairs well with drone video.',
-    },
-    {
         title: 'Aerial filming for hotels',
-        href: '/drone-hotels-tourism',
+        href: '/drone-hotels-tourism/en',
         text: 'If your restaurant is part of a hotel or resort, we can cover the full property in one visit.',
     },
     {
-        title: 'Reels and short videos for restaurants',
-        href: '/reels-promo/reels-restaurant',
-        text: 'Drone shows the venue from above. Reels show the live energy inside.',
+        title: '360° virtual tour for real estate',
+        href: '/360-tour-real-estate/en',
+        text: 'An interactive walk-through of the property where guests or buyers control the view themselves.',
     },
     {
-        title: 'FPV filming',
-        href: '/drone-fpv-cinema',
-        text: 'A cinematic camera move through space. The viewer feels like they are walking through the venue.',
+        title: 'Reels for realtors and venues',
+        href: '/reels-promo/reels-realtor/en',
+        text: 'Short vertical videos for Instagram and TikTok showcasing live atmosphere and energy.',
     },
 ];
 
@@ -621,32 +619,9 @@ const serviceSchema = {
     description:
         'Drone filming and FPV video for restaurants, cafes, bars, and hospitality venues in Tbilisi. We show the facade, entrance, terrace, rooftop, and interior. Final assets work for website pages, Instagram, Google Business Profile, and ads.',
     provider: {
-        '@type': 'LocalBusiness',
-        name: 'Breus Media',
-        url: 'https://breus.media',
-        address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Tbilisi',
-            addressCountry: 'GE',
-        },
+        '@id': 'https://breus.media/#organization',
     },
-    areaServed: [
-        {
-            '@type': 'City',
-            name: 'Tbilisi',
-            containedInPlace: { '@type': 'Country', name: 'Georgia' },
-        },
-        {
-            '@type': 'City',
-            name: 'Batumi',
-            containedInPlace: { '@type': 'Country', name: 'Georgia' },
-        },
-        {
-            '@type': 'City',
-            name: 'Kutaisi',
-            containedInPlace: { '@type': 'Country', name: 'Georgia' },
-        },
-    ],
+    areaServed: ['Tbilisi', 'Kakheti', 'Telavi', 'Sighnaghi', 'Mtskheta', 'Kutaisi', 'Georgia'],
     offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'GEL',
@@ -655,16 +630,18 @@ const serviceSchema = {
         offerCount: '4',
     },
     serviceType: 'Drone Photography and Videography',
-    url: 'https://breus.media/drone-services/drone-restaurants',
+    category: 'Aerial Videography for Hospitality',
+    url: 'https://breus.media/drone-services/drone-restaurants/en',
 };
 
 const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
+    '@id': 'https://breus.media/#organization',
     name: 'Breus Media',
     description: 'Media production studio in Tbilisi. Drone filming, FPV video, 360° virtual tours, Reels, and AI visuals for business.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Tbilisi',
@@ -695,8 +672,8 @@ const breadcrumbSchema = {
         {
             '@type': 'ListItem',
             position: 2,
-            name: 'Drone Services',
-            item: 'https://breus.media/drone-services',
+            name: 'Restaurants & Bars',
+            item: 'https://breus.media/restaurants-service/en',
         },
         {
             '@type': 'ListItem',
@@ -746,6 +723,7 @@ export const metadata: Metadata = {
 export default function DroneRestaurantsPageEn() {
     return (
         <main className="min-h-screen bg-[#080808] pb-20 text-white lg:pb-0">
+            <LangSetter lang="en" />
             <DronePageProgress />
 
             <SmartHeader
@@ -753,6 +731,16 @@ export default function DroneRestaurantsPageEn() {
                 isLanding={false}
                 ctaHref="#contact"
                 initialLang="EN"
+                ctaLabel="Discuss the brief"
+                singleTickerMode={true}
+                tickerAfterFirstScroll={false}
+                showMobilePrimaryCta={false}
+                showDesktopPrimaryCta={false}
+                mobileQuickLink={{ label: 'PRICING', href: '#pricing' }}
+                mobileMinimalCenterTime={true}
+                showDesktopNavTime={true}
+                stickyTickerUnderHeader={true}
+                tickerExcludeTexts={['Promo Video']}
                 languageLinks={{
                     RU: '/drone-services/drone-restaurants',
                     EN: '/drone-services/drone-restaurants/en',
@@ -817,13 +805,13 @@ export default function DroneRestaurantsPageEn() {
                                     href="#contact"
                                     className="inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
                                 >
-                                    Discuss Project
+                                    Book a Shoot
                                 </a>
                                 <a
                                     href="#pricing"
                                     className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F]"
                                 >
-                                    View Pricing
+                                    View Packages
                                 </a>
                             </div>
                         </div>
@@ -940,12 +928,12 @@ export default function DroneRestaurantsPageEn() {
                     <div className="max-w-3xl">
                         <h2 className="text-3xl font-bold md:text-4xl">What you get</h2>
                         <p className="mt-4 leading-relaxed text-white/70">
-                            After the shoot, you get more than raw files. You get a usable kit, organized by purpose and
+                            After the shoot, you get more than unedited files. You get a usable kit, organized by purpose and
                             ready for each platform.
                         </p>
                         <p className="mt-4 leading-relaxed text-white/58">
                             If you need more than aerial coverage, we can extend the shoot into a fuller content pack for
-                            the venue.
+                            the restaurant.
                         </p>
                     </div>
 
@@ -1027,7 +1015,13 @@ export default function DroneRestaurantsPageEn() {
                         {formatExampleCards.map((item, index) => (
                             <div key={index} className="overflow-hidden rounded-[16px] border border-[#2a2a2a] bg-[#141414]">
                                 <div className="relative aspect-video">
-                                    <img src={item.image.src} alt={item.alt} className="h-full w-full object-cover" />
+                                    <Image
+                                        src={item.image}
+                                        alt={item.alt}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        className="object-cover"
+                                    />
                                 </div>
                             </div>
                         ))}
@@ -1234,12 +1228,13 @@ export default function DroneRestaurantsPageEn() {
                                     ))}
                                 </ul>
                                 {card.note && <p className="mt-5 text-sm leading-relaxed text-white/58">{card.note}</p>}
-                                <a
-                                    href="#contact"
+                                <PackageCta
+                                    label="Select package →"
+                                    packageName={card.title}
+                                    packagePrice={card.price}
+                                    lang="en"
                                     className="mt-6 inline-flex items-center justify-center rounded-[10px] border border-white/20 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F] hover:text-[#FFD23F]"
-                                >
-                                    Discuss This Package →
-                                </a>
+                                />
                             </article>
                         ))}
                     </div>
@@ -1530,72 +1525,12 @@ export default function DroneRestaurantsPageEn() {
                 </div>
             </section>
 
-            <section id="contact" className="scroll-mt-20 lg:scroll-mt-24 bg-[#0D0D0D] py-20">
-                <div className="container mx-auto px-6">
-                    <div className="mx-auto max-w-5xl rounded-[24px] border border-[#FFD23F]/25 bg-gradient-to-br from-[#151515] via-[#111111] to-[#0c0c0c] p-6 md:p-8 lg:p-10">
-                        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-                            <div>
-                                <h2 className="text-3xl font-bold text-white md:text-4xl">Discuss Your Project</h2>
-                                <p className="mt-4 max-w-xl leading-relaxed text-white/72">
-                                    Tell us about the venue and we will say what format fits and what budget it needs.
-                                </p>
+            <DroneContactStitch preselectedServices={['restaurants']} lang="en" />
 
-                                <div className="mt-8 rounded-[18px] border border-white/10 bg-white/[0.03] p-5">
-                                    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Message us directly</p>
-                                    <div className="mt-4 flex flex-wrap gap-3">
-                                        <a
-                                            href="https://wa.me/995574619393"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
-                                        >
-                                            WhatsApp
-                                        </a>
-                                        <a
-                                            href="https://t.me/breusmedia"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
-                                        >
-                                            Telegram
-                                        </a>
-                                        <a
-                                            href="https://www.instagram.com/breusmedia"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/82 transition-colors hover:border-white/35"
-                                        >
-                                            @breusmedia
-                                        </a>
-                                    </div>
-                                    <p className="mt-4 text-sm leading-relaxed text-white/55">Tbilisi, Georgia</p>
-                                </div>
-                            </div>
-
-                            <DroneRestaurantsContactForm
-                                nameLabel="Name"
-                                namePlaceholder="Your name"
-                                contactLabel="Phone or messenger"
-                                contactPlaceholder="+995 ... or @username"
-                                businessLabel="Venue name and short brief"
-                                businessPlaceholder="Restaurant in the center, rooftop terrace..."
-                                deadlineLabel="Preferred timing (optional)"
-                                deadlinePlaceholder="For example: by the end of the month"
-                                submitLabel="Send Request"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <DroneStickyCta label="Discuss Project" />
-            <MobileBottomBar primaryLabel="Discuss Project" />
-            <DroneFooterStitch
-                missionText="Professional aerial filming and visual production for business in Georgia. Tbilisi, Batumi, Kutaisi."
-                menuTitle="Menu"
-                contactLinkLabel="Contact"
-                contactTitle="Contact"
-            />
+            <DroneStickyCta label="Discuss the brief" />
+            <MobileBottomBar primaryLabel="Discuss the brief" />
+            
+            <DroneFooterStitch lang="en" />
 
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />

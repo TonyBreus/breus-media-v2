@@ -165,7 +165,7 @@ const deliverablePackages: PackageCard[] = [
             'Half-day или full-day по шот-листу режиссёра',
             'Pre-production: бриф, рекогносцировка, safety-план',
             'Несколько дублей ключевых пролётов',
-            'Исходники (RAW) — включены',
+            'Оригинальные 4K видеоматериалы (D-Log) — включены',
             'Line-item смета под проект',
             'Коммуникация RU/EN',
         ],
@@ -262,9 +262,9 @@ const commercialFaqItems: FaqItem[] = [
             '1 hero-ролик 30–45 сек (вертикальный) + 5–8 коротких клипов 6–10 сек для Reels. Базовая стабилизация, цвет, музыка. Доставка через Google Drive или Telegram за 48 часов.',
     },
     {
-        question: 'Можно получить исходники (RAW)?',
+        question: 'Можно получить оригинальные видеоматериалы (D-Log)?',
         answer:
-            'Да, в продакшн-пакете исходники включены по умолчанию. В базовом и стандартном пакете — по запросу, уточняем на этапе брифа.',
+            'Да, в продакшн-пакете оригинальные 4K видеоматериалы включены по умолчанию. В базовом и стандартном пакете — по запросу, фиксируем на этапе брифа.',
     },
     {
         question: 'Сколько времени занимает съёмка?',
@@ -346,7 +346,7 @@ const pricingCards: PricingCard[] = [
             'Half-day по шот-листу режиссёра',
             'Pre-production: бриф, рекогносцировка, safety-план',
             'Несколько дублей ключевых пролётов',
-            'Исходники (RAW) включены',
+            'Оригинальные 4K видеоматериалы включены',
             'Line-item смета',
             'Коммуникация RU/EN',
         ],
@@ -958,7 +958,7 @@ export default function DroneFpvCinemaPage() {
                                         <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Напрямую</p>
                                         <div className="mt-4 flex flex-wrap gap-3">
                                             <a
-                                                href="https://wa.me/995574619393"
+                                                href="https://wa.me/995501103183"
                                                 target="_blank"
                                                 rel="noreferrer"
                                                 className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"

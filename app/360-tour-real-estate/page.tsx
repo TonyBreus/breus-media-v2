@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
@@ -5,9 +6,7 @@ import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 import { FaqSection } from '@/components/shared/FaqSection';
 import { DronePageProgress } from '@/components/drone-hotels-tourism/DronePageProgress';
-import { DroneStickyCta } from '@/components/drone-hotels-tourism/DroneStickyCta';
 import { PackageCta } from '@/components/drone-hotels-tourism/PackageCta';
-import { MobileBottomBar } from '@/components/drone-restaurants/MobileBottomBar';
 import { ScrollArrow } from '@/components/drone-restaurants/ScrollArrow';
 
 type FaqItem = { question: string; answer: string };
@@ -342,19 +341,9 @@ const relatedServices: RelatedService[] = [
         text: 'Съёмка района и масштаба ЖК с воздуха — контекст, который 360° тур изнутри не покажет.',
     },
     {
-        title: 'Видеотур по квартире или дому',
-        href: '/promo-video/promo-real-estate',
-        text: 'Горизонтальное видео 2–5 минут для WhatsApp, YouTube и отправки инвестору.',
-    },
-    {
         title: 'Reels для риелтора и застройщика',
-        href: '/reels-real-estate',
+        href: '/reels-promo/reels-realtor',
         text: 'Короткие вертикальные ролики для Instagram, TikTok и регулярного охвата.',
-    },
-    {
-        title: 'Мониторинг стройки ЖК',
-        href: '/drone-services/drone-construction',
-        text: 'Регулярный аэро-отчёт для инвесторов и банков на каждом этапе очереди ЖК.',
     },
 ];
 
@@ -377,7 +366,7 @@ const localBusinessSchema = {
     '@id': 'https://breus.media/#organization',
     name: 'Breus Media',
     url: 'https://breus.media',
-    telephone: '+995 574 619 393',
+    telephone: '+995 501 103 183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -414,16 +403,46 @@ const breadcrumbSchema = {
         {
             '@type': 'ListItem',
             position: 2,
-            name: '360° туры',
-            item: 'https://breus.media/360-tours-service',
+            name: 'Недвижимость',
+            item: 'https://breus.media/real-estate-service',
         },
         {
             '@type': 'ListItem',
             position: 3,
-            name: 'Недвижимость',
+            name: '360° виртуальные туры',
             item: 'https://breus.media/360-tour-real-estate',
         },
     ],
+};
+
+const pageUrl = 'https://breus.media/360-tour-real-estate';
+const pageTitle = '360° виртуальный тур для недвижимости в Тбилиси | Breus Media';
+const pageDescription =
+    '360° виртуальные туры для квартир, домов и ЖК в Тбилиси. Для объявлений MyHome.ge, SS.ge, сайтов агентств и дистанционных сделок с инвесторами. От 200 ₾.';
+
+export const metadata: Metadata = {
+    title: pageTitle,
+    description: pageDescription,
+    alternates: {
+        canonical: pageUrl,
+        languages: {
+            ru: 'https://breus.media/360-tour-real-estate',
+            en: 'https://breus.media/360-tour-real-estate/en',
+        },
+    },
+    openGraph: {
+        title: pageTitle,
+        description: pageDescription,
+        url: pageUrl,
+        siteName: 'Breus Media',
+        locale: 'ru_GE',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: pageTitle,
+        description: pageDescription,
+    },
 };
 
 export default function TourRealEstatePage() {
@@ -434,7 +453,8 @@ export default function TourRealEstatePage() {
             <SmartHeader
                 transparent={true}
                 isLanding={false}
-                ctaLabel="Обсудить объект"
+                initialLang="ru"
+                ctaLabel="Обсудить съёмку"
                 singleTickerMode={true}
                 tickerAfterFirstScroll={false}
                 showMobilePrimaryCta={false}
@@ -443,7 +463,7 @@ export default function TourRealEstatePage() {
                 mobileMinimalCenterTime={true}
                 showDesktopNavTime={true}
                 stickyTickerUnderHeader={true}
-                languageLinks={{ RU: '/360-tour-real-estate', EN: '/360-tour-real-estate/en' }}
+                languageLinks={{ ru: '/360-tour-real-estate', en: '/360-tour-real-estate/en' }}
                 sectionLinks={[
                     { label: 'Зоны', href: '#zones' },
                     { label: 'Процесс', href: '#process' },
@@ -491,13 +511,13 @@ export default function TourRealEstatePage() {
                                     href="#contact"
                                     className="inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
                                 >
-                                    Обсудить объект
+                                    Обсудить съёмку
                                 </a>
                                 <a
                                     href="#pricing"
                                     className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F]"
                                 >
-                                    Посмотреть цены
+                                    Посмотреть пакеты
                                 </a>
                             </div>
                         </div>
@@ -793,17 +813,11 @@ export default function TourRealEstatePage() {
                 />
             </DebugWrapper>
 
-            <DroneStickyCta heroId="tour-real-estate-hero" label="Обсудить объект" />
-            <MobileBottomBar
-                primaryLabel="Обсудить объект"
-                heroId="tour-real-estate-hero"
-                revealAfterHero={true}
-                smoothVisibility={true}
-            />
-
             <DebugWrapper id={3604240} label="Footer Section">
                 <DroneFooterStitch />
             </DebugWrapper>
+
+            
 
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />

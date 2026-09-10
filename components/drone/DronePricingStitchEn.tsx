@@ -16,7 +16,7 @@ type PricingCard = {
 const plans = [
     {
         title: 'Outdoor Flight',
-        price: '250 ₾',
+        price: '200 ₾',
         subtitle: 'Aerial drone filming from above',
         items: [
             '4K video + high-res photos - ready to use',
@@ -28,7 +28,7 @@ const plans = [
     },
     {
         title: 'Indoor FPV Flight',
-        price: '350 ₾',
+        price: '300 ₾',
         subtitle: 'FPV drone flight through your space',
         items: [
             '4K video - ready to use',
@@ -40,7 +40,7 @@ const plans = [
     },
     {
         title: 'Full Shoot',
-        price: '500 ₾',
+        price: '450 ₾',
         subtitle: 'Aerial + indoor flight - exterior, hall, terrace - in one visit',
         items: [
             'Aerial video and FPV flight in 4K',
@@ -53,7 +53,7 @@ const plans = [
     },
     {
         title: 'With Final Result',
-        price: 'from 900 ₾',
+        price: 'from 700 ₾',
         subtitle: 'Aerial + indoor flight + editing and photos',
         items: [
             'Planned shooting route',
@@ -85,48 +85,66 @@ export const DronePricingStitchEn = () => {
                         </p>
                     </DebugWrapper>
                 </div>
-                <div className="container mx-auto grid items-start gap-5 px-6 xl:grid-cols-4">
-                    {plans.map((plan, idx) => (
-                        <DebugWrapper key={idx} id={10710 + idx} label={`Pricing Plan: ${plan.title}`}>
-                            <motion.div
-                                whileHover={{ y: -5 }}
-                                className={`flex flex-col rounded-[20px] border p-5 transition-all md:p-6 ${
-                                    plan.popular
-                                        ? 'border-[#FFD23F]/55 bg-[linear-gradient(180deg,rgba(255,210,63,0.1),rgba(20,20,20,1)_28%)]'
-                                        : 'border-[#2a2a2a] bg-[#141414]'
-                                }`}
-                            >
-                                <div>
-                                    <h3 className="text-lg font-bold text-white md:text-xl">{plan.title}</h3>
-                                    <p className="mt-2 text-xs text-white/64 md:text-sm">{plan.subtitle}</p>
-                                </div>
-                                <div className="mt-5 flex items-center gap-2 md:mt-6 md:gap-3">
-                                    <p className="text-2xl font-bold text-[#FFD23F] md:text-3xl">{plan.price}</p>
-                                    {plan.popular ? (
-                                        <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/12 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">
-                                            Best value
-                                        </span>
-                                    ) : null}
-                                </div>
-                                <ul className="mt-5 flex-1 space-y-2.5 text-[13px] leading-relaxed text-white/72 md:mt-6 md:space-y-3 md:text-sm">
-                                    {plan.items.map((item) => (
-                                        <li key={item}>✓ {item}</li>
-                                    ))}
-                                </ul>
-                                {plan.note ? (
-                                    <p className="mt-4 text-xs leading-relaxed text-white/58 md:mt-5 md:text-sm">
-                                        {plan.note}
-                                    </p>
-                                ) : null}
-                                <a
-                                    href="#contact"
-                                    className="mt-5 inline-flex items-center justify-center rounded-[10px] border border-white/20 px-5 py-2 text-[11px] font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F] hover:text-[#FFD23F] md:mt-6 md:py-2.5 md:text-xs"
+                
+                <div className="container mx-auto px-6 max-w-full">
+                    {/* Horizontal Swipe Carousel */}
+                    <div className="flex gap-4 md:gap-6 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory">
+                        {plans.map((plan, idx) => (
+                            <DebugWrapper key={idx} id={10710 + idx} label={`Pricing Plan: ${plan.title}`}>
+                                <motion.div
+                                    whileHover={{ y: -5 }}
+                                    className={`snap-center shrink-0 w-[85vw] sm:w-[320px] xl:w-[280px] flex flex-col justify-between rounded-[20px] border p-6 md:p-8 transition-all ${
+                                        plan.popular
+                                            ? 'border-[#FFD23F]/55 bg-[linear-gradient(180deg,rgba(255,210,63,0.1),rgba(12,12,14,1)_28%)]'
+                                            : 'border-white/10 bg-[#0C0C0E]'
+                                    }`}
                                 >
-                                    Discuss this package →
-                                </a>
-                            </motion.div>
-                        </DebugWrapper>
-                    ))}
+                                    <div>
+                                        <div>
+                                            <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">{plan.title}</h3>
+                                            <p className="mt-3 text-sm text-zinc-400 leading-relaxed">{plan.subtitle}</p>
+                                        </div>
+                                        <div className="mt-6 flex items-center gap-3">
+                                            <p className="text-3xl font-bold text-white md:text-4xl">{plan.price}</p>
+                                            {plan.popular ? (
+                                                <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#FFD23F]">
+                                                    Best value
+                                                </span>
+                                            ) : null}
+                                        </div>
+                                        <ul className="mt-8 flex-1 space-y-4 text-[14px] leading-relaxed text-zinc-300">
+                                            {plan.items.map((item) => (
+                                                <li key={item} className="flex gap-3">
+                                                    <span className="text-white/50 shrink-0">—</span>
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="mt-10 pt-6 border-t border-white/5">
+                                        {plan.note ? <p className="mb-6 text-sm leading-relaxed text-zinc-500">{plan.note}</p> : null}
+                                        <a
+                                            href="#contact"
+                                            onClick={() => {
+                                                if (typeof window !== 'undefined' && plan.title) {
+                                                    window.dispatchEvent(new CustomEvent('breus-select-service', { detail: { serviceTitle: plan.title } }));
+                                                    try { sessionStorage.setItem('breus_contact_prefill_service', plan.title); } catch {}
+                                                }
+                                            }}
+                                            className={`inline-flex w-full items-center justify-center rounded-xl border px-6 py-3.5 text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 ${
+                                                plan.popular
+                                                    ? 'bg-white text-black border-transparent hover:bg-zinc-200'
+                                                    : 'border-white/20 bg-transparent text-white hover:bg-white/10'
+                                            }`}
+                                        >
+                                            Discuss This Tier
+                                        </a>
+                                    </div>
+                                </motion.div>
+                            </DebugWrapper>
+                        ))}
+                    </div>
                 </div>
                 <div className="container mx-auto mt-6 px-6 md:mt-10">
                     <DebugWrapper id={10730} label="Pricing Addons">

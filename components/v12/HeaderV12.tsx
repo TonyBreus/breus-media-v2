@@ -144,9 +144,9 @@ export default function HeaderV12() {
                                     style={{ originY: 0 }}
                                     className="absolute top-0 right-0 pt-12 bg-black border border-white/20 rounded-xl p-4 w-64 shadow-2xl z-[70] flex flex-col gap-3"
                                 >
-                                    <a href="tel:+995555000000" className="flex items-center gap-3 text-sm font-bold hover:text-brand transition-colors text-white border-b border-white/10 pb-2">
+                                    <a href="tel:+995501103183" className="flex items-center gap-3 text-sm font-bold hover:text-brand transition-colors text-white border-b border-white/10 pb-2">
                                         <Phone className="w-4 h-4" />
-                                        <span className="text-xs tracking-widest">+995 555 00 00 00</span>
+                                        <span className="text-xs tracking-widest">+995 501 10 31 83</span>
                                     </a>
                                     <a href="mailto:hello@breus.media" className="flex items-center gap-3 text-xs hover:text-brand transition-colors text-gray-400 font-bold border-t border-white/10 pt-2 tracking-wider">
                                         <Mail className="w-4 h-4" /> hello@breus.media

@@ -398,7 +398,7 @@ const serviceSchema = {
     provider: {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
-        telephone: '+995574619393',
+        telephone: '+995501103183',
         address: {
             '@type': 'PostalAddress',
             addressLocality: 'Tbilisi',
@@ -446,7 +446,7 @@ const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Breus Media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Tbilisi',

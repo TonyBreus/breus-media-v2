@@ -1,3 +1,2212 @@
+✅ Executed master "Прожарка 3.0" audit & v3.0 upgrade for `/gazeta` L1 landing: (1) Restored missing FAQ in mobile DOM via new shared `GazetaFaqSection.tsx` (6 core B2B Q&As in RU/EN) and synchronized with JSON-LD FAQPage Schema in `app/gazeta/page.tsx` & `/en/page.tsx`; (2) Fixed broken L1 ➔ L2 navigation inside `MultiStepServiceDrawer.tsx` adding prominent L2 Hub buttons (e.g., `/drone-service`, `/360-tours-service`, etc.) to both Slide 1 and Slide 2; (3) Added starting price badges (`от 250 ₾`, etc.) directly on mobile 6×6 photos in `GazetaMobileStepChooser.tsx` solving the 50yo business owner price transparency objection; (4) Added 100% server-rendered semantic SSR catalog container (`<section className="sr-only">`) in `GazetaLandingPage.tsx` with all 12 services/industries, sub-formats, prices, and L2/L3 links for SearchGPT/Googlebot crawler readiness; (5) Fixed `#faq` target detection in `SmartHeader.tsx` to smoothly scroll to visible mobile/desktop elements; (6) Verified full Next.js 16 build passing 111/111 pages prerendered with 0 errors (2026-09-05)
+✅ Released [DRONE-V3.0] synthesis: added interactive niche category filter chips (Все 17 / Недвижимость 5 / HoReCa 3 / Инспекции 5 / Промо 4) eliminating 18-card scroll fatigue while preserving 100% SSR in DOM, mobile segmented plan switcher with one-tap plan focus, dense entity-rich B2B Answer Capsule in Hero, and documented in master PAGE_VERSION_REGISTRY.md (2026-09-05)
+✅ Completed `/drone-service` Standard v3.0 upgrade: Hero H1 visible + WhatsApp CTA + 10s rotation, cleaned pricing & specs in GEL (from 250 ₾), purged duplicate mobile 18-service listing, streamlined contact form (removed socials friction field, promoted WhatsApp to prominent button), added GEO Answer Capsules under H2 headings (Pricing, Process, FAQ), and validated full SSR in DOM with successful Vercel Preview deployment (2026-09-05)
+✅ Upgraded Audit & Roaster Skills v3.0 with Cluster 3 SSR Drawer/Accordion validation (strict ban on client-only {isOpen && <Content />}, SearchGPT/Googlebot DOM readiness verified via curl) and instituted Vercel Preview testing protocol (replacing localhost; 2 live links: Было vs Стало v3.0 for mobile Safari/Chrome testing) documented in PROJECT_RULES.md (2026-09-05)
+✅ Synchronized Audit & Roaster Skills v3.0 into repository (`site-docs/skills/PAGE_AUDITOR_30_FACTOR.md`, `site-docs/skills/WEBSITE_CONVERSION_ROASTER.md`) and instituted mandatory "Lexical Clarity Filter" + "Human-in-the-Loop Gateway" table review before any copywriting/pricing/FAQ commit and deploy (2026-09-05)
+✅ Executed master Card 3.0 overhaul across NichesStack desktop sections 02-12: embedded titles inside photos, purged legacy tags (HOT, ХОД, СТАРТ, SALE, eyebrow), expanded clamp to 3 lines with zero ellipses, and mapped direct L3 links (2026-09-04)
+✅ Lifted Hero H1 block an additional 10% closer to clock capsule (-top-2.5 sm:-top-3.5) with zero layout shift on lower elements (2026-09-04)
+✅ Isolated Hero H1 block and lifted closer to clock capsule (mb-3 sm:mb-4) while strictly preserving exact position of description card, WhatsApp CTA, and BREUS MEDIA (2026-09-04)
+✅ Aligned Hero H1 and location badge with proportional optical vertical centering between top clock capsule and lower description window (2026-09-04)
+✅ Lifted Hero layout towards clock capsule, increased H1 size by 10%, compacted vertical spacing, and re-anchored BREUS MEDIA kinetic start to 68vh to guarantee 100% visibility in iOS Chrome & Safari (2026-09-04)
+✅ Fixed whitespace typography in HeroSection sublead: inserted explicit space between 'Google' and 'и внедряем' on mobile viewports (2026-09-04)
+✅ Finalized mobile Hero architecture: removed redundant outer glass card around WhatsApp CTA, anchored button 1-2cm directly beneath copy, and docked BREUS MEDIA at 78vh bottom safe-zone with balanced horizontal padding (2026-09-04)
+✅ Fixed mobile SmartHeader 'ОБСУДИТЬ' click handler (smooth scrollIntoView to #contact), eliminated ambiguous 'площадки' wording in AboutSection (replaced with ready-to-post on web/maps/socials from 24h), and aligned audit capsule copy (2026-09-04)
+✅ Calibrated Hero to 100svh for iOS Chrome toolbar resilience, hid floating WhatsApp on Hero screen (reveals on scroll), lifted CTA dock to bottom-[calc(85px+safe-area)], and centered BREUS MEDIA at 60vh on mobile (2026-09-04)
+✅ Cleaned contact action sheet (symmetric WA/TG/Call buttons), elevated AboutSection manifesto to digital-presence positioning (24-48h turnaround), and upgraded audit wedge to Free 24h Business Audit (2026-09-04)
+✅ Stabilized mobile chooser vertical flow (replaced justify-between with justify-center to fix iOS Chrome dynamic bar jump), embedded sleek audit capsule under AboutSection, updated Scanner hook to loss-prevention B2B copy, and freed contact form screen (2026-09-03)
+✅ Rebuilt mobile burger menu to full-screen 100dvh solid overlay (fixed background bleed-through bug, synced 6 services matrix, and hid floating WhatsApp while menu is active) (2026-09-03)
+✅ Upgraded mobile typography to 2026 accessibility standard: boosted Hero body text to 14-15px text-sm, increased card subtext to 12px text-xs, and calibrated photo height to 92px so all 3 rows fit viewport without bottom clipping (2026-09-03)
+✅ Polished 'Ваш бизнес' card copy with conversion-oriented 2-line descriptions (eliminated mid-word ellipses) and decoupled duplicate hotel/tourism images (2026-09-03)
+✅ Integrated 140vh scroll runway with Sticky Hold for calm mobile reading, and transformed Scanner into a sleek 1-line prompt above the contact form to eliminate CTA conflict (2026-09-03)
+✅ Expanded AboutSection with 3-paragraph B2B manifesto (removed scanner), and restored autonomous ScannerBanner directly above contact form (2026-09-03)
+✅ Scaled up chooser photos to 120px, combined About manifesto with Scanner on mobile Screen 3 (removed camera hardware specs), and freed Screen 4 for frictionless contact form submission (2026-09-03)
+✅ Stripped legacy badges ('ХОД', 'HOT', 'СТАРТ', 'SALE') across desktop niche cards, boosted description typography to 14px, and eliminated spacing voids (2026-09-03)
+✅ Fit mobile card descriptions to 50 chars (no ellipsis), condensed AboutSection into 1 single iPhone screen, removed scroll lock before contact form, and upgraded WhatsApp button to calm breathing animation with Telegram/Call options (2026-09-03)
+✅ Fixed desktop header-to-nav gap by pinning steps bar to top-64px and cards to top-104px, upgraded desktop cards to Card 3.0 standard (title inside image, removed upper hashtags, tight button spacing), and locked mobile sheets to freeze-and-stack flow (2026-09-03)
+✅ Implemented mobile freeze-and-stack sheet scroll mechanics, slimmed down ScannerBanner (removed english badge), and embedded titles inside image cards for desktop 360 Tours (2026-09-03)
+✅ Restored desktop NichesStack sticky navigation 01-10 (md:overflow-visible), implemented mobile 4-sheet stacking layout (Hero -> Chooser -> About -> Contact) with sticky top-60px and rounded-t-26px borders (2026-09-03)
+✅ Re-architected desktop Hero to vertical pyramid layout: lifted H1, lowered BREUS MEDIA kinetic start to 70vh below copy, and anchored WhatsApp CTA to bottom to eliminate text overlaps (2026-09-03)
+✅ Added Hero text contrast backdrop with staggered blur-reveal animation, updated chooser tab to 'Ваш бизнес (6)', expanded cards with 2-line complete descriptions, and enabled soft snap-proximity navigation (2026-09-03)
+✅ Updated HeroSection positioning copy: Visual Production & Digital Solutions (RU/EN), balanced B2B messaging across drone, 360, web, maps, and AI solutions (2026-09-03)
+✅ Fixed Hero down-arrow scroll-mt landing, added 1-line human micro-copy to 6x6 cards, calibrated drawer height to 75vh with top backdrop reveal, and hid floating WhatsApp button when drawer is open (2026-09-03)
+✅ Fixed MultiStepServiceDrawer height to stable 82vh, enabled touch swipe gestures left/right between slides, and redesigned ScannerBanner to premium dark-gold palette moved above contact form (2026-09-02)
+✅ Mobile Hero Chrome bottom toolbar safe-area lift, 6x6 chooser header cleanup to fit 1 iPhone screen, isolated md:hidden, and eliminated empty black space in desktop Aerial & 360 cards (2026-09-02)
+✅ Strategic Master Onboarding & Dental Clinic Sprint (2026-09-01)
+- Контекст:
+  - Изучены мастер-стратегии Spark и Breus Media (87 пунктов: Choice-First, The One-Tool Offer, B2B-перехват звонков).
+  - Создан манифест `site-docs/ANTIGRAVITY_SYSTEM_ROADMAP.md` с разделением ролей Spark ⟷ AntiGravity.
+  - Исследованы практики стоматологий (страхи, GEL прайсинг), задокументировано в `site-docs/research/dental-clinic-best-practices.md`.
+  - Реализованы React-компоненты для стоматологии: `FearRemoval.tsx` (FAQ по страхам) и `PricingGEL.tsx` (прозрачные цены).
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> в процессе.
+
+✅ Real-Time B2B Scanner Wedge Product (API + Data Scraper) implementation (2026-09-01)
+- Контекст:
+  - Обновлён интерактивный квиз `InteractiveScanner.tsx` до полноценного анализатора сайта.
+  - Разработан серверный API-эндпоинт `/api/analyze/route.ts` (Next.js App Router).
+  - Эндпоинт делает fetch сайта клиента, парсит `<title>`, `<meta description>`, считает теги `<img>` и `<video>`/`<iframe>`, а также оценивает примерную скорость загрузки на базе размера HTML.
+  - В квиз на фронтенде добавлена опция «Другое» со свободным текстовым вводом ниши.
+  - На втором шаге пользователю теперь показываются реальные данные с его сайта (название, скорость, найденное медиа), и расчет баллов теперь динамически учитывает реальные показатели сайта.
+- Проверки:
+  - `tsc --noEmit` -> ✅ (0 ошибок типов).
+  - Vercel Production деплой -> ✅ `READY` (https://breus-media-v2.vercel.app и https://breus-media-v2.vercel.app/audit).
+
+✅ Interactive B2B Scanner Wedge Product implementation (/audit & /gazeta banner) (2026-09-01)
+- Контекст:
+  - Реализован «Продукт-клин» (Interactive Scanner) для самостоятельного аудита цифрового присутствия B2B-клиентов (Недвижимость, Отели, Рестораны, Клиники).
+  - Создана новая целевая страница `/audit` с интерактивным 3-шаговым квизом `InteractiveScanner.tsx`.
+  - В квизе: ввод URL и ниши ➔ 3 быстрых чекбокса (скорость сайта, 360° на картах, 4K Reels) ➔ генерация индивидуального Scorecard с баллами и призывом в WhatsApp для получения Loom-разбора.
+  - Добавлен `ScannerBanner.tsx` на главную страницу `/gazeta` (над формой контактов `DroneContactStitch` в мобильной и десктопной `NichesStack.tsx` версиях).
+  - Использованы `Tailwind CSS`, `lucide-react`.
+- Проверки:
+  - `tsc --noEmit` -> ✅ (0 ошибок типов).
+  - Vercel Production деплой -> ✅ `READY` (https://breus-media-v2.vercel.app и https://breus-media-v2.vercel.app/audit).
+
+✅ Created interactive B2B widgets demo page (/interactive-demo) for Real Estate, Hotels & Restaurants (2026-09-01)
+- Контекст:
+  - Страница-витрина `/interactive-demo` для демонстрации интерактивных виджетов клиентам (Real Estate, Hotels, Restaurants).
+  - Разработаны 4 виджета:
+    * `RoiCalculator.tsx` (Расчет окупаемости инвестиций, ползунки стоимости и аренды).
+    * `EventBudgetCalculator.tsx` (Бюджет банкета, доп. опции фото/видео и дрон).
+    * `RestaurantStatus.tsx` (Live-статус посадки и кухни, раскрывающееся меню).
+    * `LeadQuiz.tsx` (Интерактивный опрос из 3 шагов с финальной формой сбора контактов).
+  - Использованы `framer-motion` для плавных анимаций и Tailwind CSS.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 109/109 страниц).
+  - Vercel Production деплой -> ✅ `READY` (https://breus-media-v2.vercel.app).
+
+✅ Restored clean photo-dominant 6x6 grid, added horizontal tab swipe and connected 2-step MultiStepServiceDrawer (2026-09-01)
+- Контекст:
+  - Дизайн карточек:
+    * Восстановлен чистый кинематографичный вид (крупное фото на 100% площади карточки, мягкий тёмный градиент снизу `bg-gradient-to-t from-black/95 via-black/35 to-transparent`, контрастное белое название в левом нижнем углу `font-bold text-sm sm:text-base md:text-lg`).
+    * Убраны рамки, ценники и кнопки с тела карточек для максимального визуального фокуса на контенте.
+  - Боковой свайп табов:
+    * Добавлен горизонтальный свайп пальцем по экрану влево-вправо (`onTouchStart`/`onTouchEnd` с расчётом дельты) для мгновенного плавного переключения между табами «Услуги» и «Индустрии» с анимацией `framer-motion`.
+  - 2-шаговая интерактивная шторка `MultiStepServiceDrawer.tsx`:
+    * Слайд 1 (Экспресс-обзор): подробное B2B-описание, блок «Что даёт формат:» с чеклистом, стартовая цена в ₾, индикатор «🟢 Ответ за 5 минут», кнопка WhatsApp и кнопка «Все форматы ➔».
+    * Слайд 2 (Каталог готовых форматов): переход к списку целевых L3-страниц с кнопками прямого перехода («Открыть ↗») и расчётом сметы («Смета»).
+    * Навигационные индикаторы-точки (Dots) внизу шторки.
+  - B2B редполитика: зафиксирована формулировка «Недвижимость и девелопмент» / «Real Estate & Development».
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 108/108 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-2694eyu9m-tony-breus-projects.vercel.app).
+
+✅ Integrated 6x6 symmetric matrix (added AEO Websites & Google Maps SEO), eliminated gesture conflict, and connected QuickServiceDrawer for two-step exploration (2026-09-01)
+- Контекст:
+  - Идеальная геометрия 6 Услуг × 6 Индустрий (адаптивная сетка 2×3 на мобильных, 3×2 на десктопе):
+    * 6 Услуг: Аэросъёмка (от 250 ₾), 360° туры (от 300 ₾), Reels & Видео (от 250 ₾), AI-визуализация (от 180 ₾), AEO/SEO-Сайты (от 1 200 ₾), Google Maps & SEO (от 350 ₾).
+    * 6 Индустрий: Недвижимость (от 250 ₾), Отели и курорты (от 350 ₾), Рестораны и еда (от 250 ₾), Туризм и гиды (от 300 ₾), Автобизнес (от 250 ₾), Клиники и бьюти (от 250 ₾).
+  - Ликвидация бага конфликта жестов:
+    * Табы переведены на центрированный Glass Pill переключатель с чистым `onClick={() => setActiveTab(...)}` без горизонтального перехвата свайпа.
+  - Двухэтапное изучение с `QuickServiceDrawer.tsx`:
+    * Клик по любой карточке плавно открывает стильный Bottom Sheet с категорией, описанием, составом услуги, стартовой ценой, бейджем «Ответ за 5 минут» и двумя кнопками (WhatsApp + «Открыть услугу» / «Рассчитать смету»).
+  - B2B редполитика: зачищены двусмысленные фразы («продажа квартир» заменена на «Медиа-упаковка жилых комплексов, апартаментов, вилл и коммерческих объектов»).
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 108/108 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-cc7gfxb0s-tony-breus-projects.vercel.app).
+
+✅ Consolidated Hotels & Tourism drone cards, eliminated duplicate slug, calibrated #pricing height and removed DroneStickyCta collision on /drone-hotels-tourism (2026-09-01)
+- Контекст:
+  - `components/drone/droneServicesData.ts`:
+    * Объединена карточка `oteli-kurorty` (Title: «Отели, курорты и туризм», Category: «ОТЕЛИ · ТУРОПЕРАТОРЫ · ГИДЫ · ЛОКАЦИИ», Description: «Гость выбирает глазами. Снимаем отели, глэмпинги, видовые маршруты и природные локации Грузии для туроператоров, гидов и Booking — контент, который продаёт атмосферу отдыха.», Price: «4K · АТМОСФЕРА · ПРОМО»).
+    * Полностью удалена дублирующая карточка `turizm`.
+  - `app/drone-hotels-tourism/page.tsx` & `app/drone-hotels-tourism/en/page.tsx`:
+    * Устранён наезд плавающих кнопок: удалены `DroneStickyCta` и `MobileBottomBar`, оставлен чистый глобальный `FloatingWhatsAppButton`.
+    * Откалибрована секция `#pricing`: класс `scroll-mt-16 md:scroll-mt-20 pt-5 pb-20 border-b border-[#2a2a2a] bg-[#080808]`, плотное описание, паддинги `p-4.5 md:p-5`, компактный чеклист `text-xs md:text-[13px]`, сетка помещается на 1 экран ноутбука.
+    * Изолированы смежные услуги `relatedServices`: ровно 2 целевые карточки (`360-tour-hotels` и `reels-hotel`).
+    * Футер: подключен обновленный `DroneFooterStitch` / `DroneFooterStitchEn`.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 108/108 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-2gt2f6xyp-tony-breus-projects.vercel.app).
+
+✅ Integrated QuickServiceDrawer (Pattern 1 Bottom Sheet) for uncompleted L3 services with speed-to-lead WhatsApp CTA (2026-09-01)
+- Контекст:
+  - Компонент `QuickServiceDrawer.tsx`:
+    * Мобильная стеклянная шторка (Bottom Sheet) на `framer-motion` со свайпом вниз для закрытия, блокировкой скролла `body`, индикатором перетаскивания (drag handle), бейджем категории и кнопкой закрытия.
+    * Информационный блок: питч-описание, состав услуги (чеклист с золотыми галочками), стартовая цена и статус ответа «🟢 Ответ за 5 минут» / «5-min response».
+    * Две конверсионные кнопки: прямой переход в WhatsApp с предзаполненным сообщением и кнопка «Оставить заявку» со скроллом к форме `#contact`.
+  - База экспресс-данных `constants/quickServicesData.ts`:
+    * Выверенные описания и цены для всех услуг без страниц 3-го уровня (`monitoring-stroiki`, `zemelnye-uchastki`, `inspekciya-fasadov`, `regulyarnye-aerootchety`, `fpv-semka`, `tour-restaurants`, `tour-clinics`, `reels-restaurant`, `reels-business`, `ai-brand`, `ai-auto` и др.).
+  - Сквозная интеграция:
+    * `GazetaMobileStepChooser.tsx`, `ChooserLayoutCinema.tsx`, `ChooserLayoutBento.tsx`, `ChooserLayoutDrawer.tsx`.
+    * При наличии L3 происходит прямой мгновенный переход (`<Link href="...">`), при отсутствии — снизу плавно выезжает `QuickServiceDrawer`.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 108/108 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-bztrhzeu6-tony-breus-projects.vercel.app).
+
+✅ Created 3 standalone UX preview routes for Chooser layout comparison: /gazeta-preview-1 (Cinema), /gazeta-preview-2 (Bento), /gazeta-preview-3 (Drawer) (2026-08-30)
+- Контекст:
+  - Макет №1 (/gazeta-preview-1): `ChooserLayoutCinema.tsx` — кинематографичный слайдер (Snap Carousel `w-[270px]/[320px]` со свайпом, золотой активной каймой, `scale-[1.03]` и подложной витриной sub-услуг 2×2).
+  - Макет №2 (/gazeta-preview-2): `ChooserLayoutBento.tsx` — интерактивный терминал (чипсы с зелёными пульсирующими онлайн-индикаторами готовности, асимметричный Bento-блок с флагманом и сопутствующими карточками).
+  - Макет №3 (/gazeta-preview-3): `ChooserLayoutDrawer.tsx` — шторка-каталог (App Store / Airbnb свайп-рейл компактных квадратных карточек со звездами L3 + детализированный вертикальный список).
+  - Приоритет L3: на всех макетах первыми выводятся готовые страницы 3-го уровня с кнопкой «Открыть услугу ↗» / «Открыть ↗» (Аэросъёмка: Недвижимость, Отели, Рестораны, Стройка; 360°: Недвижимость, Отели; Reels: Риелторы, Отели; AI: Staging, Описания отелей, Туризм).
+  - Быстрый переключатель между превью в шапке каждой страницы.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 108/108 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-6attbdssi-tony-breus-projects.vercel.app).
+
+✅ Compact Bento Layout Optimization for Real Estate ROI Calculator (2026-08-30)
+- Контекст:
+  - Оптимизация габаритов `RealEstateRoiCalculator.tsx`:
+    * Снижена вертикальная высота секции: отступы уменьшены с `py-10 md:py-16` до компактных `py-6 md:py-10`.
+    * Уменьшена максимальная ширина контейнера до `max-w-4xl`, шапка переведена в компактный flex-ряд (`text-xl md:text-3xl`).
+    * Компактные ползунки: уменьшены паддинги (`px-3.5 py-2.5`), высота трека (`h-1.5`) и моноширинные бейджи (`text-xs sm:text-sm`).
+    * Плитки результатов: метрики сэкономленных выездов и времени скомпонованы в аккуратную 2-колоночную сетку, плашка чистого эффекта выделена компактной золотой полосой, кнопка WhatsApp и нижний микро-баннер переведены в аккуратный slim-формат.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-emwz9t4se-tony-breus-projects.vercel.app).
+
+✅ Interactive Real Estate ROI Calculator & B2B Legal Trust Strip (2026-08-29)
+- Контекст:
+  - Компонент `RealEstateRoiCalculator.tsx` (RU & EN):
+    * Разработан интерактивный Bento-калькулятор окупаемости аэросъёмки недвижимости и ЖК в тёмной теме `#0A0A0B` с золотыми акцентами `#FFD23F`.
+    * Ползунки: «Объектов в продаже» (1–30, default 5), «Средняя цена» ($50k–$250k, default $85k), «Показов на сделку» (4–15, default 8).
+    * Формулы: сэкономленные выезды `units * tours * 0.35`, сэкономленное время `savedTours * 2.5 ч`, прямой экономический эффект `units * 450 GEL`.
+    * Вывод 3 Bento-плашек со счетчиками и быстрая WhatsApp-кнопка с динамическим текстом расчёта.
+    * Нижний баннер допродажи: «Нужен интерактивный калькулятор для сайта вашего ЖК? Создаем под ключ от 350 ₾».
+  - Интеграция:
+    * Встроен перед секцией `#pricing` на страницах `app/drone-services/drone-real-estate/page.tsx` и `en/page.tsx`.
+  - B2B Юридический триггер доверия в футере (`DroneFooterStitch` & `DroneFooterStitchEn`):
+    * RU: «Официальный договор • Закрывающие акты • Безналичный расчёт для юрлиц (Invoice TBC / BoG)»
+    * EN: «Official B2B Contract • Invoices & Acts • Bank Transfer for Companies (TBC / BoG)»
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-58e9c0ckk-tony-breus-projects.vercel.app).
+
+✅ Footer Standard, Global Floating WhatsApp & CTA Buttons Standardization (2026-08-29)
+- Контекст:
+  - Единый стандарт футера (`DroneFooterStitch` / `DroneFooterStitchEn`):
+    * `DroneFooterStitchEn` унифицирован с `DroneFooterStitch` (поддержка `lang="en"`, единая 2-строчная вёрстка с золотыми разделителями, капсулой контактов с пульсирующим зелёным индикатором, стеклянными соцсетями и актуальным номером `+995 501 103 183`).
+    * Проверено и обеспечено подключение футера во всех L1, L2, L3 страницах (включая `gazeta/[slug]`, `drone-brand-video` и L2/L3 направления).
+  - Глобальный плавающий WhatsApp (`FloatingWhatsAppButton`):
+    * Добавлен в `app/layout.tsx` как глобальный синглтон с автоматическим определением языка (RU / EN) через `usePathname()`.
+    * Устранены все дублирующие локальные вызовы и старые нижние плашки (`fixed bottom-0`).
+  - Стандартизация контактных CTA-кнопок:
+    * Hero: основная кнопка — «Обсудить съёмку» / «Discuss Project», вторичная — «Посмотреть тарифы →» / «View Pricing & Tiers →».
+    * Тарифные карточки: кнопка выбора — «Обсудить этот формат →» / «Discuss This Tier →» (со скроллом на `#contact` и автоподстановкой выбранного пакета).
+    * Форма `DroneContactStitch` / `RealEstateContactStitch`: кнопка отправки — «Отправить задачу на расчёт» / «Submit Project for Estimate».
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-ilb8zqwlf-tony-breus-projects.vercel.app).
+
+✅ B2B Redpolicy: Prices, Offers & Zero Fluff Terminology Polish (2026-08-29)
+- Контекст:
+  - Искоренение «сырые файлы / RAW» в пользу деловых терминов:
+    * Заменены все вхождения терминов «сырые исходники / RAW-файлы / исходники (RAW)» на «оригинальные 4K видеоматериалы», «оригинальный массив съёмки (4K D-Log M)», «оригинальные DNG-исходники» в конфигурациях и страницах (`l2DirectionConfigs.ts`, `l2DirectionConfigs.en.ts`, `drone-sport`, `drone-facade`, `drone-warehouses`, `drone-solar`, `drone-wine`, `drone-brand-video`, `drone-auto`, `drone-land-sale`, `drone-fpv-cinema`, `promo-business`, `promo-restaurant`).
+  - Фиксация стартовых цен в GEL (₾):
+    * Проверены и зафиксированы точные стартовые цены в GEL без абстрактных формулировок «по задаче» во всех тарифах (включая рестораны в `l2DirectionConfigs.ts`: Menu Pack от 350 ₾, Reels & Social Pack от 450 ₾, Space Pack от 550 ₾, Monthly Content Pack от 950 ₾; в тарифах `reels-realtor`: от 200 ₾ за ролик, монтаж от 80 ₾).
+  - Зачистка субъективных стоп-слов (Zero Fluff):
+    * Убраны слова-паразиты («уникальный», «профессиональный подход») в пользу конкретных доказательств и характеристик: съёмка 4K HDR (3840×2160), оборудование DJI Air 3S / Avata 2 / Insta360 X5, микрофоны DJI Mic 2, передача материалов за 24–48 часов.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-fl8agder3-tony-breus-projects.vercel.app).
+
+✅ Mobile Hero Polish, Scroll Chevron & Typography Hierarchy (2026-08-29)
+- Контекст:
+  - Кнопки первого экрана (Hero):
+    * Текст второй кнопки обновлен на «ПОСМОТРЕТЬ ТАРИФЫ →» (RU) / «VIEW PRICING & TIERS →» (EN) в `app/drone-services/drone-real-estate/page.tsx` и `en/page.tsx` (включая мид-CTA).
+    * Подтвержден плавный скролл к блоку `#pricing` (`html { scroll-behavior: smooth }` + `scroll-mt-16 md:scroll-mt-20`).
+  - Бегущая строка (Ticker):
+    * Размер шрифта бегущей строки увеличен на 40-50%: применен `text-sm font-medium tracking-wider` (вместо мелкого `text-xs`) в `SmartHeader.tsx` (`TickerItem` и `InteractiveTicker`).
+  - Стрелка скролла в блоке «КОРОТКО»:
+    * Устранено абсолютное наложение стрелки на текст внутри карточки на мобильных устройствах.
+    * Интерактивная стрелка-шеврон `ChevronDown` размещена под карточкой «Коротко» (RU & EN).
+    * Клик плавно скроллит к секции `#target-audience` («Для кого эта съёмка» / «Who We Shoot For»).
+    * Анимация: деликатный плавный bounce без темного перекрывающего круга.
+  - Шрифтовая иерархия и компактность карточек:
+    * В блоке доказательств (Proof/Stats): сохранены желтые цифры (`#FFD23F`), подзаголовки переведены из CAPS в нормальный регистр `text-base font-semibold text-white`, текст приведен к `text-zinc-400 text-sm leading-relaxed`, карточки уплотнены (`p-4.5 sm:p-5`).
+    * В блоке «Для кого эта съёмка» («Who We Shoot For»): добавлен `id="target-audience"`, усилен контраст между заголовком (`text-white font-bold text-lg`) и описанием (`text-zinc-400 text-sm leading-relaxed`), карточки уплотнены (`p-4.5 sm:p-5`).
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Mobile UX, WhatsApp 995501103183, Safe Area / 100dvh & Catalog Swipe/Interactivity (2026-08-29)
+- Контекст:
+  - WhatsApp: номер обновлен на актуальный `995501103183` (`+995 501 103 183` / `https://wa.me/995501103183`) по всему проекту во всех 110 файлах (`FloatingWhatsAppButton.tsx`, `Hero`, `SmartHeader`, футеры, JSON-LD, конфиги, L2/L3 страницы), старый номер с `8599` полностью искоренен.
+  - Мобильный Hero (Safe Area & dvh): в `HeroSection.tsx` и `app/drone-services/drone-real-estate/page.tsx` (RU & EN) высота экранов адаптирована под `min-h-[100dvh]` / `h-[100dvh]` с отступами `pb-[env(safe-area-inset-bottom,24px)]` / `pb-12 md:pb-16 pt-28 sm:pt-32 md:pt-48`, благодаря чему кнопки гарантированно помещаются на экране iPhone 14 Pro над панелью браузеров Safari/Chrome.
+  - Zero Waste Space: на странице `drone-services/drone-real-estate` (RU & EN) уменьшены мобильные отступы секций с 20-24 до `py-8 md:py-16`, карточки оптимизированы по плотности (`p-4 md:p-6`).
+  - Интерактивность 6 подкарточек каталога аэросъемки: в `GazetaMobileStepChooser.tsx` все 6 карточек (FPV-съёмка, Земельные участки, Инспекция фасадов, Мониторинг стройки, Регулярные аэроотчёты, Мероприятия) кликабельны, для готовых L3 ведут на страницу, для остальных клик плавно скроллит к форме `#contact` с автоподстановкой выбранной услуги в `DroneContactStitch` через событие `breus-select-service`.
+  - Поддержка свайпов на мобильных: в `GazetaMobileStepChooser.tsx` добавлен touch swipe обработчик (влево/вправо) для мгновенного переключения вкладок «Услуги» ↔ «Индустрии».
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-eflqlbs22-tony-breus-projects.vercel.app).
+
+✅ UI/UX Final Polish: Fixed Bottom Bar Removal, SmartHeader Clock Badge & Breadcrumb Hubs Sync (2026-08-29)
+- Контекст:
+  - Удаление старой нижней фиксированной планки (`MobileBottomBar` / `DroneStickyCta`): отключена на всех L2 и L3 страницах. Единственным плавающим контактным элементом в правом нижнем углу остался `FloatingWhatsAppButton`.
+  - Корректировка бейджа часов в `SmartHeader`: убрана текстовая надпись «ТБИЛИСИ •», оставлен только зеленый пульсирующий индикатор и тикающее время Asia/Tbilisi (`● 01:54:00`).
+  - Синхронизация хлебных крошек (Schema.org `BreadcrumbList`) на всех 6 ключевых L3 страницах (RU & EN):
+    * `/drone-services/drone-real-estate` (RU & EN) -> Хаб `/real-estate-service` (RU) / `/real-estate-service/en` (EN)
+    * `/drone-hotels-tourism` (RU & EN) -> Хаб `/tourism-service` (RU) / `/tourism-service/en` (EN)
+    * `/drone-services/drone-restaurants` (RU & EN) -> Хаб `/restaurants-service` (RU) / `/restaurants-service/en` (EN)
+    * `/360-tour-real-estate` (RU & EN) -> Хаб `/real-estate-service` (RU) / `/real-estate-service/en` (EN)
+    * `/360-tour-hotels` (RU & EN) -> Хаб `/tourism-service` (RU) / `/tourism-service/en` (EN)
+    * `/reels-promo/reels-realtor` (RU & EN) -> Хаб `/real-estate-service` (RU) / `/real-estate-service/en` (EN)
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-dlegils5q-tony-breus-projects.vercel.app).
+
+✅ Batch 2: Full Isolation of Unfinished L3 Pages & Transition Audit (2026-08-29)
+- Контекст:
+  - В продакшене активны только полностью завершенные флагманские L3-страницы:
+    * 360° Виртуальные туры: `/360-tour-real-estate` (RU) ↔ `/360-tour-real-estate/en` (EN)
+    * Reels для риелторов: `/reels-promo/reels-realtor` (RU) ↔ `/reels-promo/reels-realtor/en` (EN)
+    * Аэросъемка недвижимости: `/drone-services/drone-real-estate` (RU) ↔ `/drone-services/drone-real-estate/en` (EN)
+  - Изоляция черновиков и старой верстки:
+    * Все блоки «Смежные форматы / Related Services / relatedLinks» на L2 (`hotels-service`, `clinics-service`, `auto-service`, `tourism-service`, `restaurants-service`) и L3 очищены от ссылок на незавершенные черновики со старой версткой.
+    * В L2 каталогах (`constants/l2DirectionConfigs.ts`, `constants/l2DirectionConfigs.en.ts`) кнопка «Открыть услугу» (`primaryHref`) оставлена строго для готовых L3-продуктов.
+    * Для всех остальных услуг кнопка «Обсудить задачу» (RU) / «Discuss Project» (EN) ведет по плавному якорному скроллу на `#contact` с автоподстановкой названия услуги в форму `DroneContactStitch` (`selectAndScrollToContact`) без перезагрузки или 404.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Batches 3 & 4: Zero Fluff Editorial, Fixed GEL Pricing, Unified Footer & WhatsApp (2026-08-28)
+- Контекст:
+  - Батч №3 (Смысловая редполитика и ценовая сетка Zero Fluff):
+    * Исключение размытых формулировок и стоп-слов («уникальный», «лучший», «профессиональный», «эксклюзивный», «индивидуальный подход», «venue»). Замена на измеримые факты, оборудование (DJI Air 3S, DJI Avata 2, Insta360 X5) и сроки (от 24 до 48 часов).
+    * Зачистка формулировок исходников: «оригинальные 4K видеоматериалы», «исходный массив съёмки», «полный архив фотоматериалов» (RU) / «Original 4K Master Footage», «High-Resolution Source Archive» (EN).
+    * Фиксация стартовых порогов входа в GEL (₾): Дроны от 250 ₾, 360° туры от 350 ₾ (квартиры от 200 ₾), Reels от 350 ₾, AI от 500 ₾ (описания от 250 ₾).
+  - Батч №4 (Единый стандарт интерфейса):
+    * Сквозное подключение `DroneFooterStitch` (RU) / `DroneFooterStitchEn` (EN) на всех L2 и L3 страницах.
+    * Размещение `FloatingWhatsAppButton` на всех страницах с локализованным приветствием.
+    * Унификация CTA: Hero («Обсудить съёмку» / «Book a Shoot», «Посмотреть пакеты» / «View Packages»), Тарифы («Обсудить этот пакет →» / «Select Package →»).
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Batch 1 (L3 EN Mirrors) & Batch 2 (Raw L3 Isolation & Link Audit) Complete & Deployed (2026-08-28)
+- Контекст:
+  - Проверка и фиксация L3 зеркальных маршрутов:
+    * `/360-tour-real-estate` ↔ `/360-tour-real-estate/en` (`languageLinks={{ ru: '/360-tour-real-estate', en: '/360-tour-real-estate/en' }}`)
+    * `/reels-promo/reels-realtor` ↔ `/reels-promo/reels-realtor/en` (`languageLinks={{ ru: '/reels-promo/reels-realtor', en: '/reels-promo/reels-realtor/en' }}`)
+  - Сквозная верификация логики переключателя языков в `SmartHeader`: строгая маршрутизация по переданным `languageLinks` без сброса на корневые пути.
+  - Изоляция незавершенных L3:
+    * В L2 каталогах кнопка «Открыть услугу» (`primaryHref`) активна строго для 6 готовых L3 страниц:
+      1) `/drone-services/drone-real-estate` (RU & EN)
+      2) `/drone-hotels-tourism` (RU & EN)
+      3) `/drone-services/drone-restaurants` (RU & EN)
+      4) `/360-tour-real-estate` (RU & EN)
+      5) `/360-tour-hotels` (RU & EN)
+      6) `/reels-promo/reels-realtor` (RU & EN)
+    * Для всех остальных услуг в каталогах L2 кнопка ведет на `#contact` с автоподстановкой услуги в форму `DroneContactStitch`.
+    * Блоки «Другие форматы / Related Services» ссылаются исключительно на проверенные L2-хабы.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ L2 EN Mirrors Batch: Tourism, Clinics, Auto Business Synchronized & Deployed (2026-08-28)
+- Контекст:
+  - Комплексная синхронизация трех англоязычных хабов:
+    1) Tourism & Glamping: `/tourism-service` (RU) ↔ `/tourism-service/en` (EN)
+    2) Clinics & Dentistry: `/clinics-service` (RU) ↔ `/clinics-service/en` (EN)
+    3) Auto Business & Detailing: `/auto-service` (RU) ↔ `/auto-service/en` (EN)
+  - Полная двусторонняя связка `languageLinks` в `SmartHeader`.
+  - Zero Fluff: исключение клише и просторечий («original 4K master footage», «color-graded video assets»), фиксация цен в GEL (₾), CTA («Book a Shoot» / «View Packages», «Select package →» к `#contact`).
+  - География: «Based in Tbilisi, with regular shoots in Batumi and across Georgia».
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Steps 1.4 & 1.5: L3 360° Real Estate & Reels for Realtors RU↔EN Language Mirrors (2026-08-28)
+- Контекст:
+  - Проверка и верификация английских зеркальных L3-страниц:
+    1) 360° Virtual Tour for Real Estate: `/360-tour-real-estate` (RU) ↔ `/360-tour-real-estate/en` (EN)
+    2) Reels for Realtors: `/reels-promo/reels-realtor` (RU) ↔ `/reels-promo/reels-realtor/en` (EN)
+  - Настройка двусторонних связок `languageLinks` в `SmartHeader`.
+  - Проверка Zero Fluff редполитики: исключение просторечий о сырых файлах, фиксация цен в GEL (₾), CTA стандарты (Hero: «Обсудить съёмку» / «Book a Shoot», «Посмотреть пакеты» / «View Packages»; Тарифы: `PackageCta` «Обсудить этот пакет →» / «Select package →»).
+- Сделано:
+  - `app/360-tour-real-estate/en/page.tsx`: верифицированы `languageLinks`, CTA кнопки Hero («Book a Shoot» / «View Packages»), `ctaLabel="Book a Shoot"`, тарифы `PackageCta`, микроразметка Schema.org (`Service`, `FAQPage`, `BreadcrumbList`);
+  - `app/360-tour-real-estate/page.tsx`: верифицированы `languageLinks`, CTA кнопки Hero («Обсудить съёмку» / «Посмотреть пакеты»), `ctaLabel="Обсудить съёмку"`, `MobileBottomBar` и `DroneStickyCta`;
+  - `app/reels-promo/reels-realtor/en/page.tsx`: верифицированы `languageLinks`, CTA кнопки Hero («Book a Shoot» / «View Packages»), `PackageCta` («Select package →» с предзаполнением в `#contact`);
+  - `app/reels-promo/reels-realtor/page.tsx`: верифицированы `languageLinks`, CTA кнопки Hero («Обсудить съёмку» / «Посмотреть пакеты»), `PackageCta` («Обсудить этот пакет →»).
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Step 1.3: L2 Auto Business (/auto-service/en) Synchronization & Two-Way RU↔EN Switcher (2026-08-28)
+- Контекст:
+  - Создание и синхронизация зеркальной англоязычной страницы для автобизнеса, автосалонов и детейлинга `/auto-service/en` на базе `L2DirectionRenderer` и `autoServiceEnConfig`.
+  - Настройка двусторонней связки `languageLinks: { ru: '/auto-service', en: '/auto-service/en' }` в `SmartHeader`.
+  - Проверка цен в GEL (от 400–450 ₾ за стартовые пакеты) и соответствия CTA-кнопок стандарту Zero Fluff («Book a Shoot» / «View Packages», «Select package →»).
+- Сделано:
+  - `app/auto-service/en/page.tsx`: заданы точные метаданные (Title: "Auto Business, Dealerships & Detailing Visual Production in Georgia | Breus Media", Description: "Dynamic FPV drone video, 4K walkthroughs and short-form video production for car dealerships, auto services and detailing centers in Tbilisi and Batumi. Transparent GEL pricing.", OpenGraph, Twitter, canonical, alternates);
+  - `constants/l2DirectionConfigs.en.ts`: проверены и обновлены CTA кнопки в `autoServiceEnConfig` (`heroPrimaryCtaLabel: 'Book a Shoot'`, `heroSecondaryCtaLabel: 'View Packages'`, тарифы `Select package →`, прозрачные цены в GEL: Single Car Review 450 ₾, Detailing Promo 400 ₾, Dealership Pack 800 ₾, Monthly 1000 ₾);
+  - `app/auto-service/page.tsx` & `en/page.tsx`: верифицирована двусторонняя связка `languageLinks` с активным языком `initialLang="ru"` / `initialLang="en"`.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Step 1.2: L2 Clinics (/clinics-service/en) Synchronization & Two-Way RU↔EN Switcher (2026-08-28)
+- Контекст:
+  - Создание и синхронизация зеркальной англоязычной страницы для медицинских центров и стоматологий `/clinics-service/en` на базе `L2DirectionRenderer` и `clinicsServiceEnConfig`.
+  - Настройка двусторонней связки `languageLinks: { ru: '/clinics-service', en: '/clinics-service/en' }` в `SmartHeader`.
+  - Проверка цен в GEL (от 350 ₾ за стартовый пакет) и соответствия CTA-кнопок стандарту Zero Fluff («Book a Shoot» / «View Packages», «Select package →»).
+- Сделано:
+  - `app/clinics-service/en/page.tsx`: заданы точные метаданные (Title: "Medical Clinics & Dentistry Visual Production in Georgia | Breus Media", Description: "FPV drone video, 360° virtual tours and doctor expert reels for medical centers and dental clinics in Tbilisi and Batumi. Transparent pricing in GEL.", OpenGraph, Twitter, canonical, alternates);
+  - `constants/l2DirectionConfigs.en.ts`: обновлены CTA кнопки в `clinicsServiceEnConfig` (`heroPrimaryCtaLabel: 'Book a Shoot'`, `heroSecondaryCtaLabel: 'View Packages'`, тарифы `Select package →`, прозрачные цены в GEL: Starter 350 ₾, Doctor & Reels 450 ₾, Space 400 ₾, Monthly 800 ₾);
+  - `app/clinics-service/page.tsx` & `en/page.tsx`: верифицирована двусторонняя связка `languageLinks` с активным языком `initialLang="ru"` / `initialLang="en"`.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Step 1.1: L2 Tourism (/tourism-service/en) Synchronization & Two-Way RU↔EN Switcher (2026-08-28)
+- Контекст:
+  - Создание и синхронизация англоязычной страницы туристического направления `/tourism-service/en` на базе `L2DirectionRenderer` и `tourismServiceEnConfig`.
+  - Настройка двусторонней связки `languageLinks: { ru: '/tourism-service', en: '/tourism-service/en' }` в `SmartHeader`.
+  - Проверка цен в GEL и соответствия CTA-кнопок утвержденному стандарту Zero Fluff.
+- Сделано:
+  - `app/tourism-service/en/page.tsx`: установлены точные метаданные (Title: "Tourism & Glamping Visual Production in Georgia | Breus Media", Description: "FPV drone video, 360° virtual tours and promotional reels for hotels, glampings and tours across Georgia. Transparent pricing in GEL.", OpenGraph, Twitter, canonical, alternates);
+  - `constants/l2DirectionConfigs.en.ts`: обновлены CTA кнопки в `tourismServiceEnConfig` (`heroPrimaryCtaLabel: 'Book a Shoot'`, `heroSecondaryCtaLabel: 'View Packages'`, тарифы `Select package →`, прозрачные цены в GEL от 300 ₾);
+  - `app/tourism-service/page.tsx` & `en/page.tsx`: верифицирована двусторонняя связка `languageLinks` с активным языком `initialLang="ru"` / `initialLang="en"`.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Batch 4: Unified Footer Standard, Floating WhatsApp & CTA Button Standardization (2026-08-28)
+- Контекст:
+  - Сквозная унификация футеров: подключение единого контрастного `DroneFooterStitch` (RU) и `DroneFooterStitchEn` (EN) на всех L2/L3 страницах. Замена разрозненных/устаревших инлайн-футеров (`app/real-estate-2/page.tsx`).
+  - Плавающая капсула WhatsApp: проверка `FloatingWhatsAppButton` (номер `+995 599 068 599`, автотекст RU/EN, анимация framer-motion, отсутствие дублирующих баннеров).
+  - Унификация CTA кнопок на всех страницах каталогов L2 и ключевых L3:
+    * Первый экран (Hero): «Обсудить съёмку» (RU первичная) / «Посмотреть пакеты» (RU вторичная); «Book a Shoot» (EN первичная) / «View Packages» (EN вторичная).
+    * Карточки тарифов: «Обсудить этот пакет →» (RU) / «Select Package →» (EN).
+    * Контактные блоки и плавающие бары: «Обсудить съёмку» / «Book a Shoot».
+- Сделано:
+  - `components/drone/DroneFooterStitchEn.tsx`: обновлены зеркальные ссылки меню на `/en`, сделаны кликабельными телефон `tel:+995599068599` и почта `mailto:hello@breus.media`, копирайт 2026;
+  - `app/real-estate-2/page.tsx`: заменён минимальный инлайн-футер на `DroneFooterStitch` + `FloatingWhatsAppButton`;
+  - `constants/l2DirectionConfigs.ts`: обновлены `heroPrimaryCtaLabel` («Обсудить съёмку» / «Обсудить задачу») и `heroSecondaryCtaLabel` («Посмотреть пакеты») во всех 9 L2-хабах;
+  - `constants/l2DirectionConfigs.en.ts`: обновлены `heroPrimaryCtaLabel` («Book a Shoot» / «Discuss Project») и `heroSecondaryCtaLabel` («View Packages») во всех 9 EN L2-хабах;
+  - `app/360-tour-real-estate/page.tsx` & `en/page.tsx`: стандартизированы кнопки Hero («Обсудить съёмку» / «Посмотреть пакеты», «Book a Shoot» / «View Packages»), `ctaLabel` и `MobileBottomBar`;
+  - `app/360-tour-hotels/page.tsx`, `360-tour-hotels.tsx` & `en/page.tsx`: стандартизированы Hero кнопки и `MobileBottomBar`;
+  - `app/reels-promo/reels-realtor/page.tsx` & `en/page.tsx`: стандартизированы Hero кнопки;
+  - `app/drone-hotels-tourism/page.tsx`, `drone-hotels-tourism.tsx` & `en/page.tsx`, `drone-hotel-page-en.tsx`: стандартизированы Hero кнопки;
+  - `app/drone-services/drone-real-estate/en/page.tsx`: стандартизированы Hero кнопки («Book a Shoot» / «View Packages»);
+  - `app/drone-services/drone-restaurants/page.tsx` & `page.en.tsx`: стандартизированы Hero кнопки («Обсудить съёмку» / «Посмотреть пакеты», «Book a Shoot» / «View Packages»).
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц скомпилированы успешно).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Batch 3: Zero Fluff Editorial Policy, Deliverables Terminology, Fixed GEL Pricing & Anglicism Cleanup (2026-08-28)
+- Контекст:
+  - Сквозной аудит и зачистка текстов по стандарту Zero Fluff в конфигурационных файлах и компонентах.
+  - Терминология исходников (Deliverables):
+    * Полное исключение просторечий («сырые файлы / сырой материал / raw files / raw footage»).
+    * Замена на профессиональные стандарты: «Оригинальные 4K видеоматериалы», «Исходный массив съёмки», «Full Source Files / Original 4K Footage».
+  - Фиксация цен в GEL (₾):
+    * Дрон: базовые вылеты от 250 ₾, комплексные от 500 ₾.
+    * 360° туры: от 200 ₾ (Start) / от 350–450 ₾ (Standard).
+    * Reels: от 200–250 ₾ за ролик / от 650 ₾ за пакет.
+    * Устранены размытые заглушки «по задаче / custom quote» в каталогах промо-видео, AI-копирайтинга и Reels — прописаны прозрачные базовые тарифы в GEL («от 100 ₾», «от 120 ₾», «от 150 ₾», «от 200 ₾», «от 300 ₾», «от 350 ₾», «от 450 ₾», «от 500 ₾»).
+  - Устранение стоп-слов и англицизмов:
+    * Замена субъективных абстракций на точные технические характеристики (камеры 4K HDR, трёхосевая стабилизация, радиосистемы DJI Mic 2, дроны DJI Air 3S / Avata 2, Insta360 X5).
+    * В русскоязычных текстах устранён англицизм `venue / веню` с заменой на `площадка`, `локация`, `заведение` или `пространство`.
+- Сделано:
+  - `constants/gazetaRoutes.ts`: заменены цены «по задаче» на конкретные «от X ₾» для AI-услуг и Reels;
+  - `constants/l2DirectionConfigs.ts`: обновлены цены в промо-видео каталоге (`от 300 ₾` – `от 500 ₾`) и AI Localization (`от 200 ₾`);
+  - `constants/l2DirectionConfigs.en.ts`: обновлен пакет AI Localization & Copy (`from 200 GEL`);
+  - `app/reels-promo/reels-realtor/page.tsx`: заменены общие описания на точные спецификации (4K HDR, трёхосевая стабилизация, DJI Mic 2);
+  - `app/drone-hotels-tourism/page.tsx` & `drone-hotels-tourism.tsx`: стандартизирована терминология («оригинальные 4K видеоматериалы»);
+  - `app/drone-hotels-tourism/en/page.tsx` & `drone-hotel-page-en.tsx`: обновлено на «Full Source Files»;
+  - `app/drone-services/drone-brand-video/DroneBrandVideoPageClient.tsx`: обновлено на «Оригинальные 4K видеоматериалы (от 250 ₾)»;
+  - `app/drone-services/drone-wine/page.tsx`, `drone-facade/page.tsx`, `drone-warehouses/page.tsx`, `drone-reporting/page.tsx`, `drone-solar/page.tsx`, `real-estate-2/page.tsx`: обновлена терминология исходников;
+  - `app/drone-weddings-events/page.tsx`: зачищены англицизмы `venue` в заголовках, текстах и форме.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц скомпилированы успешно).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Batch 2: L3 Draft Isolation, Canonical Routing Whitelist & Cross-Link Cleanup (2026-08-28)
+- Контекст:
+  - Сквозная фильтрация и изоляция незавершенных L3-страниц по всем 10 L2-хабам (`tourism`, `clinics`, `auto`, `hotels`, `real-estate`, `restaurants`, `360-tours`, `reels`, `ai-visualization`, `drone`) и сопутствующим блокам.
+  - Кнопка прямого перехода «Открыть услугу» / «Explore Service» сохранена строго для 6 канонических L3-страниц:
+    1. `/drone-services/drone-real-estate` (и `/drone-services/drone-real-estate/en`)
+    2. `/drone-hotels-tourism` (и `/drone-hotels-tourism/en`)
+    3. `/drone-services/drone-restaurants` (и `/drone-services/drone-restaurants/en`)
+    4. `/360-tour-real-estate` (и `/360-tour-real-estate/en`)
+    5. `/360-tour-hotels` (и `/360-tour-hotels/en`)
+    6. `/reels-promo/reels-realtor` (и `/reels-promo/reels-realtor/en`)
+  - Для всех остальных услуг в каталогах L2:
+    * Кнопка действия переведена на «Обсудить задачу» (RU) / «Discuss Project» (EN).
+    * Ссылка направлена на якорный скролл `#contact` с автоподстановкой названия услуги через событие `breus-select-service` и `sessionStorage`.
+  - Очистка блоков «Сопутствующие услуги / Related Services»:
+    * Удалены любые ссылки на черновые маршруты и старые страницы.
+    * В `app/drone-hotels-tourism/en/page.tsx` и `drone-hotel-page-en.tsx` ссылка на 360° туры обновлена на `/360-tour-hotels/en`.
+    * В `components/drone/DroneServicesStitch.tsx` удален фоллбэк на черновой `/drone-object-inspection`.
+- Сделано:
+  - `constants/l2DirectionConfigs.ts`: обновлены `hotelsService`, `restaurantsService`, `tourismService`, `tours360Service`, `reelsService` с каноническими `primaryHref` для 6 ключевых услуг и `#contact` для остальных;
+  - `constants/l2DirectionConfigs.en.ts`: обновлены `hotelsServiceEnConfig`, `restaurantsServiceEnConfig`, `tourismServiceEnConfig`, `tours360ServiceEnConfig`, `reelsServiceEnConfig` с зеркальными `primaryHref` `/en` и CTA «Discuss project»;
+  - `components/drone/DroneServicesStitch.tsx`: очищен `detailsHref` от прямого пути к черновому `/drone-object-inspection`;
+  - `app/drone-hotels-tourism/en/page.tsx` & `drone-hotel-page-en.tsx`: обновлена ссылка в `relatedServices` на `/360-tour-hotels/en`.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц скомпилированы успешно).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Batch 1: Full RU ↔ EN Language Mirrors, SmartHeader 1-Click Seamless Switching & Canonical LanguageLinks (2026-08-28)
+- Контекст:
+  - 100% зеркалирование всех L2-хабов и всех 6 канонических L3-страниц (RU ↔ EN) без сброса на главную страницу при переключении языка.
+  - Создание недостающего зеркала `app/360-tour-hotels/en/page.tsx` с полной английской версией, тарифами в GEL, Schema JSON-LD (Service, Offer, LocalBusiness, FAQPage, BreadcrumbList), `PackageCta`, `DroneFooterStitchEn` и `FloatingWhatsAppButton lang="en"`.
+  - Модернизация `components/gazeta/SmartHeader.tsx`:
+    * Добавлено автоматическое вычисление резервных зеркал `computedRuHref` и `computedEnHref` из текущего `pathname` (если `languageLinks` не передан, шапка сама связывает `/[route]` ↔ `/[route]/en`).
+    * В десктопном выпадающем меню активный язык подсвечивается (`✓` и золотой акцент), а альтернативный ведёт строго на канонический URL зеркала.
+    * В мобильном дровере (`drawer`) отображаются аккуратные круглые пиллы `RU` и `EN` с подсветкой активного языка и прямым переходом без сброса контекста.
+  - Проверка всех L2 и L3 зеркал на корректные `languageLinks`, `rel="canonical"` и `hreflang` (`ru`, `en`, `'x-default'`).
+- Сделано:
+  - `components/gazeta/SmartHeader.tsx`: переработана логика `alternateLanguageHref`, `computedRuHref`, `computedEnHref`, десктопный и мобильный переключатели языков;
+  - `app/360-tour-hotels/en/page.tsx`: создано англоязычное зеркало для 360° VR-туров по отелям с `PackageCta`, прайсингом Start (200 ₾), Standard (450 ₾), Full Property (900 ₾), `DroneFooterStitchEn` и `SmartHeader` `languageLinks={{ RU: '/360-tour-hotels', EN: '/360-tour-hotels/en' }}`;
+  - `app/360-tour-hotels/page.tsx`: верифицированы `languageLinks={{ RU: '/360-tour-hotels', EN: '/360-tour-hotels/en' }}` и hreflang;
+  - `app/tourism-service/en/page.tsx` ↔ `app/tourism-service/page.tsx`: верифицированы `languageLinks={{ ru: '/tourism-service', en: '/tourism-service/en' }}`;
+  - `app/clinics-service/en/page.tsx` ↔ `app/clinics-service/page.tsx`: верифицированы `languageLinks={{ ru: '/clinics-service', en: '/clinics-service/en' }}`;
+  - `app/auto-service/en/page.tsx` ↔ `app/auto-service/page.tsx`: верифицированы `languageLinks={{ ru: '/auto-service', en: '/auto-service/en' }}`;
+  - `app/hotels-service/en/page.tsx` ↔ `app/hotels-service/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/real-estate-service/en/page.tsx` ↔ `app/real-estate-service/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/restaurants-service/en/page.tsx` ↔ `app/restaurants-service/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/360-tours-service/en/page.tsx` ↔ `app/360-tours-service/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/reels-service/en/page.tsx` ↔ `app/reels-service/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/ai-visualization-service/en/page.tsx` ↔ `app/ai-visualization-service/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/drone-service/en/page.tsx` ↔ `app/drone-service/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/drone-services/drone-real-estate/en/page.tsx` ↔ `app/drone-services/drone-real-estate/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/drone-hotels-tourism/en/page.tsx` ↔ `app/drone-hotels-tourism/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/drone-services/drone-restaurants/en/page.tsx` ↔ `app/drone-services/drone-restaurants/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/360-tour-real-estate/en/page.tsx` ↔ `app/360-tour-real-estate/page.tsx`: верифицированы двусторонние ссылки;
+  - `app/reels-promo/reels-realtor/en/page.tsx` ↔ `app/reels-promo/reels-realtor/page.tsx`: верифицированы двусторонние ссылки.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 105/105 страниц скомпилированы успешно).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Schema JSON-LD (GEO / AEO 2026), Global SEO Metadata, Unified Phone & #Contact Funnel Verification (2026-08-28)
+- Контекст:
+  - Внедрение передового стандарта микроразметки Schema.org (JSON-LD) по спецификации GEO / AEO 2026 для поисковых систем и AI-агентов (ChatGPT, Perplexity, Google AI Overviews).
+  - Создание генератора и рендерера микроразметки `components/seo/JsonLd.tsx` (поддержка `LocalBusiness` / `ProfessionalService`, `Service`, `Offer` / `AggregateOffer` в GEL, `FAQPage`, `BreadcrumbList`).
+  - Подключение `LocalBusiness` (Тбилиси/Батуми, координаты 41.7151/44.8271, тел: `+995 599 068 599`, бренд Breus Media, соцсети, время работы) на `/gazeta`, `/gazeta/en`, L2-хабах и L3-страницах.
+  - Добавление `Service` + `Offer` (прозрачные цены в GEL) и `FAQPage` на всех ключевых L2-хабах и 6 канонических L3-страницах.
+  - Верификация и стандартизация метаданных (`rel="canonical"`, `hreflang` ru/en/'x-default', OpenGraph 1200x630, Twitter Cards).
+  - Полная очистка и сквозная унификация телефонного номера и WhatsApp по всему репозиторию (`+995 599 068 599` / `wa.me/995599068599`).
+  - Проверка воронки `#contact`: валидация полей, автопрефилл из `sessionStorage` (`breus_contact_prefill_service`) и события `breus-select-service`, отображение статуса успешной отправки во всех формах (`DroneContactStitch.tsx`, `FinalFormSection.tsx`, `Contact.tsx`).
+- Сделано:
+  - `components/seo/JsonLd.tsx`: создан универсальный компонент `<JsonLd />` и фабрики схем `buildLocalBusinessSchema`, `buildServiceSchema`, `buildFaqSchema`, `buildBreadcrumbSchema`;
+  - `lib/seo/directionSeo.ts`: подключен `buildDirectionMetadata` (canonical, hreflang ru/en/x-default, OpenGraph, Twitter Cards) и `buildDirectionJsonLd` (LocalBusiness, Service с Offer в GEL, Breadcrumbs, FAQPage);
+  - `components/l2-direction/L2DirectionRenderer.tsx`: расширена передача `config.data.faq` в генератор JSON-LD для автоматического формирования `FAQPage` на всех L2-хабах;
+  - `app/gazeta/page.tsx` & `app/gazeta/en/page.tsx`: внедрены `LocalBusiness`, `Service` с каталогом `Offer` в GEL, `FAQPage`, полные hreflang и метаданные;
+  - `app/drone-services/drone-real-estate/page.tsx` & `en/page.tsx`: актуализированы схемы LocalBusiness/Service, телефон `+995599068599`, hreflang x-default;
+  - `app/drone-hotels-tourism/page.tsx` & `en/page.tsx`: обновлен телефон, LocalBusiness/Service, hreflang ru/en/x-default;
+  - `app/drone-services/drone-restaurants/page.tsx` & `page.en.tsx`: обновлен телефон, LocalBusiness/Service, hreflang;
+  - `app/360-tour-real-estate/page.tsx` & `en/page.tsx`: обновлен телефон `+995 599 068 599`, LocalBusiness, Service, FAQPage, hreflang;
+  - `app/360-tour-hotels/page.tsx`: обновлен телефон, LocalBusiness, Service, FAQPage, hreflang;
+  - `app/reels-promo/reels-realtor/page.tsx` & `en/page.tsx`: обновлен телефон, LocalBusiness, Service, FAQPage, hreflang;
+  - `components/gazeta/FinalFormSection.tsx`: добавлен `useEffect` для прослушивания `breus-select-service` и `sessionStorage`, автопрефилл текста задачи, валидация и статусная плашка отправки;
+  - `components/drone/DroneContactStitch.tsx`: проверен `sessionStorage` prefill, статус заявки, обновлен WhatsApp по умолчанию на `+995 599 068 599`;
+  - `components/Contact.tsx`: добавлен prefill выбранной услуги и корректный WhatsApp номер;
+  - Проведен пакетный скрипт очистки устаревших номеров по всем 178 файлам проекта.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 104/104 страниц скомпилированы успешно).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Batch 3 & 4: Zero Fluff Editorial Policy, GEL Transparent Pricing, DroneFooterStitch & WhatsApp/CTA Standardization (2026-08-28)
+- Контекст:
+  - Комплексная доработка редполитики, цен, футеров и конверсионных кнопок по всему проекту `breus-media-v2`.
+  - Зачистка жаргонизма «сырые файлы / сырой материал / raw footage / raw files» с заменой на профессиональные термины («Оригинальные 4K видеоматериалы», «Исходный массив съёмки», «Master video files», «Original 4K video files / uncompressed capture assets»).
+  - Фиксация прозрачных стартовых цен в GEL (₾) во всех конфигурациях каталогов и страницах: аэросъёмка от 250 ₾, 360° туры от 350 ₾, Reels от 250 ₾/350 ₾, комплексные пакеты от 500 ₾/850 ₾.
+  - Удаление субъективных клише Zero Fluff («уникальный», «лучший», «venue») и замена на измеримые факты (DJI Air 3S, Avata 2, Insta360 X5, 4K HDR, сроки 24–48 часов, Тбилиси, Батуми, Грузия).
+  - Подключение и стандартизация контрастного футера `DroneFooterStitch` (с правильными EN-ссылками на зеркала) и плавающей круглой кнопки `FloatingWhatsAppButton` (строгие размеры 52x52px `w-[52px] h-[52px] rounded-full`, z-index 999, номер `+995 599 068 599`, автоподстановка канонического текста RU/EN, `href={resolvedHref}`) на всех L1/L2/L3 страницах.
+  - Унификация Hero CTA («Обсудить съёмку» / «Посмотреть пакеты», EN: «Discuss project» / «View packages») и тарифных кнопок («Обсудить этот пакет →», EN: «Select package →») с автоматическим предзаполнением пакета в контактную форму через `breus-select-service` и `sessionStorage`.
+- Сделано:
+  - `components/gazeta/FloatingWhatsAppButton.tsx`: круглая кнопка 52x52px, номер `+995 599 068 599`, автоподстановка канонических текстов сообщений, `href={resolvedHref}`;
+  - `components/gazeta/HeroSection.tsx`: обновлены ссылки WhatsApp для RU и EN версий;
+  - `components/drone/DroneFooterStitch.tsx`: в EN-режиме ссылки меню переведены на `/drone-service/en`, `/360-tours-service/en`, `/reels-service/en`, `/ai-visualization-service/en`;
+  - `components/drone/DronePricingStitch.tsx` & `DronePricingStitchEn.tsx`: добавлены обработчики `onClick` для префилла пакета в форму и стандартизированы кнопки «Обсудить этот пакет →» / «Select package →»;
+  - `components/l2-direction/L2DirectionSections.tsx`: в `L2DirectionPricing` добавлена поддержка `lang`, автопрефилл при клике на пакет и стандартные лейблы кнопок («Обсудить этот пакет →» / «Select package →»);
+  - `components/l2-direction/L2DirectionRenderer.tsx`: передан `lang={initialLang}` в `L2DirectionPricing`;
+  - `constants/gazetaRoutes.ts`: заменены все вхождения «по задаче» на конкретные стартовые цены в GEL (₾);
+  - `constants/l2DirectionConfigs.ts` & `constants/l2DirectionConfigs.en.ts`: заменены цены «по задаче» / «custom quote» на точные цены в GEL для отелей, туризма, клиник и недвижимости; стандартизированы `buttonText: 'Select package →'`;
+  - `app/reels-promo/reels-realtor/page.tsx` & `en/page.tsx`: добавлены кнопки выбора пакета с автопрефиллом, зачищены «сырой материал» / buzzwords;
+  - `app/drone-services/drone-real-estate/page.tsx` & `en/page.tsx`: добавлены обработчики автопрефилла пакетов, `Select package →` для EN, очищены тексты от «raw files»;
+  - `app/drone-services/drone-restaurants/page.tsx` & `page.en.tsx`: добавлены обработчики автопрефилла, стандартизированы кнопки, зачищены «сырые файлы» и «venue»;
+  - `app/360-tour-real-estate/en/page.tsx`: установлена кнопка «Select package →» с автопрефиллом;
+  - `app/drone-hotels-tourism/en/page.tsx` & `drone-hotel-page-en.tsx`: обновлен PackageCta на «Select package →»;
+  - `components/drone/DroneFAQExpandedEn.tsx`, `app/drone-services/drone-territory/page.tsx`, `drone-facade/page.tsx`, `drone-warehouses/page.tsx`, `hotel-ai-descriptions/page.tsx`, `tourism-ai-packaging/page.tsx`, `ai-product/page.tsx`, `promo-hotel/page.tsx`, `promo-excursion/page.tsx`, `drone-wine/page.tsx`: очищены тексты от стоп-слов и субъективных клише.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 104/104 страниц скомпилированы успешно).
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Batch 2: L3 Isolation, Transition Cleanup & Canonical Navigation Audit (2026-08-28)
+- Контекст:
+  - Строгая фиксация прямого перехода («Открыть услугу» / «Explore Service») ТОЛЬКО для 6 готовых эталонных L3 страниц:
+    1) `/drone-services/drone-real-estate` (RU & EN: `/drone-services/drone-real-estate/en`)
+    2) `/drone-hotels-tourism` (RU & EN: `/drone-hotels-tourism/en`)
+    3) `/drone-services/drone-restaurants` (RU & EN: `/drone-services/drone-restaurants/en`)
+    4) `/360-tour-real-estate` (RU & EN: `/360-tour-real-estate/en`)
+    5) `/360-tour-hotels` (RU)
+    6) `/reels-promo/reels-realtor` (RU & EN: `/reels-promo/reels-realtor/en`)
+  - Для всех остальных услуг в каталогах L2 и интерактивных карточках: кнопка «Обсудить задачу» (RU) / «Discuss Project» (EN) с плавным скроллом на `#contact` и автоподстановкой названия услуги через событие `breus-select-service` и `sessionStorage`;
+  - Полная очистка блоков «Сопутствующие услуги / Related Services» во всех L2 и L3 шаблонах от ссылок на старые черновые маршруты;
+  - Корректировка роутинга в мобильном степ-чузере `GazetaMobileStepChooser.tsx` и `NichesStack.tsx` для англоязычных хабов (`/auto-service/en`, `/clinics-service/en`, `/tourism-service/en`).
+- Сделано:
+  - `constants/l2DirectionConfigs.ts`: изолирован `monitoring-stroiki` (удален `primaryHref`/`primaryCtaLabel` и `primaryCta`), проверен статус всех L2 каталогов;
+  - `constants/l2DirectionConfigs.en.ts`: изолирован `construction-monitoring` (удален `primaryHref`/`primaryCtaLabel` и `primaryCta`), проверены все англоязычные хабы;
+  - `constants/gazetaRoutes.ts`: обновлены категории `gazetaCategoryPagesBySlug` (добавлены canonical L3 для отелей, ресторанов, туризма и 360-туров);
+  - `components/drone/droneServicesData.ts`: `DRONE_OPEN_SERVICE_SLUGS` обновлен до `['nedvizhimost', 'oteli-kurorty', 'restorany', 'turizm']`, `monitoring-stroiki` переведен на `#contact`, добавлены правильные `primaryHref` для отелей, ресторанов и туризма;
+  - `components/drone/DroneServicesStitch.tsx`: добавлено событие `breus-select-service` и запись в `sessionStorage` при клике на «Обсудить задачу»;
+  - `components/real-estate-service/realEstateServicesData.ts`: убраны черновые URL, оставлены только 3 готовых L3 (`/drone-services/drone-real-estate`, `/360-tour-real-estate`, `/reels-promo/reels-realtor`), все остальные карточки переведены на `#contact` («Обсудить задачу»);
+  - `components/real-estate-service/RealEstateServicesStitch.tsx`: настроен вывод двойных кнопок («Открыть услугу» при наличии `primaryHref` + «Обсудить задачу» к `#contact` с prefill);
+  - `components/gazeta/NichesStack.tsx`: очищены fallback-ссылки в нишах 02, 06, 07, 08, 09, 10, 11, обновлен `enRoute` (добавлены `/auto-service/en`, `/clinics-service/en`, `/tourism-service/en` и L3 `/en`), `isOpenServiceCard` переведен на строгую проверку `DESKTOP_OPEN_SERVICE_ALLOWLIST`;
+  - `components/gazeta/GazetaMobileStepChooser.tsx`: подключены EN-конфиги (`autoServiceEnConfig`, `clinicsServiceEnConfig`, `tourismServiceEnConfig`), обновлен `routeByLang`, `industryCardsByLang.en` и `industryPreviewConfigEn` со ссылками на `/auto-service/en`, `/clinics-service/en`, `/tourism-service/en`;
+  - `app/drone-hotels-tourism/page.tsx` & `en/page.tsx` & `drone-hotel-page-en.tsx` & `drone-hotels-tourism.tsx`: в `relatedServices` оставлены исключительно канонические L3 (`/360-tour-hotels`, `/drone-services/drone-restaurants`, `/360-tour-real-estate`);
+  - `app/drone-services/drone-restaurants/page.tsx` & `page.en.tsx`: в `relatedServices` оставлены исключительно канонические L3 (`/drone-hotels-tourism`, `/360-tour-real-estate`, `/reels-promo/reels-realtor`);
+  - `app/360-tour-hotels/page.tsx`: в `relatedServices` оставлены исключительно канонические L3 (`/drone-hotels-tourism`, `/drone-services/drone-restaurants`, `/360-tour-real-estate`);
+  - `app/drone-service/page.en.tsx`: убран черновой URL `construction-monitoring`, подключены canonical L3 для отелей, ресторанов и туризма.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 104/104 страниц скомпилированы успешно);
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Batch 1: RU ↔ EN Language Mirrors & SmartHeader Seamless Switching (2026-08-28)
+- Контекст:
+  - Создание и верификация недостающих EN-зеркал для L2-хабов (Туризм `/tourism-service/en`, Клиники `/clinics-service/en`, Автобизнес `/auto-service/en`) и ключевых L3-страниц (360° Недвижимость `/360-tour-real-estate/en`, Reels Риелтор `/reels-promo/reels-realtor/en`);
+  - Настройка бесшовного 1-клик переключения языков в `SmartHeader` без сброса на главную страницу;
+  - Обеспечение чистоты блоков «Related Services» и изоляции черновых страниц.
+- Сделано:
+  - `components/gazeta/SmartHeader.tsx`: переработана логика `visibleLanguageLabel` — при наличии `alternateLanguageHref` переключатель отображает целевой язык (`alternateLanguage`) и мгновенно перенаправляет на зеркало; добавлен переключатель RU/EN в мобильное меню-шторку;
+  - `constants/l2DirectionConfigs.en.ts`: добавлены и экспортированы полноценные англоязычные конфигурации `tourismServiceEnConfig`, `clinicsServiceEnConfig`, `autoServiceEnConfig` и обновлен реестр `l2DirectionConfigsEn`;
+  - `app/tourism-service/en/page.tsx` & `app/tourism-service/page.tsx`: создано EN-зеркало и настроены двусторонние `languageLinks` и `Metadata` alternates;
+  - `app/clinics-service/en/page.tsx` & `app/clinics-service/page.tsx`: создано EN-зеркало и настроены двусторонние `languageLinks` и `Metadata` alternates;
+  - `app/auto-service/en/page.tsx` & `app/auto-service/page.tsx`: создано EN-зеркало и настроены двусторонние `languageLinks` и `Metadata` alternates;
+  - `app/360-tour-real-estate/en/page.tsx` & `app/360-tour-real-estate/page.tsx`: создано EN-зеркало с английскими тарифами в лари, чистыми related links (`/drone-services/drone-real-estate/en`, `/reels-promo/reels-realtor/en`), `DroneFooterStitchEn` и `FloatingWhatsAppButton lang="en"`, настроены двусторонние `languageLinks` и `Metadata` alternates;
+  - `app/reels-promo/reels-realtor/en/page.tsx` & `app/reels-promo/reels-realtor/page.tsx`: создано EN-зеркало с английскими тарифами, рубриками, глоссарием, FAQ, чистыми related links, `DroneFooterStitchEn` и `FloatingWhatsAppButton lang="en"`, настроены двусторонние `languageLinks` и `Metadata` alternates.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 104/104 страниц скомпилированы успешно);
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Complete L3 isolation, CTA audit, and unified conversion layer (FloatingWhatsApp + DroneFooterStitch) (2026-08-28)
+- Контекст:
+  - Изоляция всех недоработанных L3-страниц: прямые ссылки и кнопки «Открыть услугу» оставлены ТОЛЬКО у 4 полностью готовых маршрутов (`/360-tour-real-estate`, `/reels-promo/reels-realtor`, `/drone-construction-monitoring`, `/drone-services/drone-real-estate`);
+  - Для всех остальных суб-услуг действие переведено на скролл к форме `#contact` с передачей контекста услуги;
+  - Очистка блоков «Сопутствующие услуги / Related Services» от ссылок на старые черновые маршруты и старую верстку;
+  - Внедрение сквозного конверсионного слоя (`FloatingWhatsAppButton` + `DroneFooterStitch` / `DroneFooterStitchEn`) на всех L2 и L3 страницах;
+  - Унификация Hero CTA по всему сайту: Primary — «Обсудить проект» / «Обсудить съёмку» (`#contact`), Secondary — «Смотреть услуги» (`#services`) / «Тарифы» (`#pricing`).
+- Сделано:
+  - `components/gazeta/FloatingWhatsAppButton.tsx`: добавлена поддержка кастомного текста и ссылки с сохранением локализации по умолчанию (`lang`);
+  - `components/l2-direction/L2DirectionRenderer.tsx`: подключен `<FloatingWhatsAppButton lang={initialLang} />`, обеспечивающий покрытие всех L2-хабов;
+  - `components/drone/droneServicesData.ts`: `DRONE_OPEN_SERVICE_SLUGS` ограничен `['nedvizhimost', 'monitoring-stroiki']`, убраны прямые ссылки на черновики;
+  - `constants/droneDirectionPages.ts`: Hero CTA приведены к стандарту «Обсудить съёмку» (`#contact`) и «Смотреть услуги» (`#services`);
+  - `constants/l2DirectionConfigs.ts`: очищены `relatedLinks`, `heroCards`, `services` во всех хабах (`hotelsService`, `restaurantsService`, `tourismService`, `clinicsService`, `autoService`, `businessService`, `promoVideoService`, `realEstateService`, `tours360Service`, `reelsService`, `aiVisualizationService`);
+  - `constants/l2DirectionConfigs.en.ts`: синхронизированы все англоязычные хабы, удалены ссылки на черновики, Hero CTA унифицированы;
+  - `app/drone-service/page.tsx` & `page.en.tsx`: подключен `FloatingWhatsAppButton`, изолированы кнопки черновиков;
+  - `app/360-tour-real-estate/page.tsx`: подключен `FloatingWhatsAppButton`, очищены перелинковки;
+  - `app/reels-promo/reels-realtor/page.tsx`: подключен `FloatingWhatsAppButton`, очищены перелинковки;
+  - `app/drone-construction-monitoring/page.tsx`: подключен `FloatingWhatsAppButton`, обновлен блок смежных услуг.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 99/99 страниц скомпилированы успешно);
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Real estate pricing section compact vertical calibration, languageLinks wiring, and DroneFooterStitch high-contrast gold typography polish (2026-08-28)
+- Контекст:
+  - Калибровка высоты карточек прайсинга в аэросъемке недвижимости, 2-строчное описание, подключение `md:grid-cols-3` для 3 аддонов;
+  - Подключение двуязычных ссылок `languageLinks` в `SmartHeader`;
+  - Полировка `DroneFooterStitch` с фоном `bg-[#050505] py-4 md:py-5`, золотым бейджем `МЕНЮ` (`#FFD23F`), активными ссылками с разделителями `•`, стеклянной капсулой контактов с зеленой точкой онлайна, фирменной золотой точкой у логотипа `BREUS MEDIA •` и читаемым текстом миссии.
+- Сделано:
+  - `app/drone-services/drone-real-estate/page.tsx`: проверены `languageLinks`, обновлен заголовок `<h2 className="text-2xl font-bold text-white md:text-3xl lg:text-4xl">`, 2-строчное описание и сетка аддонов `md:grid-cols-3`;
+  - `app/drone-services/drone-real-estate/en/page.tsx`: синхронизирована сетка аддонов `md:grid-cols-3` и структура;
+  - `components/drone/DroneFooterStitch.tsx`: фон `bg-[#050505] py-4 md:py-5`, меню `text-[#FFD23F] font-bold text-xs uppercase tracking-[0.2em]`, разделители `•`, темная стеклянная капсула контактов с телефоном, логотип `BREUS MEDIA •`, миссия `text-white/70 text-xs md:text-[13px]`, кнопки соцсетей 32×32px с подсветкой `#FFD23F`.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 99/99 страниц);
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Real estate drone page RU/EN full structural parity, At a Glance aside restored, stats section re-integrated, pricing vertical calibration and high-contrast DroneFooterStitch (2026-08-27)
+- Контекст:
+  - Достижение 100% структурного соответствия между RU (`app/drone-services/drone-real-estate/page.tsx`) и EN (`app/drone-services/drone-real-estate/en/page.tsx`);
+  - Возврат блока `At a Glance` в Hero aside англоязычной версии;
+  - Реинтеграция секции статистики `Why Video Sells Real Estate` перед разделом проблем;
+  - Размещение секции `audienceCards` отдельным 3-колоночным блоком сразу под Hero;
+  - Компактная верстка прайсинга (`scroll-mt-16 pt-5 pb-20 md:scroll-mt-20 md:pt-6`) и 2 смежные карточки услуг в обоих языках.
+- Сделано:
+  - `app/drone-services/drone-real-estate/page.tsx`: переданы `languageLinks`, компактные отступы прайсинга и кнопки карточек;
+  - `app/drone-services/drone-real-estate/en/page.tsx`: выстроен идентичный 18-секционный порядок с `At a Glance` aside, `audienceCards` сразу после Hero, `statsCards`, международным контекстом `problemCards`, `deliverableGroups` с техпараметрами, `FormatExamplesSlideshow`, 2 карточками `relatedServices` (`/360-tour-real-estate` и `/reels-promo/reels-realtor`), `DroneContactStitch` (`lang="en"`) и `DroneFooterStitch` (`lang="en"`);
+  - `components/drone/DroneFooterStitch.tsx`: золотой бейдж `МЕНЮ`/`MENU`, логотип `BREUS MEDIA •` с золотой точкой, активные ссылки с разделителями `•` и стеклянный контакты-бейдж.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 99/99 страниц);
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Batch 1: Real estate pricing section compact calibration, DroneFooterStitch gold contrast typography, and /drone-services/drone-real-estate/en route rollout (2026-08-28)
+- Контекст:
+  - Компактная калибровка секции цен в аэросъёмке недвижимости для комфортного размещения всех 4 карточек на экране при переходе к прайсингу;
+  - Добавление двуязычного переключателя (`languageLinks`) в русской версии;
+  - Создание полноценного англоязычного роута `/drone-services/drone-real-estate/en`;
+  - Полный редизайн `DroneFooterStitch` с премиум-типографикой, золотыми акцентами `МЕНЮ`/`MENU`, всеми 4 активными ссылками и темной стеклянной капсулой контактов.
+- Сделано:
+  - `app/drone-services/drone-real-estate/page.tsx`: добавлен `languageLinks`, секция `#pricing` переведена на компактный лейаут (`scroll-mt-16 pt-5 pb-20 md:scroll-mt-20 md:pt-6`, `h2` `text-2xl md:text-3xl lg:text-4xl`, описание в 2 строки, карточки `p-4.5 md:p-5`, отступы `space-y-1.5 md:space-y-2`), добавлены полные метаданные `Metadata`;
+  - `app/drone-services/drone-real-estate/en/page.tsx`: создан полноценный английский роут с H1 "Drone Videography for Real Estate & Residential Complexes in Tbilisi", английскими пакетами ("Exterior Flight" 250 ₾, "Interior FPV Pass" 350 ₾, "Full Combined Shoot" 500 ₾, "Full Package with Edited Video" from 900 ₾), add-ons, structured data schemas и `SmartHeader` / `FloatingWhatsAppButton` / `DroneFooterStitch` с `lang="en"`;
+  - `components/drone/DroneFooterStitch.tsx`: верхняя строка с золотым бейджем `МЕНЮ`/`MENU` (`text-[#FFD23F] font-bold text-xs uppercase tracking-[0.2em]`), всеми 4 активными кликабельными ссылками с золотыми точками `•`, темная стеклянная капсула контактов (`rounded-full border border-white/15 bg-white/[0.04] px-3.5 py-1`) с зеленой пульсирующей точкой и телефоном, логотип `BREUS MEDIA.` и круглые стеклянные кнопки соцсетей (32×32px) с эффектом свечения;
+  - `constants/l2DirectionConfigs.en.ts`: обновлена ссылка "Real estate drone filming" на `/drone-services/drone-real-estate/en`.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 99/99 страниц);
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Hero yTranslate 46vh adjustment, isolated real-estate related services, aligned +150 GEL horizontal add-on, footer RU localization, and FloatingWhatsApp standard (2026-08-26)
+- Контекст:
+  - Коррекция начального положения кинетической типографики BREUS MEDIA (`yTranslate` на `46vh`) в Hero-экране для размещения точно между верхним описанием и нижней кнопкой WhatsApp;
+  - Очистка блока смежных услуг в аэросъемке недвижимости до 2 целевых карточек (360° тур и Reels для риелтора);
+  - Корректировка верхнего отступа секции цен (`scroll-mt-28 md:scroll-mt-32 pt-12 md:pt-16 pb-24`) и цены горизонтального видео-обзора (+150 ₾);
+  - Замена `DroneStickyCta` на стандартную плавающую кнопку `FloatingWhatsAppButton`;
+  - Локализация города в футере в RU-версии: «Тбилиси, Грузия».
+- Сделано:
+  - `components/gazeta/HeroSection.tsx`: `yTranslate` обновлен до `["46vh", "-60vh", "-60vh"]`;
+  - `app/drone-services/drone-real-estate/page.tsx`: в `relatedServices` оставлены только 2 карточки (`/360-tour-real-estate` и `/reels-promo/reels-realtor`), в `addonPricing` цена горизонтального видео заменена на +150 ₾ (до 60 сек), скорректированы паддинги секции `#pricing`, подключен `FloatingWhatsAppButton` вместо `DroneStickyCta`;
+  - `components/drone/DroneFooterStitch.tsx`: строка контактов локализована на «{resolvedContactTitle}: Тбилиси, Грузия · +995 501 103 183» (RU) и «{resolvedContactTitle}: Tbilisi, Georgia · +995 501 103 183» (EN).
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 98/98 страниц);
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Refined hero layout, localized clock widget, updated drone real estate deliverables without raw wording (2026-08-26)
+- Контекст:
+  - Локализация названия города ("ТБИЛИСИ" в RU / "TBILISI" в EN) и стилизация часов в темную стеклянную капсулу (Glass Pill);
+  - Вертикальная калибровка Hero-секции (`pt-20 md:pt-24`) и улучшение взаимодействия со скроллом к секции ниш по клику на текст/стрелку;
+  - Замена формулировок о «сырых» файлах на профессиональные описания пакетов и доп. опций аэросъёмки недвижимости.
+- Сделано:
+  - `components/gazeta/TimeWidget.tsx` & `components/gazeta/SmartHeader.tsx`: часы оформлены в темную стеклянную капсулу (`border border-white/10 bg-black/40 px-3.5 py-1 rounded-full backdrop-blur-md shadow-sm`), добавлен золотистый акцент (`text-[#D4AF37]`) с локализованным названием города (ТБИЛИСИ / TBILISI), пульсирующая зеленая точка и аккуратный моноширинный шрифт времени;
+  - `components/gazeta/HeroSection.tsx`: центральный блок подтянут к шапке (`pt-20 md:pt-24`), стрелка `↓` и кнопка «ВЫБЕРИТЕ НАПРАВЛЕНИЕ» плавно скроллят к секции ниш (`#niches`, `#niches-nav`, `#mobile-chooser-anchor`);
+  - `app/drone-services/drone-real-estate/page.tsx`: формулировки обновлены на профессиональные («Все оригинальные 4K видеофайлы...», «Полный комплект FPV-видеоматериалов...», «Полный массив 4K видеоматериалов...», «Полный комплект оригиналов 4K...», обновлены аддоны Reels 60 сек, видео-обзор 16:9 до 2 мин, 360° панорама).
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 98/98 страниц);
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Master site optimization: Hero kinetic typography fix, 6 active L3 buttons synchronization, legacy links cleanup and service pre-fill in contact form (2026-08-26)
+- Контекст:
+  - Коррекция высоты кинетической типографики «Breus Media» в Hero-экране для исключения вертикального обрезания на нестандартных вьюпортах;
+  - Строгая синхронизация кнопок «Открыть услугу» vs «Обсудить задачу» (только 6 активных L3 страниц);
+  - Удаление устаревших/неактивных ссылок со страницы 360° туров для недвижимости;
+  - Автоподстановка названия выбранной услуги в форму связи `#contact`;
+  - Унификация географии «Базирование в Тбилиси, выезды по Батуми и всей Грузии» и очистка остаточных английских бейджей в русской версии автобизнеса.
+- Сделано:
+  - `components/gazeta/HeroSection.tsx`: `yTranslate` обновлен с `["78vh", "-60vh", "-60vh"]` на `["60vh", "-60vh", "-60vh"]`;
+  - `components/gazeta/NichesStack.tsx`, `constants/l2DirectionConfigs.ts`, `constants/l2DirectionConfigs.en.ts`: строго закреплены 6 готовых L3 страниц (`/drone-services/drone-real-estate`, `/drone-hotels-tourism`, `/drone-services/drone-restaurants`, `/360-tour-real-estate`, `/360-tour-hotels`, `/reels-promo/reels-realtor`), для всех остальных суб-услуг активирована кнопка «Обсудить задачу» со скроллом на `#contact`;
+  - `app/360-tour-real-estate/page.tsx`: удалены блоки «Видеотур по квартире» и «Мониторинг стройки», оставлены целевые перелинковки;
+  - `components/drone/DroneContactStitch.tsx` & `components/gazeta/NichesStack.tsx`: реализована шина событий `breus-select-service` и `sessionStorage` для автоподстановки выбранной услуги в поле сообщения и автовыбора чипсов в форме `#contact`;
+  - `constants/l2DirectionConfigs.ts`: в `/auto-service` заменены бейджи на русские (`Дрон · от 400 ₾`, `Обзор модели`, `СОЦСЕТИ · РЕКЛАМА · REELS`), утверждена единая география «Базирование в Тбилиси, выезды по Батуми и всей Грузии» для страниц автобизнеса, клиник, промо-видео и B2B.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 98/98 страниц);
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-ojz1mbbnr-tony-breus-projects.vercel.app/gazeta).
+
+✅ Gazeta SmartHeader Flexbox Layout & Hero Kinetic Typography Watermark (2026-08-25)
+- Контекст:
+  - При ширине экрана от 1024px до 1920px ссылка «AI Решения» могла наезжать на правый блок кнопок и язык из-за абсолютного центрирования `<nav className="absolute left-1/2 -translate-x-1/2">`;
+  - Гигантский кинетический текст "Breus Media" в первом экране был слишком ярким (100% opacity) и его нижняя граница пересекала элементы нижнего CTA-блока.
+- Сделано:
+  - `components/gazeta/SmartHeader.tsx`: удалено абсолютное центрирование `absolute left-1/2 -translate-x-1/2`, десктопный бар превращён в полноценный flex-ряд (`w-full px-4 md:px-8 xl:px-12 flex justify-between items-center gap-4`), `<nav>` центрирован через `flex-1 min-w-0 justify-center gap-3 lg:gap-4 xl:gap-7`, шрифт ссылок приведен к `text-[11px] xl:text-xs font-bold uppercase tracking-wider text-white whitespace-nowrap`, правый блок изолирован как `flex-shrink-0 gap-2 xl:gap-4`;
+  - `components/gazeta/HeroSection.tsx`: для кинетического текста "Breus Media" задана стартовая прозрачность водяного знака `opacity: 0.25` с плавным переходом в `1` при скролле, начальный оффсет смещен на `78vh`, нижний блок (WhatsApp CTA + "ВЫБЕРИТЕ НАПРАВЛЕНИЕ" + стрелка) обернут в полупрозрачную контрастную капсулу `bg-black/40 px-5 py-3 backdrop-blur-md border border-white/10 shadow-lg`.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 98/98 страниц);
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-crgbasctk-tony-breus-projects.vercel.app/gazeta).
+
+✅ Gazeta Hero & NichesStack Responsiveness & Padding Optimization (2026-08-25)
+- Контекст:
+  - В первом экране Hero при невысоких экранах (<800px) тексты наезжали на нижние кнопки из-за абсолютного позиционирования (`top-[12%]` и `bottom-[130px]`);
+  - В карточках `NichesStack` внутренние вертикальные паддинги были избыточными, из-за чего кнопки действий прижимались или скрывались за пределы экрана.
+- Сделано:
+  - `components/gazeta/HeroSection.tsx`: заменено абсолютное позиционирование на единый адаптивный Flexbox-контейнер (`relative z-10 mx-auto flex h-full w-full max-w-[880px] flex-col justify-between items-center px-4 pt-24 pb-8 md:pb-10 text-center`), адаптивные шрифты через `clamp()`, исключающие пересечение контента на любых разрешениях;
+  - `components/gazeta/NichesStack.tsx`: оптимизированы внутренние паддинги (`p-4 pt-16 md:p-6 lg:p-7`, `p-5 md:p-7`), уменьшены вертикальные отступы списка сервисов (`space-y-2 md:space-y-3`, компактные `p-2.5 sm:p-3.5` в телах карточек), добавлен безопасный отступ снизу `pb-1` для кнопок «Обсудить задачу» и ссылок на услуги.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 98/98 страниц);
+  - Vercel Preview деплой -> ✅ `READY` (https://breus-media-v2-n5nib3yn2-tony-breus-projects.vercel.app/gazeta).
+
+✅ Gazeta RU & EN Hero CTA, About GEO Answer Capsule & Floating WhatsApp Button (2026-08-25)
+- Контекст:
+  - Добавление прямого конверсионного CTA в Hero-экран;
+  - GEO-оптимизация секции «Об агентстве» для Google AI Overviews;
+  - Добавление плавающей кнопки WhatsApp (FAB) и Schema JSON-LD микроразметки;
+  - Глобальный запрет индексации Preview/Staging (`robots: { index: false, follow: false }`).
+- Сделано:
+  - `app/layout.tsx`: добавлен метатег `robots: { index: false, follow: false }`;
+  - `components/gazeta/HeroSection.tsx`: добавлена кнопка WhatsApp в Hero (RU/EN, стилизация `border-[#D4AF37]/60 bg-[#D4AF37]/15`);
+  - `components/gazeta/AboutSection.tsx` & `components/gazeta/NichesStack.tsx`: синхронизированы GEO-абзацы с ключевыми сущностями (Тбилиси, Грузия, 4K дрон, 360, Reels, AI) на русском и английском языках;
+  - `components/gazeta/FloatingWhatsAppButton.tsx`: создан компонент плавающей кнопки (52×52px, `#25D366`, пульсация) и интегрирован в `GazetaLandingPage.tsx`;
+  - `app/gazeta/page.tsx` & `app/gazeta/en/page.tsx`: внедрены схемы `LocalBusiness` и `Service` с каталогом предложений и валютой `GEL`.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅ (0 ошибок, 98/98 страниц);
+  - Vercel Preview деплой -> ✅ `READY`.
+
+✅ Gazeta EN services translation & target offset & terminal screen spacing (2026-06-08)
+- Контекст:
+  - пользователь заметил, что заголовки и сервисы на английской странице остались на русском (особенно в "Agency");
+  - при клике на бегущей строке открывались соседние карточки из-за нехватки offset в скролле;
+  - финальный экран с контактной формой и футером имел слишком большой промежуток.
+- Сделано:
+  - `components/gazeta/NichesStack.tsx`: добавлен английский перевод для "Agency" (heading, subheading, introNote, services) в `nicheEnCopy`;
+  - `components/gazeta/NichesStack.tsx`: `nichesEn` теперь использует `canonicalServicesByNicheIdEn` для отображения переведённых сервисов в слайдере карточек;
+  - `components/gazeta/NichesStack.tsx`: `targetProgress` в `scrollToNicheStep` изменён с `+ 0.1` на `+ 0.5`, чтобы безопасно попадать в середину зоны 100%-ной видимости целевой карточки;
+  - `components/drone/DroneContactStitch.tsx`: добавлен проп `className` для секции;
+  - `components/gazeta/NichesStack.tsx`: в `FormCard` `DroneContactStitch` получает `!pb-0`, убрана высота `h-full` и `mt-auto`, вместо этого задан фиксированный отступ `mt-10` (40px) перед `GazetaMinimalFooter` для достижения идеального vertical spacing.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser: EN сервисы теперь переведены, "Agency" имеет английские тексты.
+  - Browser: бегущая строка точно позиционирует нужную карточку.
+  - Browser: терминальный экран имеет аккуратный зазор в 40px между формой и футером.
+
+✅ Gazeta EN localization, language switcher & ticker sync (2026-06-08)
+- Контекст:
+  - пользователь заметил, что переключатель языка инвертирован (при активном EN показывается RU и наоборот);
+  - в `NichesStack` на `/gazeta/en` карточки рендерятся на русском;
+  - бегущая строка сбивалась на один шаг (при клике на "Автобизнес" открывались "Рестораны") из-за того, что скролл останавливался точно на старте анимации, где целевая карточка еще внизу (y: 100%), а предыдущая видна.
+- Сделано:
+  - `components/gazeta/SmartHeader.tsx`: переключатель теперь отображает текущую `routeLanguage` (показывает активный язык корректно).
+  - `components/gazeta/NichesStack.tsx`: карточки рендерятся через `localizedNiches = lang === "en" ? nichesEn : niches`.
+  - `components/gazeta/NichesStack.tsx`: в `scrollToNicheStep` добавлен оффсет `+ 0.1` (`(clampedIndex + 0.1) / totalSteps`), чтобы скролл останавливался на 10% шага внутрь анимации. Это гарантирует, что целевая карточка полностью видима, и активный пункт в хедере обновляется корректно.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser: клик по бегущей строке корректно позиционирует карточки;
+  - Browser: `/gazeta/en` переведён на английский (карточки используют nichesEn);
+  - Browser: переключатель языка корректно отображает текущую локаль.
+
+✅ Auto L2 cleanup: удалена внутренняя hero-marquee строка (2026-05-27)
+- Контекст:
+  - пользователь выделил на `/auto-service` внутреннюю бегущую строку `Автосалоны / дилерские центры / автоплощадки / детейлинг` и попросил удалить её.
+- Сделано:
+  - в `constants/l2DirectionConfigs.ts` для `autoService.data.sectionOrder` удалён пункт `marquee`;
+  - верхняя общая navigation/header ticker строка не тронута;
+  - после контрольной проверки сохранены предыдущие состояния соседних L2: `/restaurants-service` без внутренней marquee, `/tourism-service` с прежней marquee.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint constants/l2DirectionConfigs.ts app/auto-service/page.tsx components/l2-direction/L2DirectionRenderer.tsx` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser `http://localhost:3200/auto-service`:
+    - выделенная hero-marquee строка отсутствует;
+    - после hero остаётся список направлений и далее блок `Услуги для автобизнеса и автообъектов`.
+
+✅ Restaurants L2 pricing cards: убрана фраза «по задаче» (2026-05-27)
+- Контекст:
+  - пользователь выделил область карточек на `/restaurants-service` и попросил убрать фразу `ПО ЗАДАЧЕ`.
+- Сделано:
+  - в `constants/l2DirectionConfigs.ts` у четырёх restaurant pricing plans поле `price` очищено;
+  - в `components/l2-direction/L2DirectionSections.tsx` пустой `plan.price` теперь не рендерит ценовую строку;
+  - в `Monthly Content Pack` пункт `тексты по задаче` заменён на `тексты под выбранный формат`.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint constants/l2DirectionConfigs.ts components/l2-direction/L2DirectionSections.tsx app/restaurants-service/page.tsx` -> ✅, только существующие `<img>` warnings;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser `http://localhost:3200/restaurants-service#pricing`: в pricing-секции фразы `по задаче` больше нет.
+
+✅ Restaurants L2 language switcher: EN ведёт на английскую страницу (2026-05-27)
+- Контекст:
+  - пользователь отметил кнопку `EN` на `/restaurants-service` и попросил, чтобы клик вёл на `http://localhost:3200/restaurants-service/en`.
+- Сделано:
+  - в `app/restaurants-service/page.tsx` переданы `languageLinks={{ ru: '/restaurants-service', en: '/restaurants-service/en' }}`;
+  - в `components/gazeta/SmartHeader.tsx` верхний language pill при наличии `languageLinks` показывает другой доступный язык и становится прямой ссылкой;
+  - для страниц без `languageLinks` сохранено старое поведение кнопки/выпадающего меню.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint app/restaurants-service/page.tsx app/restaurants-service/en/page.tsx components/gazeta/SmartHeader.tsx components/l2-direction/L2DirectionRenderer.tsx` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser/DOM:
+    - на `/restaurants-service` верхний переключатель рендерится как ссылка `EN` с `href="/restaurants-service/en"`;
+    - прямой route `/restaurants-service/en` открывается и показывает EN metadata/page.
+
+✅ L2 restaurants cleanup: удалена внутренняя hero-marquee строка (2026-05-27)
+- Контекст:
+  - пользователь выделил в браузере на `/restaurants-service` вторую бегущую строку внутри hero-зоны и попросил: «убери эту строку».
+- Сделано:
+  - в `constants/l2DirectionConfigs.ts` для `restaurantsService.data.sectionOrder` удалён пункт `marquee`;
+  - верхняя общая навигационная бегущая строка не тронута;
+  - аналогичная секция у `/hotels-service` сохранена после контрольной проверки.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint constants/l2DirectionConfigs.ts app/restaurants-service/page.tsx app/restaurants-service/en/page.tsx` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser `http://localhost:3200/restaurants-service`:
+    - выделенная hero-marquee строка отсутствует;
+    - после hero остаётся список направлений и далее блок `Форматы контента для ресторанов`;
+    - верхняя навигация/header ticker сохранены.
+
+✅ L2 English translation: /restaurants-service/en (2026-05-16)
+- Контекст:
+  - пользователь попросил делать следующую L2-страницу после `/ai-visualization-service/en`;
+  - следующей по `site-docs/l2-english-translation-log.md` выбрана `/restaurants-service/en`.
+- Сделано:
+  - создан route `app/restaurants-service/en/page.tsx`;
+  - в `constants/l2DirectionConfigs.en.ts` добавлен `restaurantsServiceEnConfig`;
+  - переведены hero, hero cards, services, stats, mid CTA, explanatory blocks, pain/solution, earn/lose, deliverables, why us, pricing, pricing add-ons, process, conditions note, FAQ, related links и contact;
+  - русская `/restaurants-service` получила alternate link на `/restaurants-service/en`;
+  - EN related links оставлены только на существующие routes, чтобы не создавать 404;
+  - EN `Service` JSON-LD содержит 8 catalog items и 4 pricing offers.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint app/restaurants-service/en/page.tsx app/restaurants-service/page.tsx constants/l2DirectionConfigs.en.ts` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser `http://localhost:3200/restaurants-service/en`:
+    - title/H1 на английском;
+    - canonical `https://breus.media/restaurants-service/en`;
+    - hreflang `ru` и `en`;
+    - JSON-LD: `Organization`, `Service`, `FAQPage`, `BreadcrumbList`;
+    - Service schema: 8 catalog items, 4 pricing offers;
+    - 4 pricing CTA `Discuss this package →`;
+    - mobile 390 без horizontal overflow;
+    - кириллицы в видимом тексте нет;
+    - внутренние ссылки -> `200`.
+- Следующий рекомендуемый перевод:
+  - `/tourism-service/en`.
+
+✅ L2 English translation: /ai-visualization-service/en (2026-05-16)
+- Контекст:
+  - пользователь попросил делать следующую L2-страницу после `/reels-service/en`;
+  - следующей по `site-docs/l2-english-translation-log.md` выбрана `/ai-visualization-service/en`.
+- Сделано:
+  - создан route `app/ai-visualization-service/en/page.tsx`;
+  - в `constants/l2DirectionConfigs.en.ts` добавлен `aiVisualizationServiceEnConfig`;
+  - переведены hero, hero cards, services, stats, mid CTA, explanatory blocks, pain/solution, earn/lose, deliverables, why us, pricing, pricing add-ons, process, conditions note, FAQ, related links и contact;
+  - русская `/ai-visualization-service` получила alternate link на `/ai-visualization-service/en`;
+  - EN related links оставлены только на существующие routes, чтобы не создавать 404;
+  - EN `Service` JSON-LD содержит 8 catalog items и 4 pricing offers.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint app/ai-visualization-service/en/page.tsx app/ai-visualization-service/page.tsx constants/l2DirectionConfigs.en.ts` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser `http://localhost:3200/ai-visualization-service/en`:
+    - title/H1 на английском;
+    - canonical `https://breus.media/ai-visualization-service/en`;
+    - hreflang `ru` и `en`;
+    - JSON-LD: `Organization`, `Service`, `FAQPage`, `BreadcrumbList`;
+    - Service schema: 8 catalog items, 4 pricing offers;
+    - 4 pricing CTA `Discuss this package →`;
+    - mobile 390 без horizontal overflow;
+    - кириллицы в видимом тексте нет;
+    - внутренние ссылки -> `200`.
+- Следующий рекомендуемый перевод:
+  - `/restaurants-service/en`.
+
+✅ L2 English translation: /reels-service/en (2026-05-16)
+- Контекст:
+  - пользователь попросил делать следующую L2-страницу после `/360-tours-service/en`;
+  - следующей по `site-docs/l2-english-translation-log.md` выбрана `/reels-service/en`.
+- Сделано:
+  - создан route `app/reels-service/en/page.tsx`;
+  - в `constants/l2DirectionConfigs.en.ts` добавлен `reelsServiceEnConfig`;
+  - сохранена механика `cards=soft/aggressive` из русской `/reels-service`;
+  - переведены hero, hero cards, services, stats, mid CTA, explanatory blocks, pain/solution, deliverables, why us, pricing, pricing add-ons, process, conditions note, FAQ, related links и contact;
+  - русская `/reels-service` получила alternate link на `/reels-service/en`;
+  - EN related links оставлены только на существующие routes, чтобы не создавать 404;
+  - EN `Service` JSON-LD содержит 8 catalog items и 3 pricing offers.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint app/reels-service/en/page.tsx app/reels-service/page.tsx constants/l2DirectionConfigs.en.ts` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser `http://localhost:3200/reels-service/en`:
+    - title/H1 на английском;
+    - canonical `https://breus.media/reels-service/en`;
+    - hreflang `ru` и `en`;
+    - JSON-LD: `Organization`, `Service`, `FAQPage`, `BreadcrumbList`;
+    - Service schema: 8 catalog items, 3 pricing offers;
+    - 3 pricing CTA `Discuss this package →`;
+    - mobile 390 без horizontal overflow;
+    - кириллицы в видимом тексте нет;
+    - внутренние ссылки -> `200`.
+- Следующий рекомендуемый перевод:
+  - `/ai-visualization-service/en`.
+
+✅ L2 English translation: /360-tours-service/en (2026-05-16)
+- Контекст:
+  - пользователь попросил переводить следующую L2-страницу после `/real-estate-service/en`;
+  - следующей по `site-docs/l2-english-translation-log.md` выбрана `/360-tours-service/en`.
+- Сделано:
+  - создан route `app/360-tours-service/en/page.tsx`;
+  - в `constants/l2DirectionConfigs.en.ts` добавлен `tours360ServiceEnConfig`;
+  - переведены hero, hero cards, services, stats, mid CTA, explanatory blocks, pain/solution, why us, pricing, pricing add-ons, process, conditions note, FAQ, related links и contact;
+  - русская `/360-tours-service` получила alternate link на `/360-tours-service/en`;
+  - EN related links оставлены только на существующие routes, чтобы не создавать 404;
+  - EN `Service` JSON-LD содержит 6 catalog items и 3 pricing offers.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint app/360-tours-service/en/page.tsx app/360-tours-service/page.tsx constants/l2DirectionConfigs.en.ts` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser `http://localhost:3200/360-tours-service/en`:
+    - title/H1 на английском;
+    - canonical `https://breus.media/360-tours-service/en`;
+    - hreflang `ru` и `en`;
+    - JSON-LD: `Organization`, `Service`, `FAQPage`, `BreadcrumbList`;
+    - Service schema: 6 catalog items, 3 pricing offers;
+    - 3 pricing CTA `Discuss this package →`;
+    - mobile 390 без horizontal overflow;
+    - кириллицы в видимом тексте нет;
+    - внутренние ссылки -> `200`.
+- Следующий рекомендуемый перевод:
+  - `/reels-service/en`.
+
+✅ L2 English translation: /real-estate-service/en (2026-05-16)
+- Контекст:
+  - пользователь попросил приступить к переводу `/real-estate-service/en`.
+- Сделано:
+  - создан route `app/real-estate-service/en/page.tsx`;
+  - в `constants/l2DirectionConfigs.en.ts` добавлен `realEstateServiceEnConfig`;
+  - переведены hero, hero cards, services, stats, mid CTA, explanatory blocks, pain/solution, earn/lose, deliverables, why us, pricing, process, FAQ, related links и contact;
+  - русская `/real-estate-service` получила alternate link на `/real-estate-service/en`;
+  - EN related links оставлены только на существующие routes, чтобы не создавать 404;
+  - обновлён `site-docs/l2-english-translation-log.md`.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint app/real-estate-service/en/page.tsx app/real-estate-service/page.tsx constants/l2DirectionConfigs.en.ts` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser `http://localhost:3200/real-estate-service/en`:
+    - title/H1 на английском;
+    - canonical `https://breus.media/real-estate-service/en`;
+    - hreflang `ru` и `en`;
+    - JSON-LD: `Organization`, `Service`, `FAQPage`, `BreadcrumbList`;
+    - 4 pricing CTA `Discuss this package →`;
+    - mobile 390 без horizontal overflow;
+    - кириллицы в видимом тексте нет;
+    - внутренние ссылки -> `200`.
+- Следующий рекомендуемый перевод:
+  - `/360-tours-service/en`.
+
+✅ L2 English translation pilot: /hotels-service/en (2026-05-16)
+- Контекст:
+  - пользователь попросил приступить к переводу первой L2-страницы на английский;
+  - первым пилотом выбран `/hotels-service/en`.
+- Сделано:
+  - создан route `app/hotels-service/en/page.tsx`;
+  - создан `constants/l2DirectionConfigs.en.ts`;
+  - добавлен `hotelsServiceEnConfig` с адаптированной English marketing copy;
+  - переведены hero, hero cards, services, stats, mid CTA, explanatory blocks, pain/solution, deliverables, why us, pricing, process, FAQ, related links и contact;
+  - `L2DirectionRenderer` получил поддержку:
+    - `initialLang`;
+    - `languageLinks`;
+    - английского footer;
+    - передачи `lang="en"` в contact;
+  - mobile services list получил EN labels вместо `Направления` / `смотреть карточки`;
+  - `DroneFooterStitchEn` временно ведёт на существующие routes вместо будущих `/en` pages, чтобы не создавать 404;
+  - русская `/hotels-service` получила alternate link на `/hotels-service/en`;
+  - создан `site-docs/l2-english-translation-log.md`.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - focused ESLint по затронутым файлам -> ✅ with existing `next/no-img-element` warnings only;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser `http://localhost:3200/hotels-service/en`:
+    - title/H1 на английском;
+    - canonical `https://breus.media/hotels-service/en`;
+    - hreflang `ru` и `en`;
+    - JSON-LD: `Organization`, `Service`, `FAQPage`, `BreadcrumbList`;
+    - 4 pricing CTA `Discuss this package →`;
+    - mobile 390 без horizontal overflow;
+    - кириллицы в видимом тексте нет;
+    - внутренние ссылки -> `200`.
+- Следующий рекомендуемый перевод:
+  - `/real-estate-service/en`.
+
+✅ /drone-service/en single ticker parity (2026-05-16)
+- Контекст:
+  - пользователь открыл `http://localhost:3200/drone-service/en` и увидел две бегущие строки;
+  - русская `/drone-service` является эталоном и использует одну бегущую строку.
+- Причина:
+  - в `app/drone-service/page.en.tsx` `SmartHeader` не получал `singleTickerMode={true}`;
+  - поэтому EN-страница рендерила стандартный двухстрочный ticker.
+- Сделано:
+  - в `app/drone-service/page.en.tsx` импортирован `gazetaDroneServiceTickerExcludeTexts`;
+  - в `SmartHeader` EN-страницы добавлены:
+    - `singleTickerMode={true}`;
+    - `tickerExcludeTexts={gazetaDroneServiceTickerExcludeTexts}`;
+  - `Promo Video` исключён из EN ticker так же, как в RU-эталоне.
+- Не менялось:
+  - контент страницы;
+  - структура секций;
+  - pricing;
+  - schema.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint app/drone-service/page.en.tsx` -> ✅ with existing warnings only;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser: `http://localhost:3200/drone-service/en` открыт, ticker приведён к одной строке.
+
+✅ L2 pricing CTA standardization (2026-05-16)
+- Контекст:
+  - пользователь решил оставить кнопки в pricing cards везде как на `/drone-service`;
+  - эталонный CTA: `Обсудить этот пакет →`.
+- Сделано:
+  - в `constants/l2DirectionConfigs.ts` pricing card CTA активных L2 приведены к единому тексту:
+    - `/real-estate-service`;
+    - `/hotels-service`;
+    - `/restaurants-service`;
+    - `/tourism-service`;
+    - `/clinics-service`;
+    - `/auto-service`;
+    - `/ai-visualization-service`;
+    - `/reels-service`;
+    - `/360-tours-service`.
+  - hero/sticky/mobile CTA не менялись и остаются page-specific;
+  - `/drone-service`, `/promo-video-service` и `/business-service` не редактировались.
+- Документы:
+  - обновлены `site-docs/l2-final-consistency-report.md`;
+  - обновлены `site-docs/l2-seo-cro-audit.md`;
+  - обновлены `site-docs/l2-parity-implementation-log.md`;
+  - обновлён `CHANGELOG_ARCHIVE.md`.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint constants/l2DirectionConfigs.ts` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - Browser DOM spot-check:
+    - `/auto-service`: 4 CTA `Обсудить этот пакет →`;
+    - `/hotels-service`: 4 CTA `Обсудить этот пакет →`;
+    - `/reels-service`: 3 CTA `Обсудить этот пакет →`.
+- Следующий возможный шаг без `/drone-service`:
+  - решить, включаем ли `/business-service` в активный L2-набор. `/promo-video-service` остаётся исключением.
+
+✅ L2 related links enrichment: auto + 360 tours (2026-05-16)
+- Контекст:
+  - пользователь попросил приступить к пункту 1: расширить related links у `/auto-service` и `/360-tours-service`.
+- Сделано:
+  - `/auto-service` related links пересобраны в 8 профильных service routes:
+    - `/drone-service`;
+    - `/drone-services/drone-auto`;
+    - `/reels-service`;
+    - `/reels-promo/reels-auto`;
+    - `/360-tours-service`;
+    - `/360-tour-auto`;
+    - `/ai-visualization-service`;
+    - `/ai-visual/ai-auto`.
+  - из `/auto-service` убраны слабые related links на `#contact` и Gazeta-направление;
+  - `/360-tours-service` расширен до 8 related links:
+    - добавлены `/360-tour-auto`;
+    - добавлены `/360-tour-business`;
+  - `constants/l2DirectionConfigs.ts` очищен от неиспользуемого destructuring `gazetaDetailRoutes`, оставлен `droneService`.
+- Документы:
+  - обновлены `site-docs/l2-final-consistency-report.md`;
+  - обновлены `site-docs/l2-parity-implementation-log.md`;
+  - обновлён `CHANGELOG_ARCHIVE.md`.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint constants/l2DirectionConfigs.ts` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - browser route check на `localhost:3200`: все добавленные и затронутые routes -> `200`.
+- Следующий возможный шаг без `/drone-service`:
+  - copywriting-полировка микро-CTA в pricing cards.
+
+✅ Ticker hover preview stuck overlay fix (2026-05-16)
+- Контекст:
+  - пользователь показал баг на `http://localhost:3200/ai-visualization-service`;
+  - после клика по `AI Content` в бегущей строке открывалась cinematic-заставка `AI CONTENT`, которая зависала поверх страницы и закрывалась только refresh.
+- Причина:
+  - бегущая строка ставила `hoveredService` в общий `useHeroStore`;
+  - при клике по ссылке `onMouseLeave` мог не успеть сбросить hover перед route transition;
+  - новая L2-страница монтировалась уже с сохранённым `hoveredService`, поэтому overlay оставался поверх интерфейса.
+- Изменено:
+  - `store/useHeroStore.ts`:
+    - добавлен `dismissHoverPreview`;
+    - добавлено короткое suppression-window, чтобы preview не открывался заново сразу после закрытия/клика.
+  - `components/gazeta/SmartHeader.tsx`:
+    - hover-preview сбрасывается при смене pathname;
+    - ticker links сбрасывают preview на `pointerdown`/`click`.
+  - `components/gazeta/MarqueeSection.tsx`:
+    - preview закрывается кликом по затемнению;
+    - добавлен безопасный close-handler для cinematic overlay.
+- Проверки:
+  - Browser: `/drone-service` -> click `AI Content` в ticker -> `/ai-visualization-service`, overlay не залипает;
+  - Browser: открытый preview закрывается кликом по затемнению;
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint store/useHeroStore.ts components/gazeta/SmartHeader.tsx components/gazeta/MarqueeSection.tsx` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅.
+- Не менялось:
+  - L2-контент;
+  - структура секций;
+  - schema.
+
+✅ /360-tours-service schema unification (2026-05-16)
+- Контекст:
+  - пользователь попросил приступить к унификации schema;
+  - цель: привести `/360-tours-service` к общему L2-паттерну `Service.hasOfferCatalog`, не меняя визуальную страницу.
+- Изменено:
+  - `app/360-tours-service/page.tsx`:
+    - в `Service` JSON-LD добавлен `hasOfferCatalog`;
+    - catalog строится из `config.data.services`, 6 видимых направлений;
+    - существующие 3 pricing `offers` сохранены.
+  - обновлены документы:
+    - `site-docs/l2-seo-cro-audit.md`;
+    - `site-docs/l2-final-consistency-report.md`;
+    - `site-docs/l2-parity-implementation-log.md`;
+    - `CHANGELOG_ARCHIVE.md`.
+- Не менялось:
+  - визуальная структура страницы;
+  - `/drone-service`;
+  - `/promo-video-service`.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint app/360-tours-service/page.tsx` -> ✅;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - runtime schema check: `hasOfferCatalog = true`, catalog items `6`, pricing offers `3`.
+- Следующие возможные шаги без `/drone-service`:
+  - расширить related links `/auto-service` и `/360-tours-service` до 7-8 ссылок;
+  - пройти copywriting-полировку микро-CTA в pricing cards.
+
+✅ /ai-visualization-service CTA polish (2026-05-16)
+- Контекст:
+  - пользователь выбрал пункт `1` из предложенных следующих правок;
+  - цель: заменить общий CTA `/ai-visualization-service` с `Обсудить задачу` на более предметную AI-формулировку.
+- Изменено:
+  - `constants/l2DirectionConfigs.ts`:
+    - `heroPrimaryCtaLabel`: `Обсудить AI-визуализацию`;
+    - hero cards secondary CTA: `Обсудить AI-формат`;
+    - services secondary CTA: `Обсудить AI-формат`;
+    - mid CTA button: `Подобрать AI-формат`;
+  - `site-docs/l2-seo-cro-audit.md`: `/ai-visualization-service` теперь CTA/CRO `Усилен`;
+  - `site-docs/l2-parity-implementation-log.md`: добавлена Phase 6 AI CTA polish;
+  - `CHANGELOG_ARCHIVE.md`: добавлена запись за 2026-05-16.
+- Не менялось:
+  - структура секций;
+  - schema;
+  - `/promo-video-service`.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint constants/l2DirectionConfigs.ts` -> ✅ with warnings only.
+- Следующий возможный пункт:
+  - пункт 2: расширить видимый FAQ `/drone-service` до 10-12 вопросов.
+
+✅ L2 consistency pass: related links, AI CTA, contact preselect (2026-05-16)
+- Контекст:
+  - пользователь выбрал пункты `2,3,4,5` из предложенного списка без изменения `/drone-service`;
+  - `/promo-video-service` остаётся исключением.
+- Документ:
+  - создан `site-docs/l2-final-consistency-report.md`.
+- Сделано:
+  - проверен AI CTA `Обсудить AI-визуализацию` на production mobile widths `360 / 375 / 390`;
+  - horizontal overflow отсутствует;
+  - related links всех активных L2 проверены, missing routes `0`;
+  - `DroneContactStitch` теперь резолвит `preselectedServices` по id и по точному видимому chip label;
+  - добавлены/уточнены category chips и preselect:
+    - restaurants -> `Рестораны`;
+    - tourism -> `Туризм`;
+    - clinics -> `Клиники`;
+    - auto -> `Автобизнес`;
+    - AI -> `AI-визуализация`;
+    - 360 tours -> `360° тур`.
+- Browser production check:
+  - все 9 активных L2 имеют ожидаемый активный preselected chip;
+  - `/ai-visualization-service` CTA и `Обсудить AI-формат` не выходят за viewport.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - `npx eslint components/drone/DroneContactStitch.tsx constants/l2DirectionConfigs.ts` -> ✅ with warnings only;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅.
+- Следующие шаги без `/drone-service`:
+  - унифицировать schema style `/360-tours-service` через `hasOfferCatalog`;
+  - расширить related links `/auto-service` и `/360-tours-service` до 7-8 ссылок.
+
+✅ L2 SEO/schema + CTA/CRO audit (2026-05-15)
+- Контекст:
+  - пользователь попросил приступить к пунктам `1` и `2`: SEO/schema-аудит всех L2 и CTA/CRO-аудит L2;
+  - `/drone-service` остаётся эталоном;
+  - `/promo-video-service` остаётся исключением и не редактировался.
+- Документ:
+  - создан `site-docs/l2-seo-cro-audit.md`;
+  - обновлён `site-docs/l2-parity-implementation-log.md`;
+  - обновлён `CHANGELOG_ARCHIVE.md`.
+- Что сделано:
+  - `/drone-service` получил `FAQPage` JSON-LD из видимого FAQ;
+  - FAQ-данные вынесены в `components/drone/droneFaqData.ts`;
+  - `DroneFAQExpanded` теперь использует этот общий источник;
+  - related links `/drone-service` расширены на активные L2: real estate, hotels, restaurants, tourism, clinics, auto;
+  - `/reels-service` Service schema получила `hasOfferCatalog` и pricing `offers`;
+  - real estate, hotels, restaurants, tourism, clinics и AI visualization получили явные `twitter.title` / `twitter.description`;
+  - `L2DirectionRenderer` теперь берёт sticky/mobile CTA label из `heroPrimaryCtaLabel`.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - focused eslint по затронутым L2/SEO/CTA файлам -> ✅ with warnings only;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - production check на `http://127.0.0.1:3210` через Playwright:
+    - `/drone-service` schema types: `Organization`, `Service`, `BreadcrumbList`, `FAQPage`, `ItemList`;
+    - активные L2 schema types: `Organization`, `Service`, `FAQPage`, `BreadcrumbList`;
+    - `/reels-service` `Service.hasOfferCatalog = true`, pricing `offers = 3`;
+    - sticky/mobile CTA на активных L2 используют page-specific labels.
+- Следующие возможные правки:
+  - заменить CTA `/ai-visualization-service` с `Обсудить задачу` на более точный вариант;
+  - расширить видимый FAQ `/drone-service` до 10-12 вопросов отдельным copywriting-проходом;
+  - унифицировать schema style `/360-tours-service` с остальными L2, если нужен единый `hasOfferCatalog`.
+
+✅ L2 visual polish: mobile hero density + CTA visibility (2026-05-15)
+- Контекст:
+  - пользователь выбрал `Вариант 1 — визуальная полировка всех L2`;
+  - задача: проверить L2 после структурных правок на mobile `360 / 375 / 390` и desktop, найти длинные заголовки, плотные блоки, странные переносы и перегруз.
+- Проверенные активные L2:
+  - `/real-estate-service`
+  - `/hotels-service`
+  - `/restaurants-service`
+  - `/tourism-service`
+  - `/clinics-service`
+  - `/auto-service`
+  - `/ai-visualization-service`
+  - `/reels-service`
+  - `/360-tours-service`
+- `/promo-video-service` не редактировался.
+- Найдено:
+  - в dev-mode видны красные `DebugWrapper` лейблы, поэтому финальная визуальная проверка должна идти через production build с `NEXT_PUBLIC_DEBUG_MODE=false`;
+  - на `360px` длинные L2 hero с тремя lead-параграфами были слишком плотными;
+  - на `/real-estate-service` CTA почти уходил под fixed mobile bottom bar.
+- Исправлено:
+  - `components/l2-direction/L2DirectionSections.tsx`: в карточном L2 hero на mobile показывается только первый `heroLeadParagraph`, остальные появляются с `md` и выше;
+  - desktop сохраняет полный объём lead-текста;
+  - mobile hero стал легче, CTA лучше помещается над bottom bar;
+  - `constants/l2DirectionConfigs.ts`: `/reels-service` `pricingAddOns` переименован с `Что бизнес выигрывает` на `Что влияет на формат и стоимость Reels`, пункты переписаны под факторы формата/стоимости.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - focused eslint по L2 config/sections/renderer/types -> ✅ with warnings only;
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅;
+  - production server: `NEXT_PUBLIC_DEBUG_MODE=false PORT=3210 npm run start`;
+  - mobile `360px`: hero-экраны активных L2 просмотрены визуально;
+  - mobile `375px` и `390px`: smoke-check на чувствительных длинных hero;
+  - console errors `0`;
+  - временные screenshot-файлы удалены.
+- Итог:
+  - длинные mobile hero стали легче;
+  - CTA на real estate теперь полностью виден на `360px`;
+  - Reels add-ons теперь соответствует месту в структуре.
+
+✅ Phase 3 L2 parity: сильные L2 выровнены под `/drone-service` (2026-05-15)
+- Контекст:
+  - это продолжение L2 parity audit;
+  - `/drone-service` остаётся эталоном структуры;
+  - `/promo-video-service` остаётся исключением и не редактировался.
+- Затронутый основной файл:
+  - `constants/l2DirectionConfigs.ts`
+- Документация:
+  - `site-docs/l2-parity-implementation-log.md` обновлён;
+  - Phase 3 переведена в `completed`.
+- Страницы Phase 3:
+  - `/real-estate-service`
+  - `/hotels-service`
+  - `/restaurants-service`
+  - `/tourism-service`
+  - `/clinics-service`
+  - `/ai-visualization-service`
+  - `/reels-service`
+  - `/360-tours-service`
+- Что сделано:
+  - на все 8 сильных L2 добавлен `conditionsNote`;
+  - заполнены пустые `trustBadges` для hotels, tourism, clinics, real estate, AI visualization, Reels и 360 tours;
+  - добавлены `pricingAddOns` для hotels, restaurants, tourism и real estate;
+  - существующие `pricingAddOns` включены в `sectionOrder` для clinics и AI visualization;
+  - порядок секций `/reels-service` и `/360-tours-service` выровнен ближе к эталонной цепочке: content blocks → whyUs → pricing → add-ons → process → conditionsNote → FAQ.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - focused eslint по `constants/l2DirectionConfigs.ts`, L2 renderer/sections/types -> ✅ with warnings only;
+  - `http://localhost:3200` поднят через `npm run dev`;
+  - HEAD checks вернули `200` для всех 8 Phase 3 L2 и `/promo-video-service`;
+  - Playwright desktop DOM sweep: новый `conditionsNote` найден на всех 8 страницах, console errors `0`;
+  - Playwright mobile DOM sweep на `390x844`: новый `conditionsNote` найден на всех 8 страницах, console errors `0`.
+- Важно:
+  - `/promo-video-service` не редактировался;
+  - полный `npm run lint` ранее падал на unrelated/generated `.claude/worktrees/.next` и старые issues, поэтому использовался focused eslint;
+  - следующий этап — Phase 4: улучшение эталона `/drone-service` (FAQ schema, related links, возможное расширение FAQ).
+
+✅ Codex L2 parity audit + общий L2 parity layer + пилот `/auto-service` (запись добавлена 2026-05-15)
+- Контекст задачи:
+  - пользователь попросил сравнить все L2-страницы из бегущей строки с эталоном `/drone-service`;
+  - цель — не делать одинаковый текст, а привести структуру, порядок, архитектуру секций и UX к единому стандарту;
+  - `/promo-video-service` пользователь попросил пока не трогать и не использовать в текущем цикле.
+- Документы:
+  - создан аудит `site-docs/l2-drone-service-parity-audit.md`;
+  - создан живой журнал внедрения `site-docs/l2-parity-implementation-log.md`;
+  - в журнале фиксируются этапы, затронутые страницы, изменённые файлы, проверки и следующие шаги.
+- Phase 1 / общий L2 parity layer:
+  - `components/l2-direction/types.ts` расширен типом `L2ConditionsNoteConfig`;
+  - в `L2SectionKey` добавлен ключ `conditionsNote`;
+  - `L2DirectionDataConfig` получил optional `conditionsNote`;
+  - в `components/l2-direction/L2DirectionSections.tsx` добавлены `L2DirectionMobileServicesList` и `L2DirectionConditionsNote`;
+  - обычная L2 contact-форма получила `id="contact-form"` для корректного поведения mobile bottom bar;
+  - в `components/l2-direction/L2DirectionRenderer.tsx` подключены `DroneStickyCta`, `MobileBottomBar`, mobile services list и `conditionsNote`;
+  - parity layer включён только для разрешённых L2 schema keys;
+  - `promo-video-service` намеренно не включён в parity layer.
+- Phase 2 / пилот `/auto-service`:
+  - `/auto-service` приведён ближе к структуре `/drone-service`;
+  - добавлены 3 hero lead-параграфа и 6 hero cards;
+  - задан полный `sectionOrder`: `marquee -> services -> socialProof -> midCta -> whatIsTour -> painSolutions -> earnLose -> deliverables -> whyUs -> pricing -> pricingAddOns -> process -> conditionsNote -> faq -> relatedLinks -> contact`;
+  - добавлены custom marquee, `midCta`, `whatIsTour`, 6 `painSolutions`, `earnLose`, 10 deliverables, 6 why-us карточек;
+  - pricing расширен до 4 пакетов: `Старт`, `Видео + Reels`, `Model showcase`, `Полная упаковка`;
+  - добавлены 6 pricing add-ons и `conditionsNote` по подготовке автообъекта;
+  - FAQ расширен до 12 вопросов;
+  - related links расширены до 8;
+  - включён `useDroneContact: true`.
+- Schema / route-level:
+  - `app/auto-service/page.tsx` получил route-level metadata;
+  - добавлены JSON-LD `Service`, `FAQPage`, `BreadcrumbList`;
+  - `L2DirectionRenderer` для `/auto-service` вызывается с `includeBaseJsonLd={false}`, чтобы не дублировать schema.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅;
+  - focused eslint по изменённым файлам -> ✅, только warnings (`next/no-img-element` и старые unused constants);
+  - `curl -I http://localhost:3200/auto-service` -> `200 OK`;
+  - browser check `/auto-service` -> без console warnings/errors;
+  - snapshot подтвердил расширенную секционную цепочку и mobile bottom bar;
+  - `/promo-video-service` проверен как исключение: не получил mobile services list / sticky CTA / mobile bottom bar.
+- Важно:
+  - полный `npm run lint` падает на unrelated/generated `.claude/worktrees/.next` и старые issues;
+  - worktree был dirty до этой задачи, unrelated изменения не откатывались;
+  - dev server был поднят на `http://localhost:3200`;
+  - следующий этап — Phase 3: пройти сильные L2 и добрать `conditionsNote`, trust/add-ons и точечное выравнивание порядка секций.
+
+✅ Gazeta + L2 service pages: кнопки, единая бегущая строка, hero-spacing и typewriter для заголовков (2026-05-06)
+- Контекст задачи:
+  - пользователь сравнивал `/drone-service` с остальными L2-страницами и попросил повторить удачные паттерны;
+  - эталон для визуала: hero `/drone-service`, где крупный H1 не конфликтует с верхней бегущей строкой;
+  - эталон для верхнего ticker: строка на `/drone-service` с одинаковым набором направлений;
+  - эталон для анимации H1: запуск заголовка `/drone-service` через печатающую анимацию.
+- Основные файлы:
+  - `components/gazeta/NichesStack.tsx`
+  - `constants/gazetaRoutes.ts`
+  - `app/drone-service/page.tsx`
+  - `components/l2-direction/L2DirectionRenderer.tsx`
+  - `components/l2-direction/L2DirectionSections.tsx`
+  - `constants/l2DirectionConfigs.ts`
+  - `app/gazeta/[slug]/page.tsx`
+- `/gazeta` / секции `05-12`:
+  - добавлена такая же кнопка `Все услуги ...`, как в секции `02 Аэросъёмка`;
+  - кнопка теперь показывается для секций `02-12`, если для ниши есть route второго уровня;
+  - секция `12 IT` больше не исключается из генерации all-services card;
+  - кнопки ведут на соответствующие страницы второго уровня из `gazetaNicheLandingRoutes`.
+- Единая бегущая строка на L2:
+  - в `constants/gazetaRoutes.ts` вынесен общий список исключений `gazetaDroneServiceTickerExcludeTexts`;
+  - `/drone-service` использует этот список, чтобы убрать `Промо видео` / `Promo Video`;
+  - `L2DirectionRenderer` включает `singleTickerMode` и тот же ticker-паттерн для:
+    - `/ai-visualization-service`
+    - `/real-estate-service`
+    - `/hotels-service`
+    - `/restaurants-service`
+    - `/auto-service`
+    - `/tourism-service`
+    - `/clinics-service`
+  - `/gazeta/it` получил такой же header ticker через dynamic route `app/gazeta/[slug]/page.tsx`.
+- Hero / конфликт заголовка с ticker:
+  - в `L2DirectionSections.tsx` исправлен общий layout hero для L2-страниц с карточным hero;
+  - увеличены верхние отступы под sticky header/ticker;
+  - карточный hero теперь стартует сверху (`items-start`) и становится двухколоночным только на `xl`;
+  - длинные H1 получили более спокойные desktop font-size;
+  - длинный заголовок `/ai-visualization-service` разбит через `heroDisplayTitle` / `heroDesktopDisplayTitle`, чтобы не упираться в ticker.
+- Typewriter для L2-заголовков:
+  - в `L2DirectionHero` добавлены `TYPEWRITER_INTERVAL_MS` и `TYPEWRITER_NEWLINE_PAUSE_MS`;
+  - H1 теперь печатается по символам для mobile и desktop display-title;
+  - добавлен пульсирующий gold cursor `|` на последней набираемой строке;
+  - анимация учитывает разные mobile/desktop версии заголовка и паузу на переносах строк;
+  - поведение сделано в общем L2-компоненте, чтобы повторять эффект `/drone-service` на страницах второго уровня.
+- Проверки, выполненные по ходу:
+  - `npm run build` после code changes -> ✅;
+  - browser/DOM check для ticker подтвердил одинаковую строку на `/drone-service`, `/ai-visualization-service`, `/real-estate-service`, `/hotels-service`, `/restaurants-service`, `/auto-service`, `/tourism-service`, `/clinics-service`, `/gazeta/it`;
+  - browser screenshots проходили по L2-страницам и подтвердили, что H1 больше не перекрывается бегущей строкой.
+- Важно:
+  - worktree уже был dirty до этих правок; не откатывать чужие изменения;
+  - после typewriter-правки `next start` на `localhost:3200` нужно перезапустить, если открыт старый production server;
+  - eslint по `components/gazeta/NichesStack.tsx` может падать на старые pre-existing `react-hooks/set-state-in-effect`, не связанные с кнопками `Все услуги`;
+  - debug overlays в IAB могут быть видны из-за активного `DebugWrapper`, это не часть клиентского UI в обычном режиме.
+
+✅ /clinics-service: L2 industry hub для клиник и medical / beauty / wellness направлений собран через общий L2 renderer (2026-05-05)
+- Основные файлы:
+  - `app/clinics-service/page.tsx`
+  - `constants/l2DirectionConfigs.ts`
+- Контекст задачи:
+  - `/drone-service` принят как визуальный эталон L2-хаба Breus Media;
+  - `/360-tours-service`, `/reels-service`, `/ai-visualization-service`, `/real-estate-service`, `/hotels-service`, `/restaurants-service`, `/tourism-service` использованы как технический ориентир config-first через `L2DirectionRenderer`;
+  - источник контента: `/Users/lika/Downloads/_clinics-service.md`;
+  - пользовательский бриф имел приоритет над source export;
+  - цель: `/clinics-service` — L2 industry hub для клиник, стоматологий, медицинских центров, beauty, wellness, косметологии и частных специалистов, а не single-service page и не только “видеопродакшн для клиник”.
+- Реализовано через `L2DirectionRenderer` без page-specific монолита:
+  - route-level metadata: title / description / canonical / openGraph / twitter;
+  - canonical: `https://breus.media/clinics-service`;
+  - locale: `ru_GE`;
+  - route-level JSON-LD: `Service`, `FAQPage`, `BreadcrumbList`;
+  - `FAQPage` строится только из видимого FAQ;
+  - generic JSON-LD из renderer отключён через `includeBaseJsonLd={false}`;
+  - `Service.provider` ссылается на `https://breus.media/#organization`;
+  - stats/evidence не добавлялись в schema.
+- Фактический порядок секций `/clinics-service`:
+  - hero
+  - marquee
+  - services
+  - socialProof / `Клиники в цифрах`
+  - midCta
+  - whatIsTour
+  - painSolutions
+  - earnLose
+  - deliverables
+  - whyUs
+  - pricing
+  - pricingAddOns
+  - process
+  - faq
+  - relatedLinks
+  - contact
+- Hero и навигация:
+  - H1: `Контент для клиник и медицинских центров в Тбилиси`;
+  - subtitle: видео, Reels, фото, 360° туры и AI-описания для клиник, стоматологий, эстетических центров, beauty и wellness-направлений в Тбилиси и Грузии;
+  - CTA: `Обсудить клинику` -> `#contact`, `Посмотреть форматы` -> `#services`;
+  - SmartHeader links: `Услуги`, `Цены`, `Процесс`, `FAQ`;
+  - добавлены 6 rotating hero cards: видео клиники, Reels для врача, 360° тур клиники, фото пространства, контент для услуг, AI-описания и FAQ.
+- Ticker / marquee:
+  - custom ticker: `Клиники`, `стоматологии`, `медицинские центры`, `beauty`, `wellness`, `косметология`, `Reels`, `360° туры`, `фото кабинетов`, `видео врача`, `Google Maps`, `сайт клиники`, `Instagram`, `TikTok`, `FAQ`, `AI-описания`, `RU`, `EN`, `KA`, `Тбилиси`, `Грузия`.
+- Services grid:
+  - 8 форматов:
+    - `Видео клиники`;
+    - `Reels для врача и клиники` -> `/reels-service`;
+    - `360° тур клиники` -> `/360-tours-service`;
+    - `Фото пространства и команды`;
+    - `Контент для услуг и процедур`;
+    - `AI-описания и FAQ для сайта` -> `/ai-visualization-service`;
+    - `Контент для Google Maps`;
+    - `Monthly Clinic Content Pack`.
+- Stats/evidence:
+  - блок `Клиники в цифрах` сделан через `StatsEvidenceStrip` в dark/gold паттерне `DroneStatsStrip`;
+  - stats не добавлены в schema;
+  - verified `sourceUrl` для clinics stats не найден;
+  - использован safe fallback без ссылок:
+    - `До визита` / patient researches clinic before visit;
+    - `1 ссылка` / content reuse for site, messenger and consultation;
+    - `RU / EN / KA` / localization context;
+    - `4 канала` / site, Google Maps, social media, ads;
+  - добавлен видимый disclaimer: цифры и сигналы показывают рыночный контекст, а не гарантию записей, заявок или результата для конкретной клиники.
+- Content sections:
+  - `Не уверены, что нужно клинике первым?` mid CTA;
+  - `Не просто съёмка кабинетов, а понятная упаковка первого визита`;
+  - 6 painSolutions без technical labels `Pain` / `Solution`;
+  - `Что выигрывает клиника` через `earnLose`;
+  - compact deliverables на 10 пунктов;
+  - 6 why-us карточек.
+- Pricing:
+  - все пакеты без жёстких цен, только `по задаче`;
+  - `Clinic Starter Pack`;
+  - `Doctor & Reels Pack`;
+  - `Clinic Space Pack`;
+  - `Monthly Clinic Content Pack`;
+  - сроки не указаны;
+  - добавлен `pricingAddOns` / pricing note: финальная цена зависит от количества кабинетов, врачей, услуг, форматов, языков, локаций, необходимости 360° тура и объёма подготовки.
+- Process:
+  - 5 шагов: `Бриф`, `Выбор формата`, `Подготовка клиники`, `Съёмка / производство`, `Упаковка и передача`.
+- FAQ:
+  - один основной FAQ на 14 вопросов;
+  - Short Q&A не добавлялся;
+  - ответы без гарантий роста, записей, продаж, медицинского результата и без фиксированных сроков.
+- Related links валидированы по реальным routes:
+  - `/drone-service`
+  - `/360-tours-service`
+  - `/reels-service`
+  - `/ai-visualization-service`
+  - `/hotels-service`
+  - `/restaurants-service`
+  - `/tourism-service`
+  - `/real-estate-service`
+  - `/360-tour-clinics`
+- Contact:
+  - используется `DroneContactStitch`;
+  - heading: `Нужен контент для клиники?`;
+  - `preselectedServices: ['clinics']`;
+  - service chips: видео клиники, Reels для врача, 360° тур, фото кабинетов, Google Maps pack, AI-описания, FAQ для сайта, Monthly pack.
+- Контентные ограничения:
+  - не используется город Батуми;
+  - не используется `breusmedia.com`;
+  - нет fake `sourceUrl`;
+  - нет жёстких цен, сроков, медицинских обещаний, “до/после” как обещания результата, гарантий записей, заявок, продаж или результата процедур;
+  - old clinic L3 links `/promo-video/promo-clinic` и `/reels-promo/reels-clinic` не используются в `/clinics-service`.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅
+  - Playwright visual check:
+    - desktop;
+    - mobile widths `360 / 375 / 390`;
+    - временные screenshots после проверки удалены;
+  - визуально проверены hero, ticker, services cards, `Клиники в цифрах`, pricing, FAQ, contact;
+  - runtime/DOM check подтвердил `h1 = 1`, JSON-LD types `Organization / Service / FAQPage / BreadcrumbList`, `FAQPage = 14`, `Service.provider = https://breus.media/#organization`, ключевые anchors присутствуют, requested related routes присутствуют, fake source links отсутствуют.
+- Важно:
+  - перед задачей worktree уже был dirty;
+  - в этом проходе целевые code edits были только в `app/clinics-service/page.tsx` и clinics-блоке `constants/l2DirectionConfigs.ts`;
+  - общие L2-компоненты и `/drone-service` не редактировались;
+  - TODO по stats: заменить safe fallback на verified stats только если появятся проверенные источники;
+  - TODO по routes: новых clinic L3 не добавляли; `/360-tour-clinics` существует и включён как related L3.
+
+✅ /hotels-service: L2 industry hub для отелей и hospitality собран через общий L2 renderer (2026-05-05)
+- Основные файлы:
+  - `app/hotels-service/page.tsx`
+  - `constants/l2DirectionConfigs.ts`
+- Контекст задачи:
+  - `/drone-service` принят как визуальный эталон L2-хаба Breus Media;
+  - `/360-tours-service`, `/reels-service`, `/ai-visualization-service`, `/real-estate-service` использованы как технический ориентир config-first через `L2DirectionRenderer`;
+  - источник `hotels-service.html` локально не найден; использован доступный файл `/Users/lika/Downloads/hotels-service.md` вместе с пользовательским брифом;
+  - цель: `/hotels-service` — L2 industry hub для отелей, апартаментов, курортных объектов, глэмпингов, гостевых домов и hospitality-бизнеса, а не страница одной услуги и не только “дрон для отелей”.
+- Реализовано через `L2DirectionRenderer` без page-specific монолита:
+  - route-level metadata: title / description / canonical / openGraph / twitter;
+  - canonical: `https://breus.media/hotels-service`;
+  - locale: `ru_GE`;
+  - route-level JSON-LD: `Service`, `FAQPage`, `BreadcrumbList`;
+  - `FAQPage` строится только из видимого FAQ;
+  - generic JSON-LD из renderer отключён через `includeBaseJsonLd={false}`;
+  - `Service.provider` ссылается на `https://breus.media/#organization`;
+  - stats/evidence не добавлялись в schema.
+- Фактический порядок секций `/hotels-service`:
+  - hero
+  - marquee
+  - services
+  - socialProof / `Отели в цифрах`
+  - midCta
+  - whatIsTour
+  - painSolutions
+  - earnLose
+  - deliverables
+  - whyUs
+  - pricing
+  - process
+  - faq
+  - relatedLinks
+  - contact
+- Hero и навигация:
+  - H1: `Контент для отелей в Тбилиси и Грузии`;
+  - subtitle: видео, аэросъёмка, 360° туры, Reels и AI-описания для отелей, апартаментов, гостевых домов и hospitality-бизнеса;
+  - CTA: `Обсудить отель` -> `#contact`, `Посмотреть форматы` -> `#services`;
+  - SmartHeader links: `Услуги`, `Цены`, `Процесс`, `FAQ`;
+  - добавлены 6 rotating hero cards: видеотур отеля, аэросъёмка отеля, 360° тур, Reels для отеля, AI-описания, сезонный контент.
+- Ticker / marquee:
+  - включён `singleTickerMode`;
+  - custom ticker: `Отели`, `апартаменты`, `гостевые дома`, `видеотуры`, `аэросъёмка`, `360° туры`, `Reels`, `AI-описания`, `Booking`, `Airbnb`, `сайт отеля`, `завтраки`, `номера`, `виды`, `территория`, `Тбилиси`, `Грузия`.
+- Services grid:
+  - 8 форматов:
+    - `Видеотур отеля`;
+    - `Аэросъёмка отеля и территории` -> `/drone-hotels-tourism`;
+    - `360° тур для отеля` -> `/360-tour-hotels`;
+    - `Reels и Shorts для отеля` -> `/reels-service`;
+    - `Фото и listing pack`;
+    - `AI-описания и локализация` -> `/ai-visualization-service`;
+    - `Сезонный content pack`;
+    - `Контент для ресторана при отеле` -> `/restaurants-service`.
+- Stats/evidence:
+  - блок `Отели в цифрах` сделан через `StatsEvidenceStrip` в dark/gold паттерне `DroneStatsStrip`;
+  - stats не добавлены в schema;
+  - использованы source-backed contextual stats:
+    - TripAdvisor: больше фото в карточке связано с ростом booking inquiries;
+    - Wyzowl Video Marketing Statistics 2026: 84% людей покупали или скачивали после просмотра видео;
+    - Expedia Group Traveler Value Index 2025: 73% путешественников хотят бронировать проживание по лучшей цене;
+    - CSA Research / Can't Read, Won't Buy: 76% потребителей предпочитают покупать товары с информацией на родном языке;
+  - добавлен видимый disclaimer: цифры и сигналы показывают рыночный контекст, а не гарантию бронирований для конкретного объекта.
+- Content sections:
+  - `Не уверены, что нужно вашему отелю?` mid CTA;
+  - `Не просто съёмка номеров, а упаковка гостевого опыта`;
+  - 6 painSolutions без technical labels `Pain` / `Solution`;
+  - `Что выигрывает отель` через `earnLose`;
+  - compact deliverables на 9 пунктов;
+  - 6 why-us карточек.
+- Pricing:
+  - все пакеты без жёстких цен, только `по задаче`;
+  - `Hotel Listing Pack`;
+  - `Hotel Video Pack`;
+  - `Hotel 360 & Drone Pack`;
+  - `Hospitality Content Pack`;
+  - сроки не указаны;
+  - финальная цена зависит от количества номеров, зон, форматов, языков, локаций и объёма подготовки.
+- Process:
+  - 5 шагов: `Бриф`, `Выбор формата`, `Подготовка объекта`, `Съёмка / производство`, `Упаковка и передача`.
+- FAQ:
+  - один основной FAQ на 14 вопросов;
+  - Short Q&A не добавлялся;
+  - ответы без гарантий роста, без фиксированных сроков и без конкретных обещаний бронирований / продаж.
+- Related links валидированы по реальным routes:
+  - `/drone-service`
+  - `/360-tours-service`
+  - `/reels-service`
+  - `/ai-visualization-service`
+  - `/restaurants-service`
+  - `/tourism-service`
+  - `/real-estate-service`
+  - `/drone-hotels-tourism`
+  - `/360-tour-hotels`
+- Contact:
+  - используется `DroneContactStitch`;
+  - heading: `Нужен контент для отеля?`;
+  - `preselectedServices: ['hotels']`;
+  - service chips: отели, видеотур, аэросъёмка, 360° тур, Reels, AI-описания, listing pack, сезонный контент.
+- Контентные ограничения:
+  - не используется город Батуми в активной странице;
+  - не используется `breusmedia.com`;
+  - нет fake `sourceUrl`;
+  - нет жёстких цен, сроков, гарантий бронирований, роста заявок, продаж, цены или скорости бронирования.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅
+  - Playwright screenshots сохранены:
+    - `output/playwright/hotels-service/desktop.png`;
+    - `output/playwright/hotels-service/mobile-360.png`;
+    - `output/playwright/hotels-service/mobile-375.png`;
+    - `output/playwright/hotels-service/mobile-390.png`;
+  - визуально проверены hero, ticker, services cards, `Отели в цифрах`, pricing, FAQ, contact на desktop и mobile widths `360 / 375 / 390`;
+  - runtime/DOM check подтвердил `h1 = 1`, JSON-LD types `Organization / Service / FAQPage / BreadcrumbList`, ключевые секции присутствуют, запрещённые фразы в rendered HTML не найдены.
+- Важно:
+  - перед задачей worktree уже был dirty;
+  - в этом проходе целевые code edits были только в `app/hotels-service/page.tsx` и hotels-блоке `constants/l2DirectionConfigs.ts`;
+  - `/drone-service`, `/360-tours-service`, `/reels-service`, `/ai-visualization-service`, `/real-estate-service` не редактировались как page files в рамках hotels-задачи;
+  - TODO по stats: TripAdvisor source живой, но старый; при наличии более свежего первичного источника по hotel-photo / booking behavior можно заменить;
+  - TODO по routes: нет, все requested related routes существуют.
+
+✅ /tourism-service: L2 industry hub для туризма собран через общий L2 renderer (2026-05-05)
+- Основные файлы:
+  - `app/tourism-service/page.tsx`
+  - `constants/l2DirectionConfigs.ts`
+- Контекст задачи:
+  - `/drone-service` принят как визуальный эталон L2-хаба;
+  - `/360-tours-service`, `/reels-service`, `/ai-visualization-service`, `/real-estate-service`, `/hotels-service`, `/restaurants-service` использованы как технический ориентир config-first;
+  - источник контента: доступный локальный файл `/Users/lika/Downloads/tourism-service.md`; пользовательский бриф считался каноничным при конфликтах;
+  - цель: `/tourism-service` — industry hub для туров, маршрутов, экскурсий, локаций, глэмпингов, туристических баз, активностей и travel-проектов в Грузии, а не страница одной услуги и не только “дрон для туризма”.
+- Реализовано через `L2DirectionRenderer` без page-specific монолита:
+  - route-level metadata: title / description / canonical / openGraph / twitter;
+  - route-level JSON-LD: `Service`, `FAQPage`, `BreadcrumbList`;
+  - `FAQPage` строится только из видимого FAQ;
+  - generic JSON-LD из renderer отключён через `includeBaseJsonLd={false}`;
+  - `Service.provider` ссылается на `https://breus.media/#organization`;
+  - stats/evidence не добавлялись в schema.
+- Фактический порядок секций `/tourism-service`:
+  - hero
+  - marquee
+  - services
+  - socialProof / `Туризм в цифрах`
+  - midCta
+  - whatIsTour
+  - painSolutions
+  - earnLose
+  - deliverables
+  - whyUs
+  - pricing
+  - process
+  - faq
+  - relatedLinks
+  - contact
+- Hero и навигация:
+  - H1: `Контент для туризма и маршрутов в Грузии`;
+  - subtitle: видео, аэросъёмка, Reels, 360° туры и AI-упаковка предложений для туров, локаций, глэмпингов, активностей и travel-проектов в Грузии;
+  - CTA: `Обсудить тур` -> `#contact`, `Посмотреть форматы` -> `#services`;
+  - SmartHeader links: `Услуги`, `Цены`, `Процесс`, `FAQ`;
+  - добавлены 6 rotating hero cards: видео тура или маршрута, аэросъёмка локации, Reels для турпроекта, контент для глэмпинга, AI-упаковка предложений, 360° туры локаций.
+- Ticker / marquee:
+  - включён `singleTickerMode`;
+  - custom ticker: `Туризм`, `маршруты`, `экскурсии`, `локации`, `глэмпинги`, `туры`, `аэросъёмка`, `Reels`, `360° туры`, `AI-упаковка`, `Viator`, `GetYourGuide`, `Instagram`, `сайт`, `гиды`, `горы`, `винные туры`, `активный отдых`, `Грузия`.
+- Services grid:
+  - 8 форматов:
+    - `Видео тура или маршрута`;
+    - `Аэросъёмка локации` -> `/drone-hotels-tourism`;
+    - `Reels и Shorts для туризма` -> `/reels-service`;
+    - `Контент для глэмпинга или базы`;
+    - `Промо для экскурсии`;
+    - `AI-упаковка туристических предложений` -> `/ai-visualization-service`;
+    - `360° туры для локаций` -> `/360-tours-service`;
+    - `Content pack для сезона`.
+- Stats/evidence:
+  - блок сделан через `StatsEvidenceStrip` в dark/gold паттерне `DroneStatsStrip`;
+  - source-backed stats из source file намеренно не перенесены, чтобы не вставлять слишком общие или спорные числа;
+  - использован safe non-linked evidence из брифа:
+    - `До брони`;
+    - `1 маршрут`;
+    - `RU / EN / KA`;
+    - `4 канала`;
+  - `sourceUrl` не ставился;
+  - добавлен видимый disclaimer: цифры и сигналы показывают рыночный контекст, а не гарантию бронирований, заявок или продаж для конкретного маршрута.
+- Content sections:
+  - `Не уверены, что нужно вашему туру первым?` mid CTA;
+  - `Не просто съёмка красивых видов, а упаковка маршрута`;
+  - 6 painSolutions без technical labels `Pain` / `Solution`;
+  - `Что выигрывает туристический проект` через `earnLose`;
+  - compact deliverables на 9 пунктов;
+  - 6 why-us карточек.
+- Pricing:
+  - все пакеты без жёстких цен, только `по задаче`;
+  - `Tour Promo Pack`;
+  - `Route Content Pack`;
+  - `Location & Drone Pack`;
+  - `Season Content Pack`;
+  - сроки не указаны;
+  - финальная цена зависит от маршрута, локаций, форматов, языков, сезона, логистики и объёма подготовки.
+- Process:
+  - 5 шагов: `Бриф`, `Выбор формата`, `План маршрута`, `Съёмка / производство`, `Упаковка и передача`.
+- FAQ:
+  - один основной FAQ на 14 вопросов;
+  - Short Q&A не добавлялся;
+  - ответы без гарантий роста, без фиксированных сроков и без конкретных обещаний бронирований / заявок / продаж.
+- Related links валидированы по реальным routes и возвращают `200` на local production server:
+  - `/drone-service`
+  - `/360-tours-service`
+  - `/reels-service`
+  - `/ai-visualization-service`
+  - `/hotels-service`
+  - `/restaurants-service`
+  - `/real-estate-service`
+  - `/drone-hotels-tourism`
+- Contact:
+  - используется `DroneContactStitch`;
+  - heading: `Нужен контент для туристического проекта?`;
+  - `preselectedServices: ['tourism']`;
+  - service chips: видео тура, аэросъёмка, Reels, 360° тур, AI-упаковка, глэмпинг, promo pack, full content pack.
+- Контентные ограничения:
+  - не используется `Батуми`;
+  - не используется `breusmedia.com`;
+  - не используются old tourism L3 links `/reels-promo/reels-tourism`, `/360-tour-tourism`, `/ai-content/tourism-ai-packaging`, `/promo-video/promo-tourism-route`;
+  - нет fake `sourceUrl`;
+  - нет жёстких цен, сроков, гарантий бронирований / заявок / продаж, неподтверждённых процентов как обещаний результата.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅
+  - local production server: `PORT=3011 npm run start`;
+  - Playwright screenshots сохранены:
+    - `output/playwright/tourism-service-desktop-full.png`;
+    - `output/playwright/tourism-service-mobile-360-full.png`;
+    - `output/playwright/tourism-service-mobile-375-full.png`;
+    - `output/playwright/tourism-service-mobile-390-full.png`;
+  - визуально проверены hero, ticker, services cards, `Туризм в цифрах`, pricing, FAQ, contact на desktop и mobile widths `360 / 375 / 390`.
+- Важно:
+  - перед задачей worktree уже был dirty, включая protected pages;
+  - в этом проходе целевые code edits были только в `app/tourism-service/page.tsx` и tourism-блоке `constants/l2DirectionConfigs.ts`;
+  - `/drone-service`, `/360-tours-service`, `/reels-service`, `/ai-visualization-service`, `/real-estate-service`, `/hotels-service`, `/restaurants-service` не редактировались как page files в рамках tourism-задачи.
+
+✅ /real-estate-service: L2 industry hub для недвижимости собран через общий L2 renderer (2026-05-05)
+- Основные файлы:
+  - `app/real-estate-service/page.tsx`
+  - `constants/l2DirectionConfigs.ts`
+  - `constants/droneDirectionPages.ts`
+  - `components/l2-direction/types.ts`
+  - `components/l2-direction/L2DirectionRenderer.tsx`
+  - `components/l2-direction/L2DirectionSections.tsx`
+- Контекст задачи:
+  - `/drone-service` принят как визуальный эталон L2-хаба;
+  - `/360-tours-service`, `/reels-service`, `/ai-visualization-service` использованы как технический ориентир config-first;
+  - `/real-estate-service` собран как industry hub для недвижимости, а не страница одной услуги;
+  - страница должна распределять пользователя по форматам: аэросъёмка, 360° тур, Reels, AI staging, listing pack, промо ЖК, видеотур, мониторинг стройки;
+  - гео: Тбилиси и Грузия; Батуми не добавлялся в real-estate copy.
+- Реализовано через `L2DirectionRenderer` без page-specific монолита:
+  - route-level metadata: title / description / canonical / openGraph / twitter;
+  - generic JSON-LD из renderer отключён через `includeBaseJsonLd={false}`;
+  - route-level JSON-LD: `Service`, `FAQPage`, `BreadcrumbList`;
+  - `FAQPage` строится только из видимого FAQ;
+  - `Service.provider` ссылается на `https://breus.media/#organization`;
+  - stats/evidence не добавлялись в schema.
+- Фактический порядок секций `/real-estate-service`:
+  - hero
+  - marquee
+  - services
+  - socialProof / `Недвижимость в цифрах`
+  - midCta
+  - whatIsTour
+  - painSolutions
+  - earnLose
+  - deliverables
+  - whyUs
+  - pricing
+  - process
+  - faq
+  - relatedLinks
+  - contact
+- Hero и навигация:
+  - H1: `Визуальный контент для недвижимости в Тбилиси и Грузии`;
+  - mobile/desktop line-breaks разделены через optional `heroDesktopDisplayTitle`, чтобы сохранить один H1 и убрать overflow;
+  - добавлен optional флаг `heroLongHubLayout`, включён только для `realEstateService`, чтобы не менять compact-геометрию соседних L2;
+  - CTA: `Подобрать формат` -> `#contact`, `Посмотреть направления` -> `#services`;
+  - SmartHeader links: `Услуги`, `Цены`, `Процесс`, `FAQ`;
+  - добавлены rotating hero cards: аэросъёмка недвижимости, 360° тур, Reels для риелторов, AI staging, промо ЖК, мониторинг стройки.
+- Ticker / marquee:
+  - custom ticker: `Недвижимость`, `аэросъёмка`, `360° туры`, `Reels`, `AI staging`, `Listing Pack`, `промо ЖК`, `видеотур`, `мониторинг стройки`, `MyHome.ge`, `SS.ge`, `инвесторы`, `аренда`, `пресейл`, `Тбилиси`, `Грузия`.
+- Services grid:
+  - 8 форматов:
+    - `Аэросъёмка недвижимости` -> `/drone-services/drone-real-estate`;
+    - `360° тур для недвижимости` -> `/360-tour-real-estate`;
+    - `Reels для риелторов и агентств` -> `/reels-real-estate`;
+    - `AI-визуализация и AI staging` -> `/ai-visualization-service`;
+    - `Listing Pack` -> `#contact`;
+    - `Промо ЖК` -> `/promo-video/promo-real-estate`;
+    - `Видеотур объекта` -> `#contact`;
+    - `Мониторинг стройки` -> `/drone-construction-monitoring`;
+  - `/drone-services/drone-construction-monitoring` не использован, потому что такого route нет в build output.
+- Stats/evidence:
+  - блок `Недвижимость в цифрах` сделан через dark/gold evidence-strip в паттерне `DroneStatsStrip`;
+  - stats:
+    - `52%` / NAR REALTOR Technology Survey 2025;
+    - `68%` / NAR — Drones and Real Estate;
+    - `49%` / NAR 2025 Profile of Home Staging;
+    - `76%` / CSA Research / Can't Read, Won't Buy;
+  - добавлен видимый disclaimer: цифры показывают рыночный контекст, а не гарантию результата для конкретного объекта.
+- Content sections:
+  - mid CTA `Не уверены, какой формат нужен объекту?`;
+  - `Не “съёмка квартир”, а упаковка объекта под канал и аудиторию`;
+  - 8 painSolutions без labels `Pain` / `Solution`;
+  - `Что выигрывает объект` через `earnLose`;
+  - compact deliverables;
+  - 6 why-us карточек.
+- Pricing:
+  - все цены только `по задаче`;
+  - `Listing Pack`;
+  - `Remote Buyer Pack`;
+  - `Developer Pack`;
+  - `Monitoring Pack`;
+  - draft GEL ranges из source package не опубликованы;
+  - `L2DirectionPricing` расширен условно: `plans.length >= 4` получает `xl:grid-cols-4`, страницы с 3 пакетами остаются на прежней `md:grid-cols-3`.
+- Process:
+  - 5 шагов: `Бриф`, `Выбор формата`, `Подготовка объекта`, `Съёмка / производство`, `Упаковка и передача`.
+- FAQ:
+  - один основной FAQ на 14 вопросов;
+  - ответы без гарантий продажи, роста просмотров, заявок, цены, скорости сделки и без обещания топа агрегаторов.
+- Related links:
+  - L2 routes: `/drone-service`, `/360-tours-service`, `/reels-service`, `/ai-visualization-service`, `/hotels-service`, `/restaurants-service`, `/tourism-service`;
+  - L3/related routes используются только если существуют: `/360-tour-real-estate`, `/reels-real-estate`, `/drone-services/drone-real-estate`, `/promo-video/promo-real-estate`, `/drone-construction-monitoring`.
+- Contact:
+  - используется `DroneContactStitch`;
+  - heading: `Нужна упаковка объекта недвижимости?`;
+  - `preselectedServices: ['real-estate']`.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅
+  - build output содержит route `/real-estate-service`;
+  - local production screenshots проверялись через headless Chrome:
+    - `/real-estate-service` desktop;
+    - mobile `360 / 375 / 390`;
+    - контрольный screenshot `/reels-service` после изоляции shared layout-фикса;
+  - найден и исправлен mobile horizontal overflow hero;
+  - найден и исправлен desktop overlap H1/ticker через `heroLongHubLayout`;
+  - после проверки local server на `3210` остановлен.
+- Важно:
+  - перед задачей worktree уже был dirty, включая protected pages и shared L2-файлы;
+  - правки shared L2 сделаны optional/условными;
+  - `/drone-service`, `/360-tours-service`, `/reels-service`, `/ai-visualization-service` page files не менялись в рамках этой задачи;
+  - grep по целевым файлам показывает `Батуми` только в существующем `/drone-service` config, не в real-estate block.
+
+✅ /restaurants-service: L2 industry hub для ресторанов собран через общий L2 renderer (2026-05-05)
+- Основные файлы:
+  - `app/restaurants-service/page.tsx`
+  - `constants/l2DirectionConfigs.ts`
+- Контекст задачи:
+  - `/drone-service` принят как визуальный эталон L2-хаба;
+  - `/360-tours-service`, `/reels-service`, `/ai-visualization-service`, `/real-estate-service`, `/hotels-service` использованы как технический ориентир config-first;
+  - источник контента: доступный локальный экспорт `/Users/lika/Downloads/restaurants-service.md`; пользовательский бриф считался каноничным при конфликтах;
+  - цель: `/restaurants-service` должен быть industry hub для ресторанов, кафе, баров, гастропроектов, delivery и ресторанов при отелях, а не страницей одной услуги и не только “дрон для ресторанов”.
+- Реализовано через `L2DirectionRenderer` без page-specific монолита:
+  - route-level metadata: title / description / canonical / openGraph / twitter;
+  - route-level JSON-LD: `Service`, `FAQPage`, `BreadcrumbList`;
+  - `FAQPage` строится только из видимого FAQ;
+  - generic JSON-LD из renderer отключён через `includeBaseJsonLd={false}`;
+  - `Service.provider` ссылается на `https://breus.media/#organization`;
+  - stats/evidence не добавлялись в schema.
+- Фактический порядок секций `/restaurants-service`:
+  - hero
+  - marquee
+  - services
+  - socialProof / `Рестораны в цифрах`
+  - midCta
+  - whatIsTour
+  - painSolutions
+  - earnLose
+  - deliverables
+  - whyUs
+  - pricing
+  - process
+  - faq
+  - relatedLinks
+  - contact
+- Hero и навигация:
+  - H1: `Контент для ресторанов и кафе в Тбилиси`;
+  - subtitle: фото, видео, Reels, аэросъёмка, 360° туры и AI-упаковка меню для ресторанов, кафе, баров, delivery и гастропроектов в Тбилиси и Грузии;
+  - CTA: `Обсудить ресторан` -> `#contact`, `Посмотреть форматы` -> `#services`;
+  - SmartHeader links: `Услуги`, `Цены`, `Процесс`, `FAQ`;
+  - добавлены 6 rotating hero cards: съёмка блюд и меню, Reels, интерьер и атмосфера, 360° тур, аэросъёмка локации, AI-карточки и delivery.
+- Ticker / marquee:
+  - включён `singleTickerMode`;
+  - custom ticker: `Рестораны`, `кафе`, `бары`, `гастропроекты`, `съёмка блюд`, `меню`, `Reels`, `360° туры`, `аэросъёмка`, `AI-карточки`, `Wolt`, `delivery`, `Google Maps`, `Instagram`, `терраса`, `завтраки`, `ужины`, `Тбилиси`, `Грузия`.
+- Services grid:
+  - 8 форматов:
+    - `Съёмка блюд и меню`;
+    - `Reels и Shorts для ресторана` -> `/reels-service`;
+    - `Интерьер и атмосфера`;
+    - `360° тур для ресторана` -> `/360-tour-restaurants`;
+    - `Аэросъёмка ресторана` -> `/drone-services/drone-restaurants`;
+    - `AI-карточки меню и delivery` -> `/ai-visualization-service`;
+    - `Контент для Google Maps`;
+    - `Контент-пакет на месяц`;
+  - несуществующий route `/drone-restaurants` не используется.
+- Stats/evidence:
+  - блок сделан через `StatsEvidenceStrip` в dark/gold паттерне `DroneStatsStrip`;
+  - использованы source-backed contextual stats:
+    - `До 44%` / DoorDash menu photography;
+    - `64%` / TouchBistro 2024 Diner Trends;
+    - `76%` / CSA Research / Can't Read, Won't Buy;
+    - `84%` / Wyzowl Video Marketing Statistics 2026;
+  - добавлен видимый disclaimer: цифры и сигналы показывают рыночный контекст, а не гарантию бронирований, заявок или продаж для конкретного ресторана.
+- Content sections:
+  - `Не уверены, что нужно ресторану первым?` mid CTA;
+  - `Не просто съёмка еды, а визуальная упаковка ресторана`;
+  - 6 painSolutions без технических labels `Pain` / `Solution`;
+  - `Что выигрывает ресторан` через `earnLose`;
+  - compact deliverables на 10 пунктов;
+  - 6 why-us карточек.
+- Pricing:
+  - все пакеты без жёстких цен, `по задаче`;
+  - `Menu Pack`;
+  - `Reels & Social Pack`;
+  - `Restaurant Space Pack`;
+  - `Monthly Content Pack`;
+  - сроки не указаны;
+  - финальная цена зависит от количества блюд, зон, форматов, языков, локаций, необходимости дрона, 360° тура или AI-упаковки.
+- Process:
+  - 5 шагов: `Бриф`, `Выбор формата`, `Подготовка съёмки`, `Съёмка / производство`, `Упаковка и передача`.
+- FAQ:
+  - один основной FAQ на 14 вопросов;
+  - Short Q&A не добавлялся;
+  - ответы без гарантий роста, без фиксированных сроков и без конкретных обещаний продаж / заказов.
+- Related links валидированы по реальным routes и возвращают `200` на local production server:
+  - `/drone-service`
+  - `/360-tours-service`
+  - `/reels-service`
+  - `/ai-visualization-service`
+  - `/hotels-service`
+  - `/tourism-service`
+  - `/real-estate-service`
+  - `/360-tour-restaurants`
+  - `/drone-services/drone-restaurants`
+- Contact:
+  - используется `DroneContactStitch`;
+  - heading: `Нужен контент для ресторана?`;
+  - `preselectedServices: ['restaurants']`;
+  - service chips: съёмка блюд, Reels, интерьер, 360° тур, аэросъёмка, AI-карточки, delivery pack, monthly content pack.
+- Контентные ограничения:
+  - не используется `breusmedia.com`;
+  - не используется несуществующий `/drone-restaurants`;
+  - запрещённое гео из source-export не перенесено;
+  - нет жёстких цен, сроков, гарантий бронирований / заявок / продаж, неподтверждённых процентов как обещаний результата.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅
+  - local production server:
+    - сначала `PORT=3210` был занят;
+    - проверка выполнена на `NEXT_PUBLIC_DEBUG_MODE=false PORT=3222 npm run start`;
+  - Playwright screenshots сохранены:
+    - `output/playwright/restaurants-service-desktop-full.png`;
+    - `output/playwright/restaurants-service-mobile-360-full.png`;
+    - `output/playwright/restaurants-service-mobile-375-full.png`;
+    - `output/playwright/restaurants-service-mobile-390-full.png`;
+  - runtime check подтвердил:
+    - `h1 = 1`;
+    - JSON-LD types: `Organization`, `Service`, `FAQPage`, `BreadcrumbList`;
+    - FAQ schema questions: `14`;
+    - Service schema не содержит stats/evidence;
+    - forbidden exact href `/drone-restaurants` отсутствует;
+    - forbidden strings `Батуми`, `breusmedia.com`, `увеличивает заказы`, `средний чек` отсутствуют в rendered HTML;
+    - все related routes вернули `200`.
+- Важно:
+  - перед задачей worktree уже был dirty, включая protected pages (`/drone-service`, `/360-tours-service`, `/reels-service`, `/ai-visualization-service`, `/real-estate-service`, `/hotels-service`);
+  - в этом проходе целевые code edits были только в `app/restaurants-service/page.tsx` и `constants/l2DirectionConfigs.ts`;
+  - protected pages не редактировались в рамках ресторанной задачи.
+
+✅ /ai-visualization-service: L2-хаб AI-визуализации собран через общий L2 renderer (2026-05-04)
+- Основные файлы:
+  - `app/ai-visualization-service/page.tsx`
+  - `constants/l2DirectionConfigs.ts`
+  - `components/l2-direction/types.ts`
+  - `components/l2-direction/L2DirectionRenderer.tsx`
+  - `components/l2-direction/L2DirectionSections.tsx`
+  - `components/gazeta/MarqueeSection.tsx`
+  - `components/shared/StatsEvidenceStrip.tsx`
+- Контекст задачи:
+  - `/drone-service` принят как визуальный эталон L2-хаба;
+  - `/360-tours-service` и `/reels-service` использованы как технический ориентир config-first;
+  - источник контента: `ai-visualization-service.md` из `Downloads` / Google Drive L2 package;
+  - задача: собрать `/ai-visualization-service` как L2 service hub, а не L3 под одну нишу.
+- Реализовано через `L2DirectionRenderer` без page-specific монолита:
+  - route-level metadata: title / description / canonical / openGraph / twitter;
+  - route-level JSON-LD: `Service`, `FAQPage`, `BreadcrumbList`;
+  - `FAQPage` строится только из видимого FAQ;
+  - generic JSON-LD из renderer отключён через `includeBaseJsonLd={false}`;
+  - `Service.provider` ссылается на глобальный `https://breus.media/#organization`.
+- В L2-систему добавлены optional extensions:
+  - `marquee` section key + `marqueeItems`;
+  - `earnLose` compact block;
+  - `whyUs.subtitle`;
+  - `painSolutions.subtitle`;
+  - richer `statsCards` mapping с label + description;
+  - `MarqueeSection` получил optional `items`, default-поведение сохранено для старых вызовов.
+- Фактический порядок секций `/ai-visualization-service`:
+  - hero
+  - marquee
+  - services
+  - socialProof / `AI-визуализация в цифрах`
+  - midCta
+  - whatIsTour
+  - painSolutions
+  - earnLose
+  - deliverables
+  - whyUs
+  - pricing
+  - process
+  - faq
+  - relatedLinks
+  - contact
+- Hero и контент:
+  - H1: `AI-визуализация для бизнеса в Тбилиси — визуал и тексты, которые можно публиковать`;
+  - добавлены 6 rotating hero cards: недвижимость, интерьеры, продукты/e-commerce, рестораны/меню, авто, отели/туризм;
+  - custom ticker: `AI-визуализация`, `AI staging`, `интерьеры`, `недвижимость`, `продуктовый визуал`, `меню`, `авто`, `отели`, `туризм`, `рекламные креативы`, `RU`, `EN`, `KA`, `Тбилиси`, `Грузия`, `человек контролирует результат`.
+- Services grid:
+  - 8 L2-направлений;
+  - cards ведут на `#contact`, чтобы страница оставалась hub-level, а не L3-каталогом;
+  - использованы существующие AI service images из `services-images/*`.
+- Stats/evidence:
+  - блок сделан в dark/gold стиле `DroneStatsStrip` через `StatsEvidenceStrip`;
+  - использованы только claims с source URLs из content package:
+    - `49%` / NAR 2025 Profile of Home Staging;
+    - `83%` / NAR 2025 Profile of Home Staging;
+    - `76%` / CSA Research / Can't Read, Won't Buy;
+    - `40%` / CSA Research / Can't Read, Won't Buy;
+  - stats не добавлялись в schema.
+- Pricing:
+  - `AI Старт` — `от 300 ₾`;
+  - `AI Стандарт` — `от 600 ₾`;
+  - `AI Кампейн` — `от 1500 ₾`;
+  - `AI Localization & Copy` — `по задаче`;
+  - сроки не указаны;
+  - добавлена cautious note, что финальная цена зависит от исходников, сложности, брендбука, языков и ручной доработки.
+- FAQ:
+  - один основной FAQ на 14 вопросов;
+  - Short Q&A не добавлялся;
+  - answers без гарантий роста, без конкретных нейросетей и без фиксированных сроков.
+- Related links валидированы по реальным routes и оставлены:
+  - `/drone-service`
+  - `/360-tours-service`
+  - `/reels-service`
+  - `/real-estate-service`
+  - `/hotels-service`
+  - `/restaurants-service`
+  - `/tourism-service`
+- Contact:
+  - используется `DroneContactStitch`;
+  - heading: `Нужна AI-визуализация для бизнеса?`;
+  - `preselectedServices: ['ai-content']`.
+- Контентные ограничения:
+  - не используется `Батуми`;
+  - не используется `breusmedia.com`;
+  - не используются конкретные нейросети / стек / prompt-термины;
+  - не используются публичные запрещённые слова из `CODEX.md` в AI-page body (`профессиональный`, `качественный`, `лучший`, `уникальный`);
+  - нет гарантий роста, неподтверждённых процентов и фиксированных сроков.
+- Проверки:
+  - `npx tsc --noEmit` -> ✅
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` -> ✅
+  - production local server поднят по `CODEX.md`:
+    - `NEXT_PUBLIC_DEBUG_MODE=false PORT=3200 npm run start`
+    - `http://localhost:3200/ai-visualization-service` -> `200 OK`
+  - Playwright visual/smoke:
+    - desktop full-page screenshot;
+    - mobile widths `360 / 375 / 390`;
+    - runtime check: `h1 = 1`;
+    - JSON-LD types: `Organization`, `Service`, `FAQPage`, `BreadcrumbList`;
+    - FAQ schema questions: `14`;
+    - stats source links present;
+    - forbidden body text matches: `0`.
+- Важно:
+  - `/drone-service`, `/360-tours-service`, `/reels-service` не редактировались в этом проходе, но shared L2-файлы уже были dirty до начала задачи;
+  - `components/shared/StatsEvidenceStrip.tsx` числится untracked в git status, но используется текущей L2 evidence-логикой.
+
+✅ /360-tours-service: блок `360° туры в цифрах` приведён к единому L2 evidence-strip паттерну `DroneStatsStrip` (2026-05-03)
+- Основные файлы:
+  - `components/shared/StatsEvidenceStrip.tsx`
+  - `components/drone/DroneStatsStrip.tsx`
+  - `components/l2-direction/L2DirectionSections.tsx`
+  - `constants/l2DirectionConfigs.ts`
+- Контекст задачи:
+  - `/drone-service` принят как визуальный эталон L2-хаба;
+  - требовалось подтянуть только stats/evidence-блок `/360-tours-service` к тому же dark/gold strip-паттерну;
+  - `/drone-service` и остальная структура `/360-tours-service` не должны были меняться визуально.
+- Выполненное решение:
+  - вынесен общий shared-компонент `StatsEvidenceStrip`;
+  - `DroneStatsStrip` переведён на shared-реализацию без смены паттерна;
+  - `L2DirectionSocialProof` в режиме `statsCards` теперь рендерит тот же evidence-strip вместо старых карточек;
+  - fallback-режим `socialProofStats` для остальных L2 не тронут.
+- Контент `360° туры в цифрах` зафиксирован в safe-формате без неподтверждённых процентов:
+  - `До визита`
+  - `1 ссылка`
+  - `На сайте`
+  - `С телефона`
+- Для каждого элемента используется структура:
+  - крупное жёлтое значение;
+  - короткое описание;
+  - мелкий нижний `sourceLabel`;
+  - при наличии `sourceUrl` shared-компонент умеет рендерить источник как ссылку.
+- Проверки:
+  - `./node_modules/.bin/tsc --noEmit` -> ✅
+  - `npm run build` -> ✅
+  - визуальная проверка `/360-tours-service` выполнена на:
+    - desktop `1440`
+    - mobile `360 / 375 / 390`
+- В браузере подтверждено:
+  - блок стал 4-колоночным strip на desktop;
+  - на mobile сохраняется компактный `2x2` layout без возврата к карточечному виду;
+  - client-side ошибок нет, только обычные dev/HMR-сообщения в консоли.
+
+✅ /360-tours-service: L2-страница 360° туров внедрена через общий L2 renderer без поломки других L2 (2026-04-30)
+- Основные файлы:
+  - `app/360-tours-service/page.tsx`
+  - `components/l2-direction/types.ts`
+  - `components/l2-direction/L2DirectionRenderer.tsx`
+  - `components/l2-direction/L2DirectionSections.tsx`
+  - `constants/l2DirectionConfigs.ts`
+  - `tsconfig.json`
+- Прочитан и учтён `CODEX.md`:
+  - не трогались чужие правки `imagePosition`, `L2CardsLayoutPreset`, `servicesLayoutPreset`, layout modes `soft/aggressive`, global `Organization` schema;
+  - блок `tours360Service` переписан точечно, без правок других service-configs;
+  - новые поля в L2-системе добавлены только как optional и рендерятся только при наличии данных.
+- `app/360-tours-service/page.tsx` обновлён по ТЗ:
+  - metadata: title / description / canonical / openGraph / twitter;
+  - route-level JSON-LD: `Service`, `FAQPage`, `BreadcrumbList`;
+  - `FAQPage` собирается только из видимого основного FAQ;
+  - generic JSON-LD из `L2DirectionRenderer` отключён для этой страницы через `includeBaseJsonLd={false}`, чтобы не дублировать schema.
+- В общий L2-движок добавлены универсальные optional-секции:
+  - `whatIsTour`
+  - `signalStrip`
+  - `painSolutions`
+  - `midCta`
+  - `deliverables`
+  - `pricingAddOns`
+  - `whyUs`
+  - `shortQa`
+- Hero в L2-системе расширен обратносовместимо:
+  - optional lead paragraphs;
+  - optional custom CTA labels/hrefs;
+  - optional `sectionLinks` для `SmartHeader`.
+- Services / Pricing / Process расширены обратносовместимо:
+  - services: optional subtitle;
+  - pricing: optional subtitle, audience, CTA href, `popular`;
+  - process: optional heading + `id="process"`.
+- Блок `tours360Service` теперь соответствует broad L2 intent:
+  - hero;
+  - `Что такое 360° тур`;
+  - 4-плашечный signal strip;
+  - `Для кого` на 6 карточек;
+  - `Какие задачи закрывает` на 6 pain/solution;
+  - mid-page CTA;
+  - `Что вы получаете`;
+  - pricing `от 200 ₾ / от 450 ₾ / от 900 ₾`;
+  - `Дополнительно к любому пакету`;
+  - process на 5 шагов;
+  - `Почему снимают с нами`;
+  - `Короткие ответы`;
+  - FAQ на 11 вопросов;
+  - related links;
+  - contact.
+- Related links проверены против реальных routes в `app/` и оставлены только на существующие страницы:
+  - `/360-tour-real-estate`
+  - `/360-tour-hotels`
+  - `/360-tour-restaurants`
+  - `/360-tour-clinics`
+  - `/drone-service`
+  - `/reels-service`
+- Sticky CTA сознательно не добавлялся:
+  - по правилу из ТЗ не создавался новый sticky-компонент;
+  - страница осталась на обычных CTA `#contact` / `#pricing`.
+- Контентные ограничения соблюдены в новой странице:
+  - цены строго `от 200 ₾`, `от 450 ₾`, `от 900 ₾`;
+  - не используются `Батуми`, `breusmedia.com`, `Matterport`, `Kuula`, `Pano2VR`, `CloudPano`, `Street View`, `Google Maps panorama`;
+  - не используются проценты и конкретные сроки.
+- Типизация и сборка:
+  - `./node_modules/.bin/tsc --noEmit` -> ✅;
+  - `npm run build` -> ✅.
+- Для `tsc --noEmit` понадобилась узкая техправка `tsconfig.json`:
+  - `output/` исключён из TypeScript compilation;
+  - причина: generated файл `output/playwright/gazeta_capture.spec.ts` тянул `playwright/test` и ломал типизацию, не относясь к runtime-коду приложения.
+- Визуальная проверка `/360-tours-service` выполнена на production build (`next build` + `next start`) через локальный сервер:
+  - desktop: full-page screenshot сохранён;
+  - mobile widths проверены: `390`, `375`, `360`;
+  - console errors: `0`;
+  - warnings: только preload warnings браузера по css/fonts, не runtime issues.
+- Потенциально затронутые shared-маршруты из-за расширения `L2DirectionRenderer` / `L2DirectionSections`:
+  - `/reels-service`
+  - `/promo-video-service`
+  - `/ai-visualization-service`
+  - `/real-estate-service`
+  - `/hotels-service`
+  - `/restaurants-service`
+  - `/tourism-service`
+  - `/clinics-service`
+  - `/auto-service`
+  - `/business-service`
+- По этим маршрутам подтверждена как минимум build-совместимость; отдельный визуальный review по каждому не проводился в рамках этого прохода.
+
 ✅ /gazeta: финальный стандарт desktop-карточек и стрелок карусели (2026-04-21)
 - Основной файл: `components/gazeta/NichesStack.tsx`.
 - Контекст задачи: в IAB на `/gazeta`, особенно в секции `04 Reels`, desktop-карточки резали изображения по вертикали/горизонтали, а ручные попытки через `object-position`, `object-contain`, разные ширины и `reelsLab`-варианты давали нестабильный результат.
@@ -2018,3 +4227,175 @@
 - Проверки после каждой правки:
   - локальный runtime стабилен: `curl -I http://localhost:3200/gazeta` -> `HTTP/1.1 200 OK`;
   - hot reload/compile успешен на локальном `PORT=3200`.
+
+## UPDATE — 2026-04-21 (gazeta: minimal footer scoped to /gazeta only)
+- Добавлен новый локальный компонент `components/gazeta/GazetaMinimalFooter.tsx`.
+- Состав футера строго минималистичный (без меню/соцсетей/CTA/дублирующей навигации):
+  - `BREUS MEDIA | Тбилиси, Грузия | +995 574 619 393 | hello@breus.media`
+  - `© 2026 BREUS MEDIA PRODUCTION. ALL RIGHTS RESERVED.`
+- Стиль:
+  - чёрный фон, тонкая верхняя граница;
+  - белый основной текст, золотистые разделители;
+  - copyright меньше, слабее по контрасту, с увеличенным letter-spacing.
+- Область применения ограничена `/gazeta` (без глобального влияния на reuse-футеры):
+  - `app/gazeta/page.tsx`: в mobile footer-section подключён `GazetaMinimalFooter`.
+  - `components/gazeta/NichesStack.tsx`: в `FormCard` нижний футер заменён на `GazetaMinimalFooter`.
+- Важно: общий `components/drone/DroneFooterStitch.tsx` не изменялся.
+
+## UPDATE — 2026-04-21 (gazeta: intro block widened + more bottom air)
+- По IAB-комментарию скорректирован интро-блок шага `01` в `components/gazeta/NichesStack.tsx`:
+  - контейнер расширен: `max-w-[1360px]` -> `max-w-[1520px]`;
+  - сетка подправлена для более спокойной композиции: `md:grid-cols-[42fr_58fr]` -> `md:grid-cols-[44fr_56fr]`;
+  - ослаблены боковые ограничения на desktop: `md:px-4 lg:px-5` -> `md:px-2 lg:px-3 xl:px-4`;
+  - уменьшена вертикальная плотность внутренних карточек: `py-7` -> `py-6`;
+  - слегка уменьшен размер текстового массива слева, чтобы блок меньше упирался в нижнюю границу.
+- Результат: блок визуально «дышит» лучше, появляется дополнительное нижнее воздух-пространство без смены структуры контента.
+
+## UPDATE — 2026-04-22 (gazeta SEO/doc sync + root Organization schema alignment)
+- Выполнена точечная SEO-докрутка `/gazeta` без изменений дизайна, структуры блоков и скролл-логики.
+- `app/gazeta/page.tsx`:
+  - добавлены page-level `openGraph` и `twitter` для `/gazeta`;
+  - сохранены текущие `title`, `description`, `canonical`.
+- `components/gazeta/NichesStack.tsx`:
+  - заменены общие `alt={svc.title || niche.title}` на SEO-alt по правилу:
+    - `${svc.title} в Тбилиси — Breus Media`;
+    - fallback: `${niche.title} — услуги Breus Media в Тбилиси`.
+- Проверка H-иерархии `/gazeta`:
+  - найден ровно один `h1` (Hero), изменений по heading-уровням не потребовалось.
+- `app/layout.tsx` (`rootOrganizationSchema`):
+  - добавлены контактные поля `email`, `telephone`, `address`;
+  - после уточнения удалён `logo` (временно);
+  - `sameAs` оставлен только с подтверждёнными профилями:
+    - `https://www.instagram.com/breusmedia`
+    - `https://www.facebook.com/breusmedia`
+  - ссылка LinkedIn удалена.
+- Доменная консистентность:
+  - в рабочих файлах приложения вхождений `breusmedia.com` не найдено;
+  - остаточные вхождения зафиксированы только в snapshot/docs файлах.
+- Проверки:
+  - `npm run build` — успешно;
+  - локальный dev-сервер поднят на `http://localhost:3200`.
+
+## UPDATE — 2026-04-25 (gazeta mobile chooser: inline preview iterations + rollback)
+- Контур работ: серия быстрых UI-итераций в `components/gazeta/GazetaMobileStepChooser.tsx` по комментариям из IAB (mobile-only блок `#niches-nav`).
+- Зафиксированные точечные правки в процессе:
+  - уплотнение tabs `Услуги / Индустрии` (общая рамка, компактная высота);
+  - удаление вспомогательных строк в inline-блоке (`Назад...`, `Слайд 1 из 3...`, часть description по комментариям);
+  - правки CTA: размер `Открыть услугу` до фиксированного размера, замены текстов кнопок (`На страницу услуги` -> `Открыть услугу`, `Закрыть`/`Следующие пакеты` -> `Цены`/`Обсудить задачу` по этапам);
+  - эксперименты с карточками: уменьшение/расширение размеров, перемещение ценовых бейджей, удаление/возврат отдельных обводок и контейнерных фонов.
+- Был выполнен тестовый рефактор на универсальный inline-блок для всех карточек (и `Услуги`, и `Индустрии`), включая вариант с 3 окнами (описание + 2 ценовых).
+- По запросу пользователя сделан откат на 2 шага назад: восстановлено состояние, где inline-сценарий активен только для `Аэросъёмка` (слайдовый блок описания/пакетов), остальные карточки без универсального inline-раскрытия.
+- Текущее фактическое состояние после отката:
+  - tabs компактные и в одной общей рамке;
+  - 2x2 сетка карточек сохранена;
+  - inline открывается только для `Аэросъёмка`;
+  - валидация файла проходит без ошибок (`eslint`), остаются только предупреждения `@next/next/no-img-element`.
+
+## UPDATE — 2026-04-25 (gazeta mobile chooser: documentation normalization for this chat)
+- По запросу пользователя записи по текущему чату приведены к уровню детализации, сопоставимому с предыдущими блоками контекста.
+- Синхронизировано описание мобильных итераций `components/gazeta/GazetaMobileStepChooser.tsx`:
+  - компактный tabs-блок `Услуги / Индустрии` в общей рамке;
+  - серия правок текстов/CTA/обводок/габаритов карточек по IAB-комментариям;
+  - эксперимент с универсальным inline-раскрытием для всех карточек;
+  - откат на состояние «inline только для Аэросъёмка» по прямому запросу пользователя.
+- Зафиксирован формат итогового состояния после отката:
+  - мобильная сетка 2x2 сохранена;
+  - inline-панель активируется только для карточки `Аэросъёмка`;
+  - остальные карточки работают без универсального inline-прототипа.
+- Документационная дисциплина:
+  - подтверждено следование `CLAUDE.md` (фиксировать ход работ в контексте и changelog);
+  - запись добавлена в обе исторические точки (`CONTEXT_NEXT_CHAT.md` и `CHANGELOG_ARCHIVE.md`) для единообразного follow-up.
+- Проверка:
+  - по файлу chooser ранее валидировано `eslint`: без ошибок, только предупреждения `@next/next/no-img-element`.
+
+## UPDATE — 2026-04-29 (gazeta + drone-service mobile UI iterative tuning)
+- Выполнена длинная серия точечных mobile-правок по IAB-комментариям.
+- Ключевой файл для `/gazeta`: `components/gazeta/GazetaMobileStepChooser.tsx`.
+- Ключевой файл для `/drone-service`: `components/drone/DroneServicesStitch.tsx`.
+
+### /gazeta — mobile chooser / inline-preview
+- Вкладка `Индустрии` расширена до inline-preview для всех 6 карточек (`Недвижимость`, `Отели`, `Рестораны`, `Автобизнес`, `Клиники`, `Туризм`) с динамическим количеством слайдов по 4 карточки.
+- Источник карточек индустрий синхронизирован с desktop-данными (`realEstateServiceItems` + `l2DirectionConfigs.*.data.services`).
+- Для сервисного preview:
+  - временно добавлялся 4-й слайд для `Аэросъёмка`;
+  - затем переработан по комментариям в «пустой/служебный» слайд с кастомным наполнением;
+  - финально внутри 2-го слайда для `Аэросъёмка` размещены 6 карточек (2x3) с изображениями и оверлейными заголовками:
+    - `FPV Съёмка`, `Мониторинг стройки`, `Земельные участки`, `Регулярные аэроотчёты`, `Инспекция фасадов`, `Мероприятия`.
+- Выровнены габариты верхних карточек:
+  - `Услуги` приведены к размерам `Индустрий` (`h-[118px]`, одинаковая внешняя сетка по ширине).
+- Выровнена геометрия service-preview и верхней сетки (единая линия по ширине через `-mx-2`).
+- Сокращена высота кнопок первого слайда (`Открыть услугу`, `Цены`) примерно на 25% (`h-[32px]`).
+- Зафиксирован уровень кнопок между первым и вторым слайдами `Аэросъёмка`:
+  - добавлена единая вертикальная ритмика,
+  - блоки заканчиваются сразу в зоне CTA без «лишней» нижней пустоты.
+
+### /drone-service — mobile карточка `Недвижимость`
+- Заголовок `Недвижимость` перенесён внутрь изображения (нижняя часть фото с градиентной подложкой).
+- Дублирование заголовка в текстовом блоке под изображением убрано для этой карточки.
+- Уплотнена mobile-вертикаль в сервисных карточках:
+  - уменьшены внутренние отступы,
+  - уменьшен line-height описания,
+  - сокращены интервалы между текстовыми блоками и CTA.
+
+### Техпроверка
+- После каждой значимой группы правок запускался `npm run build` — успешно.
+- Локальный runtime: `http://localhost:3200` (включая `http://localhost:3200/gazeta`).
+
+## UPDATE — 2026-05-02 (drone-service hero switcher + gazeta CTA sync + docs discipline)
+- `/drone-service`:
+  - В `components/drone/DroneHeroStitch.tsx` внедрён новый desktop-right hero switcher:
+    - единая панель активной услуги (категория, индекс `01/18`, заголовок, описание, price/tag),
+    - CTA `Открыть услугу`,
+    - компактный список переключаемых пунктов.
+  - Убран неиспользуемый импорт `Link`.
+  - Для стабильности React Compiler заменён sync-clamp эффект на вычисляемый `safeCurrentIndex` (без `setState` внутри эффекта).
+- Preview workflow:
+  - Добавлен изолированный макет-маршрут `app/drone-service/hero-preview/page.tsx`.
+  - Добавлен mockup-компонент `components/drone/DroneHeroSwitcherMockup.tsx`.
+  - Цель: сначала согласование визуала в preview, затем перенос в боевую страницу.
+- `/gazeta`:
+  - В `components/gazeta/NichesStack.tsx` расширено условие рендера CTA-кнопки:
+    - было: только `niche.id === "02"` (Аэросъёмка),
+    - стало: `niche.id === "02" || niche.id === "03"` (добавлена кнопка для 360° блока).
+- Deploy:
+  - Выполнен preview deployment через `npx vercel deploy -y` (после неуспешного fallback deploy script).
+  - Preview URL:
+    - `https://breus-media-v2-6wns6elsn-tony-breus-projects.vercel.app`
+- Проверки:
+  - `npm run build` — passed (локально и на Vercel preview build).
+  - `npx eslint components/drone/DroneHeroStitch.tsx` — passed.
+  - `npx eslint components/gazeta/NichesStack.tsx` — падение на ранее существующих ошибках React Compiler в других участках файла (не связаны с правкой CTA).
+- Дисциплина документации:
+  - По замечанию пользователя отменено создание отдельного файла инструкций.
+  - Временный файл `OUR_INSTRUCTIONS.md` удалён, фиксация ведётся в `CONTEXT_NEXT_CHAT.md` и `CHANGELOG_ARCHIVE.md`.
+
+## UPDATE — 2026-05-27 (reels-service marquee & ticker rollout + Vercel preview deployment)
+- Выполнен Vercel Preview Deployment для проверки страниц (Hermes review):
+  - URL превью: `https://breus-media-v2-ox8u3xs73-tony-breus-projects.vercel.app`
+  - Статус: READY (noindex применен автоматически Vercel для preview-окружения).
+  - Создан `.vercelignore` (исключены тяжелые папки: `.next`, `node_modules`, `.playwright-mcp`, `.playwright-cli` и т.д. для укладки в лимит 100MB).
+- Внедрена бегущая строка на `/reels-service/en` и `/reels-service` по аналогии с `/ai-visualization-service/en`:
+  - `constants/l2DirectionConfigs.ts`: в `reelsService.data.sectionOrder` на первое место добавлен `'marquee'`.
+  - `constants/l2DirectionConfigs.ts`: в `reelsService.data` добавлен русский список `marqueeItems` (ключевые слова Reels, Shorts, TikTok, вертикальное видео, рестораны, отели и др.).
+  - Английский список `marqueeItems` уже был настроен в `reelsServiceEnConfig.data.marqueeItems` в `constants/l2DirectionConfigs.en.ts` и теперь корректно отображается на `/reels-service/en`.
+- Синхронизирован верхний сквозной тикер шапки (header ticker):
+  - `components/l2-direction/L2DirectionRenderer.tsx`: добавлен `'reels-service'` в `DRONE_SERVICE_TICKER_SCHEMA_KEYS`. Это заменяет локальные Reels-ключевики в шапке на сквозной список услуг Breus Media (AERIAL FILMING • 360° TOURS • AI CONTENT • REELS...), обеспечивая точное соответствие странице `/ai-visualization-service/en`.
+- Верификация:
+  - `npm run build` — passed (97/97 страниц скомпилировано успешно).
+  - curl-проверка подтвердила вывод элементов бегущей строки в HTML для обеих языковых версий на локальном dev-сервере `http://localhost:3200`.
+  - Подтвержден вывод сквозных услуг в верхней бегущей строке шапки.
+
+## UPDATE — 2026-08-25
+✅ Gazeta RU & EN Hero CTA, About GEO Answer Capsule & Floating WhatsApp Button (2026-08-25)
+- Контекст:
+  - внедрены конверсионные и GEO-оптимизации для страницы `/gazeta` (RU & EN) по стандартам CODEX.MD.
+- Сделано:
+  - `components/gazeta/HeroSection.tsx`: добавлен прямой CTA в WhatsApp рядом с кнопкой прокрутки "ВЫБЕРИТЕ НАПРАВЛЕНИЕ" / "CHOOSE A DIRECTION" (золотая рамка border-[#D4AF37]/60, полупрозрачный фон bg-[#D4AF37]/15, text-[#F0C85C], rounded-full, hover:bg-[#D4AF37] hover:text-black);
+  - `components/gazeta/AboutSection.tsx` & `components/gazeta/NichesStack.tsx`: обновлен блок «Об агентстве» с четкой привязкой к Тбилиси и Грузии, перечислением ключевых сфер (отели, застройщики, рестораны, клиники) и арсенала инструментов (4K аэросъёмка, промо-видео, 360°-туры, Reels, AI-визуализации) для Google AI Overviews;
+  - `components/gazeta/FloatingWhatsAppButton.tsx`: создан и интегрирован в `GazetaLandingPage` компонент плавающей кнопки WhatsApp (52x52px, fixed bottom-6 right-6 z-[999] md:bottom-8 md:right-8, pulse animation, автозаполнение приветственного сообщения на RU и EN);
+  - `app/gazeta/page.tsx` & `app/gazeta/en/page.tsx`: расширена микроразметка Schema JSON-LD (типы LocalBusiness с гео-привязкой к Tbilisi/GE и Service с валютой GEL ₾);
+  - `app/layout.tsx`: глобальный запрет индексации `robots: { index: false, follow: false }` для staging/preview.
+- Проверки:
+  - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` — passed;
+  - `npx vercel deploy` — preview build deployed.
+

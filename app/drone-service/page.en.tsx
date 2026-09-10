@@ -13,8 +13,10 @@ import { DroneFAQExpandedEn } from '@/components/drone/DroneFAQExpandedEn';
 import { DroneRelatedLinksCompact } from '@/components/drone/DroneRelatedLinksCompact';
 import { DroneFooterStitchEn } from '@/components/drone/DroneFooterStitchEn';
 import { DroneHeroStitchEn } from '@/components/drone/DroneHeroStitchEn';
-import { droneServiceItems } from '@/components/drone/droneServicesData';
+import { droneServiceItems, getDroneServiceSortRank, DRONE_OPEN_SERVICE_SLUGS } from '@/components/drone/droneServicesData';
+import LangSetter from '@/components/common/LangSetter';
 import type { DroneDirectionPageConfig } from '@/constants/droneDirectionPages';
+import { gazetaDroneServiceTickerExcludeTexts } from '@/constants/gazetaRoutes';
 import { buildDirectionJsonLd } from '@/lib/seo/directionSeo';
 import { DroneServiceContactSectionEn } from './DroneServiceContactSectionEn';
 
@@ -132,7 +134,7 @@ const pageConfig: DroneDirectionPageConfig = {
             highPrice: '2600',
             offerCount: '4',
         },
-        providerTelephone: '+995574619393',
+        providerTelephone: '+995501103183',
         areaServed: [
             { '@type': 'City', name: 'Tbilisi' },
             { '@type': 'City', name: 'Batumi' },
@@ -157,6 +159,7 @@ const serviceCopyBySlug: Record<
         description:
             'Aerial photos and video for listings and investor presentations. Listings with aerial photos get 94% more views according to HomeJab.',
         price: '4K · MYHOME.GE · SS.GE',
+        primaryHref: '/drone-services/drone-real-estate/en',
     },
     'monitoring-stroiki': {
         title: 'Construction Monitoring',
@@ -178,6 +181,7 @@ const serviceCopyBySlug: Record<
         description:
             'Guests book with their eyes. We film hotels, terraces and views so the Booking page works harder on its own.',
         price: '4K · ATMOSPHERE · PROMO',
+        primaryHref: '/drone-hotels-tourism/en',
     },
     restorany: {
         title: 'Restaurants',
@@ -193,6 +197,7 @@ const serviceCopyBySlug: Record<
         description:
             'Mountains, castles and canyons across Georgia - we film destinations from above for tour operators, hotels and personal brands.',
         price: '4K · EXCURSIONS · LANDSCAPES',
+        primaryHref: '/drone-hotels-tourism/en',
     },
     meropriyatiya: {
         title: 'Events',
@@ -281,7 +286,7 @@ const serviceCopyBySlug: Record<
 };
 
 const serviceCardsEn: ServiceCard[] = [...droneServiceItems]
-    .sort((first, second) => (first.order ?? first.id) - (second.order ?? second.id))
+    .sort((first, second) => getDroneServiceSortRank(first) - getDroneServiceSortRank(second))
     .map((item) => {
         const translation = serviceCopyBySlug[item.slug];
 
@@ -391,9 +396,11 @@ export const metadata: Metadata = {
 
 export default function DroneServicePageEn() {
     const hasOddCount = serviceCardsEn.length % 2 === 1;
+    const openServiceSlugSet = new Set<string>(DRONE_OPEN_SERVICE_SLUGS);
 
     return (
         <main className="relative min-h-screen bg-[#080808] pb-20 text-white lg:pb-0">
+            <LangSetter lang="en" />
             {jsonLdSchemas.map((schema, index) => (
                 <script
                     key={`drone-service-en-schema-${index}`}
@@ -430,6 +437,8 @@ export default function DroneServicePageEn() {
                 ctaHref="#contact"
                 initialLang="en"
                 languageLinks={{ ru: '/drone-service', en: '/drone-service/en' }}
+                singleTickerMode={true}
+                tickerExcludeTexts={gazetaDroneServiceTickerExcludeTexts}
                 sectionLinks={[
                     { label: 'Services', href: '#services' },
                     { label: 'Pricing', href: '#pricing' },
@@ -479,67 +488,74 @@ export default function DroneServicePageEn() {
             <section className="bg-[#080808] py-8 md:py-24" id="services">
                 <div className="mx-auto w-full max-w-[1400px] px-6">
                     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-                        {serviceCardsEn.map((service) => (
-                            <article
-                                key={service.slug}
-                                id={`service-${service.slug}`}
-                                className={`service-card-target flex flex-col overflow-hidden rounded-[12px] border border-[#2a2a2a] bg-[#141414] transition-all group hover:border-[#D4A017] scroll-mt-32 ${
-                                    service.featured ? 'border-[#D4A017]/50' : ''
-                                }`}
-                                style={service.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : undefined}
-                            >
-                                <div className="relative h-40 overflow-hidden bg-neutral-800">
-                                    <img
-                                        src={service.image}
-                                        alt={service.title}
-                                        className="h-full w-full object-cover opacity-50 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-80"
-                                    />
-                                    {service.tag ? (
-                                        <div className="absolute left-4 top-4 flex gap-2">
-                                            <span
-                                                className={`rounded px-2 py-1 text-[10px] font-bold ${
-                                                    service.tag === 'HOT'
-                                                        ? 'bg-[#D4A017] text-black'
-                                                        : 'bg-black/50 text-white backdrop-blur'
-                                                }`}
-                                            >
-                                                {service.tag}
-                                            </span>
-                                        </div>
-                                    ) : null}
-                                </div>
-                                <div className="flex flex-grow flex-col px-5 pb-4 pt-5">
-                                    <h2 className="mb-1 text-[20px] font-bold leading-[1.3] tracking-[-0.01em] text-white">
-                                        {service.title}
-                                    </h2>
-                                    <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/[0.45]">
-                                        {service.category}
+                        {serviceCardsEn.map((service) => {
+                            const hasOpenServiceCta = openServiceSlugSet.has(service.slug);
+                            return (
+                                <article
+                                    key={service.slug}
+                                    id={`service-${service.slug}`}
+                                    className={`service-card-target flex flex-col overflow-hidden rounded-[12px] border border-[#2a2a2a] bg-[#141414] transition-all group hover:border-[#D4A017] scroll-mt-32 ${
+                                        service.featured ? 'border-[#D4A017]/50' : ''
+                                    }`}
+                                    style={service.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : undefined}
+                                >
+                                    <div className="relative h-40 overflow-hidden bg-neutral-800">
+                                        <img
+                                            src={service.image}
+                                            alt={service.title}
+                                            className="h-full w-full object-cover opacity-50 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-80"
+                                        />
+                                        {service.tag ? (
+                                            <div className="absolute left-4 top-4 flex gap-2">
+                                                <span
+                                                    className={`rounded px-2 py-1 text-[10px] font-bold ${
+                                                        service.tag === 'HOT'
+                                                            ? 'bg-[#D4A017] text-black'
+                                                            : 'bg-black/50 text-white backdrop-blur'
+                                                    }`}
+                                                >
+                                                    {service.tag}
+                                                </span>
+                                            </div>
+                                        ) : null}
                                     </div>
-                                    <p className="mb-3 text-[14px] leading-[1.65] text-white/[0.82]">
-                                        {service.description}
-                                    </p>
-                                    <div className="mt-auto">
-                                        <div className="mb-4 border-t border-[#2a2a2a] pt-3 text-[11px] font-bold uppercase tracking-[0.1em] text-[#F5C518]">
-                                            {service.price}
+                                    <div className="flex flex-grow flex-col px-5 pb-4 pt-5">
+                                        <h2 className="mb-1 text-[20px] font-bold leading-[1.3] tracking-[-0.01em] text-white">
+                                            {service.title}
+                                        </h2>
+                                        <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/[0.45]">
+                                            {service.category}
                                         </div>
-                                        <div className="flex gap-3">
-                                            <Link
-                                                href={service.primaryHref}
-                                                className="flex-1 rounded-lg bg-[#D4A017] px-2 py-2 text-center text-[10px] font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
-                                            >
-                                                Open Service
-                                            </Link>
-                                            <a
-                                                href="#contact"
-                                                className="flex-1 rounded-lg border border-white/20 px-2 py-2 text-center text-[10px] font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black"
-                                            >
-                                                Discuss Project
-                                            </a>
+                                        <p className="mb-3 text-[14px] leading-[1.65] text-white/[0.82]">
+                                            {service.description}
+                                        </p>
+                                        <div className="mt-auto">
+                                            <div className="mb-4 border-t border-[#2a2a2a] pt-3 text-[11px] font-bold uppercase tracking-[0.1em] text-[#F5C518]">
+                                                {service.price}
+                                            </div>
+                                            <div className="flex gap-3">
+                                                {hasOpenServiceCta ? (
+                                                    <Link
+                                                        href={service.primaryHref}
+                                                        className="flex-1 rounded-lg border border-white/20 px-2 py-2 text-center text-[10px] font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black"
+                                                    >
+                                                        Open Service
+                                                    </Link>
+                                                ) : null}
+                                                <a
+                                                    href="#contact"
+                                                    className={`rounded-lg bg-[#D4A017] px-2 py-2 text-center text-[10px] font-bold uppercase tracking-wider text-black transition-colors hover:bg-white ${
+                                                        hasOpenServiceCta ? 'flex-1' : 'w-full'
+                                                    }`}
+                                                >
+                                                    Discuss Project
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </article>
-                        ))}
+                                </article>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -574,6 +590,7 @@ export default function DroneServicePageEn() {
             <DroneStickyCta heroId="drone-service-hero" label="Discuss Project" />
             <MobileBottomBar primaryLabel="Discuss Project" />
             <DroneFooterStitchEn />
+            
         </main>
     );
 }

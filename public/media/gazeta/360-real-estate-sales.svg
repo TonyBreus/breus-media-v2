@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">360 tours for real estate sales</title>
+  <desc id="desc">Modern apartment interior with glowing 360 ring and sold marker for real estate marketing.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#13253a"/>
+      <stop offset="1" stop-color="#0a111b"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0" stop-color="#c9a84c"/>
+      <stop offset="1" stop-color="#f0cf72"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect y="420" width="1200" height="255" fill="#101826"/>
+  <rect x="120" y="120" width="420" height="260" rx="12" fill="#1a2a40"/>
+  <rect x="660" y="120" width="420" height="260" rx="12" fill="#1a2a40"/>
+  <rect x="560" y="80" width="80" height="300" fill="#0e1a2b"/>
+  <rect x="180" y="460" width="840" height="28" rx="14" fill="#26364f"/>
+  <circle cx="600" cy="360" r="152" fill="none" stroke="url(#gold)" stroke-width="8" opacity="0.95" filter="url(#softGlow)"/>
+  <circle cx="600" cy="360" r="132" fill="none" stroke="#d9e7ff" stroke-width="2.5" opacity="0.75"/>
+  <path d="M600 208l18 24h-36z" fill="#f0cf72"/>
+  <path d="M752 360l-24 18v-36z" fill="#f0cf72"/>
+  <path d="M600 512l-18-24h36z" fill="#f0cf72"/>
+  <path d="M448 360l24-18v36z" fill="#f0cf72"/>
+
+  <g transform="translate(420 248)">
+    <rect x="0" y="70" width="360" height="170" rx="10" fill="#22344d"/>
+    <polygon points="180,0 340,90 20,90" fill="#304a6a"/>
+    <rect x="150" y="125" width="60" height="60" rx="8" fill="#d8e5f5"/>
+    <rect x="58" y="122" width="60" height="45" rx="6" fill="#c0d2ea"/>
+    <rect x="242" y="122" width="60" height="45" rx="6" fill="#c0d2ea"/>
+  </g>
+
+  <g transform="translate(860 58)">
+    <rect x="0" y="0" width="250" height="72" rx="14" fill="#0f1a2a" stroke="#f0cf72" stroke-width="2"/>
+    <text x="28" y="46" fill="#f0cf72" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">SOLD</text>
+  </g>
+
+  <g transform="translate(44 46)">
+    <rect x="0" y="0" width="280" height="60" rx="12" fill="#0f1a2a" stroke="#f0cf72" stroke-width="2" opacity="0.92"/>
+    <text x="24" y="40" fill="#f0cf72" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">360° TOUR</text>
+  </g>
+</svg>

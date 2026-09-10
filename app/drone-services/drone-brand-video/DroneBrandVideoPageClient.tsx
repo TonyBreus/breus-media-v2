@@ -6,6 +6,7 @@ import { DronePageProgress } from '@/components/drone-restaurants/DronePageProgr
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DroneStickyCta } from '@/components/drone-restaurants/DroneStickyCta';
 import { ScrollArrow } from '@/components/drone-restaurants/ScrollArrow';
+import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 
 // ─── FAQ DATA (page-level, for schema) ────────────────────────────────────────
 
@@ -68,7 +69,7 @@ const commercialFaqItems: FaqItem[] = [
     {
         question: 'Что если у нас уже есть наземные съёмщики — вы можете снять только дрон?',
         answer:
-            'Да. Можно заказать только аэросъёмку без монтажа — передаём RAW-материал или обработанный footage под вашу монтажную бригаду.',
+            'Да. Можно заказать только аэросъёмку без монтажа — передаём оригинальные 4K видеоматериалы или подготовленный footage под вашу монтажную группу.',
     },
     {
         question: 'Включён ли сценарий в пакет?',
@@ -145,7 +146,7 @@ const addonPricing = [
     { label: 'FPV-съёмка (DJI Avata 2)', price: 'от 400 ₾' },
     { label: '360° виртуальный тур объекта', price: 'от 900 ₾' },
     { label: 'Выезд в регионы Грузии', price: 'по договорённости' },
-    { label: 'RAW footage без монтажа', price: 'по запросу' },
+    { label: 'Оригинальные 4K видеоматериалы', price: 'от 250 ₾' },
 ];
 
 // ─── RELATED SERVICES DATA ────────────────────────────────────────────────────
@@ -224,7 +225,7 @@ const localBusinessSchema = {
     '@type': 'LocalBusiness',
     name: 'Breus Media',
     description: 'Визуальный продакшн и AI. Аэросъёмка, 360° туры, промо-видео для бизнеса в Тбилиси.',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -1205,7 +1206,7 @@ export function DroneBrandVideoPageClient() {
                                         Отправить заявку
                                     </button>
                                     <p className="text-center text-xs text-white/25">
-                                        Или напишите напрямую: Telegram / WhatsApp +995 574 619 393
+                                        Или напишите напрямую: Telegram / WhatsApp +995 501 103 183
                                     </p>
                                 </form>
                             )}
@@ -1241,30 +1242,8 @@ export function DroneBrandVideoPageClient() {
                 </section>
             </main>
 
-            <DroneStickyCta />
-
-            {/* Mobile Bottom Bar */}
-            <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-[#2a2a2a] bg-[#0f0f0f] md:hidden">
-                <div className="flex items-center gap-3 px-4 py-3" style={{ minHeight: '64px' }}>
-                    <a
-                        href="#contact"
-                        className="flex flex-1 items-center justify-center rounded-[8px] bg-[#D4A017] py-3 text-xs font-bold uppercase tracking-wider text-black"
-                    >
-                        Обсудить проект
-                    </a>
-                    <a
-                        href="https://t.me/breusmedia"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-12 w-12 items-center justify-center rounded-[8px] border border-[#2a2a2a] text-white/60"
-                        aria-label="Telegram"
-                    >
-                        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
+            <DroneFooterStitch />
+            
         </>
     );
 }

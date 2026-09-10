@@ -31,9 +31,9 @@ type PackageCard = {
 };
 
 const CANONICAL_URL = 'https://breus.media/promo-video/promo-hotel';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_HREF = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_HREF = 'https://wa.me/995501103183';
 const VIDEO_EMBED_URL = 'https://www.youtube.com/embed/M7lc1UVf-VE';
 const VIDEO_PAGE_URL = 'https://www.youtube.com/watch?v=M7lc1UVf-VE';
 const VIDEO_THUMBNAIL_URL = 'https://i.ytimg.com/vi/M7lc1UVf-VE/maxresdefault.jpg';
@@ -60,7 +60,7 @@ const audienceCards: Card[] = [
         text: 'Единый стандарт видеоподачи упрощает маркетинг и усиливает бренд всей сети.',
     },
     {
-        title: 'Отелям с уникальным видом и архитектурой',
+        title: 'Отелям с панорамным видом и авторской архитектурой',
         text: 'Горы, Кура, Старый город и нестандартные пространства лучше раскрываются в движении, а не в статике.',
     },
 ];
@@ -509,7 +509,7 @@ const shortQa: FaqItem[] = [
     },
     {
         question: 'Кто делает видеотуры по отелям в Тбилиси?',
-        answer: 'Breus Media, Тбилиси. Снимаем видеотуры и Reels для отелей по всей Грузии. +995 574 619 393.',
+        answer: 'Breus Media, Тбилиси. Снимаем видеотуры и Reels для отелей по всей Грузии. +995 501 103 183.',
     },
 ];
 
@@ -517,7 +517,7 @@ const myths: Array<{ myth: string; reality: string }> = [
     {
         myth: 'Видеотур нужен только большим отелям.',
         reality:
-            'Маленький бутик-отель с уникальным интерьером часто выигрывает от видео даже больше, потому что атмосферу сложно передать фото.',
+            'Маленький бутик-отель с авторским интерьером часто выигрывает от видео даже больше, потому что атмосферу сложно передать фото.',
     },
     {
         myth: 'Мы снимем на смартфон и сэкономим.',

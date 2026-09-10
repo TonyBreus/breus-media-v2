@@ -45,9 +45,9 @@ const CANONICAL_URL = 'https://breus.media/ai-visual/ai-staging';
 const PAGE_TITLE = 'AI staging и виртуальная меблировка квартир — Тбилиси | Breus Media';
 const PAGE_DESCRIPTION =
     'Превращаем пустое пространство в продающий интерьер с помощью AI. Виртуальная меблировка без фотосессии. От 120 ₾. Тбилиси, Грузия.';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 const SITE_URL = 'https://breus.media';
 
 const heroIntro =

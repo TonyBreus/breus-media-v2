@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Send, CheckCircle } from "lucide-react";
 
 export default function Contact() {
@@ -24,6 +24,31 @@ export default function Contact() {
         }));
     };
 
+    useEffect(() => {
+        const handleSelectService = (e: Event) => {
+            const customEvent = e as CustomEvent<{ serviceTitle?: string }>;
+            const serviceTitle = customEvent.detail?.serviceTitle;
+            if (!serviceTitle) return;
+            setFormData(prev => ({
+                ...prev,
+                task: prev.task ? `${prev.task}, ${serviceTitle}` : `Здравствуйте! Хочу обсудить: ${serviceTitle}`
+            }));
+        };
+
+        const globalStorageKey = 'breus_contact_prefill_service';
+        const storedGlobalService = sessionStorage.getItem(globalStorageKey);
+        if (storedGlobalService) {
+            setFormData(prev => ({
+                ...prev,
+                task: `Здравствуйте! Хочу обсудить: ${storedGlobalService}`
+            }));
+            sessionStorage.removeItem(globalStorageKey);
+        }
+
+        window.addEventListener('breus-select-service', handleSelectService);
+        return () => window.removeEventListener('breus-select-service', handleSelectService);
+    }, []);
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const message = `👋 Привет, Breus Media!
@@ -37,7 +62,7 @@ export default function Contact() {
 Мой контакт: ${formData.contact}`;
 
         // Encode and open WhatsApp
-        const url = `https://wa.me/995000000000?text=${encodeURIComponent(message)}`;
+        const url = `https://wa.me/995501103183?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
     };
 

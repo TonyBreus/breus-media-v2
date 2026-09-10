@@ -80,9 +80,29 @@ export const RealEstateServicesStitch = () => {
                                                         href={service.primaryHref}
                                                         className="flex-1 py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center"
                                                     >
-                                                        {service.primaryCtaLabel ?? 'Подробнее'}
+                                                        {service.primaryCtaLabel ?? 'Открыть услугу'}
                                                     </Link>
                                                 ) : null}
+                                                <a
+                                                    href={service.secondaryHref ?? '#contact'}
+                                                    onClick={(e) => {
+                                                        const href = service.secondaryHref ?? '#contact';
+                                                        if (href === '#contact' || href.startsWith('#contact')) {
+                                                            e.preventDefault();
+                                                            if (typeof window !== 'undefined' && service.title) {
+                                                                window.dispatchEvent(new CustomEvent('breus-select-service', { detail: { serviceTitle: service.title } }));
+                                                                try { sessionStorage.setItem('breus_contact_prefill_service', service.title); } catch {}
+                                                            }
+                                                            const el = document.getElementById('contact');
+                                                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                                        }
+                                                    }}
+                                                    className={`py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center ${
+                                                        service.primaryHref ? 'flex-1' : 'w-full'
+                                                    }`}
+                                                >
+                                                    {service.secondaryCtaLabel ?? 'Обсудить задачу'}
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

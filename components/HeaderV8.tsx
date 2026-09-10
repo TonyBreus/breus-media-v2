@@ -27,7 +27,7 @@ export default function HeaderV8() {
                         <span className="w-px h-3 bg-white/20"></span>
                         <a href="mailto:hello@breus.media" className="hover:text-white transition-colors">hello@breus.media</a>
                         <span className="text-gray-600">|</span>
-                        <span>+995 555 000 000</span>
+                        <span>+995 501 103 183</span>
                     </div>
 
                 </div>

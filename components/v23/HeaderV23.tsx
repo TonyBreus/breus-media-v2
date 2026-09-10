@@ -157,7 +157,7 @@ export default function HeaderV23({ transparent = false }: { transparent?: boole
                                                     <Phone className="w-4 h-4 text-brand" />
                                                 </div>
                                                 <div className="flex flex-col">
-                                                    <a href="tel:+995574619393" className="text-lg font-bold text-white hover:text-brand transition-colors tracking-wide">+995 574 619 393</a>
+                                                    <a href="tel:+995501103183" className="text-lg font-bold text-white hover:text-brand transition-colors tracking-wide">+995 501 103 183</a>
                                                 </div>
                                             </div>
                                             <div className="h-px w-full bg-white/10 my-1" />

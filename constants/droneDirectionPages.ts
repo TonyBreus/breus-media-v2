@@ -59,7 +59,7 @@ export type DroneDirectionPageConfig = {
     seo: DroneDirectionSeoConfig;
 };
 
-const { droneService, monitoringStroiki, realEstate, tours360, promoVideo } = gazetaDetailRoutes;
+const { droneService, tours360 } = gazetaDetailRoutes;
 
 export const droneDirectionPages: Record<'droneService' | 'realEstateService', DroneDirectionPageConfig> = {
     droneService: {
@@ -69,9 +69,9 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
             h1: 'УСЛУГИ АЭРОСЪЁМКИ',
             intro: 'Комплексная аэросъёмка для девелоперов, риелторов, отелей и брендов. Работаем по всей Грузии: Тбилиси, Батуми и регионы.',
             heroImage: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=1800&q=80',
-            primaryCtaLabel: 'Смотреть направления',
-            primaryCtaHref: '#services',
-            secondaryCtaLabel: 'Подобрать услугу',
+            primaryCtaLabel: 'Обсудить съёмку',
+            primaryCtaHref: '#contact',
+            secondaryCtaLabel: 'Смотреть услуги',
             secondaryCtaHref: '#services',
             panelServiceSlugs: [
                 'nedvizhimost',
@@ -121,14 +121,39 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
                 description: 'Короткие ролики для Instagram, TikTok и Shorts — под алгоритмы платформ.',
             },
             {
-                title: 'Промо-видео',
-                href: '/promo-video-service',
-                description: 'Полноценный рекламный ролик для сайта, презентации или запуска.',
-            },
-            {
                 title: 'AI-визуализация',
                 href: '/ai-visualization-service',
                 description: 'Рендеры, визуализации и AI-контент для маркетинга и продаж.',
+            },
+            {
+                title: 'Контент для недвижимости',
+                href: '/real-estate-service',
+                description: 'Видео, дрон, 360°, Reels и AI staging для продажи и аренды объектов.',
+            },
+            {
+                title: 'Контент для отелей',
+                href: '/hotels-service',
+                description: 'Видеотуры, aerial, 360° туры и Reels для отелей и апартаментов.',
+            },
+            {
+                title: 'Контент для ресторанов',
+                href: '/restaurants-service',
+                description: 'Съёмка блюд, интерьера, Reels, 360° и визуальная упаковка меню.',
+            },
+            {
+                title: 'Контент для туризма',
+                href: '/tourism-service',
+                description: 'Маршруты, экскурсии, локации и travel-проекты для сайта и соцсетей.',
+            },
+            {
+                title: 'Контент для клиник',
+                href: '/clinics-service',
+                description: 'Аккуратная визуальная упаковка клиник, кабинетов, врачей и услуг.',
+            },
+            {
+                title: 'Контент для автобизнеса',
+                href: '/auto-service',
+                description: 'Видео, дрон и Reels для автосалонов, детейлинга и автообъявлений.',
             },
         ],
         seo: {
@@ -143,7 +168,7 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
                 highPrice: '2600',
                 offerCount: '4',
             },
-            providerTelephone: '+995574619393',
+            providerTelephone: '+995501103183',
             areaServed: [
                 { '@type': 'City', name: 'Тбилиси' },
                 { '@type': 'City', name: 'Батуми' },
@@ -154,20 +179,20 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
     realEstateService: {
         path: '/real-estate-service',
         hero: {
-            eyebrow: 'НЕДВИЖИМОСТЬ — ЧЕТКО И УБЕДИТЕЛЬНО',
-            h1: 'ВИЗУАЛ ДЛЯ НЕДВИЖИМОСТИ',
-            intro: 'Видео, аэросъёмка и 360-форматы для риелторов и девелоперов. Помогаем быстрее выводить объекты на показы в Тбилиси, Батуми и регионах.',
+            eyebrow: 'НЕДВИЖИМОСТЬ · L2 HUB',
+            h1: 'Визуальный контент для недвижимости в Тбилиси и Грузии',
+            intro: 'Фото, видео, дрон, 360° туры, Reels и AI-визуализация для объектов недвижимости — под продажу, аренду, пресейл, удалённого покупателя и презентацию инвестору.',
             heroImage: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&q=80',
-            primaryCtaLabel: 'Смотреть направления',
-            primaryCtaHref: '#services',
-            secondaryCtaLabel: 'Подобрать услугу',
+            primaryCtaLabel: 'Подобрать формат',
+            primaryCtaHref: '#contact',
+            secondaryCtaLabel: 'Посмотреть направления',
             secondaryCtaHref: '#services',
-            panelServiceSlugs: ['prodazha-kvartir', 'prezentaciya-zhk', 'monitoring-stroyki'],
+            panelServiceSlugs: ['aerosemka-nedvizhimosti', '360-tour-nedvizhimosti', 'reels-dlya-rieltorov'],
         },
         trust: {
             heading: 'Нам доверяют в недвижимости',
             badges: ['Риелторы', 'Агентства', 'Застройщики', 'Отделы продаж ЖК', 'Инвесторы', 'Управляющие компании'],
-            location: 'Тбилиси · Батуми · Регионы Грузии',
+            location: 'Тбилиси · Грузия',
         },
         googleTrust: {
             heading: 'Репутация в Google',
@@ -175,15 +200,10 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
             reviewsText: '50+ отзывов от клиентов',
             profileUrl: 'https://www.google.com/maps/search/?api=1&query=Breus+Media+Tbilisi',
             mapTitle: 'Breus Media · Real Estate',
-            mapAddress: 'Tbilisi & Batumi, Georgia',
+            mapAddress: 'Tbilisi, Georgia',
             mapHint: 'Рейтинг и отзывы подтягиваются из профиля Breus Media в Google.',
         },
         relatedLinks: [
-            {
-                href: monitoringStroiki,
-                title: 'Мониторинг стройки',
-                description: 'Регулярные облёты и контроль этапов строительства.',
-            },
             {
                 href: droneService,
                 title: 'Аэросъёмка',
@@ -195,22 +215,40 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
                 description: 'Интерактивные туры для удалённых покупателей.',
             },
             {
-                href: promoVideo,
-                title: 'Промо видео',
-                description: 'Ролики для рекламы и запуска продаж.',
+                href: '/reels-service',
+                title: 'Reels',
+                description: 'Короткие вертикальные видео для объектов, агентств и личного бренда.',
             },
             {
-                href: realEstate,
-                title: 'Недвижимость в Gazeta',
-                description: 'Категорийная страница направления в Gazeta.',
+                href: '/ai-visualization-service',
+                title: 'AI-визуализация',
+                description: 'AI staging, виртуальная меблировка и визуализация потенциала объекта.',
+            },
+            {
+                href: '/hotels-service',
+                title: 'Отели',
+                description: 'Визуальная упаковка номеров, апартаментов и hospitality-объектов.',
+            },
+            {
+                href: '/restaurants-service',
+                title: 'Рестораны',
+                description: 'Контент для пространства, меню, атмосферы и локального маркетинга.',
+            },
+            {
+                href: '/tourism-service',
+                title: 'Туризм',
+                description: 'Видео, дрон и короткие форматы для маршрутов и travel-предложений.',
             },
         ],
         seo: {
-            title: 'Контент для недвижимости в Тбилиси и Батуми | Real Estate Service — Breus Media',
-            description: 'Профессиональный контент для недвижимости: видео, аэросъёмка, 360° туры и мониторинг стройки. Форматы для риелторов, застройщиков и отделов продаж.',
-            schemaServiceName: 'Real Estate Content Service',
+            title: 'Визуальный контент для недвижимости в Тбилиси | Breus Media',
+            description: 'Фото, видео, дрон, 360° туры, Reels и AI-визуализация для недвижимости в Тбилиси и Грузии. Упаковка объектов под продажу, аренду и пресейл.',
+            schemaServiceName: 'Визуальный контент для недвижимости',
             schemaServiceType: 'Real estate media production service',
-            areaServed: ['Tbilisi', 'Batumi', 'Georgia'],
+            areaServed: [
+                { '@type': 'City', name: 'Tbilisi' },
+                { '@type': 'Country', name: 'Georgia' },
+            ],
         },
     },
 };

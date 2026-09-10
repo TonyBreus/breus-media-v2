@@ -1,10 +1,9 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { Manrope } from 'next/font/google';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 import { droneServiceItems } from '@/components/drone/droneServicesData';
 import type { DroneDirectionHeroConfig } from '@/constants/droneDirectionPages';
@@ -13,7 +12,7 @@ type DroneHeroStitchProps = {
     hero: DroneDirectionHeroConfig;
 };
 
-const ROTATION_MS = 5000;
+const ROTATION_MS = 10000;
 const TYPEWRITER_INTERVAL_MS = 40;
 const TYPEWRITER_NEWLINE_PAUSE_MS = 120;
 const MOBILE_HERO_TYPEWRITER_TEXT = 'АЭРОСЪЁМКА\nДЛЯ БИЗНЕСА\nВ ГРУЗИИ';
@@ -92,13 +91,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
         };
     }, [typewriterDone]);
 
-    useEffect(() => {
-        if (currentIndex < droneServiceItems.length) {
-            return;
-        }
-        setCurrentIndex(0);
-    }, [currentIndex]);
-
+    const safeCurrentIndex = droneServiceItems.length > 0 ? currentIndex % droneServiceItems.length : 0;
     const typedMobileLines = useMemo(
         () => MOBILE_HERO_TYPEWRITER_TEXT.slice(0, typedCharsCount).split('\n'),
         [typedCharsCount]
@@ -108,11 +101,29 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
         if (droneServiceItems.length <= miniCarouselCount) {
             return droneServiceItems.map((_, index) => index);
         }
-        const start = (currentIndex - 1 + droneServiceItems.length) % droneServiceItems.length;
+        const start = (safeCurrentIndex - 1 + droneServiceItems.length) % droneServiceItems.length;
         return Array.from({ length: miniCarouselCount }, (_, offset) => (start + offset) % droneServiceItems.length);
-    }, [currentIndex, miniCarouselCount]);
+    }, [safeCurrentIndex, miniCarouselCount]);
 
-    const activeService = droneServiceItems[currentIndex] ?? droneServiceItems[0];
+    const activeService = droneServiceItems[safeCurrentIndex] ?? droneServiceItems[0];
+    const activeServiceNumber = String(safeCurrentIndex + 1).padStart(2, '0');
+    const serviceTotal = String(droneServiceItems.length).padStart(2, '0');
+
+    const READY_L3_URLS = [
+        '/drone-hotels-tourism',
+        '/drone-services/drone-restaurants',
+        '/drone-services/drone-real-estate',
+        '/360-tour-hotels',
+        '/360-tour-real-estate',
+        '/reels-real-estate',
+        '/drone-hotels-tourism/en',
+        '/drone-services/drone-restaurants/en',
+        '/drone-services/drone-real-estate/en',
+        '/360-tour-hotels/en',
+        '/360-tour-real-estate/en',
+        '/reels-real-estate/en'
+    ];
+    const showPrimaryCta = READY_L3_URLS.includes(activeService.primaryHref);
 
     const handleScrollToNextSection = () => {
         const nextSection = document.getElementById('services');
@@ -126,7 +137,6 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
     return (
         <DebugWrapper id={10100} label="Drone Hero Section">
             <section className="relative h-[calc(100vh-80px)] min-h-[620px] md:min-h-[680px] overflow-hidden bg-[#080808]">
-                <h1 className="sr-only">Аэросъёмка дроном для бизнеса в Тбилиси — Breus Media</h1>
                 <div className="absolute inset-0 z-0">
                     <AnimatePresence mode="wait">
                         <motion.img
@@ -149,18 +159,13 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                     <div className="h-full flex items-center justify-start pt-20 md:pt-24 pb-8">
                         <div className="w-full text-left">
                             <div className="hidden md:block">
-                                <div className="grid md:grid-cols-1 md:gap-6 lg:grid-cols-[55%_42%] lg:gap-[3%] text-left">
+                                <div className="grid md:grid-cols-1 md:gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,0.72fr)] lg:items-center lg:gap-12 xl:gap-16 text-left">
                                     <div className="hidden lg:block lg:-ml-8">
-                                        <div className="text-5xl md:text-7xl font-bold leading-[0.92] uppercase text-white min-h-[200px]">
-                                            {typedMobileLines.map((line, index) => (
-                                                <div key={`desktop-typed-line-${index}`} className={index === 2 ? 'text-[#C9A84C]' : ''}>
-                                                    {line || '\u00A0'}
-                                                </div>
-                                            ))}
-                                            {!typewriterDone && (
-                                                <span className="ml-1 inline-block align-baseline text-[#C9A84C] animate-pulse">|</span>
-                                            )}
-                                        </div>
+                                        <h1 className="text-5xl md:text-7xl font-bold leading-[0.92] uppercase text-white min-h-[200px]">
+                                            <div>АЭРОСЪЁМКА</div>
+                                            <div>ДЛЯ БИЗНЕСА</div>
+                                            <div className="text-[#C9A84C]">В ГРУЗИИ</div>
+                                        </h1>
 
                                         <div className="mt-4 flex flex-col gap-2">
                                             {DESKTOP_HERO_PHRASES.map((phrase, index) => (
@@ -203,60 +208,96 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                         </DebugWrapper>
                                     </div>
 
-                                    <div className="hidden lg:flex flex-col justify-between py-0 h-full">
-                                        <AnimatePresence mode="wait">
-                                            <motion.div
-                                                key={droneServiceItems[currentIndex].slug}
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: -10 }}
-                                                transition={{ duration: 0.4 }}
-                                                className="flex-1 flex flex-col gap-4"
-                                            >
-                                                <div>
-                                                    <p className="text-[11px] uppercase tracking-[0.22em] text-[#D4A017] font-bold mb-1">
-                                                        {droneServiceItems[currentIndex].category}
-                                                    </p>
-                                                    <p className="text-3xl font-bold text-white uppercase leading-tight">
-                                                        {droneServiceItems[currentIndex].title}
-                                                    </p>
-                                                </div>
-                                                <p className={`${manrope.className} antialiased font-normal text-[16px] leading-[1.65] text-white/[0.88]`}>
-                                                    {droneServiceItems[currentIndex].description}
-                                                </p>
-                                                <a
-                                                    href={droneServiceItems[currentIndex].primaryHref}
-                                                    className="w-full flex items-center justify-center rounded-[10px] border border-[#D4A017] bg-transparent px-4 py-3 text-[12px] font-bold uppercase tracking-[0.14em] text-[#D4A017] transition-all hover:bg-[#D4A017]/10"
-                                                >
-                                                    Открыть услугу
-                                                </a>
-                                            </motion.div>
-                                        </AnimatePresence>
-                                        <div className="w-[260px] rounded-[14px] border border-white/12 bg-black/35 p-2.5 backdrop-blur-sm">
-                                            <div className="flex flex-col gap-1.5">
-                                                {miniCarouselIndices.map((serviceIndex) => {
-                                                    const item = droneServiceItems[serviceIndex];
-                                                    const isActive = serviceIndex === currentIndex;
-                                                    return (
-                                                        <button
-                                                            key={item.slug}
-                                                            onClick={() => setCurrentIndex(serviceIndex)}
-                                                            className={`w-full text-left rounded-lg px-2.5 py-2 transition-colors ${
-                                                                isActive
-                                                                    ? 'bg-[#D4A017]/16'
-                                                                    : 'hover:bg-white/8'
-                                                            }`}
+                                    <div className="hidden lg:flex justify-end">
+                                        <div className="relative w-full max-w-[480px] overflow-hidden rounded-[10px] border border-white/15 bg-[#090806]/72 shadow-[0_28px_80px_rgba(0,0,0,0.44)] backdrop-blur-xl">
+                                            <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-[#D4A017] to-transparent" />
+                                            <div className="relative border-b border-white/10 px-6 pb-6 pt-6">
+                                                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(212,160,23,0.15),transparent_38%,rgba(255,255,255,0.06)_100%)]" />
+
+                                                <AnimatePresence mode="wait">
+                                                    <motion.div
+                                                        key={activeService.slug}
+                                                        initial={{ opacity: 0, y: 12 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        exit={{ opacity: 0, y: -8 }}
+                                                        transition={{ duration: 0.38, ease: 'easeOut' }}
+                                                        className="relative pt-7"
+                                                    >
+                                                        <span className="absolute right-0 top-0 tabular-nums text-[12px] font-semibold text-white/62">
+                                                            {activeServiceNumber}/{serviceTotal}
+                                                        </span>
+                                                        <p className="max-w-[14ch] text-[42px] font-bold uppercase leading-[0.96] text-white">
+                                                            {activeService.title}
+                                                        </p>
+                                                        <p className={`${manrope.className} mt-5 max-w-[36rem] antialiased text-[16px] font-normal leading-[1.65] text-white/[0.84]`}>
+                                                            {activeService.description}
+                                                        </p>
+                                                    </motion.div>
+                                                </AnimatePresence>
+                                            </div>
+
+                                            <div className="px-4 pb-4 pt-4">
+                                                <div className="grid gap-2 sm:grid-cols-2">
+                                                    {showPrimaryCta ? (
+                                                        <a
+                                                            href={activeService.primaryHref}
+                                                            className="group flex w-full items-center justify-between rounded-[8px] border border-[#D4A017] bg-[#D4A017] px-4 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-black transition-all hover:bg-white hover:border-white"
                                                         >
-                                                            <span
-                                                                className={`text-xs font-semibold leading-tight transition-colors ${
-                                                                    isActive ? 'text-[#D4A017]' : 'text-white/70'
+                                                            <span>Открыть услугу</span>
+                                                            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                                        </a>
+                                                    ) : null}
+                                                    <a
+                                                        href="#contact"
+                                                        className={`flex items-center justify-center rounded-[8px] border border-white/12 px-4 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-white transition-all hover:border-white/28 hover:bg-white/[0.06] ${
+                                                            showPrimaryCta ? '' : 'sm:col-span-2'
+                                                        }`}
+                                                    >
+                                                        Обсудить задачу
+                                                    </a>
+                                                </div>
+
+                                                <div className="mt-3 grid gap-2" role="tablist" aria-label="Направления аэросъёмки">
+                                                    {miniCarouselIndices.map((serviceIndex) => {
+                                                        const item = droneServiceItems[serviceIndex];
+                                                        const isActive = serviceIndex === currentIndex;
+                                                        const itemNumber = String(serviceIndex + 1).padStart(2, '0');
+                                                        return (
+                                                            <button
+                                                                key={item.slug}
+                                                                type="button"
+                                                                onClick={() => setCurrentIndex(serviceIndex)}
+                                                                role="tab"
+                                                                aria-selected={isActive}
+                                                                className={`group grid w-full grid-cols-[34px_1fr_auto] items-center gap-3 rounded-[8px] border px-3 py-3 text-left transition-all ${
+                                                                    isActive
+                                                                        ? 'border-[#D4A017]/68 bg-[#D4A017]/15'
+                                                                        : 'border-white/10 bg-white/[0.035] hover:border-white/24 hover:bg-white/[0.07]'
                                                                 }`}
                                                             >
-                                                                {item.title}
-                                                            </span>
-                                                        </button>
-                                                    );
-                                                })}
+                                                                <span
+                                                                    className={`tabular-nums text-[11px] font-semibold ${
+                                                                        isActive ? 'text-[#D4A017]' : 'text-white/38'
+                                                                    }`}
+                                                                >
+                                                                    {itemNumber}
+                                                                </span>
+                                                                <span
+                                                                    className={`text-[13px] font-semibold leading-tight ${
+                                                                        isActive ? 'text-white' : 'text-white/70'
+                                                                    }`}
+                                                                >
+                                                                    {item.title}
+                                                                </span>
+                                                                <span
+                                                                    className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                                                                        isActive ? 'bg-[#D4A017]' : 'bg-white/24 group-hover:bg-white/45'
+                                                                    }`}
+                                                                />
+                                                            </button>
+                                                        );
+                                                    })}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -264,51 +305,33 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                             </div>
 
                             <div className="block md:hidden px-1">
-                                <div className="mx-auto max-w-[320px] text-left">
-                                    <div className="text-[34px] font-bold leading-[1.02] tracking-[0.06em] uppercase text-white min-h-[124px]">
-                                        {typedMobileLines.map((line, index) => (
-                                            <div key={`typed-line-${index}`} className={index === 2 ? 'text-[#C9A84C]' : ''}>
-                                                {line || '\u00A0'}
-                                            </div>
-                                        ))}
-                                        {!typewriterDone && (
-                                            <span className="ml-1 inline-block align-baseline text-[#C9A84C] animate-pulse">|</span>
-                                        )}
-                                    </div>
+                                <div className="mx-auto max-w-[340px] text-left">
+                                    <h1 className="text-[32px] sm:text-[36px] font-bold leading-[1.02] tracking-[0.04em] uppercase text-white">
+                                        <div>АЭРОСЪЁМКА</div>
+                                        <div>ДЛЯ БИЗНЕСА</div>
+                                        <div className="text-[#C9A84C]">В ГРУЗИИ</div>
+                                    </h1>
 
-                                    <div
-                                        className={`mt-0 text-[15px] leading-relaxed text-white/80 font-medium transition-opacity duration-500 ${
-                                            showMobileDescription ? 'opacity-100' : 'opacity-0'
-                                        }`}
-                                    >
-                                        <p>
-                                            С земли не видно главного: террасу ресторана, масштаб стройки, дефект на
-                                            крыше.
-                                        </p>
-                                        <p className="mt-2">
-                                            Объекты с аэровидео продаются на 68% быстрее (MLS / NAR).
-                                        </p>
-                                        <p className="mt-2">
-                                            Дроны снимают с высоты и летают внутри помещений — FPV-технология.
-                                        </p>
-                                        <p className="mt-2">
-                                            Один полёт — контент для рекламы, отчёт для инвестора или документация для
-                                            страховой.
-                                        </p>
-                                    </div>
+                                    <p className="mt-3 text-[13px] leading-relaxed text-white/85 font-normal">
+                                        Съёмка на флагманские дроны DJI и FPV в Тбилиси и регионах Грузии. 4K-видео и фото для отелей, недвижимости, стройки и ресторанов. Готовые материалы от 24 часов, цены от 200 ₾.
+                                    </p>
 
-                                    <a
-                                        href="#directions"
-                                        aria-label="Прокрутить к направлениям"
-                                        className={`mt-5 -translate-y-4 inline-flex flex-col items-center justify-center gap-1 text-[#C9A84C] transition-opacity duration-500 ${
-                                            showMobileArrow ? 'opacity-100' : 'pointer-events-none opacity-0'
-                                        }`}
-                                    >
-                                        <ChevronDown className="h-5 w-5 animate-bounce" />
-                                        <span className="whitespace-nowrap text-[12px] font-medium leading-none">
-                                            18 направлений — найдите своё · от 250 ₾
-                                        </span>
-                                    </a>
+                                    <div className="mt-4 flex flex-col gap-2">
+                                        <a
+                                            href="https://wa.me/995501103183?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C+%D1%85%D0%BE%D1%87%D1%83+%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C+%D0%B0%D1%8D%D1%80%D0%BE%D1%81%D1%8A%D1%91%D0%BC%D0%BA%D1%83+%D0%B4%D1%80%D0%BE%D0%BD%D0%BE%D0%BC+%D0%B2+%D0%A2%D0%B1%D0%B8%D0%BB%D0%B8%D1%81%D0%B8."
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#D4A017] px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black shadow-[0_4px_20px_rgba(212,160,23,0.35)] transition-all active:scale-[0.98]"
+                                        >
+                                            Обсудить задачу в WhatsApp
+                                        </a>
+                                        <a
+                                            href="#pricing"
+                                            className="inline-flex w-full items-center justify-center gap-1.5 rounded-[12px] border border-white/20 bg-white/5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors hover:bg-white/10"
+                                        >
+                                            Тарифы от 200 ₾ ↓
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -206,7 +206,7 @@ export default function HeaderV16() {
                                             {/* Content matched from V14 */}
                                             <div className="flex items-center gap-4 pb-4 border-b border-white/10">
                                                 <Phone className="w-5 h-5 text-white" />
-                                                <a href="tel:+995555000000" className="text-lg font-bold tracking-widest text-white hover:text-brand transition-colors">+995 555 00 00 00</a>
+                                                <a href="tel:+995501103183" className="text-lg font-bold tracking-widest text-white hover:text-brand transition-colors">+995 501 10 31 83</a>
                                             </div>
                                             <div className="flex flex-col gap-4">
                                                 <a href="#" className="flex items-center gap-4 group/item"><MessageCircle className="w-5 h-5 text-green-500" /><span className="text-xs font-bold uppercase text-gray-400 group-hover/item:text-white">WhatsApp</span></a>

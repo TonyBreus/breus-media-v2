@@ -1053,7 +1053,7 @@ export default function DroneObjectInspectionPage() {
                                         <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Напрямую</p>
                                         <div className="mt-4 flex flex-wrap gap-3">
                                             <a
-                                                href="https://wa.me/995574619393"
+                                                href="https://wa.me/995501103183"
                                                 target="_blank"
                                                 rel="noreferrer"
                                                 className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"

@@ -31,9 +31,9 @@ type LongTailAnswer = {
 };
 
 const CANONICAL_URL = 'https://breus.media/promo-video/promo-excursion';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_HREF = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_HREF = 'https://wa.me/995501103183';
 const VIDEO_EMBED_URL = 'https://www.youtube.com/embed/M7lc1UVf-VE';
 const VIDEO_PAGE_URL = 'https://www.youtube.com/watch?v=M7lc1UVf-VE';
 const VIDEO_THUMBNAIL_URL = 'https://i.ytimg.com/vi/M7lc1UVf-VE/maxresdefault.jpg';
@@ -41,7 +41,7 @@ const VIDEO_THUMBNAIL_URL = 'https://i.ytimg.com/vi/M7lc1UVf-VE/maxresdefault.jp
 const audienceCards: Card[] = [
     {
         title: 'Гидам с авторскими экскурсиями по Тбилиси, Кахетии и Батуми',
-        text: 'Когда маршрут уникальный, его важно показать так, чтобы гость захотел записаться сразу после просмотра.',
+        text: 'Когда маршрут авторский, его важно показать так, чтобы гость захотел записаться сразу после просмотра.',
     },
     {
         title: 'Организаторам adventure-активностей',
@@ -56,7 +56,7 @@ const audienceCards: Card[] = [
         text: 'Короткий ролик показывает механику опыта и снимает барьер «я не понимаю, что меня ждёт».',
     },
     {
-        title: 'Малым туристическим бизнесам с уникальными предложениями',
+        title: 'Малым туристическим бизнесам с нестандартными форматами',
         text: 'Если ваш продукт нестандартный, промо-видео делает его понятным за 30-60 секунд.',
     },
     {
@@ -802,7 +802,7 @@ export default function PromoExcursionPage() {
                 <div className="container mx-auto px-6 max-w-5xl">
                     <h2 className="text-3xl font-bold mb-6">Экскурсионный рынок Грузии</h2>
                     <p className="text-white/75 leading-relaxed text-lg">
-                        Грузия предлагает уникальный набор активностей: рафтинг на Арагви, параглайдинг над Тбилиси,
+                        Грузия предлагает насыщенный спектр активностей: рафтинг на Арагви, параглайдинг над Тбилиси,
                         конные прогулки в Казбеги, wine tour в Телави и трекинг в Сванетии. Каждая из этих активностей
                         требует своей визуальной подачи. Мы снимали в ключевых туристических регионах страны и понимаем,
                         как передать адреналин, спокойствие дегустации и масштаб горных маршрутов в одном коротком ролике.
@@ -1223,7 +1223,7 @@ export default function PromoExcursionPage() {
             <section className="py-10 bg-[#080808]">
                 <div className="container mx-auto px-6">
                     <p className="text-center text-white/55 text-sm">
-                        Breus Media — промо-ролики для экскурсий и активностей в Грузии. Тбилиси. +995 574 619 393
+                        Breus Media — промо-ролики для экскурсий и активностей в Грузии. Тбилиси. +995 501 103 183
                     </p>
                 </div>
             </section>

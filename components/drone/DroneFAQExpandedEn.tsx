@@ -27,7 +27,7 @@ const faqData = [
     },
     {
         question: 'How quickly will the result be ready?',
-        answer: 'Raw files - on the day of the shoot or the next day. An edited clip - within 3-5 business days. Timelines can be adjusted by agreement.',
+        answer: 'Original master footage - on the day of the shoot or the next day. An edited clip - within 3-5 business days. Timelines can be adjusted by agreement.',
     },
     {
         question: 'Do you only shoot for real estate?',

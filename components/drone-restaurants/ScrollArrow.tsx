@@ -1,13 +1,21 @@
-export function ScrollArrow() {
+import { ChevronDown } from 'lucide-react';
+
+export function ScrollArrow({
+    targetId = 'target-audience',
+    ariaLabel = 'Прокрутить вниз',
+    className = '',
+}: {
+    targetId?: string;
+    ariaLabel?: string;
+    className?: string;
+}) {
     return (
         <a
-            href="#what-is"
-            aria-label="Прокрутить вниз"
-            className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 text-[#FFD23F] transition-opacity hover:opacity-80"
+            href={`#${targetId.replace(/^#/, '')}`}
+            aria-label={ariaLabel}
+            className={`text-[#FFD23F] transition-opacity hover:opacity-80 inline-flex items-center justify-center cursor-pointer ${className}`}
         >
-            <span className="flex h-10 w-10 animate-bounce items-center justify-center rounded-full border border-[#FFD23F]/45 bg-black/30">
-                ↓
-            </span>
+            <ChevronDown className="h-6 w-6 animate-bounce text-[#FFD23F]" />
         </a>
     );
 }

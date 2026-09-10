@@ -412,7 +412,7 @@ const pricingPackages: PricingPackage[] = [
             'Промо-ролик 90–120 секунд',
             '3–4 коротких Reels/Stories-версии разных зон',
             '20+ аэрофото высокого разрешения',
-            'Исходники (RAW/LOG) — полный архив',
+            'Оригинальный массив съёмки (4K D-Log M) — полный архив',
         ],
         addons: ['Интервью или синхрон с тренером +200 ₾', 'Субтитры для соцсетей +100 ₾'],
     },
@@ -599,7 +599,7 @@ const localBusinessSchema = {
     name: 'Breus Media',
     description: 'Аэросъёмка и FPV-видео для спортивных объектов в Тбилиси и по всей Грузии.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -1178,7 +1178,7 @@ export default function DroneSportPage() {
                                     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Альтернативные контакты</p>
                                     <div className="mt-4 flex flex-wrap gap-3">
                                         <a
-                                            href="https://wa.me/995574619393"
+                                            href="https://wa.me/995501103183"
                                             target="_blank"
                                             rel="noreferrer"
                                             className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"

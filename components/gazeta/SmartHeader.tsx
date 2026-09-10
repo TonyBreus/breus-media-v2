@@ -1,18 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { TimeWidget } from "./TimeWidget";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useHeroStore } from "@/store/useHeroStore";
 import { gazetaIndustryNavItems, gazetaServiceNavItems, gazetaTickerLine1, gazetaTickerLine2 } from "@/constants/gazetaRoutes";
 import { ChevronDown, Globe, Phone, Mail, Send, MessageCircle, Menu, X, Instagram } from "lucide-react";
 import { DebugWrapper } from "../debug/DebugWrapper";
 import { useMobileLandscape } from "@/hooks/useMobileLandscape";
 import { useMobilePortrait } from "@/hooks/useMobilePortrait";
+import { AnimatedFlag } from "@/components/common/AnimatedFlag";
 
 // --- Interactive Ticker Components ---
 type TickerItemType = string | { text: string; link: string };
 type HeaderSectionLink = { label: string; href: string };
+type HeaderQuickLink = { label: string; href: string };
 type HeaderLanguage = "RU" | "EN" | "GE";
 type HeaderLanguageAlias = Lowercase<HeaderLanguage>;
 type HeaderLanguageKey = HeaderLanguage | HeaderLanguageAlias;
@@ -57,10 +60,7 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         mobileServicesLabel: "Услуги",
         mobileSectionsLabel: "Разделы",
         contactSectionLabel: "Контакты",
-        industryNavItems: [
-            { label: "О нас", href: "/about" },
-            ...gazetaIndustryNavItems,
-        ],
+        industryNavItems: gazetaIndustryNavItems,
         serviceNavItems: gazetaServiceNavItems,
         tickerLine1: gazetaTickerLine1,
         tickerLine2: gazetaTickerLine2,
@@ -82,7 +82,6 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         mobileSectionsLabel: "Sections",
         contactSectionLabel: "Contact",
         industryNavItems: [
-            { label: "About", href: "/about" },
             { label: "Real Estate", href: "/real-estate-service" },
             { label: "Auto Business", href: "/gazeta/auto" },
             { label: "Hotels", href: "/gazeta/hotels" },
@@ -94,8 +93,6 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         serviceNavItems: [
             { label: "Aerial Filming", href: "/drone-service" },
             { label: "360° Tours", href: "/gazeta/360-tours" },
-            { label: "Promo Video", href: "/gazeta/promo-video" },
-            { label: "Events", href: "/drone-weddings-events" },
             { label: "AI Content", href: "/gazeta/ai-content" },
             { label: "Reels", href: "/gazeta/reels" },
         ],
@@ -129,41 +126,46 @@ const normalizeHeaderLanguage = (value?: string): HeaderLanguage => {
 
 const TickerItem = ({
     item,
-    debugId,
     compact = false,
     isDuplicate = false,
 }: {
     item: TickerItemType;
-    debugId?: number;
     compact?: boolean;
     isDuplicate?: boolean;
 }) => {
-    const { setHoveredService } = useHeroStore();
+    const { setHoveredService, dismissHoverPreview } = useHeroStore();
     const isObj = typeof item === 'object';
     const text = isObj ? item.text : item;
     const shouldUseHoverPreview = text !== "360° Туры" && text !== "360° Tours";
+    const clearHoverPreview = () => {
+        if (shouldUseHoverPreview) {
+            setHoveredService(null);
+        }
+    };
+    const dismissPreview = () => {
+        if (shouldUseHoverPreview) {
+            dismissHoverPreview();
+        }
+    };
 
     const content = (
-        <DebugWrapper id={debugId ?? 0} label={text} className="inline-flex items-center h-full shrink-0">
-            <span
-                aria-hidden={isDuplicate}
-                onMouseEnter={() => {
-                    if (shouldUseHoverPreview) {
-                        setHoveredService(text);
-                    }
-                }}
-                onMouseLeave={() => {
-                    if (shouldUseHoverPreview) {
-                        setHoveredService(null);
-                    }
-                }}
-                className={`inline-flex items-center leading-none shrink-0 cursor-pointer font-bold uppercase text-[#D4AF37]/70 hover:text-white transition-colors whitespace-nowrap ${compact
-                    ? "px-3 text-[10px] tracking-[0.16em]"
-                    : "px-4 md:px-8 text-xs md:text-sm tracking-widest"}`}
-            >
-                {text}
+        <span
+            aria-hidden={isDuplicate}
+            onMouseEnter={() => {
+                if (shouldUseHoverPreview) {
+                    setHoveredService(text);
+                }
+            }}
+            onMouseLeave={clearHoverPreview}
+            onBlur={clearHoverPreview}
+            style={{ color: 'rgba(212, 175, 55, 0.8)' }}
+            className={`inline-flex items-center leading-none shrink-0 cursor-pointer font-medium uppercase transition-colors whitespace-nowrap group-hover/ticker:brightness-110 ${compact ? "text-xs tracking-wider" : "text-sm font-medium tracking-wider"}`}
+        >
+            <span className={compact ? "px-3 md:px-4" : "px-4 md:px-6"}>{text}</span>
+            <span aria-hidden style={{ color: 'rgba(212, 175, 55, 0.8)' }} className={compact ? "px-1.5 text-xs" : "px-2 text-sm"}>
+                •
             </span>
-        </DebugWrapper>
+        </span>
     );
 
     return isObj ? (
@@ -172,33 +174,38 @@ const TickerItem = ({
             className="inline-flex items-center h-full shrink-0"
             aria-hidden={isDuplicate}
             tabIndex={isDuplicate ? -1 : undefined}
+            onPointerDown={dismissPreview}
+            onClick={dismissPreview}
         >
             {content}
         </Link>
     ) : content;
 };
 
-const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId, compact = false }: { items: TickerItemType[], direction?: "left" | "right", speed?: number, baseId?: number, compact?: boolean }) => {
+const InteractiveTicker = ({ items, direction = "left", speed = 40, compact = false }: { items: TickerItemType[], direction?: "left" | "right", speed?: number, compact?: boolean }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
-        <div className="flex overflow-hidden w-full relative group bg-zinc-950/50 backdrop-blur-sm">
+        <div
+            className="group/ticker relative flex w-full overflow-hidden"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             <div className={`pointer-events-none absolute left-0 top-0 z-10 h-full bg-gradient-to-r from-black to-transparent ${compact ? "w-8" : "w-12"}`} />
             <div className={`pointer-events-none absolute right-0 top-0 z-10 h-full bg-gradient-to-l from-black to-transparent ${compact ? "w-8" : "w-12"}`} />
 
             <motion.div
-                className={`flex items-center ${compact ? "py-1.5 min-h-[20px]" : "py-2"}`}
+                className={`flex items-center transition-colors duration-300 ${compact ? "py-1.5 min-h-[22px]" : "py-2.5 min-h-[28px]"}`}
                 animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
-                transition={{ repeat: Infinity, ease: "linear", duration: speed }}
+                transition={{ repeat: Infinity, ease: "linear", duration: isHovered ? speed * 1.8 : speed }}
             >
                 {[...items, ...items, ...items, ...items].map((item, i) => {
                     const idText = typeof item === 'object' ? item.text : item;
-                    const itemIndex = i % items.length;
                     const copyIndex = Math.floor(i / items.length);
-                    const debugId = baseId ? baseId + itemIndex + 1 : undefined;
                     return (
                         <TickerItem
                             key={`${idText}-${i}`}
                             item={item}
-                            debugId={debugId}
                             compact={compact}
                             isDuplicate={copyIndex > 0}
                         />
@@ -223,6 +230,15 @@ export function SmartHeader({
     ctaHref,
     ctaLabel,
     singleTickerMode = false,
+    tickerAfterFirstScroll = false,
+    showMobilePrimaryCta = true,
+    showDesktopPrimaryCta = true,
+    mobileQuickLink,
+    mobileMinimalCenterTime = false,
+    showDesktopNavTime = false,
+    stickyTickerUnderHeader = false,
+    tickerExcludeTexts = [],
+    customTickerItems,
 }: {
     transparent?: boolean;
     isLanding?: boolean;
@@ -233,16 +249,29 @@ export function SmartHeader({
     ctaHref?: string;
     ctaLabel?: string;
     singleTickerMode?: boolean;
+    tickerAfterFirstScroll?: boolean;
+    showMobilePrimaryCta?: boolean;
+    showDesktopPrimaryCta?: boolean;
+    mobileQuickLink?: HeaderQuickLink;
+    mobileMinimalCenterTime?: boolean;
+    showDesktopNavTime?: boolean;
+    stickyTickerUnderHeader?: boolean;
+    tickerExcludeTexts?: string[];
+    customTickerItems?: TickerItemType[];
 }) {
     const { scrollY } = useScroll();
+    const pathname = usePathname();
+    const { dismissHoverPreview } = useHeroStore();
     const normalizedInitialLang = normalizeHeaderLanguage(initialLang);
     const [isScrolled, setIsScrolled] = useState(false);
     const [lang, setLang] = useState<HeaderLanguage>(normalizedInitialLang);
     const [isLogoVisible, setIsLogoVisible] = useState(!isLanding);
+    const [hasTickerActivated, setHasTickerActivated] = useState(!tickerAfterFirstScroll);
 
     // States for V23 menus
     const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
     const [isContactOpen, setIsContactOpen] = useState(false);
+    const [isLangOpen, setIsLangOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const isMobileLandscape = useMobileLandscape();
     const isMobilePortrait = useMobilePortrait();
@@ -253,8 +282,91 @@ export function SmartHeader({
     const headerHeight = isScrolled ? headerCompactHeight : headerExpandedHeight;
     const routeLanguage: HeaderLanguage = normalizedInitialLang;
     const copy = headerCopy[routeLanguage === "EN" ? "EN" : "RU"];
+    const alternateLanguage: HeaderLanguage = routeLanguage === "EN" ? "RU" : "EN";
+
+    // Compute automatic fallback mirror links based on current pathname if not explicitly provided
+    const isCurrentPathEn = pathname?.endsWith("/en") || routeLanguage === "EN";
+    const baseRoute = pathname ? (pathname.endsWith("/en") ? pathname.slice(0, -3) : pathname) : "/gazeta";
+    const cleanBaseRoute = baseRoute === "" ? "/" : baseRoute;
+    const computedRuHref = languageLinks?.RU ?? languageLinks?.ru ?? (cleanBaseRoute === "/en" ? "/" : cleanBaseRoute);
+    const computedEnHref = languageLinks?.EN ?? languageLinks?.en ?? (cleanBaseRoute === "/" ? "/gazeta/en" : `${cleanBaseRoute}/en`);
+
+    const alternateLanguageHref = routeLanguage === "EN" ? computedRuHref : computedEnHref;
+    const visibleLanguageLabel = alternateLanguage;
+    const landingIndustryNavItems: HeaderNavItem[] =
+        routeLanguage === "EN"
+            ? [
+                  { label: "Real Estate", href: "#niche-step-06" },
+                  { label: "Auto Business", href: "#niche-step-09" },
+                  { label: "Hotels", href: "#niche-step-07" },
+                  { label: "Restaurants", href: "#niche-step-08" },
+                  { label: "Tourism", href: "#niche-step-10" },
+                  { label: "Clinics", href: "#niche-step-11" },
+                  { label: "IT", href: "#niche-step-12" },
+              ]
+            : [
+                  { label: "Недвижимость", href: "#niche-step-06" },
+                  { label: "Автобизнес", href: "#niche-step-09" },
+                  { label: "Отели", href: "#niche-step-07" },
+                  { label: "Рестораны", href: "#niche-step-08" },
+                  { label: "Туризм", href: "#niche-step-10" },
+                  { label: "Клиники", href: "#niche-step-11" },
+                  { label: "IT", href: "#niche-step-12" },
+              ];
+    const landingServiceNavItems: HeaderNavItem[] =
+        routeLanguage === "EN"
+            ? [
+                  { label: "Aerial Filming", href: "/drone-service" },
+                  { label: "360° Tours", href: "#niche-step-03" },
+                  { label: "AI Content", href: "#niche-step-05" },
+                  { label: "Reels", href: "#niche-step-04" },
+              ]
+            : [
+                  { label: "Аэросъёмка", href: "/drone-service" },
+                  { label: "360° Туры", href: "#niche-step-03" },
+                  { label: "AI Content", href: "#niche-step-05" },
+                  { label: "Reels", href: "#niche-step-04" },
+              ];
+    const industryNavItems = isLanding ? landingIndustryNavItems : copy.industryNavItems;
+    const serviceNavItems = isLanding ? landingServiceNavItems : copy.serviceNavItems;
+    const normalizedTickerExcludes = tickerExcludeTexts.map((item) => item.trim().toLowerCase());
+    const shouldExcludeTickerItem = (item: TickerItemType) => {
+        if (!normalizedTickerExcludes.length) {
+            return false;
+        }
+        const itemText = (typeof item === "object" ? item.text : item).trim().toLowerCase();
+        return normalizedTickerExcludes.includes(itemText);
+    };
+    const filteredTickerLine1 = copy.tickerLine1.filter((item) => !shouldExcludeTickerItem(item));
+    const filteredTickerLine2 = copy.tickerLine2.filter((item) => !shouldExcludeTickerItem(item));
+    const combinedTickerItems = customTickerItems?.length ? customTickerItems : [...filteredTickerLine1, ...filteredTickerLine2];
+
+    useEffect(() => {
+        dismissHoverPreview();
+    }, [dismissHoverPreview, pathname]);
+
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+            document.body.classList.add("mobile-menu-open");
+            window.dispatchEvent(new CustomEvent("mobile-menu-open-change", { detail: { isOpen: true } }));
+        } else {
+            document.body.style.overflow = "";
+            document.body.classList.remove("mobile-menu-open");
+            window.dispatchEvent(new CustomEvent("mobile-menu-open-change", { detail: { isOpen: false } }));
+        }
+        return () => {
+            document.body.style.overflow = "";
+            document.body.classList.remove("mobile-menu-open");
+            window.dispatchEvent(new CustomEvent("mobile-menu-open-change", { detail: { isOpen: false } }));
+        };
+    }, [isMobileMenuOpen]);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
+        if (tickerAfterFirstScroll && latest > 0 && !hasTickerActivated) {
+            setHasTickerActivated(true);
+        }
+
         // Switch state based on scroll
         if (latest > 50 && !isScrolled) setIsScrolled(true);
         else if (latest <= 50 && isScrolled) setIsScrolled(false);
@@ -267,35 +379,83 @@ export function SmartHeader({
         }
     });
 
-    const aboutHref = "/about";
     const contactHref = isLanding ? "#contact" : "/gazeta#contact";
     const resolvedCtaHref = ctaHref ?? contactHref;
     const hasContactSectionLink = sectionLinks.some((link) => link.href === "#contact");
     const mobileSectionLinks = hasContactSectionLink
         ? sectionLinks
         : [...sectionLinks, { label: copy.contactSectionLabel, href: "#contact" }];
+    const handleAnchorClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string, closeMobileMenu = false) => {
+        if (closeMobileMenu) {
+            setIsMobileMenuOpen(false);
+        }
+
+        if (!href.startsWith("#")) {
+            return;
+        }
+
+        event.preventDefault();
+        let target: Element | null = null;
+        if (href === "#contact") {
+            const all = Array.from(document.querySelectorAll<HTMLElement>('#contact, [id*="contact"]'));
+            target = all.find((el) => el.offsetParent !== null || el.getClientRects().length > 0) || all[0];
+        } else if (href === "#faq") {
+            const all = Array.from(document.querySelectorAll<HTMLElement>('#faq, #niche-step-13'));
+            target = all.find((el) => el.offsetParent !== null || el.getClientRects().length > 0) || all[0];
+        } else {
+            target = document.querySelector(href);
+        }
+
+        if (!(target instanceof HTMLElement)) {
+            const fallbackPath = routeLanguage === "EN" ? "/gazeta/en" : "/gazeta";
+            window.location.href = `${fallbackPath}${href}`;
+            return;
+        }
+
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (window.location.hash !== href) {
+            window.history.replaceState(null, "", href);
+        }
+    };
     const handleCtaClick = (event: React.MouseEvent<HTMLAnchorElement>, closeMobileMenu = false) => {
         if (closeMobileMenu) {
             setIsMobileMenuOpen(false);
         }
 
-        if (!resolvedCtaHref.startsWith("#")) {
+        const allContactSections = Array.from(document.querySelectorAll<HTMLElement>('#contact, [id*="contact"]'));
+        const visibleContactSection = allContactSections.find((el) => el.offsetParent !== null || el.getClientRects().length > 0) || allContactSections[0];
+
+        if (visibleContactSection) {
+            event.preventDefault();
+            visibleContactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            if (window.location.hash !== "#contact") {
+                window.history.replaceState(null, "", "#contact");
+            }
             return;
         }
 
-        event.preventDefault();
-        const target = document.querySelector(resolvedCtaHref);
-
-        if (!(target instanceof HTMLElement)) {
-            window.location.hash = resolvedCtaHref;
-            return;
-        }
-
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-        if (window.location.hash !== resolvedCtaHref) {
-            window.history.replaceState(null, "", resolvedCtaHref);
-        }
+        handleAnchorClick(event, resolvedCtaHref, closeMobileMenu);
     };
+    const renderTimeWidget = (minimal = false) => (
+        <div
+            className={`flex items-center leading-none ${
+                minimal
+                    ? "gap-0"
+                    : `border border-white/10 bg-black/40 ${isMobileCompactTop ? "px-2.5 py-1 gap-1.5" : "px-3 py-1.5 gap-2"} rounded-full backdrop-blur-md shadow-sm`
+            }`}
+        >
+            {!minimal && (
+                <div className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse shrink-0" />
+            )}
+            {minimal && (
+                <>
+                    <AnimatedFlag className="w-[44px] opacity-100" />
+                    <span aria-hidden className="mx-1.5 h-2 w-2 rounded-full bg-[#22c55e] animate-pulse" />
+                </>
+            )}
+            <TimeWidget showSeconds={!minimal} compact={minimal} />
+        </div>
+    );
 
     return (
         <DebugWrapper id={1} label="GlobalHeader (Глобальная Шапка)">
@@ -312,11 +472,17 @@ export function SmartHeader({
                     <div className="flex-1" />
 
                     {/* CENTER SECTION */}
-                    <DebugWrapper id={3} label="Center Section" className={`flex-1 flex justify-center items-start ${isMobileCompactTop ? "-mt-1" : "pt-1"}`}>
-                        <div className={`flex items-center leading-none ${isMobileCompactTop ? "gap-1.5" : "gap-2"}`}>
-                            <span className={`uppercase font-bold ${isMobileCompactTop ? "tracking-[0.14em] text-[9px]" : "tracking-[0.2em] text-[10px]"}`}>Tbilisi</span>
-                            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-[pulse_2s_ease-in-out_infinite]" />
-                            <TimeWidget />
+                    <DebugWrapper
+                        id={3}
+                        label="Center Section"
+                        className={
+                            mobileMinimalCenterTime
+                                ? "absolute left-[44%] top-1/2 z-[305] -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0"
+                                : `flex-1 flex justify-center items-start ${isMobileCompactTop ? "-mt-1" : "pt-1"}`
+                        }
+                    >
+                        <div className={mobileMinimalCenterTime ? "md:hidden" : ""}>
+                            {renderTimeWidget(mobileMinimalCenterTime)}
                         </div>
                     </DebugWrapper>
 
@@ -329,11 +495,11 @@ export function SmartHeader({
                 {/* --- V23 HEADER COMPONENT VIEW (Scrolled) --- */}
                 <div
                     style={{ height: `${headerCompactHeight}px` }}
-                    className={`w-full px-2 md:px-10 flex justify-between items-center transition-all duration-300 relative z-[300] ${isScrolled ? 'opacity-100 scale-100 delay-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
+                    className={`w-full px-4 md:px-8 xl:px-12 flex justify-between items-center gap-4 transition-all duration-300 relative z-[1001] ${isScrolled ? 'opacity-100 scale-100 delay-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
 
                     {/* LEFT: Branding — logo only */}
                     <DebugWrapper id={200} label="Agency Branding">
-                        <div className="flex items-center flex-shrink-0 mr-2 md:mr-0">
+                        <div className="flex items-center flex-shrink-0">
                             <AnimatePresence>
                                 {isLogoVisible && (
                                     <motion.div
@@ -351,21 +517,36 @@ export function SmartHeader({
                         </div>
                     </DebugWrapper>
 
+                    {mobileMinimalCenterTime && (
+                        <div className="pointer-events-none absolute left-[44%] top-1/2 z-[305] -translate-x-1/2 -translate-y-1/2 md:hidden">
+                            {renderTimeWidget(true)}
+                        </div>
+                    )}
+
                     {/* CENTER: Navigation */}
-                    <nav className="hidden md:flex items-center gap-4 lg:gap-8 absolute left-1/2 -translate-x-1/2 mt-2 z-[310]">
+                    <nav className="hidden lg:flex items-center justify-center flex-1 min-w-0 gap-3 lg:gap-4 xl:gap-7 mt-2 z-[310]">
+                        {showDesktopNavTime && (
+                            <div className="flex items-center gap-0 text-[11px] xl:text-xs font-bold uppercase tracking-wider text-white/70 whitespace-nowrap">
+                                <AnimatedFlag />
+                                <span aria-hidden className="mx-3 h-2.5 w-2.5 rounded-full bg-[#22c55e] animate-pulse" />
+                                <TimeWidget />
+                            </div>
+                        )}
                         <DebugWrapper id={201} label="Link: О нас">
-                            <Link href={aboutHref} className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">{copy.aboutLabel}</Link>
+                            <Link href="/about" className="text-[11px] xl:text-xs font-bold uppercase tracking-wider hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
+                                {copy.aboutLabel}
+                            </Link>
                         </DebugWrapper>
 
                         <DebugWrapper id={202} label="Dropdown: Индустрии">
                             <div className="relative h-full flex items-center py-4" onMouseEnter={() => setHoveredMenu("industries")} onMouseLeave={() => setHoveredMenu(null)}>
-                                <button className="flex items-center gap-2 text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
-                                    {copy.industriesLabel} <ChevronDown className="w-4 h-4" />
+                                <button className="flex items-center gap-1.5 text-[11px] xl:text-xs font-bold uppercase tracking-wider hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
+                                    {copy.industriesLabel} <ChevronDown className="w-3.5 h-3.5" />
                                 </button>
                                 <AnimatePresence>
                                     {hoveredMenu === "industries" && (
                                         <motion.div initial={{ opacity: 0, y: 10, x: "-50%" }} animate={{ opacity: 1, y: 0, x: "-50%" }} exit={{ opacity: 0, y: 10, x: "-50%" }} className="absolute top-[60px] left-1/2 w-[500px] bg-black/95 border border-white/20 p-6 z-[1100] grid grid-cols-2 gap-3 rounded-2xl backdrop-blur-xl shadow-2xl">
-                                            {copy.industryNavItems.map((item) => <Link key={item.label} href={item.href} className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors">{item.label}</Link>)}
+                                            {industryNavItems.map((item) => <Link key={item.label} href={item.href} className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors">{item.label}</Link>)}
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
@@ -374,13 +555,13 @@ export function SmartHeader({
 
                         <DebugWrapper id={203} label="Dropdown: Услуги">
                             <div className="relative h-full flex items-center py-4" onMouseEnter={() => setHoveredMenu("services")} onMouseLeave={() => setHoveredMenu(null)}>
-                                <button className="flex items-center gap-2 text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
-                                    {copy.servicesLabel} <ChevronDown className="w-4 h-4" />
+                                <button className="flex items-center gap-1.5 text-[11px] xl:text-xs font-bold uppercase tracking-wider hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
+                                    {copy.servicesLabel} <ChevronDown className="w-3.5 h-3.5" />
                                 </button>
                                 <AnimatePresence>
                                     {hoveredMenu === "services" && (
                                         <motion.div initial={{ opacity: 0, y: 10, x: "-50%" }} animate={{ opacity: 1, y: 0, x: "-50%" }} exit={{ opacity: 0, y: 10, x: "-50%" }} className="absolute top-[60px] left-1/2 w-[600px] bg-black/95 border border-white/20 p-6 z-[1100] grid grid-cols-3 gap-3 rounded-2xl backdrop-blur-xl shadow-2xl">
-                                            {copy.serviceNavItems.map((item) => <Link key={item.label} href={item.href} className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors">{item.label}</Link>)}
+                                            {serviceNavItems.map((item) => <Link key={item.label} href={item.href} className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wide transition-colors">{item.label}</Link>)}
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
@@ -391,19 +572,19 @@ export function SmartHeader({
                             .filter((link) => link.href !== "#services")
                             .map((link, index) => (
                             <DebugWrapper key={`${link.label}-${link.href}`} id={210 + index} label={`Link: ${link.label}`}>
-                                <Link href={link.href} className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
+                                <Link href={link.href} className="text-[11px] xl:text-xs font-bold uppercase tracking-wider hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">
                                     {link.label}
                                 </Link>
                             </DebugWrapper>
                         ))}
 
                         <DebugWrapper id={204} label="Link: AI Решения">
-                            <Link href="/ai-visualization-service" className="text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">{copy.aiSolutionsLabel}</Link>
+                            <Link href="/ai-visualization-service" className="text-[11px] xl:text-xs font-bold uppercase tracking-wider hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">{copy.aiSolutionsLabel}</Link>
                         </DebugWrapper>
                     </nav>
 
                     {/* RIGHT: Actions */}
-                    <div className={`flex items-center flex-shrink-0 relative z-[320] ${isMobileCompactTop ? "gap-2 mt-1" : "gap-2 md:gap-4 lg:gap-6 mt-2"}`}>
+                    <div className={`flex items-center flex-shrink-0 relative z-[320] gap-2 xl:gap-4 ${isMobileCompactTop ? "mt-1" : "mt-2"}`}>
                         {/* 1. Contact Dropdown (205) */}
                         <div className="hidden md:block">
                             <DebugWrapper id={205} label="Phone Connect">
@@ -427,7 +608,7 @@ export function SmartHeader({
                                                             <Phone className="w-4 h-4 text-[#D4AF37]" />
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <a href="tel:+995574619393" className="text-lg font-bold text-white hover:text-[#D4AF37] transition-colors tracking-wide">+995 574 619 393</a>
+                                                            <a href="tel:+995501103183" className="text-lg font-bold text-white hover:text-[#D4AF37] transition-colors tracking-wide">+995 501 103 183</a>
                                                         </div>
                                                     </div>
                                                     <div className="h-px w-full bg-white/10 my-1" />
@@ -461,37 +642,80 @@ export function SmartHeader({
 
                         {/* 2. Language Switcher (207) */}
                         <DebugWrapper id={207} label="Language Switcher">
-                            <div className="group relative">
-                                <button className={`flex items-center gap-1.5 bg-white/10 rounded-full border border-white/5 hover:bg-white/20 transition-colors font-bold text-white uppercase ${isMobileCompactTop ? "px-2.5 py-1 text-[9px]" : "px-3 py-1.5 text-[10px] md:text-xs"}`}>
-                                    <Globe className="w-3.5 h-3.5 text-[#D4AF37]" />
-                                    <span>{lang}</span>
-                                </button>
-                                <div className="absolute top-full right-0 mt-2 bg-black border border-white/10 hidden group-hover:flex flex-col rounded-xl overflow-hidden shadow-2xl backdrop-blur-xl z-[1200]">
-                                    {(["RU", "EN", "GE"] as HeaderLanguage[]).map((l) => {
-                                        const href = languageLinks?.[l] ?? languageLinks?.[l.toLowerCase() as HeaderLanguageAlias];
-                                        const className = "px-4 py-2 text-xs text-white hover:bg-[#D4AF37]/20 transition-colors text-left font-bold";
+                            <div
+                                className="relative"
+                                onMouseEnter={() => setIsLangOpen(true)}
+                                onMouseLeave={() => setIsLangOpen(false)}
+                            >
+                                {alternateLanguageHref ? (
+                                    <Link
+                                        href={alternateLanguageHref}
+                                        className={`flex items-center gap-1.5 bg-white/10 rounded-full border border-white/5 hover:bg-white/20 transition-colors font-bold text-white uppercase ${isMobileCompactTop ? "px-2.5 py-1 text-[9px]" : "px-3 py-1.5 text-[10px] md:text-xs"}`}
+                                    >
+                                        <Globe className="w-3.5 h-3.5 text-[#D4AF37]" />
+                                        <span>{visibleLanguageLabel}</span>
+                                    </Link>
+                                ) : (
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsLangOpen((v) => !v)}
+                                        className={`flex items-center gap-1.5 bg-white/10 rounded-full border border-white/5 hover:bg-white/20 transition-colors font-bold text-white uppercase ${isMobileCompactTop ? "px-2.5 py-1 text-[9px]" : "px-3 py-1.5 text-[10px] md:text-xs"}`}
+                                    >
+                                        <Globe className="w-3.5 h-3.5 text-[#D4AF37]" />
+                                        <span>{visibleLanguageLabel}</span>
+                                    </button>
+                                )}
+                                <AnimatePresence>
+                                    {isLangOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 6 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 6 }}
+                                            transition={{ duration: 0.15 }}
+                                            className="absolute top-full right-0 pt-2 z-[1200]"
+                                        >
+                                            <div className="flex flex-col rounded-xl overflow-hidden shadow-2xl backdrop-blur-xl bg-black border border-white/10">
+                                                {(["RU", "EN"] as HeaderLanguage[]).map((l) => {
+                                                    const isCurrent = l === routeLanguage;
+                                                    const href = l === "EN" ? computedEnHref : computedRuHref;
+                                                    const className = `px-4 py-2 text-xs transition-colors text-left font-bold ${
+                                                        isCurrent ? "text-[#D4AF37] bg-white/10" : "text-white hover:bg-[#D4AF37]/20"
+                                                    }`;
 
-                                        return href ? (
-                                            <Link key={l} href={href} onClick={() => setLang(l)} className={className}>
-                                                {l}
-                                            </Link>
-                                        ) : (
-                                            <button key={l} onClick={() => setLang(l)} className={className}>
-                                                {l}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
+                                                    return (
+                                                        <Link key={l} href={href} onClick={() => { setLang(l); setIsLangOpen(false); }} className={className}>
+                                                            {l} {isCurrent ? "✓" : ""}
+                                                        </Link>
+                                                    );
+                                                })}
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
                         </DebugWrapper>
 
                         {/* 3. CTA Buttons (206) - Shows different text for mobile/desktop */}
                         <DebugWrapper id={206} label="Button: Обсудить Задачу">
-                            <Link href={resolvedCtaHref} onClick={handleCtaClick} className={`flex items-center justify-center bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all whitespace-nowrap ${isMobileCompactTop ? "px-3 py-1 text-[8px]" : "px-4 py-1.5 md:px-6 md:py-2.5 text-[9px] md:text-[10px]"}`}>
+                            <Link
+                                href={resolvedCtaHref}
+                                onClick={handleCtaClick}
+                                className={`${showMobilePrimaryCta ? "flex" : "hidden"} ${showDesktopPrimaryCta ? "md:flex" : "md:hidden"} items-center justify-center bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all whitespace-nowrap ${isMobileCompactTop ? "px-3 py-1 text-[8px]" : "px-4 py-1.5 md:px-6 md:py-2.5 text-[9px] md:text-[10px]"}`}
+                            >
                                 <span className="md:hidden">{ctaLabel ?? copy.ctaMobile}</span>
                                 <span className="hidden md:inline">{ctaLabel ?? copy.ctaDesktop}</span>
                             </Link>
                         </DebugWrapper>
+
+                        {mobileQuickLink && (
+                            <a
+                                href={mobileQuickLink.href}
+                                onClick={(event) => handleAnchorClick(event, mobileQuickLink.href)}
+                                className="md:hidden flex items-center gap-1.5 bg-white/10 rounded-full border border-white/5 hover:bg-white/20 transition-colors font-bold text-white uppercase px-2.5 py-1 text-[9px]"
+                            >
+                                <span>{mobileQuickLink.label}</span>
+                            </a>
+                        )}
 
                         {/* 4. Menu Icon (Mobile Only) */}
                         <button className="md:hidden text-white ml-1" onClick={() => setIsMobileMenuOpen(true)}>
@@ -500,30 +724,24 @@ export function SmartHeader({
                     </div>
                 </div>
 
-                {shouldShowTickers && (
-                    <div className={`transition-all duration-300 border-t border-white/5 relative z-[120] ${isScrolled
-                        ? 'bg-zinc-950/90 backdrop-blur-md'
-                        : transparent
-                            ? 'bg-transparent border-transparent'
-                            : 'bg-zinc-950/40 backdrop-blur-sm'}`}>
+                {shouldShowTickers && hasTickerActivated && (
+                    <div
+                        style={stickyTickerUnderHeader ? { top: `${headerHeight}px` } : undefined}
+                        className={`border-y border-white/5 transition-[background-color,border-color] duration-300 ease-out ${stickyTickerUnderHeader ? "sticky left-0 right-0 z-[980]" : "relative z-[120]"} ${
+                            isScrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent backdrop-blur-[12px]"
+                        }`}>
                         {singleTickerMode ? (
                             <div className="block">
-                                <DebugWrapper id={208} label="Running Text Combined">
-                                    <InteractiveTicker items={[...copy.tickerLine1, ...copy.tickerLine2]} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
-                                </DebugWrapper>
+                                <InteractiveTicker items={combinedTickerItems} direction="left" speed={60} compact={isMobileCompactTop} />
                             </div>
                         ) : (
                             <>
                                 <div className="hidden md:block">
-                                    <DebugWrapper id={208} label="Running Text Line 1">
-                                        <InteractiveTicker items={copy.tickerLine1} direction="left" speed={60} baseId={2080} compact={isMobileCompactTop} />
-                                    </DebugWrapper>
+                                    <InteractiveTicker items={filteredTickerLine1} direction="left" speed={60} compact={isMobileCompactTop} />
                                 </div>
                                 <div className="hidden md:block">
                                     <div className="h-[1px] bg-white/5 w-full" />
-                                    <DebugWrapper id={209} label="Running Text Line 2">
-                                        <InteractiveTicker items={copy.tickerLine2} direction="right" speed={70} baseId={2090} compact={isMobileCompactTop} />
-                                    </DebugWrapper>
+                                    <InteractiveTicker items={filteredTickerLine2} direction="right" speed={70} compact={isMobileCompactTop} />
                                 </div>
                             </>
                         )}
@@ -536,107 +754,191 @@ export function SmartHeader({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute inset-0 z-[1300] bg-black/70 backdrop-blur-md md:hidden"
+                            transition={{ duration: 0.2 }}
+                            data-mobile-menu-open="true"
+                            className="fixed inset-0 z-[300] h-[100dvh] w-full bg-[#080808]/98 backdrop-blur-2xl flex flex-col justify-between p-6 overflow-y-auto md:hidden"
                         >
-                            <motion.div
-                                initial={{ y: -24, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                exit={{ y: -24, opacity: 0 }}
-                                className="mx-3 mt-3 rounded-[28px] border border-white/10 bg-[#0b0b0b]/95 shadow-2xl"
-                            >
-                                <div className="flex items-center justify-end border-b border-white/10 px-5 py-4">
-                                    <button type="button" className="rounded-full border border-white/10 p-2 text-white" onClick={() => setIsMobileMenuOpen(false)}>
-                                        <X className="h-4 w-4" />
-                                    </button>
-                                </div>
+                            {/* 1. ШАПКА МЕНЮ */}
+                            <div className="flex items-center justify-between pb-5 border-b border-white/10 shrink-0">
+                                <Link
+                                    href={routeLanguage === "EN" ? "/gazeta/en" : "/gazeta"}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="text-lg font-black uppercase tracking-wider text-white hover:text-[#FFD23F] transition-colors"
+                                >
+                                    BREUS MEDIA
+                                </Link>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    aria-label="Close menu"
+                                    className="h-10 w-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 active:scale-95 transition-all"
+                                >
+                                    <X className="h-5 w-5" />
+                                </button>
+                            </div>
 
-                                <div className="space-y-6 px-5 py-5">
+                            {/* 2. НАВИГАЦИЯ И ВСЕ 6 УСЛУГ */}
+                            <div className="py-6 flex-1 flex flex-col justify-center space-y-6">
+                                {/* Основные разделы */}
+                                <nav className="space-y-3">
+                                    <Link
+                                        href={routeLanguage === "EN" ? "/gazeta/en" : "/gazeta"}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="block text-lg font-bold text-white/90 hover:text-[#FFD23F] transition-colors"
+                                    >
+                                        {routeLanguage === "EN" ? "Home" : "Главная"}
+                                    </Link>
                                     <Link
                                         href="/about"
                                         onClick={() => setIsMobileMenuOpen(false)}
-                                        className="flex w-full items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/78 hover:border-[#D4AF37]/40 hover:text-white transition-colors"
+                                        className="block text-lg font-bold text-white/90 hover:text-[#FFD23F] transition-colors"
                                     >
-                                        {copy.aboutLabel}
+                                        {routeLanguage === "EN" ? "About Agency" : "О агентстве"}
                                     </Link>
-
-                                    <div>
-                                        <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">{copy.mobileServicesLabel}</p>
-                                        <div className="grid grid-cols-2 gap-3">
-                                            {copy.serviceNavItems.filter(item => item.label !== "Промо Видео" && item.label !== "Мероприятия").map((item) => (
-                                                <Link
-                                                    key={item.label}
-                                                    href={item.href}
-                                                    onClick={() => setIsMobileMenuOpen(false)}
-                                                    className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/78 transition-colors hover:border-[#D4AF37]/40 hover:text-white"
-                                                >
-                                                    {item.label}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {mobileSectionLinks.length > 0 && (
-                                        <div>
-                                            <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-white/45">{copy.mobileSectionsLabel}</p>
-                                            <div className="grid grid-cols-2 gap-3">
-                                                {mobileSectionLinks.map((link) => (
-                                                    <Link
-                                                        key={`${link.label}-${link.href}-mobile`}
-                                                        href={link.href}
-                                                        onClick={() => setIsMobileMenuOpen(false)}
-                                                        className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/78 transition-colors hover:border-[#D4AF37]/40 hover:text-white text-center"
-                                                    >
-                                                        {link.label}
-                                                    </Link>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-
-                                </div>
-                                <div className="border-t border-white/10 px-5 py-5 space-y-4">
                                     <Link
-                                        href="#contact"
+                                        href="/audit"
                                         onClick={() => setIsMobileMenuOpen(false)}
-                                        className="flex w-full items-center justify-center rounded-2xl bg-[#D4A017] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-black"
+                                        className="inline-flex items-center gap-2 text-lg font-bold text-[#FFD23F] hover:text-white transition-colors"
                                     >
-                                        {ctaLabel ?? copy.ctaDesktop}
+                                        <span>{routeLanguage === "EN" ? "Express Audit" : "Экспресс-аудит"}</span>
+                                        <span className="text-base">⚡</span>
                                     </Link>
-                                    <div className="flex items-center justify-center gap-4 pt-1">
-                                        <a
-                                            href="https://www.instagram.com/breusmedia"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            aria-label="Instagram"
-                                            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-[#D4A017]/50 hover:text-[#D4A017]"
+                                    <a
+                                        href="#faq"
+                                        onClick={(e) => handleAnchorClick(e, "#faq", true)}
+                                        className="block text-lg font-bold text-white/90 hover:text-[#FFD23F] transition-colors"
+                                    >
+                                        {routeLanguage === "EN" ? "FAQ" : "Вопрос-ответ"}
+                                    </a>
+                                    <a
+                                        href="#contact"
+                                        onClick={(e) => handleAnchorClick(e, "#contact", true)}
+                                        className="block text-lg font-bold text-white/90 hover:text-[#FFD23F] transition-colors"
+                                    >
+                                        {routeLanguage === "EN" ? "Contacts" : "Контакты"}
+                                    </a>
+                                </nav>
+
+                                {/* Раздел услуг (сетка 2×3) */}
+                                <div>
+                                    <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">
+                                        {routeLanguage === "EN" ? "Services" : "Услуги"}
+                                    </p>
+                                    <div className="grid grid-cols-2 gap-2.5">
+                                        <Link
+                                            href={routeLanguage === "EN" ? "/drone-service/en" : "/drone-service"}
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/90 hover:border-[#FFD23F]/50 hover:bg-white/[0.08] hover:text-[#FFD23F] transition-all text-center"
                                         >
-                                            <Instagram className="h-[16px] w-[16px]" />
+                                            {routeLanguage === "EN" ? "Aerial Filming" : "Аэросъёмка"}
+                                        </Link>
+                                        <Link
+                                            href={routeLanguage === "EN" ? "/360-tours-service/en" : "/360-tours-service"}
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/90 hover:border-[#FFD23F]/50 hover:bg-white/[0.08] hover:text-[#FFD23F] transition-all text-center"
+                                        >
+                                            {routeLanguage === "EN" ? "360° Tours" : "360° туры"}
+                                        </Link>
+                                        <Link
+                                            href={routeLanguage === "EN" ? "/reels-service/en" : "/reels-service"}
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/90 hover:border-[#FFD23F]/50 hover:bg-white/[0.08] hover:text-[#FFD23F] transition-all text-center"
+                                        >
+                                            {routeLanguage === "EN" ? "Video & Reels" : "Видео & Reels"}
+                                        </Link>
+                                        <Link
+                                            href={routeLanguage === "EN" ? "/ai-visualization-service/en" : "/ai-visualization-service"}
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/90 hover:border-[#FFD23F]/50 hover:bg-white/[0.08] hover:text-[#FFD23F] transition-all text-center"
+                                        >
+                                            {routeLanguage === "EN" ? "AI Visualization" : "AI-визуализация"}
+                                        </Link>
+                                        <a
+                                            href="#contact"
+                                            onClick={(e) => handleAnchorClick(e, "#contact", true)}
+                                            className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/90 hover:border-[#FFD23F]/50 hover:bg-white/[0.08] hover:text-[#FFD23F] transition-all text-center"
+                                        >
+                                            {routeLanguage === "EN" ? "Custom Websites" : "Сайты под ключ"}
                                         </a>
+                                        <a
+                                            href="#contact"
+                                            onClick={(e) => handleAnchorClick(e, "#contact", true)}
+                                            className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/90 hover:border-[#FFD23F]/50 hover:bg-white/[0.08] hover:text-[#FFD23F] transition-all text-center"
+                                        >
+                                            {routeLanguage === "EN" ? "Google Maps & SEO" : "Google Maps & SEO"}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* 3. ПОДВАЛ МЕНЮ */}
+                            <div className="pt-4 border-t border-white/10 space-y-4 shrink-0">
+                                {/* Переключатель языков */}
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xs text-white/50 font-medium">
+                                        {routeLanguage === "EN" ? "Language" : "Язык"}
+                                    </span>
+                                    <div className="flex items-center gap-1.5 p-1 rounded-full bg-white/[0.06] border border-white/10">
+                                        {(["RU", "EN"] as HeaderLanguage[]).map((l) => {
+                                            const isCurrent = l === routeLanguage;
+                                            const href = l === "EN" ? computedEnHref : computedRuHref;
+                                            return (
+                                                <Link
+                                                    key={l}
+                                                    href={href}
+                                                    onClick={() => {
+                                                        setLang(l);
+                                                        setIsMobileMenuOpen(false);
+                                                    }}
+                                                    className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
+                                                        isCurrent
+                                                            ? "bg-[#FFD23F] text-black shadow-sm"
+                                                            : "text-white/70 hover:text-white"
+                                                    }`}
+                                                >
+                                                    {l}
+                                                </Link>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+
+                                {/* Крупная кнопка WhatsApp */}
+                                <a
+                                    href="https://wa.me/995501103183?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D1%83."
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-4 py-3.5 text-sm font-bold text-black hover:bg-[#20bd5a] transition-colors shadow-[0_4px_20px_rgba(37,211,102,0.3)]"
+                                >
+                                    <span>{routeLanguage === "EN" ? "Discuss project in WhatsApp" : "Обсудить задачу в WhatsApp"}</span>
+                                    <span className="text-base">🟢</span>
+                                </a>
+
+                                {/* Строка контактов и соцсети */}
+                                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/60">
+                                    <span>{routeLanguage === "EN" ? "Tbilisi, Georgia · +995 501 103 183" : "Тбилиси, Грузия · +995 501 103 183"}</span>
+                                    <div className="flex items-center gap-3">
                                         <a
                                             href="https://t.me/breusmedia"
                                             target="_blank"
                                             rel="noreferrer"
                                             aria-label="Telegram"
-                                            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-[#229ED9] transition-colors hover:border-[#229ED9]/60 hover:text-[#229ED9]"
+                                            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-[#229ED9] hover:bg-white/20 transition-colors"
                                         >
-                                            <svg viewBox="0 0 24 24" className="h-[16px] w-[16px] fill-current" aria-hidden="true">
-                                                <path d="M21.94 4.66c.24-.95-.34-1.33-1.1-1.05L2.66 10.54c-.9.35-.88.86-.16 1.08l4.66 1.45 1.8 5.6c.22.66.11.93.81.93.54 0 .78-.24 1.08-.53l2.6-2.53 5.4 3.98c1 .55 1.72.27 1.97-.93l3.12-14.93zM8.95 12.8l10.86-6.86c.54-.34 1.03-.15.63.2L11.2 14.5l-.36 3.8-1.89-5.5z" />
-                                            </svg>
+                                            <Send className="h-4 w-4 -rotate-12 translate-x-0.5" />
                                         </a>
                                         <a
-                                            href="https://wa.me/995574619393"
+                                            href="https://www.instagram.com/breusmedia"
                                             target="_blank"
                                             rel="noreferrer"
-                                            aria-label="WhatsApp"
-                                            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-[#25D366] transition-colors hover:border-[#25D366]/60 hover:text-[#25D366]"
+                                            aria-label="Instagram"
+                                            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
                                         >
-                                            <svg viewBox="0 0 24 24" className="h-[16px] w-[16px] fill-current" aria-hidden="true">
-                                                <path d="M12 2a10 10 0 0 0-8.79 14.77L2 22l5.39-1.18A10 10 0 1 0 12 2zm0 18.17a8.11 8.11 0 0 1-4.13-1.13l-.3-.18-3.19.7.68-3.11-.2-.32A8.17 8.17 0 1 1 12 20.17zm4.48-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.39-.13-.56.13-.16.25-.64.81-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.25-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.36-.77-1.87-.2-.48-.41-.41-.56-.42h-.48c-.16 0-.43.06-.66.31s-.86.84-.86 2.04.88 2.35 1.01 2.51c.12.16 1.72 2.62 4.16 3.67.58.25 1.03.4 1.38.51.58.18 1.1.15 1.52.09.46-.07 1.48-.61 1.69-1.2.21-.59.21-1.09.15-1.2-.06-.11-.23-.18-.48-.31z" />
-                                            </svg>
+                                            <Instagram className="h-4 w-4" />
                                         </a>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </div>
                         </motion.div>
                     )}
                 </AnimatePresence>

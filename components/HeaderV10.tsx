@@ -149,7 +149,7 @@ export default function HeaderV10() {
                                         style={{ originY: 0 }}
                                         className="absolute top-0 right-0 pt-12 bg-black border border-white/20 rounded-xl p-4 w-56 shadow-2xl z-[70] flex flex-col gap-3"
                                     >
-                                        <a href="tel:+995555000000" className="flex items-center gap-3 text-sm font-bold hover:text-brand transition-colors text-white border-b border-white/10 pb-2">
+                                        <a href="tel:+995501103183" className="flex items-center gap-3 text-sm font-bold hover:text-brand transition-colors text-white border-b border-white/10 pb-2">
                                             <Phone className="w-4 h-4" />
                                             <span className="text-xs tracking-widest">+995 555...</span>
                                         </a>
@@ -263,7 +263,7 @@ export default function HeaderV10() {
                                         <Phone className="w-5 h-5" /> Контакты
                                     </div>
                                     <div className="flex flex-col gap-3">
-                                        <a href="tel:+995555000000" className="text-sm text-gray-300 hover:text-white">+995 555 000 000</a>
+                                        <a href="tel:+995501103183" className="text-sm text-gray-300 hover:text-white">+995 501 103 183</a>
                                         <a href="mailto:hello@breus.media" className="text-sm text-gray-300 hover:text-white">hello@breus.media</a>
                                         <div className="flex gap-4 mt-2">
                                             <MessageCircle className="w-5 h-5 text-green-500" />

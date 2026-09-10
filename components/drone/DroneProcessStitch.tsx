@@ -29,10 +29,21 @@ const steps = [
 export const DroneProcessStitch = () => {
     return (
         <DebugWrapper id={10500} label="Drone Process Section">
-            <section className="py-4 md:py-24 bg-[#0D0D0D]">
+            <section className="py-8 md:py-20 bg-[#0D0D0D]">
+                <div className="container mx-auto px-6 mb-6 md:mb-12">
+                    <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-[#D4A017] font-semibold mb-1">
+                        От заявки до готовых файлов
+                    </p>
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                        Процесс аэросъёмки
+                    </h2>
+                    <p className="max-w-2xl text-xs md:text-sm text-white/60 leading-relaxed">
+                        Организуем съёмку дроном в Тбилиси и по всей Грузии за 4 понятных шага: бриф, проверка бесполётных зон, съёмка на объекте и передача 4K-материалов от 24 часов.
+                    </p>
+                </div>
+
                 <div className="container mx-auto px-6">
                     <div className="md:hidden px-2 py-2">
-                        <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-white/35">От заявки до готовых файлов</p>
                         <div className="flex flex-col">
                             {steps.map((step, idx) => (
                                 <React.Fragment key={idx}>
@@ -50,7 +61,6 @@ export const DroneProcessStitch = () => {
                     </div>
 
                     <div className="hidden md:block">
-                        <p className="mb-8 text-[10px] uppercase tracking-[0.18em] text-white/35">От заявки до готовых файлов</p>
                         <div className="md:grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
                             {steps.map((step, idx) => (
                                 <DebugWrapper key={idx} id={10510 + idx} label={`Process Step ${idx + 1}: ${step.title}`}>

@@ -141,7 +141,7 @@ export default function HeaderV19() {
                                                     <Phone className="w-4 h-4 text-brand" />
                                                 </div>
                                                 <div className="flex flex-col">
-                                                    <a href="tel:+995555000000" className="text-lg font-bold text-white hover:text-brand transition-colors tracking-wide">+995 555 00 00 00</a>
+                                                    <a href="tel:+995501103183" className="text-lg font-bold text-white hover:text-brand transition-colors tracking-wide">+995 501 10 31 83</a>
                                                     <span className="text-[10px] uppercase font-bold text-gray-500 tracking-widest">Грузинский / English</span>
                                                 </div>
                                             </div>

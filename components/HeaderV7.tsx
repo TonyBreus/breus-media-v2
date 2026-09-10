@@ -26,7 +26,7 @@ export default function HeaderV7() {
                             <Mail className="w-4 h-4 text-brand" /> hello@breus.media
                         </a>
                         <span className="flex items-center gap-2">
-                            <Phone className="w-4 h-4 text-brand" /> +995 555 000 000
+                            <Phone className="w-4 h-4 text-brand" /> +995 501 103 183
                         </span>
                     </div>
 

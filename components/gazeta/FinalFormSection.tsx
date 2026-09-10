@@ -13,11 +13,31 @@ export function FinalFormSection() {
     const [contact, setContact] = useState("");
     const [niche, setNiche] = useState("");
     const [task, setTask] = useState("");
+    const [submitted, setSubmitted] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const isMobileLandscape = useMobileLandscape();
     const isMobilePortrait = useMobilePortrait();
     const stickyTopPx = isMobileLandscape ? 84 : isMobilePortrait ? 104 : 160;
     const stickyHeight = `calc(100vh - ${stickyTopPx}px)`;
+
+    React.useEffect(() => {
+        const handleSelectService = (e: Event) => {
+            const customEvent = e as CustomEvent<{ serviceTitle?: string }>;
+            const serviceTitle = customEvent.detail?.serviceTitle;
+            if (!serviceTitle) return;
+            setTask((prev) => (prev ? `${prev}, ${serviceTitle}` : `Здравствуйте! Хочу обсудить: ${serviceTitle}`));
+        };
+
+        const globalStorageKey = 'breus_contact_prefill_service';
+        const storedGlobalService = sessionStorage.getItem(globalStorageKey);
+        if (storedGlobalService) {
+            setTask(`Здравствуйте! Хочу обсудить: ${storedGlobalService}`);
+            sessionStorage.removeItem(globalStorageKey);
+        }
+
+        window.addEventListener('breus-select-service', handleSelectService);
+        return () => window.removeEventListener('breus-select-service', handleSelectService);
+    }, []);
 
     const toggleService = (s: string) => {
         setServices((prev) =>
@@ -32,11 +52,12 @@ export function FinalFormSection() {
         if (niche) parts.push(`Ниша: ${niche}.`);
         if (task) parts.push(`Задача: ${task}`);
         const message = parts.length > 0 ? parts.join(" ") : "Привет! Хочу обсудить проект.";
-        return `https://wa.me/995574619393?text=${encodeURIComponent(message)}`;
+        return `https://wa.me/995501103183?text=${encodeURIComponent(message)}`;
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setSubmitted(true);
         if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
             (window as any).gtag("event", "form_submit_attempt");
         }
@@ -176,10 +197,17 @@ export function FinalFormSection() {
                                 </div>
                             </DebugWrapper>
 
+                            {submitted && (
+                                <div className="rounded-xl border border-[#D4AF37]/40 bg-[#D4AF37]/10 p-4 text-center">
+                                    <p className="text-sm font-bold text-white">✅ Запрос сформирован!</p>
+                                    <p className="text-xs text-white/70 mt-1">Чат в WhatsApp открыт с вашими параметрами. Если окно не открылось автоматически, нажмите кнопку WhatsApp ниже.</p>
+                                </div>
+                            )}
+
                             <DebugWrapper id={47} label="Submit Actions">
                                 <div className="flex flex-col sm:flex-row gap-4 pt-6">
                                     <a
-                                        href="https://wa.me/995574619393"
+                                        href={buildWhatsAppUrl()}
                                         target="_blank"
                                         rel="noreferrer"
                                         onClick={() => { if (typeof window !== "undefined" && typeof (window as any).gtag === "function") { (window as any).gtag("event", "whatsapp_click"); } }}

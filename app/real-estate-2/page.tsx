@@ -27,6 +27,7 @@ import {
     ScanLine,
     Zap,
 } from "lucide-react";
+import { DroneFooterStitch } from "@/components/drone/DroneFooterStitch";
 
 /* ─────────────────────── helpers ─────────────────────── */
 const fadeUp = {
@@ -588,13 +589,13 @@ function ProcessBlock() {
    БЛОК 6: ЧТО ВЫ ПОЛУЧАЕТЕ — Deliverables
    ═══════════════════════════════════════════════════════ */
 const deliverables = [
-    "Дрон-съёмка объекта (5-7 мин raw + монтаж 60-90 сек)",
+    "Дрон-съёмка объекта (5-7 мин оригинального 4K видео + монтаж 60-90 сек)",
     "360° Virtual Tour (3-5 помещений: холл, типовая квартира, территория)",
     "AI Virtual Staging (3 варианта: классика / модерн / минимализм)",
     "Фото high-res для сайта и рекламы (20-30 кадров)",
     "Вертикальные Reels для Instagram (3-5 роликов)",
     "Текстовые описания для постов (SEO-оптимизированные)",
-    "Исходники (raw файлы) + права на коммерческое использование",
+    "Оригинальные 4K видеоматериалы + права на коммерческое использование",
 ];
 
 function DeliverablesBlock() {
@@ -938,15 +939,8 @@ export default function RealEstate2Page() {
             <DeliverablesBlock />
             <AIBlock />
             <CTAFormBlock />
-
-            {/* Minimal Footer */}
-            <footer className="py-10 border-t border-white/5">
-                <div className="container mx-auto px-6 text-center">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-gray-700 font-bold">
-                        © 2026 Breus Media · Real Estate Division
-                    </span>
-                </div>
-            </footer>
+            <DroneFooterStitch />
+            
         </main>
     );
 }

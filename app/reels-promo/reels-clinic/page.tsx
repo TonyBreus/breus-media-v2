@@ -51,9 +51,9 @@ const CANONICAL_URL = 'https://breus.media/reels-promo/reels-clinic';
 const PAGE_TITLE = 'Reels для клиники Тбилиси — контент для Instagram от 200 ₾ | Breus Media';
 const PAGE_DESCRIPTION =
     'Профессиональные Reels для клиник и врачей в Тбилиси. Контент для Instagram и Facebook, который работает на запись пациентов. Пакеты от 200 ₾, пакет на месяц от 800 ₾.';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_RAW = '+995574619393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_RAW = '+995501103183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 
 const REEL_EXAMPLE_EMBED = 'https://www.tiktok.com/embed/v2/6718335390845095173';
 const REEL_EXAMPLE_URL = 'https://www.tiktok.com/@scout2015/video/6718335390845095173';

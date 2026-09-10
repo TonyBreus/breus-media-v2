@@ -10,10 +10,20 @@ import { useMobilePortrait } from "@/hooks/useMobilePortrait";
 type TickerItemType = string | { text: string; link: string };
 
 const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; debugId?: number; compact?: boolean }) => {
-    const { setHoveredService } = useHeroStore();
+    const { setHoveredService, dismissHoverPreview } = useHeroStore();
     const isObj = typeof item === 'object';
     const text = isObj ? item.text : item;
     const shouldUseHoverPreview = text !== "360° Туры";
+    const clearHoverPreview = () => {
+        if (shouldUseHoverPreview) {
+            setHoveredService(null);
+        }
+    };
+    const dismissPreview = () => {
+        if (shouldUseHoverPreview) {
+            dismissHoverPreview();
+        }
+    };
 
     const content = (
         <DebugWrapper id={debugId ?? 0} label={text} className="inline-flex items-center h-full shrink-0">
@@ -23,11 +33,8 @@ const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; 
                         setHoveredService(text);
                     }
                 }}
-                onMouseLeave={() => {
-                    if (shouldUseHoverPreview) {
-                        setHoveredService(null);
-                    }
-                }}
+                onMouseLeave={clearHoverPreview}
+                onBlur={clearHoverPreview}
                 className={`inline-flex items-center leading-none shrink-0 cursor-pointer font-bold uppercase text-[#D4AF37]/70 hover:text-white transition-colors whitespace-nowrap ${compact
                     ? "px-3 text-[15px] tracking-[0.12em]"
                     : "px-6 md:px-10 text-sm md:text-base tracking-widest"}`}
@@ -37,7 +44,16 @@ const TickerItem = ({ item, debugId, compact = false }: { item: TickerItemType; 
         </DebugWrapper>
     );
 
-    return isObj ? <Link href={item.link} className="inline-flex items-center h-full shrink-0">{content}</Link> : content;
+    return isObj ? (
+        <Link
+            href={item.link}
+            className="inline-flex items-center h-full shrink-0"
+            onPointerDown={dismissPreview}
+            onClick={dismissPreview}
+        >
+            {content}
+        </Link>
+    ) : content;
 };
 
 const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId, compact = false }: { items: TickerItemType[], direction?: "left" | "right", speed?: number, baseId?: number, compact?: boolean }) => {
@@ -64,11 +80,27 @@ const InteractiveTicker = ({ items, direction = "left", speed = 40, baseId, comp
 
 import { tickerDataMapping } from "@/constants/tickerData";
 
-export function MarqueeSection() {
-    const { hoveredService } = useHeroStore();
+export function MarqueeSection({ items }: { items?: TickerItemType[] }) {
+    const { hoveredService, dismissHoverPreview } = useHeroStore();
     const isMobileLandscape = useMobileLandscape();
     const isMobilePortrait = useMobilePortrait();
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
+    const closeHoverPreview = React.useCallback(() => dismissHoverPreview(), [dismissHoverPreview]);
+
+    React.useEffect(() => {
+        if (!hoveredService) {
+            return;
+        }
+
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                closeHoverPreview();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [closeHoverPreview, hoveredService]);
 
     // Case-insensitive lookup for ticker details
     const tickerDetail = hoveredService ? (
@@ -77,7 +109,7 @@ export function MarqueeSection() {
             : null
     ) : null;
 
-    const line2 = [
+    const defaultLine = [
         { text: "НЕДВИЖИМОСТЬ", link: "/real-estate-service" },
         { text: "ОТЕЛИ", link: "/hotels-service" },
         "РЕСТОРАНЫ", "ТУРИЗМ", "КЛИНИКИ", "IT",
@@ -86,6 +118,7 @@ export function MarqueeSection() {
         { text: "Reels", link: "/reels-service" },
         { text: "AI Content", link: "/ai-visualization-service" },
     ];
+    const line2 = items?.length ? items : defaultLine;
 
     const { scrollY } = useScroll();
     const revealEndPx = 420;
@@ -108,14 +141,20 @@ export function MarqueeSection() {
                             transition={{ duration: 0.3 }}
                             className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none"
                         >
-                            <div className="absolute inset-0 bg-black/80 backdrop-blur-md transition-all pointer-events-auto" />
+                            <button
+                                type="button"
+                                aria-label="Закрыть preview"
+                                onPointerDown={closeHoverPreview}
+                                onClick={closeHoverPreview}
+                                className="absolute inset-0 bg-black/80 backdrop-blur-md transition-all pointer-events-auto"
+                            />
 
                             <motion.div
                                 initial={{ scale: 0.9, y: 30, opacity: 0 }}
                                 animate={{ scale: 1, y: 0, opacity: 1 }}
                                 exit={{ scale: 0.95, y: -20, opacity: 0 }}
                                 transition={{ type: "spring", damping: 25, stiffness: 120 }}
-                                className="relative z-10 text-center max-w-4xl px-6"
+                                className="relative z-10 text-center max-w-4xl px-6 pointer-events-none"
                             >
                                 {tickerDetail ? (
                                     <>

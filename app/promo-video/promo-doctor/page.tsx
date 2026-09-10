@@ -41,9 +41,9 @@ type GlossaryItem = {
 };
 
 const CANONICAL_URL = 'https://breus.media/promo-video/promo-doctor';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_HREF = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_HREF = 'https://wa.me/995501103183';
 const VIDEO_EMBED_URL = 'https://www.youtube.com/embed/M7lc1UVf-VE';
 const VIDEO_PAGE_URL = 'https://www.youtube.com/watch?v=M7lc1UVf-VE';
 const VIDEO_THUMBNAIL_URL = 'https://i.ytimg.com/vi/M7lc1UVf-VE/maxresdefault.jpg';
@@ -1065,7 +1065,7 @@ export default function PromoDoctorPage() {
             </section>
 
             <MidCta
-                text="Снимаем в вашем кабинете в любой день. Первый разговор — 15 минут по телефону или в WhatsApp. +995 574 619 393"
+                text="Снимаем в вашем кабинете в любой день. Первый разговор — 15 минут по телефону или в WhatsApp. +995 501 103 183"
                 buttonLabel="Записаться на съёмку видеовизитки"
                 href={WHATSAPP_HREF}
                 bgColor="#0D0D0D"

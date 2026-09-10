@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
@@ -5,15 +6,16 @@ import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 import { FaqSection } from '@/components/shared/FaqSection';
 import { ProcessNote } from '@/components/shared/ProcessNote';
-import { DronePageProgress } from '@/components/drone-restaurants/DronePageProgress';
-import { DroneStickyCta } from '@/components/drone-restaurants/DroneStickyCta';
-import { MobileBottomBar } from '@/components/drone-restaurants/MobileBottomBar';
-import { ScrollArrow } from '@/components/drone-restaurants/ScrollArrow';
-import { HeroSlideshow } from '@/components/drone-restaurants/HeroSlideshow';
-import { FormatExamplesSlideshow } from '@/components/drone-restaurants/FormatExamplesSlideshow';
-import formatExampleOne from '@/services-images/drone-restaurants/final/4.png';
-import formatExampleTwo from '@/services-images/drone-restaurants/final/2.png';
-import formatExampleThree from '@/services-images/drone-restaurants/final/3.png';
+import { DronePageProgress } from '@/components/drone-real-estate/DronePageProgress';
+import { DroneStickyCta } from '@/components/drone-real-estate/DroneStickyCta';
+import { ChevronDown, MessageCircle } from 'lucide-react';
+import { PackageCta } from '@/components/drone-hotels-tourism/PackageCta';
+import { RealEstateHeroSlideshow } from '@/components/drone-real-estate/RealEstateHeroSlideshow';
+import { RealEstateFormatSlideshow } from '@/components/drone-real-estate/RealEstateFormatSlideshow';
+import { RealEstateRoiCalculator } from '@/components/real-estate-service/RealEstateRoiCalculator';
+import formatExampleOne from '@/services-images/drone-real-estate/final/1.png';
+import formatExampleTwo from '@/services-images/drone-facade/final/2.png';
+import formatExampleThree from '@/services-images/drone-facade/final/1.png';
 
 type FaqItem = {
     question: string;
@@ -71,11 +73,6 @@ type DeliverableGroup = {
     items: string[];
 };
 
-type ShortQa = {
-    question: string;
-    answer: string;
-};
-
 const audienceCards: AudienceCard[] = [
     {
         title: 'Риелторам и агентствам',
@@ -93,32 +90,25 @@ const audienceCards: AudienceCard[] = [
 
 const statsCards: StatCard[] = [
     {
-        stat: 'На 31% быстрее',
-        label: 'закрываются сделки с виртуальными турами',
-        description: 'Листинги с интерактивным 3D-контентом уходят на треть быстрее обычных — и в среднем на 9% дороже.',
-        source: 'Redfin / Matterport',
-        sourceUrl: 'https://matterport.com/real-estate',
+        stat: '+68%',
+        label: 'К скорости продажи объекта',
+        description: 'Объекты с профессиональным видеоконтентом продаются на 68% быстрее, чем листинги только со статическими фотографиями.',
+        source: 'MLS / National Association of Realtors',
+        sourceUrl: 'https://www.nar.realtor/research-and-statistics',
     },
     {
-        stat: 'В 2 раза',
-        label: 'больше целевого интереса на картах',
-        description: 'Карточки объектов и компаний в Google с интегрированным визуальным туром получают вдвое больше звонков и маршрутов.',
-        source: 'Google Business / Street View',
-        sourceUrl: 'https://www.google.com/streetview/business/',
+        stat: '+94%',
+        label: 'Просмотров карточки объекта',
+        description: 'Карточки с аэросъёмкой и видео района привлекают почти вдвое больше просмотров, чем стандартные фото объявления.',
+        source: 'MLS Statistics Report',
+        sourceUrl: 'https://www.nar.realtor/research-and-statistics/research-reports',
     },
     {
-        stat: '+300%',
-        label: 'времени на странице объекта',
-        description: 'Пользователи проводят в 3–10 раз больше времени на странице ЖК или квартиры, где есть интерактивный визуальный контент.',
-        source: 'Matterport Industry Report',
-        sourceUrl: 'https://matterport.com/blog/what-is-a-3d-virtual-tour',
-    },
-    {
-        stat: '−40%',
-        label: 'снижение показателя отказов',
-        description: '360°- и видеоконтент резко снижает bounce rate на сайтах застройщиков — пользователь сразу вовлекается в интерфейс.',
-        source: 'ScienceDirect (Elsevier)',
-        sourceUrl: 'https://www.sciencedirect.com/search?qs=virtual%20tour%20real%20estate',
+        stat: '83%',
+        label: 'Продавцов выбирают агентов с дроном',
+        description: '83% продавцов недвижимости предпочитают агентов, использующих съёмку с дрона — аэровизуал стал стандартом рынка.',
+        source: 'National Association of Realtors (NAR)',
+        sourceUrl: 'https://www.nar.realtor/research-and-statistics/research-reports/real-estate-in-a-digital-age',
     },
 ];
 
@@ -170,39 +160,12 @@ const deliverableGroups: DeliverableGroup[] = [
 ];
 
 const formatExampleCards = [
-    { image: formatExampleOne, alt: 'Аэросъёмка ЖК в Тбилиси — дрон показывает фасад и территорию комплекса' },
-    { image: formatExampleTwo, alt: 'FPV-пролёт по типовому этажу квартиры — съёмка дроном внутри' },
-    { image: formatExampleThree, alt: 'Аэросъёмка недвижимости в Тбилиси — кадр с дрона для объявления и презентации' },
+    { image: formatExampleOne, alt: 'Аэросъёмка жилого комплекса и благоустройства с высоты в Тбилиси' },
+    { image: formatExampleTwo, alt: 'Аэросъёмка архитектуры и фасадных решений современного здания' },
+    { image: formatExampleThree, alt: 'Панорамный ракурс территории ЖК и подъездных дорог с дрона' },
 ];
 
 const formatExampleSlides = [formatExampleOne, formatExampleTwo, formatExampleThree];
-
-const whyUsCards: CardItem[] = [
-    {
-        title: 'Снимаем под решение о покупке',
-        text: 'Решение смотреть объект или пролистывать дальше принимается за несколько секунд. Мы снимаем не ради красивого пролёта, а чтобы покупатель понял: где объект, какой вид, что рядом — и записался на показ.',
-    },
-    {
-        title: 'Аэро + FPV за один визит',
-        text: 'Плавные кадры снаружи с воздуха + пролёт компактным дроном Avata 2 внутри по лобби, типовому этажу или квартире. Один выезд закрывает оба слоя — не нужно согласовывать две съёмки.',
-    },
-    {
-        title: 'Форматы под все площадки сразу',
-        text: 'Из одной съёмки — вертикальные Reels, горизонтальные ролики для сайта и MyHome.ge, статичные фото для карточки в Google Maps и инвест-презентации. Один съёмочный день — все каналы.',
-    },
-    {
-        title: 'Понимаем разрешения в Тбилиси',
-        text: 'Историческая застройка (Мтацминда, Сололаки, Авлабари), зоны возле аэропорта и правительственных объектов — знаем, где можно летать и какие согласования нужны заранее. Не теряем время на сюрпризы.',
-    },
-    {
-        title: 'Контент под удалённого покупателя',
-        text: 'Снимаем так, чтобы инвестор из ЕС, Израиля или Дубая мог принять решение по видео. Акцент на район, подходы, вид из окон — на то, что человек хочет увидеть до прилёта.',
-    },
-    {
-        title: 'Материал работает больше одного сезона',
-        text: 'Снимаем без привязки к конкретной рекламной кампании или сезонному оформлению — кадры актуальны минимум год и продолжают работать на следующих очередях ЖК или перепродаже.',
-    },
-];
 
 const processSteps: ProcessStep[] = [
     {
@@ -238,9 +201,9 @@ const pricingCards: PricingPackage[] = [
         price: '250 ₾',
         subtitle: 'Аэросъёмка дроном с высоты',
         items: [
-            'Видео в 4K + фото в высоком разрешении — готовы к использованию',
-            '10+ фотографий с разных ракурсов',
-            'Около 1,5 часов на объекте — от подготовки до финального дубля',
+            'Все оригинальные 4K видеофайлы (20–30 мин материала со всех ракурсов)',
+            '10+ фотографий высокого разрешения',
+            'Около 1,5 часов на объекте',
             'Передача файлов — от 24 часов',
         ],
         note: 'Подходит, если вы сами работаете с визуалом и монтажом — получаете материал и используете где нужно.',
@@ -250,9 +213,9 @@ const pricingCards: PricingPackage[] = [
         price: '350 ₾',
         subtitle: 'Компактный дрон, пролёт камерой по объекту',
         items: [
-            'Видео в 4K — готово к использованию',
-            'Несколько заходов — подбираем оптимальный маршрут по квартире, этажу или лобби',
-            'Около 1,5 часов на объекте — от подготовки до финального дубля',
+            'Полный комплект FPV-видеоматериалов в 4K (интерьеры в движении)',
+            'Несколько заходов — оптимальный маршрут',
+            'Около 1,5 часов на объекте',
             'Передача файлов — от 24 часов',
         ],
         note: 'FPV — это съёмка в движении через пространство: компактный дрон пролетает через помещение, зритель видит интерьер изнутри, в движении. Маршрут согласуем до выезда.',
@@ -262,8 +225,8 @@ const pricingCards: PricingPackage[] = [
         price: '500 ₾',
         subtitle: 'Съёмка с воздуха + пролёт внутри — территория, лобби, квартира — за один визит',
         items: [
-            'Аэровидео и FPV-пролёт в 4K',
-            '10+ фотографий в высоком разрешении с разных ракурсов',
+            'Полный массив 4K видеоматериалов с обоих дронов (снаружи + внутри)',
+            '15+ фотографий высокого разрешения',
             'Около 2,5 часов на объекте — от подготовки до финального дубля',
             'Передача файлов — от 24 часов',
         ],
@@ -275,38 +238,19 @@ const pricingCards: PricingPackage[] = [
         price: 'от 900 ₾',
         subtitle: 'Съёмка с воздуха + пролёт внутри + монтаж и обработка фото',
         items: [
-            'Продуманный маршрут съёмки',
-            'До 3 минут смонтированного видео — разбитого на несколько роликов под объявления, сайт, Reels, Stories и TikTok',
-            '20+ обработанных фотографий',
-            'Видео под карточку в Google Maps',
-            'Передача материала — от 48 часов (монтаж включён)',
+            'Полный комплект оригиналов 4K',
+            'До 3 минут смонтированного видео (основной ролик + вертикальные Reels)',
+            '20+ обработанных фото',
+            '360° панорама с воздуха включена',
+            'Видео для Google Maps',
         ],
     },
 ];
 
 const addonPricing: string[] = [
-    'Монтаж Reels до 30 сек (музыка + субтитры): +150 ₾',
-    'Монтаж ролика 30–60 сек для сайта или объявления: +150 ₾',
+    'Вертикальный Reels / Shorts до 60 сек (музыка + субтитры): +150 ₾',
+    'Горизонтальный видео-обзор для сайта и объявлений (16:9, до 60 сек): +150 ₾',
     '360° панорама с воздуха: +80 ₾',
-];
-
-const shortQa: ShortQa[] = [
-    {
-        question: 'Сколько стоит аэросъёмка квартиры или ЖК в Тбилиси?',
-        answer: 'От 250 ₾ за съёмку дроном снаружи до 900 ₾ за полный пакет с монтажом, нарезкой для соцсетей и обработкой фотографий.',
-    },
-    {
-        question: 'Можно ли летать дроном в центре Тбилиси?',
-        answer: 'В ряде зон — да, в ряде — только после согласования. Мы проверяем допустимость полёта до выезда: исторический центр, зоны возле аэропорта и правительственных объектов требуют отдельной подготовки.',
-    },
-    {
-        question: 'Как быстро приходят файлы после съёмки?',
-        answer: 'Исходные файлы — от 24 часов. Пакет с монтажом — от 48 часов.',
-    },
-    {
-        question: 'Подходит ли съёмка для продажи инвестору из другой страны?',
-        answer: 'Да, это один из основных сценариев. Аэровидео и FPV-пролёт закрывают первичный просмотр удалённо, инвестор принимает решение по материалам без перелёта.',
-    },
 ];
 
 const relatedServices: RelatedService[] = [
@@ -316,19 +260,9 @@ const relatedServices: RelatedService[] = [
         text: 'Интерактивный тур по квартире или ЖК — покупатель ходит по объекту сам, на сайте или в объявлении.',
     },
     {
-        title: 'Мониторинг стройки и аэроотчёты',
-        href: '/drone-services/drone-construction',
-        text: 'Регулярный облёт ЖК с одинаковых точек — отчёты для инвесторов, банков и собственников на каждом этапе.',
-    },
-    {
         title: 'Reels для риелтора и застройщика',
-        href: '/reels-real-estate',
+        href: '/reels-promo/reels-realtor',
         text: 'Короткие вертикальные ролики для Instagram, TikTok и WhatsApp — для постоянного входящего потока заявок.',
-    },
-    {
-        title: 'Аэросъёмка земельных участков',
-        href: '/drone-services/drone-land',
-        text: 'Облёт участка с привязкой к рельефу, границам и окружению — для продажи земли и коммерческих объектов.',
     },
 ];
 
@@ -439,7 +373,7 @@ const localBusinessSchema = {
     name: 'Breus Media',
     description: 'Медиапродакшн в Тбилиси. Аэросъёмка, FPV-видео, 360° виртуальные туры, Reels и AI-визуализация для бизнеса.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -470,16 +404,43 @@ const breadcrumbSchema = {
         {
             '@type': 'ListItem',
             position: 2,
-            name: 'Аэросъёмка',
-            item: 'https://breus.media/drone-services',
+            name: 'Недвижимость',
+            item: 'https://breus.media/real-estate-service',
         },
         {
             '@type': 'ListItem',
             position: 3,
-            name: 'Недвижимость',
+            name: 'Аэросъёмка недвижимости',
             item: 'https://breus.media/drone-services/drone-real-estate',
         },
     ],
+};
+
+export const metadata: Metadata = {
+    title: 'Аэросъёмка недвижимости и ЖК в Тбилиси | Дрон + FPV | Breus Media',
+    description:
+        'Аэросъёмка и FPV-пролёты для риелторов, застройщиков и девелоперов в Тбилиси и Грузии от 250 ₾. 4K-видео, фото высокого разрешения и сдача материалов от 24–48 часов.',
+    alternates: {
+        canonical: 'https://breus.media/drone-services/drone-real-estate',
+        languages: {
+            ru: 'https://breus.media/drone-services/drone-real-estate',
+            en: 'https://breus.media/drone-services/drone-real-estate/en',
+        },
+    },
+    openGraph: {
+        title: 'Аэросъёмка недвижимости и ЖК в Тбилиси | Breus Media',
+        description:
+            'Аэросъёмка и FPV-пролёты для риелторов, застройщиков и девелоперов в Тбилиси и Грузии от 250 ₾. 4K-видео, фото и готовый монтаж за 48 часов.',
+        url: 'https://breus.media/drone-services/drone-real-estate',
+        siteName: 'Breus Media',
+        locale: 'ru_RU',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Аэросъёмка недвижимости и ЖК в Тбилиси | Breus Media',
+        description: 'Аэросъёмка дроном и FPV-пролёты для недвижимости в Тбилиси от 250 ₾.',
+    },
 };
 
 export default function DroneRealEstatePage() {
@@ -493,6 +454,10 @@ export default function DroneRealEstatePage() {
                 ctaHref="#contact"
                 ctaLabel="Обсудить съёмку"
                 singleTickerMode={true}
+                languageLinks={{
+                    ru: '/drone-services/drone-real-estate',
+                    en: '/drone-services/drone-real-estate/en',
+                }}
                 sectionLinks={[
                     { label: 'Процесс', href: '#process' },
                     { label: 'Цены', href: '#pricing' },
@@ -504,89 +469,113 @@ export default function DroneRealEstatePage() {
             {/* ── HERO ─────────────────────────────────────────────────────────────── */}
             <section
                 id="drone-real-estate-hero"
-                className="relative isolate overflow-hidden border-b border-[#2a2a2a] bg-[#080808] pb-14 pt-40 md:pb-16 md:pt-48"
+                className="relative isolate min-h-[100vh] min-h-[100dvh] overflow-hidden border-b border-[#2a2a2a] bg-[#080808] pb-12 pt-28 sm:pt-32 md:pb-16 md:pt-48 pb-[env(safe-area-inset-bottom,20px)]"
             >
-                <HeroSlideshow />
-                <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,210,63,0.26),transparent_42%),linear-gradient(180deg,rgba(8,8,8,0.35),rgba(8,8,8,0.95)_70%,#080808)]" />
+                <RealEstateHeroSlideshow />
+                <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,210,63,0.22),transparent_45%),linear-gradient(180deg,rgba(8,8,8,0.45),rgba(8,8,8,0.92)_70%,#080808)]" />
                 <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FFD23F]/60 to-transparent" />
 
                 <div className="container relative mx-auto px-6">
                     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_320px]">
                         <div>
-                            <h1 className="max-w-none text-4xl font-bold leading-[0.94] md:text-6xl lg:text-7xl">
+                            <h1 className="max-w-none text-3xl font-bold leading-[0.96] sm:text-4xl md:text-6xl lg:text-7xl">
                                 Аэросъёмка недвижимости и ЖК в Тбилиси
                             </h1>
 
-                            <p className="mt-4 max-w-none text-[17px] italic leading-[1.4] text-white/85 md:text-[21px]">
-                                Аэровидео и фото дроном для риелторов, застройщиков и девелоперов в Тбилиси и Грузии — локация, масштаб ЖК и окружение одним планом для объявлений, презентаций инвесторам и рекламы на MyHome.ge
+                            <p className="mt-4 max-w-2xl text-[16px] leading-[1.45] text-white/90 sm:text-[18px] md:text-[21px]">
+                                Показываем локацию, масштаб ЖК и окружение одним кадром с воздуха и в движении. Контент для MyHome.ge, инвест-презентаций и запуска продаж.
                             </p>
 
-                            <div className="mt-4 max-w-none text-[15px] leading-[1.34] text-white/74 md:text-[17px] lg:columns-2 lg:gap-8">
-                                <p className="mb-3 break-inside-avoid">
-                                    Дрон показывает то, что не помещается в обычное фото: район вокруг объекта, подъездные дороги, парки и школы рядом, масштаб жилого комплекса и вид с верхних этажей.
-                                </p>
-                                <p className="mb-0 break-inside-avoid text-white/84">
-                                    Это основа продаж — особенно когда покупатель принимает решение дистанционно, из другого города или страны.
-                                </p>
-                            </div>
-
-                            <div className="mt-7 flex flex-wrap gap-3">
+                            <div className="mt-6 flex flex-wrap gap-3 sm:mt-7">
                                 <a
-                                    href="#contact"
-                                    className="inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
+                                    href="https://wa.me/995501103183?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!+%D0%A5%D0%BE%D1%87%D1%83+%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C+%D0%B0%D1%8D%D1%80%D0%BE%D1%81%D1%8A%D1%91%D0%BC%D0%BA%D1%83+%D0%BD%D0%B5%D0%B4%D0%B2%D0%B8%D0%B6%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8+%D0%B2+%D0%A2%D0%B1%D0%B8%D0%BB%D0%B8%D1%81%D0%B8."
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#25D366] px-6 py-2.5 text-xs font-bold uppercase tracking-[0.16em] text-black transition-all hover:bg-[#20bd5a] hover:shadow-[0_0_20px_rgba(37,211,102,0.4)] sm:px-7 sm:py-3"
                                 >
-                                    Обсудить съёмку
+                                    <MessageCircle className="h-4 w-4 fill-black" />
+                                    Написать в WhatsApp
                                 </a>
                                 <a
                                     href="#pricing"
-                                    className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F]"
+                                    className="inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-6 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white sm:px-7 sm:py-3"
                                 >
-                                    Посмотреть пакеты
+                                    Тарифы от 250 ₾ →
                                 </a>
+                                <a
+                                    href="#contact"
+                                    className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-6 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#FFD23F] sm:px-7 sm:py-3"
+                                >
+                                    Обсудить съёмку
+                                </a>
+                            </div>
+
+                            {/* ── Mobile compact strip: 3 key facts ── */}
+                            <div className="mt-5 flex items-center gap-2 md:hidden">
+                                <div className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-center">
+                                    <p className="text-[13px] font-bold text-white">⏱ 2–4 ч</p>
+                                    <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-white/50">Съёмка</p>
+                                </div>
+                                <div className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-center">
+                                    <p className="text-[13px] font-bold text-white">⚡ 24 ч</p>
+                                    <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-white/50">Сдача</p>
+                                </div>
+                                <div className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-center">
+                                    <p className="text-[13px] font-bold text-white">🏷 250 ₾</p>
+                                    <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-white/50">от</p>
+                                </div>
                             </div>
                         </div>
 
-                        <aside className="rounded-[20px] border border-white/10 bg-[#101010]/90 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">Коротко</p>
-                            <div className="mt-5 space-y-4">
-                                <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-4">
-                                    <p className="text-2xl font-bold text-white">от 250 ₾</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-white/65">Объект глазами покупателя — до первого визита</p>
-                                </div>
-                                <div className="grid grid-cols-2 gap-3">
-                                    <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-4">
-                                        <p className="text-lg font-bold text-white">2–4 ч</p>
-                                        <p className="mt-1 text-xs uppercase tracking-[0.16em] text-white/45">Съёмка</p>
+                        {/* ── Desktop sidebar widget (hidden on mobile) ── */}
+                        <div className="hidden flex-col items-center md:flex">
+                            <aside className="w-full rounded-[20px] border border-white/10 bg-[#101010]/90 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur sm:p-6">
+                                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">Коротко</p>
+                                <div className="mt-4 space-y-3 sm:mt-5 sm:space-y-4">
+                                    <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-3.5 sm:p-4">
+                                        <p className="text-xl font-bold text-white sm:text-2xl">от 250 ₾</p>
+                                        <p className="mt-1 text-xs leading-relaxed text-white/65 sm:text-sm">Объект глазами покупателя — до первого визита</p>
                                     </div>
-                                    <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-4">
-                                        <p className="text-lg font-bold text-white">от 24 ч</p>
-                                        <p className="mt-1 text-xs uppercase tracking-[0.16em] text-white/45">Выдача</p>
+                                    <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+                                        <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-3 sm:p-4">
+                                            <p className="text-base font-bold text-white sm:text-lg">2–4 ч</p>
+                                            <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/45 sm:text-xs">Съёмка</p>
+                                        </div>
+                                        <div className="rounded-[14px] border border-white/10 bg-white/[0.03] p-3 sm:p-4">
+                                            <p className="text-base font-bold text-white sm:text-lg">от 24 ч</p>
+                                            <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/45 sm:text-xs">Выдача</p>
+                                        </div>
                                     </div>
+                                    <ul className="space-y-1.5 text-xs leading-relaxed text-white/72 sm:space-y-2 sm:text-sm">
+                                        <li>Аэро снаружи + FPV внутри — всё в 4K</li>
+                                        <li>Форматы под MyHome.ge, сайт ЖК, Reels и презентации</li>
+                                        <li>Материал работает минимум год — и на следующих очередях</li>
+                                    </ul>
                                 </div>
-                                <ul className="space-y-2 text-sm leading-relaxed text-white/72">
-                                    <li>Аэро снаружи + FPV внутри — всё в 4K</li>
-                                    <li>Форматы под MyHome.ge, сайт ЖК, Reels и презентации</li>
-                                    <li>Материал работает минимум год — и на следующих очередях</li>
-                                </ul>
-                            </div>
-                        </aside>
+                            </aside>
+                            <a
+                                href="#target-audience"
+                                aria-label="Прокрутить к разделу «Для кого эта съёмка»"
+                                className="mt-4 inline-flex items-center justify-center p-2 text-[#FFD23F] transition-opacity hover:opacity-75 cursor-pointer"
+                            >
+                                <ChevronDown className="h-6 w-6 animate-bounce text-[#FFD23F]" />
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <ScrollArrow />
             </section>
 
             {/* ── ДЛЯ КОГО ЭТА СЪЁМКА ──────────────────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
+            <section id="target-audience" className="scroll-mt-16 border-b border-[#2a2a2a] bg-[#0D0D0D] py-8 md:py-16 md:scroll-mt-20">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Для кого эта съёмка</h2>
+                        <h2 className="text-2xl font-bold md:text-4xl">Для кого эта съёмка</h2>
                     </div>
-                    <div className="mt-10 grid gap-5 md:grid-cols-3">
+                    <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 md:grid-cols-3">
                         {audienceCards.map((card) => (
-                            <article key={card.title} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
+                            <article key={card.title} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-4.5 sm:p-5">
                                 <h3 className="text-lg font-bold text-white">{card.title}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{card.text}</p>
+                                <p className="mt-2.5 text-sm leading-relaxed text-zinc-400">{card.text}</p>
                             </article>
                         ))}
                     </div>
@@ -594,49 +583,49 @@ export default function DroneRealEstatePage() {
             </section>
 
             {/* ── ПОЧЕМУ ВИДЕО ПРОДАЁТ НЕДВИЖИМОСТЬ ─────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#080808] py-20">
+            <section className="border-b border-[#2a2a2a] bg-[#080808] py-8 md:py-16">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Почему видео продаёт недвижимость</h2>
-                        <p className="mt-4 leading-relaxed text-white/70">
+                        <h2 className="text-2xl font-bold md:text-4xl">Почему видео продаёт недвижимость</h2>
+                        <p className="mt-3 leading-relaxed text-white/70 sm:mt-4">
                             Покупатель смотрит объявление секунды и решает: дальше по листингу или на показ. Исследования показывают, насколько визуальный контент влияет на это решение.
                         </p>
                     </div>
-                    <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+                    <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 md:grid-cols-3">
                         {statsCards.map((item) => (
-                            <article key={item.stat} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <p className="text-4xl font-bold tracking-tight text-[#FFD23F] md:text-5xl">{item.stat}</p>
-                                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-white/70">{item.label}</p>
-                                <p className="mt-4 text-sm leading-relaxed text-white/72">{item.description}</p>
+                            <article key={item.stat} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-4.5 sm:p-5">
+                                <p className="text-3xl font-bold tracking-tight text-[#FFD23F] sm:text-4xl md:text-5xl">{item.stat}</p>
+                                <p className="mt-2 text-base font-semibold text-white">{item.label}</p>
+                                <p className="mt-2.5 text-sm leading-relaxed text-zinc-400">{item.description}</p>
                                 <a
                                     href={item.sourceUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="mt-5 inline-flex items-center text-xs font-semibold text-white/50 transition-colors hover:text-[#FFD23F]"
+                                    className="mt-4 inline-flex items-center text-xs font-semibold text-white/50 transition-colors hover:text-[#FFD23F] sm:mt-5"
                                 >
                                     Источник: {item.source} →
                                 </a>
                             </article>
                         ))}
                     </div>
-                    <p className="mt-8 max-w-4xl text-xs leading-relaxed text-white/45">
+                    <p className="mt-6 max-w-4xl text-xs leading-relaxed text-white/45 sm:mt-8">
                         Цифры приведены из открытых отраслевых отчётов. Конкретный эффект для вашего объекта зависит от цены, локации и каналов публикации.
                     </p>
                 </div>
             </section>
 
             {/* ── ЧТО ВЫ РЕШАЕТЕ АЭРОСЪЁМКОЙ ───────────────────────────────────── */}
-            <section id="problems" className="border-b border-[#2a2a2a] bg-[#080808] py-24">
+            <section id="problems" className="border-b border-[#2a2a2a] bg-[#080808] py-8 md:py-16">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Что вы решаете аэросъёмкой</h2>
+                        <h2 className="text-2xl font-bold md:text-4xl">Что вы решаете аэросъёмкой</h2>
                     </div>
 
-                    <div className="mt-10 grid gap-5 md:grid-cols-2">
+                    <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 md:grid-cols-2">
                         {problemCards.map((card) => (
-                            <article key={card.title} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
+                            <article key={card.title} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-4 md:p-6">
                                 <h3 className="text-base font-bold text-white">{card.title}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{card.text}</p>
+                                <p className="mt-2.5 text-sm leading-relaxed text-white/72 sm:mt-3">{card.text}</p>
                             </article>
                         ))}
                     </div>
@@ -644,20 +633,20 @@ export default function DroneRealEstatePage() {
             </section>
 
             {/* ── ЧТО ВЫ ПОЛУЧАЕТЕ ──────────────────────────── */}
-            <section id="deliverables" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
+            <section id="deliverables" className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-8 md:py-16">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Что вы получаете после съёмки</h2>
-                        <p className="mt-4 leading-relaxed text-white/70">
+                        <h2 className="text-2xl font-bold md:text-4xl">Что вы получаете после съёмки</h2>
+                        <p className="mt-3 leading-relaxed text-white/70 sm:mt-4">
                             Готовый пакет, разложенный по слоям съёмки и под каждую площадку публикации.
                         </p>
                     </div>
 
-                    <div className="mt-10 grid gap-5 lg:grid-cols-3">
+                    <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 lg:grid-cols-3">
                         {deliverableGroups.map((group) => (
-                            <article key={group.title} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">{group.title}</h3>
-                                <ul className="mt-5 space-y-3 text-sm leading-relaxed text-white/72">
+                            <article key={group.title} className="rounded-[18px] border border-[#2a2a2a] bg-[#141414] p-4 md:p-6">
+                                <h3 className="text-base font-bold text-white sm:text-lg">{group.title}</h3>
+                                <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-white/72 sm:mt-5 sm:space-y-3">
                                     {group.items.map((item) => (
                                         <li key={item}>• {item}</li>
                                     ))}
@@ -666,10 +655,10 @@ export default function DroneRealEstatePage() {
                         ))}
                     </div>
 
-                    <div className="mt-8">
-                        <article className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                            <h3 className="text-lg font-bold text-white">Технические параметры</h3>
-                            <ul className="mt-4 grid gap-2 text-sm leading-relaxed text-white/72 md:grid-cols-2">
+                    <div className="mt-6 sm:mt-8">
+                        <article className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-4 md:p-6">
+                            <h3 className="text-base font-bold text-white sm:text-lg">Технические параметры</h3>
+                            <ul className="mt-3.5 grid gap-2 text-sm leading-relaxed text-white/72 sm:mt-4 md:grid-cols-2">
                                 <li>Съёмка в 4K</li>
                                 <li>Аэро + FPV-пролёт внутри объекта</li>
                                 <li>Цветокоррекция и стабилизация (в пакете с монтажом)</li>
@@ -677,10 +666,10 @@ export default function DroneRealEstatePage() {
                                 <li>Передача через Google Drive или WeTransfer</li>
                                 <li>Горизонтальные и вертикальные форматы</li>
                             </ul>
-                            <p className="mt-4 text-xs leading-relaxed text-white/45">
+                            <p className="mt-3.5 text-xs leading-relaxed text-white/45 sm:mt-4">
                                 Оборудование: DJI Air 3S, DJI Avata 2 (FPV), Insta360 X5
                             </p>
-                            <p className="mt-4 rounded-[12px] border border-[#FFD23F]/25 bg-[#111111] px-4 py-3 text-sm text-white/80">
+                            <p className="mt-3.5 rounded-[12px] border border-[#FFD23F]/25 bg-[#111111] px-4 py-3 text-sm text-white/80 sm:mt-4">
                                 Сроки: от 24 часов (съёмка без монтажа) до 48 часов и более (пакет с готовым результатом).
                             </p>
                         </article>
@@ -689,18 +678,18 @@ export default function DroneRealEstatePage() {
             </section>
 
             {/* ── ПРИМЕРЫ ПО ФОРМАТАМ ────────────────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#080808] py-16">
+            <section className="border-b border-[#2a2a2a] bg-[#080808] py-8 md:py-16">
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Как это выглядит</h2>
-                        <p className="mt-4 leading-relaxed text-white/70">
+                        <h2 className="text-2xl font-bold md:text-4xl">Как это выглядит</h2>
+                        <p className="mt-3 leading-relaxed text-white/70 sm:mt-4">
                             Примеры аэросъёмки недвижимости и ЖК в Тбилиси — снаружи и внутри.
                         </p>
                     </div>
-                    <div className="mt-10 overflow-hidden rounded-[20px] border border-[#2a2a2a] bg-[#141414]">
-                        <FormatExamplesSlideshow slidesOverride={formatExampleSlides} />
+                    <div className="mt-6 overflow-hidden rounded-[20px] border border-[#2a2a2a] bg-[#141414] sm:mt-8">
+                        <RealEstateFormatSlideshow slides={formatExampleSlides} altTexts={formatExampleCards.map((c) => c.alt)} />
                     </div>
-                    <div className="mt-8 grid gap-5 md:grid-cols-3">
+                    <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 md:grid-cols-3">
                         {formatExampleCards.map((item, index) => (
                             <div key={index} className="overflow-hidden rounded-[16px] border border-[#2a2a2a] bg-[#141414]">
                                 <div className="relative aspect-video">
@@ -736,7 +725,7 @@ export default function DroneRealEstatePage() {
                                 href="#pricing"
                                 className="inline-flex items-center justify-center rounded-[10px] border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F]"
                             >
-                                Посмотреть пакеты
+                                ПОСМОТРЕТЬ ТАРИФЫ →
                             </a>
                         </div>
                     </div>
@@ -764,29 +753,27 @@ export default function DroneRealEstatePage() {
                 </div>
             </section>
 
+            {/* ── КАЛЬКУЛЯТОР ОКУПАЕМОСТИ ROI ───────────────────────────────────────── */}
+            <RealEstateRoiCalculator lang="ru" />
+
             {/* ── ПАКЕТЫ СЪЁМКИ ────────────────────────────────────────────────────── */}
             <section
                 id="pricing"
-                className="scroll-mt-20 border-b border-[#2a2a2a] bg-[#080808] py-24 lg:scroll-mt-24"
+                className="scroll-mt-16 border-b border-[#2a2a2a] bg-[#080808] pt-5 pb-20 md:scroll-mt-20 md:pt-6"
             >
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Пакеты съёмки</h2>
-                        <p className="mt-4 leading-relaxed text-white/70">
-                            Цены фиксированные, в грузинских лари (₾). Без скрытых доплат. Выбирайте пакет под свою
-                            задачу — от базовой съёмки до полного цикла.
-                        </p>
-                        <p className="mt-2 text-sm leading-relaxed text-white/55">
-                            Все фото и видео вы получаете в 4K — готовыми к использованию. К любому пакету можно
-                            добавить монтаж под соцсети, сайт и объявления, музыкальное сопровождение, субтитры и панорамы 360°.
+                        <h2 className="text-2xl font-bold text-white md:text-3xl lg:text-4xl">Пакеты съёмки</h2>
+                        <p className="mt-2 text-xs leading-relaxed text-white/75 md:text-sm">
+                            Цены фиксированные, в лари (₾). Все фото и видео в 4K — готовы к публикации. К любому пакету можно добавить монтаж Reels, горизонтальный ролик 16:9, панорамы 360° и видео для карт.
                         </p>
                     </div>
 
-                    <div className="mt-10 grid gap-5 xl:grid-cols-4">
+                    <div className="mt-5 grid gap-4 xl:grid-cols-4 xl:gap-5">
                         {pricingCards.map((card) => (
                             <article
                                 key={card.title}
-                                className={`flex flex-col rounded-[20px] border p-5 md:p-6 ${
+                                className={`flex flex-col rounded-[20px] border p-4.5 md:p-5 ${
                                     card.popular
                                         ? 'border-[#FFD23F]/55 bg-[linear-gradient(180deg,rgba(255,210,63,0.1),rgba(20,20,20,1)_28%)]'
                                         : 'border-[#2a2a2a] bg-[#141414]'
@@ -794,40 +781,41 @@ export default function DroneRealEstatePage() {
                             >
                                 <div>
                                     <h3 className="text-lg font-bold text-white md:text-xl">{card.title}</h3>
-                                    <p className="mt-2 text-xs text-white/64 md:text-sm">{card.subtitle}</p>
+                                    <p className="mt-1.5 text-xs text-white/64">{card.subtitle}</p>
                                 </div>
-                                <div className="mt-5 flex items-center gap-2 md:mt-6 md:gap-3">
+                                <div className="mt-3.5 flex items-center gap-2 md:mt-4 md:gap-3">
                                     <p className="text-2xl font-bold text-[#FFD23F] md:text-3xl">{card.price}</p>
                                     {card.popular ? (
-                                        <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/12 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">
+                                        <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/12 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">
                                             Выгодно
                                         </span>
                                     ) : null}
                                 </div>
-                                <ul className="mt-5 flex-1 space-y-2.5 text-[13px] leading-relaxed text-white/72 md:mt-6 md:space-y-3 md:text-sm">
+                                <ul className="mt-4 flex-1 space-y-1.5 text-xs leading-relaxed text-white/72 md:mt-4.5 md:space-y-2 md:text-[13px]">
                                     {card.items.map((item) => (
                                         <li key={item}>✓ {item}</li>
                                     ))}
                                 </ul>
-                                {card.note && <p className="mt-4 text-xs leading-relaxed text-white/58 md:mt-5 md:text-sm">{card.note}</p>}
-                                <a
-                                    href="#contact"
-                                    className="mt-5 inline-flex items-center justify-center rounded-[10px] border border-white/20 px-5 py-2 text-[11px] font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F] hover:text-[#FFD23F] md:mt-6 md:py-2.5 md:text-xs"
-                                >
-                                    Обсудить этот пакет →
-                                </a>
+                                {card.note && <p className="mt-3 text-xs leading-relaxed text-white/58 md:mt-3.5">{card.note}</p>}
+                                <PackageCta
+                                    label="Обсудить этот пакет →"
+                                    packageName={card.title}
+                                    packagePrice={card.price}
+                                    lang="ru"
+                                    className="mt-4 inline-flex items-center justify-center rounded-[10px] border border-white/20 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F] hover:text-[#FFD23F] md:mt-5 md:py-2.5"
+                                />
                             </article>
                         ))}
                     </div>
 
-                    <div className="mt-8 rounded-[16px] border border-[#FFD23F]/30 bg-[#121212] p-6">
-                        <h3 className="text-xl font-bold text-white">Дополнительно по задаче</h3>
-                        <p className="mt-3 leading-relaxed text-white/70">
+                    <div className="mt-6 rounded-[16px] border border-[#FFD23F]/30 bg-[#121212] p-5 md:p-6">
+                        <h3 className="text-lg font-bold text-white md:text-xl">Дополнительно по задаче</h3>
+                        <p className="mt-2 text-xs leading-relaxed text-white/70 md:text-sm">
                             Из одной съёмки можно собрать дополнительные форматы под сайт, соцсети, Google Maps и объявления.
                         </p>
-                        <ul className="mt-6 grid gap-4 md:grid-cols-2">
+                        <ul className="mt-4 grid gap-3 md:grid-cols-3">
                             {addonPricing.map((item) => (
-                                <li key={item} className="rounded-[12px] border border-[#2a2a2a] bg-[#0D0D0D] p-4 text-sm leading-relaxed text-white/72">
+                                <li key={item} className="rounded-[12px] border border-[#2a2a2a] bg-[#0D0D0D] p-3.5 text-xs leading-relaxed text-white/72 md:text-sm">
                                     {item}
                                 </li>
                             ))}
@@ -836,43 +824,8 @@ export default function DroneRealEstatePage() {
                 </div>
             </section>
 
-            {/* ── КОРОТКИЕ ОТВЕТЫ ──────────────────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-20">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Короткие ответы</h2>
-                    </div>
-                    <div className="mt-10 grid gap-5 md:grid-cols-2">
-                        {shortQa.map((item) => (
-                            <article key={item.question} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-base font-bold text-white">{item.question}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{item.answer}</p>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* ── FAQ ──────────────────────────────────────────────────────────────── */}
             <FaqSection id="faq" items={faqItems} title="Частые вопросы" />
-
-            {/* ── ПОЧЕМУ СНИМАЮТ С НАМИ ─────────────────────────────────────────── */}
-            <section className="border-b border-[#2a2a2a] bg-[#080808] py-24">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold md:text-4xl">Почему снимают с нами</h2>
-                    </div>
-
-                    <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                        {whyUsCards.map((card) => (
-                            <article key={card.title} className="rounded-[16px] border border-[#2a2a2a] bg-[#141414] p-6">
-                                <h3 className="text-lg font-bold text-white">{card.title}</h3>
-                                <p className="mt-3 text-sm leading-relaxed text-white/72">{card.text}</p>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             {/* ── ПРИМЕРЫ ПОД ЗАДАЧУ ─────────────────────────────────────────── */}
             <section className="border-b border-[#2a2a2a] bg-[#0D0D0D] py-24">
@@ -917,7 +870,7 @@ export default function DroneRealEstatePage() {
                                 Обсудить съёмку
                             </a>
                             <a
-                                href="https://wa.me/995574619393"
+                                href="https://wa.me/995501103183"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-flex items-center justify-center rounded-[10px] border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F]"
@@ -976,9 +929,9 @@ export default function DroneRealEstatePage() {
             {/* ── КОНТАКТ ──────────────────────────────────────────────────────────── */}
             <DroneContactStitch preselectedServices={['drone']} />
 
-            <DroneStickyCta />
-            <MobileBottomBar />
+            
             <DroneFooterStitch />
+            <DroneStickyCta />
 
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />

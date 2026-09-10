@@ -156,7 +156,7 @@ const shootDayItems: string[] = [
     'Полёт по заранее согласованному маршруту.',
     'Охват всей площадки или ключевых зон объекта.',
     'Несколько ракурсов: обзорный, средний, акцентный.',
-    'Фото в формате RAW + JPEG, видео в 4K.',
+    'Фото в формате DNG + JPEG, видео в 4K.',
     'Все вылеты с одними и теми же опорными точками — для сравнения между периодами.',
     'При необходимости: ночная съёмка, расширенный охват, дополнительные зоны.',
 ];
@@ -296,7 +296,7 @@ const commercialFaqItems: FaqItem[] = [
     {
         question: 'В каком формате приходят материалы?',
         answer:
-            'Фотографии — обработанные JPEG, RAW по запросу. Видео — MP4 в 4K. Папка организована по датам и зонам. Доставка через облачный сервис: Google Drive, Яндекс Диск или аналог по согласованию.',
+            'Фотографии — обработанные JPEG, несжатые исходники по запросу. Видео — MP4 в 4K. Папка организована по датам и зонам. Доставка через облачный сервис: Google Drive, Яндекс Диск или аналог по согласованию.',
     },
     {
         question: 'Можно ли сделать сравнительный монтаж «тогда и сейчас» по итогу нескольких месяцев?',
@@ -557,7 +557,7 @@ const serviceSchema = {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
         url: 'https://breus.media',
-        telephone: '+995574619393',
+        telephone: '+995501103183',
         address: {
             '@type': 'PostalAddress',
             addressLocality: 'Тбилиси',
@@ -584,7 +584,7 @@ const localBusinessSchema = {
     name: 'Breus Media',
     description: 'Аэросъёмка, аэроотчёты, FPV-видео и 360° туры для бизнеса в Тбилиси и по Грузии.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -1141,7 +1141,7 @@ export default function DroneReportingPage() {
                                     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Контакты</p>
                                     <div className="mt-4 flex flex-wrap gap-3">
                                         <a
-                                            href="https://wa.me/995574619393"
+                                            href="https://wa.me/995501103183"
                                             target="_blank"
                                             rel="noreferrer"
                                             className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
@@ -1149,10 +1149,10 @@ export default function DroneReportingPage() {
                                             WhatsApp / Telegram
                                         </a>
                                         <a
-                                            href="tel:+995574619393"
+                                            href="tel:+995501103183"
                                             className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/82 transition-colors hover:border-white/35"
                                         >
-                                            +995 574 619 393
+                                            +995 501 103 183
                                         </a>
                                     </div>
                                     <p className="mt-4 text-sm leading-relaxed text-white/55">Тбилиси, Грузия</p>

@@ -286,7 +286,7 @@ const commercialFaqItems: FaqItem[] = [
     {
         question: 'Какие форматы материалов вы передаёте?',
         answer:
-            'Основной ролик в MP4 (H.264/H.265), версии для соцсетей в 16:9, 9:16 и 1:1, фото в JPEG высокого разрешения. RAW-исходники — по запросу.',
+            'Основной ролик в MP4 (H.264/H.265), версии для соцсетей в 16:9, 9:16 и 1:1, фото в JPEG высокого разрешения. Оригинальные 4K видеоматериалы — по запросу.',
     },
     {
         question: 'Нужно ли разрешение на полёты над автосалоном в Тбилиси?',
@@ -320,7 +320,7 @@ const whyUsCards: CardItem[] = [
     },
     {
         title: 'Полный пакет, а не набор исходников',
-        text: 'Вы получаете готовые ролики, версии под соцсети и обработанные фото, а не «сырой» архив.',
+        text: 'Вы получаете готовые ролики, версии под соцсети и обработанные фото, а не хаотичный массив файлов.',
     },
     {
         title: 'Работа по договору',
@@ -599,7 +599,7 @@ const localBusinessSchema = {
     name: 'Breus Media',
     description: 'Аэросъёмка, FPV-видео и контент-пакеты для автобизнеса в Грузии.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -1013,7 +1013,7 @@ export default function DroneAutoPage() {
                             чего. Предложим оптимальный формат без лишних звонков.
                         </p>
                         <a
-                            href="https://wa.me/995574619393"
+                            href="https://wa.me/995501103183"
                             target="_blank"
                             rel="noreferrer"
                             className="inline-flex items-center justify-center rounded-[10px] bg-[#D4A017] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
@@ -1169,7 +1169,7 @@ export default function DroneAutoPage() {
                                     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Альтернативные контакты</p>
                                     <div className="mt-4 flex flex-wrap gap-3">
                                         <a
-                                            href="https://wa.me/995574619393"
+                                            href="https://wa.me/995501103183"
                                             target="_blank"
                                             rel="noreferrer"
                                             className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"

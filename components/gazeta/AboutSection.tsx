@@ -138,7 +138,7 @@ export function AboutSection({ lang = "ru" }: { lang?: GazetaLang }) {
                         <span className="text-[#FFD23F]">⚡ {lang === "en" ? "Free business audit" : "Бесплатный аудит бизнеса"}</span>
                         <span className="text-white/80">·</span>
                         <span className="text-[#FFD23F] underline underline-offset-2">
-                            {lang === "en" ? "Personal review within 24h →" : "Персональный разбор за 24 часа →"}
+                            {lang === "en" ? "Get personal review →" : "Получить персональный разбор →"}
                         </span>
                     </a>
                 </div>

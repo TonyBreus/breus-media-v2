@@ -422,7 +422,7 @@ const pricingCards: PricingCard[] = [
 const relatedServices: RelatedService[] = [
     {
         title: 'Аэросъёмка недвижимости',
-        href: '/drone-real-estate',
+        href: '/drone-services/drone-real-estate',
         text: 'Обзор локации и презентационный контент для продаж квартир, домов и ЖК.',
     },
     {
@@ -431,9 +431,9 @@ const relatedServices: RelatedService[] = [
         text: 'Интерактивный формат для удалённого показа помещений и объектов.',
     },
     {
-        title: 'FPV-съёмка для рекламы',
-        href: '/drone-fpv-cinema',
-        text: 'Динамичные пролёты для промо-роликов, запуска кампаний и performance-креативов.',
+        title: 'Reels для риелторов и ЖК',
+        href: '/reels-promo/reels-realtor',
+        text: 'Динамичные вертикальные ролики для соцсетей, личного бренда и пресейла.',
     },
 ];
 
@@ -1017,7 +1017,7 @@ export default function DroneConstructionMonitoringPage() {
                                         <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Напрямую</p>
                                         <div className="mt-4 flex flex-wrap gap-3">
                                             <a
-                                                href="https://wa.me/995574619393"
+                                                href="https://wa.me/995501103183"
                                                 target="_blank"
                                                 rel="noreferrer"
                                                 className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
@@ -1117,6 +1117,8 @@ export default function DroneConstructionMonitoringPage() {
             <DebugWrapper id={382900} label="Footer Section">
                 <DroneFooterStitch />
             </DebugWrapper>
+
+            
 
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />

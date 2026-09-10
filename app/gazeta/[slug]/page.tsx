@@ -2,8 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SmartHeader } from "@/components/gazeta/SmartHeader";
 import { L2DirectionServices } from "@/components/l2-direction/L2DirectionSections";
-import { gazetaCategoryPagesBySlug } from "@/constants/gazetaRoutes";
+import { gazetaCategoryPagesBySlug, gazetaDroneServiceTickerExcludeTexts } from "@/constants/gazetaRoutes";
 import { l2DirectionConfigs } from "@/constants/l2DirectionConfigs";
+import { DroneFooterStitch } from "@/components/drone/DroneFooterStitch";
 import type { L2ServiceItem } from "@/components/l2-direction/types";
 import { realEstateServiceItems } from "@/components/real-estate-service/realEstateServicesData";
 
@@ -92,7 +93,12 @@ export default async function GazetaDirectionPage({ params }: CategoryPageProps)
 
     return (
         <main className="min-h-screen bg-black text-white">
-            <SmartHeader transparent={true} isLanding={false} />
+            <SmartHeader
+                transparent={true}
+                isLanding={false}
+                singleTickerMode={slug === "it" ? true : undefined}
+                tickerExcludeTexts={slug === "it" ? gazetaDroneServiceTickerExcludeTexts : undefined}
+            />
 
             <section className="relative overflow-hidden px-6 pb-20 pt-36 md:px-10">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(212,175,55,0.08),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.03),transparent_42%)]" />
@@ -155,7 +161,7 @@ export default async function GazetaDirectionPage({ params }: CategoryPageProps)
             <div className="mx-auto max-w-6xl px-6 pb-20 md:px-10">
                 <div className="flex flex-col gap-4 sm:flex-row">
                     <Link
-                        href="https://wa.me/995574619393"
+                        href="https://wa.me/995501103183"
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-black uppercase tracking-[0.24em] text-black transition-colors hover:bg-[#D4AF37]"
@@ -170,6 +176,8 @@ export default async function GazetaDirectionPage({ params }: CategoryPageProps)
                     </Link>
                 </div>
             </div>
+
+            <DroneFooterStitch />
         </main>
     );
 }

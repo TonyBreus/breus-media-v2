@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Manrope } from 'next/font/google';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ArrowUpRight } from 'lucide-react';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 import { droneServiceItems } from '@/components/drone/droneServicesData';
 import type { DroneDirectionHeroConfig } from '@/constants/droneDirectionPages';
@@ -268,6 +268,24 @@ export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
     }, [currentIndex, miniCarouselCount, serviceItemsEn]);
 
     const activeService = serviceItemsEn[currentIndex] ?? serviceItemsEn[0];
+    const activeServiceNumber = String(currentIndex + 1).padStart(2, '0');
+    const serviceTotal = String(serviceItemsEn.length).padStart(2, '0');
+
+    const READY_L3_URLS = [
+        '/drone-hotels-tourism',
+        '/drone-services/drone-restaurants',
+        '/drone-services/drone-real-estate',
+        '/360-tour-hotels',
+        '/360-tour-real-estate',
+        '/reels-real-estate',
+        '/drone-hotels-tourism/en',
+        '/drone-services/drone-restaurants/en',
+        '/drone-services/drone-real-estate/en',
+        '/360-tour-hotels/en',
+        '/360-tour-real-estate/en',
+        '/reels-real-estate/en'
+    ];
+    const showPrimaryCta = READY_L3_URLS.includes(activeService.primaryHref);
 
     const handleScrollToNextSection = () => {
         const nextSection = document.getElementById('services');
@@ -358,58 +376,96 @@ export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
                                         </DebugWrapper>
                                     </div>
 
-                                    <div className="hidden h-full flex-col justify-between py-0 lg:flex">
-                                        <AnimatePresence mode="wait">
-                                            <motion.div
-                                                key={serviceItemsEn[currentIndex].slug}
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: -10 }}
-                                                transition={{ duration: 0.4 }}
-                                                className="flex flex-1 flex-col gap-4"
-                                            >
-                                                <div>
-                                                    <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.22em] text-[#D4A017]">
-                                                        {serviceItemsEn[currentIndex].category}
-                                                    </p>
-                                                    <p className="text-3xl font-bold uppercase leading-tight text-white">
-                                                        {serviceItemsEn[currentIndex].title}
-                                                    </p>
-                                                </div>
-                                                <p className={`${manrope.className} antialiased text-[16px] font-normal leading-[1.65] text-white/[0.88]`}>
-                                                    {serviceItemsEn[currentIndex].description}
-                                                </p>
-                                                <a
-                                                    href={serviceItemsEn[currentIndex].primaryHref}
-                                                    className="flex w-full items-center justify-center rounded-[10px] border border-[#D4A017] bg-transparent px-4 py-3 text-[12px] font-bold uppercase tracking-[0.14em] text-[#D4A017] transition-all hover:bg-[#D4A017]/10"
-                                                >
-                                                    Open service
-                                                </a>
-                                            </motion.div>
-                                        </AnimatePresence>
-                                        <div className="w-[260px] rounded-[14px] border border-white/12 bg-black/35 p-2.5 backdrop-blur-sm">
-                                            <div className="flex flex-col gap-1.5">
-                                                {miniCarouselIndices.map((serviceIndex) => {
-                                                    const item = serviceItemsEn[serviceIndex];
-                                                    const isActive = serviceIndex === currentIndex;
-                                                    return (
-                                                        <button
-                                                            key={item.slug}
-                                                            onClick={() => setCurrentIndex(serviceIndex)}
-                                                            className={`w-full rounded-lg px-2.5 py-2 text-left transition-colors ${
-                                                                isActive ? 'bg-[#D4A017]/16' : 'hover:bg-white/8'
-                                                            }`}
+                                    <div className="hidden lg:flex justify-end">
+                                        <div className="relative w-full max-w-[480px] overflow-hidden rounded-[10px] border border-white/15 bg-[#090806]/72 shadow-[0_28px_80px_rgba(0,0,0,0.44)] backdrop-blur-xl">
+                                            <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-[#D4A017] to-transparent" />
+                                            <div className="relative border-b border-white/10 px-6 pb-6 pt-6">
+                                                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(212,160,23,0.15),transparent_38%,rgba(255,255,255,0.06)_100%)]" />
+
+                                                <AnimatePresence mode="wait">
+                                                    <motion.div
+                                                        key={activeService.slug}
+                                                        initial={{ opacity: 0, y: 12 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        exit={{ opacity: 0, y: -8 }}
+                                                        transition={{ duration: 0.38, ease: 'easeOut' }}
+                                                        className="relative pt-7"
+                                                    >
+                                                        <span className="absolute right-0 top-0 tabular-nums text-[12px] font-semibold text-white/62">
+                                                            {activeServiceNumber}/{serviceTotal}
+                                                        </span>
+                                                        <p className="max-w-[14ch] text-[42px] font-bold uppercase leading-[0.96] text-white">
+                                                            {activeService.title}
+                                                        </p>
+                                                        <p className={`${manrope.className} mt-5 max-w-[36rem] antialiased text-[16px] font-normal leading-[1.65] text-white/[0.84]`}>
+                                                            {activeService.description}
+                                                        </p>
+                                                    </motion.div>
+                                                </AnimatePresence>
+                                            </div>
+
+                                            <div className="px-4 pb-4 pt-4">
+                                                <div className="grid gap-2 sm:grid-cols-2">
+                                                    {showPrimaryCta ? (
+                                                        <a
+                                                            href={activeService.primaryHref}
+                                                            className="group flex w-full items-center justify-between rounded-[8px] border border-[#D4A017] bg-[#D4A017] px-4 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-black transition-all hover:bg-white hover:border-white"
                                                         >
-                                                            <span
-                                                                className={`text-xs font-semibold leading-tight transition-colors ${
-                                                                    isActive ? 'text-[#D4A017]' : 'text-white/70'
+                                                            <span>Open service</span>
+                                                            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                                        </a>
+                                                    ) : null}
+                                                    <a
+                                                        href="#contact"
+                                                        className={`flex items-center justify-center rounded-[8px] border border-white/12 px-4 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-white transition-all hover:border-white/28 hover:bg-white/[0.06] ${
+                                                            showPrimaryCta ? '' : 'sm:col-span-2'
+                                                        }`}
+                                                    >
+                                                        Discuss Project
+                                                    </a>
+                                                </div>
+
+                                                <div className="mt-3 grid gap-2" role="tablist" aria-label="Drone filming directions">
+                                                    {miniCarouselIndices.map((serviceIndex) => {
+                                                        const item = serviceItemsEn[serviceIndex];
+                                                        const isActive = serviceIndex === currentIndex;
+                                                        const itemNumber = String(serviceIndex + 1).padStart(2, '0');
+                                                        return (
+                                                            <button
+                                                                key={item.slug}
+                                                                type="button"
+                                                                onClick={() => setCurrentIndex(serviceIndex)}
+                                                                role="tab"
+                                                                aria-selected={isActive}
+                                                                className={`group grid w-full grid-cols-[34px_1fr_auto] items-center gap-3 rounded-[8px] border px-3 py-3 text-left transition-all ${
+                                                                    isActive
+                                                                        ? 'border-[#D4A017]/68 bg-[#D4A017]/15'
+                                                                        : 'border-white/10 bg-white/[0.035] hover:border-white/24 hover:bg-white/[0.07]'
                                                                 }`}
                                                             >
-                                                                {item.title}
-                                                            </span>
-                                                        </button>
-                                                    );
-                                                })}
+                                                                <span
+                                                                    className={`tabular-nums text-[11px] font-semibold ${
+                                                                        isActive ? 'text-[#D4A017]' : 'text-white/38'
+                                                                    }`}
+                                                                >
+                                                                    {itemNumber}
+                                                                </span>
+                                                                <span
+                                                                    className={`text-[13px] font-semibold leading-tight ${
+                                                                        isActive ? 'text-white' : 'text-white/70'
+                                                                    }`}
+                                                                >
+                                                                    {item.title}
+                                                                </span>
+                                                                <span
+                                                                    className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                                                                        isActive ? 'bg-[#D4A017]' : 'bg-white/24 group-hover:bg-white/45'
+                                                                    }`}
+                                                                />
+                                                            </button>
+                                                        );
+                                                    })}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -459,7 +515,7 @@ export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
                                     >
                                         <ChevronDown className="h-5 w-5 animate-bounce" />
                                         <span className="whitespace-nowrap text-[12px] font-medium leading-none">
-                                            18 directions - find yours · from 250 ₾
+                                            18 directions - find yours · from 200 ₾
                                         </span>
                                     </a>
                                 </div>

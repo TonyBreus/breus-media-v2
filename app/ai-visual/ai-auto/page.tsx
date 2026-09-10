@@ -45,9 +45,9 @@ const CANONICAL_URL = 'https://breus.media/ai-visual/ai-auto';
 const PAGE_TITLE = 'AI-визуал для автобизнеса — подача авто и шоурума для продаж | Breus Media';
 const PAGE_DESCRIPTION =
     'AI-изображения автомобилей, шоурумов и детейлинга для MyAuto, объявлений и рекламы. Без студийной съёмки. От 150 ₾. Тбилиси, Грузия.';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 const SITE_URL = 'https://breus.media';
 
 const serviceExplanation =

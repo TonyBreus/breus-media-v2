@@ -38,9 +38,9 @@ type GlossaryItem = {
 };
 
 const CANONICAL_URL = 'https://breus.media/reels-promo/reels-real-estate';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
-const CONTACT_PHONE_DISPLAY = '+995 574 619 393';
-const CONTACT_PHONE_RAW = '+995574619393';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
+const CONTACT_PHONE_DISPLAY = '+995 501 103 183';
+const CONTACT_PHONE_RAW = '+995501103183';
 
 const EXAMPLE_VIDEO_URL = 'https://cdn.pixabay.com/video/2021/08/04/83866-584724838_tiny.mp4';
 const EXAMPLE_VIDEO_POSTER =
@@ -420,7 +420,7 @@ const commonMistakes: CardItem[] = [
     },
     {
         title: 'Публиковать видео без монтажа',
-        text: 'Сырая съёмка без цветокоррекции, монтажа и музыки смотрится хуже любительского ролика. Покупатель делает вывод об объекте через качество подачи.',
+        text: 'Необработанная съёмка без цветокоррекции, монтажа и музыки смотрится хуже любительского ролика. Покупатель делает вывод об объекте через качество подачи.',
     },
     {
         title: 'Не показывать вход, подъезд и вид из окна',
@@ -1279,7 +1279,7 @@ export default function ReelsRealEstatePage() {
                     <h2 className="text-3xl font-bold md:text-4xl">Дополнительные материалы</h2>
                     <div className="mt-8 grid gap-4 md:grid-cols-2">
                         <Link
-                            href="/promo-video/promo-real-estate"
+                            href="/real-estate-service#contact"
                             className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-5 transition-colors hover:border-[#FFD23F]/50"
                         >
                             <p className="text-base font-bold text-white">Видеотур по квартире</p>
@@ -1293,7 +1293,7 @@ export default function ReelsRealEstatePage() {
                             <p className="mt-2 text-sm text-white/72">Личный бренд агента в Instagram и TikTok.</p>
                         </Link>
                         <Link
-                            href="/drone-real-estate"
+                            href="/drone-services/drone-real-estate"
                             className="rounded-[14px] border border-[#2a2a2a] bg-[#141414] p-5 transition-colors hover:border-[#FFD23F]/50"
                         >
                             <p className="text-base font-bold text-white">Аэросъёмка недвижимости</p>
@@ -1314,9 +1314,9 @@ export default function ReelsRealEstatePage() {
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl font-bold md:text-4xl">Внутренние переходы</h2>
                     <p className="mt-5 max-w-4xl text-sm leading-relaxed text-white/74">
-                        Если вы хотите более детальный формат для дорогого объекта — посмотрите страницу{' '}
-                        <Link href="/promo-video/promo-real-estate" className="text-[#FFD23F] underline decoration-dotted underline-offset-4">
-                            Видеотур по квартире
+                        Если вы хотите более детальный формат для дорогого объекта — обсудите задачу на странице{' '}
+                        <Link href="/real-estate-service#contact" className="text-[#FFD23F] underline decoration-dotted underline-offset-4">
+                            Недвижимость
                         </Link>
                         . Если нужен личный бренд в соцсетях, а не только контент под объекты — изучите{' '}
                         <Link href="/reels-promo/reels-realtor" className="text-[#FFD23F] underline decoration-dotted underline-offset-4">

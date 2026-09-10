@@ -118,7 +118,7 @@ export function TourContact() {
                                 Отправить заявку
                             </button>
                             <a
-                                href="https://wa.me/995555000000"
+                                href="https://wa.me/995501103183"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="flex-1 border border-white/20 text-white py-3.5 px-6 rounded-xl font-semibold uppercase tracking-[0.12em] text-xs md:text-sm hover:bg-white/5 transition-colors text-center"

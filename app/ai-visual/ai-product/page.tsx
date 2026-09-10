@@ -42,9 +42,9 @@ type GlossaryItem = {
 };
 
 const CANONICAL_URL = 'https://breus.media/ai-visual/ai-product';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
-const CONTACT_PHONE_DISPLAY = '+995 574 619 393';
-const CONTACT_PHONE_RAW = '+995574619393';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
+const CONTACT_PHONE_DISPLAY = '+995 501 103 183';
+const CONTACT_PHONE_RAW = '+995501103183';
 
 const heroSubtitle =
     'Создаём реалистичные изображения продуктов для каталогов, рекламы и соцсетей — с помощью AI, без аренды студии.';
@@ -404,7 +404,7 @@ const expandedAnswers: LongAnswerItem[] = [
         answers: [
             'Проще, чем кажется: достаточно смартфона, дневного света и белого или нейтрального фона.',
             'Главное, чтобы продукт в кадре был чётким, без смаза и сильных пересветов.',
-            'Мы принимаем сырые телефонные фото и берём на себя весь продакшн.',
+            'Мы принимаем базовые телефонные фото и берём на себя весь продакшн.',
         ],
     },
     {

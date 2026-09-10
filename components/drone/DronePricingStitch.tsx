@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 import { motion } from 'framer-motion';
 
@@ -16,7 +16,7 @@ type PricingCard = {
 const plans = [
     {
         title: 'Полёт снаружи',
-        price: '250 ₾',
+        price: '200 ₾',
         subtitle: 'Аэросъёмка дроном с высоты',
         items: [
             'Видео в 4K + фото в высоком разрешении — готовы к использованию',
@@ -28,7 +28,7 @@ const plans = [
     },
     {
         title: 'Пролёт внутри (FPV)',
-        price: '350 ₾',
+        price: '300 ₾',
         subtitle: 'FPV-дрон, пролёт камерой по залу',
         items: [
             'Видео в 4K — готово к использованию',
@@ -40,7 +40,7 @@ const plans = [
     },
     {
         title: 'Полная съёмка',
-        price: '500 ₾',
+        price: '450 ₾',
         subtitle: 'Съёмка с воздуха + пролёт внутри — зал, веранда, терраса — за один визит',
         items: [
             'Аэровидео и FPV-пролёт в 4K',
@@ -53,7 +53,7 @@ const plans = [
     },
     {
         title: 'С готовым результатом',
-        price: 'от 900 ₾',
+        price: 'от 700 ₾',
         subtitle: 'Съёмка с воздуха + пролёт дроном внутри + монтаж и фото',
         items: [
             'Продуманный маршрут съёмки',
@@ -72,57 +72,81 @@ const addons = [
 ];
 
 export const DronePricingStitch = () => {
+    const [selectedMobilePlan, setSelectedMobilePlan] = useState<number | null>(null);
+
     return (
         <DebugWrapper id={10700} label="Drone Pricing Section">
             <section className="py-10 md:py-24 bg-[#0D0D0D]" id="pricing">
-                <div className="container mx-auto px-6 text-center mb-8 md:mb-16">
+                <div className="container mx-auto px-6 text-center mb-6 md:mb-16">
                     <DebugWrapper id={10701} label="Pricing Header">
                         <h2 className="text-3xl font-bold mb-4 text-white">Пакеты и цены</h2>
                     </DebugWrapper>
                     <DebugWrapper id={10702} label="Pricing Tagline">
-                        <p className="text-gray-500 text-sm md:text-base">
-                            Цены фиксированные, в грузинских лари (₾). Без скрытых доплат.
+                        <p className="mx-auto max-w-3xl text-sm md:text-base leading-relaxed text-white/70">
+                            Фиксированные тарифы в лари (₾) на аэросъёмку в Тбилиси и по всей Грузии: от 250 ₾ за фасадный облёт до 900 ₾ за комплексную съёмку 4K + FPV с готовым монтажом под ключ. Работаем в Ваке, Сабуртало, Диди Дигоми, Старом городе и выезжаем в регионы.
                         </p>
                     </DebugWrapper>
                 </div>
-                <div className="container mx-auto px-6 grid gap-5 xl:grid-cols-4 items-start">
-                    {plans.map((plan, idx) => (
-                        <DebugWrapper key={idx} id={10710 + idx} label={`Pricing Plan: ${plan.title}`}>
-                            <motion.div
-                                whileHover={{ y: -5 }}
-                                className={`flex flex-col rounded-[20px] border p-5 md:p-6 transition-all ${
-                                    plan.popular
-                                        ? 'border-[#FFD23F]/55 bg-[linear-gradient(180deg,rgba(255,210,63,0.1),rgba(20,20,20,1)_28%)]'
-                                        : 'border-[#2a2a2a] bg-[#141414]'
-                                }`}
-                            >
-                                <div>
-                                    <h3 className="text-lg font-bold text-white md:text-xl">{plan.title}</h3>
-                                    <p className="mt-2 text-xs text-white/64 md:text-sm">{plan.subtitle}</p>
-                                </div>
-                                <div className="mt-5 flex items-center gap-2 md:mt-6 md:gap-3">
-                                    <p className="text-2xl font-bold text-[#FFD23F] md:text-3xl">{plan.price}</p>
-                                    {plan.popular ? (
-                                        <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/12 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFD23F]">
-                                            Выгодно
-                                        </span>
-                                    ) : null}
-                                </div>
-                                <ul className="mt-5 flex-1 space-y-2.5 text-[13px] leading-relaxed text-white/72 md:mt-6 md:space-y-3 md:text-sm">
-                                    {plan.items.map((item) => (
-                                        <li key={item}>✓ {item}</li>
-                                    ))}
-                                </ul>
-                                {plan.note ? <p className="mt-4 text-xs leading-relaxed text-white/58 md:mt-5 md:text-sm">{plan.note}</p> : null}
-                                <a
-                                    href="#contact"
-                                    className="mt-5 inline-flex items-center justify-center rounded-[10px] border border-white/20 px-5 py-2 text-[11px] font-bold uppercase tracking-wider text-white transition-colors hover:border-[#FFD23F] hover:text-[#FFD23F] md:mt-6 md:py-2.5 md:text-xs"
+
+                <div className="container mx-auto px-6 max-w-full">
+                    {/* Horizontal Swipe Carousel */}
+                    <div className="flex gap-4 md:gap-6 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory">
+                        {plans.map((plan, idx) => (
+                            <DebugWrapper key={idx} id={10710 + idx} label={`Pricing Plan: ${plan.title}`}>
+                                <motion.div
+                                    whileHover={{ y: -5 }}
+                                    className={`snap-center shrink-0 w-[85vw] sm:w-[320px] xl:w-[280px] flex flex-col justify-between rounded-[20px] border p-6 md:p-8 transition-all ${
+                                        plan.popular
+                                            ? 'border-[#FFD23F]/55 bg-[linear-gradient(180deg,rgba(255,210,63,0.1),rgba(12,12,14,1)_28%)]'
+                                            : 'border-white/10 bg-[#0C0C0E]'
+                                    }`}
                                 >
-                                    Обсудить этот пакет →
-                                </a>
-                            </motion.div>
-                        </DebugWrapper>
-                    ))}
+                                    <div>
+                                        <div>
+                                            <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">{plan.title}</h3>
+                                            <p className="mt-3 text-sm text-zinc-400 leading-relaxed">{plan.subtitle}</p>
+                                        </div>
+                                        <div className="mt-6 flex items-center gap-3">
+                                            <p className="text-3xl font-bold text-white md:text-4xl">{plan.price}</p>
+                                            {plan.popular ? (
+                                                <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#FFD23F]">
+                                                    Популярно
+                                                </span>
+                                            ) : null}
+                                        </div>
+                                        <ul className="mt-8 flex-1 space-y-4 text-[14px] leading-relaxed text-zinc-300">
+                                            {plan.items.map((item) => (
+                                                <li key={item} className="flex gap-3">
+                                                    <span className="text-white/50 shrink-0">—</span>
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="mt-10 pt-6 border-t border-white/5">
+                                        {plan.note ? <p className="mb-6 text-sm leading-relaxed text-zinc-500">{plan.note}</p> : null}
+                                        <a
+                                            href="#contact"
+                                            onClick={() => {
+                                                if (typeof window !== 'undefined' && plan.title) {
+                                                    window.dispatchEvent(new CustomEvent('breus-select-service', { detail: { serviceTitle: plan.title } }));
+                                                    try { sessionStorage.setItem('breus_contact_prefill_service', plan.title); } catch {}
+                                                }
+                                            }}
+                                            className={`inline-flex w-full items-center justify-center rounded-xl border px-6 py-3.5 text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 ${
+                                                plan.popular
+                                                    ? 'bg-white text-black border-transparent hover:bg-zinc-200'
+                                                    : 'border-white/20 bg-transparent text-white hover:bg-white/10'
+                                            }`}
+                                        >
+                                            Выбрать тариф
+                                        </a>
+                                    </div>
+                                </motion.div>
+                            </DebugWrapper>
+                        ))}
+                    </div>
                 </div>
                 <div className="container mx-auto mt-6 md:mt-10 px-6">
                     <DebugWrapper id={10730} label="Pricing Addons">

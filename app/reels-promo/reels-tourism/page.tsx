@@ -46,9 +46,9 @@ const CANONICAL_URL = 'https://breus.media/reels-promo/reels-tourism';
 const PAGE_TITLE = 'Reels для туристического проекта Грузия | Breus Media Тбилиси';
 const PAGE_DESCRIPTION =
     'Производим Reels для туроператоров, гидов и глэмпингов в Грузии. От 400 ₾. Казбеги, Кахетия, Тбилиси. Быстро и с результатом в бронированиях.';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_RAW = '+995574619393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_RAW = '+995501103183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 const SITE_URL = 'https://breus.media';
 
 const REEL_EXAMPLE_EMBED = 'https://www.tiktok.com/embed/v2/6718335390845095173';
@@ -257,7 +257,7 @@ const moneyFaqItems: FaqItem[] = [
 const whyBreusItems = [
     'Производим именно туристический контент - понимаем язык путешественника и туроператора.',
     'Снимаем в Тбилиси и по всей Грузии - логистика не проблема.',
-    'DJI Avata 2 (FPV) дает уникальные динамичные кадры, которых нет у конкурентов.',
+    'DJI Avata 2 (FPV) даёт кинематографичные динамичные кадры пролётов на 4K 60fps.',
     'Производим контент сразу под несколько платформ: Instagram, TikTok, YouTube Shorts.',
     'Понимаем алгоритмы - снимаем не «красиво», а «работающе».',
 ];

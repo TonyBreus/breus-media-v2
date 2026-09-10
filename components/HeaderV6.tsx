@@ -11,7 +11,7 @@ export default function HeaderV6() {
             <div className="flex justify-between items-center px-4 py-2 border-b border-white/5 text-[10px] md:text-xs uppercase tracking-widest text-gray-400">
                 <div className="flex gap-4">
                     <a href="mailto:hello@breus.media" className="hover:text-white flex items-center gap-2"><Mail className="w-3 h-3" /> hello@breus.media</a>
-                    <span className="hidden md:flex items-center gap-2"><Phone className="w-3 h-3" /> +995 555 000 000</span>
+                    <span className="hidden md:flex items-center gap-2"><Phone className="w-3 h-3" /> +995 501 103 183</span>
                 </div>
                 <div className="flex gap-4">
                     <a href="#" className="hover:text-white"><Instagram className="w-3 h-3" /></a>

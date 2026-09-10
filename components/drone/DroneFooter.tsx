@@ -48,10 +48,10 @@ export function DroneFooter() {
                             Связаться
                         </h4>
                         <div className="flex flex-col gap-3">
-                            <a href="tel:+995574619393" className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors">
-                                <Phone className="w-4 h-4" /> +995 574 619 393
+                            <a href="tel:+995501103183" className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors">
+                                <Phone className="w-4 h-4" /> +995 501 103 183
                             </a>
-                            <a href="https://wa.me/995574619393" className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors">
+                            <a href="https://wa.me/995501103183" className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors">
                                 <MessageCircle className="w-4 h-4" /> WhatsApp
                             </a>
                             <a href="mailto:hello@breus.media" className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors">

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 import { DronePageProgress } from '@/components/drone-restaurants/DronePageProgress';
+import { PackageCta } from '@/components/drone-hotels-tourism/PackageCta';
 import { FaqSection } from '@/components/shared/FaqSection';
 import { ProcessNote } from '@/components/shared/ProcessNote';
 
@@ -10,8 +11,8 @@ const CANONICAL_URL = 'https://breus.media/reels-promo/reels-realtor';
 const PAGE_TITLE = 'Reels для риелтора в Тбилиси — контент для Instagram и TikTok | Breus Media';
 const PAGE_DESCRIPTION =
     'Регулярные Reels для риелтора в Тбилиси. Личный бренд, входящие заявки, экспертный контент. Съёмка и монтаж под ключ. От 200 ₾ за ролик.';
-const CONTACT_PHONE = '+995 574 619 393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 const TELEGRAM_URL = 'https://t.me/breusmedia';
 const REEL_EXAMPLE_EMBED = 'https://www.tiktok.com/embed/v2/6718335390845095173';
 const REEL_EXAMPLE_URL = 'https://www.tiktok.com/@scout2015/video/6718335390845095173';
@@ -51,7 +52,7 @@ const painCards = [
     },
     {
         title: '«Снимал сам — получилось стыдно выкладывать»',
-        text: 'Плохой звук, дрожащая камера, неловкие паузы. Профессиональная съёмка и монтаж убирают технические ошибки и добавляют уверенности в кадре.',
+        text: 'Плохой звук, дрожащая камера, неловкие паузы. Съёмка со стабилизацией, петличным микрофоном DJI Mic 2 и чётким монтажом убирает технические ошибки и добавляет уверенности в кадре.',
     },
     {
         title: '«Не знаю, о чём снимать — тем нет»',
@@ -142,7 +143,7 @@ const socialProofItems = [
     'Понимаем специфику контента для риелторов: район, цена, процесс, советы работают лучше «сухих объявлений».',
     'Строим хук в первые 3 секунды — это напрямую влияет на досмотры и охваты.',
     'Субтитры включены по умолчанию: большинство смотрит Reels без звука.',
-    'Снимаем изначально в вертикальном формате 9:16 на профессиональную камеру со стабилизацией.',
+    'Снимаем изначально в вертикальном формате 9:16 в 4K HDR с трёхосевой стабилизацией и беспроводными микрофонами DJI Mic 2.',
 ];
 
 const beginnerFaqItems = [
@@ -195,7 +196,7 @@ const moneyFaqItems = [
     {
         question: 'Можно заказать только монтаж, если снимаю сам?',
         answer:
-            'Да. Вы присылаете сырой материал, мы делаем монтаж с субтитрами, музыкой и оверлеями. Стоимость монтажа — от 80 ₾ за ролик.',
+            'Да. Вы присылаете исходные видеоматериалы, мы делаем монтаж с субтитрами, музыкой и оверлеями. Стоимость монтажа — от 80 ₾ за ролик.',
     },
     {
         question: 'Нужно ли самому придумывать темы?',
@@ -297,24 +298,24 @@ const packageCompareRows = [
 
 const relatedServices = [
     {
-        title: 'Видеосъёмка квартир для продажи',
-        href: '/reels-promo/reels-real-estate',
-        text: 'Контент под конкретный объект, а не под личный бренд агента.',
+        title: 'Аэросъёмка недвижимости и ЖК',
+        href: '/drone-services/drone-real-estate',
+        text: 'Съёмка района, масштаба и фасадов с воздуха.',
     },
     {
-        title: 'Видеотур по квартире',
-        href: '/promo-video/promo-real-estate',
-        text: 'Подробный walk-through для листинга, сайта и удалённых покупателей.',
+        title: '360° тур для недвижимости',
+        href: '/360-tour-real-estate',
+        text: 'Интерактивный виртуальный тур для удалённых показов.',
     },
     {
-        title: 'Промо-видео для агентства',
-        href: '/promo-video',
-        text: 'Имиджевый ролик о компании и команде в целом.',
+        title: 'Хаб контента для недвижимости',
+        href: '/real-estate-service',
+        text: 'Комплексная упаковка объектов: фото, видео, дрон, staging.',
     },
     {
-        title: 'AI-визуализация',
-        href: '/ai-vizual',
-        text: 'Интерьерная визуализация и обработка фото объектов.',
+        title: 'AI-визуализация и staging',
+        href: '/ai-visualization-service',
+        text: 'Виртуальная меблировка и визуализация будущих интерьеров.',
     },
 ];
 
@@ -350,7 +351,7 @@ const longTailQa = [
     {
         question: 'Как риелтору начать вести Instagram с нуля в 2026 году?',
         answer:
-            'Старт проще, чем кажется: берёте 5 самых частых вопросов клиентов, снимаете 5 роликов и публикуете раз в неделю в течение месяца. Смотрите, какие темы набирают больше досмотров, и масштабируете их. Базово достаточно телефона, света и субтитров. Если хотите быстрый профессиональный старт, одна сессия с продакшном закрывает первый месяц контента.',
+            'Старт проще, чем кажется: берёте 5 самых частых вопросов клиентов, снимаете 5 роликов и публикуете раз в неделю в течение месяца. Смотрите, какие темы набирают больше досмотров, и масштабируете их. Базово достаточно телефона, света и субтитров. Если хотите быстрый и системный старт, одна сессия с продакшном закрывает первый месяц контента.',
     },
     {
         question: 'Какие темы Reels лучше всего работают для риелтора в Тбилиси?',
@@ -391,7 +392,7 @@ const myths = [
     },
     {
         myth: 'Без дорогой камеры невозможно снимать Reels.',
-        reality: 'Хороший свет и понятная структура важнее. Профессиональный монтаж усиливает результат.',
+        reality: 'Хороший свет и понятная структура важнее. Качественный монтаж с хуками и субтитрами усиливает результат.',
     },
     {
         myth: 'Нужен один вирусный ролик — и достаточно.',
@@ -456,8 +457,8 @@ const breadcrumbSchema = {
         {
             '@type': 'ListItem',
             position: 2,
-            name: 'Reels и промо-видео',
-            item: 'https://breus.media/reels-service',
+            name: 'Недвижимость',
+            item: 'https://breus.media/real-estate-service',
         },
         {
             '@type': 'ListItem',
@@ -529,6 +530,10 @@ export const metadata: Metadata = {
     description: PAGE_DESCRIPTION,
     alternates: {
         canonical: CANONICAL_URL,
+        languages: {
+            ru: 'https://breus.media/reels-promo/reels-realtor',
+            en: 'https://breus.media/reels-promo/reels-realtor/en',
+        },
     },
     openGraph: {
         title: PAGE_TITLE,
@@ -553,6 +558,8 @@ export default function ReelsRealtorPage() {
             <SmartHeader
                 transparent={true}
                 isLanding={false}
+                initialLang="ru"
+                languageLinks={{ ru: '/reels-promo/reels-realtor', en: '/reels-promo/reels-realtor/en' }}
                 sectionLinks={[
                     { label: 'Пакеты', href: '#pricing' },
                     { label: 'FAQ', href: '#faq' },
@@ -603,13 +610,13 @@ export default function ReelsRealtorPage() {
                                     href="#contact"
                                     className="inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black transition-colors hover:bg-white"
                                 >
-                                    Обсудить контент-план
+                                    Обсудить съёмку
                                 </a>
                                 <a
                                     href="#pricing"
                                     className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-[#D4A017]"
                                 >
-                                    Смотреть пакеты
+                                    Посмотреть пакеты
                                 </a>
                             </div>
                         </div>
@@ -806,7 +813,7 @@ export default function ReelsRealtorPage() {
                                 Telegram
                             </a>
                             <a
-                                href="tel:+995574619393"
+                                href="tel:+995501103183"
                                 className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white transition-colors hover:border-[#D4A017]"
                             >
                                 {CONTACT_PHONE}
@@ -936,6 +943,19 @@ export default function ReelsRealtorPage() {
                                         </li>
                                     ))}
                                 </ul>
+                                <div className="mt-8">
+                                    <PackageCta
+                                        label="Обсудить этот пакет →"
+                                        packageName={pack.title}
+                                        packagePrice={pack.price}
+                                        lang="ru"
+                                        className={`inline-flex w-full items-center justify-center rounded-xl py-3 text-xs font-bold uppercase tracking-wider transition-all ${
+                                            pack.featured
+                                                ? 'bg-[#D4A017] text-black hover:bg-white'
+                                                : 'border border-white/20 bg-white/5 text-white hover:border-[#D4A017] hover:text-[#D4A017]'
+                                        }`}
+                                    />
+                                </div>
                             </article>
                         ))}
                     </div>
@@ -995,7 +1015,7 @@ export default function ReelsRealtorPage() {
                                 Получить план
                             </a>
                             <a
-                                href="tel:+995574619393"
+                                href="tel:+995501103183"
                                 className="inline-flex items-center justify-center rounded-[12px] border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white transition-colors hover:border-[#D4A017]"
                             >
                                 {CONTACT_PHONE}
@@ -1127,23 +1147,23 @@ export default function ReelsRealtorPage() {
                     <h2 className="text-3xl font-bold md:text-4xl">Дополнительные материалы и переходы</h2>
                     <div className="mt-8 space-y-3 text-sm leading-relaxed text-white/75 md:text-base">
                         <p>
-                            Если вам нужен контент под конкретный объект, а не под личный бренд, перейдите в{' '}
-                            <Link href="/reels-promo/reels-real-estate" className="text-[#D4A017] hover:text-white">
-                                «Видеосъёмка квартир для продажи»
+                            Если вам нужен комплексный визуальный контент под конкретный объект, а не только личный бренд, перейдите в{' '}
+                            <Link href="/real-estate-service" className="text-[#D4A017] hover:text-white">
+                                «Хаб контента для недвижимости»
                             </Link>
                             .
                         </p>
                         <p>
-                            Если важно детально показать конкретную квартиру удалённым покупателям, подойдёт{' '}
-                            <Link href="/promo-video/promo-real-estate" className="text-[#D4A017] hover:text-white">
-                                «Видеотур по квартире»
+                            Если важно детально показать объект удалённым покупателям без искажений, подойдёт{' '}
+                            <Link href="/360-tour-real-estate" className="text-[#D4A017] hover:text-white">
+                                «360° тур для недвижимости»
                             </Link>
                             .
                         </p>
                         <p>
-                            Для бренда агентства в целом лучше выбрать{' '}
-                            <Link href="/promo-video" className="text-[#D4A017] hover:text-white">
-                                «Промо-видео для агентства»
+                            Для бренда агентства или презентационного ролика о компании выберите{' '}
+                            <Link href="/promo-video-service" className="text-[#D4A017] hover:text-white">
+                                «Промо-видео для бизнеса»
                             </Link>
                             .
                         </p>
@@ -1196,25 +1216,7 @@ export default function ReelsRealtorPage() {
 
             <DroneFooterStitch />
 
-            <div className="fixed inset-x-0 bottom-0 z-[1070] border-t border-[#D4A017]/20 bg-[#0f0f0f]/96 p-3 backdrop-blur lg:hidden">
-                <div className="mx-auto flex max-w-[760px] items-center gap-2">
-                    <a
-                        href="#contact"
-                        className="inline-flex flex-1 items-center justify-center rounded-[12px] bg-[#D4A017] px-4 py-3 text-xs font-bold uppercase tracking-[0.16em] text-black"
-                    >
-                        Обсудить Reels
-                    </a>
-                    <a
-                        href={WHATSAPP_URL}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="WhatsApp"
-                        className="inline-flex h-11 w-11 items-center justify-center rounded-[12px] border border-[#D4A017]/45 text-lg text-[#D4A017]"
-                    >
-                        W
-                    </a>
-                </div>
-            </div>
+            
         </main>
     );
 }

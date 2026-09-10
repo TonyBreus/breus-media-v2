@@ -127,12 +127,12 @@ export const RealEstateContactStitch = () => {
                                         className="flex-1 bg-[#D4A017] text-black py-3.5 px-6 rounded-xl font-bold uppercase tracking-[0.12em] text-xs md:text-sm hover:brightness-105 transition-colors flex items-center justify-center gap-2"
                                     >
                                         <Send className="w-4 h-4" />
-                                        Отправить
+                                        Отправить задачу на расчёт
                                     </button>
                                 </DebugWrapper>
                                 <DebugWrapper id={10911} label="Contact Telegram CTA">
                                     <a
-                                        href="https://wa.me/995574619393"
+                                        href="https://wa.me/995501103183"
                                         target="_blank"
                                         rel="noreferrer"
                                         className="flex-1 border border-white/20 text-white py-3.5 px-6 rounded-xl font-semibold uppercase tracking-[0.12em] text-xs md:text-sm hover:bg-white/5 transition-colors flex items-center justify-center gap-2"

@@ -290,7 +290,7 @@ export function GazetaMobileStepChooser({ lang = "ru" }: GazetaMobileStepChooser
 
                 {/* Bottom hint line */}
                 <div className="text-center text-[10.5px] text-white/40 mt-2">
-                    {isEn ? "⌄ Scroll down: about the studio and principles" : "⌄ Листайте дальше: о студии и принципах"}
+                    {isEn ? "↓ Scroll down: Studio & Principles" : "↓ Листайте вниз: О студии и принципах ↓"}
                 </div>
             </div>
 

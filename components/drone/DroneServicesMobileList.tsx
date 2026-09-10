@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { ChevronDown, ChevronRight } from 'lucide-react';
-import { droneServiceItems } from '@/components/drone/droneServicesData';
+import { droneServiceItems, getDroneServiceSortRank } from '@/components/drone/droneServicesData';
 
 export function DroneServicesMobileList() {
-    const items = [...droneServiceItems].sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id));
+    const items = [...droneServiceItems].sort((a, b) => getDroneServiceSortRank(a) - getDroneServiceSortRank(b));
     const hasOddCount = items.length % 2 === 1;
 
     return (

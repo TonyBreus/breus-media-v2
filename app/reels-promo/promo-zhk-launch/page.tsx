@@ -52,9 +52,9 @@ const CANONICAL_URL = 'https://breus.media/reels-promo/promo-zhk-launch';
 const PAGE_TITLE = 'Рекламный ролик для ЖК в Тбилиси — промо для запуска продаж | Breus Media';
 const PAGE_DESCRIPTION =
     'Рекламный ролик для жилого комплекса: 15–60 сек под Instagram, Facebook, YouTube. Быстрый запуск продаж. Тбилиси и Грузия. От 800 ₾.';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 const TELEGRAM_URL = 'https://t.me/breusmedia';
 
 const VIDEO_EMBED_URL = 'https://www.youtube.com/embed/M7lc1UVf-VE';

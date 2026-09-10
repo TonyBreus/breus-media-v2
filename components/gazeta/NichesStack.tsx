@@ -6,6 +6,14 @@ import { ArrowDown, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, LayoutGri
 import Link from "next/link";
 import { gazetaDetailRoutes, gazetaNicheLandingRoutes } from "@/constants/gazetaRoutes";
 import { l2DirectionConfigs } from "@/constants/l2DirectionConfigs";
+import {
+    aiVisualizationServiceEnConfig,
+    hotelsServiceEnConfig,
+    realEstateServiceEnConfig,
+    reelsServiceEnConfig,
+    restaurantsServiceEnConfig,
+    tours360ServiceEnConfig,
+} from "@/constants/l2DirectionConfigs.en";
 import type { L2ServiceItem } from "@/components/l2-direction/types";
 import { droneServiceItems, type DroneServiceItem } from "@/components/drone/droneServicesData";
 import { realEstateServiceItems, type RealEstateServiceItem } from "@/components/real-estate-service/realEstateServicesData";
@@ -13,7 +21,10 @@ import { useMobileLandscape } from "@/hooks/useMobileLandscape";
 import { useMobilePortrait } from "@/hooks/useMobilePortrait";
 import { DroneContactStitch } from "@/components/drone/DroneContactStitch";
 import { GazetaMinimalFooter } from "@/components/gazeta/GazetaMinimalFooter";
+import { ScannerBanner } from "@/components/scanner/ScannerBanner";
 import aiMenuDeliveryImageTwo from "@/services-images/ai-menu-delivery/final/2.png";
+
+type GazetaLang = "ru" | "en";
 
 const {
     aiContent,
@@ -72,7 +83,7 @@ const niches: NicheItem[] = [
                     desc: "Аэрофото и видео для листингов, инвест-презентаций и продаж. Объекты с аэровидео продаются на 68% быстрее.",
                     meta: "Фото, видео и вид на район",
                     cta: "Открыть услугу",
-                    link: "/drone-real-estate",
+                    link: "/drone-services/drone-real-estate",
                     img: "https://images.unsplash.com/photo-1512453979436-5a5369614333?w=800&q=80"
                 },
                 {
@@ -80,8 +91,7 @@ const niches: NicheItem[] = [
                     eyebrow: "Стройка и девелопмент",
                     desc: "Еженедельные облёты с GPS-привязкой. PDF-отчёты о прогрессе для инвесторов без выезда на площадку.",
                     meta: "Регулярные облёты + PDF",
-                    cta: "Открыть услугу",
-                    link: "/drone-construction-monitoring",
+                    link: "/drone-service#services",
                     img: "https://images.unsplash.com/photo-1541888086225-ee5a006c6426?w=800&q=80"
                 },
                 {
@@ -89,8 +99,7 @@ const niches: NicheItem[] = [
                     eyebrow: "Технические осмотры",
                     desc: "Визуальная диагностика без лесов и промальпинистов. Быстрее, безопаснее и дешевле проверки людьми.",
                     meta: "Без лесов и лишнего риска",
-                    cta: "Открыть услугу",
-                    link: "/drone-object-inspection",
+                    link: "/drone-service#services",
                     img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
                 },
                 {
@@ -114,12 +123,9 @@ const niches: NicheItem[] = [
                 {
                     title: "FPV-пролёты",
                     eyebrow: "Внутри и снаружи",
-                    tag: "FPV-СЪЁМКА",
-                    tagAccent: true,
                     desc: "Cinematic пролёты изнутри и снаружи. FPV-дрон там, где обычный не пролетит — залы, арки, цеха.",
                     meta: "Один непрерывный проход",
-                    cta: "Открыть услугу",
-                    link: "/drone-service",
+                    link: "/drone-service#services",
                     img: "https://images.unsplash.com/photo-1581481615985-ba4775734a9b?w=800&q=80"
                 },
                 {
@@ -127,7 +133,6 @@ const niches: NicheItem[] = [
                     eyebrow: "Бренд-контент",
                     desc: "Рекламные ролики, брендовый контент и корпоративное видео с воздуха для сайта и соцсетей.",
                     meta: "Реклама для сайта и соцсетей",
-                    cta: "Открыть услугу",
                     link: "/promo-video-service",
                     img: "https://images.unsplash.com/photo-1524146128017-b9dd0bfd2778?w=800&q=80"
                 },
@@ -145,8 +150,7 @@ const niches: NicheItem[] = [
                     eyebrow: "Events",
                     desc: "Аэросъёмка открытий, корпоративов, спортивных соревнований и фестивалей на открытом воздухе.",
                     meta: "Фестивали, спорт, открытия",
-                    cta: "Открыть услугу",
-                    link: "/drone-weddings-events",
+                    link: "/drone-service#services",
                     img: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80"
                 }
             ]
@@ -199,12 +203,12 @@ const niches: NicheItem[] = [
             subheading: "Видео для недвижимости в Тбилиси и Грузии",
             introNote: "Аэросъёмка, 360° туры и ролики для риелторов и застройщиков — объекты с видео получают больше просмотров и быстрее выходят на показ.",
             services: [
-                { title: "Видео для риелторов", desc: "Съёмка квартиры или дома: интерьер, экстерьер, район. Монтаж за 3–5 дней. От 400 GEL", link: "/drone-real-estate" },
-                { title: "Видео для застройщиков", desc: "Презентационные ролики ЖК, рендеры и реальная съёмка для продаж и инвесторов", link: "/drone-real-estate" },
-                { title: "Аэросъёмка объектов", desc: "DJI Air 3S, 4K. Облёт фасада, территории и района. 94% больше просмотров объявления", link: "/drone-real-estate" },
+                { title: "Видео для риелторов", desc: "Съёмка квартиры или дома: интерьер, экстерьер, район. Монтаж за 3–5 дней. От 400 GEL", link: "/drone-services/drone-real-estate" },
+                { title: "Видео для застройщиков", desc: "Презентационные ролики ЖК, рендеры и реальная съёмка для продаж и инвесторов", link: "/real-estate-service#services" },
+                { title: "Аэросъёмка объектов", desc: "DJI Air 3S, 4K. Облёт фасада, территории и района. 94% больше просмотров объявления", link: "/drone-services/drone-real-estate" },
                 { title: "360° виртуальные туры", eyebrow: "Риэлтор · Застройщик · Агент", desc: "Покажите объект инвестору до выезда. Виртуальный тур заменяет первичный осмотр и приводит на встречу уже заинтересованного покупателя.", meta: "Показ · Планировка · Конверсия", link: "/360-tour-real-estate" },
-                { title: "Мониторинг стройки", desc: "Ежемесячные дрон-облёты с GPS-привязкой и PDF-отчётом для банков и инвесторов", link: "/drone-construction-monitoring" },
-                { title: "AI-упаковка объявлений", desc: "Улучшение фото, описания для порталов, Reels для соцсетей агентства", link: "/ai-visual/ai-real-estate" }
+                { title: "Мониторинг стройки", desc: "Ежемесячные дрон-облёты с GPS-привязкой и отчётом для банков и инвесторов", link: "/real-estate-service#services" },
+                { title: "AI-упаковка объявлений", desc: "Улучшение фото, описания для порталов, Reels для соцсетей агентства", link: "/ai-visualization-service" }
             ]
         }
     },
@@ -217,12 +221,12 @@ const niches: NicheItem[] = [
             subheading: "Съёмка для отелей и гостевых домов Грузии",
             introNote: "Видеотуры, аэросъёмка и Reels — гость бронирует там, где видит номер, территорию и атмосферу, а не только цену.",
             services: [
-                { title: "Видеотур по отелю", desc: "Номера, ресторан, бассейн, вид — cinematic видео 2–4 мин для сайта и Booking", link: "/drone-hotels-tourism" },
+                { title: "Видеотур по отелю", desc: "Номера, ресторан, бассейн, вид — cinematic видео 2–4 мин для сайта и Booking", link: "/hotels-service#services" },
                 { title: "Отели & Курорты", desc: "Гость бронирует глазами. Снимаем отель, террасы и виды так, чтобы страница на Booking работала сама.", link: "/drone-hotels-tourism" },
                 { title: "360° туры для отелей", desc: "Виртуальный тур который можно встроить на сайт, Booking и Google Maps", link: "/360-tour-hotels" },
-                { title: "Reels и сезонный контент", desc: "Ежемесячный контент-пакет: 8–12 вертикальных видео под Instagram и TikTok", link: "/reels-promo/reels-hotel" },
-                { title: "SMM для отеля", desc: "Ведение Instagram и TikTok — контент-план, съёмка, монтаж, коммуникация", link: "/drone-hotels-tourism" },
-                { title: "AI-перевод и локализация", desc: "Описания номеров и постов на 3–5 языках через AI — для иностранных гостей", link: "/ai-content/hotel-ai-descriptions" }
+                { title: "Reels и сезонный контент", desc: "Ежемесячный контент-пакет: 8–12 вертикальных видео под Instagram и TikTok", link: "/hotels-service#services" },
+                { title: "SMM для отеля", desc: "Ведение Instagram и TikTok — контент-план, съёмка, монтаж, коммуникация", link: "/hotels-service#services" },
+                { title: "AI-перевод и локализация", desc: "Описания номеров и постов на 3–5 языках через AI — для иностранных гостей", link: "/hotels-service#services" }
             ]
         }
     },
@@ -235,12 +239,12 @@ const niches: NicheItem[] = [
             subheading: "Видео для ресторанов и кафе Тбилиси",
             introNote: "Reels, фуд-съёмка и брендовое видео для ресторанов, кафе и баров — люди приходят туда, где видят еду, свет и настроение.",
             services: [
-                { title: "Фуд-видео и фото", desc: "Съёмка блюд, подачи и процесса приготовления. Для меню, сайта и соцсетей", link: "/drone-services/drone-restaurants" },
-                { title: "Атмосферный ролик", desc: "Видео 60–90 сек: интерьер, команда, гости, кухня. Для Instagram и Google Maps", link: "/drone-services/drone-restaurants" },
-                { title: "Reels-пакет", desc: "5–10 вертикальных видео в месяц: блюда, акции, атмосфера, команда", link: "/reels-promo/reels-restaurant" },
-                { title: "Дизайн меню", desc: "Обновление меню с фото и дизайном. Print-ready + цифровая версия. От 600 GEL", link: "/drone-services/drone-restaurants" },
-                { title: "Google Maps визуал", desc: "Фото и видео для Google Business — выше в поиске «рестораны рядом»", link: "/drone-services/drone-restaurants" },
-                { title: "SMM под ключ", desc: "Контент-план, съёмка, монтаж и ведение Instagram ресторана", link: "/drone-services/drone-restaurants" }
+                { title: "Фуд-видео и фото", desc: "Съёмка блюд, подачи и процесса приготовления. Для меню, сайта и соцсетей", link: "/restaurants-service#services" },
+                { title: "Атмосферный ролик", desc: "Видео 60–90 сек: интерьер, команда, гости, кухня. Для Instagram и Google Maps", link: "/restaurants-service#services" },
+                { title: "Reels-пакет", desc: "5–10 вертикальных видео в месяц: блюда, акции, атмосфера, команда", link: "/restaurants-service#services" },
+                { title: "Дизайн меню", desc: "Обновление меню с фото и дизайном. Print-ready + цифровая версия. От 600 GEL", link: "/restaurants-service#services" },
+                { title: "Google Maps визуал", desc: "Фото и видео для Google Business — выше в поиске «рестораны рядом»", link: "/restaurants-service#services" },
+                { title: "SMM под ключ", desc: "Контент-план, съёмка, монтаж и ведение Instagram ресторана", link: "/restaurants-service#services" }
             ]
         }
     },
@@ -253,12 +257,12 @@ const niches: NicheItem[] = [
             subheading: "Съёмка для автосалонов и автобизнеса в Грузии",
             introNote: "Видео, аэросъёмка и AI-визуал для автосалонов, стоянок и сервисов — машину выбирают глазами, карточка с видео работает лучше фото.",
             services: [
-                { title: "Обзорное видео автомобиля", desc: "Внешний вид, интерьер, динамика — видео 60–90 сек для продаж и соцсетей", link: "/drone-services/drone-auto" },
-                { title: "Аэросъёмка дилерского центра", desc: "Дрон над салоном и стоянкой — масштаб и статус для рекламы и сайта", link: "/drone-services/drone-auto" },
-                { title: "Reels и Shorts для автосалона", desc: "Короткие вирусные видео: новинки, тест-драйвы, спецпредложения", link: "/reels-promo/reels-auto" },
-                { title: "Контент для автопроката", desc: "Съёмка парка автомобилей, условий аренды и локаций для туристов", link: "/drone-services/drone-auto" },
-                { title: "AI-описания для объявлений", desc: "Продающие тексты на RU/EN/GE для auto.ge, myauto.ge и международных площадок", link: "/ai-visual/ai-auto" },
-                { title: "Брендовое видео компании", desc: "Имиджевый ролик дилерского центра или сервиса для сайта и презентаций", link: "/promo-video/promo-car-dealer" }
+                { title: "Обзорное видео автомобиля", desc: "Внешний вид, интерьер, динамика — видео 60–90 сек для продаж и соцсетей", link: "/auto-service#services" },
+                { title: "Аэросъёмка дилерского центра", desc: "Дрон над салоном и стоянкой — масштаб и статус для рекламы и сайта", link: "/auto-service#services" },
+                { title: "Reels и Shorts для автосалона", desc: "Короткие вирусные видео: новинки, тест-драйвы, спецпредложения", link: "/auto-service#services" },
+                { title: "Контент для автопроката", desc: "Съёмка парка автомобилей, условий аренды и локаций для туристов", link: "/auto-service#services" },
+                { title: "AI-описания для объявлений", desc: "Продающие тексты на RU/EN/GE для auto.ge, myauto.ge и международных площадок", link: "/auto-service#services" },
+                { title: "Брендовое видео компании", desc: "Имиджевый ролик дилерского центра или сервиса для сайта и презентаций", link: "/auto-service#services" }
             ]
         }
     },
@@ -272,11 +276,11 @@ const niches: NicheItem[] = [
             introNote: "Аэросъёмка маршрутов, видеогиды и ролики локаций — для турагентств, гидов и операторов, работающих по стране.",
             services: [
                 { title: "Аэросъёмка локаций", desc: "Горы, побережье, города — cinematic дрон-видео для туристических маршрутов", link: "/drone-hotels-tourism" },
-                { title: "Видеогид по маршруту", desc: "Документальный ролик 3–7 мин о туре или направлении. Для YouTube и сайта", link: "/reels-promo/reels-tourism" },
-                { title: "Reels для турагентства", desc: "Контент-пакет: топ-локации, отзывы туристов, моменты из туров", link: "/reels-promo/reels-tourism" },
-                { title: "360° тур по локации", desc: "Интерактивная панорама горы, пещеры, замка или курорта", link: "/360-tour-tourism" },
-                { title: "Контент для экотуризма", desc: "Видео и фото природных парков, треккинговых маршрутов и глэмпингов", link: "/reels-promo/reels-tourism" },
-                { title: "Промо для иностранных туристов", desc: "Видео на EN/DE/FR с субтитрами — для Booking, TripAdvisor и YouTube", link: "/promo-video/promo-tourism-route" }
+                { title: "Видеогид по маршруту", desc: "Документальный ролик 3–7 мин о туре или направлении. Для YouTube и сайта", link: "/tourism-service#services" },
+                { title: "Reels для турагентства", desc: "Контент-пакет: топ-локации, отзывы туристов, моменты из туров", link: "/tourism-service#services" },
+                { title: "360° тур по локации", desc: "Интерактивная панорама горы, пещеры, замка или курорта", link: "/tourism-service#services" },
+                { title: "Контент для экотуризма", desc: "Видео и фото природных парков, треккинговых маршрутов и глэмпингов", link: "/tourism-service#services" },
+                { title: "Промо для иностранных туристов", desc: "Видео на EN/DE/FR с субтитрами — для Booking, TripAdvisor и YouTube", link: "/tourism-service#services" }
             ]
         }
     },
@@ -292,21 +296,20 @@ const niches: NicheItem[] = [
                 {
                     title: "Имиджевое видео клиники",
                     desc: "Показывает пространство, оборудование, подход и атмосферу.",
-                    link: "/promo-video/promo-clinic",
+                    link: "/clinics-service#services",
                     img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
                     category: "Пространство · Оборудование · Подход",
                     price: "Brand Video · от 350 ₾",
-                    primaryCtaLabel: "Открыть услугу",
                 },
                 {
                     title: "360° туры для клиник",
                     desc: "Интерактивная презентация пространства клиники для снижения тревожности до визита.",
-                    link: "/360-tour-clinics",
+                    link: "/clinics-service#services",
                 },
                 {
                     title: "Контент для эстетических услуг",
                     desc: "Подходит для beauty/skin/dental/wellness направлений.",
-                    link: "/clinics-service#service-kontent-esteticheskih-uslug",
+                    link: "/clinics-service#services",
                 },
                 {
                     title: "Reels для клиники",
@@ -328,7 +331,7 @@ const niches: NicheItem[] = [
         detailedContent: {
             heading: "IT",
             subheading: "Видео для IT-компаний и личных брендов Грузии",
-            introNote: "Продакшн, кейсы и AI-визуал для IT, стартапов и фаундеров — от продуктовых роликов до съёмки команды и офиса.",
+            introNote: "Продакшн, кейсы и AI-визуал для IT, стартапов и фаундеров — от продуктовых роликов до съёмки команды.",
             services: [
                 { title: "Продуктовое видео", desc: "Демо-ролик продукта или приложения — для инвесторов, сайта и App Store", link: "/promo-video-service" },
                 { title: "Кейс-стади в видео", desc: "История клиента до/после внедрения вашего продукта. Лучший B2B-контент", link: "#contact" },
@@ -341,26 +344,138 @@ const niches: NicheItem[] = [
     },
 ];
 
-type StackStepNavItem = {
-    id: string;
-    title: string;
+const nicheEnCopy: Record<string, Omit<Partial<NicheItem>, 'detailedContent'> & { detailedContent?: Partial<DetailedContent> }> = {
+    "01": {
+        title: "Agency",
+        detailedContent: {
+            heading: "Creative Media Agency",
+            subheading: "Meaning, Style and Speed. Tbilisi.",
+            introNote: "Breus Media is a full-cycle visual content agency. We combine aerial, photo and video production, 360° tours, motion design and localization to package projects for any platform.",
+            services: [
+                { title: "Brand video", desc: "Corporate and image videos.", link: "/drone-services/drone-real-estate" },
+                { title: "Drone filming", desc: "Aerial footage and flyovers.", link: "/drone-hotels-tourism" },
+                { title: "Localization", desc: "Adaptation to EN, KA, RU.", link: "/ai-content/hotel-ai-descriptions" }
+            ]
+        }
+    },
+    "02": {
+        title: "AERIAL FILMING",
+        centerText: "AERIAL FILMING",
+        detailedContent: {
+            heading: "Aerial filming",
+            subheading: "Drone filming in Tbilisi and across Georgia",
+            introNote:
+                "Property flyovers, construction progress, FPV interior passes and finished videos for business tasks and private projects.",
+        },
+    },
+    "03": {
+        title: "360° TOURS",
+        centerText: "360° TOURS",
+        detailedContent: {
+            heading: "360° tours",
+            subheading: "Virtual 360° tours for businesses in Georgia",
+            introNote:
+                "Interactive tours where viewers can enter the space and look around: hotels, restaurants, offices, apartments and outdoor locations.",
+        },
+    },
+    "04": {
+        title: "REELS",
+        centerText: "REELS",
+        detailedContent: {
+            heading: "Reels",
+            subheading: "Vertical videos for social media",
+            introNote:
+                "Short videos up to 60 seconds, tailored to the niche and business goal for brands, venues and properties in Tbilisi and Georgia.",
+        },
+    },
+    "05": {
+        title: "AI CONTENT",
+        centerText: "AI CONTENT",
+        detailedContent: {
+            heading: "AI content",
+            subheading: "AI visualization for businesses in Georgia",
+            introNote:
+                "Interior, facade, product and concept visuals for things that are not built yet, not filmed yet or still live only as an idea.",
+        },
+    },
+    "06": {
+        title: "Real Estate",
+        detailedContent: {
+            heading: "Real Estate",
+            subheading: "Video for real estate in Tbilisi and Georgia",
+            introNote:
+                "Drone filming, 360° tours and videos for agents and developers: stronger listings, clearer context and faster buyer understanding.",
+        },
+    },
+    "07": {
+        title: "Hotels",
+        detailedContent: {
+            heading: "Hotels",
+            subheading: "Content production for hotels and guest houses in Georgia",
+            introNote:
+                "Video tours, drone filming and Reels for properties where guests need to see the room, territory and atmosphere before booking.",
+        },
+    },
+    "08": {
+        title: "Restaurants",
+        detailedContent: {
+            heading: "Restaurants",
+            subheading: "Video for restaurants and cafes in Tbilisi",
+            introNote:
+                "Food video, atmosphere cuts and branded content for restaurants, cafes and bars where people come after seeing the food, light and mood.",
+        },
+    },
+    "09": {
+        title: "Auto Business",
+        detailedContent: {
+            heading: "Auto",
+            subheading: "Content for dealerships and auto businesses in Georgia",
+            introNote:
+                "Video, drone filming and AI visuals for dealerships, lots and services: cars are chosen visually, and video makes listings work harder.",
+        },
+    },
+    "10": {
+        title: "Tourism",
+        detailedContent: {
+            heading: "Tourism",
+            subheading: "Content for tourism, routes and locations in Georgia",
+            introNote:
+                "Aerial, promo and guide-style videos for routes, resorts and travel brands that need to show the place before the trip.",
+        },
+    },
+    "11": {
+        title: "Clinics",
+        detailedContent: {
+            heading: "Clinics",
+            subheading: "Content for clinics and beauty centers in Tbilisi",
+            introNote:
+                "Clean, trust-building visuals for medical centers, procedures and services where clarity and reputation matter.",
+        },
+    },
+    "12": {
+        title: "IT",
+        detailedContent: {
+            heading: "IT",
+            subheading: "Video for tech companies and personal brands in Georgia",
+            introNote:
+                "Production, case studies and AI visuals for IT companies, startups and founders, from product videos to team content.",
+        },
+    },
 };
 
-const stackStepNavItems: StackStepNavItem[] = [
-    { id: "01", title: "Агентство" },
-    ...niches.filter(niche => niche.id !== "01").map((niche) => ({ id: niche.id, title: niche.title })),
-    { id: "13", title: "Частые вопросы" },
-    { id: "14", title: "Форма связи" },
-];
 
 const StackSectionHeader = ({
     activeStepIndex,
     sectionHeaderClassName,
     onNavigateToStep,
+    stackStepNavItems,
+    lang,
 }: {
     activeStepIndex: number;
     sectionHeaderClassName: string;
     onNavigateToStep: (index: number) => void;
+    stackStepNavItems: StackStepNavItem[];
+    lang: GazetaLang;
 }) => {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const activeItemRef = useRef<HTMLDivElement>(null);
@@ -391,7 +506,7 @@ const StackSectionHeader = ({
                     const content = (
                         <>
                             <span className={isActive ? sectionHeaderIndexClassName : "text-[#D4AF37]/50 mr-1 md:mr-2 transition-colors group-hover:text-[#D4AF37]"}>{step.id}</span>
-                            <span>{step.title.toLocaleUpperCase("ru-RU")}</span>
+                            <span>{step.title.toLocaleUpperCase(lang === "en" ? "en-US" : "ru-RU")}</span>
                         </>
                     );
 
@@ -426,8 +541,8 @@ const StackSectionHeader = ({
     );
 };
 
-const DEFAULT_STICKY_TOP_PX = 70;   // SmartHeader compact 70px
-const PORTRAIT_STICKY_TOP_PX = 52; // SmartHeader compact 52px
+const DEFAULT_STICKY_TOP_PX = 64;   // SmartHeader desktop 64px
+const PORTRAIT_STICKY_TOP_PX = 64;  // SmartHeader tablet 64px
 const LANDSCAPE_STICKY_TOP_PX = 56; // SmartHeader compact 56px
 const PORTRAIT_STACK_PREVIEW_PX = 28;
 const LANDSCAPE_STACK_PREVIEW_PX = 22;
@@ -481,6 +596,9 @@ type StackCardProps = {
     isMobilePortrait: boolean;
     onNavigateToStep: (targetIndex: number) => void;
     activeStepIndex: number;
+    stackStepNavItems: StackStepNavItem[];
+    canonicalServicesByNicheId: Partial<Record<string, ServiceItem[]>>;
+    lang: GazetaLang;
 };
 
 type CanonicalCardCopy = {
@@ -618,90 +736,101 @@ const getCanonicalCopyWithHref = (title?: string, href?: string) => {
     return getCanonicalCopy(title);
 };
 
-const toStackServiceFromL2 = (service: L2ServiceItem, fallbackLink: string): ServiceItem => ({
-    ...(getCanonicalCopyWithHref(service.title, service.primaryHref)
-        ? {
-              eyebrow: getCanonicalCopyWithHref(service.title, service.primaryHref)!.eyebrow,
-              meta: getCanonicalCopyWithHref(service.title, service.primaryHref)!.meta,
-          }
-        : {}),
-    slug: service.slug,
-    title: service.title,
-    desc: getCanonicalCopyWithHref(service.title, service.primaryHref)?.description ?? service.description,
-    link: service.primaryHref ?? fallbackLink,
-    img:
-        service.slug === "tury-360-nedvizhimost"
-            ? "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80"
-            : service.slug === "reels-rieltor"
-            ? "/media/gazeta/reels-realtor-1.png"
-            : service.slug === "promo-ekskursii-aktivnosti"
-            ? "/media/gazeta/tourism-1.png"
-            : service.slug === "ai-upakovka-predlozheniy-tourism" || service.slug === "ai-upakovka-predlozheniy"
-            ? "/media/gazeta/tourism-2.png"
-            : service.slug === "tury-360-turizm"
-            ? "/media/gazeta/360-tour-2.png"
-            : service.slug === "tur-360-turizma"
-            ? "/media/gazeta/360-tour-2.png"
-            : service.slug === "tur-360-klinik"
-            ? "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80"
-            : service.slug === "aerosemka-lokacii"
-            ? "/media/gazeta/360-tour-1.png"
-            : service.slug === "tur-360-nomera"
-            ? "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80"
-            : service.slug === "videotur-otelya"
-            ? "/media/gazeta/360-real-estate-2.png"
-            : service.slug === "aerosemka-territorii"
-            ? "/media/drone-service/hotels-resorts-5.png"
-            : service.image,
-    imagePosition: service.imagePosition,
-    category: getCanonicalCopyWithHref(service.title, service.primaryHref)?.category ?? service.category,
-    price: getCanonicalCopyWithHref(service.title, service.primaryHref)?.price ?? service.price,
-    primaryCtaLabel: service.primaryCtaLabel,
-    cta: service.primaryCtaLabel,
-    tag: service.tag,
-    featured: service.featured,
-});
+const toStackServiceFromL2 = (service: L2ServiceItem, fallbackLink: string): ServiceItem => {
+    const canonical = getCanonicalCopyWithHref(service.title, service.primaryHref);
+    return {
+        ...(canonical
+            ? {
+                  eyebrow: canonical.eyebrow,
+                  meta: canonical.meta,
+              }
+            : {}),
+        slug: service.slug,
+        title: service.title,
+        desc: canonical?.description ?? service.description,
+        link: service.primaryHref ?? fallbackLink,
+        img:
+            service.slug === "tury-360-nedvizhimost"
+                ? "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80"
+                : service.slug === "reels-rieltor"
+                ? "/media/gazeta/reels-realtor-1.png"
+                : service.slug === "promo-ekskursii-aktivnosti"
+                ? "/media/gazeta/tourism-1.png"
+                : service.slug === "ai-upakovka-predlozheniy-tourism" || service.slug === "ai-upakovka-predlozheniy"
+                ? "/media/gazeta/tourism-2.png"
+                : service.slug === "tury-360-turizm"
+                ? "/media/gazeta/360-tour-2.png"
+                : service.slug === "tur-360-turizma"
+                ? "/media/gazeta/360-tour-2.png"
+                : service.slug === "tur-360-klinik"
+                ? "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80"
+                : service.slug === "aerosemka-lokacii"
+                ? "/media/gazeta/360-tour-1.png"
+                : service.slug === "tur-360-nomera"
+                ? "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80"
+                : service.slug === "videotur-otelya"
+                ? "/media/gazeta/360-real-estate-2.png"
+                : service.slug === "aerosemka-territorii"
+                ? "/media/drone-service/hotels-resorts-5.png"
+                : service.image,
+        imagePosition: service.imagePosition,
+        category: canonical?.category ?? service.category,
+        price: canonical?.price ?? service.price,
+        meta: canonical?.meta ?? service.price,
+        primaryCtaLabel: service.primaryCtaLabel,
+        cta: service.primaryCtaLabel,
+        tag: service.tag,
+        featured: service.featured,
+    };
+};
 
-const toStackServiceFromDrone = (service: DroneServiceItem): ServiceItem => ({
-    slug: service.slug,
-    title: service.title,
-    desc: service.description,
-    link: service.primaryHref,
-    img: service.image,
-    category: getCanonicalCopyWithHref(service.title, service.primaryHref)?.category ?? service.category,
-    price: getCanonicalCopyWithHref(service.title, service.primaryHref)?.price ?? service.price,
-    primaryCtaLabel: service.primaryCtaLabel,
-    cta: service.primaryCtaLabel,
-    eyebrow: getCanonicalCopyWithHref(service.title, service.primaryHref)?.eyebrow,
-    meta: getCanonicalCopyWithHref(service.title, service.primaryHref)?.meta,
-    tag: service.tag,
-    featured: service.featured,
-});
+const toStackServiceFromDrone = (service: DroneServiceItem): ServiceItem => {
+    const canonical = getCanonicalCopyWithHref(service.title, service.primaryHref);
+    return {
+        slug: service.slug,
+        title: service.title,
+        desc: service.description,
+        link: service.primaryHref,
+        img: service.image,
+        category: canonical?.category ?? service.category,
+        price: canonical?.price ?? service.price,
+        meta: canonical?.meta ?? service.price,
+        primaryCtaLabel: service.primaryCtaLabel,
+        cta: service.primaryCtaLabel,
+        eyebrow: canonical?.eyebrow,
+        tag: service.tag,
+        featured: service.featured,
+    };
+};
 
-const toStackServiceFromRealEstate = (service: RealEstateServiceItem): ServiceItem => ({
-    ...(getCanonicalCopyWithHref(service.title, service.primaryHref)
-        ? {
-              eyebrow: getCanonicalCopyWithHref(service.title, service.primaryHref)!.eyebrow,
-              meta: getCanonicalCopyWithHref(service.title, service.primaryHref)!.meta,
-          }
-        : {}),
-    slug: service.slug,
-    title: service.title,
-    desc: getCanonicalCopyWithHref(service.title, service.primaryHref)?.description ?? service.description,
-    link: service.primaryHref ?? "/real-estate-service",
-    img:
-        service.slug === "prodazha-kvartir"
-            ? "/media/gazeta/360-real-estate-1.png"
-            : service.slug === "reels-rieltor"
-            ? "/media/gazeta/reels-realtor-1.png"
-            : service.image,
-    category: getCanonicalCopyWithHref(service.title, service.primaryHref)?.category ?? service.category,
-    price: getCanonicalCopyWithHref(service.title, service.primaryHref)?.price ?? service.price,
-    primaryCtaLabel: service.primaryCtaLabel,
-    cta: service.primaryCtaLabel,
-    tag: service.tag,
-    featured: service.featured,
-});
+const toStackServiceFromRealEstate = (service: RealEstateServiceItem): ServiceItem => {
+    const canonical = getCanonicalCopyWithHref(service.title, service.primaryHref);
+    return {
+        ...(canonical
+            ? {
+                  eyebrow: canonical.eyebrow,
+                  meta: canonical.meta,
+              }
+            : {}),
+        slug: service.slug,
+        title: service.title,
+        desc: canonical?.description ?? service.description,
+        link: service.primaryHref ?? "/real-estate-service",
+        img:
+            service.slug === "prodazha-kvartir"
+                ? "/media/gazeta/360-real-estate-1.png"
+                : service.slug === "reels-rieltor"
+                ? "/media/gazeta/reels-realtor-1.png"
+                : service.image,
+        category: canonical?.category ?? service.category,
+        price: canonical?.price ?? service.price,
+        meta: canonical?.meta ?? service.price,
+        primaryCtaLabel: service.primaryCtaLabel,
+        cta: service.primaryCtaLabel,
+        tag: service.tag,
+        featured: service.featured,
+    };
+};
 const l2NicheToConfigKey: Partial<Record<string, keyof typeof l2DirectionConfigs>> = {
     "03": "tours360Service",
     "04": "reelsService",
@@ -714,7 +843,7 @@ const l2NicheToConfigKey: Partial<Record<string, keyof typeof l2DirectionConfigs
     "12": "businessService",
 };
 
-const canonicalServicesByNicheId: Partial<Record<string, ServiceItem[]>> = {
+const canonicalServicesByNicheIdRu: Partial<Record<string, ServiceItem[]>> = {
     "02": [...droneServiceItems]
         .sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id))
         .map(toStackServiceFromDrone),
@@ -726,10 +855,167 @@ const canonicalServicesByNicheId: Partial<Record<string, ServiceItem[]>> = {
 for (const [nicheId, l2Key] of Object.entries(l2NicheToConfigKey)) {
     if (!l2Key) continue;
     const fallbackLink = gazetaNicheLandingRoutes[nicheId] ?? "/gazeta";
-    canonicalServicesByNicheId[nicheId] = l2DirectionConfigs[l2Key].data.services.map((service) =>
+    canonicalServicesByNicheIdRu[nicheId] = l2DirectionConfigs[l2Key].data.services.map((service) =>
         toStackServiceFromL2(service, fallbackLink)
     );
 }
+
+const enRoute = (href: string) => {
+    const routes: Record<string, string> = {
+        "/drone-service": "/drone-service/en",
+        "/360-tours-service": "/360-tours-service/en",
+        "/reels-service": "/reels-service/en",
+        "/ai-visualization-service": "/ai-visualization-service/en",
+        "/real-estate-service": "/real-estate-service/en",
+        "/hotels-service": "/hotels-service/en",
+        "/restaurants-service": "/restaurants-service/en",
+        "/auto-service": "/auto-service/en",
+        "/clinics-service": "/clinics-service/en",
+        "/tourism-service": "/tourism-service/en",
+        "/drone-services/drone-real-estate": "/drone-services/drone-real-estate/en",
+        "/drone-hotels-tourism": "/drone-hotels-tourism/en",
+        "/drone-services/drone-restaurants": "/drone-services/drone-restaurants/en",
+        "/360-tour-real-estate": "/360-tour-real-estate/en",
+        "/reels-promo/reels-realtor": "/reels-promo/reels-realtor/en",
+    };
+    return routes[href] ?? href;
+};
+
+const droneServiceEnCopy: Record<string, Partial<ServiceItem>> = {
+    nedvizhimost: { title: "Real Estate", desc: "Aerial photos and video for listings, investor presentations and property sales.", category: "Real Estate · Sales", price: "Drone · from 400 ₾", primaryCtaLabel: "Open service", cta: "Open service" },
+    "monitoring-stroiki": { title: "Construction Monitoring", desc: "Regular drone flyovers with visual progress records for developers, investors and banks.", category: "Construction · Progress", price: "Regular flights · quote by task", primaryCtaLabel: "Open service", cta: "Open service" },
+    "fpv-semka": { title: "FPV Filming", desc: "Cinematic indoor and outdoor FPV passes through spaces, halls, arches and production areas.", category: "FPV · Immersive Video", price: "FPV · quote by task", primaryCtaLabel: "Open service", cta: "Open service" },
+    "oteli-kurorty": { title: "Hotels & Resorts", desc: "Aerial hero footage of territory, views and surroundings for websites, booking pages and social media.", category: "Hospitality · Views", price: "Drone · from 400 ₾", primaryCtaLabel: "Open service", cta: "Open service" },
+    restorany: { title: "Restaurants", desc: "Drone filming for terraces, rooftops, countryside restaurants and locations where the setting matters.", category: "HoReCa · Location", price: "Drone · from 400 ₾", primaryCtaLabel: "Open service", cta: "Open service" },
+    turizm: { title: "Tourism & Locations", desc: "Cinematic aerial footage of routes, mountains, canyons, castles and travel experiences in Georgia.", category: "Travel · Routes", price: "Drone · from 400 ₾", primaryCtaLabel: "Open service", cta: "Open service" },
+    meropriyatiya: { title: "Events", desc: "Aerial coverage for openings, corporate events, outdoor sport events and festivals.", category: "Events · Coverage", price: "Drone · from 400 ₾", primaryCtaLabel: "Open service", cta: "Open service" },
+    "inspekciya-obektov": { title: "Object Inspection", desc: "Visual inspection of hard-to-reach areas without scaffolding or industrial climbers.", category: "Inspection · Safety", price: "Inspection · quote by task", primaryCtaLabel: "Open service", cta: "Open service" },
+    "kontrol-territorii": { title: "Territory Monitoring", desc: "Aerial records of land, sites and infrastructure for planning, control and reporting.", category: "Monitoring · Territory", price: "Regular reports · quote by task", primaryCtaLabel: "Open service", cta: "Open service" },
+    "interiery-sklady": { title: "Interiors and Warehouses", desc: "Drone and FPV visuals for large interiors, logistics spaces, production zones and storage facilities.", category: "Interior · Warehouse", price: "Drone / FPV · quote by task", primaryCtaLabel: "Open service", cta: "Open service" },
+    "sport-kompleksy": { title: "Sports Complexes", desc: "Aerial content for stadiums, tennis courts, sport venues and training locations.", category: "Sports · Venue", price: "Drone · from 400 ₾", primaryCtaLabel: "Open service", cta: "Open service" },
+    "reklama-brand-video": { title: "Advertising and Brand Video", desc: "Aerial accents and brand footage for websites, social campaigns and commercial videos.", category: "Brand · Advertising", price: "Promo · quote by task", primaryCtaLabel: "Open service", cta: "Open service" },
+    "aerosyemka-dlya-avto-i-avtosalonov": { title: "Dealerships and Showrooms", desc: "Drone footage for car lots, dealership buildings, stock presentation and automotive campaigns.", category: "Auto · Showroom", price: "Drone · from 400 ₾", primaryCtaLabel: "Open service", cta: "Open service" },
+    "agro-i-vinodelie": { title: "Agro and Wine", desc: "Aerial visuals for vineyards, farms, production sites, routes and rural hospitality.", category: "Agro · Wine", price: "Drone · quote by task", primaryCtaLabel: "Open service", cta: "Open service" },
+    "zemelnye-uchastki": { title: "Land Plots", desc: "Aerial context for land sales, development sites, access roads, borders and surroundings.", category: "Land · Development", price: "Drone · from 400 ₾", primaryCtaLabel: "Open service", cta: "Open service" },
+    "inspekciya-fasadov": { title: "Facade Inspection", desc: "Visual facade records without scaffolding, useful before repairs, reporting or condition checks.", category: "Facade · Inspection", price: "Inspection · quote by task", primaryCtaLabel: "Open service", cta: "Open service" },
+    "inspekciya-solnechnyh-paneley": { title: "Solar Panel Inspection", desc: "Aerial visual documentation of solar sites and panel fields for reporting and condition review.", category: "Solar · Visual Check", price: "Inspection · quote by task", primaryCtaLabel: "Open service", cta: "Open service" },
+    "regulyarnye-aerootchety": { title: "Regular Aerial Reports", desc: "Scheduled drone reports for construction, land, infrastructure, resorts and long-running projects.", category: "Reports · Regular", price: "Reports · quote by task", primaryCtaLabel: "Open service", cta: "Open service" },
+};
+
+const translateDroneServiceToEn = (service: DroneServiceItem): ServiceItem => ({
+    ...toStackServiceFromDrone(service),
+    ...droneServiceEnCopy[service.slug],
+    link: enRoute(service.primaryHref),
+});
+
+const translateServiceFallbackEn = (service: ServiceItem): ServiceItem => ({
+    ...service,
+    link: enRoute(service.link),
+    primaryCtaLabel: service.primaryCtaLabel ? "Open service" : service.primaryCtaLabel,
+    cta: service.cta ? "Open service" : service.cta,
+});
+
+const translateManualL2ServiceEn = (service: ServiceItem): ServiceItem => {
+    const titleMap: Record<string, Partial<ServiceItem>> = {
+        "Видео дилерского центра": { title: "Dealership video", desc: "A branded video for the showroom, cars, team and sales context.", category: "Auto · Brand Video", price: "Brand Video · from 300 ₾" },
+        "Аэросъёмка площадки": { title: "Drone filming for car lots", desc: "Aerial visuals of the dealership, stock, parking area and surrounding context.", category: "Auto · Drone", price: "Drone · from 400 ₾" },
+        "Reels для авто": { title: "Reels for auto business", desc: "Short vertical videos for new arrivals, test drives and special offers.", category: "Auto · Reels", price: "Reels · from 450 ₾" },
+        "Обзор модели": { title: "Model showcase content", desc: "Exterior, interior and detail shots for sales pages and social media.", category: "Auto · Showcase", price: "Model Showcase · from 500 ₾" },
+        "Сервис / детейлинг": { title: "Service / detailing content", desc: "Photo and video content for service workflows, detailing, results and customer trust.", category: "Service · Detailing", price: "Service Content · from 550 ₾" },
+        "AI-упаковка": { title: "AI listing packaging", desc: "AI-assisted listing descriptions and visual packaging for sales channels.", category: "AI · Listings", price: "AI Content · quote by task" },
+        "Видео тура или маршрута": { title: "Tour or route video", desc: "Cinematic video for travel routes, excursions and destination offers.", category: "Tourism · Video", price: "Cinematic · from 350 ₾" },
+        "Аэросъёмка локации": { title: "Drone filming for locations", desc: "Aerial footage that shows the route, landscape, access and atmosphere.", category: "Tourism · Drone", price: "Drone · from 400 ₾" },
+        "Reels для турпроекта": { title: "Reels for tourism projects", desc: "Short vertical videos for tour operators, locations and travel brands.", category: "Tourism · Reels", price: "Short-form · from 450 ₾" },
+        "Контент для глэмпинга": { title: "Glamping content", desc: "Atmosphere, territory, cabins and experience content for hospitality offers.", category: "Hospitality · Glamping", price: "Content Pack · quote by task" },
+        "AI-упаковка предложений": { title: "AI offer packaging", desc: "AI-assisted visual and text packaging for travel offers and campaigns.", category: "AI · Tourism", price: "AI Content · from 300 ₾" },
+        "360° туры локаций": { title: "360° location tours", desc: "Interactive tours for locations, attractions, venues and outdoor spaces.", category: "360° · Tourism", price: "360° · from 300 ₾" },
+        "Видео клиники": { title: "Clinic brand video", desc: "Clean clinic video for services, team, space and reputation.", category: "Clinic · Brand Video", price: "Brand Video · from 350 ₾" },
+        "Reels для врача": { title: "Reels for doctors", desc: "Short expert videos for doctors, services, procedures and patient trust.", category: "Clinic · Reels", price: "Reels · from 450 ₾" },
+        "360° тур клиники": { title: "360° clinic tour", desc: "Interactive tour of reception, rooms and patient-facing spaces.", category: "360° · Clinic", price: "360° · from 500 ₾" },
+        "Фото пространства": { title: "Space photography", desc: "Photos and video of rooms, equipment and interior details.", category: "Clinic · Space", price: "Photo + Video · from 450 ₾" },
+        "Контент для услуг": { title: "Service content", desc: "Clear content for procedures, service pages and patient explanations.", category: "Clinic · Services", price: "Content Pack · quote by task" },
+        "AI-описания и FAQ": { title: "AI descriptions and FAQ", desc: "AI-assisted multilingual service descriptions and FAQ drafts.", category: "AI · Medical Copy", price: "AI Content · quote by task" },
+        "Имиджевое видео": { title: "Brand video", desc: "Business video for a website, launch, pitch or brand communication.", category: "Business · Brand Video", price: "Brand Video · from 300 ₾" },
+        "Reels и регулярный контент": { title: "Reels and regular content", desc: "Short-form content for social media, updates and brand presence.", category: "Social · Content", price: "Short-form · from 450 ₾" },
+        "360° туры": { title: "360° tours", desc: "Interactive tours for offices, showrooms, venues and business spaces.", category: "360° · Business", price: "360° · from 550 ₾" },
+    };
+    const copy = service.title ? titleMap[service.title] : undefined;
+    return {
+        ...translateServiceFallbackEn(service),
+        ...copy,
+        primaryCtaLabel: "Open service",
+        cta: "Open service",
+    };
+};
+
+const toStackServiceFromL2En = (service: L2ServiceItem, fallbackLink: string): ServiceItem => ({
+    slug: service.slug,
+    title: service.title,
+    desc: service.description,
+    link: enRoute(service.primaryHref ?? fallbackLink),
+    img: service.image,
+    imagePosition: service.imagePosition,
+    category: service.category,
+    price: service.price,
+    primaryCtaLabel: service.primaryCtaLabel ?? "Open service",
+    cta: service.primaryCtaLabel ?? "Open service",
+    tag: service.tag,
+    featured: service.featured,
+    eyebrow: service.category,
+    meta: service.price,
+});
+
+const canonicalServicesByNicheIdEn: Partial<Record<string, ServiceItem[]>> = {
+    "02": [...droneServiceItems]
+        .sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id))
+        .map(translateDroneServiceToEn),
+    "03": tours360ServiceEnConfig.data.services.map((service) => toStackServiceFromL2En(service, "/360-tours-service/en")),
+    "04": reelsServiceEnConfig.data.services.map((service) => toStackServiceFromL2En(service, "/reels-service/en")),
+    "05": aiVisualizationServiceEnConfig.data.services.map((service) => toStackServiceFromL2En(service, "/ai-visualization-service/en")),
+    "06": realEstateServiceEnConfig.data.services.map((service) => toStackServiceFromL2En(service, "/real-estate-service/en")),
+    "07": hotelsServiceEnConfig.data.services.map((service) => toStackServiceFromL2En(service, "/hotels-service/en")),
+    "08": restaurantsServiceEnConfig.data.services.map((service) => toStackServiceFromL2En(service, "/restaurants-service/en")),
+    "09": (canonicalServicesByNicheIdRu["09"] ?? []).map(translateManualL2ServiceEn),
+    "10": (canonicalServicesByNicheIdRu["10"] ?? []).map(translateManualL2ServiceEn),
+    "11": (canonicalServicesByNicheIdRu["11"] ?? []).map(translateManualL2ServiceEn),
+    "12": (canonicalServicesByNicheIdRu["12"] ?? []).map(translateManualL2ServiceEn),
+};
+
+const nichesEn: NicheItem[] = niches.map((niche) => {
+    const copy = nicheEnCopy[niche.id];
+    return {
+        ...niche,
+        ...copy,
+        detailedContent: niche.detailedContent
+            ? {
+                  ...niche.detailedContent,
+                  ...copy?.detailedContent,
+                  services: canonicalServicesByNicheIdEn[niche.id] ?? copy?.detailedContent?.services ?? niche.detailedContent.services,
+              }
+            : undefined,
+    };
+});
+
+type StackStepNavItem = {
+    id: string;
+    title: string;
+};
+
+const stackStepNavItemsRu: StackStepNavItem[] = [
+    { id: "01", title: "Агентство" },
+    ...niches.filter(niche => niche.id !== "01").map((niche) => ({ id: niche.id, title: niche.title })),
+    { id: "13", title: "Частые вопросы" },
+    { id: "14", title: "Форма связи" },
+];
+
+const stackStepNavItemsEn: StackStepNavItem[] = [
+    { id: "01", title: "Agency" },
+    ...nichesEn.filter(niche => niche.id !== "01").map((niche) => ({ id: niche.id, title: niche.title })),
+    { id: "13", title: "FAQ" },
+    { id: "14", title: "Contact form" },
+];
+
+const getStackStepNavItems = (lang: GazetaLang) => (lang === "en" ? stackStepNavItemsEn : stackStepNavItemsRu);
 
 const MaybeDebugWrapper = ({
     enabled,
@@ -762,131 +1048,155 @@ const DESKTOP_OPEN_SERVICE_ALLOWLIST = new Set<string>([
     "02:nedvizhimost",
     "02:oteli-kurorty",
     "02:restorany",
+    "03:nedvizhimost",
     "03:tury-360-nedvizhimost",
+    "03:oteli-apartamenty",
     "03:tury-360-oteli",
+    "04:nedvizhimost",
     "04:reels-rieltor",
-    "07:tur-360-nomera",
-    "06:virtual-360",
     "06:aero-rayon",
-    "08:aerosemka-lokacii",
+    "06:virtual-360",
+    "07:360-tour-dlya-otelya",
+    "07:tur-360-nomera",
+    "07:aerosemka-otelya-territorii",
     "07:aerosemka-territorii",
+    "08:aerosemka-restorana",
+    "08:aerosemka-lokacii",
     "10:aerosemka-lokacii",
 ]);
 
 const DESKTOP_OPEN_SERVICE_HREF_OVERRIDES: Record<string, string> = {
     "02:nedvizhimost": "/drone-services/drone-real-estate",
+    "02:oteli-kurorty": "/drone-hotels-tourism",
+    "02:restorany": "/drone-services/drone-restaurants",
+    "03:nedvizhimost": "/360-tour-real-estate",
     "03:tury-360-nedvizhimost": "/360-tour-real-estate",
+    "03:oteli-apartamenty": "/360-tour-hotels",
     "03:tury-360-oteli": "/360-tour-hotels",
-    "04:reels-rieltor": "/reels-real-estate",
-    "07:tur-360-nomera": "/360-tour-hotels",
-    "06:virtual-360": "/360-tour-real-estate",
+    "04:nedvizhimost": "/reels-promo/reels-realtor",
+    "04:reels-rieltor": "/reels-promo/reels-realtor",
     "06:aero-rayon": "/drone-services/drone-real-estate",
-    "08:aerosemka-lokacii": "/drone-services/drone-restaurants",
+    "06:virtual-360": "/360-tour-real-estate",
+    "07:360-tour-dlya-otelya": "/360-tour-hotels",
+    "07:tur-360-nomera": "/360-tour-hotels",
+    "07:aerosemka-otelya-territorii": "/drone-hotels-tourism",
     "07:aerosemka-territorii": "/drone-hotels-tourism",
+    "08:aerosemka-restorana": "/drone-services/drone-restaurants",
+    "08:aerosemka-lokacii": "/drone-services/drone-restaurants",
     "10:aerosemka-lokacii": "/drone-hotels-tourism",
 };
 
-const OPEN_SERVICE_CTA_LABEL = "открыть услугу";
+const OPEN_SERVICE_CTA_LABELS = new Set(["открыть услугу", "open service"]);
+const ALL_SERVICES_BUTTON_NICHE_IDS = new Set(["02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]);
 
 const isOpenServiceCard = (nicheId: string, service: ServiceItem, isDesktopViewport: boolean) => {
     if (service.variant === "all-services") {
         return false;
     }
 
-    const label = (service.primaryCtaLabel ?? service.cta ?? "").trim().toLowerCase();
-    if (label === OPEN_SERVICE_CTA_LABEL) {
-        return true;
-    }
-
-    if (!isDesktopViewport || !service.slug) {
+    if (!service.slug) {
         return false;
     }
 
     return DESKTOP_OPEN_SERVICE_ALLOWLIST.has(`${nicheId}:${service.slug}`);
 };
 
-const buildAllServicesCard = (niche: NicheItem): ServiceItem | null => {
+const buildAllServicesCard = (niche: NicheItem, lang: GazetaLang): ServiceItem | null => {
     const link = gazetaNicheLandingRoutes[niche.id];
 
-    if (!link || niche.id === "12") {
+    if (!link) {
         return null;
     }
 
     const isAerialNiche = niche.id === "02";
     const isRealEstateNiche = niche.id === "06";
-    const defaultDesc = `Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «${niche.title}».`;
+    const localizedLink = lang === "en" ? enRoute(link) : link;
+    const defaultDesc =
+        lang === "en"
+            ? `Open the direction page to see services, formats, examples and the next step for ${niche.title}.`
+            : `Откройте страницу направления, чтобы посмотреть все услуги, форматы, кейсы и следующий шаг по категории «${niche.title}».`;
 
     return {
-        title: "Все услуги",
+        title: lang === "en" ? "All services" : "Все услуги",
         variant: "all-services",
-        eyebrow: isAerialNiche ? "Подбор решения" : "Полный список решений",
+        eyebrow: lang === "en"
+            ? isAerialNiche ? "Solution selection" : "Full solution list"
+            : isAerialNiche ? "Подбор решения" : "Полный список решений",
         desc: isAerialNiche
-            ? "Откройте страницу аэросъёмки, чтобы увидеть все форматы: недвижимость, мониторинг, inspection, FPV, туризм, мероприятия и другие задачи."
+            ? lang === "en"
+                ? "Open the aerial filming page to see all formats: real estate, monitoring, inspection, FPV, tourism, events and other tasks."
+                : "Откройте страницу аэросъёмки, чтобы увидеть все форматы: недвижимость, мониторинг, inspection, FPV, туризм, мероприятия и другие задачи."
             : isRealEstateNiche
-                ? "Откройте страницу направления с полным пакетом для недвижимости: съёмка, аэро, 360°-туры и AI-упаковка."
+                ? lang === "en"
+                    ? "Open the real estate direction page with the full package: video, drone, 360° tours and AI packaging."
+                    : "Откройте страницу направления с полным пакетом для недвижимости: съёмка, аэро, 360°-туры и AI-упаковка."
                 : defaultDesc,
-        meta: isAerialNiche ? "Все форматы аэросъёмки" : "Вся страница направления",
-        cta: isAerialNiche ? "Открыть услуги" : "Перейти к услугам",
-        link,
+        meta: lang === "en"
+            ? isAerialNiche ? "All aerial filming formats" : "Full direction page"
+            : isAerialNiche ? "Все форматы аэросъёмки" : "Вся страница направления",
+        cta: lang === "en"
+            ? isAerialNiche ? "Open services" : "Go to services"
+            : isAerialNiche ? "Открыть услуги" : "Перейти к услугам",
+        link: localizedLink,
         img: niche.img,
     };
 };
 
-const getSuggestedCardDetails = (niche: NicheItem, svc: ServiceItem): Partial<ServiceItem> => {
+const getSuggestedCardDetails = (niche: NicheItem, svc: ServiceItem, lang: GazetaLang): Partial<ServiceItem> => {
     const content = `${svc.title ?? ""} ${svc.desc}`.toLowerCase();
 
     if (content.includes("ai")) {
         return {
             tag: "AI",
             tagAccent: true,
-            eyebrow: "AI-решения",
-            meta: "Упаковка и локализация",
-            cta: "Открыть услугу",
+            eyebrow: lang === "en" ? "AI solutions" : "AI-решения",
+            meta: lang === "en" ? "Packaging and localization" : "Упаковка и локализация",
+            cta: lang === "en" ? "Open service" : "Открыть услугу",
         };
     }
 
     if (content.includes("360")) {
         return {
             tag: "360",
-            eyebrow: "Иммерсивный формат",
-            meta: "Виртуальный тур",
-            cta: "Открыть услугу",
+            eyebrow: lang === "en" ? "Immersive format" : "Иммерсивный формат",
+            meta: lang === "en" ? "Virtual tour" : "Виртуальный тур",
+            cta: lang === "en" ? "Open service" : "Открыть услугу",
         };
     }
 
     if (content.includes("reels") || content.includes("shorts") || content.includes("instagram") || content.includes("tiktok")) {
         return {
             tag: "REELS",
-            eyebrow: "Short-form контент",
-            meta: "Вертикальные форматы",
-            cta: "Смотреть пакет",
+            eyebrow: lang === "en" ? "Short-form content" : "Short-form контент",
+            meta: lang === "en" ? "Vertical formats" : "Вертикальные форматы",
+            cta: lang === "en" ? "View package" : "Смотреть пакет",
         };
     }
 
     if (content.includes("мониторинг")) {
         return {
             tag: "PROGRESS",
-            eyebrow: "Регулярный контроль",
-            meta: "Облёты и отчёты",
-            cta: "Открыть услугу",
+            eyebrow: lang === "en" ? "Regular monitoring" : "Регулярный контроль",
+            meta: lang === "en" ? "Flights and reports" : "Облёты и отчёты",
+            cta: lang === "en" ? "Open service" : "Открыть услугу",
         };
     }
 
     if (content.includes("аэросъ") || content.includes("дрон")) {
         return {
             tag: "DRONE",
-            eyebrow: "Aerial-визуал",
-            meta: "Съёмка с воздуха",
-            cta: "Открыть услугу",
+            eyebrow: lang === "en" ? "Aerial visuals" : "Aerial-визуал",
+            meta: lang === "en" ? "Drone filming" : "Съёмка с воздуха",
+            cta: lang === "en" ? "Open service" : "Открыть услугу",
         };
     }
 
     if (content.includes("smm")) {
         return {
             tag: "SMM",
-            eyebrow: "Контент-система",
-            meta: "План и публикации",
-            cta: "Смотреть пакет",
+            eyebrow: lang === "en" ? "Content system" : "Контент-система",
+            meta: lang === "en" ? "Plan and publishing" : "План и публикации",
+            cta: lang === "en" ? "View package" : "Смотреть пакет",
         };
     }
 
@@ -894,33 +1204,33 @@ const getSuggestedCardDetails = (niche: NicheItem, svc: ServiceItem): Partial<Se
         return {
             tag: "MAPS",
             eyebrow: "Local presence",
-            meta: "Визуал для карт",
-            cta: "Открыть услугу",
+            meta: lang === "en" ? "Visuals for maps" : "Визуал для карт",
+            cta: lang === "en" ? "Open service" : "Открыть услугу",
         };
     }
 
     if (content.includes("дизайн")) {
         return {
             tag: "DESIGN",
-            eyebrow: "Визуальная упаковка",
-            meta: "Меню и носители",
-            cta: "Открыть услугу",
+            eyebrow: lang === "en" ? "Visual packaging" : "Визуальная упаковка",
+            meta: lang === "en" ? "Menu and media" : "Меню и носители",
+            cta: lang === "en" ? "Open service" : "Открыть услугу",
         };
     }
 
     if (content.includes("видео") || content.includes("ролик") || content.includes("съёмка")) {
         return {
             tag: "VIDEO",
-            eyebrow: "Продакшн",
-            meta: "Съёмка и монтаж",
-            cta: "Открыть услугу",
+            eyebrow: lang === "en" ? "Production" : "Продакшн",
+            meta: lang === "en" ? "Shoot and edit" : "Съёмка и монтаж",
+            cta: lang === "en" ? "Open service" : "Открыть услугу",
         };
     }
 
     return {
         eyebrow: niche.title,
-        meta: `${niche.title} / формат`,
-        cta: "Открыть услугу",
+        meta: lang === "en" ? `${niche.title} / format` : `${niche.title} / формат`,
+        cta: lang === "en" ? "Open service" : "Открыть услугу",
     };
 };
 
@@ -950,14 +1260,7 @@ const isDuplicateIndustryHeading = (niche: NicheItem) => {
 const getBackButtonUiId = (nicheId: string) => `91${nicheId.padStart(2, "0")}`;
 const GLOBAL_NEXT_BUTTON_UI_ID = "9200";
 
-const UiIdBadge = ({ id }: { id: string }) => (
-    <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-2 -left-2 rounded-br bg-red-500 px-1.5 py-1 text-[10px] leading-none font-bold text-white shadow-md border-r border-b border-red-700 z-[240]"
-    >
-        #{id}
-    </span>
-);
+const UiIdBadge = ({ id: _id }: { id: string }) => null;
 
 const clampLinesStyle = (lines: number): React.CSSProperties => ({
     display: "-webkit-box",
@@ -976,7 +1279,21 @@ const chunkItems = <T,>(items: T[], size: number): T[][] => {
     return chunks;
 };
 
-const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeight, isMobileLandscape, isMobilePortrait, onNavigateToStep, activeStepIndex }: StackCardProps) => {
+const Card = ({
+    niche,
+    index,
+    scrollYProgress,
+    totalSteps,
+    stickyTop,
+    stickyHeight,
+    isMobileLandscape,
+    isMobilePortrait,
+    onNavigateToStep,
+    activeStepIndex,
+    stackStepNavItems,
+    canonicalServicesByNicheId,
+    lang,
+}: StackCardProps) => {
     const contentScrollRef = useRef<HTMLDivElement | null>(null);
     const servicesRailRef = useRef<HTMLDivElement | null>(null);
     const servicesCardsContainerRef = useRef<HTMLDivElement | null>(null);
@@ -987,6 +1304,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
     const isAerialScreen = niche.id === "02";
     const isAerialCompactScreen = niche.id === "02";
     const isAerialOrToursScreen = niche.id === "02" || niche.id === "03";
+    const isTours360Screen = niche.id === "03";
     const isRealEstateScreen = niche.id === "06";
     const isReelsScreen = niche.id === "04";
     const isUnifiedTopTextScreen = ["02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"].includes(niche.id);
@@ -994,71 +1312,23 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
     const isDesktopViewport = !isMobileLandscape && !isMobilePortrait;
     const showDebugOverlays = !isAerialScreen;
     const screenLink = gazetaNicheLandingRoutes[niche.id];
-    const allServicesCard = buildAllServicesCard(niche);
+    const allServicesCard = buildAllServicesCard(niche, lang);
     const geoHighlightByNicheId: Record<string, string> = {
-        "02": "в Тбилиси и по Грузии",
-        "03": "по Грузии",
-        "04": "в Тбилиси и по Грузии",
-        "05": "в Грузии",
-        "06": "в Тбилиси и Грузии",
-        "07": "Грузии",
-        "08": "Тбилиси",
-        "09": "в Грузии",
-        "10": "Грузии",
-        "11": "Тбилиси",
-        "12": "Грузии",
+        "02": lang === "en" ? "in Tbilisi and across Georgia" : "в Тбилиси и по Грузии",
+        "03": lang === "en" ? "in Georgia" : "по Грузии",
+        "04": lang === "en" ? "in Tbilisi and Georgia" : "в Тбилиси и по Грузии",
+        "05": lang === "en" ? "in Georgia" : "в Грузии",
+        "06": lang === "en" ? "in Tbilisi and Georgia" : "в Тбилиси и Грузии",
+        "07": lang === "en" ? "in Georgia" : "Грузии",
+        "08": lang === "en" ? "in Tbilisi" : "Тбилиси",
+        "09": lang === "en" ? "in Georgia" : "в Грузии",
+        "10": lang === "en" ? "in Georgia" : "Грузии",
+        "11": lang === "en" ? "in Tbilisi" : "Тбилиси",
+        "12": lang === "en" ? "in Georgia" : "Грузии",
     };
     const baseSourceServices = canonicalServicesByNicheId[niche.id] ?? niche.detailedContent?.services ?? [];
-    const sourceServices =
-        isDesktopViewport && niche.id === "02"
-            ? (() => {
-                const monitoringIndex = baseSourceServices.findIndex((service) => service.slug === "monitoring-stroiki");
-                const restaurantsIndex = baseSourceServices.findIndex((service) => service.slug === "restorany");
-                if (monitoringIndex === -1 || restaurantsIndex === -1 || monitoringIndex > restaurantsIndex) {
-                    return baseSourceServices;
-                }
-
-                const reordered = [...baseSourceServices];
-                const [monitoringCard] = reordered.splice(monitoringIndex, 1);
-                reordered.splice(restaurantsIndex + 1, 0, monitoringCard);
-                return reordered;
-            })()
-            : baseSourceServices;
-    const prioritizedSourceServices = (() => {
-        const openServiceCards: ServiceItem[] = [];
-        const otherCards: ServiceItem[] = [];
-
-        for (const service of sourceServices) {
-            if (isOpenServiceCard(niche.id, service, isDesktopViewport)) {
-                openServiceCards.push(service);
-            } else {
-                otherCards.push(service);
-            }
-        }
-
-        return [...openServiceCards, ...otherCards];
-    })();
-    const orderedSourceServices =
-        niche.id === "10"
-            ? (() => {
-                  const targetIndex = prioritizedSourceServices.findIndex((service) => service.slug === "tur-360-turizma");
-                  if (targetIndex <= 1) return prioritizedSourceServices;
-                  const reordered = [...prioritizedSourceServices];
-                  const [target] = reordered.splice(targetIndex, 1);
-                  reordered.splice(1, 0, target);
-                  return reordered;
-              })()
-            : niche.id === "11"
-            ? (() => {
-                  const targetIndex = prioritizedSourceServices.findIndex((service) => service.slug === "tur-360-klinik");
-                  if (targetIndex <= 0) return prioritizedSourceServices;
-                  const reordered = [...prioritizedSourceServices];
-                  const [target] = reordered.splice(targetIndex, 1);
-                  reordered.unshift(target);
-                  return reordered;
-              })()
-            : prioritizedSourceServices;
-    const limitedServices = orderedSourceServices.slice(0, 5);
+    const sourceServices = baseSourceServices;
+    const limitedServices = sourceServices.slice(0, 5);
     const shouldRenderDetailedHeading = Boolean(niche.detailedContent?.heading);
     const shouldRenderDetailedEyebrow = niche.id !== "02";
     const services = niche.detailedContent
@@ -1092,29 +1362,30 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         [0, 1]
     );
     const contentPaddingClassName = isAerialCompactScreen
-        ? "p-6 pt-20 md:p-12 lg:p-20 xl:px-6 xl:py-2 xl:pt-14"
+        ? "p-4 pt-16 md:p-6 md:pt-16 lg:p-7 xl:px-6 xl:py-2 xl:pt-10"
         : isCompactNicheScreen
-        ? "p-6 pt-20 md:p-12 md:pt-20 xl:px-8 xl:py-3 xl:pt-14"
-        : "p-6 pt-20 md:p-12 lg:p-20";
+        ? "p-4 pt-16 md:p-6 md:pt-16 xl:px-6 xl:py-2 xl:pt-10"
+        : "p-4 pt-16 md:p-6 lg:p-7";
+    const sectionOffsetClassName = isDesktopViewport ? "-translate-y-[5%]" : "";
     const contentWrapperClassName = isAerialCompactScreen
-        ? "min-h-full flex flex-col max-w-[1500px] mx-auto w-full pb-10"
+        ? `min-h-full flex flex-col max-w-[1500px] mx-auto w-full pb-4 md:pb-6 ${sectionOffsetClassName}`
         : isCompactNicheScreen
-        ? "min-h-full flex flex-col max-w-[1500px] mx-auto w-full pb-2"
-        : "min-h-full flex flex-col justify-center max-w-[1500px] mx-auto w-full pb-10";
+        ? `min-h-full flex flex-col max-w-[1500px] mx-auto w-full pb-2 ${sectionOffsetClassName}`
+        : `min-h-full flex flex-col justify-center max-w-[1500px] mx-auto w-full pb-4 md:pb-6 ${sectionOffsetClassName}`;
     const headingBlockClassName = isAerialCompactScreen
-        ? "max-w-4xl mb-4 md:mb-6 mt-4 md:mt-0 xl:mb-3 text-center mx-auto"
+        ? "max-w-4xl mb-3 md:mb-4 mt-2 md:mt-0 xl:mb-2 text-center mx-auto"
         : isRealEstateScreen
-        ? "max-w-4xl mb-2 md:mb-6 mt-1 md:mt-0 xl:mb-2 text-center mx-auto"
+        ? "max-w-4xl mb-2 md:mb-3 mt-1 md:mt-0 xl:mb-2 text-center mx-auto"
         : isReelsScreen
-        ? "max-w-4xl mb-4 md:mb-6 mt-4 md:mt-0 xl:mb-3 text-center mx-auto"
+        ? "max-w-4xl mb-3 md:mb-4 mt-2 md:mt-0 xl:mb-2 text-center mx-auto"
         : isCompactNicheScreen
-        ? "max-w-4xl mb-4 md:mb-6 mt-4 md:mt-0 xl:mb-3 text-center mx-auto"
-        : "max-w-4xl mb-10 md:mb-14 mt-4 md:mt-0 text-center mx-auto";
+        ? "max-w-4xl mb-3 md:mb-4 mt-2 md:mt-0 xl:mb-2 text-center mx-auto"
+        : "max-w-4xl mb-4 md:mb-6 mt-2 md:mt-0 text-center mx-auto";
     const headingClassName = isAerialCompactScreen
-        ? "font-sans font-black tracking-tight uppercase text-white drop-shadow-2xl text-4xl md:text-6xl lg:text-7xl xl:text-[42px] max-w-4xl mb-4 md:mb-5 xl:mb-2 leading-[0.95]"
+        ? "font-sans font-black tracking-tight uppercase text-white drop-shadow-2xl text-3xl md:text-5xl lg:text-6xl xl:text-[40px] max-w-4xl mb-3 md:mb-4 xl:mb-2 leading-[0.95]"
         : isCompactNicheScreen
-        ? "font-sans font-black tracking-tight uppercase text-white drop-shadow-2xl text-4xl md:text-6xl xl:text-5xl max-w-4xl mb-3 xl:mb-2 leading-[0.96]"
-        : "font-sans font-black tracking-tighter uppercase text-white drop-shadow-2xl text-4xl md:text-6xl lg:text-7xl max-w-4xl mb-4 md:mb-5";
+        ? "font-sans font-black tracking-tight uppercase text-white drop-shadow-2xl text-3xl md:text-5xl xl:text-4xl max-w-4xl mb-2 xl:mb-2 leading-[0.96]"
+        : "font-sans font-black tracking-tighter uppercase text-white drop-shadow-2xl text-3xl md:text-5xl lg:text-6xl max-w-4xl mb-3 md:mb-4";
     const subheadingClassName = isAerialCompactScreen
         ? "text-white/88 max-w-[62ch] leading-[1.34] font-semibold tracking-[0.01em] mx-auto text-[clamp(1.04rem,1.95vw,1.44rem)]"
         : isCompactNicheScreen
@@ -1201,6 +1472,16 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                 ? "-right-11 md:-right-12 xl:-right-14"
                 : "right-0";
     const shouldAnimateMobileRailArrows = (isRealEstateScreen && isMobileCompactTop) || useDesktopHorizontalServicesRail;
+    const openServiceLabel = lang === "en" ? "Open service ↗" : "Открыть услугу ↗";
+    const discussTaskLabel = lang === "en" ? "Discuss brief" : "Обсудить задачу";
+    const imageAlt = (svc?: ServiceItem) =>
+        lang === "en"
+            ? svc?.title
+                ? `${svc.title} in Tbilisi — Breus Media`
+                : `${niche.title} — Breus Media services in Tbilisi`
+            : svc?.title
+            ? `${svc.title} в Тбилиси — Breus Media`
+            : `${niche.title} — услуги Breus Media в Тбилиси`;
 
     useEffect(() => {
         const updateViewportKind = () => {
@@ -1345,6 +1626,9 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
             if (!cards.length) return;
 
             cards.forEach((card) => card.style.removeProperty("height"));
+            if (isDesktopViewport) {
+                return;
+            }
             const tallestCardHeight = Math.max(...cards.map((card) => card.offsetHeight));
             if (!Number.isFinite(tallestCardHeight) || tallestCardHeight <= 0) return;
 
@@ -1390,7 +1674,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
             ? (DESKTOP_OPEN_SERVICE_HREF_OVERRIDES[desktopPolicyKey] ?? svc.link)
             : "";
         const isServiceOpenExternal = isServiceOpenAllowed ? isExternalHref(serviceOpenHref) : false;
-        const suggestedCardDetails = isAllServicesCard ? {} : getSuggestedCardDetails(niche, svc);
+        const suggestedCardDetails = isAllServicesCard ? {} : getSuggestedCardDetails(niche, svc, lang);
         const cardImage = svc.img || niche.img;
         const cardSlug = svc.slug || (svc.title ? svc.title.toLowerCase().replace(/[^a-zа-я0-9]+/gi, "-") : `card-${niche.id}-${serviceIndex}`);
         const shouldRotateMenuDeliveryImage =
@@ -1422,6 +1706,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                     .replace(/\s{2,}/g, " ")
                     .replace(" · ", shouldUseTwoLinePrice ? "\n" : " · ")
                 : svc.price;
+        const specText = svc.specs || svc.meta || formattedPriceText;
         const usesDesktopAspectImage = useDesktopHorizontalServicesRail;
         const formattedTitle = svc.title;
         const mobileCardImageInteractiveClassName =
@@ -1461,7 +1746,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                             <a href={serviceOpenHref} target="_blank" rel="noreferrer" className="block h-full">
                                 <img
                                     src={renderedCardImage}
-                                    alt={svc.title || niche.title}
+                                    alt={imageAlt(svc)}
                                     className={mobileCardImageInteractiveClassName}
                                 />
                             </a>
@@ -1469,28 +1754,19 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                             <Link href={serviceOpenHref} className="block h-full">
                                 <img
                                     src={renderedCardImage}
-                                    alt={svc.title || niche.title}
+                                    alt={imageAlt(svc)}
                                     className={mobileCardImageInteractiveClassName}
                                 />
                             </Link>
                         ) : (
                             <img
                                 src={renderedCardImage}
-                                alt={svc.title || niche.title}
+                                alt={imageAlt(svc)}
                                 className={mobileCardImageStaticClassName}
                             />
                         )}
                         <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/70" />
                         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/80 to-transparent" />
-                        {cardTag && (
-                            <div className="absolute left-2 top-2">
-                                <span className={`inline-flex rounded-full px-2 py-1 text-[8px] font-bold uppercase tracking-[0.14em] ${
-                                    cardTagAccent ? "bg-[#D4A017] text-black" : "bg-black/55 text-white backdrop-blur-sm"
-                                }`}>
-                                    {cardTag}
-                                </span>
-                            </div>
-                        )}
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col p-3">
                         <div className="mb-2 flex items-start justify-between gap-2">
@@ -1552,16 +1828,25 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                         {isServiceOpenAllowed ? (
                                             isExternalServiceLink ? (
                                             <a href={serviceOpenHref} target="_blank" rel="noreferrer" className={mobilePrimaryActionClassName}>
-                                                {svc.primaryCtaLabel ?? "Открыть услугу"}
+                                                {svc.primaryCtaLabel ?? openServiceLabel}
                                             </a>
                                         ) : (
                                             <Link href={serviceOpenHref} className={mobilePrimaryActionClassName}>
-                                                {svc.primaryCtaLabel ?? "Открыть услугу"}
+                                                {svc.primaryCtaLabel ?? openServiceLabel}
                                             </Link>
                                         )) : null}
                                         {!isAllServicesCard ? (
-                                            <a href="#contact" className={mobileSecondaryActionClassName}>
-                                                Обсудить задачу
+                                            <a
+                                                href="#contact"
+                                                onClick={() => {
+                                                    if (typeof window !== 'undefined' && svc.title) {
+                                                        window.dispatchEvent(new CustomEvent('breus-select-service', { detail: { serviceTitle: svc.title } }));
+                                                        try { sessionStorage.setItem('breus_contact_prefill_service', svc.title); } catch {}
+                                                    }
+                                                }}
+                                                className={mobileSecondaryActionClassName}
+                                            >
+                                                {discussTaskLabel}
                                             </a>
                                         ) : null}
                                     </>
@@ -1582,22 +1867,24 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
         }
 
         const unifiedRealEstateCardHeightClassName =
-            isRealEstateReferenceCard && isMobileCompactTop
+            isDesktopViewport
+                ? "h-auto"
+                : isRealEstateReferenceCard && isMobileCompactTop
+                    ? isMobileLandscape
+                        ? "h-[248px]"
+                        : "h-[352px]"
+                    : "h-full";
+        const sectionUniformHeightClassName = isDesktopViewport
+            ? "h-auto min-h-0"
+            : isAerialOrToursScreen
                 ? isMobileLandscape
-                    ? "h-[248px]"
-                    : "h-[352px]"
-                : "h-full";
-        const sectionUniformHeightClassName = isAerialOrToursScreen
-            ? isMobileLandscape
-                ? "min-h-[332px]"
-                : useDesktopHorizontalServicesRail
-                    ? "h-[640px]"
-                    : "min-h-[388px]"
+                    ? "min-h-[332px]"
+                    : useDesktopHorizontalServicesRail
+                        ? "h-auto xl:min-h-[190px]"
+                        : "min-h-[388px]"
             : "";
-        const servicePageParityCardClassName = `service-card-target w-full scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col ${unifiedRealEstateCardHeightClassName} ${sectionUniformHeightClassName} ${isAerialOrToursScreen && useDesktopHorizontalServicesRail ? "h-full" : ""} ${svc.featured ? "gold-glow border-[#D4A017]/50" : ""}`;
-        const servicePageParityCardStyle = svc.featured
-            ? { boxShadow: "0 0 20px rgba(212, 160, 23, 0.2)" }
-            : undefined;
+        const servicePageParityCardClassName = `service-card-target w-full scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex flex-col ${unifiedRealEstateCardHeightClassName} ${sectionUniformHeightClassName}`;
+        const servicePageParityCardStyle = undefined;
         const hideHighlightedPriceLine = false;
         const servicePageImageHeightClassName = isMobileCompactTop
             ? isMobileLandscape
@@ -1610,54 +1897,66 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
             : isMobileLandscape
             ? "h-16"
             : "h-24 sm:h-36";
-        const servicePageBodyClassName = isMobileLandscape
-            ? isRealEstateReferenceCard
-                ? "px-2 pt-2 pb-2 flex-grow flex flex-col"
-                : "px-2 pt-1.5 pb-1.5 flex-grow flex flex-col"
-            : isRealEstateReferenceCard
-            ? "px-2.5 pt-2.5 pb-2.5 sm:px-4 sm:pt-4 sm:pb-3.5 flex-grow flex flex-col"
-            : "px-2.5 pt-2.5 pb-2.5 sm:px-4 sm:pt-4 sm:pb-3.5 flex-grow flex flex-col";
+        const servicePageBodyClassName = isDesktopViewport
+            ? "h-full flex flex-col justify-between p-3.5 xl:p-4"
+            : isMobileLandscape
+                ? "px-2 pt-1 pb-1 flex-grow flex flex-col justify-between"
+                : isAerialOrToursScreen && useDesktopHorizontalServicesRail
+                    ? "p-3.5 xl:p-4 flex-grow flex flex-col"
+                    : "p-2.5 sm:p-3.5 flex-grow flex flex-col justify-between";
         const servicePageTitleClassName = isMobileLandscape
             ? `text-[11px] font-bold leading-tight mb-1 ${svc.featured ? "text-[#D4A017]" : "text-white"}`
             : isRealEstateReferenceCard
-            ? `text-[16.5px] sm:text-[18.5px] font-bold mb-1.5 leading-tight ${svc.featured ? "text-[#D4A017]" : "text-white"}`
-            : `text-sm sm:text-lg font-bold mb-1 ${svc.featured ? "text-[#D4A017]" : "text-white"}`;
+            ? `text-[15px] sm:text-[17px] font-bold mb-1 leading-tight ${svc.featured ? "text-[#D4A017]" : "text-white"}`
+            : `text-sm sm:text-base font-bold mb-1 ${svc.featured ? "text-[#D4A017]" : "text-white"}`;
         const servicePageCategoryClassName = isMobileLandscape
-            ? "text-[8px] text-gray-500 uppercase tracking-[0.12em] mb-1.5"
+            ? "text-[8px] text-gray-500 uppercase tracking-[0.12em] mb-1"
             : isRealEstateReferenceCard
-            ? "text-[11.5px] text-gray-500 uppercase tracking-[0.11em] mb-1.5 leading-tight"
-            : "text-[10px] text-gray-500 uppercase tracking-wider mb-2";
-        const servicePageDescriptionClassName = isAerialOrToursScreen
-            ? isMobileLandscape
-                ? "text-[10px] text-gray-400 mb-2 leading-tight"
-                : "text-xs sm:text-sm text-gray-400 mb-3 leading-snug"
-            : isMobileLandscape
-            ? "text-[10px] text-gray-400 mb-2 leading-tight"
-            : isRealEstateReferenceCard
-            ? "text-[12px] text-gray-300 mb-2 leading-[1.22]"
-            : "text-xs sm:text-sm text-gray-400 mb-3 leading-snug";
+            ? "text-[10px] text-gray-500 uppercase tracking-[0.11em] mb-1 leading-tight"
+            : "text-[9px] text-gray-500 uppercase tracking-wider mb-1.5";
+        const servicePageDescriptionClassName = isDesktopViewport
+            ? "text-[12.5px] xl:text-[13.5px] leading-[1.4] text-white/80 font-normal min-h-[54px] line-clamp-3 mt-2"
+            : isAerialOrToursScreen
+                ? isMobileLandscape
+                    ? "text-[9px] text-gray-400 mb-1.5 leading-tight line-clamp-2"
+                    : useDesktopHorizontalServicesRail
+                        ? "line-clamp-2 text-xs xl:text-[13px] text-white/70 mb-3"
+                        : "text-xs text-gray-400 mb-2 leading-snug line-clamp-2"
+                : isMobileLandscape
+                ? "text-[9px] text-gray-400 mb-1.5 leading-tight line-clamp-2"
+                : isRealEstateReferenceCard
+                ? "text-[11px] text-gray-300 mb-1.5 leading-[1.2] line-clamp-2"
+                : "text-xs text-gray-400 mb-2 leading-snug line-clamp-2";
         const servicePagePriceClassName = isMobileLandscape
             ? isRealEstatePriceEnabledCard
                 ? `mb-1 block w-full border-t border-[#2a2a2a] pt-1.5 text-[7.5px] text-[#F2C94C] font-bold uppercase tracking-[0.1em] leading-tight ${shouldUseTwoLinePrice ? "whitespace-pre-line" : "whitespace-nowrap"}`
-                : "pt-2 border-t border-[#2a2a2a] text-[8px] text-[#D4A017] font-bold uppercase tracking-[0.12em] mb-2"
+                : "pt-1.5 border-t border-[#2a2a2a] text-[8px] text-[#D4A017] font-bold uppercase tracking-[0.12em] mb-1.5"
             : isRealEstatePriceEnabledCard
-            ? `mb-1.5 block w-full border-t border-[#2a2a2a] pt-2 text-[8.5px] text-[#F2C94C] font-bold uppercase tracking-[0.1em] leading-tight ${shouldUseTwoLinePrice ? "whitespace-pre-line" : "whitespace-nowrap"}`
-            : "pt-3 border-t border-[#2a2a2a] text-[10px] text-[#D4A017] font-bold uppercase tracking-wider mb-4";
-        const servicePageActionsClassName = "flex flex-col gap-1.5 lg:flex-row lg:gap-3";
+            ? `mb-1 block w-full border-t border-[#2a2a2a] pt-1.5 text-[8.5px] text-[#F2C94C] font-bold uppercase tracking-[0.1em] leading-tight ${shouldUseTwoLinePrice ? "whitespace-pre-line" : "whitespace-nowrap"}`
+            : "pt-2 border-t border-[#2a2a2a] text-[10px] text-[#D4A017] font-bold uppercase tracking-wider mb-2.5";
+        const servicePageActionsClassName = isDesktopViewport
+            ? "mt-2.5 grid grid-cols-2 gap-2"
+            : isAerialOrToursScreen && useDesktopHorizontalServicesRail
+                ? "flex flex-col gap-1.5 lg:flex-row lg:gap-2 pb-1 mt-2.5 xl:mt-3"
+                : "flex flex-col gap-1.5 lg:flex-row lg:gap-2 pb-1";
         const servicePageBottomSpacerClassName = isRealEstateReferenceCard
             ? isMobileLandscape
-                ? "h-1.5"
-                : "h-2"
+                ? "h-1"
+                : "h-1.5"
             : "";
-        const servicePagePrimaryActionClassName = isMobileLandscape
+        const servicePagePrimaryActionClassName = isDesktopViewport
+            ? "w-full py-2 px-2 border border-white/20 rounded-lg text-[10px] xl:text-[11px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center truncate"
+            : isMobileLandscape
             ? "w-full py-1.5 px-1.5 border border-white/20 rounded-md text-[8px] font-bold uppercase tracking-[0.1em] text-white hover:bg-white hover:text-black transition-colors text-center"
             : isRealEstateReferenceCard
-            ? "w-full py-[7px] px-2 border border-white/20 rounded-lg text-[9px] font-bold uppercase tracking-[0.1em] text-white hover:bg-white hover:text-black transition-colors text-center"
+            ? "w-full py-[6px] px-2 border border-white/20 rounded-lg text-[9px] font-bold uppercase tracking-[0.1em] text-white hover:bg-white hover:text-black transition-colors text-center"
             : "w-full py-2 px-2 border border-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-colors text-center";
-        const servicePageSecondaryActionClassName = isMobileLandscape
+        const servicePageSecondaryActionClassName = isDesktopViewport
+            ? `w-full py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] xl:text-[11px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center truncate ${!isServiceOpenAllowed ? "col-span-2" : ""}`
+            : isMobileLandscape
             ? "w-full py-1.5 px-1.5 bg-[#D4A017] text-black rounded-md text-[8px] font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center"
             : isRealEstateReferenceCard
-            ? "w-full py-[7px] px-2 bg-[#D4A017] text-black rounded-lg text-[9px] font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center"
+            ? "w-full py-[6px] px-2 bg-[#D4A017] text-black rounded-lg text-[9px] font-bold uppercase tracking-[0.1em] hover:bg-white transition-colors text-center"
             : "w-full py-2 px-2 bg-[#D4A017] text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-white transition-colors text-center";
         const servicePageParityCardBody = (
             <>
@@ -1667,7 +1966,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                             <div className="h-full w-full">
                                 <img
                                     src={renderedCardImage}
-                                    alt={svc.title || niche.title}
+                                    alt={imageAlt(svc)}
                                     className={serviceCardImageInteractiveClassName}
                                     style={svc.imagePosition && !usesDesktopAspectImage ? { objectPosition: svc.imagePosition } : undefined}
                                 />
@@ -1678,7 +1977,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                             <div className="h-full w-full">
                                 <img
                                     src={renderedCardImage}
-                                    alt={svc.title || niche.title}
+                                    alt={imageAlt(svc)}
                                     className={serviceCardImageInteractiveClassName}
                                     style={svc.imagePosition && !usesDesktopAspectImage ? { objectPosition: svc.imagePosition } : undefined}
                                 />
@@ -1688,53 +1987,66 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                         <div className="h-full w-full">
                             <img
                                 src={renderedCardImage}
-                                alt={svc.title || niche.title}
+                                alt={imageAlt(svc)}
                                 className={serviceCardImageStaticClassName}
                                 style={svc.imagePosition && !usesDesktopAspectImage ? { objectPosition: svc.imagePosition } : undefined}
                             />
                         </div>
                     )}
-                    {svc.tag && (
-                        <div className={`absolute ${isMobileLandscape ? "top-2 left-2" : "top-4 left-4"} flex gap-2`}>
-                            <span className={`px-2 py-1 rounded ${isMobileLandscape ? "text-[8px]" : "text-[10px]"} font-bold ${svc.tag === "HOT" ? "bg-[#D4A017] text-black" : "bg-black/50 text-white backdrop-blur"}`}>
-                                {svc.tag}
-                            </span>
-                        </div>
+                    {isDesktopViewport && (
+                        <>
+                            <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/95 via-black/35 to-transparent pointer-events-none" />
+                            <div className="absolute bottom-3 left-3.5 z-10 text-xs sm:text-sm xl:text-[15px] font-black text-white uppercase tracking-wider drop-shadow-md line-clamp-1">
+                                {formattedTitle}
+                            </div>
+                        </>
                     )}
                 </div>
                 <div className={servicePageBodyClassName}>
-                    <h3 className={servicePageTitleClassName}>
-                        {isServiceOpenAllowed && isServiceOpenExternal ? (
-                            <a href={serviceOpenHref} target="_blank" rel="noreferrer" className="hover:text-[#D4A017] transition-colors">
-                                <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
-                                    {formattedTitle}
-                                </span>
-                            </a>
-                        ) : isServiceOpenAllowed ? (
-                            <Link href={serviceOpenHref} className="hover:text-[#D4A017] transition-colors">
-                                <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
-                                    {formattedTitle}
-                                </span>
-                            </Link>
-                        ) : (
-                            <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
-                                {formattedTitle}
-                            </span>
-                        )}
-                    </h3>
-                    {normalizedCategory ? (
-                        <div className={`${servicePageCategoryClassName} ${isRealEstateReferenceCard ? "whitespace-pre-line" : ""}`} style={isRealEstateReferenceCard ? clampLinesStyle(3) : undefined}>
-                            {normalizedCategory}
-                        </div>
-                    ) : null}
+                    {!isDesktopViewport && (
+                        <>
+                            <h3 className={servicePageTitleClassName}>
+                                {isServiceOpenAllowed && isServiceOpenExternal ? (
+                                    <a href={serviceOpenHref} target="_blank" rel="noreferrer" className="hover:text-[#D4A017] transition-colors">
+                                        <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
+                                            {formattedTitle}
+                                        </span>
+                                    </a>
+                                ) : isServiceOpenAllowed ? (
+                                    <Link href={serviceOpenHref} className="hover:text-[#D4A017] transition-colors">
+                                        <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
+                                            {formattedTitle}
+                                        </span>
+                                    </Link>
+                                ) : (
+                                    <span style={isRealEstateReferenceCard ? clampLinesStyle(2) : undefined}>
+                                        {formattedTitle}
+                                    </span>
+                                )}
+                            </h3>
+                            {normalizedCategory ? (
+                                <div className={`${servicePageCategoryClassName} ${isRealEstateReferenceCard ? "whitespace-pre-line" : ""}`} style={isRealEstateReferenceCard ? clampLinesStyle(3) : undefined}>
+                                    {normalizedCategory}
+                                </div>
+                            ) : null}
+                        </>
+                    )}
                     <p className={servicePageDescriptionClassName} style={isRealEstateReferenceCard ? clampLinesStyle(3) : undefined}>{svc.desc}</p>
-                    <div className="mt-auto">
-                        {formattedPriceText && !hideHighlightedPriceLine ? (
-                            <div className={servicePagePriceClassName} style={shouldUseTwoLinePrice ? clampLinesStyle(2) : undefined}>
-                                {formattedPriceText}
-                            </div>
-                        ) : null}
-                        {!formattedPriceText && isAllServicesCard && isRealEstateReferenceCard ? (
+                    <div className={isDesktopViewport ? "mt-0" : "mt-auto"}>
+                        {isDesktopViewport ? (
+                            specText ? (
+                                <div className="mt-2.5 pt-2 border-t border-white/10 text-[10.5px] xl:text-[11.5px] font-semibold text-[#FFD23F] tracking-wide truncate">
+                                    {specText}
+                                </div>
+                            ) : null
+                        ) : (
+                            formattedPriceText && !hideHighlightedPriceLine ? (
+                                <div className={servicePagePriceClassName} style={shouldUseTwoLinePrice ? clampLinesStyle(2) : undefined}>
+                                    {formattedPriceText}
+                                </div>
+                            ) : null
+                        )}
+                        {!isDesktopViewport && !formattedPriceText && isAllServicesCard && isRealEstateReferenceCard ? (
                             <div className="mb-1.5 block w-full border-t border-[#2a2a2a] pt-2 text-[8.5px] leading-tight opacity-0 select-none">
                                 spacer
                             </div>
@@ -1762,17 +2074,26 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                     {isServiceOpenAllowed ? (
                                         isServiceOpenExternal ? (
                                             <a href={serviceOpenHref} target="_blank" rel="noreferrer" className={servicePagePrimaryActionClassName}>
-                                                {svc.primaryCtaLabel ?? "Открыть услугу"}
+                                                {svc.primaryCtaLabel ?? openServiceLabel}
                                             </a>
                                         ) : (
                                             <Link href={serviceOpenHref} className={servicePagePrimaryActionClassName}>
-                                                {svc.primaryCtaLabel ?? "Открыть услугу"}
+                                                {svc.primaryCtaLabel ?? openServiceLabel}
                                             </Link>
                                         )
                                     ) : null}
                                     {!isAllServicesCard ? (
-                                        <a href="#contact" className={servicePageSecondaryActionClassName}>
-                                            Обсудить задачу
+                                        <a
+                                            href="#contact"
+                                            onClick={() => {
+                                                if (typeof window !== 'undefined' && svc.title) {
+                                                    window.dispatchEvent(new CustomEvent('breus-select-service', { detail: { serviceTitle: svc.title } }));
+                                                    try { sessionStorage.setItem('breus_contact_prefill_service', svc.title); } catch {}
+                                                }
+                                            }}
+                                            className={servicePageSecondaryActionClassName}
+                                        >
+                                            {discussTaskLabel}
                                         </a>
                                     ) : null}
                                 </>
@@ -1815,55 +2136,83 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                         <div className="absolute inset-0 bg-black/88" />
                         <div className="relative z-10 mx-auto grid w-full max-w-[1520px] grid-cols-1 gap-5 px-3 py-4 md:grid-cols-[44fr_56fr] md:px-2 md:py-8 lg:px-3 xl:px-4">
                             <div className="flex h-full flex-col">
-                                <div className="flex h-full flex-col justify-between rounded-[24px] border border-white/10 bg-[#07090D] px-8 py-6 xl:px-9">
+                                <div className="flex h-full flex-col justify-between rounded-[24px] border border-white/10 bg-[#07090D] p-5 md:p-7 xl:px-8 xl:py-6">
                                     <div>
-                                        <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.24em] text-[#D4AF37]">Об Агентстве</p>
-                                        <h2 className="text-[clamp(1.98rem,3.65vw,3.98rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.01em] text-white">
-                                            Производство
-                                            <br />
-                                            контента,
-                                            <br />
-                                            <span className="text-[#D4AF37]">которое работает</span>
-                                            <br />
-                                            <span className="text-[#D4AF37]">на задачу.</span>
+                                        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.24em] text-[#D4AF37]">
+                                            {lang === "en" ? "About the agency" : "Об Агентстве"}
+                                        </p>
+                                        <h2 className="text-[clamp(1.75rem,3.2vw,3.5rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.01em] text-white">
+                                            {lang === "en" ? (
+                                                <>
+                                                    Content
+                                                    <br />
+                                                    production,
+                                                    <br />
+                                                    <span className="text-[#D4AF37]">built around</span>
+                                                    <br />
+                                                    <span className="text-[#D4AF37]">the goal.</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    Производство
+                                                    <br />
+                                                    контента,
+                                                    <br />
+                                                    <span className="text-[#D4AF37]">которое работает</span>
+                                                    <br />
+                                                    <span className="text-[#D4AF37]">на задачу.</span>
+                                                </>
+                                            )}
                                         </h2>
-                                        <div className="mt-4 h-px w-16 bg-[#D4AF37]/85" />
-                                        <div className="mt-5 space-y-4 text-[clamp(0.95rem,0.98vw,1.14rem)] leading-[1.45] font-medium">
+                                        <div className="mt-3.5 h-px w-16 bg-[#D4AF37]/85" />
+                                        <div className="mt-4 space-y-3 text-[clamp(0.92rem,0.95vw,1.1rem)] leading-[1.4] font-medium">
                                             <p className="text-white/78">
-                                                Breus Media — агентство визуального продакшена и AI-контента для бизнеса. Мы работаем с компаниями, которым важно, чтобы контент двигал клиента к следующему шагу: заявке, звонку, бронированию, покупке.
+                                                {lang === "en"
+                                                    ? "Breus Media is a full-cycle visual production and AI-content agency for businesses in Tbilisi and across Georgia. We partner with hotels, real estate developers, restaurants, and clinics where visual assets must drive customer action: inquiries, calls, direct bookings, and sales."
+                                                    : "Breus Media — агентство визуального продакшена и AI-контента для бизнеса в Тбилиси и по всей Грузии. Мы работаем с отелями, застройщиками, ресторанами и клиниками, которым важно, чтобы контент двигал клиента к следующему шагу: заявке, звонку, бронированию, покупке."}
                                             </p>
                                             <p className="text-white/68">
-                                                В арсенале агентства: аэросъёмка, промо-видео, 360°-туры, reels, AI-визуализации и контентные пакеты. Работа начинается с задачи — формат подбирается под неё, а не наоборот.
+                                                {lang === "en"
+                                                    ? "Our core toolkit includes 4K aerial drone filming, promo video, 360° virtual tours, Reels, and AI visualizations. Every project starts with your business objective — the media format is tailored to achieve it."
+                                                    : "В арсенале агентства: 4K аэросъёмка, промо-видео, 360°-туры, Reels и AI-визуализации. Работа начинается с задачи — формат подбирается под неё, а не наоборот."}
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="mt-5 flex flex-wrap gap-3">
+                                    <div className="mt-4 flex flex-wrap gap-3">
                                         <Link
                                             href="/about"
                                             className="inline-flex items-center rounded-[12px] bg-[#D4AF37] px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0F1218] transition-colors hover:bg-[#E0BC4A]"
                                         >
-                                            Об Агентстве подробнее
+                                            {lang === "en" ? "More about the agency" : "Об Агентстве подробнее"}
                                         </Link>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="flex h-full flex-col rounded-[24px] border border-white/10 bg-[#07090D] px-8 py-6 xl:px-9">
+                            <div className="flex h-full flex-col rounded-[24px] border border-white/10 bg-[#07090D] p-5 md:p-7 xl:px-8 xl:py-6">
                                 <div className="mb-5">
                                     <h3 className="text-[1.26rem] md:text-[1.95rem] font-bold leading-[1.1] tracking-[-0.01em] text-white">
-                                        Выберите свою нишу — <span className="text-[#D4AF37]">или начните с формата.</span>
+                                        {lang === "en" ? (
+                                            <>
+                                                Choose your industry — <span className="text-[#D4AF37]">or start with a format.</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                Выберите свою нишу — <span className="text-[#D4AF37]">или начните с формата.</span>
+                                            </>
+                                        )}
                                     </h3>
                                 </div>
                                 <div className="grid flex-1 grid-cols-2 gap-9">
                                     <div className="flex flex-col">
                                         <ul className="flex flex-col">
                                             {[
-                                                { label: "Недвижимость", idx: 5 },
-                                                { label: "Отели", idx: 6 },
-                                                { label: "Рестораны", idx: 7 },
-                                                { label: "Туризм", idx: 9 },
-                                                { label: "Клиники", idx: 10 },
-                                                { label: "Автобизнес", idx: 8 },
+                                                { label: lang === "en" ? "Real Estate" : "Недвижимость", idx: 5 },
+                                                { label: lang === "en" ? "Hotels" : "Отели", idx: 6 },
+                                                { label: lang === "en" ? "Restaurants" : "Рестораны", idx: 7 },
+                                                { label: lang === "en" ? "Tourism" : "Туризм", idx: 9 },
+                                                { label: lang === "en" ? "Clinics" : "Клиники", idx: 10 },
+                                                { label: lang === "en" ? "Auto Business" : "Автобизнес", idx: 8 },
                                                 { label: "IT", idx: 11 }
                                             ].map((item) => (
                                                 <li key={item.label} className="border-b border-white/10 py-2.5 text-[15px] xl:text-[16px]">
@@ -1881,10 +2230,10 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                     <div className="flex flex-col">
                                         <ul className="flex flex-col">
                                             {[
-                                                { label: "Аэросъёмка", idx: 1 },
+                                                { label: lang === "en" ? "Aerial Filming" : "Аэросъёмка", idx: 1 },
                                                 { label: "Reels", idx: 3 },
-                                                { label: "360°-туры", idx: 2 },
-                                                { label: "AI-визуализация", idx: 4 }
+                                                { label: lang === "en" ? "360° Tours" : "360°-туры", idx: 2 },
+                                                { label: lang === "en" ? "AI Visualization" : "AI-визуализация", idx: 4 }
                                             ].map((item) => (
                                                 <li key={item.label} className="border-b border-white/10 py-2.5 text-[15px] xl:text-[16px]">
                                                     <button
@@ -1898,7 +2247,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                             ))}
                                             <li className="border-b border-white/10 py-2.5 text-[15px] xl:text-[16px]">
                                                 <a href="#contact" className="flex w-full items-center justify-between font-medium text-[#D4AF37] transition-colors hover:text-white">
-                                                    <span>Ваш формат &rarr;</span>
+                                                    <span>{lang === "en" ? "Your format" : "Ваш формат"} &rarr;</span>
                                                     <span className="text-[#D4AF37]">›</span>
                                                 </a>
                                             </li>
@@ -1907,7 +2256,15 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                 </div>
                                 <div className="mt-5 flex w-full justify-center">
                                     <p className="text-center text-[12px] font-medium tracking-wide text-white/48 xl:text-[13px]">
-                                        Другая отрасль или формат — <a href="#contact" className="text-[#D4AF37] transition-colors hover:text-white">напишите</a>, найдём решение.
+                                        {lang === "en" ? (
+                                            <>
+                                                Another industry or format — <a href="#contact" className="text-[#D4AF37] transition-colors hover:text-white">message us</a>, and we will find the right solution.
+                                            </>
+                                        ) : (
+                                            <>
+                                                Другая отрасль или формат — <a href="#contact" className="text-[#D4AF37] transition-colors hover:text-white">напишите</a>, найдём решение.
+                                            </>
+                                        )}
                                     </p>
                                 </div>
                             </div>
@@ -2025,13 +2382,25 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                     )}
                                 </div>
 
-                                {allServicesCard && niche.id === "02" && (
+                                {allServicesCard && ALL_SERVICES_BUTTON_NICHE_IDS.has(niche.id) && (
                                     <div className="mt-3 mb-3 flex justify-center">
                                         <Link
                                             href={allServicesCard.link}
                                             className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-black/50 px-7 py-[13px] text-[11px] font-bold uppercase tracking-[0.22em] text-white/72 backdrop-blur-sm transition-all duration-200 hover:border-[#D4A017]/50 hover:text-[#D4A017] hover:bg-[#D4A017]/5"
                                         >
-                                            <span>{({
+                                            <span>{(lang === "en" ? {
+                                                "02": "All aerial filming services",
+                                                "03": "All services — 360° Tours",
+                                                "04": "All services — Reels",
+                                                "05": "All services — AI Content",
+                                                "06": "All real estate services",
+                                                "07": "All services — Hotels",
+                                                "08": "All services — Restaurants",
+                                                "09": "All services — Auto",
+                                                "10": "All services — Tourism",
+                                                "11": "All services — Clinics",
+                                                "12": "All services — IT",
+                                            } : {
                                                 "02": "Все услуги аэросъёмки",
                                                 "03": "Все услуги — 360° Туры",
                                                 "04": "Все услуги — Reels",
@@ -2043,7 +2412,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                                 "10": "Все услуги — Туризм",
                                                 "11": "Все услуги — Клиники",
                                                 "12": "Все услуги — IT",
-                                            } as Record<string, string>)[niche.id] ?? "Все услуги"}</span>
+                                            } as Record<string, string>)[niche.id] ?? (lang === "en" ? "All services" : "Все услуги")}</span>
                                             <ChevronRight className="h-3.5 w-3.5 opacity-55" />
                                         </Link>
                                     </div>
@@ -2094,7 +2463,7 @@ const Card = ({ niche, index, scrollYProgress, totalSteps, stickyTop, stickyHeig
                                             : useDesktopHorizontalServicesRail
                                                 ? (
                                                     <>
-                                                        {orderedSourceServices.map((svc, i) => (
+                                                        {sourceServices.map((svc, i) => (
                                                             <div
                                                                 key={svc.slug || i}
                                                                 data-rail-item="true"
@@ -2248,7 +2617,8 @@ const FAQCard = ({
     isMobileLandscape,
     isMobilePortrait,
     onNavigateToStep,
-    activeStepIndex
+    activeStepIndex,
+    stackStepNavItems,
 }: {
     index: number,
     scrollYProgress: MotionValue<number>,
@@ -2258,7 +2628,8 @@ const FAQCard = ({
     isMobileLandscape: boolean,
     isMobilePortrait: boolean,
     onNavigateToStep: (targetIndex: number) => void,
-    activeStepIndex: number
+    activeStepIndex: number,
+    stackStepNavItems: StackStepNavItem[],
 }) => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
@@ -2366,7 +2737,8 @@ const FormCard = ({
     isMobileLandscape,
     isMobilePortrait,
     onNavigateToStep,
-    activeStepIndex
+    activeStepIndex,
+    stackStepNavItems,
 }: {
     index: number,
     scrollYProgress: MotionValue<number>,
@@ -2376,7 +2748,8 @@ const FormCard = ({
     isMobileLandscape: boolean,
     isMobilePortrait: boolean,
     onNavigateToStep: (targetIndex: number) => void,
-    activeStepIndex: number
+    activeStepIndex: number,
+    stackStepNavItems: StackStepNavItem[],
 }) => {
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
     const prevStep = index > 0 ? stackStepNavItems[index - 1] : null;
@@ -2412,9 +2785,12 @@ const FormCard = ({
             {/* Кнопка НАЗАД скрыта на мобиле */}
 
             <div className="flex-1 overflow-y-auto touch-pan-y px-4 pt-2 md:px-8 md:pt-2 w-full custom-scrollbar pb-0">
-                <section className="snap-start min-h-full h-full flex flex-col">
-                    <DroneContactStitch />
-                    <div className="-mx-4 mt-auto w-auto md:-mx-8">
+                <section className="snap-start min-h-full flex flex-col justify-center py-10">
+                    <div className="-mx-4 md:-mx-8">
+                        <ScannerBanner />
+                        <DroneContactStitch className="!pb-0 !md:pb-0" />
+                    </div>
+                    <div className="-mx-4 mt-10 w-auto md:-mx-8">
                         <GazetaMinimalFooter />
                     </div>
                 </section>
@@ -2423,7 +2799,10 @@ const FormCard = ({
     );
 };
 
-export function NichesStack() {
+export function NichesStack({ lang = "ru" }: { lang?: GazetaLang }) {
+    const stackStepNavItems = getStackStepNavItems(lang);
+    const canonicalServicesByNicheId = lang === "en" ? canonicalServicesByNicheIdEn : canonicalServicesByNicheIdRu;
+    const localizedNiches = lang === "en" ? nichesEn : niches;
     const containerRef = useRef<HTMLDivElement>(null);
     const isMobileLandscape = useMobileLandscape();
     const isMobilePortrait = useMobilePortrait();
@@ -2442,11 +2821,11 @@ export function NichesStack() {
         ? PORTRAIT_STACK_PREVIEW_PX
         : 0;
     const stickyTop = `${stickyTopPx}px`;
-    const headerHeight = isMobileLandscape ? 24 : isMobilePortrait ? 32 : 48;
+    const headerHeight = isMobileLandscape ? 24 : isMobilePortrait ? 32 : 40;
     const cardStickyTopPx = stickyTopPx + headerHeight;
     const cardStickyTop = `${cardStickyTopPx}px`;
     const stickyHeight = `calc(100vh - ${stickyTopPx + mobileStackPreviewPx}px)`;
-    const totalSteps = niches.length + 2; 
+    const totalSteps = localizedNiches.length + 2; 
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
@@ -2475,7 +2854,7 @@ export function NichesStack() {
         const containerTopY = window.scrollY + containerEl.getBoundingClientRect().top;
         const containerScrollRange = Math.max(0, containerEl.scrollHeight - window.innerHeight);
         if (containerScrollRange > 0) {
-            const targetProgress = clampedIndex / totalSteps;
+            const targetProgress = (clampedIndex + 0.5) / totalSteps;
             const targetY = containerTopY + containerScrollRange * targetProgress;
             window.scrollTo({
                 top: Math.max(containerTopY, Math.min(containerTopY + containerScrollRange, targetY)),
@@ -2744,24 +3123,26 @@ export function NichesStack() {
                 This prevents duplicate renders and "ghosting" when cards stack.
             */}
             <div 
-                className="sticky z-[100] w-full"
+                className="sticky top-[64px] z-40 w-full"
                 style={{ top: `${stickyTopPx}px` }}
             >
                 <div className={isMobileLandscape 
                     ? "h-6 w-full bg-zinc-900 border-b border-white/20 flex items-center shadow-lg"
                     : isMobilePortrait
                     ? "h-8 w-full bg-zinc-900 border-b border-white/20 flex items-center shadow-lg"
-                    : "h-12 w-full bg-zinc-900 border-b border-white/20 flex items-center shadow-lg"
+                    : "h-10 w-full bg-zinc-900 border-b border-white/20 flex items-center shadow-lg"
                 }>
                     <StackSectionHeader
                         activeStepIndex={activeStepIndex}
                         sectionHeaderClassName="w-full h-full flex items-center px-4 md:px-6 uppercase tracking-widest text-[9px] md:text-xs font-bold text-white overflow-hidden"
                         onNavigateToStep={scrollToNicheStep}
+                        stackStepNavItems={stackStepNavItems}
+                        lang={lang}
                     />
                 </div>
             </div>
 
-            {niches.map((niche, index) => (
+            {localizedNiches.map((niche, index) => (
                 <Card
                     key={niche.id}
                     niche={niche}
@@ -2774,10 +3155,13 @@ export function NichesStack() {
                     isMobilePortrait={isMobilePortrait}
                     onNavigateToStep={scrollToNicheStep}
                     activeStepIndex={activeStepIndex}
+                    stackStepNavItems={stackStepNavItems}
+                    canonicalServicesByNicheId={canonicalServicesByNicheId}
+                    lang={lang}
                 />
             ))}
             <FAQCard
-                index={niches.length}
+                index={localizedNiches.length}
                 scrollYProgress={scrollYProgress}
                 totalSteps={totalSteps}
                 stickyTop={cardStickyTop}
@@ -2786,9 +3170,10 @@ export function NichesStack() {
                 isMobilePortrait={isMobilePortrait}
                 onNavigateToStep={scrollToNicheStep}
                 activeStepIndex={activeStepIndex}
+                stackStepNavItems={stackStepNavItems}
             />
             <FormCard
-                index={niches.length + 1}
+                index={localizedNiches.length + 1}
                 scrollYProgress={scrollYProgress}
                 totalSteps={totalSteps}
                 stickyTop={cardStickyTop}
@@ -2797,6 +3182,7 @@ export function NichesStack() {
                 isMobilePortrait={isMobilePortrait}
                 onNavigateToStep={scrollToNicheStep}
                 activeStepIndex={activeStepIndex}
+                stackStepNavItems={stackStepNavItems}
             />
         </div>
     );

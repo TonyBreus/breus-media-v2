@@ -189,7 +189,7 @@ const shootDayItems: string[] = [
 const finalResultItems: string[] = [
     'Смонтированный имиджевый ролик 1,5–3 минуты (цветокоррекция, музыка, титры)',
     'Короткие версии для соцсетей 15–60 секунд (количество зависит от пакета)',
-    'Фотоподборка с воздуха 20–60 фото (JPEG/RAW)',
+    'Фотоподборка с воздуха 20–60 фото (JPEG + DNG)',
     'Вертикальные версии 9:16 для Stories, Reels и TikTok',
     'Горизонтальные версии 16:9 для YouTube и сайта',
     'Передача через облако в течение 3–7 рабочих дней',
@@ -246,7 +246,7 @@ const socialProof: SocialProofItem[] = [
     {
         value: '70 км/декаду',
         label: 'Смещение ареалов из-за климата',
-        text: 'Климат меняется, и окно уникальности локаций ограничено. Контент фиксирует терруар в конкретный момент времени.',
+        text: 'Климат меняется, и сезонное окно съёмки локаций ограничено. Контент фиксирует терруар в конкретный момент времени.',
     },
     {
         value: 'В 3–5 раз',
@@ -289,7 +289,7 @@ const beginnerFaqItems: FaqItem[] = [
     {
         question: 'В каком формате клиент получает материалы?',
         answer:
-            'Вы получаете готовый ролик в MP4 (4K/Full HD), фото в JPEG и RAW по запросу, плюс версии 16:9 для сайта/YouTube и 9:16 для Stories/TikTok. Передача через облако.',
+            'Вы получаете готовый ролик в MP4 (4K Ultra HD), фото в JPEG и оригиналы DNG по запросу, плюс версии 16:9 для сайта/YouTube и 9:16 для Stories/TikTok. Передача через облако.',
     },
 ];
 
@@ -302,7 +302,7 @@ const commercialFaqItems: FaqItem[] = [
     {
         question: 'Какие форматы итогового контента вы отдаёте?',
         answer:
-            'Основной ролик 16:9 (1,5–3 мин), короткие ролики 9:16 (15–60 сек), фото JPEG/RAW. По запросу доступны raw footage, версии с субтитрами, замедленные фрагменты или вариант без музыки.',
+            'Основной ролик 16:9 (1,5–3 мин), короткие ролики 9:16 (15–60 сек), фото JPEG. По запросу доступны оригинальные 4K видеоматериалы, версии с субтитрами, замедленные фрагменты или вариант без музыки.',
     },
     {
         question: 'Как быстро будет готов материал?',
@@ -346,7 +346,7 @@ const whyBreusCards: CardItem[] = [
     },
     {
         title: 'Готовый контент, а не просто исходники',
-        text: 'Вы получаете смонтированные и обработанные материалы, готовые к публикации. Raw — по запросу.',
+        text: 'Вы получаете смонтированные и обработанные материалы, готовые к публикации. Оригинальные 4K видеоматериалы — по запросу.',
     },
     {
         title: 'Работа по задаче клиента',
@@ -400,7 +400,7 @@ const pricingPackages: PricingPackage[] = [
             '1 короткий ролик 16:9 до 60 секунд',
             'Цветокоррекция без нарративного монтажа',
         ],
-        addons: ['Вертикальная версия 9:16 — +50 ₾', 'RAW-файлы — +80 ₾', 'Срочно (1–2 дня) — +150 ₾'],
+        addons: ['Вертикальная версия 9:16 — +50 ₾', 'Оригинальные 4K видеоматериалы — +80 ₾', 'Срочно (1–2 дня) — +150 ₾'],
     },
     {
         title: 'Стандартный',
@@ -411,7 +411,7 @@ const pricingPackages: PricingPackage[] = [
         items: [
             'Выезд в пределах 80 км от Тбилиси',
             'Полная аэросъёмка объекта на DJI Air 3S',
-            '40 обработанных фото (JPEG + опционально RAW)',
+            '40 обработанных фото (JPEG + опционально DNG)',
             'Имиджевый ролик 16:9 на 1,5–2 минуты с музыкой',
             '2 коротких ролика 9:16 до 45 секунд',
             'Передача через облако',
@@ -433,7 +433,7 @@ const pricingPackages: PricingPackage[] = [
         items: [
             'Выезд в пределах 120 км от Тбилиси',
             'DJI Air 3S + FPV DJI Avata 2',
-            '60 обработанных фото (JPEG + RAW)',
+            '60 обработанных фото (JPEG + DNG)',
             'Имиджевый ролик 16:9 на 2–3 минуты',
             '5 вертикальных роликов 9:16 для Reels/TikTok',
             'Дополнительная горизонтальная версия 16:9 (60–90 сек)',
@@ -514,7 +514,7 @@ const checklist: string[] = [
     'Из ключевых точек кадра убраны лишние временные элементы',
     'Определён золотой час: выезд до рассвета или за 2 часа до заката',
     'Согласовано, нужны ли люди в кадре (команда, гости, работники)',
-    'Уточнены форматы финального материала и необходимость RAW',
+    'Уточнены форматы финального материала и оригиналы съёмки',
     'Подтверждён способ передачи файлов и сроки выдачи',
 ];
 
@@ -593,7 +593,7 @@ const serviceSchema = {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
         url: 'https://breus.media',
-        telephone: '+995574619393',
+        telephone: '+995501103183',
         address: {
             '@type': 'PostalAddress',
             addressLocality: 'Тбилиси',
@@ -625,7 +625,7 @@ const localBusinessSchema = {
     name: 'Breus Media',
     description: 'Аэросъёмка, FPV-видео и 360° туры для бизнеса в Грузии.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -701,7 +701,7 @@ export default function DroneWinePage() {
 
                             <p className="mt-5 max-w-3xl text-sm leading-relaxed text-white/70 md:text-lg">
                                 Грузия — одна из древнейших винодельческих стран мира. Алазанская долина, Кахетия, Рача и
-                                Имерети уникальны по-своему, но многие хозяйства до сих пор показывают себя плоско. Аэровидео
+                                Имерети обладают самобытным терруаром, но многие хозяйства до сих пор показывают себя плоско. Аэровидео
                                 меняет это: масштаб лоз, пролёты над маранью во время Ртвели, архитектура и рельеф в одном
                                 визуальном языке. Работаем по всей стране: Тбилиси, Телави, Сигнаги, Цинандали, Гори, Кутаиси.
                             </p>
@@ -859,7 +859,7 @@ export default function DroneWinePage() {
                             вас контентный запас на 12 месяцев вперёд.
                         </p>
                         <a
-                            href="https://wa.me/995574619393"
+                            href="https://wa.me/995501103183"
                             target="_blank"
                             rel="noreferrer"
                             className="inline-flex items-center justify-center rounded-[10px] bg-[#D4A017] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
@@ -1230,7 +1230,7 @@ export default function DroneWinePage() {
                                     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Контакты</p>
                                     <div className="mt-4 flex flex-wrap gap-3">
                                         <a
-                                            href="https://wa.me/995574619393"
+                                            href="https://wa.me/995501103183"
                                             target="_blank"
                                             rel="noreferrer"
                                             className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
@@ -1238,10 +1238,10 @@ export default function DroneWinePage() {
                                             WhatsApp / Telegram
                                         </a>
                                         <a
-                                            href="tel:+995574619393"
+                                            href="tel:+995501103183"
                                             className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/82 transition-colors hover:border-white/35"
                                         >
-                                            +995 574 619 393
+                                            +995 501 103 183
                                         </a>
                                     </div>
                                     <p className="mt-4 text-sm leading-relaxed text-white/55">Тбилиси, Грузия</p>

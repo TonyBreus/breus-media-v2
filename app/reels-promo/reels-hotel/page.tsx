@@ -46,9 +46,9 @@ const CANONICAL_URL = 'https://breus.media/reels-promo/reels-hotel';
 const PAGE_TITLE = 'Reels для отеля в Тбилиси — съёмка для Instagram и TikTok | Breus Media';
 const PAGE_DESCRIPTION =
     'Короткие вертикальные видео для отеля: Instagram Reels, TikTok, YouTube Shorts. Привлекайте новых гостей из соцсетей. От 200 ₾ за ролик, Тбилиси.';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_RAW = '+995574619393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_RAW = '+995501103183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 const TELEGRAM_URL = 'https://t.me/breusmedia';
 
 const REEL_EXAMPLE_EMBED = 'https://www.tiktok.com/embed/v2/6718335390845095173';

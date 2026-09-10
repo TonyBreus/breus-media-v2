@@ -52,9 +52,9 @@ const CANONICAL_URL = 'https://breus.media/reels-promo/reels-restaurant';
 const PAGE_TITLE = 'Reels для ресторана в Тбилиси — съёмка Instagram и TikTok | Breus Media';
 const PAGE_DESCRIPTION =
     'Снимем серию Reels для вашего ресторана: блюда, бар, атмосфера, команда. Пакет из 6–10 роликов. От 200 ₾ за ролик. Тбилиси и вся Грузия.';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 
 const VIDEO_EMBED_URL = 'https://www.youtube.com/embed/M7lc1UVf-VE';
 const VIDEO_PAGE_URL = 'https://www.youtube.com/watch?v=M7lc1UVf-VE';
@@ -245,7 +245,7 @@ const moneyFaqItems: FaqItem[] = [
     },
     {
         question: 'Можно ли отдать вам наш исходник только на монтаж?',
-        answer: 'Да, если исходный материал по качеству подходит для монтажа. Формат и объём обсуждаем индивидуально.',
+        answer: 'Да, если предоставленные видеоматериалы соответствуют техническим стандартам (1080p/4K). Стоимость монтажа — от 80 ₾ за ролик.',
     },
     {
         question: 'Что делать после первого пакета Reels?',

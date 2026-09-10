@@ -52,9 +52,9 @@ const CANONICAL_URL = 'https://breus.media/reels-promo/restaurant-content-pack';
 const PAGE_TITLE = 'Контент-пакет для ресторана в Тбилиси — ежемесячная съёмка | Breus Media';
 const PAGE_DESCRIPTION =
     'Ежемесячный контент для ресторана: Reels, фото, Stories — один выезд в месяц. Профиль всегда активен. От 1 200 ₾/мес. Тбилиси и Грузия.';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 
 const VIDEO_EMBED_URL = 'https://www.youtube.com/embed/M7lc1UVf-VE';
 const VIDEO_PAGE_URL = 'https://www.youtube.com/watch?v=M7lc1UVf-VE';

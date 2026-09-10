@@ -42,9 +42,9 @@ type GlossaryItem = {
 };
 
 const CANONICAL_URL = 'https://breus.media/ai-visual/ai-menu-delivery';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
-const CONTACT_PHONE_DISPLAY = '+995 574 619 393';
-const CONTACT_PHONE_RAW = '+995574619393';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
+const CONTACT_PHONE_DISPLAY = '+995 501 103 183';
+const CONTACT_PHONE_RAW = '+995501103183';
 
 const heroSubtitle =
     'Аппетитные фото блюд и позиций меню за 24 часа — без фотографа, без студии, без постановочной съёмки.';

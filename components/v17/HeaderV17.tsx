@@ -93,8 +93,8 @@ export default function HeaderV17() {
                     <div className="flex items-center gap-6">
 
                         {/* NEW: Phone Number (Clickable) */}
-                        <a href="tel:+995555000000" className="hidden lg:block text-white font-bold text-sm tracking-wider hover:text-brand transition-colors">
-                            +995 555 00 00 00
+                        <a href="tel:+995501103183" className="hidden lg:block text-white font-bold text-sm tracking-wider hover:text-brand transition-colors">
+                            +995 501 10 31 83
                         </a>
 
                         {/* CTA Button */}
@@ -111,7 +111,7 @@ export default function HeaderV17() {
                                 {isContactOpen && (
                                     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="absolute top-full right-0 mt-4 bg-black border border-white/20 p-6 w-64 z-[80] flex flex-col gap-4">
                                         {/* Dropdown content similar to v14 */}
-                                        <a href="tel:+995555000000" className="text-white font-bold hover:text-brand">+995 555 00 00 00</a>
+                                        <a href="tel:+995501103183" className="text-white font-bold hover:text-brand">+995 501 10 31 83</a>
                                         <div className="flex gap-4">
                                             <MessageCircle className="w-5 h-5 text-green-500" />
                                             <Send className="w-5 h-5 text-blue-500" />

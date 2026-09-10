@@ -31,9 +31,9 @@ type PackageCard = {
 };
 
 const CANONICAL_URL = 'https://breus.media/promo-video/clinic-interior';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_HREF = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_HREF = 'https://wa.me/995501103183';
 
 const audienceItems: string[] = [
     'Стоматологии и ортодонтические клиники, где вид кабинета и оборудования напрямую влияет на выбор пациента.',

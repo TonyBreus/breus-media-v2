@@ -57,7 +57,7 @@ type RelatedService = {
 const CANONICAL_URL = 'https://breus.media/drone-services/drone-solar';
 const PAGE_TITLE = 'Инспекция солнечных панелей дроном в Тбилиси | Breus Media';
 const PAGE_DESCRIPTION =
-    'Дрон-инспекция солнечных панелей в Тбилиси и по всей Грузии. Видеофиксация состояния, выявление загрязнений и дефектов. От 250 ₾. Breus Media +995574619393';
+    'Дрон-инспекция солнечных панелей в Тбилиси и по всей Грузии. Видеофиксация состояния, выявление загрязнений и дефектов. От 250 ₾. Breus Media +995501103183';
 
 const serviceTypes: CardItem[] = [
     {
@@ -152,7 +152,7 @@ const shootDayItems: string[] = [
 ];
 
 const finalResultItems: string[] = [
-    'Пакет фотографий высокого разрешения (JPEG/RAW по договорённости)',
+    'Пакет фотографий высокого разрешения (JPEG/DNG по договорённости)',
     'Обзорное видео состояния массива (MP4)',
     'Кадры с отмеченными зонами видимых проблем',
     'PDF-отчёт с визуальным резюме (в пакетах Standard и Full)',
@@ -277,7 +277,7 @@ const commercialFaqItems: FaqItem[] = [
     {
         question: 'В каких форматах передаются файлы?',
         answer:
-            'Фото в JPEG или RAW по запросу. Видео в MP4 до 4K. PDF-отчёт в расширенных пакетах. Передача через Google Drive или другое облако.',
+            'Фото в JPEG или несжатые исходники по запросу. Видео в MP4 до 4K. PDF-отчёт в расширенных пакетах. Передача через Google Drive или другое облако.',
     },
     {
         question: 'Вы работаете только в Тбилиси?',
@@ -380,7 +380,7 @@ const pricingPackages: PricingPackage[] = [
             'PDF-отчёт с визуальным резюме состояния',
             'Комментарий оператора по выявленным деталям',
         ],
-        addons: ['RAW-фото: +100 ₾', 'Дополнительный отчёт на английском: +90 ₾'],
+        addons: ['Оригинальные DNG-исходники: +100 ₾', 'Дополнительный отчёт на английском: +90 ₾'],
         popular: true,
     },
     {
@@ -531,7 +531,7 @@ const serviceSchema = {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
         url: 'https://breus.media',
-        telephone: '+995574619393',
+        telephone: '+995501103183',
         address: {
             '@type': 'PostalAddress',
             addressLocality: 'Тбилиси',
@@ -564,7 +564,7 @@ const localBusinessSchema = {
     name: 'Breus Media',
     description: 'Дрон-инспекция и визуальная документация объектов в Тбилиси и по всей Грузии.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -988,7 +988,7 @@ export default function DroneSolarPage() {
                             пакет это укладывается и стоит ли вообще летать.
                         </p>
                         <a
-                            href="https://wa.me/995574619393"
+                            href="https://wa.me/995501103183"
                             target="_blank"
                             rel="noreferrer"
                             className="inline-flex items-center justify-center rounded-[10px] bg-[#D4A017] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-white"
@@ -1135,7 +1135,7 @@ export default function DroneSolarPage() {
                                     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Контакты</p>
                                     <div className="mt-4 flex flex-wrap gap-3">
                                         <a
-                                            href="https://wa.me/995574619393"
+                                            href="https://wa.me/995501103183"
                                             target="_blank"
                                             rel="noreferrer"
                                             className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
@@ -1143,10 +1143,10 @@ export default function DroneSolarPage() {
                                             WhatsApp / Telegram
                                         </a>
                                         <a
-                                            href="tel:+995574619393"
+                                            href="tel:+995501103183"
                                             className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/82 transition-colors hover:border-white/35"
                                         >
-                                            +995 574 619 393
+                                            +995 501 103 183
                                         </a>
                                     </div>
                                     <p className="mt-4 text-sm leading-relaxed text-white/55">Тбилиси, Грузия</p>

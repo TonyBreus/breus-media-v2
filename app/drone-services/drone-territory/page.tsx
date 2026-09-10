@@ -398,7 +398,7 @@ const pricingPackages: PricingPackage[] = [
         items: [
             'Один вылет по согласованному маршруту',
             'До 40 датированных аэрофото в высоком разрешении',
-            'Обзорное видео территории (сырой монтаж)',
+            'Обзорное видео территории (исходный монтажный массив)',
             'Передача через облачную папку',
             'Краткий бриф-лист точек съёмки для повторных вылетов',
         ],
@@ -580,7 +580,7 @@ const serviceSchema = {
         '@type': 'LocalBusiness',
         name: 'Breus Media',
         url: 'https://breus.media',
-        telephone: '+995574619393',
+        telephone: '+995501103183',
         address: {
             '@type': 'PostalAddress',
             addressLocality: 'Тбилиси',
@@ -607,7 +607,7 @@ const localBusinessSchema = {
     name: 'Breus Media',
     description: 'Аэросъёмка, FPV-видео, 360° туры и визуальные решения для бизнеса в Грузии.',
     url: 'https://breus.media',
-    telephone: '+995574619393',
+    telephone: '+995501103183',
     address: {
         '@type': 'PostalAddress',
         addressLocality: 'Тбилиси',
@@ -1160,7 +1160,7 @@ export default function DroneTerritoryPage() {
                                     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#FFD23F]">Контакты</p>
                                     <div className="mt-4 flex flex-wrap gap-3">
                                         <a
-                                            href="https://wa.me/995574619393"
+                                            href="https://wa.me/995501103183"
                                             target="_blank"
                                             rel="noreferrer"
                                             className="inline-flex items-center justify-center rounded-full border border-[#FFD23F]/40 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-[#FFD23F]"
@@ -1168,10 +1168,10 @@ export default function DroneTerritoryPage() {
                                             WhatsApp / Telegram
                                         </a>
                                         <a
-                                            href="tel:+995574619393"
+                                            href="tel:+995501103183"
                                             className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/82 transition-colors hover:border-white/35"
                                         >
-                                            +995 574 619 393
+                                            +995 501 103 183
                                         </a>
                                     </div>
                                     <p className="mt-4 text-sm leading-relaxed text-white/55">Тбилиси, Грузия</p>

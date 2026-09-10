@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+
 import { SmartHeader } from '@/components/gazeta/SmartHeader';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
+import { gazetaDroneServiceTickerExcludeTexts } from '@/constants/gazetaRoutes';
+import { DroneContactStitch } from '@/components/drone/DroneContactStitch';
 
 export const metadata: Metadata = {
     title: 'О студии | Breus Media — визуальное производство для бизнеса',
@@ -20,7 +22,7 @@ const SERVICES = [
     },
     {
         title: 'Промо-видео',
-        description: 'Съёмка интерьеров, продуктов, врачей, маршрутов, объектов. Видеоматериал, который объясняет и убеждает.',
+        description: 'Съёмка интерьеров, производств, экспертов и сложных процессов. Видеоматериал, который объясняет ценность и убеждает.',
     },
     {
         title: 'Reels и контент',
@@ -36,7 +38,7 @@ const SERVICES = [
     },
     {
         title: 'AI-контент и упаковка',
-        description: 'Описания отелей, туристических маршрутов и программ. Подготовка и структурирование текстовых материалов для продаж.',
+        description: 'Упаковка смыслов. Создание описаний для отелей, недвижимости и туристических маршрутов. Структурирование текстов для увеличения конверсии.',
     },
 ];
 
@@ -54,7 +56,7 @@ const APPROACH_POINTS = [
     {
         num: '03',
         title: 'Компактно и внимательно',
-        body: 'Мы работаем как серьёзная студия, а не как крупное агентство. Это значит: каждый проект получает внимание, а не передаётся по цепочке.',
+        body: 'Мы работаем как небольшое агентство. Это значит: каждый проект получает внимание, а не передаётся по цепочке.',
     },
     {
         num: '04',
@@ -72,23 +74,23 @@ const AI_POINTS = [
     'Ускорение задач подготовки без потери качества',
 ];
 
-const EXPERIENCE_AREAS = [
-    'Производство одежды',
-    'Туристические компании',
-    'Сервисы аренды',
-    'Автодетейлинг и уход за авто',
-    'Недвижимость (Грузия, Таиланд)',
-    'Розничная торговля и посуда',
-    'Фитнес и персональные тренеры',
-    'Спорткомплексы и теннисные корты',
-    'Отели и гостиницы',
-    'Экскурсии на самолёте',
-    'Рыболовный туризм',
-    'Мототуры',
-    'Рестораны и бары',
-    'Медицинские клиники',
-    'Коммерческая недвижимость',
-    'Строительство и девелопмент',
+const EXPERIENCE_CATEGORIES = [
+    {
+        title: 'Недвижимость и стройка',
+        items: 'девелопмент, коммерческая недвижимость, инвестиционные проекты (Грузия, Таиланд).',
+    },
+    {
+        title: 'HoReCa и Туризм',
+        items: 'отели, рестораны, бары, самолетные и мото-туры, рыболовный туризм.',
+    },
+    {
+        title: 'Услуги и Ритейл',
+        items: 'автодетейлинг, медицинские клиники, производство одежды, сервисы аренды.',
+    },
+    {
+        title: 'Спорт и Здоровье',
+        items: 'спорткомплексы, теннисные корты, фитнес-клубы.',
+    },
 ];
 
 const PROCESS_STEPS = [
@@ -110,7 +112,7 @@ const PROCESS_STEPS = [
     {
         num: '4',
         title: 'Согласование',
-        body: 'Показываем результат, собираем правки. Итерируем до готового материала, который соответствует задаче.',
+        body: 'Показываем результат, собираем правки. Доводим до готового материала, который соответствует задаче.',
     },
     {
         num: '5',
@@ -122,27 +124,28 @@ const PROCESS_STEPS = [
 export default function AboutPage() {
     return (
         <main className="relative min-h-screen bg-[#080808] text-white">
-            <SmartHeader transparent={false} isLanding={false} />
+            <SmartHeader
+                transparent={false}
+                isLanding={false}
+                singleTickerMode={true}
+                tickerExcludeTexts={gazetaDroneServiceTickerExcludeTexts}
+            />
 
             {/* ─── HERO ─────────────────────────────────────────────────── */}
             <DebugWrapper id={20100} label="About: Hero">
                 <section className="pt-36 pb-24 border-b border-[#2a2a2a] bg-[#080808]">
                     <div className="container mx-auto px-6 max-w-5xl">
-                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#D4AF37] mb-6">
-                            О студии
-                        </p>
                         <h1 className="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-8">
                             Визуальное производство<br className="hidden md:block" />
                             {' '}для бизнеса
                         </h1>
                         <p className="text-lg md:text-xl text-white/65 max-w-2xl leading-relaxed mb-10">
-                            Breus Media — студия, которая помогает бизнесу представлять продукты,
-                            услуги, пространства и коммерческие предложения через профессиональный
-                            визуальный контент.
+                            Breus Media — агентство, которое помогает бизнесу презентовать свои продукты,
+                            услуги и пространства через профессиональный медиаконтент.
                         </p>
                         <div className="flex flex-wrap gap-4">
                             <a
-                                href="https://wa.me/995574619393"
+                                href="https://wa.me/995501103183"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center justify-center bg-[#D4A017] text-black px-6 py-3 rounded-[10px] font-bold uppercase tracking-wider text-xs hover:bg-white transition-colors"
@@ -170,28 +173,22 @@ export default function AboutPage() {
                             <div>
                                 <h2 className="text-3xl font-bold mb-6">Кто мы</h2>
                                 <p className="text-white/65 leading-relaxed mb-4">
-                                    Breus Media — студия на пересечении визуального производства
-                                    и AI-инструментов. Мы работаем с бизнесом, которому нужен
-                                    качественный визуальный контент для продаж, презентаций и
-                                    продвижения.
-                                </p>
-                                <p className="text-white/65 leading-relaxed mb-4">
-                                    В нашем арсенале — дрон, промо-видео, reels, 360-туры,
-                                    AI-визуализация и AI-упаковка контента. Мы выбираем формат
-                                    под задачу, а не предлагаем один инструмент на все случаи.
+                                    Мы работаем на пересечении классического продакшна и AI-технологий.
+                                    Наша цель — создавать контент, который помогает вам продавать,
+                                    презентовать объекты и укреплять доверие клиентов в Грузии и за её пределами.
                                 </p>
                                 <p className="text-white/65 leading-relaxed">
-                                    Работаем с недвижимостью, гостиничным бизнесом, туризмом,
-                                    автомобильной нишей, ресторанами, клиниками и коммерческими
-                                    объектами — в Грузии и удалённо.
+                                    В нашем арсенале: аэросъёмка, промо-видео, 360°-туры, Reels и AI-визуализация.
+                                    Мы всегда начинаем с вашей задачи — и только потом подбираем инструмент,
+                                    который решит её лучше всего.
                                 </p>
                             </div>
                             <div className="space-y-4">
                                 {[
                                     { label: 'Форматы', value: 'Дрон · Видео · Reels · 360° · AI-визуал · AI-контент' },
                                     { label: 'Ниши', value: 'Недвижимость · Туризм · Авто · Отели · Рестораны · Клиники' },
-                                    { label: 'География', value: 'Грузия (Тбилиси и выезды) · Удалённые проекты' },
-                                    { label: 'Языки', value: 'Русский · English · ქართული' },
+                                    { label: 'География', value: 'Грузия (Тбилиси и выезд по регионам)' },
+                                    { label: 'Языки', value: 'Русский · Английский · Грузинский' },
                                 ].map((item) => (
                                     <div
                                         key={item.label}
@@ -256,38 +253,7 @@ export default function AboutPage() {
                                 </div>
                             ))}
                         </div>
-                        <div className="mt-10 flex flex-wrap gap-3">
-                            <Link
-                                href="/drone-service"
-                                className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] hover:text-white transition-colors border border-[#D4AF37]/30 hover:border-white/30 rounded-[8px] px-4 py-2"
-                            >
-                                Аэросъёмка →
-                            </Link>
-                            <Link
-                                href="/promo-video-service"
-                                className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] hover:text-white transition-colors border border-[#D4AF37]/30 hover:border-white/30 rounded-[8px] px-4 py-2"
-                            >
-                                Промо-видео →
-                            </Link>
-                            <Link
-                                href="/reels-service"
-                                className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] hover:text-white transition-colors border border-[#D4AF37]/30 hover:border-white/30 rounded-[8px] px-4 py-2"
-                            >
-                                Reels →
-                            </Link>
-                            <Link
-                                href="/360-tours-service"
-                                className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] hover:text-white transition-colors border border-[#D4AF37]/30 hover:border-white/30 rounded-[8px] px-4 py-2"
-                            >
-                                360° туры →
-                            </Link>
-                            <Link
-                                href="/ai-visualization-service"
-                                className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] hover:text-white transition-colors border border-[#D4AF37]/30 hover:border-white/30 rounded-[8px] px-4 py-2"
-                            >
-                                AI-визуализация →
-                            </Link>
-                        </div>
+
                     </div>
                 </section>
             </DebugWrapper>
@@ -330,19 +296,20 @@ export default function AboutPage() {
             <DebugWrapper id={20600} label="About: Experience Areas">
                 <section className="py-24 border-b border-[#2a2a2a] bg-[#0D0D0D]">
                     <div className="container mx-auto px-6 max-w-5xl">
-                        <h2 className="text-3xl font-bold mb-4">Опыт работы</h2>
-                        <p className="text-white/55 mb-10 max-w-xl leading-relaxed">
-                            Направления, с которыми мы реально работали. Без выдуманных
-                            кейсов и процентов конверсии — только честный список.
-                        </p>
-                        <div className="flex flex-wrap gap-3">
-                            {EXPERIENCE_AREAS.map((area) => (
-                                <span
-                                    key={area}
-                                    className="rounded-full border border-[#2a2a2a] bg-[#141414] px-4 py-2 text-sm text-white/70"
+                        <h2 className="text-3xl font-bold mb-12">Направления, с которыми мы работали.</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {EXPERIENCE_CATEGORIES.map((cat, index) => (
+                                <div
+                                    key={index}
+                                    className="rounded-[12px] border border-[#2a2a2a] bg-[#141414] p-6 hover:border-[#D4AF37]/30 transition-colors"
                                 >
-                                    {area}
-                                </span>
+                                    <h3 className="text-lg font-bold text-[#D4AF37] mb-2">
+                                        {cat.title}
+                                    </h3>
+                                    <p className="text-sm text-white/70 leading-relaxed">
+                                        {cat.items}
+                                    </p>
+                                </div>
                             ))}
                         </div>
                     </div>
@@ -415,41 +382,8 @@ export default function AboutPage() {
             </DebugWrapper>
 
             {/* ─── CTA ──────────────────────────────────────────────────── */}
-            <DebugWrapper id={20900} label="About: CTA">
-                <section className="py-24 bg-[#080808]">
-                    <div className="container mx-auto px-6 max-w-5xl">
-                        <div className="rounded-[16px] border border-[#D4AF37]/25 bg-[#0D0D0D] p-10 md:p-14 text-center">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                                Обсудим ваш проект
-                            </h2>
-                            <p className="text-white/60 max-w-xl mx-auto leading-relaxed mb-10">
-                                Расскажите о задаче — мы разберём её и предложим формат,
-                                который действительно подойдёт. Без шаблонных предложений.
-                            </p>
-                            <div className="flex flex-wrap gap-4 justify-center">
-                                <a
-                                    href="https://wa.me/995574619393"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center bg-[#D4A017] text-black px-8 py-4 rounded-[10px] font-bold uppercase tracking-wider text-xs hover:bg-white transition-colors"
-                                >
-                                    Написать в WhatsApp
-                                </a>
-                                <a
-                                    href="https://t.me/breusmedia"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center border border-white/20 text-white/80 px-8 py-4 rounded-[10px] font-bold uppercase tracking-wider text-xs hover:border-white/50 hover:text-white transition-colors"
-                                >
-                                    Telegram
-                                </a>
-                            </div>
-                            <p className="mt-8 text-xs text-white/30">
-                                +995 574 619 393 · breus.media
-                            </p>
-                        </div>
-                    </div>
-                </section>
+            <DebugWrapper id={20900} label="About: Contact Form">
+                <DroneContactStitch />
             </DebugWrapper>
 
             <DebugWrapper id={21000} label="About: Footer">

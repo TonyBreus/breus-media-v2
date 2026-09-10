@@ -31,9 +31,9 @@ type PackageCard = {
 };
 
 const CANONICAL_URL = 'https://breus.media/promo-video/restaurant-interior-food';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_HREF = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_HREF = 'https://wa.me/995501103183';
 
 const audienceItems: string[] = [
     'Владелец ресторана, у которого нет актуальных профессиональных фото блюд и зала.',

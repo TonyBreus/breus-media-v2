@@ -54,14 +54,5 @@ export function DroneStickyCta({
         };
     }, [heroId, contactId]);
 
-    return (
-        <a
-            href={href}
-            className={`fixed right-6 bottom-6 z-[1080] hidden items-center justify-center rounded-[12px] border border-[#FFD23F]/45 bg-[#141414]/95 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-[0_8px_30px_rgba(0,0,0,0.35)] backdrop-blur transition-all duration-300 lg:flex ${
-                isVisible ? 'pointer-events-auto translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
-            } hover:border-[#FFD23F] hover:bg-[#1a1a1a]`}
-        >
-            {label}
-        </a>
-    );
+    return null;
 }

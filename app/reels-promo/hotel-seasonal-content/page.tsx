@@ -48,9 +48,9 @@ const CANONICAL_URL = 'https://breus.media/reels-promo/hotel-seasonal-content';
 const PAGE_TITLE = 'Сезонный контент для отеля в Тбилиси — съёмка под сезон и акции | Breus Media';
 const PAGE_DESCRIPTION =
     'Контент-пакет для отеля под сезон: Новый год, лето, праздники. Готовые видео, Reels и фото для Booking, Instagram и рассылок. От 900 ₾, Тбилиси.';
-const CONTACT_PHONE = '+995 574 619 393';
-const CONTACT_PHONE_PLAIN = '+995574619393';
-const WHATSAPP_URL = 'https://wa.me/995574619393';
+const CONTACT_PHONE = '+995 501 103 183';
+const CONTACT_PHONE_PLAIN = '+995501103183';
+const WHATSAPP_URL = 'https://wa.me/995501103183';
 const TELEGRAM_URL = 'https://t.me/breusmedia';
 
 const serviceIntro =
@@ -472,7 +472,7 @@ const shortQa: FaqItem[] = [
     },
     {
         question: 'Кто делает сезонный контент для отелей в Тбилиси?',
-        answer: 'Breus Media — видеопродакшн в Тбилиси. +995 574 619 393.',
+        answer: 'Breus Media — видеопродакшн в Тбилиси. +995 501 103 183.',
     },
 ];
 

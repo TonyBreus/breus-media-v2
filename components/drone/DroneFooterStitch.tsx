@@ -1,93 +1,140 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Facebook, Instagram, Linkedin, Send } from 'lucide-react';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 
 type DroneFooterStitchProps = {
     missionText?: string;
     menuTitle?: string;
-    contactLinkLabel?: string;
     contactTitle?: string;
+    lang?: 'ru' | 'en';
 };
 
 export const DroneFooterStitch = ({
-    missionText = 'Профессиональная аэросъёмка и визуальные решения для бизнеса в Грузии. Тбилиси, Батуми, Кутаиси.',
-    menuTitle = 'Меню',
-    contactLinkLabel = 'Контакты',
-    contactTitle = 'Контакты',
+    missionText,
+    menuTitle,
+    contactTitle,
+    lang = 'ru',
 }: DroneFooterStitchProps) => {
+    const isEn = lang === 'en';
+    const copy = isEn
+        ? {
+              missionText:
+                  'Aerial videography and visual solutions for business in Georgia. Tbilisi, Kakheti, Kazbegi, Gudauri, Bakuriani.',
+              menuTitle: 'MENU',
+              contactTitle: 'Contact',
+              contactLocation: 'Tbilisi, Georgia',
+              menu: [
+                  { label: 'Aerial filming', href: '/drone-service/en' },
+                  { label: '360° tours', href: '/360-tours-service/en' },
+                  { label: 'Reels and video', href: '/reels-service/en' },
+                  { label: 'AI visualisation', href: '/ai-visualization-service/en' },
+              ],
+          }
+        : {
+              missionText:
+                  'Визуальный контент для вашего бизнеса в Грузии: создаем историю бренда от столицы до побережья.',
+              menuTitle: 'МЕНЮ',
+              contactTitle: 'Контакты',
+              contactLocation: 'Тбилиси, Грузия',
+              menu: [
+                  { label: 'Аэросъёмка', href: '/drone-service' },
+                  { label: '360° туры', href: '/360-tours-service' },
+                  { label: 'Reels и видео', href: '/reels-service' },
+                  { label: 'AI-визуализация', href: '/ai-visualization-service' },
+              ],
+          };
+
+    const resolvedMission = missionText ?? copy.missionText;
+    const resolvedMenuTitle = menuTitle ?? copy.menuTitle;
+    const resolvedContactTitle = contactTitle ?? copy.contactTitle;
+    const contactLocation = copy.contactLocation;
+    const socials = [
+        { label: 'Instagram', href: 'https://www.instagram.com/breusmedia', icon: Instagram },
+        { label: 'Telegram', href: 'https://t.me/breusmedia', icon: Send },
+        { label: 'Facebook', href: 'https://www.facebook.com/breusmedia', icon: Facebook },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/company/breusmedia', icon: Linkedin },
+    ];
+
     return (
         <DebugWrapper id={11000} label="Drone Footer Section">
-            <footer className="bg-[#060606] border-t border-[#2a2a2a] pt-1.5 md:pt-2 pb-8 md:pb-16">
-                <div className="container mx-auto grid grid-cols-1 gap-8 px-6 text-center md:grid-cols-4 md:gap-12 md:text-left">
-                    <div className="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
-                        <DebugWrapper id={11001} label="Footer Branding">
-                            <div className="text-xl font-bold tracking-tighter mb-4 text-white flex items-center">
-                                <span className="text-[#D4A017] mr-2">✈</span> BREUS MEDIA
-                            </div>
-                        </DebugWrapper>
-                        <DebugWrapper id={11002} label="Footer Mission">
-                            <p className="text-gray-500 text-sm max-w-sm mb-5 md:mb-8 leading-relaxed">
-                                {missionText}
-                            </p>
-                        </DebugWrapper>
-                        <div className="flex space-x-6">
-                            {[
-                                { label: 'Instagram', href: 'https://www.instagram.com/breusmedia', icon: Instagram },
-                                { label: 'Telegram', href: 'https://t.me/breusmedia', icon: Send },
-                                { label: 'Facebook', href: 'https://www.facebook.com/breusmedia', icon: Facebook },
-                                { label: 'LinkedIn', href: 'https://www.linkedin.com/company/breusmedia', icon: Linkedin },
-                            ].map((social, sIdx) => (
-                                <DebugWrapper key={social.label} id={11010 + sIdx} label={`Social Link: ${social.label}`}>
-                                    <a
-                                        href={social.href}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        aria-label={social.label}
-                                        className="w-10 h-10 rounded-full border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-[#D4A017] hover:border-[#D4A017] transition-all"
+            <footer className="w-full border-t border-white/10 bg-[#050505] py-4 md:py-5">
+                <div className="mx-auto w-full max-w-7xl px-4 md:px-6">
+                    {/* Top Row: Menu & Links + Contact Pill */}
+                    <div className="flex flex-col items-center justify-between gap-3 pb-3 md:flex-row md:gap-4 border-b border-white/10">
+                        {/* Menu & 4 Clickable Links with gold separator dots */}
+                        <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1.5 md:justify-start">
+                            <span className="text-[#FFD23F] font-bold text-xs uppercase tracking-[0.2em]">
+                                {resolvedMenuTitle}
+                            </span>
+                            <span className="text-[#FFD23F] text-xs font-bold select-none">•</span>
+                            {copy.menu.map((item, idx) => (
+                                <React.Fragment key={item.label}>
+                                    <Link
+                                        href={item.href}
+                                        className="text-xs font-medium text-white/75 transition-colors hover:text-[#FFD23F]"
                                     >
-                                        <social.icon className="h-4 w-4" strokeWidth={1.9} />
-                                    </a>
-                                </DebugWrapper>
+                                        {item.label}
+                                    </Link>
+                                    {idx < copy.menu.length - 1 && (
+                                        <span className="text-[#FFD23F] text-xs font-bold select-none">•</span>
+                                    )}
+                                </React.Fragment>
                             ))}
                         </div>
+
+                        {/* Contact Pill: Dark Glass Capsule with pulsing green dot & clickable phone */}
+                        <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3.5 py-1 text-xs text-white/90 shadow-sm backdrop-blur-md">
+                            <span className="h-2 w-2 rounded-full bg-[#22c55e] animate-pulse" />
+                            <span className="text-white/60 font-medium">
+                                {resolvedContactTitle}: {contactLocation} ·
+                            </span>
+                            <a
+                                href="tel:+995501103183"
+                                className="font-semibold text-white hover:text-[#FFD23F] transition-colors"
+                            >
+                                +995 501 103 183
+                            </a>
+                        </div>
                     </div>
-                    <div className="flex flex-col items-center md:items-start">
-                        <DebugWrapper id={11003} label="Footer Nav Column">
-                            <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-4 md:mb-6 text-white">{menuTitle}</h4>
-                            <ul className="space-y-4 text-sm text-gray-500">
-                                {[
-                                    { label: 'Аэросъёмка', href: '/drone-service' },
-                                    { label: '360° туры', href: '/360-tours-service' },
-                                    { label: 'Reels и видео', href: '/reels-service' },
-                                    { label: 'AI-визуализация', href: '/ai-visualization-service' },
-                                    { label: contactLinkLabel, href: '#contact' },
-                                ].map((item, mIdx) => (
-                                    <li key={item.label}>
-                                        <DebugWrapper id={11020 + mIdx} label={`Footer Link: ${item.label}`}>
-                                            <a href={item.href} className="hover:text-white transition-colors">
-                                                {item.label}
-                                            </a>
-                                        </DebugWrapper>
-                                    </li>
-                                ))}
-                            </ul>
-                        </DebugWrapper>
+
+                    {/* B2B Legal Trust Strip */}
+                    <div className="flex items-center justify-center py-2.5 border-b border-white/5 text-[11px] text-white/55 tracking-wide text-center">
+                        <p>
+                            {isEn
+                                ? 'Оfficial B2B Contract • Invoices & Acts • Bank Transfer for Companies (TBC / BoG)'
+                                : 'Официальный договор • Закрывающие акты • Безналичный расчёт для юрлиц (Invoice TBC / BoG)'}
+                        </p>
                     </div>
-                    <div className="flex flex-col items-center md:items-start">
-                        <DebugWrapper id={11004} label="Footer Contact Column">
-                            <h4 className="font-bold text-xs uppercase tracking-[0.2em] mb-4 md:mb-6 text-white">{contactTitle}</h4>
-                            <ul className="space-y-4 text-sm text-gray-500">
-                                <li>Tbilisi, Georgia</li>
-                                <li className="text-white font-bold">+995 574 619 393</li>
-                                <li className="hover:text-white transition-colors">hello@breus.media</li>
-                            </ul>
-                        </DebugWrapper>
+
+                    {/* Bottom Row: Logo, Mission, Socials */}
+                    <div className="flex flex-col items-center gap-3 pt-3 md:flex-row md:justify-between md:gap-4">
+                        <div className="flex items-center text-left text-[18px] font-black uppercase tracking-tighter text-white md:w-[25%]">
+                            <Link href={isEn ? "/gazeta/en" : "/gazeta"} className="hover:opacity-85 transition-opacity">
+                                BREUS MEDIA <span className="text-[#FFD23F] font-extrabold">•</span>
+                            </Link>
+                        </div>
+                        <p className="w-full text-center text-xs md:text-[13px] leading-relaxed text-white/70 md:w-[50%] md:text-left">
+                            {resolvedMission}
+                        </p>
+                        <div className="flex w-full items-center justify-center gap-2.5 md:w-[25%] md:justify-end">
+                            {socials.map((social) => (
+                                <a
+                                    key={social.label}
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label={social.label}
+                                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/75 shadow-sm backdrop-blur-md transition-all hover:border-[#FFD23F] hover:bg-[#FFD23F]/15 hover:text-[#FFD23F] hover:shadow-[0_0_12px_rgba(255,210,63,0.3)]"
+                                >
+                                    <social.icon className="h-3.5 w-3.5" strokeWidth={1.9} />
+                                </a>
+                            ))}
+                            <p className="ml-1 text-[10px] uppercase tracking-[0.2em] text-white/40">© 2026</p>
+                        </div>
                     </div>
-                </div>
-                <div className="container mx-auto px-6 mt-8 md:mt-16 pt-6 md:pt-8 border-t border-[#2a2a2a] text-center text-[10px] text-gray-600 uppercase tracking-[0.3em]">
-                    © 2026 BREUS MEDIA PRODUCTION. ALL RIGHTS RESERVED.
                 </div>
             </footer>
         </DebugWrapper>
