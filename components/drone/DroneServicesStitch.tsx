@@ -62,19 +62,19 @@ export const DroneServicesStitch = () => {
                 {/* ── Section Header with GEO/AEO Answer Capsule ── */}
                 <div className="mx-auto w-full max-w-[1400px] px-6 mb-6 md:mb-8 text-center md:text-left">
                     <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-[#D4A017] font-semibold mb-1">
-                        18 форматов для любого бизнеса
+                        {services.length} форматов для бизнеса
                     </p>
                     <h2 className="text-2xl md:text-4xl font-bold text-white mb-2">
                         Направления аэросъёмки в Грузии
                     </h2>
                     <p className="max-w-2xl text-xs md:text-sm text-white/65 leading-relaxed">
-                        Специализированные форматы аэросъёмки под задачи девелоперов, отельеров, рестораторов и производств в Тбилиси и регионах. Выберите нишу или смотрите все карточки.
+                        Специализированные форматы аэросъёмки под задачи девелоперов, отельеров, рестораторов и производств в Тбилиси и регионах.
                     </p>
                 </div>
 
                 {/* ── Niche Category Filter Chips ── */}
                 <div className="mx-auto w-full max-w-[1400px] px-6 mb-6 md:mb-8">
-                    <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x">
+                    <div className="flex flex-wrap items-center gap-2">
                         {SERVICE_CATEGORIES.map((cat) => {
                             const count = cat.id === 'all'
                                 ? services.length
@@ -86,7 +86,7 @@ export const DroneServicesStitch = () => {
                                     key={cat.id}
                                     type="button"
                                     onClick={() => setActiveCategory(cat.id)}
-                                    className={`shrink-0 snap-start flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-all border ${
+                                    className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-all border ${
                                         isActive
                                             ? 'bg-[#D4A017] border-[#D4A017] text-black shadow-[0_2px_14px_rgba(212,160,23,0.35)]'
                                             : 'bg-white/[0.04] border-white/12 text-white/70 hover:border-white/30 hover:text-white'
@@ -103,13 +103,8 @@ export const DroneServicesStitch = () => {
                     </div>
                 </div>
 
-                <div className="mx-auto w-full px-6 relative">
-                    <div className="flex justify-end mb-3 md:hidden">
-                        <span className="text-[10px] uppercase tracking-widest text-white/40 flex items-center gap-1.5 animate-pulse">
-                            Свайпайте вбок
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                        </span>
-                    </div>
+                <div className="mx-auto w-full px-6 relative group/carousel">
+                    {/* Horizontal Swipe Carousel */}
                     <div className="flex gap-4 md:gap-5 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory pr-[20vw] md:pr-0">
                         {services.map((service, idx) => {
                             const detailsHref = service.primaryHref;
@@ -120,8 +115,7 @@ export const DroneServicesStitch = () => {
                                 <DebugWrapper key={service.slug} id={10310 + idx} label={`Service Card: ${service.title}`}>
                                 <article
                                     id={`service-${service.slug}`}
-                                    className={`snap-center shrink-0 w-[78vw] sm:w-[280px] xl:w-[300px] service-card-target scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex-col ${isMatch ? 'flex' : 'hidden'} ${service.featured ? 'gold-glow border-[#D4A017]/50' : ''}`}
-                                    style={service.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : {}}
+                                    className={`snap-center shrink-0 w-[75vw] sm:w-[260px] xl:w-[280px] service-card-target scroll-mt-32 bg-gradient-to-b from-white/[0.05] to-transparent border border-white/10 rounded-[16px] overflow-hidden group hover:border-[#D4A017]/50 hover:bg-white/[0.08] transition-all duration-500 flex-col backdrop-blur-sm ${isMatch ? 'flex' : 'hidden'} ${service.featured ? 'shadow-[0_0_30px_rgba(212,160,23,0.15)] border-[#D4A017]/40' : ''}`}
                                 >
                                     <div className="h-40 bg-neutral-800 overflow-hidden relative">
                                         <img
