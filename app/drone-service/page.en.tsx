@@ -14,6 +14,9 @@ import { DroneRelatedLinksCompact } from '@/components/drone/DroneRelatedLinksCo
 import { DroneFooterStitchEn } from '@/components/drone/DroneFooterStitchEn';
 import { DroneHeroStitchEn } from '@/components/drone/DroneHeroStitchEn';
 import { DroneServicesStitchEn } from '@/components/drone/DroneServicesStitchEn';
+import { DroneTasksSectionEn } from '@/components/drone/DroneTasksSectionEn';
+import { DroneWhyUsSectionEn } from '@/components/drone/DroneWhyUsSectionEn';
+
 import { droneServiceItems, getDroneServiceSortRank, DRONE_OPEN_SERVICE_SLUGS } from '@/components/drone/droneServicesData';
 import LangSetter from '@/components/common/LangSetter';
 import type { DroneDirectionPageConfig } from '@/constants/droneDirectionPages';
@@ -27,6 +30,7 @@ type ServiceCard = {
     category: string;
     description: string;
     price: string;
+    specs?: string;
     image: string;
     primaryHref: string;
     tag?: string;
@@ -36,6 +40,7 @@ type ServiceCard = {
 type PricingPlan = {
     title: string;
     price: string;
+    specs?: string;
     subtitle: string;
     items: string[];
     note?: string;
@@ -151,6 +156,7 @@ const serviceCopyBySlug: Record<
         category: string;
         description: string;
         price: string;
+    specs?: string;
         primaryHref?: string;
     }
 > = {
@@ -296,7 +302,8 @@ const serviceCardsEn: ServiceCard[] = [...droneServiceItems]
             title: translation?.title ?? item.title,
             category: translation?.category ?? item.category,
             description: translation?.description ?? item.description,
-            price: translation?.price ?? item.price,
+            price: item.slug === 'fpv-semka' ? 'from 300 ₾' : 'from 200 ₾',
+            specs: translation?.price ?? item.specs,
             image: item.image,
             primaryHref: translation?.primaryHref ?? item.primaryHref,
             tag: item.tag,
@@ -476,6 +483,9 @@ export default function DroneServicePageEn() {
             <div id="pricing">
                 <DronePricingStitchEn />
             </div>
+
+            <DroneTasksSectionEn />
+            <DroneWhyUsSectionEn />
 
             <DroneProcessStitchEn />
             <DroneFlightConditionsNoteEn />

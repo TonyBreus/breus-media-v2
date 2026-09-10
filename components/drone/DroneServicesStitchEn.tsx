@@ -60,14 +60,14 @@ export const DroneServicesStitchEn = ({ services }: { services: any[] }) => {
 
                 {/* ── Section Header with GEO/AEO Answer Capsule ── */}
                 <div className="mx-auto w-full max-w-[1400px] px-6 mb-6 md:mb-8 text-center md:text-left">
-                    <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-[#D4A017] font-semibold mb-1">
-                        {services.length} форматов для бизнеса
-                    </p>
-                    <h2 className="text-2xl md:text-4xl font-bold text-white mb-2">
-                        Направления аэросъёмки в Грузии
+                    <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#D4A017]">
+                        {services.length} business formats
+                    </div>
+                    <h2 className={`${manrope.className} mb-3 text-3xl font-bold uppercase tracking-tight text-white md:text-5xl md:leading-[1.1]`}>
+                        Drone filming directions in Georgia
                     </h2>
-                    <p className="max-w-2xl text-xs md:text-sm text-white/65 leading-relaxed">
-                        Специализированные форматы аэросъёмки под задачи девелоперов, отельеров, рестораторов и производств в Тбилиси и регионах.
+                    <p className={`${manrope.className} mx-auto max-w-2xl text-[15px] leading-relaxed text-white/70`}>
+                        Specialized drone filming formats for developers, hoteliers, restaurateurs, and industrial sites in Tbilisi and regions.
                     </p>
                 </div>
 
