@@ -166,7 +166,7 @@ const serviceCopyBySlug: Record<
 export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [typedCharsCount, setTypedCharsCount] = useState(0);
-    const [typewriterDone, setTypewriterDone] = useState(false);
+    const [typewriterDone, setTypewriterDone] = useState(true);
     const [showMobileDescription, setShowMobileDescription] = useState(false);
     const [showMobileArrow, setShowMobileArrow] = useState(false);
     const [visibleDesktopPhrases, setVisibleDesktopPhrases] = useState(0);
@@ -324,16 +324,11 @@ export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
                             <div className="hidden md:block">
                                 <div className="grid text-left md:grid-cols-1 md:gap-6 lg:grid-cols-[55%_42%] lg:gap-[3%]">
                                     <div className="hidden lg:block lg:-ml-8">
-                                        <div className="min-h-[200px] text-5xl font-bold uppercase leading-[0.92] text-white md:text-7xl">
-                                            {typedMobileLines.map((line, index) => (
-                                                <div key={`desktop-typed-line-${index}`} className={index === 3 ? 'text-[#C9A84C]' : ''}>
-                                                    {line || '\u00A0'}
-                                                </div>
-                                            ))}
-                                            {!typewriterDone && (
-                                                <span className="ml-1 inline-block align-baseline text-[#C9A84C] animate-pulse">|</span>
-                                            )}
-                                        </div>
+                                        <h1 className="text-5xl md:text-7xl font-bold leading-[0.92] uppercase text-white min-h-[200px]">
+                                            <div>DRONE FILMING</div>
+                                            <div>SERVICES</div>
+                                            <div className="text-[#C9A84C]">IN GEORGIA</div>
+                                        </h1>
 
                                         <div className="mt-4 flex flex-col gap-2">
                                             {DESKTOP_HERO_PHRASES.map((phrase, index) => (
@@ -475,14 +470,9 @@ export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
                             <div className="block px-1 md:hidden">
                                 <div className="mx-auto max-w-[320px] text-left">
                                     <div className="min-h-[124px] text-[34px] font-bold uppercase leading-[1.02] tracking-[0.06em] text-white">
-                                        {typedMobileLines.map((line, index) => (
-                                            <div key={`typed-line-${index}`} className={index === 3 ? 'text-[#C9A84C]' : ''}>
-                                                {line || '\u00A0'}
-                                            </div>
-                                        ))}
-                                        {!typewriterDone && (
-                                            <span className="ml-1 inline-block align-baseline text-[#C9A84C] animate-pulse">|</span>
-                                        )}
+                                        <div>DRONE FILMING</div>
+                                        <div>SERVICES</div>
+                                        <div className="text-[#C9A84C]">IN GEORGIA</div>
                                     </div>
 
                                     <div

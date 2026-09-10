@@ -13,6 +13,7 @@ import { DroneFAQExpandedEn } from '@/components/drone/DroneFAQExpandedEn';
 import { DroneRelatedLinksCompact } from '@/components/drone/DroneRelatedLinksCompact';
 import { DroneFooterStitchEn } from '@/components/drone/DroneFooterStitchEn';
 import { DroneHeroStitchEn } from '@/components/drone/DroneHeroStitchEn';
+import { DroneServicesStitchEn } from '@/components/drone/DroneServicesStitchEn';
 import { droneServiceItems, getDroneServiceSortRank, DRONE_OPEN_SERVICE_SLUGS } from '@/components/drone/droneServicesData';
 import LangSetter from '@/components/common/LangSetter';
 import type { DroneDirectionPageConfig } from '@/constants/droneDirectionPages';
@@ -450,124 +451,17 @@ export default function DroneServicePageEn() {
                 <DroneHeroStitchEn hero={pageConfig.hero} />
             </div>
 
-            <section
-                id="directions"
-                className="block scroll-mt-20 border-t border-[#C9A84C]/10 bg-[#0d0d0d] px-4 py-4 md:hidden"
-            >
-                <h2 className="mb-4 text-base font-semibold uppercase tracking-[0.14em] text-[#C9A84C]">
-                    Directions
-                </h2>
-
-                <div className="grid grid-cols-2 gap-1.5">
-                    {serviceCardsEn.map((item, index) => (
-                        <Link
-                            href={`#service-${item.slug}`}
-                            key={item.slug}
-                            className={`flex items-center gap-1.5 rounded-[8px] border border-[#C9A84C]/15 bg-gradient-to-b from-[#171717] to-[#121212] px-2.5 py-1.5 text-[12px] leading-snug text-white/80 transition-colors hover:border-[#C9A84C]/35 hover:text-[#C9A84C] ${
-                                hasOddCount && index === serviceCardsEn.length - 1 ? 'col-span-2 justify-start' : ''
-                            }`}
-                        >
-                            <ChevronRight size={10} className="shrink-0 text-[#C9A84C] opacity-50" />
-                            <span>{item.title}</span>
-                        </Link>
-                    ))}
-                </div>
-
-                <div className="mt-4 flex flex-col items-center gap-2 text-center">
-                    <a
-                        href="#services"
-                        className="mt-1 flex flex-col items-center gap-1 text-[#C9A84C]"
-                        aria-label="Go to service cards"
-                    >
-                        <ChevronDown className="h-5 w-5 animate-bounce" />
-                        <span className="text-[11px] uppercase tracking-wider opacity-70">view cards</span>
-                    </a>
-                </div>
-            </section>
-
-            <section className="bg-[#080808] py-8 md:py-24" id="services">
-                <div className="mx-auto w-full max-w-[1400px] px-6">
-                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-                        {serviceCardsEn.map((service) => {
-                            const hasOpenServiceCta = openServiceSlugSet.has(service.slug);
-                            return (
-                                <article
-                                    key={service.slug}
-                                    id={`service-${service.slug}`}
-                                    className={`service-card-target flex flex-col overflow-hidden rounded-[12px] border border-[#2a2a2a] bg-[#141414] transition-all group hover:border-[#D4A017] scroll-mt-32 ${
-                                        service.featured ? 'border-[#D4A017]/50' : ''
-                                    }`}
-                                    style={service.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : undefined}
-                                >
-                                    <div className="relative h-40 overflow-hidden bg-neutral-800">
-                                        <img
-                                            src={service.image}
-                                            alt={service.title}
-                                            className="h-full w-full object-cover opacity-50 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-80"
-                                        />
-                                        {service.tag ? (
-                                            <div className="absolute left-4 top-4 flex gap-2">
-                                                <span
-                                                    className={`rounded px-2 py-1 text-[10px] font-bold ${
-                                                        service.tag === 'HOT'
-                                                            ? 'bg-[#D4A017] text-black'
-                                                            : 'bg-black/50 text-white backdrop-blur'
-                                                    }`}
-                                                >
-                                                    {service.tag}
-                                                </span>
-                                            </div>
-                                        ) : null}
-                                    </div>
-                                    <div className="flex flex-grow flex-col px-5 pb-4 pt-5">
-                                        <h2 className="mb-1 text-[20px] font-bold leading-[1.3] tracking-[-0.01em] text-white">
-                                            {service.title}
-                                        </h2>
-                                        <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/[0.45]">
-                                            {service.category}
-                                        </div>
-                                        <p className="mb-3 text-[14px] leading-[1.65] text-white/[0.82]">
-                                            {service.description}
-                                        </p>
-                                        <div className="mt-auto">
-                                            <div className="mb-4 border-t border-[#2a2a2a] pt-3 text-[11px] font-bold uppercase tracking-[0.1em] text-[#F5C518]">
-                                                {service.price}
-                                            </div>
-                                            <div className="flex gap-3">
-                                                {hasOpenServiceCta ? (
-                                                    <Link
-                                                        href={service.primaryHref}
-                                                        className="flex-1 rounded-lg border border-white/20 px-2 py-2 text-center text-[10px] font-bold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black"
-                                                    >
-                                                        Open Service
-                                                    </Link>
-                                                ) : null}
-                                                <a
-                                                    href="#contact"
-                                                    className={`rounded-lg bg-[#D4A017] px-2 py-2 text-center text-[10px] font-bold uppercase tracking-wider text-black transition-colors hover:bg-white ${
-                                                        hasOpenServiceCta ? 'flex-1' : 'w-full'
-                                                    }`}
-                                                >
-                                                    Discuss Project
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            );
-                        })}
-                    </div>
-                </div>
-            </section>
-
             <DroneStatsStripEn />
+
+            <div id="services">
+                <DroneServicesStitchEn services={serviceCardsEn} />
+            </div>
 
             <section className="bg-[#0D0D0D] py-12">
                 <div className="container mx-auto px-6">
                     <div className="mx-auto max-w-2xl text-center">
                         <p className="text-lg leading-relaxed text-white/78">
-                            Did not find your niche? Tell us about the task - we will suggest a format and estimate the
-                            budget.
+                            Did not find your niche? Tell us about the task - we will suggest a format and estimate the budget.
                         </p>
                         <a
                             href="#contact"
@@ -579,7 +473,10 @@ export default function DroneServicePageEn() {
                 </div>
             </section>
 
-            <DronePricingStitchEn />
+            <div id="pricing">
+                <DronePricingStitchEn />
+            </div>
+
             <DroneProcessStitchEn />
             <DroneFlightConditionsNoteEn />
             <DroneFAQExpandedEn />
