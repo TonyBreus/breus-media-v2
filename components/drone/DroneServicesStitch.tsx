@@ -103,8 +103,14 @@ export const DroneServicesStitch = () => {
                     </div>
                 </div>
 
-                <div className="mx-auto w-full px-6">
-                    <div className="flex gap-4 md:gap-5 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory">
+                <div className="mx-auto w-full px-6 relative">
+                    <div className="flex justify-end mb-3 md:hidden">
+                        <span className="text-[10px] uppercase tracking-widest text-white/40 flex items-center gap-1.5 animate-pulse">
+                            Свайпайте вбок
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                        </span>
+                    </div>
+                    <div className="flex gap-4 md:gap-5 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory pr-[20vw] md:pr-0">
                         {services.map((service, idx) => {
                             const detailsHref = service.primaryHref;
                             const hasOpenServiceCta = openServiceSlugSet.has(service.slug);
@@ -114,7 +120,7 @@ export const DroneServicesStitch = () => {
                                 <DebugWrapper key={service.slug} id={10310 + idx} label={`Service Card: ${service.title}`}>
                                 <article
                                     id={`service-${service.slug}`}
-                                    className={`snap-center shrink-0 w-[85vw] sm:w-[320px] xl:w-[300px] service-card-target scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex-col ${isMatch ? 'flex' : 'hidden'} ${service.featured ? 'gold-glow border-[#D4A017]/50' : ''}`}
+                                    className={`snap-center shrink-0 w-[78vw] sm:w-[280px] xl:w-[300px] service-card-target scroll-mt-32 bg-[#141414] border border-[#2a2a2a] rounded-[12px] overflow-hidden group hover:border-[#D4A017] transition-all flex-col ${isMatch ? 'flex' : 'hidden'} ${service.featured ? 'gold-glow border-[#D4A017]/50' : ''}`}
                                     style={service.featured ? { boxShadow: '0 0 20px rgba(212, 160, 23, 0.2)' } : {}}
                                 >
                                     <div className="h-40 bg-neutral-800 overflow-hidden relative">

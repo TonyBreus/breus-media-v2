@@ -229,14 +229,15 @@ export default function DroneServicePage() {
                 </div>
             </section>
 
-            <DroneTasksSection />
-            <DroneWhyUsSection />
-
             <div id="pricing">
                 <DebugWrapper id={10700} label="Pricing Section">
                     <DronePricingStitch />
                 </DebugWrapper>
             </div>
+
+            <DroneTasksSection />
+            <DroneWhyUsSection />
+
             <DebugWrapper id={10500} label="Process Section">
                 <DroneProcessStitch />
             </DebugWrapper>

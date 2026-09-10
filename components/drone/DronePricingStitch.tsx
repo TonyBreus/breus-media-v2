@@ -88,14 +88,20 @@ export const DronePricingStitch = () => {
                     </DebugWrapper>
                 </div>
 
-                <div className="container mx-auto px-6 max-w-full">
+                <div className="container mx-auto px-6 max-w-full relative">
+                    <div className="flex justify-end mb-3 md:hidden">
+                        <span className="text-[10px] uppercase tracking-widest text-white/40 flex items-center gap-1.5 animate-pulse">
+                            Свайпайте вбок
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                        </span>
+                    </div>
                     {/* Horizontal Swipe Carousel */}
-                    <div className="flex gap-4 md:gap-6 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory">
+                    <div className="flex gap-4 md:gap-6 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory pr-[20vw] md:pr-0">
                         {plans.map((plan, idx) => (
                             <DebugWrapper key={idx} id={10710 + idx} label={`Pricing Plan: ${plan.title}`}>
                                 <motion.div
                                     whileHover={{ y: -5 }}
-                                    className={`snap-center shrink-0 w-[85vw] sm:w-[320px] xl:w-[280px] flex flex-col justify-between rounded-[20px] border p-6 md:p-8 transition-all ${
+                                    className={`snap-center shrink-0 w-[78vw] sm:w-[280px] xl:w-[280px] flex flex-col justify-between rounded-[20px] border p-6 md:p-8 transition-all ${
                                         plan.popular
                                             ? 'border-[#FFD23F]/55 bg-[linear-gradient(180deg,rgba(255,210,63,0.1),rgba(12,12,14,1)_28%)]'
                                             : 'border-white/10 bg-[#0C0C0E]'
