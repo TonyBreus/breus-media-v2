@@ -27,10 +27,10 @@ export const techDataRu = {
     ] as RecentProject[],
 
     gearList: [
-        { name: 'DJI Mavic 3 Pro', specs: 'Hasselblad 4K/60fps, 10-bit D-Log M, 3x/7x Zoom', purpose: 'Архитектура, фасады, пейзажи, киношная картинка' },
-        { name: 'DJI Avata', specs: '4K/60fps, D-Cinelike, RockSteady 2.0', purpose: 'Внутри помещений (FPV), рестораны, цеха, отели' },
-        { name: 'DJI Mini 3 Pro / 4 Pro', specs: 'Вертикальная съемка (True Vertical), 4K HDR', purpose: 'Reels, Shorts, съемка в узких пространствах' },
-        { name: 'Apple ProRes & RAW', specs: 'Форматы без потерь качества', purpose: 'Профессиональный цветокор для рекламы и ТВ' },
+        { name: 'DJI Air 3S', specs: 'Две камеры, 1-дюймовый сенсор, 4K/60fps HDR', purpose: 'Архитектура, фасады, пейзажи, вечерняя съемка без шумов' },
+        { name: 'DJI Avata 2', specs: 'Сверхширокий угол, 4K/60fps, защита винтов', purpose: 'FPV-пролеты внутри помещений, рестораны, отели, цеха' },
+        { name: '10-bit D-Log M', specs: 'Цветовой профиль с широким динамическим диапазоном', purpose: 'Глубокая цветокоррекция под фирменный стиль бренда' },
+        { name: 'RockSteady & ActiveTrack', specs: 'Интеллектуальная стабилизация и трекинг объектов', purpose: 'Плавные пролеты и точное следование за автомобилями/людьми' },
     ] as GearItem[],
 
     comparison: [
@@ -51,10 +51,10 @@ export const techDataEn = {
     ] as RecentProject[],
 
     gearList: [
-        { name: 'DJI Mavic 3 Pro', specs: 'Hasselblad 4K/60fps, 10-bit D-Log M, 3x/7x Zoom', purpose: 'Architecture, facades, landscapes, cinematic look' },
-        { name: 'DJI Avata', specs: '4K/60fps, D-Cinelike, RockSteady 2.0', purpose: 'Indoors (FPV), restaurants, factories, hotels' },
-        { name: 'DJI Mini 3 Pro / 4 Pro', specs: 'True Vertical Shooting, 4K HDR', purpose: 'Reels, Shorts, tight space operations' },
-        { name: 'Apple ProRes & RAW', specs: 'Lossless quality formats', purpose: 'Professional color grading for TV and Ads' },
+        { name: 'DJI Air 3S', specs: 'Dual-camera, 1-inch sensor, 4K/60fps HDR', purpose: 'Architecture, facades, landscapes, low-noise night filming' },
+        { name: 'DJI Avata 2', specs: 'Ultra-wide angle, 4K/60fps, built-in prop guards', purpose: 'Indoor FPV fly-throughs, restaurants, hotels, factories' },
+        { name: '10-bit D-Log M', specs: 'Wide dynamic range color profile', purpose: 'Professional color grading to match brand identity' },
+        { name: 'RockSteady & ActiveTrack', specs: 'Intelligent stabilization and subject tracking', purpose: 'Smooth flights and precise vehicle/human tracking' },
     ] as GearItem[],
 
     comparison: [
