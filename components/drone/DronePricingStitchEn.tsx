@@ -16,7 +16,7 @@ type PricingCard = {
 const plans = [
     {
         title: 'Outdoor Flight',
-        price: '200 ₾',
+        price: 'from 200 ₾',
         subtitle: 'Aerial drone filming from above',
         items: [
             '4K video + high-res photos - ready to use',
@@ -39,8 +39,20 @@ const plans = [
         note: 'FPV is a compact drone for indoor flights. The camera flies through the space and the viewer feels like they are walking through it.',
     },
     {
+        title: 'Flight + Editing',
+        price: 'from 350 ₾',
+        subtitle: 'Exterior aerial shoot with edited video (no indoor FPV)',
+        items: [
+            'Planned flight route over the property',
+            'Short edited video for website and social media',
+            '15+ retouched exterior photos',
+            'Delivery of final materials — from 48 hours',
+        ],
+        note: 'Perfect when you need to showcase the scale, location, and facade, but indoor shooting is not required.',
+    },
+    {
         title: 'Full Shoot',
-        price: '450 ₾',
+        price: 'from 450 ₾',
         subtitle: 'Aerial + indoor flight - exterior, hall, terrace - in one visit',
         items: [
             'Aerial video and FPV flight in 4K',
@@ -50,18 +62,6 @@ const plans = [
         ],
         note: 'Complete shoot in one visit - aerial exterior and a fly-through of your space.',
         popular: true,
-    },
-    {
-        title: 'Aerial + Editing',
-        price: 'from 500 ₾',
-        subtitle: 'Exterior aerial shoot with edited video (no indoor FPV)',
-        items: [
-            'Planned flight route over the property',
-            'Short edited video for website and social media',
-            '15+ retouched exterior photos',
-            'Delivery of final materials — from 48 hours',
-        ],
-        note: 'Perfect when you need to showcase the scale, location, and facade, but indoor shooting is not required.',
     },
     {
         title: 'Ready-to-Use Result',
