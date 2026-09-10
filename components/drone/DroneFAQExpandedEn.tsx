@@ -7,7 +7,7 @@ import { DebugWrapper } from '@/components/debug/DebugWrapper';
 const faqData = [
     {
         question: 'How much does drone filming cost in Tbilisi?',
-        answer: 'Outdoor flight from 250 ₾. Indoor FPV from 350 ₾. Full shoot (outdoor + indoor) from 500 ₾. Final price depends on the task, location and scope.',
+        answer: 'Outdoor flight from 200 ₾. Indoor FPV from 300 ₾. Full shoot from 450 ₾. Final price depends on the task, location and scope.',
     },
     {
         question: 'What is FPV filming and how is it different from regular drone filming?',

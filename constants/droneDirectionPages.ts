@@ -158,13 +158,13 @@ export const droneDirectionPages: Record<'droneService' | 'realEstateService', D
         ],
         seo: {
             title: 'Аэросъёмка в Тбилиси и Батуми | Дрон-услуги — Breus Media',
-            description: 'Аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм и события. 4K, FPV, выезды по всей стране. От 250 ₾.',
+            description: 'Аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм и события. 4K, FPV, выезды по всей стране. От 200 ₾.',
             schemaServiceName: 'Аэросъёмка в Грузии',
             schemaServiceType: 'Drone video and photography service',
             offers: {
                 '@type': 'AggregateOffer',
                 priceCurrency: 'GEL',
-                lowPrice: '250',
+                lowPrice: '200',
                 highPrice: '2600',
                 offerCount: '4',
             },

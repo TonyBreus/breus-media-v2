@@ -125,13 +125,13 @@ const pageConfig: DroneDirectionPageConfig = {
     seo: {
         title: 'Drone Filming for Business in Tbilisi | Breus Media',
         description:
-            'Professional drone filming in Tbilisi and Georgia: real estate, construction, hotels, restaurants, tourism and events. 4K, FPV, nationwide. From 250 ₾.',
+            'Professional drone filming in Tbilisi and Georgia: real estate, construction, hotels, restaurants, tourism and events. 4K, FPV, nationwide. From 200 ₾.',
         schemaServiceName: 'Drone Filming in Georgia',
         schemaServiceType: 'Drone video and photography service',
         offers: {
             '@type': 'AggregateOffer',
             priceCurrency: 'GEL',
-            lowPrice: '250',
+            lowPrice: '200',
             highPrice: '2600',
             offerCount: '4',
         },
@@ -371,7 +371,7 @@ const jsonLdSchemas = buildDirectionJsonLd(
 export const metadata: Metadata = {
     title: 'Drone Filming for Business in Tbilisi | Breus Media',
     description:
-        'Professional drone filming in Tbilisi and Georgia: real estate, construction, hotels, restaurants, tourism and events. 4K, FPV, nationwide. From 250 ₾.',
+        'Professional drone filming in Tbilisi and Georgia: real estate, construction, hotels, restaurants, tourism and events. 4K, FPV, nationwide. From 200 ₾.',
     alternates: {
         canonical: 'https://breus.media/drone-service/en',
         languages: {
@@ -382,7 +382,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Drone Filming for Business in Tbilisi | Breus Media',
         description:
-            'Professional drone filming in Tbilisi and Georgia: real estate, hotels, restaurants, construction. 4K + FPV. From 250 ₾.',
+            'Professional drone filming in Tbilisi and Georgia: real estate, hotels, restaurants, construction. 4K + FPV. From 200 ₾.',
         url: 'https://breus.media/drone-service/en',
         siteName: 'Breus Media',
         locale: 'en_GE',
@@ -391,7 +391,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'Drone Filming for Business in Tbilisi | Breus Media',
-        description: 'Professional drone filming in Tbilisi and Georgia. 4K + FPV. From 250 ₾.',
+        description: 'Professional drone filming in Tbilisi and Georgia. 4K + FPV. From 200 ₾.',
     },
 };
 
@@ -417,9 +417,9 @@ export default function DroneServicePageEn() {
                         '@type': 'ItemList',
                         name: 'Drone filming services in Tbilisi',
                         description:
-                            '18 drone filming directions for business in Tbilisi and Georgia - from real estate to technical inspection. From 250 ₾.',
+                            '17 drone filming directions for business in Tbilisi and Georgia - from real estate to technical inspection. From 200 ₾.',
                         url: 'https://breus.media/drone-service/en',
-                        numberOfItems: 18,
+                        numberOfItems: 17,
                         itemListElement: itemListEntries.map((item) => ({
                             '@type': 'ListItem',
                             position: item.position,

@@ -348,10 +348,10 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                 >
                     <span>↓</span>
                     <span className="hidden md:block text-[15px] text-white tracking-[0.14em] mt-1">
-                        18 направлений
+                        17 направлений
                     </span>
                     <span className="hidden md:block text-[14px] text-[#D4A017] tracking-[0.1em] mt-0.5">
-                        от 250 ₾ · Тбилиси · Батуми · Кутаиси
+                        от 200 ₾ · Тбилиси · Батуми · Кутаиси
                     </span>
                 </motion.button>
             </section>

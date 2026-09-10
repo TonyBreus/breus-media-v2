@@ -505,7 +505,7 @@ export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
                                     >
                                         <ChevronDown className="h-5 w-5 animate-bounce" />
                                         <span className="whitespace-nowrap text-[12px] font-medium leading-none">
-                                            18 directions - find yours · from 200 ₾
+                                            17 directions - find yours · from 200 ₾
                                         </span>
                                     </a>
                                 </div>
@@ -524,10 +524,10 @@ export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
                 >
                     <span>↓</span>
                     <span className="mt-1 hidden text-[15px] tracking-[0.14em] text-white md:block">
-                        18 directions
+                        17 directions
                     </span>
                     <span className="mt-0.5 hidden text-[14px] tracking-[0.1em] text-[#D4A017] md:block">
-                        from 250 ₾ · Tbilisi · Batumi · Kutaisi
+                        from 200 ₾ · Tbilisi · Batumi · Kutaisi
                     </span>
                 </motion.button>
             </section>

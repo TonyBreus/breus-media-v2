@@ -44,14 +44,14 @@ const jsonLdSchemas = [
 export const metadata: Metadata = {
     title: 'Аэросъёмка дроном для бизнеса в Тбилиси | Breus Media',
     description:
-        'Аэросъёмка дроном в Тбилиси и Грузии для бизнеса: недвижимость, стройка, отели, рестораны, туризм и события. 4K, FPV, выезды по всей стране. От 250 ₾.',
+        'Аэросъёмка дроном в Тбилиси и Грузии для бизнеса: недвижимость, стройка, отели, рестораны, туризм и события. 4K, FPV, выезды по всей стране. От 200 ₾.',
     alternates: {
         canonical: 'https://breus.media/drone-service',
     },
     openGraph: {
         title: 'Аэросъёмка дроном для бизнеса в Тбилиси | Breus Media',
         description:
-            'Аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм. 4K + FPV. От 250 ₾.',
+            'Аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм. 4K + FPV. От 200 ₾.',
         url: 'https://breus.media/drone-service',
         siteName: 'Breus Media',
         locale: 'ru_GE',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Аэросъёмка дроном для бизнеса в Тбилиси | Breus Media',
         description:
-            'Аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм. 4K + FPV. От 250 ₾.',
+            'Аэросъёмка дроном в Тбилиси и Грузии: недвижимость, стройка, отели, рестораны, туризм. 4K + FPV. От 200 ₾.',
     },
 };
 
@@ -83,9 +83,9 @@ export default function DroneServicePage() {
                         '@type': 'ItemList',
                         name: 'Услуги аэросъёмки дроном в Тбилиси',
                         description:
-                            '18 направлений аэросъёмки для бизнеса в Тбилиси и Грузии — от недвижимости до инспекции объектов. От 250 ₾.',
+                            '17 направлений аэросъёмки для бизнеса в Тбилиси и Грузии — от недвижимости до инспекции объектов. От 200 ₾.',
                         url: 'https://breus.media/drone-service',
-                        numberOfItems: 18,
+                        numberOfItems: 17,
                         itemListElement: [
                             { '@type': 'ListItem', position: 1, name: 'Недвижимость', url: 'https://breus.media/drone-real-estate' },
                             {
