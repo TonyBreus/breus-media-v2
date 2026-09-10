@@ -57,11 +57,12 @@ const plans = [
         subtitle: 'Съёмка с воздуха + пролёт дроном внутри + монтаж и фото',
         items: [
             'Продуманный маршрут съёмки',
-            'До 3 минут смонтированного видео — разбитого на несколько роликов под сайт, Reels, Stories и TikTok',
+            'До 3 минут смонтированного видео — разбитого на ролики под сайт, Reels и TikTok',
             '20+ обработанных фотографий',
             'Видео для карточки в Google Maps',
-            'Передача материала — от 48 часов (монтаж включён)',
+            'Передача материала — от 48 часов',
         ],
+        note: 'Оптимально для бизнеса — вы получаете полностью упакованный материал, готовый к публикации без затрат на стороннего монтажера.',
     },
 ] satisfies PricingCard[];
 
@@ -95,7 +96,7 @@ export const DronePricingStitch = () => {
                             <DebugWrapper key={idx} id={10710 + idx} label={`Pricing Plan: ${plan.title}`}>
                                 <motion.div
                                     whileHover={{ y: -5 }}
-                                    className={`snap-center shrink-0 w-[75vw] sm:w-[260px] xl:w-[280px] flex flex-col justify-between rounded-[20px] border p-6 md:p-8 transition-all duration-500 backdrop-blur-sm hover:bg-white/[0.08] ${
+                                    className={`snap-center shrink-0 w-[75vw] sm:w-[260px] xl:w-[280px] flex flex-col justify-between rounded-[20px] border p-5 md:p-6 transition-all duration-500 backdrop-blur-sm hover:bg-white/[0.08] ${
                                         plan.popular
                                             ? 'border-[#FFD23F]/55 bg-[radial-gradient(ellipse_at_top_right,rgba(255,210,63,0.15),rgba(12,12,14,0.5)_50%)] shadow-[0_0_30px_rgba(255,210,63,0.1)]'
                                             : 'border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent'
@@ -103,29 +104,29 @@ export const DronePricingStitch = () => {
                                 >
                                     <div>
                                         <div>
-                                            <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">{plan.title}</h3>
-                                            <p className="mt-3 text-sm text-zinc-400 leading-relaxed">{plan.subtitle}</p>
+                                            <h3 className="text-[18px] md:text-xl font-bold tracking-tight text-white">{plan.title}</h3>
+                                            <p className="mt-1.5 text-[13px] text-zinc-400 leading-snug">{plan.subtitle}</p>
                                         </div>
-                                        <div className="mt-6 flex items-center gap-3">
-                                            <p className="text-3xl font-bold text-white md:text-4xl">{plan.price}</p>
+                                        <div className="mt-4 flex items-center gap-3">
+                                            <p className="text-2xl font-bold text-white md:text-3xl">{plan.price}</p>
                                             {plan.popular ? (
-                                                <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#FFD23F]">
-                                                    Популярно
+                                                <span className="rounded-full border border-[#FFD23F]/45 bg-[#FFD23F]/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-[#FFD23F]">
+                                                    Хит
                                                 </span>
                                             ) : null}
                                         </div>
-                                        <ul className="mt-8 flex-1 space-y-4 text-[14px] leading-relaxed text-zinc-300">
+                                        <ul className="mt-5 flex-1 space-y-2 text-[13px] leading-snug text-zinc-300">
                                             {plan.items.map((item) => (
-                                                <li key={item} className="flex gap-3">
-                                                    <span className="text-white/50 shrink-0">—</span>
+                                                <li key={item} className="flex gap-2">
+                                                    <span className="text-white/50 shrink-0 mt-[1px]">—</span>
                                                     <span>{item}</span>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
 
-                                    <div className="mt-10 pt-6 border-t border-white/5">
-                                        {plan.note ? <p className="mb-6 text-sm leading-relaxed text-zinc-500">{plan.note}</p> : null}
+                                    <div className="mt-6 pt-5 border-t border-white/5">
+                                        {plan.note ? <p className="mb-4 text-xs leading-relaxed text-zinc-500">{plan.note}</p> : null}
                                         <a
                                             href="#contact"
                                             onClick={() => {

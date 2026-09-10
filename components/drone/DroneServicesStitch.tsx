@@ -74,7 +74,7 @@ export const DroneServicesStitch = () => {
 
                 {/* ── Niche Category Filter Chips ── */}
                 <div className="mx-auto w-full max-w-[1400px] px-6 mb-6 md:mb-8">
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex flex-wrap justify-center md:justify-start items-center gap-2">
                         {SERVICE_CATEGORIES.map((cat) => {
                             const count = cat.id === 'all'
                                 ? services.length
