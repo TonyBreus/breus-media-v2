@@ -61,11 +61,6 @@ export function GazetaLandingPage({ lang = "ru" }: { lang?: GazetaLandingLang })
                     </div>
                 </div>
 
-                {/* Лист 3.5 (Частые вопросы FAQ) - Mobile only: свободный скролл аккордеона */}
-                <div className="block md:hidden relative z-35 px-4 py-8 bg-[#080808] rounded-t-[26px] border-t border-white/15 shadow-[0_-16px_40px_rgba(0,0,0,0.9)]">
-                    <GazetaFaqSection lang={lang} />
-                </div>
-
                 {/* Лист 4 (Форма связи + Футер) - Mobile only: свободный нативный скролл без блокировок */}
                 <div
                     id="contact"

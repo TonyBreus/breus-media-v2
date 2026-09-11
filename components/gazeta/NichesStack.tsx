@@ -920,28 +920,38 @@ const translateServiceFallbackEn = (service: ServiceItem): ServiceItem => ({
 const translateManualL2ServiceEn = (service: ServiceItem): ServiceItem => {
     const titleMap: Record<string, Partial<ServiceItem>> = {
         "Видео дилерского центра": { title: "Dealership video", desc: "A branded video for the showroom, cars, team and sales context.", category: "Auto · Brand Video", price: "Brand Video · from 300 ₾" },
-        "Аэросъёмка площадки": { title: "Drone filming for car lots", desc: "Aerial visuals of the dealership, stock, parking area and surrounding context.", category: "Auto · Drone", price: "Drone · from 400 ₾" },
-        "Reels для авто": { title: "Reels for auto business", desc: "Short vertical videos for new arrivals, test drives and special offers.", category: "Auto · Reels", price: "Reels · from 450 ₾" },
-        "Обзор модели": { title: "Model showcase content", desc: "Exterior, interior and detail shots for sales pages and social media.", category: "Auto · Showcase", price: "Model Showcase · from 500 ₾" },
-        "Сервис / детейлинг": { title: "Service / detailing content", desc: "Photo and video content for service workflows, detailing, results and customer trust.", category: "Service · Detailing", price: "Service Content · from 550 ₾" },
-        "AI-упаковка": { title: "AI listing packaging", desc: "AI-assisted listing descriptions and visual packaging for sales channels.", category: "AI · Listings", price: "AI Content · quote by task" },
-        "Видео тура или маршрута": { title: "Tour or route video", desc: "Cinematic video for travel routes, excursions and destination offers.", category: "Tourism · Video", price: "Cinematic · from 350 ₾" },
-        "Аэросъёмка локации": { title: "Drone filming for locations", desc: "Aerial footage that shows the route, landscape, access and atmosphere.", category: "Tourism · Drone", price: "Drone · from 400 ₾" },
-        "Reels для турпроекта": { title: "Reels for tourism projects", desc: "Short vertical videos for tour operators, locations and travel brands.", category: "Tourism · Reels", price: "Short-form · from 450 ₾" },
-        "Контент для глэмпинга": { title: "Glamping content", desc: "Atmosphere, territory, cabins and experience content for hospitality offers.", category: "Hospitality · Glamping", price: "Content Pack · quote by task" },
-        "AI-упаковка предложений": { title: "AI offer packaging", desc: "AI-assisted visual and text packaging for travel offers and campaigns.", category: "AI · Tourism", price: "AI Content · from 300 ₾" },
-        "360° туры локаций": { title: "360° location tours", desc: "Interactive tours for locations, attractions, venues and outdoor spaces.", category: "360° · Tourism", price: "360° · from 300 ₾" },
-        "Видео клиники": { title: "Clinic brand video", desc: "Clean clinic video for services, team, space and reputation.", category: "Clinic · Brand Video", price: "Brand Video · from 350 ₾" },
-        "Reels для врача": { title: "Reels for doctors", desc: "Short expert videos for doctors, services, procedures and patient trust.", category: "Clinic · Reels", price: "Reels · from 450 ₾" },
-        "360° тур клиники": { title: "360° clinic tour", desc: "Interactive tour of reception, rooms and patient-facing spaces.", category: "360° · Clinic", price: "360° · from 500 ₾" },
-        "Фото пространства": { title: "Space photography", desc: "Photos and video of rooms, equipment and interior details.", category: "Clinic · Space", price: "Photo + Video · from 450 ₾" },
-        "Контент для услуг": { title: "Service content", desc: "Clear content for procedures, service pages and patient explanations.", category: "Clinic · Services", price: "Content Pack · quote by task" },
-        "AI-описания и FAQ": { title: "AI descriptions and FAQ", desc: "AI-assisted multilingual service descriptions and FAQ drafts.", category: "AI · Medical Copy", price: "AI Content · quote by task" },
+        "Аэросъёмка автоплощадки": { title: "Drone filming for car lots", desc: "Aerial visuals of the dealership, stock, parking area and surrounding context.", category: "Auto · Drone", price: "Drone · from 400 ₾" },
+        "Reels для автобизнеса": { title: "Reels for auto business", desc: "Short vertical videos for new arrivals, test drives and special offers.", category: "Auto · Reels", price: "Reels · from 450 ₾" },
+        "Контент по флагманским моделям": { title: "Model showcase content", desc: "Exterior, interior and detail shots for sales pages and social media.", category: "Auto · Showcase", price: "Model Showcase · from 500 ₾" },
+        "Контент для сервиса и детейлинга": { title: "Service / detailing content", desc: "Photo and video content for service workflows, detailing, results and customer trust.", category: "Service · Detailing", price: "Service Content · from 550 ₾" },
+        "AI-упаковка для MyAuto и сайта": { title: "AI listing packaging", desc: "AI-assisted listing descriptions and visual packaging for sales channels.", category: "AI · Listings", price: "AI Content · quote by task" },
+        
+        "Видеогид по маршруту": { title: "Tour or route video", desc: "Cinematic video for travel routes, excursions and destination offers.", category: "Tourism · Video", price: "Cinematic · from 350 ₾" },
+        "Аэросъёмка локаций": { title: "Drone filming for locations", desc: "Aerial footage that shows the route, landscape, access and atmosphere.", category: "Tourism · Drone", price: "Drone · from 400 ₾" },
+        "Reels для тур-оператора": { title: "Reels for tourism projects", desc: "Short vertical videos for tour operators, locations and travel brands.", category: "Tourism · Reels", price: "Short-form · from 450 ₾" },
+        "Контент для глэмпингов и шале": { title: "Glamping content", desc: "Atmosphere, territory, cabins and experience content for hospitality offers.", category: "Hospitality · Glamping", price: "Content Pack · quote by task" },
+        "AI-упаковка туров и PDF-каталоги": { title: "AI offer packaging", desc: "AI-assisted visual and text packaging for travel offers and campaigns.", category: "AI · Tourism", price: "AI Content · from 300 ₾" },
+        "360° туры по локациям и паркам": { title: "360° location tours", desc: "Interactive tours for locations, attractions, venues and outdoor spaces.", category: "360° · Tourism", price: "360° · from 300 ₾" },
+        
+        "Имиджевое видео клиники": { title: "Clinic brand video", desc: "Clean clinic video for services, team, space and reputation.", category: "Clinic · Brand Video", price: "Brand Video · from 350 ₾" },
+        "Reels для врачей и экспертов": { title: "Reels for doctors", desc: "Short expert videos for doctors, services, procedures and patient trust.", category: "Clinic · Reels", price: "Reels · from 450 ₾" },
+        "360° тур по отделению": { title: "360° clinic tour", desc: "Interactive tour of reception, rooms and patient-facing spaces.", category: "360° · Clinic", price: "360° · from 500 ₾" },
+        "Фото пространств и команды": { title: "Space photography", desc: "Photos and video of rooms, equipment and interior details.", category: "Clinic · Space", price: "Photo + Video · from 450 ₾" },
+        "Контент для услуг и аппаратов": { title: "Service content", desc: "Clear content for procedures, service pages and patient explanations.", category: "Clinic · Services", price: "Content Pack · quote by task" },
+        "AI-описания процедур и FAQ": { title: "AI descriptions and FAQ", desc: "AI-assisted multilingual service descriptions and FAQ drafts.", category: "AI · Medical Copy", price: "AI Content · quote by task" },
+        
         "Имиджевое видео": { title: "Brand video", desc: "Business video for a website, launch, pitch or brand communication.", category: "Business · Brand Video", price: "Brand Video · from 300 ₾" },
         "Reels и регулярный контент": { title: "Reels and regular content", desc: "Short-form content for social media, updates and brand presence.", category: "Social · Content", price: "Short-form · from 450 ₾" },
         "360° туры": { title: "360° tours", desc: "Interactive tours for offices, showrooms, venues and business spaces.", category: "360° · Business", price: "360° · from 550 ₾" },
     };
-    const copy = service.title ? titleMap[service.title] : undefined;
+    
+    // Substring match if exact match fails
+    let copy = service.title ? titleMap[service.title] : undefined;
+    if (!copy && service.title) {
+        const foundKey = Object.keys(titleMap).find(k => service.title?.includes(k) || k.includes(service.title!));
+        if (foundKey) copy = titleMap[foundKey];
+    }
+
     return {
         ...translateServiceFallbackEn(service),
         ...copy,
@@ -2769,8 +2779,8 @@ const FormCard = ({
             <div className="flex-1 overflow-y-auto overscroll-y-contain touch-pan-y px-4 pt-2 md:px-8 md:pt-2 w-full custom-scrollbar pb-16 md:pb-24">
                 <section className="min-h-full flex flex-col justify-center py-8 md:py-10">
                     <div className="-mx-4 md:-mx-8">
-                        <ScannerBanner />
-                        <DroneContactStitch className="!pb-0 !md:pb-0" />
+                        <ScannerBanner lang={lang} />
+                        <DroneContactStitch lang={lang} className="!pb-0 !md:pb-0" />
                     </div>
                     <div className="-mx-4 mt-10 w-auto md:-mx-8 pb-12 md:pb-16">
                         <GazetaMinimalFooter lang={lang} />

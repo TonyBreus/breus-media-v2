@@ -188,10 +188,10 @@ export function HeroSection({ lang = "ru" }: { lang?: GazetaLang }) {
                                     <motion.span
                                         initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
                                         animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                                        transition={{ duration: 0.6, delay: 0 * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                                        transition={{ duration: 0.6, delay: 0, ease: [0.22, 1, 0.36, 1] }}
                                         className="block"
                                     >
-                                        {copy.headline[0]}
+                                        {copy.headline[0]}{' '}
                                     </motion.span>
                                     <motion.span
                                         initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
@@ -199,7 +199,7 @@ export function HeroSection({ lang = "ru" }: { lang?: GazetaLang }) {
                                         transition={{ duration: 0.6, delay: 1 * 0.08, ease: [0.22, 1, 0.36, 1] }}
                                         className="block"
                                     >
-                                        {copy.headline[1]}
+                                        {copy.headline[1]}{' '}
                                     </motion.span>
                                     <motion.span
                                         initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
