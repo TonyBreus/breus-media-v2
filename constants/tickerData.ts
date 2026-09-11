@@ -149,6 +149,28 @@ export const tickerDataMapping: Record<string, TickerDetail> = {
         ],
         accentColor: "#06b6d4"
     },
+    "AI-Визуализация": {
+        heading: "AI-ВИЗУАЛИЗАЦИЯ",
+        subheading: "Архитектурные рендеры, стейджинг и продающий визуал через нейросети",
+        features: [
+            "Виртуальный хоумстейджинг",
+            "Генерация фото без съемок",
+            "AI-перевод видео контента",
+            "Создание аватаров"
+        ],
+        accentColor: "#06b6d4"
+    },
+    "AI Visualization": {
+        heading: "AI VISUALIZATION",
+        subheading: "Architectural renders, virtual staging and marketing assets via generative AI",
+        features: [
+            "Virtual home staging",
+            "Photo generation without photo shoots",
+            "Multilingual video dubbing",
+            "Digital AI avatars"
+        ],
+        accentColor: "#06b6d4"
+    },
     "Reels": {
         heading: "REELS & SHORTS",
         subheading: "Пакеты вертикальных видео, которые останавливают скролл",
@@ -157,6 +179,17 @@ export const tickerDataMapping: Record<string, TickerDetail> = {
             "Сценарии под нишу",
             "Регулярный контент-план",
             "Охваты и вовлечение"
+        ],
+        accentColor: "#ec4899"
+    },
+    "Reels & Shorts": {
+        heading: "REELS & SHORTS",
+        subheading: "Пакеты вертикальных видео 9:16 под алгоритмы Instagram, TikTok и YouTube",
+        features: [
+            "Трендовый динамичный монтаж",
+            "Сценарии и хуки под нишу",
+            "Регулярный контент-пакет",
+            "Максимальные охваты и вовлечение"
         ],
         accentColor: "#ec4899"
     },

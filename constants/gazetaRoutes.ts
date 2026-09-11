@@ -64,8 +64,8 @@ export const gazetaIndustryNavItems: GazetaNavItem[] = [
 export const gazetaServiceNavItems: GazetaNavItem[] = [
     { label: "Аэросъёмка", href: gazetaDetailRoutes.droneService },
     { label: "360° Туры", href: gazetaDetailRoutes.tours360 },
-    { label: "AI Content", href: gazetaDetailRoutes.aiContent },
-    { label: "Reels", href: gazetaDetailRoutes.reels },
+    { label: "AI-Визуализация", href: gazetaDetailRoutes.aiContent },
+    { label: "Reels & Shorts", href: gazetaDetailRoutes.reels },
 ];
 
 export const gazetaTickerLine1 = [
@@ -81,8 +81,8 @@ export const gazetaTickerLine2 = [
     { text: "Аэросъёмка", link: gazetaDetailRoutes.droneService },
     { text: "360° Туры", link: "/360-tours-service" },
     { text: "Промо Видео", link: "/promo-video-service" },
-    { text: "AI Content", link: "/ai-visualization-service" },
-    { text: "Reels", link: "/reels-service" },
+    { text: "AI-Визуализация", link: "/ai-visualization-service" },
+    { text: "Reels & Shorts", link: "/reels-service" },
 ];
 
 export const gazetaDroneServiceTickerExcludeTexts = ["Промо видео", "Promo Video"];

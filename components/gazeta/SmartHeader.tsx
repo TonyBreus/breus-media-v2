@@ -93,8 +93,8 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         serviceNavItems: [
             { label: "Aerial Filming", href: "/drone-service" },
             { label: "360° Tours", href: "/gazeta/360-tours" },
-            { label: "AI Content", href: "/gazeta/ai-content" },
-            { label: "Reels", href: "/gazeta/reels" },
+            { label: "AI Visualization", href: "/ai-visualization-service" },
+            { label: "Reels & Shorts", href: "/reels-service" },
         ],
         tickerLine1: [
             { text: "REAL ESTATE", link: "/real-estate-service" },
@@ -108,8 +108,8 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
             { text: "Aerial Filming", link: "/drone-service" },
             { text: "360° Tours", link: "/360-tours-service" },
             { text: "Promo Video", link: "/promo-video-service" },
-            { text: "AI Content", link: "/ai-visualization-service" },
-            { text: "Reels", link: "/reels-service" },
+            { text: "AI Visualization", link: "/ai-visualization-service" },
+            { text: "Reels & Shorts", link: "/reels-service" },
         ],
     },
 };
