@@ -183,3 +183,38 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+export async function PATCH(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { id, status } = body;
+
+    if (!id || !status) {
+      return NextResponse.json({ success: false, error: "Missing id or status" }, { status: 400 });
+    }
+
+    const isSupabaseConfigured =
+      process.env.NEXT_PUBLIC_SUPABASE_URL &&
+      !process.env.NEXT_PUBLIC_SUPABASE_URL.includes("placeholder");
+
+    if (isSupabaseConfigured) {
+      const { data, error } = await supabaseAdmin
+        .from("kanban_events")
+        .update({ status, updated_at: new Date().toISOString() })
+        .ilike("id", id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return NextResponse.json({ success: true, item: data });
+    }
+
+    return NextResponse.json({ success: true, simulated: { id, status } });
+  } catch (error: any) {
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    );
+  }
+}
+

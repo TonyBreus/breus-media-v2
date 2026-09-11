@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
+import fs from "fs";
+import path from "path";
+import os from "os";
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
@@ -48,6 +51,53 @@ async function sendTelegramMessage(chatId: number | string, text: string, parseM
     }
   } catch (err) {
     console.error("sendTelegramMessage error:", err);
+  }
+}
+
+async function sendTelegramVoiceReply(chatId: number | string, textToSpeak: string) {
+  if (!TELEGRAM_TOKEN) return;
+
+  // Очистка от спецсимволов markdown перед озвучкой
+  const cleanText = textToSpeak
+    .replace(/[*_`#\[\]()<>]/g, "")
+    .replace(/https?:\/\/\S+/g, "")
+    .trim();
+
+  if (!cleanText || cleanText.length < 2) return;
+
+  // Ограничиваем длину речи до 350 символов для компактного голосового
+  const spokenText = cleanText.length > 350 ? cleanText.slice(0, 350) + "..." : cleanText;
+
+  const tempDir = path.join(os.tmpdir(), `tts_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`);
+
+  try {
+    fs.mkdirSync(tempDir, { recursive: true });
+    const { MsEdgeTTS, OUTPUT_FORMAT } = await import("msedge-tts");
+    const tts = new MsEdgeTTS();
+    await tts.setMetadata("ru-RU-DmitryNeural", OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
+    const result = await tts.toFile(tempDir, spokenText);
+
+    if (result && result.audioFilePath && fs.existsSync(result.audioFilePath)) {
+      const audioBuffer = fs.readFileSync(result.audioFilePath);
+      const audioBlob = new Blob([audioBuffer], { type: "audio/mp3" });
+
+      const formData = new FormData();
+      formData.append("chat_id", String(chatId));
+      formData.append("voice", audioBlob, "voice.mp3");
+
+      await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendVoice`, {
+        method: "POST",
+        body: formData,
+      });
+    }
+  } catch (err) {
+    console.error("sendTelegramVoiceReply error:", err);
+  } finally {
+    try {
+      if (fs.existsSync(tempDir)) {
+        fs.rmSync(tempDir, { recursive: true, force: true });
+      }
+    } catch (_) {}
   }
 }
 
@@ -184,12 +234,53 @@ export async function POST(req: NextRequest) {
 
     // 2. Команда /start
     if (text.startsWith("/start")) {
-      const welcome = `👋 *Breus Media Operations Bot*\n\nЯ подключен к живой базе задач и поддерживаю *голосовые сообщения*.\n\n*Как со мной общаться:*\n• Отправьте *голосовое* сообщение с любым вопросом (например: _«Какие у нас задачи на сегодня?»_)\n• Или напишите текстом: _«что в работе»_, _«какие задачи сегодня»_\n• \`/ask [ID]\` — Выжимка 5 тезисов по задаче (напр. \`/ask SRC-128\`)\n• \`/summary 24h\` — Сводка закрытых и новых задач за 24 часа`;
+      const welcome = `👋 *Breus Media Operations Bot (2026 Edition)*\n\nЯ подключен к живой базе задач и поддерживаю *голосовые команды* (Hands-Free).\n\n*Что я умею:*\n• 🎙 *Голосовые сообщения:* зажмите микрофон и спросите что угодно (напр. _«Какие задачи сегодня?»_ или _«Закрой задачу SRC-128»_)\n• ⚡️ *Управление статусами:* \`/done SRC-128\`, \`/progress TSK-042\`, \`/archive REL-015\`\n• 📋 *Статус задач:* напишите _«какие задачи сегодня»_ или _«что в работе»_\n• 🔍 *Разбор задачи:* \`/ask [ID]\` (напр. \`/ask SRC-128\`)\n• 📊 *Сводка:* \`/summary 24h\`\n\n🌐 [Открыть интерактивный канбан](https://breus-media-v2.vercel.app/kanban)`;
       await sendTelegramMessage(chatId, welcome);
+      if (isVoice) await sendTelegramVoiceReply(chatId, "Привет! Я подключен к базе задач Breus Media. Готов принимать голосовые команды.");
       return NextResponse.json({ ok: true });
     }
 
-    // 3. Команда /ask [ID] или прямой ввод ключа (напр. "SRC-128" или "#SRC-128")
+    // 3. Команды управления статусами задач (голосом или текстом)
+    const doneMatch = text.match(/(?:закрой(?:те)?|закрыть|выполни(?:л|ли)?|заверши(?:ть)?|сделано|\/done)\s+(?:задачу\s+)?#?([A-Za-z]{3}-\d+)/i);
+    const progressMatch = text.match(/(?:в работу|в работе|в процесс(?:е)?|начни(?:те)?|возьми(?:те)?\s+в\s+работу|\/progress)\s+(?:задачу\s+)?#?([A-Za-z]{3}-\d+)/i);
+    const archiveMatch = text.match(/(?:в архив|архивируй(?:те)?|архивировать|\/archive)\s+(?:задачу\s+)?#?([A-Za-z]{3}-\d+)/i);
+    const backlogMatch = text.match(/(?:в бэклог|отложи(?:те)?|\/backlog)\s+(?:задачу\s+)?#?([A-Za-z]{3}-\d+)/i);
+
+    const statusTarget = doneMatch
+      ? { id: doneMatch[1].toUpperCase(), status: "done", label: "✅ Задача завершена и перенесена в «Готово»" }
+      : progressMatch
+      ? { id: progressMatch[1].toUpperCase(), status: "in_progress", label: "⏳ Задача переведена «В работу»" }
+      : archiveMatch
+      ? { id: archiveMatch[1].toUpperCase(), status: "archived", label: "📦 Задача отправлена в «Архив»" }
+      : backlogMatch
+      ? { id: backlogMatch[1].toUpperCase(), status: "backlog", label: "📥 Задача возвращена в «Бэклог»" }
+      : null;
+
+    if (statusTarget) {
+      const { data: updatedItem, error } = await supabaseAdmin
+        .from("kanban_events")
+        .update({ status: statusTarget.status, updated_at: new Date().toISOString() })
+        .ilike("id", statusTarget.id)
+        .select()
+        .single();
+
+      if (error || !updatedItem) {
+        const notFoundMsg = `${voicePrefix}⚠️ Задача *#${statusTarget.id}* не найдена в базе.`;
+        await sendTelegramMessage(chatId, notFoundMsg);
+        if (isVoice) await sendTelegramVoiceReply(chatId, `Задача ${statusTarget.id} не найдена в базе.`);
+        return NextResponse.json({ ok: true });
+      }
+
+      const replyMsg = `${voicePrefix}${statusTarget.label}!\n\n📌 *[#${updatedItem.id}] ${updatedItem.title}*\n📊 Статус: \`${updatedItem.status}\`\n\n🌐 [Открыть канбан](https://breus-media-v2.vercel.app/kanban)`;
+      await sendTelegramMessage(chatId, replyMsg);
+      if (isVoice) {
+        const spoken = `Задача ${updatedItem.id} успешно переведена в статус: ${statusTarget.status === "done" ? "Готово" : statusTarget.status === "in_progress" ? "В работе" : "Архив"}.`;
+        await sendTelegramVoiceReply(chatId, spoken);
+      }
+      return NextResponse.json({ ok: true });
+    }
+
+    // 4. Команда /ask [ID] или прямой ввод ключа (напр. "SRC-128" или "#SRC-128")
     const askMatch = text.match(/^(?:\/ask\s+)?#?([A-Za-z]{3}-\d+)/i);
     if (askMatch) {
       const eventId = askMatch[1].toUpperCase();
@@ -202,6 +293,7 @@ export async function POST(req: NextRequest) {
 
       if (error || !item) {
         await sendTelegramMessage(chatId, `${voicePrefix}⚠️ Событие *#${eventId}* не найдено в базе канбана.`);
+        if (isVoice) await sendTelegramVoiceReply(chatId, `Событие ${eventId} не найдено.`);
         return NextResponse.json({ ok: true });
       }
 
@@ -236,10 +328,14 @@ export async function POST(req: NextRequest) {
       }
 
       await sendTelegramMessage(chatId, reply);
+      if (isVoice) {
+        const spoken = `Задача ${item.id}. ${item.title}. Вердикт: ${item.verdict}.`;
+        await sendTelegramVoiceReply(chatId, spoken);
+      }
       return NextResponse.json({ ok: true });
     }
 
-    // 4. Команда /summary [период]
+    // 5. Команда /summary [период]
     if (text.startsWith("/summary")) {
       const parts = text.split(" ");
       const period = parts[1] || "24h";
@@ -281,10 +377,14 @@ export async function POST(req: NextRequest) {
       summaryMsg += `🌐 [Открыть интерактивный канбан](https://breus-media-v2.vercel.app/kanban)`;
 
       await sendTelegramMessage(chatId, summaryMsg);
+      if (isVoice) {
+        const spoken = `Сводка за ${period}. Всего задач ${total}. Выполнено ${done}, в работе ${inProgress}, в бэклоге ${backlog}.`;
+        await sendTelegramVoiceReply(chatId, spoken);
+      }
       return NextResponse.json({ ok: true });
     }
 
-    // 5. Запрос по естественному языку: задачи на сегодня / статус / что делать
+    // 6. Запрос по естественному языку: задачи на сегодня / статус / что делать
     const lower = text.toLowerCase();
     const isTaskQuery =
       lower.includes("задач") ||
@@ -300,7 +400,7 @@ export async function POST(req: NextRequest) {
       .from("kanban_events")
       .select("*")
       .order("created_at", { ascending: false })
-      .limit(20);
+      .limit(25);
 
     const items = allItems || [];
     const inProgress = items.filter((i) => i.status === "in_progress");
@@ -341,23 +441,33 @@ export async function POST(req: NextRequest) {
       taskMsg += `🌐 [Открыть интерактивный канбан](https://breus-media-v2.vercel.app/kanban)`;
 
       await sendTelegramMessage(chatId, taskMsg);
+      if (isVoice) {
+        let spoken = `На сегодня: в работе ${inProgress.length} задач. `;
+        if (inProgress.length > 0) spoken += `Главная задача: ${inProgress[0].title}. `;
+        spoken += `В бэклоге ожидает ${backlog.length} задач.`;
+        await sendTelegramVoiceReply(chatId, spoken);
+      }
       return NextResponse.json({ ok: true });
     }
 
-    // 6. Любой другой свободный вопрос — подключаем Groq Assistant с контекстом
+    // 7. Любой другой свободный вопрос — подключаем Groq Assistant с контекстом
     if (GROQ_API_KEY) {
       const aiAnswer = await askGroqAssistant(text, items);
       if (aiAnswer) {
         await sendTelegramMessage(chatId, `${voicePrefix}${aiAnswer}`);
+        if (isVoice) {
+          await sendTelegramVoiceReply(chatId, aiAnswer.slice(0, 300));
+        }
         return NextResponse.json({ ok: true });
       }
     }
 
-    // 7. Фоллбэк
+    // 8. Фоллбэк
     await sendTelegramMessage(
       chatId,
-      `${voicePrefix}Не понял команду. Вы можете спросить: _«какие задачи сегодня»_, назвать ID события (напр. \`SRC-128\`) или отправить голосовое сообщение.`
+      `${voicePrefix}Не понял команду. Вы можете спросить: _«какие задачи сегодня»_, сказать: _«закрой задачу SRC-128»_ или отправить любое голосовое сообщение.`
     );
+    if (isVoice) await sendTelegramVoiceReply(chatId, "Не понял команду. Спросите, какие задачи сегодня, или назовите задачу.");
     return NextResponse.json({ ok: true });
   } catch (error: any) {
     console.error("Telegram webhook error:", error);

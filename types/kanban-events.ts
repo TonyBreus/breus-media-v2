@@ -1,6 +1,7 @@
 export type EventCategory = 'SRC' | 'TSK' | 'REL';
 export type PriorityLevel = 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
 export type ColumnStatus = 'backlog' | 'in_progress' | 'done' | 'archived';
+export type KanbanStatus = ColumnStatus;
 
 export interface KanbanItem {
   id: string;              // Пример: "SRC-128" или "TSK-042"
