@@ -95,8 +95,8 @@ export const DronePricingStitch = () => {
                         <h2 className="text-3xl font-bold mb-4 text-white">Пакеты и цены</h2>
                     </DebugWrapper>
                     <DebugWrapper id={10702} label="Pricing Tagline">
-                        <p className="mx-auto max-w-3xl text-sm md:text-base leading-relaxed text-white/70">
-                            Фиксированные тарифы в лари (₾) на аэросъёмку в Тбилиси и по всей Грузии: от 200 ₾ за фасадный облёт до 700 ₾ за комплексную съёмку 4K + FPV с готовым монтажом под ключ. Работаем в Ваке, Сабуртало, Диди Дигоми, Старом городе и выезжаем в регионы.
+                        <p className="mx-auto max-w-2xl text-xs md:text-sm leading-relaxed text-white/70">
+                            Фиксированные тарифы в лари (₾) от 200 ₾ до 700 ₾: фасадный облёт, интерьерный FPV и готовый монтаж под ключ. Работаем по всему Тбилиси и с выездом по Грузии.
                         </p>
                     </DebugWrapper>
                 </div>

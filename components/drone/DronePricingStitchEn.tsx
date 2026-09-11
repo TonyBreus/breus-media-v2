@@ -93,8 +93,8 @@ export const DronePricingStitchEn = () => {
                         <h2 className="mb-4 text-3xl font-bold text-white">Packages and pricing</h2>
                     </DebugWrapper>
                     <DebugWrapper id={10702} label="Pricing Tagline">
-                        <p className="text-sm text-gray-500 md:text-base">
-                            Fixed prices in Georgian lari (₾). No hidden fees.
+                        <p className="mx-auto max-w-2xl text-xs md:text-sm leading-relaxed text-white/70">
+                            Fixed rates in Georgian lari (₾) from 200 ₾ to 700 ₾: exterior flight, indoor FPV and turnkey editing. Filming across all of Tbilisi and throughout Georgia.
                         </p>
                     </DebugWrapper>
                 </div>

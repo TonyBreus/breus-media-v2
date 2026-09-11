@@ -29,12 +29,21 @@ const steps = [
 export const DroneProcessStitchEn = () => {
     return (
         <DebugWrapper id={10500} label="Drone Process Section">
-            <section className="bg-[#0D0D0D] py-4 md:py-24">
+            <section className="py-8 md:py-20 bg-[#0D0D0D]">
+                <div className="container mx-auto px-6 mb-6 md:mb-12">
+                    <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-[#D4A017] font-semibold mb-1">
+                        From request to ready files
+                    </p>
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                        Drone filming process
+                    </h2>
+                    <p className="max-w-2xl text-xs md:text-sm text-white/60 leading-relaxed">
+                        We organize drone filming in Tbilisi and across Georgia in 4 clear steps: brief, no-fly zone check, on-site filming and delivery of 4K materials from 24 hours.
+                    </p>
+                </div>
+
                 <div className="container mx-auto px-6">
                     <div className="px-2 py-2 md:hidden">
-                        <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-white/35">
-                            From request to ready files
-                        </p>
                         <div className="flex flex-col">
                             {steps.map((step, idx) => (
                                 <React.Fragment key={idx}>
