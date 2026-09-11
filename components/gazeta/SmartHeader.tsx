@@ -316,7 +316,7 @@ export function SmartHeader({
     const landingServiceNavItems: HeaderNavItem[] =
         routeLanguage === "EN"
             ? [
-                  { label: "Aerial Filming", href: "/drone-service" },
+                  { label: "Aerial Filming", href: "/drone-service/en" },
                   { label: "360° Tours", href: "#niche-step-03" },
                   { label: "AI Content", href: "#niche-step-05" },
                   { label: "Reels", href: "#niche-step-04" },
@@ -508,7 +508,7 @@ export function SmartHeader({
                                         exit={{ opacity: 0, x: -10 }}
                                         transition={{ duration: 0.25 }}
                                     >
-                                        <Link href="/gazeta" className="text-lg md:text-[22px] font-black uppercase tracking-tighter leading-none hover:opacity-80 transition-opacity text-white whitespace-nowrap">
+                                        <Link href={routeLanguage === "EN" ? "/gazeta/en" : "/gazeta"} className="text-lg md:text-[22px] font-black uppercase tracking-tighter leading-none hover:opacity-80 transition-opacity text-white whitespace-nowrap">
                                             Breus Media
                                         </Link>
                                     </motion.div>

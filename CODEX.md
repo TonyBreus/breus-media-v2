@@ -652,3 +652,20 @@ If a task could affect shared architecture, routes, pricing, SEO, schema, or exi
 Do not guess critical business rules.
 Do not invent facts.
 Do not silently change architecture.
+
+---
+
+## Change Log & Architecture Chronology
+
+- **2026-09-11 (Language Persistence & Russian Hero H1 Layout)**:
+  - Fixed language persistence bug in `SmartHeader.tsx`: desktop logo link now dynamically checks `routeLanguage === 'EN' ? '/gazeta/en' : '/gazeta'` instead of hardcoded `/gazeta`.
+  - Added persistence in `LangSetter.tsx`: saves active language to `localStorage` (`breus_lang`) and sets `document.cookie` (`NEXT_LOCALE`) for cross-session and cross-page retention.
+  - Re-architected Russian H1 headline layout in `HeroSection.tsx`: balanced line distribution (`["АГЕНТСТВО ВИЗУАЛЬНОГО", "ПРОДАКШЕНА", "И DIGITAL-РЕШЕНИЙ"]`), expanded container width to `max-w-[28ch] md:max-w-[34ch]`, removed negative vertical offset (`-top-2.5`), and set fluid typography `text-[clamp(1.3rem,4.5vw,3.3rem)] leading-[1.06]`. Completely eliminated awkward line-wrapping pyramid, word breaks, and overlap with the lower description vignette on window resizing.
+  - Aligned mobile/desktop navigation links to keep the `/en` suffix when browsing in English mode.
+
+- **2026-09-11 (Drone 17-Card Overlay, Intermediate Breakpoint, GEO/AEO & Ticker)**:
+  - Standardized all 17 service cards across RU and EN (`DroneServicesStitch.tsx`, `DroneServicesStitchEn.tsx`): moved card titles inside the photo overlay with bottom gradient (`bg-gradient-to-t from-black/95 via-black/40 to-transparent`), eliminating detached upper headers and empty spaces.
+  - Eliminated buggy intermediate tablet view (`hidden md:block lg:hidden`) in Drone Hero (`DroneHeroStitch.tsx`, `DroneHeroStitchEn.tsx`), rendering a clean responsive 2-column desktop layout down to 768px (`md`).
+  - Added comprehensive Tbilisi districts (Vake, Saburtalo, Didi Dighomi, Old Tbilisi, Ortachala, etc.) and Georgia regions (Batumi, Kakheti, Kutaisi, etc.) into Drone FAQ Q3, flight conditions notes, and Schema.org `areaServed`.
+  - Standardized header marquee items across RU and EN to `AI-Визуализация` / `AI Visualization` and `Reels & Shorts` (`gazetaRoutes.ts`, `SmartHeader.tsx`, `tickerData.ts`).
+

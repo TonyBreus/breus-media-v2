@@ -19,7 +19,7 @@ const heroCopy: Record<GazetaLang, {
     whatsAppHref: string;
 }> = {
     ru: {
-        headline: ["АГЕНТСТВО", "ВИЗУАЛЬНОГО ПРОДАКШЕНА", "И DIGITAL-РЕШЕНИЙ"],
+        headline: ["АГЕНТСТВО ВИЗУАЛЬНОГО", "ПРОДАКШЕНА", "И DIGITAL-РЕШЕНИЙ"],
         location: "В ТБИЛИСИ И ПО ВСЕЙ ГРУЗИИ",
         lead: (
             <>
@@ -172,9 +172,9 @@ export function HeroSection({ lang = "ru" }: { lang?: GazetaLang }) {
                     >
                         {/* Central SEO Content Block */}
                         <div className="flex w-full flex-col items-center">
-                            {/* H1 + Location Badge lifted up towards clock capsule (+10% higher) */}
-                            <div className="relative -top-2.5 sm:-top-3.5 flex flex-col items-center mb-1 sm:mb-1.5">
-                                <h1 className="mx-auto max-w-[16ch] md:max-w-[22ch] text-[clamp(1.35rem,5.2vw,3.8rem)] font-black uppercase leading-[1.0] tracking-[-0.02em] text-[#F5F4F0] [text-shadow:0_2px_24px_rgba(0,0,0,0.9)]">
+                            {/* H1 + Location Badge with balanced vertical breathing room */}
+                            <div className="relative flex flex-col items-center mb-1.5 sm:mb-2">
+                                <h1 className="mx-auto max-w-[28ch] md:max-w-[34ch] text-[clamp(1.3rem,4.5vw,3.3rem)] font-black uppercase leading-[1.06] tracking-[-0.02em] text-[#F5F4F0] [text-shadow:0_2px_24px_rgba(0,0,0,0.9)]">
                                     <motion.span
                                         initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
                                         animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
