@@ -71,15 +71,25 @@ export function HeroSection({ lang = "ru" }: { lang?: GazetaLang }) {
     const copy = heroCopy[lang];
     const containerRef = useRef<HTMLDivElement>(null);
     const prefersReducedMotion = useReducedMotion();
-    const [isMobile, setIsMobile] = useState(false);
+    const [yStart, setYStart] = useState("68vh");
 
     useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
+        const updateLayout = () => {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            // iPad Pro 11 is 834px (portrait) or 1194x834px (landscape).
+            // Tablet viewports have bottom toolbars in Safari/Chrome that clip 74vh.
+            if (w < 768) {
+                setYStart("65vh");
+            } else if (w < 1024 || h <= 850) {
+                setYStart("64vh");
+            } else {
+                setYStart("71vh");
+            }
         };
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
+        updateLayout();
+        window.addEventListener("resize", updateLayout);
+        return () => window.removeEventListener("resize", updateLayout);
     }, []);
 
     const { scrollYProgress } = useScroll({
@@ -94,7 +104,7 @@ export function HeroSection({ lang = "ru" }: { lang?: GazetaLang }) {
     const yTranslate = useTransform(
         scrollYProgress,
         [0, 0.45, 1],
-        [isMobile ? "68vh" : "74vh", "-60vh", "-60vh"]
+        [yStart, "-60vh", "-60vh"]
     );
 
     // Watermark opacity on start screen (0.25) smoothly increasing to 1 as it scrolls and scales into the logo
@@ -119,7 +129,7 @@ export function HeroSection({ lang = "ru" }: { lang?: GazetaLang }) {
                 <DebugWrapper id={13} label="Kinetic Typography" className="fixed top-[64px] left-1/2 z-[70] flex w-full max-w-[94vw] px-4 mx-auto -translate-x-1/2 justify-center pointer-events-none">
                     <motion.div
                         style={{ scale, y: yTranslate, opacity: kineticOpacity, transformOrigin: 'top center' }}
-                        className="text-[11vw] font-black leading-none tracking-[0.04em] md:tracking-[0.18em] lg:tracking-[0.22em] uppercase whitespace-nowrap font-sans text-white drop-shadow-md"
+                        className="text-[11vw] font-black leading-none tracking-[0.04em] md:tracking-[0.10em] lg:tracking-[0.22em] uppercase whitespace-nowrap font-sans text-white drop-shadow-md"
                         aria-hidden="true"
                     >
                         {TITLE_CHARS.map((char, i) => (

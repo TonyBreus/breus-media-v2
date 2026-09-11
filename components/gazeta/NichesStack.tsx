@@ -171,11 +171,11 @@ const niches: NicheItem[] = [
     },
     {
         id: "04",
-        title: "REELS",
-        centerText: "REELS",
+        title: "REELS & SHORTS",
+        centerText: "REELS & SHORTS",
         img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1600&q=80",
         detailedContent: {
-            heading: "Reels",
+            heading: "Reels & Shorts",
             subheading: "Вертикальные видео для соцсетей",
             introNote: "Ролики до 60 секунд под нишу и задачу — для брендов, заведений и объектов в Тбилиси и по Грузии.",
             services: []
@@ -183,12 +183,12 @@ const niches: NicheItem[] = [
     },
     {
         id: "05",
-        title: "AI КОНТЕНТ",
-        centerText: "AI КОНТЕНТ",
+        title: "AI-ВИЗУАЛИЗАЦИЯ",
+        centerText: "AI-ВИЗУАЛИЗАЦИЯ",
         img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1600&q=80",
         detailedContent: {
             eyebrow: "",
-            heading: "AI-контент",
+            heading: "AI-визуализация",
             subheading: "AI-визуализация для бизнеса в Грузии",
             introNote: "Генерация интерьеров, фасадов, товаров и концепций — когда нужно показать то, что ещё не построено, не снято или существует только в идее.",
             services: []
@@ -379,20 +379,20 @@ const nicheEnCopy: Record<string, Omit<Partial<NicheItem>, 'detailedContent'> & 
         },
     },
     "04": {
-        title: "REELS",
-        centerText: "REELS",
+        title: "REELS & SHORTS",
+        centerText: "REELS & SHORTS",
         detailedContent: {
-            heading: "Reels",
+            heading: "Reels & Shorts",
             subheading: "Vertical videos for social media",
             introNote:
                 "Short videos up to 60 seconds, tailored to the niche and business goal for brands, venues and properties in Tbilisi and Georgia.",
         },
     },
     "05": {
-        title: "AI CONTENT",
-        centerText: "AI CONTENT",
+        title: "AI VISUALIZATION",
+        centerText: "AI VISUALIZATION",
         detailedContent: {
-            heading: "AI content",
+            heading: "AI Visualization",
             subheading: "AI visualization for businesses in Georgia",
             introNote:
                 "Interior, facade, product and concept visuals for things that are not built yet, not filmed yet or still live only as an idea.",
@@ -1670,8 +1670,11 @@ const Card = ({
         const desktopPolicyKey = svc.slug ? `${niche.id}:${svc.slug}` : "";
         const isServiceOpenAllowed =
             !isAllServicesCard && Boolean(svc.slug) && DESKTOP_OPEN_SERVICE_ALLOWLIST.has(desktopPolicyKey);
-        const serviceOpenHref = isServiceOpenAllowed
+        const rawServiceOpenHref = isServiceOpenAllowed
             ? (DESKTOP_OPEN_SERVICE_HREF_OVERRIDES[desktopPolicyKey] ?? svc.link)
+            : "";
+        const serviceOpenHref = isServiceOpenAllowed
+            ? (lang === "en" ? enRoute(rawServiceOpenHref) : rawServiceOpenHref)
             : "";
         const isServiceOpenExternal = isServiceOpenAllowed ? isExternalHref(serviceOpenHref) : false;
         const suggestedCardDetails = isAllServicesCard ? {} : getSuggestedCardDetails(niche, svc, lang);
@@ -2391,8 +2394,8 @@ const Card = ({
                                             <span>{(lang === "en" ? {
                                                 "02": "All aerial filming services",
                                                 "03": "All services — 360° Tours",
-                                                "04": "All services — Reels",
-                                                "05": "All services — AI Content",
+                                                "04": "All services — Reels & Shorts",
+                                                "05": "All services — AI Visualization",
                                                 "06": "All real estate services",
                                                 "07": "All services — Hotels",
                                                 "08": "All services — Restaurants",
@@ -2403,8 +2406,8 @@ const Card = ({
                                             } : {
                                                 "02": "Все услуги аэросъёмки",
                                                 "03": "Все услуги — 360° Туры",
-                                                "04": "Все услуги — Reels",
-                                                "05": "Все услуги — AI Контент",
+                                                "04": "Все услуги — Reels & Shorts",
+                                                "05": "Все услуги — AI-Визуализация",
                                                 "06": "Все услуги недвижимости",
                                                 "07": "Все услуги — Отели",
                                                 "08": "Все услуги — Рестораны",
@@ -2739,6 +2742,7 @@ const FormCard = ({
     onNavigateToStep,
     activeStepIndex,
     stackStepNavItems,
+    lang = "ru",
 }: {
     index: number,
     scrollYProgress: MotionValue<number>,
@@ -2750,6 +2754,7 @@ const FormCard = ({
     onNavigateToStep: (targetIndex: number) => void,
     activeStepIndex: number,
     stackStepNavItems: StackStepNavItem[],
+    lang?: GazetaLang,
 }) => {
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
     const prevStep = index > 0 ? stackStepNavItems[index - 1] : null;
@@ -2784,14 +2789,14 @@ const FormCard = ({
 
             {/* Кнопка НАЗАД скрыта на мобиле */}
 
-            <div className="flex-1 overflow-y-auto touch-pan-y px-4 pt-2 md:px-8 md:pt-2 w-full custom-scrollbar pb-0">
-                <section className="snap-start min-h-full flex flex-col justify-center py-10">
+            <div className="flex-1 overflow-y-auto overscroll-y-contain touch-pan-y px-4 pt-2 md:px-8 md:pt-2 w-full custom-scrollbar pb-16 md:pb-24">
+                <section className="min-h-full flex flex-col justify-center py-8 md:py-10">
                     <div className="-mx-4 md:-mx-8">
                         <ScannerBanner />
                         <DroneContactStitch className="!pb-0 !md:pb-0" />
                     </div>
-                    <div className="-mx-4 mt-10 w-auto md:-mx-8">
-                        <GazetaMinimalFooter />
+                    <div className="-mx-4 mt-10 w-auto md:-mx-8 pb-12 md:pb-16">
+                        <GazetaMinimalFooter lang={lang} />
                     </div>
                 </section>
             </div>
@@ -3183,6 +3188,7 @@ export function NichesStack({ lang = "ru" }: { lang?: GazetaLang }) {
                 onNavigateToStep={scrollToNicheStep}
                 activeStepIndex={activeStepIndex}
                 stackStepNavItems={stackStepNavItems}
+                lang={lang}
             />
         </div>
     );

@@ -717,8 +717,8 @@ export function SmartHeader({
                             </a>
                         )}
 
-                        {/* 4. Menu Icon (Mobile Only) */}
-                        <button className="md:hidden text-white ml-1" onClick={() => setIsMobileMenuOpen(true)}>
+                        {/* 4. Menu Icon (Mobile & Tablet) */}
+                        <button className="lg:hidden text-white ml-1" onClick={() => setIsMobileMenuOpen(true)}>
                             <Menu className={isMobileCompactTop ? "w-5 h-5" : "w-6 h-6"} />
                         </button>
                     </div>
@@ -756,7 +756,7 @@ export function SmartHeader({
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
                             data-mobile-menu-open="true"
-                            className="fixed inset-0 z-[300] h-[100dvh] w-full bg-[#080808]/98 backdrop-blur-2xl flex flex-col justify-between p-6 overflow-y-auto md:hidden"
+                            className="fixed inset-0 z-[300] h-[100dvh] w-full bg-[#080808]/98 backdrop-blur-2xl flex flex-col justify-between p-6 overflow-y-auto lg:hidden"
                         >
                             {/* 1. ШАПКА МЕНЮ */}
                             <div className="flex items-center justify-between pb-5 border-b border-white/10 shrink-0">

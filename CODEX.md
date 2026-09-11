@@ -657,6 +657,17 @@ Do not silently change architecture.
 
 ## Change Log & Architecture Chronology
 
+- **2026-09-11 (Tablet Navigation Breakpoint, Master Footer Unification, iPad Hero Kinetic Fit, Step 04/05 Titles & Cookie Locale Preservation)**:
+  - **Tablet Nav Disappearance Bug (768px-1024px)**: Fixed breakpoint discrepancy in `SmartHeader.tsx` where desktop nav was hidden below `lg` (`1024px`), while mobile burger was hidden at `md` (`768px`). Updated burger menu button and mobile full-screen overlay to `lg:hidden`, restoring smooth touch navigation on iPad in portrait/landscape and resized browser windows.
+  - **Unified Master Footer Standard**: Upgraded `GazetaMinimalFooter.tsx` from plain copyright text to full master footer standard and unified with `DroneFooterStitch.tsx` / `DroneFooterStitchEn.tsx`. Removed bureaucratic legal strip (`Официальный договор...`), retained clean 2-row layout: top menu row + dark glass contact capsule with pulsing green indicator (`🟢 Контакты: Тбилиси, Грузия · +995 501 103 183`), bottom branding + mission statement + glass social buttons with safe right padding (`pr-0 sm:pr-16 md:pr-20`) to eliminate overlap with the floating WhatsApp button.
+  - **NichesStack Steps 04 & 05 Titles**: Synchronized steps 04 and 05 in `NichesStack.tsx` (RU & EN) from legacy `04 REELS` / `05 AI КОНТЕНТ` to `04 REELS & SHORTS` and `05 AI-ВИЗУАЛИЗАЦИЯ` (RU) / `05 AI VISUALIZATION` (EN), matching marquee and header standards.
+  - **iPad Pro 11 / Tablet Kinetic Fit & Scroll Smoothing**:
+    - In `HeroSection.tsx`, adjusted kinetic text start `yStart` to `64vh` for tablets/iPads (`w < 1024 || h <= 850`), with tightened tracking (`md:tracking-[0.10em]`), eliminating bottom clipping caused by iOS Chrome & Safari dynamic toolbars.
+    - In `NichesStack.tsx` `FormCard` (Step 14), added `overscroll-y-contain` to stop rubber-band scroll bounce when scrolling back up from the contact form, removed unnatural `snap-start`, and added bottom safe padding (`pb-16 md:pb-24`) so footer branding is never obscured by browser chrome.
+  - **Language Persistence on Navigation**:
+    - In `NichesStack.tsx`, wrapped service open links in `enRoute()` when `lang === 'en'`, ensuring users clicking direction cards stay on English mirrors.
+    - In `app/page.tsx`, integrated `cookies()` check for `NEXT_LOCALE=en`, redirecting users who chose English to `/gazeta/en` instead of hardcoded `/gazeta`.
+
 - **2026-09-11 (Language Persistence & Russian Hero H1 Layout)**:
   - Fixed language persistence bug in `SmartHeader.tsx`: desktop logo link now dynamically checks `routeLanguage === 'EN' ? '/gazeta/en' : '/gazeta'` instead of hardcoded `/gazeta`.
   - Added persistence in `LangSetter.tsx`: saves active language to `localStorage` (`breus_lang`) and sets `document.cookie` (`NEXT_LOCALE`) for cross-session and cross-page retention.

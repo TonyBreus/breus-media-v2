@@ -29,8 +29,8 @@ export const DroneFooterStitch = ({
               menu: [
                   { label: 'Aerial filming', href: '/drone-service/en' },
                   { label: '360° tours', href: '/360-tours-service/en' },
-                  { label: 'Reels and video', href: '/reels-service/en' },
-                  { label: 'AI visualisation', href: '/ai-visualization-service/en' },
+                  { label: 'Reels & Shorts', href: '/reels-service/en' },
+                  { label: 'AI Visualization', href: '/ai-visualization-service/en' },
               ],
           }
         : {
@@ -42,8 +42,8 @@ export const DroneFooterStitch = ({
               menu: [
                   { label: 'Аэросъёмка', href: '/drone-service' },
                   { label: '360° туры', href: '/360-tours-service' },
-                  { label: 'Reels и видео', href: '/reels-service' },
-                  { label: 'AI-визуализация', href: '/ai-visualization-service' },
+                  { label: 'Reels & Shorts', href: '/reels-service' },
+                  { label: 'AI-Визуализация', href: '/ai-visualization-service' },
               ],
           };
 
@@ -100,26 +100,17 @@ export const DroneFooterStitch = ({
                         </div>
                     </div>
 
-                    {/* B2B Legal Trust Strip */}
-                    <div className="flex items-center justify-center py-2.5 border-b border-white/5 text-[11px] text-white/55 tracking-wide text-center">
-                        <p>
-                            {isEn
-                                ? 'Оfficial B2B Contract • Invoices & Acts • Bank Transfer for Companies (TBC / BoG)'
-                                : 'Официальный договор • Закрывающие акты • Безналичный расчёт для юрлиц (Invoice TBC / BoG)'}
-                        </p>
-                    </div>
-
-                    {/* Bottom Row: Logo, Mission, Socials */}
+                    {/* Bottom Row: Logo, Mission, Socials (with safety padding for floating WhatsApp button) */}
                     <div className="flex flex-col items-center gap-3 pt-3 md:flex-row md:justify-between md:gap-4">
                         <div className="flex items-center text-left text-[18px] font-black uppercase tracking-tighter text-white md:w-[25%]">
                             <Link href={isEn ? "/gazeta/en" : "/gazeta"} className="hover:opacity-85 transition-opacity">
                                 BREUS MEDIA <span className="text-[#FFD23F] font-extrabold">•</span>
                             </Link>
                         </div>
-                        <p className="w-full text-center text-xs md:text-[13px] leading-relaxed text-white/70 md:w-[50%] md:text-left">
+                        <p className="w-full text-center text-xs md:text-[13px] leading-relaxed text-white/70 md:w-[45%] md:text-left">
                             {resolvedMission}
                         </p>
-                        <div className="flex w-full items-center justify-center gap-2.5 md:w-[25%] md:justify-end">
+                        <div className="flex w-full items-center justify-center gap-2.5 md:w-[30%] md:justify-end pr-0 sm:pr-16 md:pr-20">
                             {socials.map((social) => (
                                 <a
                                     key={social.label}
