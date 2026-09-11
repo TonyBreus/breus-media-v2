@@ -441,6 +441,7 @@ export default function TourHotelsPageEn() {
                 mobileMinimalCenterTime={true}
                 showDesktopNavTime={true}
                 stickyTickerUnderHeader={true}
+                initialLang="en"
                 languageLinks={{ RU: '/360-tour-hotels', EN: '/360-tour-hotels/en' }}
                 sectionLinks={[
                     { label: 'Zones', href: '#zones' },

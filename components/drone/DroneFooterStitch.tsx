@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Facebook, Instagram, Linkedin, Send } from 'lucide-react';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 
@@ -16,9 +17,11 @@ export const DroneFooterStitch = ({
     missionText,
     menuTitle,
     contactTitle,
-    lang = 'ru',
+    lang,
 }: DroneFooterStitchProps) => {
-    const isEn = lang === 'en';
+    const pathname = usePathname();
+    const isPathEn = Boolean(pathname && (pathname === '/gazeta/en' || pathname.endsWith('/en') || pathname.includes('/en/')));
+    const isEn = lang ? lang === 'en' : isPathEn;
     const copy = isEn
         ? {
               missionText:

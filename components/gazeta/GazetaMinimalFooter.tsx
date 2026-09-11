@@ -1,11 +1,16 @@
+'use client';
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Facebook, Instagram, Linkedin, Send } from "lucide-react";
 
 type GazetaLang = "ru" | "en";
 
-export function GazetaMinimalFooter({ lang = "ru" }: { lang?: GazetaLang }) {
-    const isEn = lang === "en";
+export function GazetaMinimalFooter({ lang }: { lang?: GazetaLang }) {
+    const pathname = usePathname();
+    const isPathEn = Boolean(pathname && (pathname === "/gazeta/en" || pathname.endsWith("/en") || pathname.includes("/en/")));
+    const isEn = lang ? lang === "en" : isPathEn;
     const menuItems = isEn
         ? [
               { label: "Aerial Filming", href: "/drone-service/en" },

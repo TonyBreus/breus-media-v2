@@ -82,34 +82,33 @@ const headerCopy: Record<"RU" | "EN", HeaderCopy> = {
         mobileSectionsLabel: "Sections",
         contactSectionLabel: "Contact",
         industryNavItems: [
-            { label: "Real Estate", href: "/real-estate-service" },
-            { label: "Auto Business", href: "/gazeta/auto" },
-            { label: "Hotels", href: "/gazeta/hotels" },
-            { label: "Restaurants", href: "/gazeta/restaurants" },
-            { label: "Tourism", href: "/gazeta/tourism" },
-            { label: "Clinics", href: "/gazeta/clinics" },
-            { label: "IT", href: "/gazeta/it" },
+            { label: "Real Estate", href: "/real-estate-service/en" },
+            { label: "Auto Business", href: "/auto-service/en" },
+            { label: "Hotels", href: "/hotels-service/en" },
+            { label: "Restaurants", href: "/restaurants-service/en" },
+            { label: "Tourism", href: "/tourism-service/en" },
+            { label: "Clinics", href: "/clinics-service/en" },
+            { label: "IT", href: "/gazeta/en#niche-step-12" },
         ],
         serviceNavItems: [
-            { label: "Aerial Filming", href: "/drone-service" },
-            { label: "360° Tours", href: "/gazeta/360-tours" },
-            { label: "AI Visualization", href: "/ai-visualization-service" },
-            { label: "Reels & Shorts", href: "/reels-service" },
+            { label: "Aerial Filming", href: "/drone-service/en" },
+            { label: "360° Tours", href: "/360-tours-service/en" },
+            { label: "AI Visualization", href: "/ai-visualization-service/en" },
+            { label: "Reels & Shorts", href: "/reels-service/en" },
         ],
         tickerLine1: [
-            { text: "REAL ESTATE", link: "/real-estate-service" },
-            { text: "AUTO BUSINESS", link: "/auto-service" },
-            { text: "HOTELS", link: "/hotels-service" },
-            { text: "RESTAURANTS", link: "/restaurants-service" },
-            { text: "TOURISM", link: "/tourism-service" },
-            { text: "CLINICS", link: "/clinics-service" },
+            { text: "REAL ESTATE", link: "/real-estate-service/en" },
+            { text: "AUTO BUSINESS", link: "/auto-service/en" },
+            { text: "HOTELS", link: "/hotels-service/en" },
+            { text: "RESTAURANTS", link: "/restaurants-service/en" },
+            { text: "TOURISM", link: "/tourism-service/en" },
+            { text: "CLINICS", link: "/clinics-service/en" },
         ],
         tickerLine2: [
-            { text: "Aerial Filming", link: "/drone-service" },
-            { text: "360° Tours", link: "/360-tours-service" },
-            { text: "Promo Video", link: "/promo-video-service" },
-            { text: "AI Visualization", link: "/ai-visualization-service" },
-            { text: "Reels & Shorts", link: "/reels-service" },
+            { text: "Aerial Filming", link: "/drone-service/en" },
+            { text: "360° Tours", link: "/360-tours-service/en" },
+            { text: "AI Visualization", link: "/ai-visualization-service/en" },
+            { text: "Reels & Shorts", link: "/reels-service/en" },
         ],
     },
 };
@@ -262,9 +261,14 @@ export function SmartHeader({
     const { scrollY } = useScroll();
     const pathname = usePathname();
     const { dismissHoverPreview } = useHeroStore();
-    const normalizedInitialLang = normalizeHeaderLanguage(initialLang);
+    const isPathEn = Boolean(
+        pathname && (pathname === "/gazeta/en" || pathname.endsWith("/en") || pathname.includes("/en/"))
+    );
+    const normalizedInitialLang = initialLang ? normalizeHeaderLanguage(initialLang) : null;
     const [isScrolled, setIsScrolled] = useState(false);
-    const [lang, setLang] = useState<HeaderLanguage>(normalizedInitialLang);
+    const [lang, setLang] = useState<HeaderLanguage>(
+        (normalizedInitialLang === "EN" || isPathEn) ? "EN" : (normalizedInitialLang ?? "RU")
+    );
     const [isLogoVisible, setIsLogoVisible] = useState(!isLanding);
     const [hasTickerActivated, setHasTickerActivated] = useState(!tickerAfterFirstScroll);
 
@@ -280,7 +284,9 @@ export function SmartHeader({
     const headerExpandedHeight = isMobileLandscape ? 64 : isMobilePortrait ? 64 : 90;
     const headerCompactHeight = isMobileLandscape ? 56 : isMobilePortrait ? 52 : 70;
     const headerHeight = isScrolled ? headerCompactHeight : headerExpandedHeight;
-    const routeLanguage: HeaderLanguage = normalizedInitialLang;
+    const routeLanguage: HeaderLanguage = (normalizedInitialLang === "EN" || isPathEn)
+        ? "EN"
+        : (normalizedInitialLang ?? (lang === "EN" ? "EN" : "RU"));
     const copy = headerCopy[routeLanguage === "EN" ? "EN" : "RU"];
     const alternateLanguage: HeaderLanguage = routeLanguage === "EN" ? "RU" : "EN";
 
@@ -579,7 +585,7 @@ export function SmartHeader({
                         ))}
 
                         <DebugWrapper id={204} label="Link: AI Решения">
-                            <Link href="/ai-visualization-service" className="text-[11px] xl:text-xs font-bold uppercase tracking-wider hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">{copy.aiSolutionsLabel}</Link>
+                            <Link href={routeLanguage === "EN" ? "/ai-visualization-service/en" : "/ai-visualization-service"} className="text-[11px] xl:text-xs font-bold uppercase tracking-wider hover:text-[#D4AF37] transition-colors text-white whitespace-nowrap">{copy.aiSolutionsLabel}</Link>
                         </DebugWrapper>
                     </nav>
 
@@ -587,51 +593,46 @@ export function SmartHeader({
                     <div className={`flex items-center flex-shrink-0 relative z-[320] gap-2 xl:gap-4 ${isMobileCompactTop ? "mt-1" : "mt-2"}`}>
                         {/* 1. Contact Dropdown (205) */}
                         <div className="hidden md:block">
-                            <DebugWrapper id={205} label="Phone Connect">
-                                <div className="relative group" onMouseEnter={() => setIsContactOpen(true)} onMouseLeave={() => setIsContactOpen(false)}>
-                                    <button className={`flex items-center justify-center bg-white/10 rounded-full hover:bg-[#D4AF37] transition-colors border border-white/5 group-hover:border-[#D4AF37]/50 ${isMobileCompactTop ? "w-7 h-7" : "w-8 h-8 md:w-10 md:h-10"}`}>
-                                        <Phone className="w-3.5 h-3.5 text-white" />
+                            <DebugWrapper id={205} label="Contact Dropdown">
+                                <div
+                                    className="relative"
+                                    onMouseEnter={() => setIsContactOpen(true)}
+                                    onMouseLeave={() => setIsContactOpen(false)}
+                                >
+                                    <button
+                                        onClick={() => setIsContactOpen(!isContactOpen)}
+                                        className={`flex items-center gap-1.5 bg-white/10 rounded-full border border-white/5 hover:bg-white/20 transition-colors font-bold text-white uppercase ${isMobileCompactTop ? "px-2.5 py-1 text-[9px]" : "px-3 py-1.5 text-[10px] md:text-xs"}`}
+                                    >
+                                        <Phone className="w-3 h-3 text-[#22c55e]" />
+                                        <span>+995 501 103 183</span>
+                                        <ChevronDown className="w-3 h-3" />
                                     </button>
-
                                     <AnimatePresence>
                                         {isContactOpen && (
                                             <motion.div
-                                                initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                                exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                                                style={{ originY: 0, originX: 1 }}
-                                                className="absolute top-full right-0 mt-4 w-72 md:w-80 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl z-[1200] overflow-hidden"
+                                                initial={{ opacity: 0, y: 6 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 6 }}
+                                                transition={{ duration: 0.15 }}
+                                                className="absolute top-full right-0 pt-2 z-[1200]"
                                             >
-                                                <div className="p-6 flex flex-col gap-4">
-                                                    <div className="flex items-start gap-4">
-                                                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center mt-1">
-                                                            <Phone className="w-4 h-4 text-[#D4AF37]" />
-                                                        </div>
-                                                        <div className="flex flex-col">
-                                                            <a href="tel:+995501103183" className="text-lg font-bold text-white hover:text-[#D4AF37] transition-colors tracking-wide">+995 501 103 183</a>
-                                                        </div>
-                                                    </div>
-                                                    <div className="h-px w-full bg-white/10 my-1" />
-                                                    {/* Socials */}
-                                                    <div className="flex justify-between items-center px-2">
-                                                        <a href="#" className="flex flex-col items-center gap-1 group/social">
-                                                            <MessageCircle className="w-5 h-5 text-[#25D366] hover:scale-110 transition-transform" />
-                                                            <span className="text-[9px] uppercase font-bold text-gray-400">WhatsApp</span>
+                                                <div className="flex flex-col gap-2 p-3 rounded-2xl shadow-2xl backdrop-blur-xl bg-black border border-white/10 w-56">
+                                                    <div className="grid grid-cols-4 gap-1 p-1">
+                                                        <a href="https://wa.me/995501103183" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 group/social">
+                                                            <div className="w-5 h-5 rounded-full bg-[#25D366]/20 flex items-center justify-center text-[#25D366] group-hover/social:scale-110 transition-transform">
+                                                                <Phone className="w-3 h-3" />
+                                                            </div>
+                                                            <span className="text-[9px] uppercase font-bold text-gray-400">WA</span>
+                                                        </a>
+                                                        <a href="https://instagram.com/breusmedia" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 group/social">
+                                                            <Instagram className="w-5 h-5 text-[#E4405F] hover:scale-110 transition-transform" />
+                                                            <span className="text-[9px] uppercase font-bold text-gray-400">Insta</span>
                                                         </a>
                                                         <a href="#" className="flex flex-col items-center gap-1 group/social">
                                                             <Send className="w-5 h-5 text-[#0088cc] ml-0.5 hover:scale-110 transition-transform" />
                                                             <span className="text-[9px] uppercase font-bold text-gray-400">Telegram</span>
                                                         </a>
-                                                        <a href="#" className="flex flex-col items-center gap-1 group/social">
-                                                            <MessageCircle className="w-5 h-5 text-[#7360f2] hover:scale-110 transition-transform" />
-                                                            <span className="text-[9px] uppercase font-bold text-gray-400">Viber</span>
-                                                        </a>
                                                     </div>
-                                                    <div className="h-px w-full bg-white/10 my-1" />
-                                                    <a href="mailto:hello@breus.media" className="flex items-center gap-3 px-2 group/mail">
-                                                        <Mail className="w-4 h-4 text-gray-500 group-hover/mail:text-white transition-colors" />
-                                                        <span className="text-sm font-bold text-gray-400 group-hover/mail:text-white transition-colors">hello@breus.media</span>
-                                                    </a>
                                                 </div>
                                             </motion.div>
                                         )}
@@ -683,7 +684,19 @@ export function SmartHeader({
                                                     }`;
 
                                                     return (
-                                                        <Link key={l} href={href} onClick={() => { setLang(l); setIsLangOpen(false); }} className={className}>
+                                                        <Link
+                                                            key={l}
+                                                            href={href}
+                                                            onClick={() => {
+                                                                setLang(l);
+                                                                setIsLangOpen(false);
+                                                                try {
+                                                                    localStorage.setItem("breus_lang", l.toLowerCase());
+                                                                    document.cookie = `NEXT_LOCALE=${l.toLowerCase()}; path=/; max-age=31536000; SameSite=Lax`;
+                                                                } catch (e) {}
+                                                            }}
+                                                            className={className}
+                                                        >
                                                             {l} {isCurrent ? "✓" : ""}
                                                         </Link>
                                                     );
@@ -889,6 +902,10 @@ export function SmartHeader({
                                                     onClick={() => {
                                                         setLang(l);
                                                         setIsMobileMenuOpen(false);
+                                                        try {
+                                                            localStorage.setItem("breus_lang", l.toLowerCase());
+                                                            document.cookie = `NEXT_LOCALE=${l.toLowerCase()}; path=/; max-age=31536000; SameSite=Lax`;
+                                                        } catch (e) {}
                                                     }}
                                                     className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
                                                         isCurrent
