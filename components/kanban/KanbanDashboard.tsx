@@ -1,430 +1,369 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { KanbanState, KanbanTask } from "@/lib/kanban-engine";
+import React, { useState, useEffect, useCallback } from "react";
+import { KanbanItem, EventCategory } from "@/types/kanban-events";
+import QuickEventModal from "@/components/kanban/QuickEventModal";
+import { supabase } from "@/lib/supabase";
 import {
-  CheckCircle2,
-  Circle,
   Flame,
-  Clock,
   RefreshCw,
-  Tag,
-  Cloud,
-  HardDrive,
+  Search,
   Sparkles,
+  User,
+  ExternalLink,
+  Layers,
+  Video,
+  CheckSquare,
+  Cpu,
 } from "lucide-react";
 
-interface KanbanDashboardProps {
-  initialState?: KanbanState;
-}
+const CATEGORY_TABS: { id: string; label: string; icon: any; color: string }[] = [
+  { id: "ALL", label: "Все события", icon: Layers, color: "text-zinc-300" },
+  { id: "SRC", label: "Видео & Источники (SRC)", icon: Video, color: "text-blue-400" },
+  { id: "TSK", label: "Задачи (TSK)", icon: CheckSquare, color: "text-emerald-400" },
+  { id: "REL", label: "Релизы (REL)", icon: Cpu, color: "text-purple-400" },
+];
 
-const TAG_STYLES: Record<string, { bg: string; text: string; border: string }> = {
-  "#B2B_BreusMedia": {
-    bg: "bg-blue-500/15",
-    text: "text-blue-400",
-    border: "border-blue-500/30",
-  },
-  "#YouTube_Медиа": {
-    bg: "bg-rose-500/15",
-    text: "text-rose-400",
-    border: "border-rose-500/30",
-  },
-  "#Быт_Семья": {
-    bg: "bg-emerald-500/15",
-    text: "text-emerald-400",
-    border: "border-emerald-500/30",
-  },
-  "#Тело_Биохакинг": {
-    bg: "bg-amber-500/15",
-    text: "text-amber-400",
-    border: "border-amber-500/30",
-  },
+const CATEGORY_STYLES = {
+  SRC: { bg: "bg-blue-500/15", text: "text-blue-400", border: "border-blue-500/30" },
+  TSK: { bg: "bg-emerald-500/15", text: "text-emerald-400", border: "border-emerald-500/30" },
+  REL: { bg: "bg-purple-500/15", text: "text-purple-400", border: "border-purple-500/30" },
 };
 
-export default function KanbanDashboard({ initialState }: KanbanDashboardProps) {
-  const [state, setState] = useState<KanbanState | undefined>(initialState);
-  const [activeTag, setActiveTag] = useState<string | null>(null);
-  const [activeMobileCol, setActiveMobileCol] = useState<string>("focus");
-  const [loading, setLoading] = useState(!initialState);
-  const [syncing, setSyncing] = useState(false);
+const PRIORITY_BADGES = {
+  CRITICAL: {
+    bg: "bg-rose-500/20 border-rose-500/50 text-rose-400",
+    dot: "bg-rose-500 animate-pulse",
+    label: "Критично",
+  },
+  HIGH: { bg: "bg-amber-500/20 border-amber-500/50 text-amber-400", dot: "bg-amber-500", label: "Высокий" },
+  MEDIUM: { bg: "bg-sky-500/20 border-sky-500/50 text-sky-400", dot: "bg-sky-500", label: "Средний" },
+  LOW: { bg: "bg-zinc-500/20 border-zinc-500/50 text-zinc-400", dot: "bg-zinc-500", label: "Низкий" },
+};
 
-  const fetchState = async () => {
+export default function KanbanDashboard() {
+  const [items, setItems] = useState<KanbanItem[]>([]);
+  const [selectedItem, setSelectedItem] = useState<KanbanItem | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("ALL");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
+  const [syncing, setSyncing] = useState<boolean>(false);
+  const [activeMobileCol, setActiveMobileCol] = useState<string>("in_progress");
+
+  // Загрузка данных с сервера
+  const fetchEvents = useCallback(async () => {
     try {
       setSyncing(true);
-      const res = await fetch("/api/kanban");
+      const params = new URLSearchParams();
+      if (activeCategory !== "ALL") params.append("category", activeCategory);
+      if (searchQuery.trim()) params.append("search", searchQuery.trim());
+
+      const res = await fetch(`/api/kanban?${params.toString()}`);
       const json = await res.json();
-      if (json.success) {
-        setState(json.data);
+      if (json.success && json.data) {
+        setItems(json.data.items || []);
       }
     } catch (err) {
-      console.error("Failed to load kanban state:", err);
+      console.error("Failed to load kanban events:", err);
     } finally {
       setLoading(false);
       setSyncing(false);
     }
-  };
+  }, [activeCategory, searchQuery]);
 
   useEffect(() => {
-    if (!initialState) {
-      fetchState();
-    }
-  }, [initialState]);
+    fetchEvents();
+  }, [fetchEvents]);
 
-  const toggleTask = async (task: KanbanTask) => {
-    if (!state) return;
-    const newIsDone = !task.isDone;
-
-    // Оптимистичное обновление UI
-    const targetCol = task.status;
-    const updatedColumns = { ...state.columns };
-
-    // Удаляем из текущей колонки
-    updatedColumns[targetCol] = updatedColumns[targetCol].filter(
-      (t) => t.id !== task.id
-    );
-
-    // Добавляем в нужную колонку
-    const updatedTask = { ...task, isDone: newIsDone };
-    if (newIsDone) {
-      updatedColumns.done = [
-        ...updatedColumns.done,
-        { ...updatedTask, status: "done" as const },
-      ];
-    } else {
-      const revertCol = task.section === "Фокус дня" ? "focus" : "in_progress";
-      updatedColumns[revertCol] = [
-        ...updatedColumns[revertCol],
-        { ...updatedTask, status: revertCol as any },
-      ];
+  // Подписка на Supabase Realtime для живого обновления карточек
+  useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL.includes("placeholder")) {
+      return;
     }
 
-    const total =
-      updatedColumns.focus.length +
-      updatedColumns.in_progress.length +
-      updatedColumns.review.length +
-      updatedColumns.done.length;
-    const completed = updatedColumns.done.length;
+    const channel = supabase
+      .channel("realtime-kanban-events")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "kanban_events" },
+        (payload) => {
+          console.log("⚡️ Supabase Realtime Event:", payload);
+          fetchEvents();
+        }
+      )
+      .subscribe();
 
-    setState({
-      ...state,
-      columns: updatedColumns,
-      metrics: {
-        total,
-        completed,
-        completionRate: total > 0 ? Math.round((completed / total) * 100) : 0,
-      },
-    });
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [fetchEvents]);
 
-    try {
-      await fetch("/api/kanban", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          action: "toggle",
-          taskTitle: task.title,
-          markAsDone: newIsDone,
-          date: state.date,
-        }),
-      });
-    } catch (e) {
-      console.error("Sync error, refetching:", e);
-      fetchState();
-    }
-  };
+  // Фильтрация по поиску и категории
+  const filteredItems = items.filter((item) => {
+    const matchCategory = activeCategory === "ALL" || item.category === activeCategory;
+    const matchSearch =
+      !searchQuery.trim() ||
+      item.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (item.author && item.author.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchCategory && matchSearch;
+  });
 
-  if (loading || !state) {
-    return (
-      <div className="flex min-h-[100dvh] items-center justify-center bg-[#07080B] text-zinc-400">
-        <RefreshCw className="h-6 w-6 animate-spin text-cyan-400" />
-        <span className="ml-3 text-sm font-mono">Загрузка Антон 2.0...</span>
-      </div>
-    );
-  }
-
-  const filterTasks = (tasks: KanbanTask[]) => {
-    if (!activeTag) return tasks;
-    return tasks.filter((t) => t.tags.includes(activeTag));
-  };
-
+  // Колонки
   const columnsDef = [
     {
-      id: "inbox",
-      shortTitle: "Inbox",
-      title: "📥 Inbox / Буфер",
-      subtitle: "Сырые мысли и идеи",
-      badgeClass: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-      tasks: filterTasks(state.columns.inbox),
-    },
-    {
-      id: "focus",
-      shortTitle: "Фокус",
-      title: "🎯 Фокус дня",
-      subtitle: "Рычаг к цели $100k",
-      badgeClass: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-      tasks: filterTasks(state.columns.focus),
+      id: "backlog",
+      title: "📥 Бэклог & Идеи",
+      subtitle: "Входящие из чатов и пулов",
+      items: filteredItems.filter((i) => i.status === "backlog"),
+      badgeClass: "bg-zinc-800 text-zinc-300 border-zinc-700",
     },
     {
       id: "in_progress",
-      shortTitle: "В работе",
-      title: "⏳ В работе",
-      subtitle: "Пульс дня (Deep Work)",
-      badgeClass: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-      tasks: filterTasks(state.columns.in_progress),
-    },
-    {
-      id: "review",
-      shortTitle: "Ревью",
-      title: "🔍 Ревью",
-      subtitle: "Проверка качества",
-      badgeClass: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-      tasks: filterTasks(state.columns.review),
+      title: "⏳ В работе (Deep Work)",
+      subtitle: "Текущий операционный фокус",
+      items: filteredItems.filter((i) => i.status === "in_progress"),
+      badgeClass: "bg-blue-500/15 text-blue-400 border-blue-500/30",
     },
     {
       id: "done",
-      shortTitle: "Победы",
-      title: "✅ Маленькие победы",
-      subtitle: "Фиксация прогресса",
-      badgeClass: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-      tasks: filterTasks(state.columns.done),
+      title: "✅ Выполнено & Внедрено",
+      subtitle: "Успешные результаты",
+      items: filteredItems.filter((i) => i.status === "done"),
+      badgeClass: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
+    },
+    {
+      id: "archived",
+      title: "📦 Архив & Реестр",
+      subtitle: "База знаний",
+      items: filteredItems.filter((i) => i.status === "archived"),
+      badgeClass: "bg-zinc-800/60 text-zinc-500 border-zinc-800",
     },
   ];
 
   return (
     <div className="flex min-h-[100dvh] flex-col bg-[#07080B] text-zinc-100 antialiased pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,16px)]">
-      {/* Верхний статус-бар */}
+      {/* Header & Controls */}
       <header className="sticky top-0 z-30 border-b border-zinc-800/80 bg-[#07080B]/95 backdrop-blur-md px-4 py-3">
         <div className="mx-auto flex max-w-[1600px] flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3">
             <div>
               <div className="flex items-center gap-2">
                 <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">
-                  Антон 2.0 • Ритм Дня
+                  Breus Media • Headless Operations
                 </span>
-                <span className="rounded bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 text-[10px] font-mono text-zinc-300">
-                  {state.date}
+                <span className="rounded bg-emerald-950/60 border border-emerald-800/40 px-1.5 py-0.5 text-[10px] font-mono text-emerald-300">
+                  Supabase Realtime
                 </span>
-                {state.source === "github" ? (
-                  <span className="inline-flex items-center gap-1 rounded bg-blue-950/60 border border-blue-800/40 px-1.5 py-0.5 text-[10px] font-mono text-blue-300">
-                    <Cloud className="h-2.5 w-2.5" /> GitHub Sync
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1 rounded bg-emerald-950/60 border border-emerald-800/40 px-1.5 py-0.5 text-[10px] font-mono text-emerald-300">
-                    <HardDrive className="h-2.5 w-2.5" /> Local Mac
-                  </span>
-                )}
               </div>
               <h1 className="mt-1 text-base font-bold tracking-tight text-white md:text-xl flex items-center gap-1.5">
-                <Flame className="h-4 w-4 text-amber-500 inline flex-shrink-0" />
-                <span className="truncate max-w-[280px] sm:max-w-md md:max-w-xl">
-                  {state.focusTitle}
-                </span>
+                <Sparkles className="h-4 w-4 text-yellow-400 inline flex-shrink-0" />
+                <span>Операционный Канбан & База Событий</span>
               </h1>
             </div>
 
             <button
-              onClick={fetchState}
+              onClick={fetchEvents}
               disabled={syncing}
-              className="flex items-center gap-1 rounded-lg border border-zinc-800 bg-zinc-900/90 px-2.5 py-1.5 text-xs text-zinc-300 transition hover:border-zinc-700 active:scale-95"
+              title="Обновить"
+              className="flex items-center gap-1 rounded-lg border border-zinc-800 bg-zinc-900/90 p-2 text-xs text-zinc-300 transition hover:border-zinc-700 active:scale-95 md:hidden"
             >
-              <RefreshCw
-                className={`h-3.5 w-3.5 text-zinc-400 ${
-                  syncing ? "animate-spin text-cyan-400" : ""
-                }`}
-              />
+              <RefreshCw className={`h-3.5 w-3.5 text-zinc-400 ${syncing ? "animate-spin text-cyan-400" : ""}`} />
             </button>
           </div>
 
-          {/* Прогресс дня */}
-          <div className="flex items-center justify-between gap-3 border-t border-zinc-800/50 pt-2 md:border-t-0 md:pt-0">
-            <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
-              <span>Победы:</span>
-              <span className="font-bold text-emerald-400">
-                {state.metrics.completed} / {state.metrics.total}
-              </span>
-              <span className="text-zinc-500">
-                ({state.metrics.completionRate}%)
-              </span>
-            </div>
-            <div className="h-2 flex-1 md:w-36 overflow-hidden rounded-full bg-zinc-800 max-w-[160px]">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-cyan-500 via-emerald-400 to-amber-400 transition-all duration-300"
-                style={{ width: `${state.metrics.completionRate}%` }}
+          {/* Search Bar & Refresh */}
+          <div className="flex items-center gap-2">
+            <div className="relative flex-1 md:w-72">
+              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-500" />
+              <input
+                type="text"
+                placeholder="Поиск по #ID, теме, автору..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full rounded-lg border border-zinc-800 bg-zinc-900/80 pl-8 pr-3 py-1.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-zinc-600 transition"
               />
             </div>
-          </div>
-        </div>
 
-        {/* Фильтр по тегам */}
-        <div className="mx-auto flex max-w-[1600px] items-center gap-1.5 overflow-x-auto pt-2 text-xs no-scrollbar">
-          <span className="flex items-center text-zinc-500 mr-1 text-[10px] uppercase font-mono flex-shrink-0">
-            <Tag className="h-2.5 w-2.5 mr-0.5" /> Тег:
-          </span>
-          <button
-            onClick={() => setActiveTag(null)}
-            className={`flex-shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-medium transition ${
-              activeTag === null
-                ? "bg-white text-zinc-950 font-bold"
-                : "bg-zinc-900 text-zinc-400 hover:text-zinc-200"
-            }`}
-          >
-            Все ({state.metrics.total})
-          </button>
-          {Object.entries(TAG_STYLES).map(([tag, style]) => (
             <button
-              key={tag}
-              onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-              className={`flex-shrink-0 rounded-full border px-2.5 py-0.5 text-[11px] font-mono transition ${
-                style.border
-              } ${
-                activeTag === tag
-                  ? `${style.bg} ${style.text} font-bold ring-1 ring-white/20`
-                  : "bg-zinc-900/60 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200"
-              }`}
+              onClick={fetchEvents}
+              disabled={syncing}
+              className="hidden md:flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/90 px-3 py-1.5 text-xs text-zinc-300 transition hover:border-zinc-700 active:scale-95"
             >
-              {tag}
+              <RefreshCw className={`h-3.5 w-3.5 text-zinc-400 ${syncing ? "animate-spin text-cyan-400" : ""}`} />
+              <span>Обновить</span>
             </button>
-          ))}
+          </div>
         </div>
 
-        {/* Мобильный переключатель колонок (только на экранах < 768px) */}
+        {/* Category Tabs */}
+        <div className="mx-auto flex max-w-[1600px] items-center gap-1.5 overflow-x-auto pt-2 text-xs no-scrollbar">
+          {CATEGORY_TABS.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeCategory === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveCategory(tab.id)}
+                className={`flex items-center gap-1.5 flex-shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+                  isActive
+                    ? "bg-zinc-800 text-white font-semibold border border-zinc-700 shadow"
+                    : "bg-zinc-950/60 text-zinc-400 hover:text-zinc-200 border border-zinc-900"
+                }`}
+              >
+                <Icon className={`h-3.5 w-3.5 ${tab.color}`} />
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Mobile Column Tabs */}
         <div className="mt-2 flex md:hidden overflow-x-auto rounded-lg bg-zinc-900/80 p-1 border border-zinc-800 gap-1 no-scrollbar">
           {columnsDef.map((col) => (
             <button
               key={col.id}
               onClick={() => setActiveMobileCol(col.id)}
-              className={`flex-1 min-w-[64px] rounded-md py-1 text-center text-xs font-medium transition flex items-center justify-center gap-1 ${
-                activeMobileCol === col.id
-                  ? "bg-zinc-800 text-white shadow font-semibold"
-                  : "text-zinc-400 hover:text-zinc-200"
+              className={`flex-1 min-w-[75px] rounded-md py-1 text-center text-xs font-medium transition flex items-center justify-center gap-1 ${
+                activeMobileCol === col.id ? "bg-zinc-800 text-white font-semibold" : "text-zinc-400 hover:text-zinc-200"
               }`}
             >
-              <span>{col.shortTitle}</span>
-              <span className="text-[10px] font-mono opacity-70">
-                ({col.tasks.length})
-              </span>
+              <span>{col.title.split(" ")[1]}</span>
+              <span className="text-[10px] font-mono opacity-70">({col.items.length})</span>
             </button>
           ))}
         </div>
       </header>
 
-      {/* Основной контент */}
+      {/* Kanban Board Grid */}
       <main className="mx-auto flex-1 max-w-[1600px] p-3 md:p-4 w-full">
-        {/* Сетка для десктопа и планшетов */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-          {columnsDef.map((col) => (
-            <ColumnBlock
-              key={col.id}
-              col={col}
-              toggleTask={toggleTask}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex h-64 items-center justify-center text-zinc-500 text-xs">
+            Загрузка базы событий...
+          </div>
+        ) : (
+          <>
+            {/* Desktop Grid */}
+            <div className="hidden md:grid md:grid-cols-4 gap-4">
+              {columnsDef.map((col) => (
+                <KanbanColumn
+                  key={col.id}
+                  col={col}
+                  onSelectCard={(item) => setSelectedItem(item)}
+                />
+              ))}
+            </div>
 
-        {/* Активная колонка для мобильного экрана */}
-        <div className="block md:hidden">
-          {columnsDef
-            .filter((c) => c.id === activeMobileCol)
-            .map((col) => (
-              <ColumnBlock
-                key={col.id}
-                col={col}
-                toggleTask={toggleTask}
-              />
-            ))}
-        </div>
+            {/* Mobile Active Column */}
+            <div className="block md:hidden">
+              {columnsDef
+                .filter((c) => c.id === activeMobileCol)
+                .map((col) => (
+                  <KanbanColumn
+                    key={col.id}
+                    col={col}
+                    onSelectCard={(item) => setSelectedItem(item)}
+                  />
+                ))}
+            </div>
+          </>
+        )}
       </main>
+
+      {/* Quick Event Modal */}
+      <QuickEventModal
+        item={selectedItem}
+        onClose={() => setSelectedItem(null)}
+      />
     </div>
   );
 }
 
-function ColumnBlock({
+function KanbanColumn({
   col,
-  toggleTask,
+  onSelectCard,
 }: {
   col: any;
-  toggleTask: (t: KanbanTask) => void;
+  onSelectCard: (item: KanbanItem) => void;
 }) {
   return (
-    <div className="flex flex-col rounded-xl border border-zinc-800/80 bg-zinc-950/60 p-3 min-h-[360px]">
+    <div className="flex flex-col rounded-xl border border-zinc-800/80 bg-zinc-950/60 p-3 min-h-[480px]">
       <div className="mb-3 flex items-start justify-between border-b border-zinc-800/60 pb-2.5">
         <div>
           <h2 className="text-sm font-semibold text-zinc-200">{col.title}</h2>
           <p className="text-[11px] text-zinc-500">{col.subtitle}</p>
         </div>
-        <span
-          className={`rounded-full border px-2 py-0.5 text-xs font-mono font-semibold ${col.badgeClass}`}
-        >
-          {col.tasks.length}
+        <span className={`rounded-full border px-2 py-0.5 text-xs font-mono font-semibold ${col.badgeClass}`}>
+          {col.items.length}
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col gap-2 overflow-y-auto">
-        {col.tasks.length === 0 ? (
-          <div className="flex h-32 items-center justify-center rounded-lg border border-dashed border-zinc-800/60 text-xs text-zinc-600">
-            Нет задач
+      <div className="flex flex-1 flex-col gap-2.5 overflow-y-auto">
+        {col.items.length === 0 ? (
+          <div className="flex h-36 items-center justify-center rounded-lg border border-dashed border-zinc-800/60 text-xs text-zinc-600">
+            Нет событий
           </div>
         ) : (
-          col.tasks.map((task: KanbanTask) => {
-            const isDone = task.isDone || col.id === "done";
+          col.items.map((item: KanbanItem) => {
+            const catStyle = CATEGORY_STYLES[item.category] || CATEGORY_STYLES.TSK;
+            const prioStyle = PRIORITY_BADGES[item.priority] || PRIORITY_BADGES.MEDIUM;
+
             return (
               <div
-                key={task.id}
-                className={`group relative rounded-lg border p-3 transition-all duration-150 active:scale-[0.99] ${
-                  isDone
-                    ? "border-emerald-950/40 bg-emerald-950/10 text-zinc-400"
-                    : "border-zinc-800/90 bg-zinc-900/70 hover:border-zinc-700 hover:bg-zinc-900"
-                }`}
+                key={item.id}
+                onClick={() => onSelectCard(item)}
+                className="group relative rounded-xl border border-zinc-800/90 bg-zinc-900/70 p-3.5 hover:border-zinc-700 hover:bg-zinc-900 transition-all cursor-pointer shadow-sm hover:shadow-md"
               >
-                <div className="flex items-start gap-2.5">
-                  {col.id !== "inbox" && (
-                    <button
-                      onClick={() => toggleTask(task)}
-                      className="mt-0.5 flex-shrink-0 text-zinc-500 hover:text-emerald-400 transition"
-                      title={
-                        isDone ? "Вернуть в работу" : "Отметить выполненной"
-                      }
-                    >
-                      {isDone ? (
-                        <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                      ) : (
-                        <Circle className="h-4 w-4 text-zinc-600 group-hover:text-zinc-400" />
-                      )}
-                    </button>
-                  )}
+                {/* Header: ID, Priority, Score */}
+                <div className="flex items-center justify-between gap-1.5 mb-2">
+                  <div className="flex items-center gap-1.5">
+                    <span className={`px-2 py-0.5 text-[10px] font-bold font-mono rounded border ${catStyle.bg} ${catStyle.border} ${catStyle.text}`}>
+                      #{item.id}
+                    </span>
 
-                  <div className="flex-1 min-w-0">
-                    <p
-                      className={`text-xs leading-relaxed break-words ${
-                        isDone
-                          ? "line-through text-zinc-500"
-                          : "text-zinc-200 font-medium"
-                      }`}
-                    >
-                      {task.title}
-                    </p>
-
-                    {task.tags.length > 0 && (
-                      <div className="mt-2 flex flex-wrap gap-1">
-                        {task.tags.map((tag) => {
-                          const style =
-                            TAG_STYLES[tag] || {
-                              bg: "bg-zinc-800",
-                              text: "text-zinc-400",
-                              border: "border-zinc-700",
-                            };
-                          return (
-                            <span
-                              key={tag}
-                              className={`rounded border px-1.5 py-0.2 text-[9px] font-mono ${style.bg} ${style.text} ${style.border}`}
-                            >
-                              {tag}
-                            </span>
-                          );
-                        })}
-                      </div>
-                    )}
+                    <span className={`flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-medium rounded border ${prioStyle.bg}`}>
+                      <span className={`w-1.5 h-1.5 rounded-full ${prioStyle.dot}`} />
+                      {prioStyle.label}
+                    </span>
                   </div>
+
+                  {item.score && (
+                    <span className="flex items-center gap-0.5 text-[10px] font-semibold text-yellow-400 font-mono">
+                      <Flame className="w-3 h-3" />
+                      {item.score}
+                    </span>
+                  )}
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xs font-semibold text-zinc-100 group-hover:text-white line-clamp-2 leading-snug">
+                  {item.title}
+                </h3>
+
+                {/* Author if available */}
+                {item.author && (
+                  <div className="flex items-center gap-1 text-[11px] text-zinc-400 mt-1">
+                    <User className="w-3 h-3 text-zinc-500" />
+                    <span className="truncate">{item.author}</span>
+                  </div>
+                )}
+
+                {/* Verdict summary */}
+                <p className="text-[11px] text-zinc-400 line-clamp-2 mt-2 leading-relaxed bg-zinc-950/40 p-2 rounded border border-zinc-800/50">
+                  {item.verdict}
+                </p>
+
+                {/* Footer preview indicator */}
+                <div className="mt-2.5 pt-2 border-t border-zinc-800/60 flex items-center justify-between text-[10px] text-zinc-500">
+                  <span>
+                    {item.takeaways && item.takeaways.length > 0 ? `🎯 ${item.takeaways.length} инсайтов` : "Без тезисов"}
+                  </span>
+                  {item.doc_link && (
+                    <span className="flex items-center gap-1 text-blue-400 group-hover:underline">
+                      Docs <ExternalLink className="w-2.5 h-2.5" />
+                    </span>
+                  )}
                 </div>
               </div>
             );
