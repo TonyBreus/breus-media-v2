@@ -23,6 +23,7 @@ import { DroneContactStitch } from "@/components/drone/DroneContactStitch";
 import { GazetaMinimalFooter } from "@/components/gazeta/GazetaMinimalFooter";
 import { ScannerBanner } from "@/components/scanner/ScannerBanner";
 import aiMenuDeliveryImageTwo from "@/services-images/ai-menu-delivery/final/2.png";
+import { gazetaFaqItems } from "./gazetaCatalogData";
 
 type GazetaLang = "ru" | "en";
 
@@ -861,6 +862,7 @@ for (const [nicheId, l2Key] of Object.entries(l2NicheToConfigKey)) {
 }
 
 const enRoute = (href: string) => {
+    const [base, hash] = href.split('#');
     const routes: Record<string, string> = {
         "/drone-service": "/drone-service/en",
         "/360-tours-service": "/360-tours-service/en",
@@ -878,7 +880,7 @@ const enRoute = (href: string) => {
         "/360-tour-real-estate": "/360-tour-real-estate/en",
         "/reels-promo/reels-realtor": "/reels-promo/reels-realtor/en",
     };
-    return routes[href] ?? href;
+    return hash ? (routes[base] || base) + '#' + hash : (routes[href] || href);
 };
 
 const droneServiceEnCopy: Record<string, Partial<ServiceItem>> = {
@@ -2541,40 +2543,7 @@ const Card = ({
     );
 };
 
-const faqItems = [
-    {
-        q: "Вы работаете только в Тбилиси?",
-        a: "Работаем по всей Грузии — Тбилиси, Батуми, Кутаиси и другие города. AI-услуги оказываем удалённо по всему миру."
-    },
-    {
-        q: "Сколько стоят ваши услуги?",
-        a: "От 400 GEL за разовый выезд. Комплексные пакеты от 800 GEL. Точную стоимость рассчитываем под задачу — напишите нам в WhatsApp."
-    },
-    {
-        q: "Как быстро будет готово видео?",
-        a: "Монтаж занимает 3–5 рабочих дней после съёмки. Для срочных задач есть ускоренный формат."
-    },
-    {
-        q: "Вы делаете всё сами или привлекаете подрядчиков?",
-        a: "Всё делаем своей командой. Своё оборудование — два дрона DJI Air 3S и Avata 2, камеры Insta360 для 360-туров, студия монтажа. Никаких посредников."
-    },
-    {
-        q: "Можно заказать несколько услуг за один выезд?",
-        a: "Да, это наш стандартный подход. Один визит включает видео, аэросъёмку и 360-тур одновременно — быстрее и выгоднее чем заказывать по отдельности."
-    },
-    {
-        q: "Работаете ли вы с малым бизнесом?",
-        a: "Да. Есть пакеты от 400 GEL для малого бизнеса, стартапов и индивидуальных предпринимателей."
-    },
-    {
-        q: "Делаете ли вы мониторинг строек для застройщиков и банков?",
-        a: "Да. Регулярные дрон-облёты с GPS-привязкой, PDF-отчётом и сравнением этапов для банков, инвесторов и страховых. По всей Грузии."
-    },
-    {
-        q: "Можно ли получить AI-контент без съёмки?",
-        a: "Да. AI-визуал, описания объектов и Reels без выезда — клиент присылает материалы, мы упаковываем через AI. Удалённо по всему миру."
-    }
-];
+
 
 const FAQAccordionItem = ({ item, isOpen, onToggle }: { item: { q: string, a: string }; isOpen: boolean, onToggle: () => void }) => (
     <div className="border-b border-white/10 last:border-b-0">
@@ -2622,6 +2591,7 @@ const FAQCard = ({
     onNavigateToStep,
     activeStepIndex,
     stackStepNavItems,
+    lang = "ru",
 }: {
     index: number,
     scrollYProgress: MotionValue<number>,
@@ -2633,6 +2603,7 @@ const FAQCard = ({
     onNavigateToStep: (targetIndex: number) => void,
     activeStepIndex: number,
     stackStepNavItems: StackStepNavItem[],
+    lang?: GazetaLang,
 }) => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const isMobileCompactTop = isMobileLandscape || isMobilePortrait;
@@ -2647,10 +2618,12 @@ const FAQCard = ({
 
     const y = useTransform(scrollYProgress, [entryStart, entryEnd], ["100%", "0%"]);
 
+    const currentFaqItems = gazetaFaqItems[lang] || gazetaFaqItems["ru"];
+
     const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": faqItems.map(item => ({
+        "mainEntity": currentFaqItems.map(item => ({
             "@type": "Question",
             "name": item.q,
             "acceptedAnswer": {
@@ -2713,11 +2686,15 @@ const FAQCard = ({
             {/* FAQ Content */}
             <div className="flex-1 overflow-y-auto touch-pan-y px-6 py-6 md:px-12 md:py-8 max-w-4xl mx-auto w-full custom-scrollbar pb-10">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tight text-white mb-4 md:mb-6">
-                    Частые <span className="text-[#D4AF37]">вопросы</span>
+                    {lang === "en" ? (
+                        <>Frequently Asked <span className="text-[#D4AF37]">Questions</span></>
+                    ) : (
+                        <>Частые <span className="text-[#D4AF37]">вопросы</span></>
+                    )}
                 </h2>
 
                 <div className="divide-y divide-white/10 border-t border-white/10">
-                    {faqItems.map((item, i) => (
+                    {currentFaqItems.map((item, i) => (
                         <FAQAccordionItem
                             key={i}
                             item={item}
@@ -3176,6 +3153,7 @@ export function NichesStack({ lang = "ru" }: { lang?: GazetaLang }) {
                 onNavigateToStep={scrollToNicheStep}
                 activeStepIndex={activeStepIndex}
                 stackStepNavItems={stackStepNavItems}
+                lang={lang}
             />
             <FormCard
                 index={localizedNiches.length + 1}

@@ -14,12 +14,16 @@ export const gazetaFaqItems: Record<GazetaLang, FaqItem[]> = {
             a: "Базис продакшена находится в Тбилиси, также регулярно выезжаем в Батуми, Кахетию, Мцхету, Гудаури, Казбеги и по всей Грузии.",
         },
         {
-            q: "Сколько стоит съёмка дроном или 360° тур?",
-            a: "Аэросъёмка начинается от 200 ₾, 360° виртуальные туры — от 200 ₾, Reels и шортсы — от 150 ₾. Разработка B2B-сайтов — от 450 ₾.",
+            q: "Сколько стоят ваши услуги?",
+            a: "Аэросъёмка от 200 GEL, 360° туры от 200 GEL, Reels и вертикальные видео от 150 GEL, AI визуализация от 100 GEL. Скоростные сайты от 450 GEL. Комплексные контент-пакеты от 500 GEL. Точную стоимость рассчитываем под вашу задачу.",
         },
         {
-            q: "Как быстро передаются готовые материалы?",
-            a: "Оригинальные 4K видеоматериалы передаются от 24 часов. Смонтированные ролики с саунд-дизайном и 360° туры — от 48 часов.",
+            q: "Как быстро будет готов материал?",
+            a: "Выдача исходников (фото/видео) — от 24 часов. Смонтированные ролики — 24-48 часов (для сложных проектов 3-5 дней). 360° виртуальные туры — от 48 часов.",
+        },
+        {
+            q: "Что если в день съёмки плохая погода?",
+            a: "Мы регулярно проверяем метеосводки. Если ожидается дождь, сильный ветер или условия, не подходящие для съёмки, мы бесплатно переносим дату на ближайший благоприятный день.",
         },
         {
             q: "Заключаете ли официальный B2B-договор?",
@@ -33,10 +37,6 @@ export const gazetaFaqItems: Record<GazetaLang, FaqItem[]> = {
             q: "Можно ли заказать AI-визуализацию удалённо?",
             a: "Да. Виртуальный стейджинг интерьеров, AI-меню для сервисов доставки и генерация креативов выполняются полностью удаленно.",
         },
-        {
-            q: "Вы делаете сайты под ключ?",
-            a: "Да, разрабатываем сверхбыстрые корпоративные сайты и лендинги на Next.js (от 450 ₾), сразу оптимизированные под AI-поиск (AEO).",
-        },
     ],
     en: [
         {
@@ -44,12 +44,16 @@ export const gazetaFaqItems: Record<GazetaLang, FaqItem[]> = {
             a: "Our production base is in Tbilisi, with regular shoots across Batumi, Kakheti, Mtskheta, Gudauri, Kazbegi, and throughout Georgia.",
         },
         {
-            q: "What are your starting rates for drone shoots or 360° tours?",
-            a: "Starting rates begin at 200 ₾ for aerial filming, 200 ₾ for 360° virtual tours or FPV flythroughs, and 150 ₾ for Reels. Web development starts from 450 ₾.",
+            q: "How much do your services cost?",
+            a: "Aerial filming from 200 GEL, 360° tours from 200 GEL, Reels and shorts from 150 GEL, AI visualization from 100 GEL. High-speed websites from 450 GEL. Complex content packages from 500 GEL. We provide custom quotes based on your exact task.",
         },
         {
             q: "How fast are the deliverables completed?",
-            a: "Original 4K video materials are delivered from 24 hours. Edited promo videos with sound design and interactive 360° tours are ready from 48 hours.",
+            a: "Raw footage delivery starts from 24 hours. Edited videos take 24-48 hours (3-5 days for complex edits). Interactive 360° tours are ready from 48 hours.",
+        },
+        {
+            q: "What happens if the weather is bad on shoot day?",
+            a: "We actively monitor weather forecasts. If rain, high winds, or unsuitable conditions are expected, we reschedule the shoot to the nearest favorable date at no extra cost.",
         },
         {
             q: "Do you provide official B2B contracts and corporate invoices?",

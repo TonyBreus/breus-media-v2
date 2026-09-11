@@ -49,6 +49,10 @@ export const metadata: Metadata = {
         'Аэросъёмка дроном в Тбилиси и Грузии для бизнеса: недвижимость, стройка, отели, рестораны, туризм и события. 4K, FPV, выезды по всей стране. От 200 ₾.',
     alternates: {
         canonical: 'https://breus.media/drone-service',
+        languages: {
+            ru: 'https://breus.media/drone-service',
+            en: 'https://breus.media/drone-service/en',
+        },
     },
     openGraph: {
         title: 'Аэросъёмка дроном для бизнеса в Тбилиси | Breus Media',

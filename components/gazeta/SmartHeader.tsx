@@ -593,51 +593,14 @@ export function SmartHeader({
                     <div className={`flex items-center flex-shrink-0 relative z-[320] gap-2 xl:gap-4 ${isMobileCompactTop ? "mt-1" : "mt-2"}`}>
                         {/* 1. Contact Dropdown (205) */}
                         <div className="hidden md:block">
-                            <DebugWrapper id={205} label="Contact Dropdown">
-                                <div
-                                    className="relative"
-                                    onMouseEnter={() => setIsContactOpen(true)}
-                                    onMouseLeave={() => setIsContactOpen(false)}
+                            <DebugWrapper id={205} label="Contact Link">
+                                <a
+                                    href="tel:+995501103183"
+                                    className={`flex items-center gap-1.5 bg-white/10 rounded-full border border-white/5 hover:bg-white/20 transition-colors font-bold text-white uppercase ${isMobileCompactTop ? "px-2.5 py-1 text-[9px]" : "px-3 py-1.5 text-[10px] md:text-xs"}`}
                                 >
-                                    <button
-                                        onClick={() => setIsContactOpen(!isContactOpen)}
-                                        className={`flex items-center gap-1.5 bg-white/10 rounded-full border border-white/5 hover:bg-white/20 transition-colors font-bold text-white uppercase ${isMobileCompactTop ? "px-2.5 py-1 text-[9px]" : "px-3 py-1.5 text-[10px] md:text-xs"}`}
-                                    >
-                                        <Phone className="w-3 h-3 text-[#22c55e]" />
-                                        <span>+995 501 103 183</span>
-                                        <ChevronDown className="w-3 h-3" />
-                                    </button>
-                                    <AnimatePresence>
-                                        {isContactOpen && (
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 6 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: 6 }}
-                                                transition={{ duration: 0.15 }}
-                                                className="absolute top-full right-0 pt-2 z-[1200]"
-                                            >
-                                                <div className="flex flex-col gap-2 p-3 rounded-2xl shadow-2xl backdrop-blur-xl bg-black border border-white/10 w-56">
-                                                    <div className="grid grid-cols-4 gap-1 p-1">
-                                                        <a href="https://wa.me/995501103183" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 group/social">
-                                                            <div className="w-5 h-5 rounded-full bg-[#25D366]/20 flex items-center justify-center text-[#25D366] group-hover/social:scale-110 transition-transform">
-                                                                <Phone className="w-3 h-3" />
-                                                            </div>
-                                                            <span className="text-[9px] uppercase font-bold text-gray-400">WA</span>
-                                                        </a>
-                                                        <a href="https://instagram.com/breusmedia" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 group/social">
-                                                            <Instagram className="w-5 h-5 text-[#E4405F] hover:scale-110 transition-transform" />
-                                                            <span className="text-[9px] uppercase font-bold text-gray-400">Insta</span>
-                                                        </a>
-                                                        <a href="#" className="flex flex-col items-center gap-1 group/social">
-                                                            <Send className="w-5 h-5 text-[#0088cc] ml-0.5 hover:scale-110 transition-transform" />
-                                                            <span className="text-[9px] uppercase font-bold text-gray-400">Telegram</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
+                                    <Phone className="w-3 h-3 text-[#22c55e]" />
+                                    <span>+995 501 103 183</span>
+                                </a>
                             </DebugWrapper>
                         </div>
 
