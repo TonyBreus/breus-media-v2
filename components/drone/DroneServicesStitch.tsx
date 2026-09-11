@@ -130,20 +130,13 @@ export const DroneServicesStitch = () => {
                                                 </span>
                                             </div>
                                         )}
-                                        {service.slug === 'nedvizhimost' && (
-                                            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-5 pb-3 pt-10">
-                                                <h3 className={`${manrope.className} text-[20px] font-bold leading-[1.2] tracking-[-0.01em] text-white`}>
-                                                    {service.title}
-                                                </h3>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="px-5 pt-3 pb-3 md:pt-5 md:pb-4 flex-grow flex flex-col">
-                                        {service.slug !== 'nedvizhimost' && (
-                                            <h3 className={`${manrope.className} mt-2 md:mt-0 text-[20px] font-bold leading-[1.2] tracking-[-0.01em] text-white mb-0.5 md:mb-1`}>
+                                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent px-5 pb-3 pt-10">
+                                            <h3 className={`${manrope.className} text-[20px] font-bold leading-[1.2] tracking-[-0.01em] text-white`}>
                                                 {service.title}
                                             </h3>
-                                        )}
+                                        </div>
+                                    </div>
+                                    <div className="px-5 pt-3 pb-3 md:pt-4 md:pb-4 flex-grow flex flex-col">
                                         <div className={`${manrope.className} text-[11px] font-semibold tracking-[0.12em] uppercase text-white/[0.45] mb-1 md:mb-2`}>
                                             {service.category}
                                         </div>

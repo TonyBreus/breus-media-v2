@@ -12,7 +12,7 @@ type DroneHeroStitchEnProps = {
     hero: DroneDirectionHeroConfig;
 };
 
-const ROTATION_MS = 5000;
+const ROTATION_MS = 10000;
 const TYPEWRITER_INTERVAL_MS = 40;
 const TYPEWRITER_NEWLINE_PAUSE_MS = 120;
 const MOBILE_HERO_TYPEWRITER_TEXT = 'DRONE FILMING\nFOR REAL ESTATE\nFOR HOTELS\nFOR GEORGIA';
@@ -322,7 +322,7 @@ export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
                     <div className="flex h-full items-center justify-start pb-8 pt-20 md:pt-24">
                         <div className="w-full text-left">
                             <div className="hidden md:block">
-                                <div className="grid text-left md:grid-cols-1 md:gap-6 lg:grid-cols-[55%_42%] lg:gap-[3%]">
+                                <div className="grid md:grid-cols-1 md:gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,0.72fr)] lg:items-center lg:gap-12 xl:gap-16 text-left">
                                     <div className="hidden lg:block lg:-ml-8">
                                         <h1 className="text-5xl md:text-7xl font-bold leading-[0.92] uppercase text-white min-h-[200px]">
                                             <div>DRONE FILMING</div>
@@ -467,47 +467,34 @@ export const DroneHeroStitchEn = ({ hero }: DroneHeroStitchEnProps) => {
                                 </div>
                             </div>
 
-                            <div className="block px-1 md:hidden">
-                                <div className="mx-auto max-w-[320px] text-left">
-                                    <div className="min-h-[124px] text-[34px] font-bold uppercase leading-[1.02] tracking-[0.06em] text-white">
+                            <div className="block md:hidden px-1">
+                                <div className="mx-auto max-w-[340px] text-left">
+                                    <h1 className="text-[32px] sm:text-[36px] font-bold leading-[1.02] tracking-[0.04em] uppercase text-white">
                                         <div>DRONE FILMING</div>
                                         <div>SERVICES</div>
                                         <div className="text-[#C9A84C]">IN GEORGIA</div>
-                                    </div>
+                                    </h1>
 
-                                    <div
-                                        className={`mt-0 text-[15px] font-medium leading-relaxed text-white/80 transition-opacity duration-500 ${
-                                            showMobileDescription ? 'opacity-100' : 'opacity-0'
-                                        }`}
-                                    >
-                                        <p>
-                                            From the ground you miss the key things: a restaurant terrace, construction
-                                            scale, a roof defect.
-                                        </p>
-                                        <p className="mt-2">
-                                            Properties with aerial video sell 68% faster (MLS / NAR).
-                                        </p>
-                                        <p className="mt-2">
-                                            Drones shoot from above and fly inside spaces - FPV technology.
-                                        </p>
-                                        <p className="mt-2">
-                                            One flight: content for ads, a report for investors, or documentation for
-                                            insurance.
-                                        </p>
-                                    </div>
+                                    <p className="mt-3 text-[13px] leading-relaxed text-white/85 font-normal">
+                                        Filming on flagship DJI and FPV drones in Tbilisi and regions of Georgia. 4K video and photo for hotels, real estate, construction and restaurants. Ready materials from 24h, prices from 200 ₾.
+                                    </p>
 
-                                    <a
-                                        href="#directions"
-                                        aria-label="Scroll to directions"
-                                        className={`mt-5 -translate-y-4 inline-flex flex-col items-center justify-center gap-1 text-[#C9A84C] transition-opacity duration-500 ${
-                                            showMobileArrow ? 'opacity-100' : 'pointer-events-none opacity-0'
-                                        }`}
-                                    >
-                                        <ChevronDown className="h-5 w-5 animate-bounce" />
-                                        <span className="whitespace-nowrap text-[12px] font-medium leading-none">
-                                            17 directions - find yours · from 200 ₾
-                                        </span>
-                                    </a>
+                                    <div className="mt-4 flex flex-col gap-2">
+                                        <a
+                                            href="https://wa.me/995501103183?text=Hello%2C%20I%20would%20like%20to%20discuss%20drone%20filming%20in%20Tbilisi."
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#D4A017] px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black shadow-[0_4px_20px_rgba(212,160,23,0.35)] transition-all active:scale-[0.98]"
+                                        >
+                                            Discuss Project in WhatsApp
+                                        </a>
+                                        <a
+                                            href="#pricing"
+                                            className="inline-flex w-full items-center justify-center gap-1.5 rounded-[12px] border border-white/20 bg-white/5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors hover:bg-white/10"
+                                        >
+                                            Rates from 200 ₾ ↓
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
