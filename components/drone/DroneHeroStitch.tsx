@@ -159,9 +159,9 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                     <div className="h-full flex items-center justify-start pt-20 md:pt-24 pb-8">
                         <div className="w-full text-left">
                             <div className="hidden md:block">
-                                <div className="grid md:grid-cols-1 md:gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,0.72fr)] lg:items-center lg:gap-12 xl:gap-16 text-left">
-                                    <div className="hidden lg:block lg:-ml-8">
-                                        <h1 className="text-5xl md:text-7xl font-bold leading-[0.92] uppercase text-white min-h-[200px]">
+                                <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(360px,0.75fr)] md:items-center md:gap-8 lg:gap-12 xl:gap-16 text-left">
+                                    <div className="md:-ml-4 lg:-ml-8">
+                                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[0.92] uppercase text-white min-h-[160px] lg:min-h-[200px]">
                                             <div>АЭРОСЪЁМКА</div>
                                             <div>ДЛЯ БИЗНЕСА</div>
                                             <div className="text-[#C9A84C]">В ГРУЗИИ</div>
@@ -177,7 +177,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                                         y: visibleDesktopPhrases >= index + 1 ? 0 : 8,
                                                     }}
                                                     transition={{ duration: 0.32, ease: 'easeOut' }}
-                                                    className={`${manrope.className} antialiased font-normal text-[16px] leading-[1.65] text-white/[0.88]`}
+                                                    className={`${manrope.className} antialiased font-normal text-[14px] lg:text-[16px] leading-[1.65] text-white/[0.88]`}
                                                 >
                                                     {phrase}
                                                 </motion.p>
@@ -194,21 +194,7 @@ export const DroneHeroStitch = ({ hero }: DroneHeroStitchProps) => {
                                         </div>
                                     </div>
 
-                                    <div className="hidden md:block lg:hidden">
-                                        <DebugWrapper id={10101} label="Hero Tagline">
-                                            <span className="text-[#D4A017] font-bold tracking-[0.28em] text-[10px] md:text-xs mb-3 block uppercase">
-                                                {activeService.price}
-                                            </span>
-                                        </DebugWrapper>
-
-                                        <DebugWrapper id={10110} label={`Hero Title: ${activeService.title}`}>
-                                            <h1 className="text-5xl md:text-7xl font-bold leading-[0.92] text-white mb-4">
-                                                {activeService.title}
-                                            </h1>
-                                        </DebugWrapper>
-                                    </div>
-
-                                    <div className="hidden lg:flex justify-end">
+                                    <div className="hidden md:flex justify-end">
                                         <div className="relative w-full max-w-[480px] overflow-hidden rounded-[10px] border border-white/15 bg-[#090806]/72 shadow-[0_28px_80px_rgba(0,0,0,0.44)] backdrop-blur-xl">
                                             <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-[#D4A017] to-transparent" />
                                             <div className="relative border-b border-white/10 px-6 pb-6 pt-6">
