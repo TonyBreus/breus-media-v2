@@ -15,7 +15,7 @@ const faqData = [
     },
     {
         question: 'Do you work outside Tbilisi?',
-        answer: 'Yes. We shoot across all of Tbilisi - Vake, Saburtalo, Mtatsminda, Didube, Gldani, Isani, Varketili. We travel across Georgia: Batumi, Kutaisi, Borjomi, Kazbegi and other locations. Travel outside Tbilisi is quoted separately.',
+        answer: 'Yes. We film across all of Tbilisi without exception - Vake, Saburtalo, Didi Dighomi, Vera, Mtatsminda, Old Tbilisi, Chugureti, Ortachala, Didube, Gldani, Isani, Samgori and Varketili. We also rapidly travel across Georgia: Batumi, Kutaisi, Rustavi, Mtskheta, Telavi and Kakheti wine chateaux, Borjomi, Gudauri, Kazbegi and Svaneti. Logistics for regional shoots outside Tbilisi are arranged individually.',
     },
     {
         question: 'Do you need a permit to fly a drone?',
