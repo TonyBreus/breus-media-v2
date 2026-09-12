@@ -8,15 +8,6 @@ export const MultiContactWidgetV3 = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [question, setQuestion] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Just open whatsapp with the typed question for now
-        const text = question.trim() ? encodeURIComponent(question) : encodeURIComponent('Здравствуйте! Интересует аэросъёмка в Грузии');
-        window.open(`https://wa.me/995501103183?text=${text}`, '_blank');
-        setQuestion('');
-        setIsOpen(false);
-    };
-
     return (
         <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
             <AnimatePresence>
@@ -84,16 +75,32 @@ export const MultiContactWidgetV3 = () => {
                         </div>
 
                         <div className="p-4 bg-white/5 border-t border-[#2a2a2a]">
-                            <form onSubmit={handleSubmit} className="relative">
+                            <form onSubmit={async (e) => {
+                                e.preventDefault();
+                                if (!question) return;
+                                try {
+                                    await fetch('/api/telegram/webhook', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({ message: `Вопрос с сайта (Дроны V3):\n\n${question}` })
+                                    });
+                                    setQuestion('Отправлено! Скоро свяжемся.');
+                                    setTimeout(() => setIsOpen(false), 2000);
+                                } catch (error) {
+                                    console.error(error);
+                                }
+                            }} className="flex flex-col gap-2">
                                 <input 
                                     type="text" 
-                                    placeholder="Оставьте вопрос..." 
+                                    placeholder="Ваш вопрос (и контакт для связи)..." 
                                     value={question}
                                     onChange={(e) => setQuestion(e.target.value)}
-                                    className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-[10px] py-2.5 pl-3 pr-10 text-xs text-white placeholder-white/40 focus:outline-none focus:border-[#D4A017] transition-colors"
+                                    className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-[10px] py-2.5 px-3 text-xs text-white placeholder-white/40 focus:outline-none focus:border-[#D4A017] transition-colors"
+                                    required
                                 />
-                                <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 text-[#D4A017] p-1">
+                                <button type="submit" className="w-full bg-[#D4A017] hover:bg-white text-black py-2.5 rounded-[10px] text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
                                     <Send className="w-4 h-4" />
+                                    Отправить
                                 </button>
                             </form>
                         </div>
@@ -101,26 +108,40 @@ export const MultiContactWidgetV3 = () => {
                 )}
             </AnimatePresence>
 
-            <button 
-                onClick={() => setIsOpen(!isOpen)}
-                className={`flex items-center gap-3 px-5 py-3.5 rounded-full shadow-[0_0_30px_rgba(212,160,23,0.3)] transition-all ${
-                    isOpen ? 'bg-[#1a1a1a] border border-[#2a2a2a]' : 'bg-[#D4A017] hover:bg-white'
-                }`}
-            >
-                {isOpen ? (
-                    <X className="w-5 h-5 text-white" />
-                ) : (
-                    <>
-                        <div className="relative flex items-center justify-center">
-                            <span className="absolute inline-flex h-full w-full rounded-full bg-black/40 opacity-75 animate-ping" />
-                            <MessageSquare className="w-5 h-5 text-black relative z-10" />
-                        </div>
-                        <span className="text-xs font-bold uppercase tracking-wider text-black">
-                            Отвечаем за 5 мин
-                        </span>
-                    </>
-                )}
-            </button>
+            <div className="flex flex-col gap-3">
+                {/* V2 Style Button (Glass) */}
+                <button 
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="flex items-center gap-3 px-5 py-3 rounded-full backdrop-blur-md bg-black/60 border border-white/10 text-white transition-all hover:bg-black/80"
+                >
+                    <MessageSquare className="w-4 h-4 text-white" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-white">
+                        Остались вопросы? Отвечаем за 5 мин
+                    </span>
+                </button>
+
+                {/* V3 Style Button (Yellow Accent) */}
+                <button 
+                    onClick={() => setIsOpen(!isOpen)}
+                    className={`flex self-end items-center gap-3 px-5 py-3.5 rounded-full shadow-[0_0_30px_rgba(212,160,23,0.3)] transition-all ${
+                        isOpen ? 'bg-[#1a1a1a] border border-[#2a2a2a]' : 'bg-[#D4A017] hover:bg-white'
+                    }`}
+                >
+                    {isOpen ? (
+                        <X className="w-5 h-5 text-white" />
+                    ) : (
+                        <>
+                            <div className="relative flex items-center justify-center">
+                                <span className="absolute inline-flex h-full w-full rounded-full bg-black/40 opacity-75 animate-ping" />
+                                <MessageSquare className="w-5 h-5 text-black relative z-10" />
+                            </div>
+                            <span className="text-xs font-bold uppercase tracking-wider text-black">
+                                Отвечаем за 5 мин
+                            </span>
+                        </>
+                    )}
+                </button>
+            </div>
         </div>
     );
 };
