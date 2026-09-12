@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { DroneHeaderV3 } from '@/components/drone/v3/DroneHeaderV3';
 import { DroneHeroV3 } from '@/components/drone/v3/DroneHeroV3';
-import { YellowStatsV3 } from '@/components/drone/v3/YellowStatsV3';
+import { DroneStatsStripV2 } from '@/components/drone/v2/DroneStatsStripV2';
 import { MultiContactWidgetV3 } from '@/components/drone/v3/MultiContactWidgetV3';
 import { GeoSemanticLayerV3 } from '@/components/drone/v3/GeoSemanticLayerV3';
 
@@ -33,7 +33,7 @@ export default function DroneServiceV3Page() {
             <DroneHeroV3 />
 
             {/* TICKET 3: Contrast Yellow Stats */}
-            <YellowStatsV3 />
+            <DroneStatsStripV2 />
 
             {/* Rest of the page inherited from V2 for a complete experience */}
             <div id="catalog">
