@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
+import { droneServiceItems } from '@/components/drone/droneServicesData';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
-import { ChevronDown, ShieldCheck, Cpu, Target, Compass, Layers, CheckCircle2, MapPin, FileText, Zap } from 'lucide-react';
+import { ChevronDown, ShieldCheck, Cpu, Target, Compass, Layers, CheckCircle2, MapPin, FileText, Zap, ArrowUpRight } from 'lucide-react';
 
 export const DroneIcebergDeepSpecsV10 = () => {
     return (
@@ -92,26 +94,19 @@ export const DroneIcebergDeepSpecsV10 = () => {
                                 <ChevronDown className="w-5 h-5 text-white/50 transition-transform duration-300 group-open:-rotate-180" />
                             </summary>
                             <div className="p-5 md:p-6 pt-0 border-t border-white/5 mt-2">
-                                <div className="space-y-6 mt-4">
-                                    <div className="flex gap-4">
-                                        <FileText className="w-6 h-6 text-[#D4A017] shrink-0 mt-1" />
-                                        <div>
-                                            <h4 className="text-sm font-bold text-white mb-2">Официальное регулирование GCAA</h4>
-                                            <p className="text-sm text-white/70 leading-relaxed">Вся деятельность осуществляется в строгом соответствии с требованиями Агентства гражданской авиации Грузии. Мы соблюдаем ограничения по высоте и зонам, запрещенным для полетов.</p>
-                                        </div>
+                                <div className="mt-4">
+                                    <div className="bg-black/30 p-5 rounded-xl border border-white/5 mb-4">
+                                        <p className="text-sm text-white/80 leading-relaxed">
+                                            Летаем строго по регламенту Агентства гражданской авиации Грузии (GCAA). Обеспечиваем безопасные полёты по всем районам Тбилиси (Ваке, Сабуртало, Диди Дигоми, Старый город, Крцаниси, Ортачала) и регионам (Батуми, Кахетия, Гудаури, Казбеги, Кутаиси). Зону и ограничения вашего объекта проверяем заранее — просто укажите адрес или кадастровый номер при заявке.
+                                        </p>
                                     </div>
-                                    <div className="flex gap-4">
-                                        <MapPin className="w-6 h-6 text-[#D4A017] shrink-0 mt-1" />
+                                    <div className="bg-black/30 p-5 rounded-xl border border-white/5 flex items-start gap-4">
+                                        <Cpu className="w-5 h-5 text-[#D4A017] shrink-0 mt-0.5" />
                                         <div>
-                                            <h4 className="text-sm font-bold text-white mb-2">География регулярных съёмок</h4>
-                                            <p className="text-sm text-white/70 leading-relaxed">Тбилиси (Ваке, Сабуртало, Дигоми, Старый город), Батуми, Кахетия, проверка по кадастру.</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-4">
-                                        <Compass className="w-6 h-6 text-[#D4A017] shrink-0 mt-1" />
-                                        <div>
-                                            <h4 className="text-sm font-bold text-white mb-2">Согласование полётной зоны</h4>
-                                            <p className="text-sm text-white/70 leading-relaxed">Выполняем предварительную проверку локации (по гео-метке или кадастровому коду) на наличие ограничений перед каждым вылетом.</p>
+                                            <h4 className="text-sm font-bold text-white mb-2">Оборудование в регламенте</h4>
+                                            <p className="text-sm text-white/70 leading-relaxed">
+                                                DJI Air 3S (высота, 4K/60fps HDR, GPS, дальность 20 км) · DJI Avata 2 (FPV внутри помещений, 4K, защита винтов) · Insta360 X5 (360° аэропанорамы).
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -149,6 +144,39 @@ export const DroneIcebergDeepSpecsV10 = () => {
                                             <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#D4A017] mt-1.5" /> Полное погружение (FPV-кинематография)</li>
                                         </ul>
                                     </div>
+                                </div>
+                                <div className="mt-6 overflow-x-auto rounded-xl border border-white/5">
+                                    <table className="w-full text-sm text-left min-w-[600px]">
+                                        <thead className="bg-white/5 text-white/90 font-bold">
+                                            <tr>
+                                                <th className="px-4 py-3 border-b border-white/5">Параметр</th>
+                                                <th className="px-4 py-3 border-b border-white/5">DJI Air 3S (Снаружи)</th>
+                                                <th className="px-4 py-3 border-b border-white/5">DJI Avata 2 (Внутри / FPV)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-white/5 text-white/70 bg-black/30">
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-white/90">Основная задача</td>
+                                                <td className="px-4 py-3">Масштаб, фасад, территория, окружение</td>
+                                                <td className="px-4 py-3">Динамика, пролёт сквозь комнаты и залы</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-white/90">Локации</td>
+                                                <td className="px-4 py-3">Открытые пространства, экстерьер, высота</td>
+                                                <td className="px-4 py-3">Интерьеры, залы, арки, склады, цеха</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-white/90">Разрешение</td>
+                                                <td className="px-4 py-3">4K HDR до 60/120 fps (10-bit D-Log M)</td>
+                                                <td className="px-4 py-3">4K 60 fps (сверхширокий угол 155°)</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-white/90">Безопасность в интерьере</td>
+                                                <td className="px-4 py-3">Только открытые пространства</td>
+                                                <td className="px-4 py-3">Встроенная защита винтов (100% safe для людей)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </details>
@@ -199,6 +227,41 @@ export const DroneIcebergDeepSpecsV10 = () => {
                                             </div>
                                             <p className="text-xs text-white/60 leading-relaxed pl-8">{item.text}</p>
                                         </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </details>
+
+                        {/* SEC 5: Registry */}
+                        <details className="group bg-white/5 rounded-2xl border border-white/10 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                            <summary className="flex items-center justify-between p-5 md:p-6 cursor-pointer select-none">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                                        <Layers className="w-5 h-5 text-[#D4A017]" />
+                                    </div>
+                                    <h3 className="text-base md:text-lg font-bold text-white">Полный реестр всех 18 направлений съёмки</h3>
+                                </div>
+                                <ChevronDown className="w-5 h-5 text-white/50 transition-transform duration-300 group-open:-rotate-180" />
+                            </summary>
+                            <div className="p-5 md:p-6 pt-0 border-t border-white/5 mt-2">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-4">
+                                    {droneServiceItems.map((item, i) => (
+                                        <Link 
+                                            key={i} 
+                                            href={item.primaryHref}
+                                            className="group/link flex flex-col justify-between p-4 bg-black/40 rounded-xl border border-white/5 hover:border-white/20 transition-all hover:bg-white/[0.02]"
+                                        >
+                                            <div className="flex items-start justify-between mb-3">
+                                                <h4 className="text-sm font-bold text-white/90 group-hover/link:text-white transition-colors pr-4">
+                                                    {item.title}
+                                                </h4>
+                                                <ArrowUpRight className="w-4 h-4 text-white/20 group-hover/link:text-[#D4A017] transition-colors shrink-0" />
+                                            </div>
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-[10px] uppercase tracking-wider text-white/40">{item.category}</span>
+                                                <span className="text-xs font-bold text-[#D4A017]">{item.price}</span>
+                                            </div>
+                                        </Link>
                                     ))}
                                 </div>
                             </div>
