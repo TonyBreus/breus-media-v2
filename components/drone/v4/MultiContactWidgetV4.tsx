@@ -109,51 +109,18 @@ export const MultiContactWidgetV4 = () => {
             </AnimatePresence>
 
             <div className="flex flex-col items-end gap-3">
-                {/* V2 Style Original (Wide pill with green button) */}
+                {/* V2 Style Original (Compact Pill) */}
                 <button 
                     onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center justify-between bg-[#111] backdrop-blur-xl border border-white/10 p-1.5 pl-4 rounded-full shadow-2xl transition-all hover:bg-[#1a1a1a] w-full min-w-[280px]"
+                    className="flex items-center gap-4 bg-[#111]/90 backdrop-blur-xl border border-white/10 p-1.5 pl-5 rounded-full shadow-2xl transition-all hover:bg-[#1a1a1a]"
                 >
                     <div className="flex flex-col text-left">
                         <span className="text-[10px] uppercase tracking-wider text-white/50 font-bold leading-tight">Остались вопросы?</span>
                         <span className="text-sm text-white font-medium leading-tight">Отвечаем за 5 минут</span>
                     </div>
-                    <div className="bg-[#25D366] text-white p-2.5 rounded-full flex items-center justify-center">
+                    <div className="bg-[#25D366] text-white p-2.5 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(37,211,102,0.3)]">
                         <MessageCircle className="w-5 h-5" />
                     </div>
-                </button>
-
-                {/* V2 Style Button (Glass Pill) */}
-                <button 
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="flex self-end items-center gap-3 px-5 py-3 rounded-full backdrop-blur-md bg-black/60 border border-white/10 text-white transition-all hover:bg-black/80"
-                >
-                    <MessageSquare className="w-4 h-4 text-white" />
-                    <span className="text-xs font-bold uppercase tracking-wider text-white">
-                        Остались вопросы? Отвечаем за 5 мин
-                    </span>
-                </button>
-
-                {/* V3 Style Button (Yellow Accent) */}
-                <button 
-                    onClick={() => setIsOpen(!isOpen)}
-                    className={`flex self-end items-center gap-3 px-5 py-3.5 rounded-full shadow-[0_0_30px_rgba(212,160,23,0.3)] transition-all ${
-                        isOpen ? 'bg-[#1a1a1a] border border-[#2a2a2a]' : 'bg-[#D4A017] hover:bg-white'
-                    }`}
-                >
-                    {isOpen ? (
-                        <X className="w-5 h-5 text-white" />
-                    ) : (
-                        <>
-                            <div className="relative flex items-center justify-center">
-                                <span className="absolute inline-flex h-full w-full rounded-full bg-black/40 opacity-75 animate-ping" />
-                                <MessageSquare className="w-5 h-5 text-black relative z-10" />
-                            </div>
-                            <span className="text-xs font-bold uppercase tracking-wider text-black">
-                                Отвечаем за 5 мин
-                            </span>
-                        </>
-                    )}
                 </button>
             </div>
         </div>
