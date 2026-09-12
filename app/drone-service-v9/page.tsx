@@ -6,6 +6,7 @@ import { MultiContactWidgetV6 } from '@/components/drone/v6/MultiContactWidgetV6
 import { GeoSemanticLayerV3 } from '@/components/drone/v3/GeoSemanticLayerV3';
 
 import { DroneServicesHorizontalClustersV9 } from '@/components/drone/v9/DroneServicesHorizontalClustersV9';
+import { DroneIcebergDeepSpecsV9 } from '@/components/drone/v9/DroneIcebergDeepSpecsV9';
 import { DronePricingV2 } from '@/components/drone/v2/DronePricingV2';
 import { DroneProcessStitch } from '@/components/drone/DroneProcessStitch';
 import { DroneFAQExpanded } from '@/components/drone/DroneFAQExpanded';
@@ -42,6 +43,9 @@ export default function DroneServiceV9Page() {
             <div id="pricing">
                 <DronePricingV2 />
             </div>
+
+            {/* Секция Айсберга: восстановленная фактура из v1 */}
+            <DroneIcebergDeepSpecsV9 />
 
             <DroneFAQExpanded />
             <DroneFooterStitch />
