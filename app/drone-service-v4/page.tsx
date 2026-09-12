@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { DroneHeaderV4 } from '@/components/drone/v4/DroneHeaderV4';
 import { DroneHeroV3 } from '@/components/drone/v3/DroneHeroV3';
 import { DroneStatsStripV2 } from '@/components/drone/v2/DroneStatsStripV2';
-import { MultiContactWidgetV3 } from '@/components/drone/v3/MultiContactWidgetV3';
+import { MultiContactWidgetV4 } from '@/components/drone/v4/MultiContactWidgetV4';
 import { GeoSemanticLayerV3 } from '@/components/drone/v3/GeoSemanticLayerV3';
 
 import { DroneServicesClustersV2 } from '@/components/drone/v2/DroneServicesClustersV2';
@@ -44,7 +44,7 @@ export default function DroneServiceV4Page() {
             <DroneFAQExpanded />
             <DroneFooterStitch />
 
-            <MultiContactWidgetV3 />
+            <MultiContactWidgetV4 />
         </main>
     );
 }
