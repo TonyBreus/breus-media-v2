@@ -15,8 +15,8 @@ interface FloatingWhatsAppButtonProps {
 export function FloatingWhatsAppButton({ lang, text, href }: FloatingWhatsAppButtonProps) {
     const pathname = usePathname();
     
-    // Hide this global button on V3, V4 and V5 where we have the specific A/B widget
-    if (pathname?.includes('/drone-service-v3') || pathname?.includes('/drone-service-v4') || pathname?.includes('/drone-service-v5')) return null;
+    // Hide this global button on V3, V4, V5 and V6 where we have the specific A/B widget
+    if (pathname?.includes('/drone-service-v3') || pathname?.includes('/drone-service-v4') || pathname?.includes('/drone-service-v5') || pathname?.includes('/drone-service-v6')) return null;
 
     const isEn = lang ? lang === "en" : pathname?.endsWith("/en") || pathname?.includes("/en/");
     const isDrone = pathname?.includes("/drone");
