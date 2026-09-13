@@ -38,7 +38,7 @@ export const DroneHeroV11 = () => {
 
     return (
         <DebugWrapper id={14003} label="Drone Hero V11">
-            <section className="relative isolate min-h-[100vh] min-h-[100dvh] overflow-hidden bg-[#080808] border-b border-[#2a2a2a] pt-28 md:pt-36 pb-12 flex flex-col justify-center">
+            <section className="relative isolate min-h-[100vh] min-h-[100dvh] overflow-hidden bg-[#080808] border-b border-[#2a2a2a] pt-20 md:pt-28 pb-12 flex flex-col justify-center">
                 
                 {/* Background image rotation */}
                 <AnimatePresence initial={false}>
@@ -58,8 +58,8 @@ export const DroneHeroV11 = () => {
                 <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-black/40 md:via-[#080808]/60 md:bg-[linear-gradient(90deg,rgba(8,8,8,0.95)_0%,rgba(8,8,8,0.7)_50%,rgba(8,8,8,0.3)_100%)]" />
 
                 <div className="container relative z-10 mx-auto px-6 h-full flex items-center justify-center">
-                    {/* Сбалансированное оптическое центрирование с учетом верхнего Announcement Bar */}
-                    <div className="w-full max-w-4xl text-center -translate-y-2 sm:-translate-y-4 md:-translate-y-6 transition-transform duration-300">
+                    {/* Оптический центр с подъемом на 10-15% над нижней границей */}
+                    <div className="w-full max-w-4xl text-center -translate-y-6 sm:-translate-y-10 md:-translate-y-12 transition-transform duration-300">
                         <h1 className="text-[30px] sm:text-[40px] md:text-5xl lg:text-[64px] font-bold leading-[1.08] tracking-tight text-white uppercase drop-shadow-xl">
                             Аэросъёмка <br className="hidden md:block"/> для бизнеса в Грузии
                         </h1>

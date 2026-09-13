@@ -1,9 +1,9 @@
 ✅ Release Drone Service `/drone-service-v11` — Announcement Bar Ticker & Unified Top Navigation (2026-09-13):
 - feat(drone-v11-header): создан `DroneHeaderV11.tsx`, объединяющий Announcement Bar и основную навигацию в единый фиксированный контейнер (`fixed top-0 left-0 w-full z-50 flex flex-col`).
-- feat(drone-v11-ticker): бегущая строка вынесена на самый верхний уровень над логотипом и меню; убран триггер скролла (`scrollY > 120`) — строка видна сразу со старта в режиме Announcement Bar (`bg-black/90 backdrop-blur-md border-b border-white/5` с золотым текстом `#D4A017` и плавным бесконечным скроллом).
-- feat(drone-v11-blur): для нижнего слоя шапки настроен `backdrop-blur-md` при скролле, обеспечивая чистое уплывание контента под шапку.
-- feat(drone-v11-hero): создан `DroneHeroV11.tsx` с компенсированным отступом (`pt-28 md:pt-36`) и мягким оптическим центрированием (`-translate-y-2 sm:-translate-y-4 md:-translate-y-6`), исключающим перекрытие H1/подзаголовка новой шапкой.
-- feat(drone-v11-route): развернут изолированный роут `app/drone-service-v11/page.tsx` с полной воронкой v10, а также настроено исключение в `FloatingWhatsAppButton.tsx`.
+- feat(drone-v11-ticker): бегущая строка скрыта на первом экране и плавно появляется сверху синхронно с плавающим виджетом связи (`scrollY >= 180px`), сохраняя чистоту Hero-экрана на старте.
+- feat(drone-v11-glass): шапке возвращена прозрачность на первом экране с деликатным 5% затемнением (`bg-black/[0.05]`); при скролле активируется легкий полупрозрачный блюр (`bg-black/35 backdrop-blur-md border-b border-white/10`).
+- feat(drone-v11-hero): в `DroneHeroV11.tsx` скорректированы отступы (`pt-20 md:pt-28`) и сохранено оптическое центрирование (`-translate-y-6 sm:-translate-y-10 md:-translate-y-12`), текст и H1 идеально сбалансированы.
+- feat(drone-v11-route): развернут изолированный роут `app/drone-service-v11/page.tsx`, исключен из глобального WhatsApp. Проверен Next.js build (127 страниц, 0 ошибок).
 
 ✅ Hero Lift (10-15%) & B2C Integration in `/drone-service-v10` (2026-09-13):
 - feat(drone-v10-hero): создан изолированный компонент `DroneHeroV10.tsx` со смещением контейнера вверх (`-translate-y-8 sm:-translate-y-12`, верхний отступ `pt-16 md:pt-24`), устраняющим визуальное проседание к нижней границе экрана на смартфонах (390px).
