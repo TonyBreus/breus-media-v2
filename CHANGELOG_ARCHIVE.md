@@ -1,3 +1,10 @@
+✅ Release Drone Service `/drone-service-v11` — Announcement Bar Ticker & Unified Top Navigation (2026-09-13):
+- feat(drone-v11-header): создан `DroneHeaderV11.tsx`, объединяющий Announcement Bar и основную навигацию в единый фиксированный контейнер (`fixed top-0 left-0 w-full z-50 flex flex-col`).
+- feat(drone-v11-ticker): бегущая строка вынесена на самый верхний уровень над логотипом и меню; убран триггер скролла (`scrollY > 120`) — строка видна сразу со старта в режиме Announcement Bar (`bg-black/90 backdrop-blur-md border-b border-white/5` с золотым текстом `#D4A017` и плавным бесконечным скроллом).
+- feat(drone-v11-blur): для нижнего слоя шапки настроен `backdrop-blur-md` при скролле, обеспечивая чистое уплывание контента под шапку.
+- feat(drone-v11-hero): создан `DroneHeroV11.tsx` с компенсированным отступом (`pt-28 md:pt-36`) и мягким оптическим центрированием (`-translate-y-2 sm:-translate-y-4 md:-translate-y-6`), исключающим перекрытие H1/подзаголовка новой шапкой.
+- feat(drone-v11-route): развернут изолированный роут `app/drone-service-v11/page.tsx` с полной воронкой v10, а также настроено исключение в `FloatingWhatsAppButton.tsx`.
+
 ✅ Hero Lift (10-15%) & B2C Integration in `/drone-service-v10` (2026-09-13):
 - feat(drone-v10-hero): создан изолированный компонент `DroneHeroV10.tsx` со смещением контейнера вверх (`-translate-y-8 sm:-translate-y-12`, верхний отступ `pt-16 md:pt-24`), устраняющим визуальное проседание к нижней границе экрана на смартфонах (390px).
 - copy(drone-v10-hero): обновлен подзаголовок с добавлением B2C-сегмента: «Съёмка на дроны DJI снаружи и манёвренные FPV внутри помещений в Тбилиси и регионах Грузии. 4K-видео и фото для недвижимости, ресторанов, отелей, брендов, а также частных объектов и личных проектов. Готовые материалы от 24 часов.».
