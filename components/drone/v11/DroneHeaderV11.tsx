@@ -28,7 +28,7 @@ export const DroneHeaderV11 = () => {
             {/* Единый фиксированный контейнер: Announcement Bar + Main Header */}
             <div className="fixed top-0 left-0 w-full z-50 flex flex-col pointer-events-none">
                 
-                {/* 1. БЕГУЩАЯ СТРОКА (Появляется синхронно с виджетом связи при scrollY >= 180) */}
+                {/* 1. БЕГУЩАЯ СТРОКА (Появляется синхронно с виджетом связи при scrollY >= 180, затемнение 20%) */}
                 <AnimatePresence>
                     {isScrolled && (
                         <motion.div
@@ -36,7 +36,7 @@ export const DroneHeaderV11 = () => {
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.35, ease: 'easeOut' }}
-                            className="w-full bg-black/80 backdrop-blur-md border-b border-white/5 py-1.5 md:py-2 overflow-hidden flex items-center select-none pointer-events-auto"
+                            className="w-full bg-black/20 backdrop-blur-md border-b border-white/5 py-1.5 md:py-2 overflow-hidden flex items-center select-none pointer-events-auto"
                         >
                             <motion.div
                                 animate={{ x: [0, -1000] }}
@@ -59,12 +59,12 @@ export const DroneHeaderV11 = () => {
                     )}
                 </AnimatePresence>
 
-                {/* 2. ОСНОВНАЯ ШАПКА (НИЖНИЙ СЛОЙ: прозрачная на старте с затемнением 5%, легкое стекло при скролле) */}
+                {/* 2. ОСНОВНАЯ ШАПКА (НИЖНИЙ СЛОЙ: полностью прозрачная bg-transparent на старте, затемнение 20% при скролле) */}
                 <header
                     className={`w-full pointer-events-auto transition-all duration-300 ${
                         isScrolled 
-                            ? 'bg-black/35 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20' 
-                            : 'bg-black/[0.05] border-b border-transparent'
+                            ? 'bg-black/20 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20' 
+                            : 'bg-transparent border-b border-transparent'
                     }`}
                 >
                     <div className="container mx-auto px-6 h-14 md:h-18 flex items-center justify-between">
