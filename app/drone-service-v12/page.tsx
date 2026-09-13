@@ -1,0 +1,58 @@
+import type { Metadata } from 'next';
+import { DroneHeaderV12 } from '@/components/drone/v12/DroneHeaderV12';
+import { DroneHeroV11 } from '@/components/drone/v11/DroneHeroV11';
+import { DroneStatsStripV2 } from '@/components/drone/v2/DroneStatsStripV2';
+import { MultiContactWidgetV6 } from '@/components/drone/v6/MultiContactWidgetV6';
+import { GeoSemanticLayerV3 } from '@/components/drone/v3/GeoSemanticLayerV3';
+
+import { DroneServicesHorizontalClustersV9 } from '@/components/drone/v9/DroneServicesHorizontalClustersV9';
+import { DronePricingV10 } from '@/components/drone/v10/DronePricingV10';
+import { DroneAddonsV10 } from '@/components/drone/v10/DroneAddonsV10';
+import { DroneProcessV10 } from '@/components/drone/v10/DroneProcessV10';
+import { DroneIcebergDeepSpecsV10 } from '@/components/drone/v10/DroneIcebergDeepSpecsV10';
+import { DroneFAQExpanded } from '@/components/drone/DroneFAQExpanded';
+import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
+
+export const metadata: Metadata = {
+    title: 'Аэросъёмка для бизнеса и частных объектов в Грузии | V12',
+    description: 'Съёмка на дроны DJI снаружи и манёвренные FPV внутри помещений в Тбилиси и регионах Грузии. 4K-видео и фото для недвижимости, ресторанов, отелей, брендов, а также частных объектов и личных проектов. Готовые материалы от 24 часов.',
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
+
+export default function DroneServiceV12Page() {
+    return (
+        <main className="relative min-h-screen bg-[#080808] text-white selection:bg-[#D4A017] selection:text-black">
+            <DroneHeaderV12 />
+            <GeoSemanticLayerV3 />
+            
+            <DroneHeroV11 />
+            
+            <div id="proof-metrics">
+                <DroneStatsStripV2 />
+            </div>
+
+            <div id="catalog">
+                <DroneServicesHorizontalClustersV9 />
+            </div>
+
+            <div id="pricing">
+                <DronePricingV10 />
+            </div>
+
+            <DroneAddonsV10 />
+
+            <DroneProcessV10 />
+
+            <DroneIcebergDeepSpecsV10 />
+
+            <DroneFAQExpanded />
+            <DroneFooterStitch />
+
+            {/* Hidden widget that appears on scroll */}
+            <MultiContactWidgetV6 />
+        </main>
+    );
+}

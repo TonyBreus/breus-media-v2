@@ -1,3 +1,7 @@
+✅ Release Drone Service `/drone-service-v12` — Ultra-Light Crystal Glass Navigation (2026-09-13):
+- feat(drone-v12-header): создан `DroneHeaderV12.tsx` с ультралегким затемнением 10-12% (`bg-black/[0.12]`), диффузией `backdrop-blur-2xl` и микрограницей `border-white/[0.05]`. Шапка обрела хрустальную воздушность, полностью освободив визуальное пространство вверху экрана.
+- feat(drone-v12-route): развернут изолированный роут `app/drone-service-v12/page.tsx`, сохраняющий всю актуальную воронку V10/V11. Настроено исключение в `FloatingWhatsAppButton.tsx`.
+
 ✅ Release Drone Service `/drone-service-v11` — Announcement Bar Ticker & Unified Top Navigation (2026-09-13):
 - feat(drone-v11-header): создан `DroneHeaderV11.tsx`, объединяющий Announcement Bar и основную навигацию в единый фиксированный контейнер (`fixed top-0 left-0 w-full z-50 flex flex-col`).
 - feat(drone-v11-ticker): реализован Вариант 2 — бегущая строка расположена над шапкой в едином монолитном стеклянном контейнере; место под строку зафиксировано (`h-6 md:h-7`), появление через плавный fade-in на 180px полностью устранило прыжок шапки (Layout Shift = 0).
