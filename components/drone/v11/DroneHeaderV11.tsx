@@ -25,20 +25,20 @@ export const DroneHeaderV11 = () => {
 
     return (
         <>
-            {/* Единый монолитный стеклянный контейнер: Announcement Bar + Main Header без внутренних швов */}
+            {/* Единый монолитный стеклянный контейнер: легкое воздушное стекло без тяжелой черноты */}
             <div 
                 className={`fixed top-0 left-0 w-full z-50 flex flex-col transition-all duration-300 ${
                     isScrolled 
-                        ? 'bg-black/65 backdrop-blur-md border-b border-white/10 shadow-xl shadow-black/40' 
+                        ? 'bg-black/25 backdrop-blur-xl border-b border-white/[0.08]' 
                         : 'bg-transparent border-b border-transparent'
                 }`}
             >
-                {/* 1. БЕГУЩАЯ СТРОКА НАД ШАПКОЙ (Фиксированная высота h-6 md:h-7, проявляется через fade-in БЕЗ прыжка шапки) */}
+                {/* 1. БЕГУЩАЯ СТРОКА НАД ШАПКОЙ (Компактная, воздушная, проявляется через fade-in БЕЗ прыжка) */}
                 <div 
                     className={`w-full overflow-hidden flex items-center select-none transition-opacity duration-300 ${
                         isScrolled 
-                            ? 'opacity-100 pointer-events-auto py-1 md:py-1.5' 
-                            : 'opacity-0 pointer-events-none py-1 md:py-1.5'
+                            ? 'opacity-100 pointer-events-auto py-0.5 md:py-1' 
+                            : 'opacity-0 pointer-events-none py-0.5 md:py-1'
                     }`}
                 >
                     <motion.div
