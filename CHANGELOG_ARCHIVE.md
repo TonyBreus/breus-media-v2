@@ -1,3 +1,19 @@
+✅ Drone Service Evolution V2–V10 & Full Production Synchronization (2026-09-12 / 2026-09-13):
+- feat(drone-v2): L3-архитектура «Айсберг» для `/drone-services/drone-real-estate-v2` (30 факторов в компактный блок с переключением Accordion/Swipe-таблица, сохранение SEO через CSS-скрытие).
+- feat(drone-v3): изолированный роут `/drone-service-v3`, новая шапка, Hero без тяжелой боковой карусели, A/B плавающий виджет связи (глобальная кнопка WhatsApp отключена на этих роутах).
+- feat(drone-v4): прозрачная шапка при скролле, возврат переключателя языка [RU] в мобильной шапке, тест 3 вариантов виджетов (выбран Вариант А: темный компактный с золотым акцентом).
+- feat(drone-v5): связка Hero ➔ Прогрев: клик по «Смотреть направления» скроллит к `#proof-metrics` (цифры и доказательства), убран лишний текст перед каталогом.
+- feat(drone-v6): мобильная эргономика: Hero поднят, кнопка «Тарифы» перенесена под метрики, из мобильной шапки ссылка на тарифы убрана в бургер-меню, виджет связи скрыт на первом экране (появляется при scrollY > 180px).
+- feat(drone-v7): восстановление привычного первого экрана: возврат кнопки «Тарифы» в Hero под «Смотреть направления», сохранение скрытого виджета и компактной шапки.
+- feat(drone-v8): горизонтальный свайп-каталог карточек (`w-[85vw] snap-center`) по образцу v1 с горизонтальной строкой чипов категорий.
+- feat(drone-v9): статичная сетка категорий 2x2 вместо горизонтального скролла чипов, заголовок «Направления съёмки» (все элементы первого экрана каталога помещаются в 1 экран смартфона без вертикальной прокрутки); добавлен блок «Айсберг» (нативные HTML `<details>`) с регламентами и базой знаний.
+- feat(drone-v10): полномасштабная синхронизация и финализация воронки по образцу v1:
+  1. Создан блок `DroneAddonsV10` («Дополнительно к любому выезду»: Reels от 150 ₾, 4K от 250 ₾, 360° от 100 ₾, экспресс +50%) сразу после тарифов.
+  2. Создан `DroneProcessV10` с 4 чистыми шагами процесса работы.
+  3. Переработан `DroneIcebergDeepSpecsV10`: 5 нативных аккордеонов с восстановлением текстов из v1 слово в слово (6 бизнес-задач с болями и решениями, официальный регламент GCAA и список оборудования, интерактивная таблица сравнения DJI Air 3S vs Avata 2, 6 стандартов продакшна Breus Media, полный реестр 18 направлений с перелинковкой на L3).
+  4. Создан `DronePricingV10`: восстановлены все 5 оригинальных тарифов (от 200 ₾ до 700 ₾, включая FPV и комплексные пакеты) с генерацией умных прямых ссылок в WhatsApp с предзаполненным названием тарифа и ценой.
+  5. Логика страницы: Hero ➔ Метрики ➔ Каталог ➔ Тарифы ➔ Допы ➔ Процесс ➔ Айсберг ➔ FAQ.
+
 ✅ Upgraded Audit & Roaster Skills v3.0 with Cluster 3 SSR Drawer/Accordion validation (strict ban on client-only {isOpen && <Content />}, SearchGPT/Googlebot DOM readiness verified via curl) and instituted Vercel Preview testing protocol (replacing localhost; 2 live links: Было vs Стало v3.0 for mobile Safari/Chrome testing) documented in PROJECT_RULES.md (2026-09-05)
 ✅ Synchronized Audit & Roaster Skills v3.0 into repository (`site-docs/skills/PAGE_AUDITOR_30_FACTOR.md`, `site-docs/skills/WEBSITE_CONVERSION_ROASTER.md`) and instituted mandatory "Lexical Clarity Filter" + "Human-in-the-Loop Gateway" table review before any copywriting/pricing/FAQ commit and deploy (2026-09-05)
 ✅ Executed master Card 3.0 overhaul across NichesStack desktop sections 02-12: embedded titles inside photos, purged legacy tags (HOT, ХОД, СТАРТ, SALE, eyebrow), expanded clamp to 3 lines with zero ellipses, and mapped direct L3 links (2026-09-04)
