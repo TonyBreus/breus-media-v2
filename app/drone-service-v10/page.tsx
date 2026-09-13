@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { DroneHeaderV6 } from '@/components/drone/v6/DroneHeaderV6';
-import { DroneHeroV7 } from '@/components/drone/v7/DroneHeroV7';
+import { DroneHeroV10 } from '@/components/drone/v10/DroneHeroV10';
 import { DroneStatsStripV2 } from '@/components/drone/v2/DroneStatsStripV2';
 import { MultiContactWidgetV6 } from '@/components/drone/v6/MultiContactWidgetV6';
 import { GeoSemanticLayerV3 } from '@/components/drone/v3/GeoSemanticLayerV3';
@@ -15,7 +15,7 @@ import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
 
 export const metadata: Metadata = {
     title: 'Аэросъёмка для бизнеса в Грузии | V10',
-    description: 'Съёмка на дроны DJI снаружи и манёвренные FPV внутри помещений в Тбилиси и регионах Грузии. 4K-видео и фото для отелей, недвижимости, стройки, ресторанов, инспекций и брендов.',
+    description: 'Съёмка на дроны DJI снаружи и манёвренные FPV внутри помещений в Тбилиси и регионах Грузии. 4K-видео и фото для недвижимости, ресторанов, отелей, брендов, а также частных объектов и личных проектов. Готовые материалы от 24 часов.',
     robots: {
         index: false,
         follow: false,
@@ -28,7 +28,7 @@ export default function DroneServiceV10Page() {
             <DroneHeaderV6 />
             <GeoSemanticLayerV3 />
             
-            <DroneHeroV7 />
+            <DroneHeroV10 />
             
             <div id="proof-metrics">
                 <DroneStatsStripV2 />
