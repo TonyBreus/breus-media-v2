@@ -1,3 +1,8 @@
+✅ Release Drone Service `/drone-service-v13` — Compact Kinetic Glass & Silhouette Depth (2026-09-13):
+- feat(drone-v13-glass): создан `DroneHeaderV13.tsx` с мягким стеклом `bg-black/35 backdrop-blur-[6px]` и микротенями на типографике, дающими эффект просвечивания живых силуэтов букв при скролле без потери читаемости.
+- feat(drone-v13-compact): зазор между бегущей строкой и шапкой сокращен вдвое, высота основной шапки уменьшена до 44px (`h-11 md:h-12`), пустое пространство под логотипом сокращено на 50%.
+- feat(drone-v13-route): развернут изолированный роут `app/drone-service-v13/page.tsx`, исключен из глобального WhatsApp.
+
 ✅ Release Drone Service `/drone-service-v12` — Ultra-Light Crystal Glass Navigation (2026-09-13):
 - feat(drone-v12-header): создан `DroneHeaderV12.tsx` с ультралегким затемнением 10-12% (`bg-black/[0.12]`), диффузией `backdrop-blur-2xl` и микрограницей `border-white/[0.05]`. Шапка обрела хрустальную воздушность, полностью освободив визуальное пространство вверху экрана.
 - feat(drone-v12-route): развернут изолированный роут `app/drone-service-v12/page.tsx`, сохраняющий всю актуальную воронку V10/V11. Настроено исключение в `FloatingWhatsAppButton.tsx`.

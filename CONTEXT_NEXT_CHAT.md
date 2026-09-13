@@ -1,3 +1,7 @@
+✅ Release Drone Service `/drone-service-v13` — Compact Kinetic Glass & Silhouette Depth (2026-09-13):
+- Created isolated `DroneHeaderV13.tsx` with calibrated `bg-black/35 backdrop-blur-[6px]` and micro drop-shadows on typography (`drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]`), allowing background text silhouettes to subtly show through during scroll without interfering with logo and ticker legibility.
+- Cut vertical void in half: squeezed ticker spacing to `h-5 md:h-6 py-0.5`, compressed main header height from 56px to 44px (`h-11 md:h-12`), eliminating 50% of empty space under the logo.
+- Deployed isolated route `app/drone-service-v13/page.tsx` inheriting full production-ready funnel. Excluded `/drone-service-v13` from global WhatsApp button. Validated clean build across 129 pages.
 ✅ Release Drone Service `/drone-service-v12` — Ultra-Light Crystal Glass Navigation (2026-09-13):
 - Created isolated `DroneHeaderV12.tsx` with ultra-delicate 10-12% dark tint (`bg-black/[0.12]`) and maximum frosted diffusion (`backdrop-blur-2xl border-b border-white/[0.05]`), eliminating any visual heaviness and returning 100% feeling of air and openness to the top of the viewport.
 - Preserved zero layout shift: running ticker sits above the header, smoothly fading in on scroll (`scrollY >= 180px`) without displacing the logo or navigation links.
