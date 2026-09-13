@@ -1,7 +1,7 @@
 ✅ Release Drone Service `/drone-service-v11` — Announcement Bar Ticker & Unified Top Navigation (2026-09-13):
 - feat(drone-v11-header): создан `DroneHeaderV11.tsx`, объединяющий Announcement Bar и основную навигацию в единый фиксированный контейнер (`fixed top-0 left-0 w-full z-50 flex flex-col`).
-- feat(drone-v11-ticker): бегущая строка скрыта на первом экране и плавно появляется сверху синхронно с плавающим виджетом связи (`scrollY >= 180px`), сохраняя чистоту Hero-экрана на старте.
-- feat(drone-v11-glass): шапке возвращена 100% прозрачность на первом экране (`bg-transparent`); при скролле активируется деликатное затемнение ровно 20% с матовым стеклом (`bg-black/20 backdrop-blur-md border-b border-white/10`) для шапки и строки.
+- feat(drone-v11-ticker): реализован Вариант 2 — бегущая строка расположена над шапкой в едином монолитном стеклянном контейнере; место под строку зафиксировано (`h-6 md:h-7`), появление через плавный fade-in на 180px полностью устранило прыжок шапки (Layout Shift = 0).
+- feat(drone-v11-glass): полностью ликвидирован шов между строкой и шапкой — общий фон `bg-black/65 backdrop-blur-md border-b border-white/10` применен к внешнему контейнеру; на первом экране сохранена 100% прозрачность `bg-transparent`. Слова в строке усилены ярким золотым `#F59E0B`.
 - feat(drone-v11-hero): в `DroneHeroV11.tsx` скорректированы отступы (`pt-20 md:pt-28`) и сохранено оптическое центрирование (`-translate-y-6 sm:-translate-y-10 md:-translate-y-12`), текст и H1 идеально сбалансированы.
 - feat(drone-v11-route): развернут изолированный роут `app/drone-service-v11/page.tsx`, исключен из глобального WhatsApp. Проверен Next.js build (127 страниц, 0 ошибок).
 

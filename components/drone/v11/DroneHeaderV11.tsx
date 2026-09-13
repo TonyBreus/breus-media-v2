@@ -25,49 +25,44 @@ export const DroneHeaderV11 = () => {
 
     return (
         <>
-            {/* Единый фиксированный контейнер: Announcement Bar + Main Header */}
-            <div className="fixed top-0 left-0 w-full z-50 flex flex-col pointer-events-none">
-                
-                {/* 1. БЕГУЩАЯ СТРОКА (Появляется синхронно с виджетом связи при scrollY >= 180, затемнение 20%) */}
-                <AnimatePresence>
-                    {isScrolled && (
-                        <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.35, ease: 'easeOut' }}
-                            className="w-full bg-black/20 backdrop-blur-md border-b border-white/5 py-1.5 md:py-2 overflow-hidden flex items-center select-none pointer-events-auto"
-                        >
-                            <motion.div
-                                animate={{ x: [0, -1000] }}
-                                transition={{ repeat: Infinity, duration: 35, ease: 'linear' }}
-                                className="flex items-center whitespace-nowrap min-w-max"
-                            >
-                                {[...tickerItems, ...tickerItems, ...tickerItems].map((item, idx) => {
-                                    const text = typeof item === 'string' ? item : item.text;
-                                    return (
-                                        <div key={idx} className="flex items-center">
-                                            <span className="px-3 md:px-4 text-[9px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-[#D4A017]">
-                                                {text}
-                                            </span>
-                                            <span className="w-1.5 h-1.5 rounded-full bg-white/20 mx-1.5 md:mx-2" />
-                                        </div>
-                                    );
-                                })}
-                            </motion.div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-
-                {/* 2. ОСНОВНАЯ ШАПКА (НИЖНИЙ СЛОЙ: полностью прозрачная bg-transparent на старте, затемнение 20% при скролле) */}
-                <header
-                    className={`w-full pointer-events-auto transition-all duration-300 ${
+            {/* Единый монолитный стеклянный контейнер: Announcement Bar + Main Header без внутренних швов */}
+            <div 
+                className={`fixed top-0 left-0 w-full z-50 flex flex-col transition-all duration-300 ${
+                    isScrolled 
+                        ? 'bg-black/65 backdrop-blur-md border-b border-white/10 shadow-xl shadow-black/40' 
+                        : 'bg-transparent border-b border-transparent'
+                }`}
+            >
+                {/* 1. БЕГУЩАЯ СТРОКА НАД ШАПКОЙ (Фиксированная высота h-6 md:h-7, проявляется через fade-in БЕЗ прыжка шапки) */}
+                <div 
+                    className={`w-full overflow-hidden flex items-center select-none transition-opacity duration-300 ${
                         isScrolled 
-                            ? 'bg-black/20 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20' 
-                            : 'bg-transparent border-b border-transparent'
+                            ? 'opacity-100 pointer-events-auto py-1 md:py-1.5' 
+                            : 'opacity-0 pointer-events-none py-1 md:py-1.5'
                     }`}
                 >
-                    <div className="container mx-auto px-6 h-14 md:h-18 flex items-center justify-between">
+                    <motion.div
+                        animate={{ x: [0, -1000] }}
+                        transition={{ repeat: Infinity, duration: 35, ease: 'linear' }}
+                        className="flex items-center whitespace-nowrap min-w-max"
+                    >
+                        {[...tickerItems, ...tickerItems, ...tickerItems].map((item, idx) => {
+                            const text = typeof item === 'string' ? item : item.text;
+                            return (
+                                <div key={idx} className="flex items-center">
+                                    <span className="px-3 md:px-4 text-[9px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-[#F59E0B] drop-shadow-sm">
+                                        {text}
+                                    </span>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-white/30 mx-1.5 md:mx-2" />
+                                </div>
+                            );
+                        })}
+                    </motion.div>
+                </div>
+
+                {/* 2. ОСНОВНАЯ ШАПКА (НИЖНИЙ СЛОЙ: намертво зафиксирована, монолитна с верхней полосой) */}
+                <header className="w-full">
+                    <div className="container mx-auto px-6 h-14 md:h-16 flex items-center justify-between">
                         {/* Logo */}
                         <Link href="/" className="flex flex-col group py-1.5">
                             <span className="font-black text-lg md:text-2xl tracking-tight text-white group-hover:text-white/80 transition-colors leading-none">
