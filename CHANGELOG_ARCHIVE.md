@@ -1,3 +1,11 @@
+✅ Release Drone Service `/drone-service-v13` — 6 Categories Catalog Refactoring & AEO Answer Capsules (2026-09-16):
+- feat(drone-v13-catalog): создан изолированный компонент `DroneServicesCatalogV13.tsx` с 6 отраслевыми категориями: `real-estate-land` (Недвижимость и участки), `horeca` (Отели и рестораны), `construction-inspection` (Стройка и инспекции), `brands-fpv` (Бренды и FPV), `events-tourism` (События и туризм), `pilot-rental` (Аренда с пилотом).
+- feat(drone-v13-capsules): внедрены десктопные Answer Capsules с утвержденной AEO-фактурой без цен, появляющиеся при выборе соответствующей категории.
+- feat(drone-v13-sorting): в дефолтном режиме «Все» карточки со статусом `ready` выводятся первыми (`nedvizhimost`, `oteli-kurorty`, `restorany`), затем все карточки `soon`.
+- feat(drone-v13-routing): для готовых карточек активна кнопка «Открыть» со ссылкой на L3-страницы (`/drone-services/drone-real-estate`, `/drone-services/drone-hotels-tourism`, `/drone-services/drone-restaurants`) и кнопка «Обсудить»; для остальных карточек кнопка «Открыть» заменена на некликабельный бейдж «В разработке» (без холостого клика и сброса экрана), а «Обсудить» формирует прямую WhatsApp-ссылку с предзаполненным названием услуги.
+- feat(drone-v13-mobile): компактная однострочная лента табов на экранах < 768px (`flex overflow-x-auto no-scrollbar gap-2 px-4`) и горизонтальный свайп карточек (`snap-x`) без раздувания вертикального пространства.
+- feat(drone-v13-routes): создан роут `app/drone-services/drone-hotels-tourism/page.tsx` для 100% паритета ссылок. Проверен Next.js build (130 страниц, 0 ошибок).
+
 ✅ Release Drone Service `/drone-service-v13` — Compact Kinetic Glass & Silhouette Depth (2026-09-13):
 - feat(drone-v13-glass): создан `DroneHeaderV13.tsx` с мягким стеклом `bg-black/35 backdrop-blur-[6px]` и микротенями на типографике, дающими эффект просвечивания живых силуэтов букв при скролле без потери читаемости.
 - feat(drone-v13-compact): зазор между бегущей строкой и шапкой сокращен вдвое, высота основной шапки уменьшена до 44px (`h-11 md:h-12`), пустое пространство под логотипом сокращено на 50%.

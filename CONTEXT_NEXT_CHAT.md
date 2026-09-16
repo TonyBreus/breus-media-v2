@@ -1,3 +1,10 @@
+✅ Release Drone Service `/drone-service-v13` — 6 Categories Catalog Refactoring & AEO Answer Capsules (2026-09-16):
+- Implemented isolated component `components/drone/v13/DroneServicesCatalogV13.tsx` with 6 industry categories: `real-estate-land` (Недвижимость и участки), `horeca` (Отели и рестораны), `construction-inspection` (Стройка и инспекции), `brands-fpv` (Бренды и FPV), `events-tourism` (События и туризм), `pilot-rental` (Аренда с пилотом).
+- Added desktop AEO Answer Capsules displaying clear, price-free value propositions for each category upon selection.
+- Default state (`activeCategory === 'all'`) sorts ready cards first (`nedvizhimost`, `oteli-kurorty`, `restorany`), followed by upcoming cards.
+- Integrated distinct card button logic: ready cards feature active "Открыть" L3 links (`/drone-services/drone-real-estate`, `/drone-services/drone-hotels-tourism`, `/drone-services/drone-restaurants`) + WhatsApp discussion; upcoming cards display non-clickable "В разработке" badge (preventing jump to page top) + WhatsApp discussion with pre-filled service title and inquiry text.
+- Mobile UX: single-row horizontal scrolling category tabs (`no-scrollbar`) and horizontal snap carousel (`snap-x`) preventing vertical layout inflation.
+- Created `/drone-services/drone-hotels-tourism` route to ensure 100% parity and seamless navigation. Verified clean production build across 130 pages.
 ✅ Release Drone Service `/drone-service-v13` — Compact Kinetic Glass & Silhouette Depth (2026-09-13):
 - Created isolated `DroneHeaderV13.tsx` with calibrated `bg-black/35 backdrop-blur-[6px]` and micro drop-shadows on typography (`drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]`), allowing background text silhouettes to subtly show through during scroll without interfering with logo and ticker legibility.
 - Cut vertical void in half: squeezed ticker spacing to `h-5 md:h-6 py-0.5`, compressed main header height from 56px to 44px (`h-11 md:h-12`), eliminating 50% of empty space under the logo.
