@@ -4,25 +4,35 @@ import React, { useState, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 
-export type DroneCategory = {
-    id: string;
+export type DroneCategoryId =
+    | 'real-estate-land'
+    | 'horeca'
+    | 'construction-inspection'
+    | 'brands-fpv'
+    | 'events-tourism'
+    | 'pilot-rental';
+
+export interface DroneCategory {
+    id: DroneCategoryId;
     label: string;
     description: string;
-};
+}
 
-export type DroneCatalogItem = {
+export interface DroneServiceCard {
     slug: string;
     title: string;
-    category: string;
-    description: string;
-    price: string;
-    specs: string;
-    image: string;
+    lsiSubtitle: string;
+    categoryId: DroneCategoryId;
     status: 'ready' | 'soon';
-    primaryHref?: string;
-    categoryId: string;
-};
+    href?: string;
+    priceAnchor?: string;
+    tags: string[];
+    description: string;
+    whatsappMessage: string;
+    image: string; // Keeps the UI working
+}
 
+// 2. TABS & DESKTOP ANSWER CAPSULES (AEO) DATA
 export const DRONE_CATEGORIES_V13: DroneCategory[] = [
     {
         id: 'real-estate-land',
@@ -62,364 +72,317 @@ export const DRONE_CATEGORIES_V13: DroneCategory[] = [
     },
 ];
 
-export const DRONE_SERVICES_ITEMS_V13: DroneCatalogItem[] = [
-    // 1. real-estate-land
+// 3. STRICT CATALOG ITEMS DATA
+export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
     {
         slug: 'nedvizhimost',
-        title: 'Недвижимость и ЖК',
-        category: 'РИЕЛТОРЫ · ЗАСТРОЙЩИКИ · ПРОДАЖИ',
-        description: 'Аэрофото и видео для карточек объектов и инвесторов. 94% больше просмотров получают объявления с аэрофото — по данным HomeJab.',
-        price: 'от 200 ₾',
-        specs: '4K · MYHOME.GE · SS.GE',
-        image: '/media/drone-service/real-estate-1.png',
-        status: 'ready',
-        primaryHref: '/drone-services/drone-real-estate',
+        title: 'Аэросъёмка недвижимости и ЖК',
+        lsiSubtitle: 'РИЕЛТОРЫ · ЗАСТРОЙЩИКИ · ПРОДАЖИ',
         categoryId: 'real-estate-land',
+        status: 'ready',
+        href: '/drone-services/drone-real-estate',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', 'MYHOME.GE', 'SS.GE'],
+        description: 'Аэрофото и видео для карточек объектов и инвесторов. 94% больше просмотров получают объявления с аэрофото — по данным HomeJab.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Недвижимость и ЖК. Расскажите подробнее.',
+        image: '/media/drone-service/real-estate-1.png',
     },
     {
         slug: 'zemelnye-uchastki',
-        title: 'Земельные участки',
-        category: 'ЗАСТРОЙЩИКИ · ДЕВЕЛОПЕРЫ · ИНВЕСТОРЫ',
-        description: 'Границы, рельеф, окружение и доступность — всё в одном облёте. Продаёт быстрее любого описания.',
-        price: 'от 200 ₾',
-        specs: 'ОЦЕНКА · ПАНОРАМА',
-        image: '/media/drone-service/territory-monitoring-2.png',
-        status: 'soon',
+        title: 'Земельные участки и территории',
+        lsiSubtitle: 'ЗАСТРОЙЩИКИ · ДЕВЕЛОПЕРЫ · ИНВЕСТОРЫ',
         categoryId: 'real-estate-land',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['ОЦЕНКА', 'ПАНОРАМА'],
+        description: 'Границы, рельеф, окружение и доступность — всё в одном облёте. Продаёт быстрее любого описания.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Земельные участки. Подскажите условия и даты.',
+        image: '/media/drone-service/territory-monitoring-2.png',
     },
-
-    // 2. horeca
     {
         slug: 'oteli-kurorty',
         title: 'Отели и курорты',
-        category: 'ОТЕЛИ · ТУРОПЕРАТОРЫ · ЛОКАЦИИ',
-        description: 'Гость выбирает глазами. Снимаем отели, глэмпинги, видовые маршруты и природные локации Грузии для туроператоров, гидов и Booking — контент, который продаёт атмосферу отдыха.',
-        price: 'от 200 ₾',
-        specs: '4K · АТМОСФЕРА · ПРОМО',
-        image: '/media/drone-service/hotels-resorts-5.png',
-        status: 'ready',
-        primaryHref: '/drone-services/drone-hotels-tourism',
+        lsiSubtitle: 'ОТЕЛИ · ТУРОПЕРАТОРЫ · ЛОКАЦИИ',
         categoryId: 'horeca',
+        status: 'ready',
+        href: '/drone-services/drone-hotels-tourism',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', 'АТМОСФЕРА', 'ПРОМО'],
+        description: 'Гость выбирает глазами. Снимаем отели, глэмпинги, видовые маршруты и природные локации Грузии для туроператоров, гидов и Booking — контент, который продаёт атмосферу отдыха.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Отели и курорты. Расскажите подробнее.',
+        image: '/media/drone-service/hotels-resorts-5.png',
     },
     {
         slug: 'restorany',
         title: 'Рестораны и террасы',
-        category: 'ВЕРАНДЫ · ЛОКАЦИИ · АТМОСФЕРА',
-        description: 'Терраса на крыше, двор с зеленью, расположение в квартале — всё это видно с воздуха. Гость понимает куда едет ещё до того как забронировал столик.',
-        price: 'от 200 ₾',
-        specs: '4K · REELS · STORIES',
-        image: '/media/drone-service/restaurants-3.png',
-        status: 'ready',
-        primaryHref: '/drone-services/drone-restaurants',
+        lsiSubtitle: 'ВЕРАНДЫ · ЛОКАЦИИ · АТМОСФЕРА',
         categoryId: 'horeca',
+        status: 'ready',
+        href: '/drone-services/drone-restaurants',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', 'REELS', 'STORIES'],
+        description: 'Терраса на крыше, двор с зеленью, расположение в квартале — всё это видно с воздуха. Гость понимает куда едет ещё до того как забронировал столик.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Рестораны и террасы. Расскажите подробнее.',
+        image: '/media/drone-service/restaurants-3.png',
     },
     {
         slug: 'turizm',
-        title: 'Туризм и локации',
-        category: 'ГИДЫ · МАРШРУТЫ · ПРИРОДА',
-        description: 'Видовые природные локации, каньоны, горные перевалы и исторические памятники Грузии для промо туров и тревел-проектов.',
-        price: 'от 200 ₾',
-        specs: '4K · ПРИРОДА · ЭКСПЕДИЦИИ',
-        image: '/media/drone-service/tourism-6.png',
+        title: 'Туризм и travel-локации',
+        lsiSubtitle: 'ГИДЫ · МАРШРУТЫ · ПРИРОДА',
+        categoryId: 'events-tourism',
         status: 'soon',
-        categoryId: 'horeca',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', 'ПРИРОДА', 'ЭКСПЕДИЦИИ'],
+        description: 'Видовые природные локации, каньоны, горные перевалы и исторические памятники Грузии для промо туров и тревел-проектов.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Туризм и локации. Подскажите условия и даты.',
+        image: '/media/drone-service/tourism-6.png',
     },
-
-    // 3. construction-inspection
     {
         slug: 'monitoring-stroiki',
-        title: 'Мониторинг стройки',
-        category: 'ДЕВЕЛОПЕРЫ · БАНКИ · ПОДРЯДЧИКИ',
-        description: 'Стройка идёт — но как на самом деле? Еженедельный облёт фиксирует этапы и даёт инвестору честную картину без выезда.',
-        price: 'от 200 ₾',
-        specs: '4K · GPS · ОТЧЁТЫ',
-        image: '/media/drone-service/construction-monitoring-1.png',
-        status: 'soon',
+        title: 'Мониторинг хода строительства',
+        lsiSubtitle: 'ДЕВЕЛОПЕРЫ · БАНКИ · ПОДРЯДЧИКИ',
         categoryId: 'construction-inspection',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', 'GPS', 'ОТЧЁТЫ'],
+        description: 'Стройка идёт — но как на самом деле? Еженедельный облёт фиксирует этапы и даёт инвестору честную картину без выезда.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Мониторинг стройки. Подскажите условия и даты.',
+        image: '/media/drone-service/construction-monitoring-1.png',
     },
     {
         slug: 'regulyarnye-aerootchety',
         title: 'Регулярные аэроотчёты',
-        category: 'БАНКИ · ИНВЕСТОРЫ · УПРАВЛЯЮЩИЕ',
-        description: 'Еженедельные облёты с GPS-отчётом — инвестор видит динамику объекта без выезда на стройку.',
-        price: 'от 200 ₾',
-        specs: '4K · GPS · ПРОГРЕСС',
-        image: '/media/drone-service/reporting-1.png',
-        status: 'soon',
+        lsiSubtitle: 'БАНКИ · ИНВЕСТОРЫ · УПРАВЛЯЮЩИЕ',
         categoryId: 'construction-inspection',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', 'GPS', 'ПРОГРЕСС'],
+        description: 'Еженедельные облёты с GPS-отчётом — инвестор видит динамику объекта без выезда на стройку.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Регулярные аэроотчёты. Подскажите условия и даты.',
+        image: '/media/drone-service/reporting-1.png',
     },
     {
         slug: 'inspekciya-obektov',
-        title: 'Инспекция объектов',
-        category: 'ФАСАДЫ · КРЫШИ · ПРОИЗВОДСТВО',
-        description: 'Визуальная диагностика труднодоступных конструкций, кровель и фасадов без установки строительных лесов.',
-        price: 'от 200 ₾',
-        specs: '4K · ДОКУМЕНТАЦИЯ',
-        image: '/media/drone-service/object-inspection-from-territory-1.png',
-        status: 'soon',
+        title: 'Инспекция объектов и конструкций',
+        lsiSubtitle: 'ФАСАДЫ · КРЫШИ · ПРОИЗВОДСТВО',
         categoryId: 'construction-inspection',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', 'ДОКУМЕНТАЦИЯ'],
+        description: 'Визуальная диагностика труднодоступных конструкций, кровель и фасадов без установки строительных лесов.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Инспекция объектов. Подскажите условия и даты.',
+        image: '/media/drone-service/object-inspection-from-territory-1.png',
     },
     {
         slug: 'inspekciya-fasadov',
-        title: 'Инспекция фасадов',
-        category: 'ЭКСПЛУАТАЦИЯ · ИНЖЕНЕРЫ · ПАНЕЛИ',
-        description: 'Полный облёт фасада с видео — без лесов, без риска для персонала и без остановки объекта. Материал передаётся вашим специалистам.',
-        price: 'от 200 ₾',
-        specs: 'ДИАГНОСТИКА · ШВЫ',
-        image: '/media/drone-service/drone-facade-2.png',
-        status: 'soon',
+        title: 'Инспекция фасадов зданий',
+        lsiSubtitle: 'ЭКСПЛУАТАЦИЯ · ИНЖЕНЕРЫ · ПАНЕЛИ',
         categoryId: 'construction-inspection',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['ДИАГНОСТИКА', 'ШВЫ'],
+        description: 'Полный облёт фасада с видео — без лесов, без риска для персонала и без остановки объекта. Материал передаётся вашим специалистам.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Инспекция фасадов. Подскажите условия и даты.',
+        image: '/media/drone-service/drone-facade-2.png',
     },
     {
         slug: 'inspekciya-krysh',
-        title: 'Инспекция крыш и кровли',
-        category: 'КРОВЛЯ · ВОДОСТОКИ · ДИАГНОСТИКА',
-        description: 'Детальная 4K-фотофиксация кровли, примыканий и водостоков без выхода людей на высоту и риска повреждения покрытия.',
-        price: 'от 200 ₾',
-        specs: 'ВЫСОТА · БЕЗОПАСНОСТЬ · 4K',
-        image: '/media/drone-service/roof-inspection-1.png',
-        status: 'soon',
+        title: 'Инспекция кровли и водостоков',
+        lsiSubtitle: 'КРОВЛЯ · ВОДОСТОКИ · ДИАГНОСТИКА',
         categoryId: 'construction-inspection',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['ВЫСОТА', 'БЕЗОПАСНОСТЬ', '4K'],
+        description: 'Детальная 4K-фотофиксация кровли, примыканий и водостоков без выхода людей на высоту и риска повреждения покрытия.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Инспекция крыш и кровли. Подскажите условия и даты.',
+        image: '/media/drone-service/roof-inspection-1.png',
     },
     {
         slug: 'inspekciya-solnechnyh-paneley',
         title: 'Инспекция солнечных панелей',
-        category: 'ЭНЕРГЕТИКИ · ОПЕРАТОРЫ · ИНВЕСТОРЫ',
-        description: 'Грязь и повреждения снижают выработку панелей до 30%. Один облёт с видео — и у вашего инженера есть полная картина без подъёма на крышу.',
-        price: 'от 200 ₾',
-        specs: 'КОНТРОЛЬ · ЭФФЕКТИВНОСТЬ',
-        image: '/media/drone-service/roof-inspection-1.png',
-        status: 'soon',
+        lsiSubtitle: 'ЭНЕРГЕТИКИ · ОПЕРАТОРЫ · ИНВЕСТОРЫ',
         categoryId: 'construction-inspection',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['КОНТРОЛЬ', 'ЭФФЕКТИВНОСТЬ'],
+        description: 'Грязь и повреждения снижают выработку панелей до 30%. Один облёт с видео — и у вашего инженера есть полная картина без подъёма на крышу.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Инспекция солнечных панелей. Подскажите условия и даты.',
+        image: '/media/drone-service/roof-inspection-1.png',
     },
-
-    // 4. brands-fpv
     {
         slug: 'fpv-semka',
-        title: 'FPV Съёмка',
-        category: 'ДИНАМИКА · ИНТЕРЬЕРЫ · ЭКШН',
-        description: 'Показываем коммерческое пространство изнутри одним кадром — от входа до последней зоны. Инвестор или арендатор понимает объект ещё до встречи.',
-        price: 'от 300 ₾',
-        specs: '4K · ПРОЛЁТ ВНУТРИ',
-        image: '/media/drone-service/fpv-2.png',
-        status: 'soon',
+        title: 'Динамичная FPV-съёмка',
+        lsiSubtitle: 'ДИНАМИКА · ИНТЕРЬЕРЫ · ЭКШН',
         categoryId: 'brands-fpv',
+        status: 'soon',
+        priceAnchor: 'от 300 ₾',
+        tags: ['4K', 'ПРОЛЁТ ВНУТРИ'],
+        description: 'Показываем коммерческое пространство изнутри одним кадром — от входа до последней зоны. Инвестор или арендатор понимает объект ещё до встречи.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: FPV Съёмка. Подскажите условия и даты.',
+        image: '/media/drone-service/fpv-2.png',
     },
     {
         slug: 'aerosyemka-dlya-avto-i-avtosalonov',
-        title: 'Автосалоны и шоурумы',
-        category: 'АВТОПЛОЩАДКИ · ДИЛЕРЫ · СЕТИ',
-        description: 'Покупатель выбирает глазами. Показываем весь ассортимент, площадку и инфраструктуру салона одним пролётом.',
-        price: 'от 200 ₾',
-        specs: '4K · ПРОДАЖИ · АВТО',
-        image: '/media/drone-service/auto-showroom-1.png',
-        status: 'soon',
+        title: 'Аэросъёмка для автосалонов',
+        lsiSubtitle: 'АВТОПЛОЩАДКИ · ДИЛЕРЫ · СЕТИ',
         categoryId: 'brands-fpv',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', 'ПРОДАЖИ', 'АВТО'],
+        description: 'Покупатель выбирает глазами. Показываем весь ассортимент, площадку и инфраструктуру салона одним пролётом.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Автосалоны и шоурумы. Подскажите условия и даты.',
+        image: '/media/drone-service/auto-showroom-1.png',
     },
     {
         slug: 'interiery-sklady',
-        title: 'Съёмка интерьеров и складов',
-        category: 'ШОУРУМЫ · МАГАЗИНЫ · АРЕНДАТОРЫ',
-        description: 'Дрон пролетает сквозь стеллажи, проёмы и цеха — туда, куда камера на штативе не попадёт. Один дубль — и пространство читается.',
-        price: 'от 200 ₾',
-        specs: 'FPV · ПЛАНИРОВКА',
-        image: '/media/drone-service/interiors-warehouses-1.png',
-        status: 'soon',
+        title: 'Интерьеры складов и логистика',
+        lsiSubtitle: 'ШОУРУМЫ · МАГАЗИНЫ · АРЕНДАТОРЫ',
         categoryId: 'brands-fpv',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['FPV', 'ПЛАНИРОВКА'],
+        description: 'Дрон пролетает сквозь стеллажи, проёмы и цеха — туда, куда камера на штативе не попадёт. Один дубль — и пространство читается.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Съёмка интерьеров и складов. Подскажите условия и даты.',
+        image: '/media/drone-service/interiors-warehouses-1.png',
     },
     {
         slug: 'sport-kompleksy',
-        title: 'Спорт комплексы',
-        category: 'СТАДИОНЫ · АРЕНЫ · КОРТЫ',
-        description: 'Арена выглядит масштабно только с воздуха. Снимаем поля, трибуны и инфраструктуру — для сайта, инвесторов и соцсетей.',
-        price: 'от 200 ₾',
-        specs: '4K · 60FPS · ОБЛЁТ',
-        image: '/media/drone-service/sport-complex-1.png',
-        status: 'soon',
+        title: 'Спортивные комплексы и залы',
+        lsiSubtitle: 'СТАДИОНЫ · АРЕНЫ · КОРТЫ',
         categoryId: 'brands-fpv',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', '60FPS', 'ОБЛЁТ'],
+        description: 'Арена выглядит масштабно только с воздуха. Снимаем поля, трибуны и инфраструктуру — для сайта, инвесторов и соцсетей.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Спорт комплексы. Подскажите условия и даты.',
+        image: '/media/drone-service/sport-complex-1.png',
     },
-
-    // 5. events-tourism
     {
         slug: 'meropriyatiya',
-        title: 'Мероприятия',
-        category: 'ИВЕНТЫ · ОТКРЫТИЯ · СВАДЬБЫ',
-        description: 'С земли — толпа. С воздуха — масштаб, энергия и атмосфера события. Готовое видео за 48 часов.',
-        price: 'от 200 ₾',
-        specs: '4K · СПОРТ · СОБЫТИЯ',
-        image: '/media/drone-service/events-1.png',
-        status: 'soon',
+        title: 'Мероприятия и фестивали',
+        lsiSubtitle: 'ИВЕНТЫ · ОТКРЫТИЯ · СВАДЬБЫ',
         categoryId: 'events-tourism',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', 'СПОРТ', 'СОБЫТИЯ'],
+        description: 'С земли — толпа. С воздуха — масштаб, энергия и атмосфера события. Готовое видео за 48 часов.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Мероприятия. Подскажите условия и даты.',
+        image: '/media/drone-service/events-1.png',
     },
     {
         slug: 'reklama-brand-video',
-        title: 'Реклама и бренд видео',
-        category: 'БРЕНДЫ · КОРПОРАТИВЫ · ПРОДУКТЫ',
-        description: 'Воздушные кадры, сценарий и монтаж в одном проекте. Видео, которое работает в рекламе, на сайте и в соцсетях.',
-        price: 'от 200 ₾',
-        specs: '4K · ПРОМО · МОНТАЖ',
-        image: '/media/drone-service/brand-video-1.png',
-        status: 'soon',
+        title: 'Реклама и бренд-видео',
+        lsiSubtitle: 'БРЕНДЫ · КОРПОРАТИВЫ · ПРОДУКТЫ',
         categoryId: 'events-tourism',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['4K', 'ПРОМО', 'МОНТАЖ'],
+        description: 'Воздушные кадры, сценарий и монтаж в одном проекте. Видео, которое работает в рекламе, на сайте и в соцсетях.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Реклама и бренд видео. Подскажите условия и даты.',
+        image: '/media/drone-service/brand-video-1.png',
     },
     {
         slug: 'agro-i-vinodelie',
-        title: 'Агро и виноделие',
-        category: 'БРЕНДЫ · ИНВЕСТОРЫ · ШАТО',
-        description: 'Грузинское вино начинается с лозы. Аэросъёмка виноградников и хозяйств — для мониторинга урожая и промо бренда.',
-        price: 'от 200 ₾',
-        specs: 'АНАЛИТИКА · АГРОБИЗНЕС',
-        image: '/media/drone-service/agro-wine-1.png',
-        status: 'soon',
+        title: 'Агробизнес и винодельни (Шато)',
+        lsiSubtitle: 'БРЕНДЫ · ИНВЕСТОРЫ · ШАТО',
         categoryId: 'events-tourism',
-    },
-
-    // 6. pilot-rental
-    {
-        slug: 'arenda-s-pilotom',
-        title: 'Аренда дрона с пилотом',
-        category: 'ОПЕРАТОР · ПОЧАСОВАЯ · ТБИЛИСИ / БАТУМИ',
-        description: 'Опытный пилот с дронами DJI Air 3S и Avata 2 под ваши задачи. Легальные вылеты по Грузии и передача всех исходников 4K сразу.',
-        price: 'от 200 ₾',
-        specs: 'DJI AIR 3S · AVATA 2',
-        image: '/media/drone-service/object-inspection-1.png',
         status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['АНАЛИТИКА', 'АГРОБИЗНЕС'],
+        description: 'Грузинское вино начинается с лозы. Аэросъёмка виноградников и хозяйств — для мониторинга урожая и промо бренда.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Агро и виноделие. Подскажите условия и даты.',
+        image: '/media/drone-service/agro-wine-1.png',
+    },
+    {
+        slug: 'arenda-drona-s-pilotom',
+        title: 'Аренда дрона с пилотом',
+        lsiSubtitle: 'ОПЕРАТОР · ПОЧАСОВАЯ · ТБИЛИСИ / БАТУМИ',
         categoryId: 'pilot-rental',
+        status: 'soon',
+        priceAnchor: 'от 200 ₾',
+        tags: ['DJI AIR 3S', 'AVATA 2'],
+        description: 'Опытный пилот с дронами DJI Air 3S и Avata 2 под ваши задачи. Легальные вылеты по Грузии и передача всех исходников 4K сразу.',
+        whatsappMessage: 'Здравствуйте! Интересует услуга: Аренда дрона с пилотом. Подскажите условия и даты.',
+        image: '/media/drone-service/object-inspection-1.png',
     },
 ];
 
-export const DroneServicesCatalogV13: React.FC = () => {
-    const [activeCategory, setActiveCategory] = useState<string>('all');
+export const DroneServicesCatalogV13 = () => {
+    const [activeTab, setActiveTab] = useState<DroneCategoryId | 'all'>('all');
     const carouselRef = useRef<HTMLDivElement>(null);
 
-    // Filter and sort items:
-    // In 'all', ready cards always come first!
+    // Get strictly filtered and sorted items
     const filteredItems = useMemo(() => {
         let items = DRONE_SERVICES_ITEMS_V13;
-        if (activeCategory !== 'all') {
-            items = items.filter((item) => item.categoryId === activeCategory);
+
+        if (activeTab !== 'all') {
+            items = items.filter((item) => item.categoryId === activeTab);
         }
 
-        // Sort: status 'ready' first, then 'soon'
-        return [...items].sort((a, b) => {
+        // Sort: "ready" items first
+        return items.sort((a, b) => {
             if (a.status === 'ready' && b.status !== 'ready') return -1;
             if (a.status !== 'ready' && b.status === 'ready') return 1;
             return 0;
         });
-    }, [activeCategory]);
+    }, [activeTab]);
 
-    const activeCategoryData = useMemo(() => {
-        if (activeCategory === 'all') return null;
-        return DRONE_CATEGORIES_V13.find((cat) => cat.id === activeCategory) || null;
-    }, [activeCategory]);
-
-    const handleCategoryChange = (catId: string) => {
-        setActiveCategory(catId);
-        if (carouselRef.current) {
-            carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-        }
-    };
-
-    const generateWaLink = (title: string, status: 'ready' | 'soon') => {
-        if (status === 'soon') {
-            const text = encodeURIComponent(
-                `Здравствуйте! Интересует услуга: ${title}. Подскажите условия и даты.`
-            );
-            return `https://wa.me/995501103183?text=${text}`;
-        }
-        const text = encodeURIComponent(`Здравствуйте! Интересует услуга: ${title}. Расскажите подробнее.`);
-        return `https://wa.me/995501103183?text=${text}`;
-    };
-
+    // Active Category Data for Answer Capsule
+    const activeCategoryData =
+        activeTab !== 'all' ? DRONE_CATEGORIES_V13.find((c) => c.id === activeTab) : null;
     return (
-        <DebugWrapper id={11013} label="Drone Services Catalog V13">
-            <section className="py-8 md:py-16 bg-[#080808]">
-                <div className="container mx-auto px-4 max-w-[1400px]">
-                    {/* Header with Title & Count */}
-                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-6">
-                        <div className="flex items-center gap-3">
-                            <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white">
-                                Направления съёмки
-                            </h2>
-                            <span className="text-xs px-2.5 py-0.5 rounded-full bg-white/10 text-white/70 font-semibold">
-                                {filteredItems.length} {filteredItems.length === 1 ? 'услуга' : filteredItems.length < 5 ? 'услуги' : 'услуг'}
-                            </span>
-                        </div>
-                        <p className="text-xs text-neutral-400">
-                            Съёмка снаружи на дроны DJI и FPV-пролёты в интерьерах
+        <DebugWrapper id="drone-services-catalog-v13" className="w-full bg-black py-24 border-t border-white/10">
+            <section className="w-full max-w-7xl mx-auto flex flex-col gap-8 md:gap-12">
+                <div className="px-4 md:px-6 flex flex-col gap-6 md:gap-8">
+                    <div className="flex flex-col gap-2">
+                        <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter">
+                            Направления съёмки
+                        </h2>
+                        <p className="text-sm md:text-base text-neutral-400 font-medium tracking-wide">
+                            Выберите отрасль для просмотра услуг
                         </p>
                     </div>
 
-                    {/* Category Filter Tabs */}
-                    {/* Mobile: single-row horizontal scroll (no-scrollbar gap-2 px-4) */}
-                    {/* Desktop: flex-wrap with crisp styling */}
-                    <div className="flex overflow-x-auto no-scrollbar gap-2 pb-2 mb-4 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap">
-                        {/* Tab "Все" */}
+                    {/* Scrollable Tabs */}
+                    <div className="flex overflow-x-auto gap-2 md:gap-3 pb-4 no-scrollbar border-b border-white/5">
                         <button
-                            type="button"
-                            onClick={() => handleCategoryChange('all')}
-                            className={`shrink-0 text-left py-2 px-3.5 text-xs font-medium rounded-xl transition-all ${
-                                activeCategory === 'all'
-                                    ? 'bg-amber-400 text-black font-bold shadow-[0_0_15px_rgba(251,191,36,0.3)]'
-                                    : 'bg-neutral-900/90 border border-white/10 text-white/70 hover:text-white hover:bg-white/10'
+                            onClick={() => setActiveTab('all')}
+                            className={`shrink-0 px-5 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${
+                                activeTab === 'all'
+                                    ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.2)] scale-105'
+                                    : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
                             }`}
                         >
-                            Все ({DRONE_SERVICES_ITEMS_V13.length})
+                            Все <span className="opacity-50 font-normal ml-1">({DRONE_SERVICES_ITEMS_V13.length})</span>
                         </button>
 
-                        {/* 6 Category Tabs */}
                         {DRONE_CATEGORIES_V13.map((cat) => {
-                            const isActive = activeCategory === cat.id;
-                            const count = DRONE_SERVICES_ITEMS_V13.filter((i) => i.categoryId === cat.id).length;
+                            const count = DRONE_SERVICES_ITEMS_V13.filter(i => i.categoryId === cat.id).length;
                             return (
                                 <button
                                     key={cat.id}
-                                    type="button"
-                                    onClick={() => handleCategoryChange(cat.id)}
-                                    className={`shrink-0 text-left py-2 px-3.5 text-xs font-medium rounded-xl transition-all flex items-center gap-2 ${
-                                        isActive
-                                            ? 'bg-amber-400 text-black font-bold shadow-[0_0_15px_rgba(251,191,36,0.3)]'
-                                            : 'bg-neutral-900/90 border border-white/10 text-white/70 hover:text-white hover:bg-white/10'
+                                    onClick={() => setActiveTab(cat.id)}
+                                    className={`shrink-0 px-5 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-1.5 ${
+                                        activeTab === cat.id
+                                            ? 'bg-[#D4A017] text-black shadow-[0_0_20px_rgba(212,160,23,0.3)] scale-105'
+                                            : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
                                     }`}
                                 >
-                                    <span>{cat.label}</span>
-                                    <span
-                                        className={`text-[10px] px-1.5 py-0.2 rounded-md ${
-                                            isActive
-                                                ? 'bg-black/20 text-black font-bold'
-                                                : 'bg-white/10 text-white/50'
-                                        }`}
-                                    >
-                                        {count}
-                                    </span>
+                                    {cat.label} <span className="opacity-60 font-normal text-xs">({count})</span>
                                 </button>
                             );
                         })}
                     </div>
 
-                    {/* Desktop Answer Capsule (Only when category is selected, no prices) */}
+                    {/* Desktop Answer Capsule (AEO) */}
                     {activeCategoryData && (
-                        <div className="hidden md:flex items-start gap-4 p-5 rounded-2xl bg-gradient-to-r from-neutral-900/90 via-[#141414] to-neutral-950 border border-amber-400/25 backdrop-blur-md mb-6 transition-all duration-300 shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
-                            <div className="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/30 text-amber-400 shrink-0 mt-0.5">
-                                <svg
-                                    className="w-5 h-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                    />
-                                </svg>
-                            </div>
-                            <div>
-                                <div className="text-[11px] uppercase tracking-wider font-bold text-amber-400/90 mb-1 flex items-center gap-2">
-                                    <span>Фокус направления</span>
-                                    <span className="text-white/30">·</span>
-                                    <span className="text-white/90">{activeCategoryData.label}</span>
+                        <div className="hidden md:block w-full max-w-3xl">
+                            <div className="bg-[#111] border border-[#D4A017]/30 rounded-2xl p-6 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                                <div className="flex items-center gap-3 mb-3">
+                                    <span className="w-2 h-2 rounded-full bg-[#D4A017] animate-pulse" />
+                                    <h3 className="text-lg font-bold text-white uppercase tracking-wider">
+                                        Для кого: {activeCategoryData.label}
+                                    </h3>
                                 </div>
                                 <p className="text-sm text-neutral-300 leading-relaxed max-w-4xl">
                                     {activeCategoryData.description}
@@ -429,13 +392,13 @@ export const DroneServicesCatalogV13: React.FC = () => {
                     )}
                 </div>
 
-                {/* Horizontal Snap Carousel */}
+                {/* 2. HORIZONTAL SNAP CAROUSEL */}
                 <div
                     ref={carouselRef}
                     className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 px-4 md:px-6 pb-6 no-scrollbar"
                 >
                     {filteredItems.map((item) => {
-                        const isReady = item.status === 'ready' && !!item.primaryHref;
+                        const isReady = item.status === 'ready' && !!item.href;
 
                         return (
                             <div
@@ -478,7 +441,7 @@ export const DroneServicesCatalogV13: React.FC = () => {
                                 <div className="p-4 flex flex-col flex-grow">
                                     <div className="mb-2">
                                         <span className="text-[10px] text-white/50 tracking-wider uppercase font-bold">
-                                            {item.category}
+                                            {item.lsiSubtitle}
                                         </span>
                                     </div>
                                     <p className="text-xs text-white/80 leading-relaxed mb-4 flex-grow min-h-[48px]">
@@ -487,10 +450,12 @@ export const DroneServicesCatalogV13: React.FC = () => {
 
                                     {/* Price & Specs */}
                                     <div className="flex items-center gap-3 mb-5">
-                                        <span className="text-sm font-bold text-[#D4A017]">{item.price}</span>
-                                        <span className="w-1 h-1 rounded-full bg-white/20" />
+                                        <span className="text-sm font-bold text-[#D4A017]">{item.priceAnchor}</span>
+                                        {item.priceAnchor && item.tags.length > 0 && (
+                                            <span className="w-1 h-1 rounded-full bg-white/20" />
+                                        )}
                                         <span className="text-[10px] font-bold text-white/60 tracking-wider uppercase truncate">
-                                            {item.specs}
+                                            {item.tags.join(' · ')}
                                         </span>
                                     </div>
 
@@ -499,13 +464,13 @@ export const DroneServicesCatalogV13: React.FC = () => {
                                         {isReady ? (
                                             <>
                                                 <Link
-                                                    href={item.primaryHref!}
+                                                    href={item.href!}
                                                     className="flex-1 flex items-center justify-center border border-white/20 hover:border-white hover:bg-white/5 text-white py-2.5 rounded-[10px] text-[11px] font-bold uppercase tracking-wider transition-all text-center"
                                                 >
                                                     Открыть
                                                 </Link>
                                                 <a
-                                                    href={generateWaLink(item.title, 'ready')}
+                                                    href={`https://wa.me/995501103183?text=${encodeURIComponent(`Здравствуйте! Интересует услуга: ${item.title}. Подскажите условия и дату выезда.`)}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex-1 flex items-center justify-center bg-[#D4A017] hover:bg-amber-300 text-black py-2.5 rounded-[10px] text-[11px] font-bold uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(212,160,23,0.3)] text-center"
@@ -516,11 +481,11 @@ export const DroneServicesCatalogV13: React.FC = () => {
                                         ) : (
                                             <>
                                                 {/* Non-clickable badge for "soon" to avoid any anchor jumps */}
-                                                <div className="flex-1 flex items-center justify-center border border-white/10 bg-white/[0.04] text-white/40 py-2.5 rounded-[10px] text-[11px] font-semibold uppercase tracking-wider cursor-default select-none text-center">
+                                                <span className="flex-1 px-3 py-1.5 text-xs text-zinc-400 bg-zinc-800/60 rounded-[10px] border border-zinc-700/40 select-none cursor-default flex items-center justify-center font-semibold uppercase tracking-wider">
                                                     В разработке
-                                                </div>
+                                                </span>
                                                 <a
-                                                    href={generateWaLink(item.title, 'soon')}
+                                                    href={`https://wa.me/995501103183?text=${encodeURIComponent(`Здравствуйте! Интересует услуга: ${item.title}. Подскажите условия и дату выезда.`)}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex-1 flex items-center justify-center bg-[#D4A017] hover:bg-amber-300 text-black py-2.5 rounded-[10px] text-[11px] font-bold uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(212,160,23,0.3)] text-center"
