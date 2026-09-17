@@ -22,7 +22,7 @@ export interface DroneServiceCard {
     slug: string;
     title: string;
     lsiSubtitle: string;
-    categoryId: DroneCategoryId;
+    categoryIds: DroneCategoryId[];
     status: 'ready' | 'soon';
     href?: string;
     priceAnchor?: string;
@@ -78,7 +78,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'nedvizhimost',
         title: 'Аэросъёмка недвижимости и ЖК',
         lsiSubtitle: 'РИЕЛТОРЫ · ЗАСТРОЙЩИКИ · ПРОДАЖИ',
-        categoryId: 'real-estate-land',
+        categoryIds: ['real-estate-land'],
         status: 'ready',
         href: '/drone-services/drone-real-estate',
         priceAnchor: 'от 200 ₾',
@@ -91,7 +91,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'zemelnye-uchastki',
         title: 'Земельные участки и территории',
         lsiSubtitle: 'ЗАСТРОЙЩИКИ · ДЕВЕЛОПЕРЫ · ИНВЕСТОРЫ',
-        categoryId: 'real-estate-land',
+        categoryIds: ['real-estate-land'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['ОЦЕНКА', 'ПАНОРАМА'],
@@ -103,7 +103,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'oteli-kurorty',
         title: 'Отели и курорты',
         lsiSubtitle: 'ОТЕЛИ · ТУРОПЕРАТОРЫ · ЛОКАЦИИ',
-        categoryId: 'horeca',
+        categoryIds: ['horeca'],
         status: 'ready',
         href: '/drone-services/drone-hotels-tourism',
         priceAnchor: 'от 200 ₾',
@@ -116,7 +116,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'restorany',
         title: 'Рестораны и террасы',
         lsiSubtitle: 'ВЕРАНДЫ · ЛОКАЦИИ · АТМОСФЕРА',
-        categoryId: 'horeca',
+        categoryIds: ['horeca'],
         status: 'ready',
         href: '/drone-services/drone-restaurants',
         priceAnchor: 'от 200 ₾',
@@ -129,7 +129,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'turizm',
         title: 'Туризм и travel-локации',
         lsiSubtitle: 'ГИДЫ · МАРШРУТЫ · ПРИРОДА',
-        categoryId: 'events-tourism',
+        categoryIds: ['events-tourism'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['4K', 'ПРИРОДА', 'ЭКСПЕДИЦИИ'],
@@ -141,7 +141,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'monitoring-stroiki',
         title: 'Мониторинг хода строительства',
         lsiSubtitle: 'ДЕВЕЛОПЕРЫ · БАНКИ · ПОДРЯДЧИКИ',
-        categoryId: 'construction-inspection',
+        categoryIds: ['construction-inspection', 'real-estate-land'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['4K', 'GPS', 'ОТЧЁТЫ'],
@@ -151,9 +151,9 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
     },
     {
         slug: 'regulyarnye-aerootchety',
-        title: 'Регулярные аэроотчёты',
+        title: 'Регулярные аэроотчёты для инвесторов',
         lsiSubtitle: 'БАНКИ · ИНВЕСТОРЫ · УПРАВЛЯЮЩИЕ',
-        categoryId: 'construction-inspection',
+        categoryIds: ['construction-inspection', 'real-estate-land'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['4K', 'GPS', 'ПРОГРЕСС'],
@@ -165,7 +165,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'inspekciya-obektov',
         title: 'Инспекция объектов и конструкций',
         lsiSubtitle: 'ФАСАДЫ · КРЫШИ · ПРОИЗВОДСТВО',
-        categoryId: 'construction-inspection',
+        categoryIds: ['construction-inspection'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['4K', 'ДОКУМЕНТАЦИЯ'],
@@ -177,7 +177,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'inspekciya-fasadov',
         title: 'Инспекция фасадов зданий',
         lsiSubtitle: 'ЭКСПЛУАТАЦИЯ · ИНЖЕНЕРЫ · ПАНЕЛИ',
-        categoryId: 'construction-inspection',
+        categoryIds: ['construction-inspection'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['ДИАГНОСТИКА', 'ШВЫ'],
@@ -189,7 +189,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'inspekciya-krysh',
         title: 'Инспекция кровли и водостоков',
         lsiSubtitle: 'КРОВЛЯ · ВОДОСТОКИ · ДИАГНОСТИКА',
-        categoryId: 'construction-inspection',
+        categoryIds: ['construction-inspection'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['ВЫСОТА', 'БЕЗОПАСНОСТЬ', '4K'],
@@ -201,7 +201,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'inspekciya-solnechnyh-paneley',
         title: 'Инспекция солнечных панелей',
         lsiSubtitle: 'ЭНЕРГЕТИКИ · ОПЕРАТОРЫ · ИНВЕСТОРЫ',
-        categoryId: 'construction-inspection',
+        categoryIds: ['construction-inspection'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['КОНТРОЛЬ', 'ЭФФЕКТИВНОСТЬ'],
@@ -211,9 +211,9 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
     },
     {
         slug: 'fpv-semka',
-        title: 'Динамичная FPV-съёмка',
+        title: 'FPV-пролёты интерьеров',
         lsiSubtitle: 'ДИНАМИКА · ИНТЕРЬЕРЫ · ЭКШН',
-        categoryId: 'brands-fpv',
+        categoryIds: ['brands-fpv', 'horeca'],
         status: 'soon',
         priceAnchor: 'от 300 ₾',
         tags: ['4K', 'ПРОЛЁТ ВНУТРИ'],
@@ -225,7 +225,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'aerosyemka-dlya-avto-i-avtosalonov',
         title: 'Аэросъёмка для автосалонов',
         lsiSubtitle: 'АВТОПЛОЩАДКИ · ДИЛЕРЫ · СЕТИ',
-        categoryId: 'brands-fpv',
+        categoryIds: ['brands-fpv'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['4K', 'ПРОДАЖИ', 'АВТО'],
@@ -237,7 +237,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'interiery-sklady',
         title: 'Интерьеры складов и логистика',
         lsiSubtitle: 'ШОУРУМЫ · МАГАЗИНЫ · АРЕНДАТОРЫ',
-        categoryId: 'brands-fpv',
+        categoryIds: ['brands-fpv'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['FPV', 'ПЛАНИРОВКА'],
@@ -249,7 +249,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'sport-kompleksy',
         title: 'Спортивные комплексы и залы',
         lsiSubtitle: 'СТАДИОНЫ · АРЕНЫ · КОРТЫ',
-        categoryId: 'brands-fpv',
+        categoryIds: ['brands-fpv'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['4K', '60FPS', 'ОБЛЁТ'],
@@ -261,7 +261,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'meropriyatiya',
         title: 'Мероприятия и фестивали',
         lsiSubtitle: 'ИВЕНТЫ · ОТКРЫТИЯ · СВАДЬБЫ',
-        categoryId: 'events-tourism',
+        categoryIds: ['events-tourism'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['4K', 'СПОРТ', 'СОБЫТИЯ'],
@@ -273,7 +273,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'reklama-brand-video',
         title: 'Реклама и бренд-видео',
         lsiSubtitle: 'БРЕНДЫ · КОРПОРАТИВЫ · ПРОДУКТЫ',
-        categoryId: 'events-tourism',
+        categoryIds: ['events-tourism'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['4K', 'ПРОМО', 'МОНТАЖ'],
@@ -285,7 +285,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'agro-i-vinodelie',
         title: 'Агробизнес и винодельни (Шато)',
         lsiSubtitle: 'БРЕНДЫ · ИНВЕСТОРЫ · ШАТО',
-        categoryId: 'events-tourism',
+        categoryIds: ['events-tourism'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['АНАЛИТИКА', 'АГРОБИЗНЕС'],
@@ -297,7 +297,7 @@ export const DRONE_SERVICES_ITEMS_V13: DroneServiceCard[] = [
         slug: 'arenda-drona-s-pilotom',
         title: 'Аренда дрона с пилотом',
         lsiSubtitle: 'ОПЕРАТОР · ПОЧАСОВАЯ · ТБИЛИСИ / БАТУМИ',
-        categoryId: 'pilot-rental',
+        categoryIds: ['pilot-rental'],
         status: 'soon',
         priceAnchor: 'от 200 ₾',
         tags: ['DJI AIR 3S', 'AVATA 2'],
@@ -316,7 +316,7 @@ export const DroneServicesCatalogV13 = () => {
         let items = DRONE_SERVICES_ITEMS_V13;
 
         if (activeTab !== 'all') {
-            items = items.filter((item) => item.categoryId === activeTab);
+            items = items.filter((item) => item.categoryIds.includes(activeTab as DroneCategoryId));
         }
 
         // Sort: "ready" items first
@@ -357,7 +357,7 @@ export const DroneServicesCatalogV13 = () => {
                         </button>
 
                         {DRONE_CATEGORIES_V13.map((cat) => {
-                            const count = DRONE_SERVICES_ITEMS_V13.filter(i => i.categoryId === cat.id).length;
+                            const count = DRONE_SERVICES_ITEMS_V13.filter(i => i.categoryIds.includes(cat.id)).length;
                             return (
                                 <button
                                     key={cat.id}
