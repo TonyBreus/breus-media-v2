@@ -38,7 +38,7 @@ export const GeoSemanticLayerV3 = () => {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} 
             />
             
-            <div className="sr-only" aria-hidden="true">
+            <div className="sr-only">
                 <h2>География аэросъёмки в Грузии</h2>
                 
                 <h3>Районы Тбилиси</h3>

@@ -20,22 +20,6 @@ export const DroneHeroV11 = () => {
 
     const activeItem = droneServiceItems.length > 0 ? droneServiceItems[currentIndex] : null;
 
-    const scrollToCatalog = (e: React.MouseEvent) => {
-        e.preventDefault();
-        const catalog = document.getElementById('proof-metrics');
-        if (catalog) {
-            catalog.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
-    const scrollToPricing = (e: React.MouseEvent) => {
-        e.preventDefault();
-        const pricing = document.getElementById('pricing');
-        if (pricing) {
-            pricing.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     return (
         <DebugWrapper id={14003} label="Drone Hero V11">
             <section className="relative isolate min-h-[100vh] min-h-[100dvh] overflow-hidden bg-[#080808] border-b border-[#2a2a2a] pt-20 md:pt-28 pb-12 flex flex-col justify-center">
@@ -68,18 +52,18 @@ export const DroneHeroV11 = () => {
                         </p>
                         
                         <div className="mt-8 flex flex-col items-center gap-4 justify-center">
-                            <button 
-                                onClick={scrollToCatalog}
+                            <a 
+                                href="#proof-metrics"
                                 className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] bg-[#D4A017] px-8 py-3.5 md:py-4 text-xs md:text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-white shadow-[0_0_20px_rgba(212,160,23,0.3)]"
                             >
                                 Смотреть направления ↓
-                            </button>
-                            <button 
-                                onClick={scrollToPricing}
+                            </a>
+                            <a 
+                                href="#pricing"
                                 className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-3.5 md:py-4 text-xs md:text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-white hover:text-black"
                             >
                                 Тарифы от 200 ₾
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

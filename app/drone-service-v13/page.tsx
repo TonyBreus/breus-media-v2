@@ -12,6 +12,22 @@ import { DroneProcessV10 } from '@/components/drone/v10/DroneProcessV10';
 import { DroneIcebergDeepSpecsV10 } from '@/components/drone/v10/DroneIcebergDeepSpecsV10';
 import { DroneFAQExpanded } from '@/components/drone/DroneFAQExpanded';
 import { DroneFooterStitch } from '@/components/drone/DroneFooterStitch';
+import { droneFaqItems } from '@/components/drone/droneFaqData';
+
+function generateFAQSchema() {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: droneFaqItems.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.answer,
+            },
+        })),
+    };
+}
 
 export const metadata: Metadata = {
     title: 'Аэросъёмка для бизнеса и частных объектов в Грузии | V13',
@@ -25,6 +41,10 @@ export const metadata: Metadata = {
 export default function DroneServiceV13Page() {
     return (
         <main className="relative min-h-screen bg-[#080808] text-white selection:bg-[#D4A017] selection:text-black">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFAQSchema()) }}
+            />
             <DroneHeaderV13 />
             <GeoSemanticLayerV3 />
             
