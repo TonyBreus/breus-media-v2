@@ -421,7 +421,7 @@ export const DroneServicesCatalogV14 = () => {
                 {/* 2. HORIZONTAL SNAP CAROUSEL */}
                 <div
                     ref={carouselRef}
-                    className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 px-4 md:px-6 pb-6 md:pb-12 no-scrollbar"
+                    className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 px-4 md:px-6 scroll-pl-4 md:scroll-pl-6 pb-6 md:pb-12 no-scrollbar"
                 >
                     {filteredItems.map((item) => {
                         const isReady = item.status === 'ready' && !!item.href;
@@ -429,7 +429,7 @@ export const DroneServicesCatalogV14 = () => {
                         return (
                             <div
                                 key={item.slug}
-                                className="w-[85vw] max-w-[340px] shrink-0 snap-center bg-[#111] rounded-[20px] overflow-hidden border border-white/5 flex flex-col hover:border-white/15 transition-all duration-300"
+                                className="w-[85vw] max-w-[340px] shrink-0 snap-start bg-[#111] rounded-[20px] overflow-hidden border border-white/5 flex flex-col hover:border-white/15 transition-all duration-300"
                             >
                                 {/* Photo Header */}
                                 <div className="h-44 relative overflow-hidden bg-[#1a1a1a]">

@@ -82,7 +82,7 @@ export const DronePricingV14 = () => {
                         </p>
                     </div>
 
-                    <div className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 px-4 pb-6 no-scrollbar md:grid md:grid-cols-3 lg:grid-cols-5 md:gap-4 md:px-0 max-w-7xl mx-auto">
+                    <div className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 px-4 scroll-pl-4 pb-6 no-scrollbar md:grid md:grid-cols-3 lg:grid-cols-5 md:gap-4 md:px-0 max-w-7xl mx-auto">
                         {plans.map((plan, i) => {
                             const isPopular = plan.popular;
                             const waText = encodeURIComponent(`Здравствуйте! Выбрал пакет «${plan.title}» (${plan.price}) на сайте. Объект в Тбилиси, когда возможен выезд?`);
@@ -91,7 +91,7 @@ export const DronePricingV14 = () => {
                             return (
                                 <div 
                                     key={i} 
-                                    className={`relative w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:shrink md:snap-none flex flex-col rounded-2xl border ${isPopular ? 'border-[#D4A017] bg-[#D4A017]/[0.02]' : 'border-white/10 bg-white/5'} p-6 md:p-7 transition-all hover:-translate-y-1 hover:border-[#D4A017]/50`}
+                                    className={`relative w-[82vw] max-w-[310px] shrink-0 snap-start md:w-auto md:shrink md:snap-none flex flex-col rounded-2xl border ${isPopular ? 'border-[#D4A017] bg-[#D4A017]/[0.02]' : 'border-white/10 bg-white/5'} p-6 md:p-7 transition-all hover:-translate-y-1 hover:border-[#D4A017]/50`}
                                 >
                                     {isPopular && (
                                         <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#D4A017] text-black text-[10px] md:text-xs font-black uppercase tracking-wider py-1 px-3 md:px-4 rounded-full flex items-center gap-1.5 shadow-lg shadow-[#D4A017]/20 whitespace-nowrap">

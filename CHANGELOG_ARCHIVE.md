@@ -6422,3 +6422,12 @@ Append-only архив изменений. Старые записи не уда
 - **Schema.org fix**: `GeoSemanticLayerV14` — `@type: City` → `@type: AdministrativeArea` для районов Тбилиси.
 - **A11y fixes**: aria-label на тарифных кнопках, aria-hidden на стрелках FAQ, семантический `<nav>` в футере, aria-label/aria-expanded на виджете.
 - Сборка: 0 ошибок, 131/131 страниц. Пуш в `main`. Аудит полностью закрыт (10/10 тикетов).
+
+## 2026-09-19: drone-service-v14 Mobile UX & Friction Fixes
+- **Hero**: `scroll-mt-24` for precise anchor scrolling.
+- **Catalog**: 1-line heading on mobile, 2-col category grid, reduced paddings.
+- **Pricing**: Implemented horizontal swipe (`snap-x`) on mobile to save vertical space.
+- **Addons**: Compact row layout, `line-clamp`, direct WA "Заказать" button.
+- **Process**: Mobile steps collapsed into semantic `<details>` accordion (SSR preserved).
+- **FAQ**: Smooth height transition via `grid-rows-[1fr]` (fixed `<details>` animation jank).
+- Build: 0 errors (131 pages). Deployed to Vercel Preview.
