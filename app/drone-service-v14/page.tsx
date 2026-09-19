@@ -76,7 +76,7 @@ export default function DroneServiceV14Page() {
             
             <DroneHeroV11 />
             
-            <div id="proof-metrics">
+            <div id="proof-metrics" className="scroll-mt-24 md:scroll-mt-28">
                 <DroneStatsStripV2 />
             </div>
 

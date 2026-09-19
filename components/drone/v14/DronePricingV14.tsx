@@ -71,18 +71,18 @@ const plans = [
 export const DronePricingV14 = () => {
     return (
         <DebugWrapper id={11013} label="Drone Pricing V10">
-            <section className="py-16 md:py-24 bg-[#080808]">
-                <div className="container mx-auto px-6">
-                    <div className="text-center max-w-2xl mx-auto mb-16">
+            <section className="pt-6 pb-16 md:pt-16 md:pb-24 bg-[#080808]">
+                <div className="container mx-auto px-0 md:px-6">
+                    <div className="text-center max-w-2xl mx-auto mb-10 md:mb-16 px-6">
                         <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight uppercase mb-4">
                             Тарифы на съёмку
                         </h2>
-                        <p className="text-white/60 text-base md:text-lg">
+                        <p className="text-white/60 text-sm md:text-lg">
                             Понятные пакеты для бизнеса и частных объектов без скрытых платежей
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                    <div className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 px-4 pb-6 no-scrollbar md:grid md:grid-cols-3 lg:grid-cols-5 md:gap-4 md:px-0 max-w-7xl mx-auto">
                         {plans.map((plan, i) => {
                             const isPopular = plan.popular;
                             const waText = encodeURIComponent(`Здравствуйте! Выбрал пакет «${plan.title}» (${plan.price}) на сайте. Объект в Тбилиси, когда возможен выезд?`);
@@ -91,26 +91,26 @@ export const DronePricingV14 = () => {
                             return (
                                 <div 
                                     key={i} 
-                                    className={`relative flex flex-col rounded-2xl border ${isPopular ? 'border-[#D4A017] bg-[#D4A017]/[0.02]' : 'border-white/10 bg-white/5'} p-6 md:p-8 transition-all hover:-translate-y-1 hover:border-[#D4A017]/50`}
+                                    className={`relative w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:shrink md:snap-none flex flex-col rounded-2xl border ${isPopular ? 'border-[#D4A017] bg-[#D4A017]/[0.02]' : 'border-white/10 bg-white/5'} p-6 md:p-7 transition-all hover:-translate-y-1 hover:border-[#D4A017]/50`}
                                 >
                                     {isPopular && (
-                                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#D4A017] text-black text-xs font-black uppercase tracking-wider py-1 px-4 rounded-full flex items-center gap-1.5 shadow-lg shadow-[#D4A017]/20">
-                                            <Star className="w-3.5 h-3.5 fill-black" />
+                                        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#D4A017] text-black text-[10px] md:text-xs font-black uppercase tracking-wider py-1 px-3 md:px-4 rounded-full flex items-center gap-1.5 shadow-lg shadow-[#D4A017]/20 whitespace-nowrap">
+                                            <Star className="w-3 h-3 fill-black" />
                                             Частый выбор
                                         </div>
                                     )}
 
                                     <div className="mb-6">
-                                        <h3 className="text-2xl font-bold text-white mb-2">{plan.title}</h3>
-                                        <div className="text-[#D4A017] text-3xl font-black mb-4">{plan.price}</div>
-                                        <p className="text-sm font-medium text-white/80 h-10">{plan.subtitle}</p>
+                                        <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{plan.title}</h3>
+                                        <div className="text-[#D4A017] text-2xl md:text-3xl font-black mb-3">{plan.price}</div>
+                                        <p className="text-xs md:text-sm font-medium text-white/80 h-auto md:h-10 leading-snug">{plan.subtitle}</p>
                                     </div>
 
                                     <div className="flex-1">
-                                        <ul className="space-y-3 mb-8">
+                                        <ul className="space-y-2.5 mb-8">
                                             {plan.items.map((item, idx) => (
-                                                <li key={idx} className="flex items-start gap-3 text-sm text-white/70">
-                                                    <Check className="w-5 h-5 text-[#D4A017] shrink-0" />
+                                                <li key={idx} className="flex items-start gap-2.5 text-[13px] md:text-sm text-white/70">
+                                                    <Check className="w-4 h-4 md:w-5 md:h-5 text-[#D4A017] shrink-0 mt-0.5" />
                                                     <span className="leading-snug">{item}</span>
                                                 </li>
                                             ))}
@@ -118,8 +118,8 @@ export const DronePricingV14 = () => {
                                     </div>
 
                                     <div className="mt-auto">
-                                        <div className="bg-black/30 p-4 rounded-xl border border-white/5 mb-6">
-                                            <p className="text-xs text-white/50 leading-relaxed">
+                                        <div className="bg-black/30 p-3 md:p-4 rounded-xl border border-white/5 mb-5">
+                                            <p className="text-[11px] md:text-xs text-white/50 leading-relaxed">
                                                 {plan.note}
                                             </p>
                                         </div>
@@ -129,7 +129,7 @@ export const DronePricingV14 = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             aria-label={`Выбрать тариф «${plan.title}»`}
-                                            className={`block w-full py-4 text-center rounded-xl font-bold text-sm uppercase tracking-wide transition-colors ${
+                                            className={`block w-full py-3.5 md:py-4 text-center rounded-xl font-bold text-[13px] md:text-sm uppercase tracking-wide transition-colors ${
                                                 isPopular 
                                                 ? 'bg-[#D4A017] text-black hover:bg-white' 
                                                 : 'bg-white/10 text-white hover:bg-[#D4A017] hover:text-black'

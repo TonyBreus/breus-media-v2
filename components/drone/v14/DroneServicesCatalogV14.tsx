@@ -334,44 +334,47 @@ export const DroneServicesCatalogV14 = () => {
     const hasReadyItems = filteredItems.some(i => i.status === 'ready');
 
     return (
-        <DebugWrapper id="drone-services-catalog-v14" className="w-full bg-black py-24 border-t border-white/10">
+        <DebugWrapper id="drone-services-catalog-v14" className="w-full bg-black py-10 md:py-20 border-t border-white/10">
             <section className="w-full max-w-7xl mx-auto flex flex-col gap-8 md:gap-12">
                 <div className="px-4 md:px-6 flex flex-col gap-6 md:gap-8">
                     <div className="flex flex-col gap-2">
-                        <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter">
+                        <h2 className="text-[22px] sm:text-2xl md:text-5xl font-black text-white uppercase tracking-tight whitespace-nowrap">
                             Направления съёмки
                         </h2>
-                        <p className="text-sm md:text-base text-neutral-400 font-medium tracking-wide">
-                            Выберите отрасль для просмотра услуг
+                        <p className="text-xs md:text-sm text-neutral-400 font-medium tracking-normal">
+                            18 профильных решений для бизнеса и частных объектов в Грузии
                         </p>
                     </div>
 
-                    {/* Scrollable Tabs */}
-                    <div className="flex overflow-x-auto gap-2 md:gap-3 pb-4 no-scrollbar border-b border-white/5">
+                    {/* Category Tabs: 2-col grid on mobile, horizontal scroll on desktop */}
+                    <div className="grid grid-cols-2 gap-1.5 md:flex md:overflow-x-auto md:gap-3 pb-2 md:pb-4 no-scrollbar border-b border-white/5">
                         <button
                             onClick={() => setActiveTab('all')}
-                            className={`shrink-0 px-5 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${
+                            className={`px-3 py-2 md:px-5 md:py-2.5 rounded-xl md:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center gap-1 ${
                                 activeTab === 'all'
-                                    ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.2)] scale-105'
+                                    ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.2)]'
                                     : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
                             }`}
                         >
-                            Все <span className="opacity-50 font-normal ml-1">({DRONE_SERVICES_ITEMS_V14.length})</span>
+                            Все <span className="opacity-50 font-normal">({DRONE_SERVICES_ITEMS_V14.length})</span>
                         </button>
 
-                        {DRONE_CATEGORIES_V14.map((cat) => {
+                        {DRONE_CATEGORIES_V14.map((cat, idx) => {
                             const count = DRONE_SERVICES_ITEMS_V14.filter(i => i.categoryIds.includes(cat.id)).length;
+                            const isLast = idx === DRONE_CATEGORIES_V14.length - 1;
                             return (
                                 <button
                                     key={cat.id}
                                     onClick={() => setActiveTab(cat.id)}
-                                    className={`shrink-0 px-5 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-1.5 ${
+                                    className={`px-3 py-2 md:px-5 md:py-2.5 rounded-xl md:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center gap-1 ${
+                                        isLast ? 'col-span-2 md:col-span-1' : ''
+                                    } ${
                                         activeTab === cat.id
-                                            ? 'bg-[#D4A017] text-black shadow-[0_0_20px_rgba(212,160,23,0.3)] scale-105'
+                                            ? 'bg-[#D4A017] text-black shadow-[0_0_20px_rgba(212,160,23,0.3)]'
                                             : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
                                     }`}
                                 >
-                                    {cat.label} <span className="opacity-60 font-normal text-xs">({count})</span>
+                                    {cat.label} <span className="opacity-60 font-normal text-[10px] md:text-xs">({count})</span>
                                 </button>
                             );
                         })}
@@ -418,7 +421,7 @@ export const DroneServicesCatalogV14 = () => {
                 {/* 2. HORIZONTAL SNAP CAROUSEL */}
                 <div
                     ref={carouselRef}
-                    className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 px-4 md:px-6 pb-24 md:pb-6 no-scrollbar"
+                    className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 px-4 md:px-6 pb-6 md:pb-12 no-scrollbar"
                 >
                     {filteredItems.map((item) => {
                         const isReady = item.status === 'ready' && !!item.href;

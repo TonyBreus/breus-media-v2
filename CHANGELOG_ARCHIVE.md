@@ -6391,3 +6391,34 @@ Append-only архив изменений. Старые записи не уда
   - Выполнен Vercel Preview Deployment.
   - Preview URL: `https://breus-media-v2-ox8u3xs73-tony-breus-projects.vercel.app`
 
+
+## 2026-09-17: drone-service-v13 catalog strict schema & multi-category refactoring
+- **drone-service-v13**: Переведено на строгие TypeScript интерфейсы (`DroneCategoryId`, `DroneCategory`, `DroneServiceCard`).
+- **UI/UX каталога**: 
+  - Реализован корректный UI-заглушек для карточек "В разработке" (status: 'soon'), предотвращающий пустые скроллы вверх.
+  - Вывод `status: 'ready'` карточек первыми в сетке.
+  - Прямые ссылки на WhatsApp с динамически сгенерированным текстом-приветствием.
+  - Вывод счетчиков в названиях табов (категорий).
+- **Архитектура данных**: Замена `categoryId` (string) на `categoryIds` (массив string[]). Это позволило дублировать отображение карточек (Мониторинг стройки, Аэроотчеты, FPV-пролёты) в нескольких связанных категориях ("Недвижимость", "Отели и рестораны", "Стройка") без физического дублирования объектов в коде.
+- **Инфраструктура**: Пройден успешный `npm run build` с 0 ошибок TS. Сделан пуш в `main`.
+
+## 2026-09-18: drone-service-v13 P0 Audit Fixes
+- **Hero SSR**: `<button onClick>` → `<a href="#...">` в DroneHeroV11 (SSR-совместимость, краулеры парсят якоря).
+- **GeoSemantic A11y**: убран конфликтный `aria-hidden="true"` с `sr-only` блока (риск пенализации за cloaking).
+- **FAQPage Schema**: добавлен JSON-LD `FAQPage` с 8 Q&A-парами в page.tsx (Google Rich Results / AI Overviews).
+- Сборка `npm run build`: 0 ошибок, 130/130 страниц. Пуш в `main`.
+
+## 2026-09-18: drone-service-v14 Release (P1 Audit Fixes)
+- **Изоляция:** создан новый роут `/drone-service-v14` и V14-версии компонентов (Pricing, Addons, Catalog, Process, Iceberg).
+- **Zero JS / SSR:** убран `'use client'` у 4 статических компонентов.
+- **AggregateOffer Schema:** разметка ценового диапазона (200-700 GEL) добавлена в page.tsx.
+- **Каталог (Empty Banner):** добавлена плашка-CTA для категорий, где все карточки со статусом `soon`.
+- **Аддоны:** добавлены кнопки WhatsApp к карточкам (устранён ложный hover-аффорданс).
+- **Price Anchors:** дифференцированы цены в карточках каталога (300 ₾ для FPV, 450 ₾, 700 ₾).
+- **Mobile Safe Zone:** отступ `pb-24` в карусели каталога во избежание перекрытия виджетом контактов.
+
+## 2026-09-19: drone-service-v14 P2 Audit Fixes (AUDIT COMPLETE)
+- **Context-aware Widget**: `MultiContactWidgetV14` — WA-текст динамически подставляет секцию (catalog/pricing/faq).
+- **Schema.org fix**: `GeoSemanticLayerV14` — `@type: City` → `@type: AdministrativeArea` для районов Тбилиси.
+- **A11y fixes**: aria-label на тарифных кнопках, aria-hidden на стрелках FAQ, семантический `<nav>` в футере, aria-label/aria-expanded на виджете.
+- Сборка: 0 ошибок, 131/131 страниц. Пуш в `main`. Аудит полностью закрыт (10/10 тикетов).

@@ -4427,3 +4427,58 @@
   - `NEXT_PUBLIC_DEBUG_MODE=false npm run build` — passed;
   - `npx vercel deploy` — preview build deployed.
 
+
+## UPDATE — 2026-09-17 (drone-service-v13 catalog strict schema & multi-category refactoring)
+- Контекст:
+  - Финализация структуры каталога L2 `/drone-service-v13` с внедрением 6 отраслевых категорий (`categoryIds`), Answer Capsules и строгой приоритезации готовых L3-страниц.
+- Сделано:
+  - В `components/drone/v13/DroneServicesCatalogV13.tsx` установлена строгая типизация (интерфейсы `DroneCategoryId`, `DroneCategory`, `DroneServiceCard`).
+  - Все 18 карточек перенесены на новую структуру: добавлены `lsiSubtitle`, `priceAnchor`, `tags`, и автогенерация динамического текста `whatsappMessage`.
+  - Внедрена логика сортировки: готовые услуги (`status: 'ready'`) выводятся всегда первыми в сетке.
+  - Улучшен UX "Скоро": кнопки "Открыть" заменяются на некликабельный бейдж "В разработке", предотвращая пустые переходы вверх, а кнопка "Обсудить" перебрасывает напрямую в WhatsApp с динамическим текстом.
+  - Названия табов усилены счетчиками количества карточек в категории.
+  - Изменена архитектура привязки: `categoryId: string` преобразован в `categoryIds: string[]`. Это позволило включить "Мониторинг стройки", "Регулярные аэроотчеты" и "FPV-пролёты" сразу в несколько категорий без дублирования в табе "Все".
+- Проверки:
+  - `npm run build` — passed (0 ошибок TS, 130/130 страниц сгенерировано).
+  - Успешный `git push` в `main` (Vercel deployment triggered).
+
+## UPDATE — 2026-09-18 (drone-service-v13 P0 Audit Fixes: SSR, cloaking, FAQPage schema)
+- Контекст:
+  - Проведён глубокий 30-факторный аудит `/drone-service-v13` по методологии Website Conversion Roaster (Двойной фильтр). Итоговый балл: 19/30. Выявлены 3 критических (P0) и 5 средних (P1) дефектов.
+- P0-правки (внедрены):
+  1. **TICKET-001 — SSR Hero Links**: В `DroneHeroV11.tsx` заменены `<button onClick={scrollTo...}>` на семантические `<a href="#proof-metrics">` и `<a href="#pricing">`. Кнопки теперь работают до гидратации React и видны краулерам.
+  2. **TICKET-002 — GeoSemantic cloaking fix**: В `GeoSemanticLayerV3.tsx` убран `aria-hidden="true"` с блока `sr-only`. Устранён конфликт: sr-only скрывает визуально для скринридеров, aria-hidden скрывало от скринридеров → контент был невидим всем, что Google мог расценить как hidden text/cloaking.
+  3. **TICKET-003 — FAQPage JSON-LD**: В `app/drone-service-v13/page.tsx` добавлен `FAQPage` JSON-LD schema с 8 Q&A-парами из `droneFaqData.ts`. Отдаётся в SSR HTML для мгновенной индексации Google Rich Results и AI Overviews.
+- P1-тикеты (ожидают утверждения):
+  - TICKET-004: Убрать `'use client'` у 4 статических компонентов (Pricing, Addons, Process, Iceberg).
+  - TICKET-005: AggregateOffer schema для 5 тарифов (200–700 GEL).
+  - TICKET-006: CTA на карточках аддонов (устранить ложный аффорданс).
+  - TICKET-007: Дифференциация priceAnchor в карточках каталога.
+- Проверки:
+  - `npm run build` — passed (0 ошибок TS, 130/130 страниц).
+  - `git push` в `main` — Vercel deployment triggered.
+
+## UPDATE — 2026-09-18 (drone-service-v14 P1 Audit Fixes)
+- Контекст:
+  - Создана новая страница `/drone-service-v14` (скопирована структура v13). Старая версия v13 сохранена как эталон для A/B тестирования.
+- P1-правки (внедрены в v14):
+  1. **SSR Оптимизация (удаление `'use client'`)**: Компоненты тарифов, допов, процессов и техстандартов преобразованы в чистые серверные компоненты (Server Components) (файлы `DronePricingV14.tsx`, `DroneAddonsV14.tsx`, `DroneProcessV14.tsx`, `DroneIcebergDeepSpecsV14.tsx`).
+  2. **AggregateOffer Schema JSON-LD**: Добавлена микроразметка для 5 тарифов с `lowPrice: 200` и `highPrice: 700` в файл `app/drone-service-v14/page.tsx` для вывода цен в Google Rich Snippets и AI Overviews.
+  3. **Empty Showcase Banner**: В каталоге (`DroneServicesCatalogV14.tsx`) добавлена плашка-заглушка с кнопкой перехода в WhatsApp для табов категорий без готовых материалов, чтобы не вести трафик в "тупик".
+  4. **WhatsApp CTA в аддонах**: Добавлены кнопки "Добавить" в секцию аддонов (в `DroneAddonsV14.tsx`), ссылающиеся на чат WhatsApp с предзаполненным текстом опции. Устранён эффект ложного клика (когда просто была hover-анимация).
+  5. **Дифференциация priceAnchor**: Цены в карточках `DroneServicesCatalogV14.tsx` (FPV, Спортивные комплексы, Автосалоны и др.) скорректированы под реальные стартовые планки (`от 300 ₾`, `от 450 ₾`, `от 700 ₾`).
+  6. **Safe Zone для плавающего виджета**: Контейнер карусели получил отступ `pb-24` на мобильных, чтобы плавающая таблетка не перекрывала кнопки "Обсудить" и "Открыть".
+- Сборка и деплой успешны (`npm run build` 0 ошибок), задеплоено на Vercel Preview.
+
+## UPDATE — 2026-09-19 (drone-service-v14 P2 Audit Fixes — АУДИТ ПОЛНОСТЬЮ ЗАКРЫТ)
+- Контекст:
+  - Внедрены последние 3 тикета P2 из глубокого 30-факторного аудита. Все 10 тикетов аудита (P0/P1/P2) теперь реализованы в изолированных v14-компонентах.
+- P2-правки (внедрены):
+  1. **TICKET-008 — Контекстный WA-текст виджета**: Создан `MultiContactWidgetV14.tsx` — плавающий виджет теперь динамически подставляет в WA-ссылку название секции, которую пользователь сейчас просматривает (каталог / тарифы / FAQ / статистика). Менеджер сразу видит контекст лида.
+  2. **TICKET-009 — Schema.org fix**: Создан `GeoSemanticLayerV14.tsx` — районы Тбилиси (Vake, Saburtalo и т.д.) теперь `@type: AdministrativeArea` вместо ошибочного `@type: City`. Реальные города (Batumi, Kutaisi) остались `@type: City`.
+  3. **TICKET-010 — A11y микрофиксы**:
+    - `DronePricingV14.tsx`: добавлен `aria-label` к кнопкам тарифов (скринридер различает 5 кнопок).
+    - `DroneFAQExpandedV14.tsx`: добавлен `aria-hidden="true"` на декоративные стрелки ↓.
+    - `MultiContactWidgetV14.tsx`: добавлены `aria-label="Связаться"`, `aria-haspopup="dialog"`, `aria-expanded`, `aria-label="Закрыть"`, `aria-label` на input.
+    - `DroneFooterStitchV14.tsx`: навигация обёрнута в `<nav aria-label="Навигация по услугам">`, декоративные точки `•` получили `aria-hidden="true"`.
+- Итог аудита: **10/10 тикетов закрыты**. Страница v14 полностью изолирована от v13.

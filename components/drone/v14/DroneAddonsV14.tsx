@@ -44,25 +44,25 @@ export const DroneAddonsV14 = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {ADDONS.map((addon, i) => (
-                            <div key={i} className="bg-white/5 border border-white/10 rounded-[16px] p-5 flex flex-col hover:border-white/20 transition-colors">
-                                <div className="flex items-start gap-4 mb-3">
-                                    <div className="mt-1 bg-black/40 p-2 rounded-lg border border-white/5 shrink-0">
+                            <div key={i} className="bg-white/5 border border-white/10 p-3.5 md:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/20 transition-colors">
+                                <div className="flex items-center sm:items-start gap-3 sm:gap-4">
+                                    <div className="bg-black/40 p-2 rounded-lg border border-white/5 shrink-0">
                                         {addon.icon}
                                     </div>
-                                    <div>
-                                        <h4 className="text-sm font-bold text-white leading-snug mb-1">{addon.title}</h4>
-                                        <p className="text-xs text-white/60 leading-relaxed">{addon.desc}</p>
+                                    <div className="flex-1">
+                                        <h4 className="text-sm font-bold text-white leading-snug mb-0.5">{addon.title}</h4>
+                                        <p className="text-xs text-neutral-400 line-clamp-1 md:line-clamp-none">{addon.desc}</p>
                                     </div>
                                 </div>
-                                <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
-                                    <span className="text-xs font-bold text-[#D4A017]">{addon.price}</span>
+                                <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-3 shrink-0 mt-1 sm:mt-0 pt-3 sm:pt-0 border-t sm:border-t-0 border-white/5">
+                                    <span className="text-sm font-bold text-[#D4A017]">{addon.price}</span>
                                     <a
-                                        href={`https://wa.me/995501103183?text=${encodeURIComponent(`Здравствуйте! Хочу добавить к съёмке опцию: ${addon.title}.`)}`}
+                                        href={`https://wa.me/995501103183?text=${encodeURIComponent(`Здравствуйте! Хочу заказать дополнительную опцию: ${addon.title}.`)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/90 hover:text-white text-[10px] font-bold uppercase tracking-wider transition-colors border border-white/10"
+                                        className="px-4 py-2 sm:px-3 sm:py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white hover:text-white text-[11px] font-bold uppercase tracking-wider transition-colors border border-white/10 shrink-0 text-center"
                                     >
-                                        Добавить
+                                        Заказать
                                     </a>
                                 </div>
                             </div>
