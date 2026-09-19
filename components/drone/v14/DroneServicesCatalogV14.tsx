@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { DebugWrapper } from '@/components/debug/DebugWrapper';
 
@@ -310,6 +310,17 @@ export const DRONE_SERVICES_ITEMS_V14: DroneServiceCard[] = [
 export const DroneServicesCatalogV14 = () => {
     const [activeTab, setActiveTab] = useState<DroneCategoryId>('real-estate-land');
     const carouselRef = useRef<HTMLDivElement>(null);
+    const isFirstMount = useRef(true);
+
+    useEffect(() => {
+        if (isFirstMount.current) {
+            isFirstMount.current = false;
+            return; // Блокируем автоскролл при первичной загрузке страницы
+        }
+        if (carouselRef.current) {
+            carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        }
+    }, [activeTab]);
 
     // Get strictly filtered and sorted items
     const filteredItems = useMemo(() => {
@@ -336,8 +347,8 @@ export const DroneServicesCatalogV14 = () => {
                         <h2 className="text-[22px] sm:text-2xl md:text-5xl font-black text-white uppercase tracking-tight whitespace-nowrap">
                             Направления съёмки
                         </h2>
-                        <p className="text-xs md:text-sm text-neutral-400 font-medium tracking-normal">
-                            18 профильных решений для бизнеса и частных объектов в Грузии
+                        <p className="text-xs md:text-sm text-neutral-400 font-medium tracking-normal whitespace-nowrap overflow-hidden text-ellipsis">
+                            18 направлений съёмки для бизнеса и частных задач
                         </p>
                     </div>
 
@@ -358,16 +369,21 @@ export const DroneServicesCatalogV14 = () => {
                         ))}
                     </div>
 
+                    {/* Mobile Answer Capsule (AEO) */}
+                    {activeCategoryData && (
+                        <div className="md:hidden px-4 mt-2 mb-[-0.5rem]">
+                            <div className="bg-[#111] border border-white/10 rounded-xl p-3.5 shadow-lg">
+                                <p className="text-xs text-neutral-300 leading-relaxed">
+                                    {activeCategoryData.description}
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Desktop Answer Capsule (AEO) */}
                     {activeCategoryData && (
                         <div className="hidden md:block w-full max-w-3xl">
-                            <div className="bg-[#111] border border-[#D4A017]/30 rounded-2xl p-6 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                                <div className="flex items-center gap-3 mb-3">
-                                    <span className="w-2 h-2 rounded-full bg-[#D4A017] animate-pulse" />
-                                    <h3 className="text-lg font-bold text-white uppercase tracking-wider">
-                                        Для кого: {activeCategoryData.label}
-                                    </h3>
-                                </div>
+                            <div className="bg-[#111] border border-white/10 rounded-2xl p-5 shadow-lg">
                                 <p className="text-sm text-neutral-300 leading-relaxed max-w-4xl">
                                     {activeCategoryData.description}
                                 </p>
@@ -375,26 +391,6 @@ export const DroneServicesCatalogV14 = () => {
                         </div>
                     )}
                 </div>
-
-                {/* Empty Showcase Banner */}
-                {!hasReadyItems && (
-                    <div className="mx-4 md:mx-6 mb-[-1rem] p-5 md:p-6 bg-[#1a1a1a] border border-[#D4A017]/30 rounded-2xl flex flex-col sm:flex-row items-center gap-5 sm:justify-between shadow-[0_0_20px_rgba(212,160,23,0.1)]">
-                        <div className="flex items-start sm:items-center gap-3">
-                            <span className="w-2 h-2 mt-1.5 sm:mt-0 rounded-full bg-[#D4A017] animate-pulse shrink-0" />
-                            <p className="text-sm text-neutral-200 font-medium leading-relaxed">
-                                Выезды по данному направлению активны. Рассчитаем точную смету и согласуем дату полёта за 15 минут.
-                            </p>
-                        </div>
-                        <a 
-                            href={`https://wa.me/995501103183?text=${encodeURIComponent(`Здравствуйте! Интересует аэросъёмка: ${activeCategoryData?.label || 'Каталог'}. Рассчитайте смету.`)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full sm:w-auto shrink-0 px-6 py-3 bg-[#D4A017] text-black text-[11px] font-bold rounded-[10px] uppercase tracking-wider hover:bg-amber-300 transition-colors text-center"
-                        >
-                            Обсудить задачу
-                        </a>
-                    </div>
-                )}
 
                 {/* 2. HORIZONTAL SNAP CAROUSEL */}
                 <div

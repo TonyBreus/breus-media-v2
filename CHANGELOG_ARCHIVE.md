@@ -6431,3 +6431,8 @@ Append-only архив изменений. Старые записи не уда
 - **Process**: Mobile steps collapsed into semantic `<details>` accordion (SSR preserved).
 - **FAQ**: Smooth height transition via `grid-rows-[1fr]` (fixed `<details>` animation jank).
 - Build: 0 errors (131 pages). Deployed to Vercel Preview.
+
+## 2026-09-19: drone-service-v14 Catalog, Addons & Iceberg Refactor
+- **Catalog**: Removed 'All' tab and counters. Defaulted to 'real-estate-land'. Implemented 2x3 grid on mobile.
+- **Addons**: Simplified header. Implemented ultra-compact row design with price tags and text truncation. Removed order buttons.
+- **Iceberg (GCAA)**: Removed top badge and subtitle for a cleaner B2B aesthetic.
