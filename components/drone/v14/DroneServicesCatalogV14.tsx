@@ -308,16 +308,12 @@ export const DRONE_SERVICES_ITEMS_V14: DroneServiceCard[] = [
 ];
 
 export const DroneServicesCatalogV14 = () => {
-    const [activeTab, setActiveTab] = useState<DroneCategoryId | 'all'>('all');
+    const [activeTab, setActiveTab] = useState<DroneCategoryId>('real-estate-land');
     const carouselRef = useRef<HTMLDivElement>(null);
 
     // Get strictly filtered and sorted items
     const filteredItems = useMemo(() => {
-        let items = DRONE_SERVICES_ITEMS_V14;
-
-        if (activeTab !== 'all') {
-            items = items.filter((item) => item.categoryIds.includes(activeTab as DroneCategoryId));
-        }
+        let items = DRONE_SERVICES_ITEMS_V14.filter((item) => item.categoryIds.includes(activeTab));
 
         // Sort: "ready" items first
         return items.sort((a, b) => {
@@ -328,8 +324,7 @@ export const DroneServicesCatalogV14 = () => {
     }, [activeTab]);
 
     // Active Category Data for Answer Capsule
-    const activeCategoryData =
-        activeTab !== 'all' ? DRONE_CATEGORIES_V14.find((c) => c.id === activeTab) : null;
+    const activeCategoryData = DRONE_CATEGORIES_V14.find((c) => c.id === activeTab);
         
     const hasReadyItems = filteredItems.some(i => i.status === 'ready');
 
@@ -346,38 +341,21 @@ export const DroneServicesCatalogV14 = () => {
                         </p>
                     </div>
 
-                    {/* Category Tabs: 2-col grid on mobile, horizontal scroll on desktop */}
-                    <div className="grid grid-cols-2 gap-1.5 md:flex md:overflow-x-auto md:gap-3 pb-2 md:pb-4 no-scrollbar border-b border-white/5">
-                        <button
-                            onClick={() => setActiveTab('all')}
-                            className={`px-3 py-2 md:px-5 md:py-2.5 rounded-xl md:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center gap-1 ${
-                                activeTab === 'all'
-                                    ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.2)]'
-                                    : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
-                            }`}
-                        >
-                            Все <span className="opacity-50 font-normal">({DRONE_SERVICES_ITEMS_V14.length})</span>
-                        </button>
-
-                        {DRONE_CATEGORIES_V14.map((cat, idx) => {
-                            const count = DRONE_SERVICES_ITEMS_V14.filter(i => i.categoryIds.includes(cat.id)).length;
-                            const isLast = idx === DRONE_CATEGORIES_V14.length - 1;
-                            return (
-                                <button
-                                    key={cat.id}
-                                    onClick={() => setActiveTab(cat.id)}
-                                    className={`px-3 py-2 md:px-5 md:py-2.5 rounded-xl md:rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center gap-1 ${
-                                        isLast ? 'col-span-2 md:col-span-1' : ''
-                                    } ${
-                                        activeTab === cat.id
-                                            ? 'bg-[#D4A017] text-black shadow-[0_0_20px_rgba(212,160,23,0.3)]'
-                                            : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
-                                    }`}
-                                >
-                                    {cat.label} <span className="opacity-60 font-normal text-[10px] md:text-xs">({count})</span>
-                                </button>
-                            );
-                        })}
+                    {/* Category Tabs: 2-col 3-row grid on mobile, horizontal scroll on desktop */}
+                    <div className="grid grid-cols-2 gap-2 pb-4 border-b border-white/5 md:flex md:overflow-x-auto md:gap-3 md:pb-4 no-scrollbar">
+                        {DRONE_CATEGORIES_V14.map((cat) => (
+                            <button
+                                key={cat.id}
+                                onClick={() => setActiveTab(cat.id)}
+                                className={`px-2.5 py-3 md:px-5 md:py-2.5 rounded-xl md:rounded-full text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center leading-tight min-h-[48px] md:min-h-0 ${
+                                    activeTab === cat.id
+                                        ? 'bg-[#D4A017] text-black shadow-[0_0_20px_rgba(212,160,23,0.3)]'
+                                        : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
+                                }`}
+                            >
+                                {cat.label}
+                            </button>
+                        ))}
                     </div>
 
                     {/* Desktop Answer Capsule (AEO) */}
@@ -399,7 +377,7 @@ export const DroneServicesCatalogV14 = () => {
                 </div>
 
                 {/* Empty Showcase Banner */}
-                {activeTab !== 'all' && !hasReadyItems && (
+                {!hasReadyItems && (
                     <div className="mx-4 md:mx-6 mb-[-1rem] p-5 md:p-6 bg-[#1a1a1a] border border-[#D4A017]/30 rounded-2xl flex flex-col sm:flex-row items-center gap-5 sm:justify-between shadow-[0_0_20px_rgba(212,160,23,0.1)]">
                         <div className="flex items-start sm:items-center gap-3">
                             <span className="w-2 h-2 mt-1.5 sm:mt-0 rounded-full bg-[#D4A017] animate-pulse shrink-0" />

@@ -12,19 +12,10 @@ export const DroneIcebergDeepSpecsV14 = () => {
                 <div className="container mx-auto px-6 max-w-4xl">
                     
                     {/* Header */}
-                    <div className="mb-12">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
-                            <Layers className="w-4 h-4 text-[#D4A017]" />
-                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/80">
-                                База знаний и регламенты
-                            </span>
-                        </div>
-                        <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight mb-4">
-                            Технические стандарты, юридическая безопасность и каталог услуг
+                    <div className="mb-10 md:mb-12 text-center md:text-left">
+                        <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight uppercase">
+                            Стандарты безопасности и регламент полётов GCAA
                         </h2>
-                        <p className="text-sm md:text-base text-white/60 leading-relaxed max-w-2xl">
-                            Полная техническая фактура для девелоперов, отельеров и маркетологов. Разверните интересующий раздел для ознакомления со стандартами съёмки Breus Media.
-                        </p>
                     </div>
 
                     {/* Accordions */}
