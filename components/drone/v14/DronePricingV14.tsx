@@ -128,6 +128,7 @@ export const DronePricingV14 = () => {
                                             href={waLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            aria-label={`Выбрать тариф «${plan.title}»`}
                                             className={`block w-full py-4 text-center rounded-xl font-bold text-sm uppercase tracking-wide transition-colors ${
                                                 isPopular 
                                                 ? 'bg-[#D4A017] text-black hover:bg-white' 
