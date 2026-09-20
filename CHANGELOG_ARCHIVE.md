@@ -6436,3 +6436,8 @@ Append-only архив изменений. Старые записи не уда
 - **Catalog**: Removed 'All' tab and counters. Defaulted to 'real-estate-land'. Implemented 2x3 grid on mobile.
 - **Addons**: Simplified header. Implemented ultra-compact row design with price tags and text truncation. Removed order buttons.
 - **Iceberg (GCAA)**: Removed top badge and subtitle for a cleaner B2B aesthetic.
+
+## 2026-09-20: drone-service-v15 Isolated Release & Lower Third Widget
+- Created `v15` route strictly replicating `v14` for A/B testing.
+- Built `MultiContactWidgetV15.tsx` integrating a dynamic "Lower Third" WhatsApp notification banner. 
+- Implemented smart visibility logic (delay 10s -> show 4.5s -> wait 40s -> max 3 loops) via `useEffect` and `framer-motion` `AnimatePresence`.
