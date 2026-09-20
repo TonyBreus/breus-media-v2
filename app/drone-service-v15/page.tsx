@@ -5,7 +5,7 @@ import { DroneStatsStripV2 } from '@/components/drone/v2/DroneStatsStripV2';
 import { MultiContactWidgetV15 } from '@/components/drone/v15/MultiContactWidgetV15';
 import { GeoSemanticLayerV14 } from '@/components/drone/v14/GeoSemanticLayerV14';
 
-import { DroneServicesCatalogV14 } from '@/components/drone/v14/DroneServicesCatalogV14';
+import { DroneServicesCatalogV15 } from '@/components/drone/v15/DroneServicesCatalogV15';
 import { DronePricingV14 } from '@/components/drone/v14/DronePricingV14';
 import { DroneAddonsV14 } from '@/components/drone/v14/DroneAddonsV14';
 import { DroneProcessV14 } from '@/components/drone/v14/DroneProcessV14';
@@ -81,7 +81,7 @@ export default function DroneServiceV15Page() {
             </div>
 
             <div id="catalog">
-                <DroneServicesCatalogV14 />
+                <DroneServicesCatalogV15 />
             </div>
 
             <div id="pricing">

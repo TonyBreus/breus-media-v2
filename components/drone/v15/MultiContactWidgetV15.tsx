@@ -50,7 +50,7 @@ export const MultiContactWidgetV15 = () => {
                         animate={{ opacity: 1, x: 0, scale: 1, transition: { duration: 0.35, ease: 'easeOut' } }}
                         exit={{ opacity: 0, x: 20, scale: 0.95, transition: { duration: 0.25, ease: 'easeIn' } }}
                         onClick={handleClick}
-                        className="absolute right-14 sm:right-16 bg-[#111]/95 backdrop-blur-md border border-white/15 text-white px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2.5 whitespace-nowrap select-none cursor-pointer hover:border-emerald-500/40 transition-colors"
+                        className="absolute right-14 sm:right-16 top-1/2 -translate-y-1/2 bg-[#111]/95 backdrop-blur-md border border-white/15 text-white px-4 py-2 rounded-full shadow-2xl flex items-center gap-2.5 whitespace-nowrap cursor-pointer hover:border-emerald-500/40 transition-colors"
                     >
                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                         <span className="text-xs font-semibold tracking-wide">
