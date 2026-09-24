@@ -6441,3 +6441,7 @@ Append-only архив изменений. Старые записи не уда
 - Created `v15` route strictly replicating `v14` for A/B testing.
 - Built `MultiContactWidgetV15.tsx` integrating a dynamic "Lower Third" WhatsApp notification banner. 
 - Implemented smart visibility logic (delay 10s -> show 4.5s -> wait 40s -> max 3 loops) via `useEffect` and `framer-motion` `AnimatePresence`.
+
+## 2026-09-24: drone-service-v15 WA Widget & Catalog Compaction
+- **WhatsApp Widget**: Added scroll trigger (>400px), shrunk button to 44px/48px, added slow organic breathing pulse (100% -> 50% -> 100%).
+- **Catalog UI**: Low-profile category tabs (34-36px), removed bottom border and excess padding on mobile, compacted description capsule.
