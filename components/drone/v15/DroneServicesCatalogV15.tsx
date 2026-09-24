@@ -340,7 +340,7 @@ export const DroneServicesCatalogV15 = () => {
     const hasReadyItems = filteredItems.some(i => i.status === 'ready');
 
     return (
-        <DebugWrapper id="drone-services-catalog-v14" className="w-full bg-black py-10 md:py-20 border-t border-white/10">
+        <DebugWrapper id="drone-services-catalog-v15" className="w-full bg-black py-10 md:py-20 border-t border-white/10">
             <section className="w-full max-w-7xl mx-auto flex flex-col gap-8 md:gap-12">
                 <div className="px-4 md:px-6 flex flex-col gap-6 md:gap-8">
                     <div className="flex flex-col gap-2">
@@ -353,12 +353,12 @@ export const DroneServicesCatalogV15 = () => {
                     </div>
 
                     {/* Category Tabs: 2-col 3-row grid on mobile, horizontal scroll on desktop */}
-                    <div className="grid grid-cols-2 gap-2 pb-4 border-b border-white/5 md:flex md:overflow-x-auto md:gap-3 md:pb-4 no-scrollbar">
+                    <div className="grid grid-cols-2 gap-2 pb-0 md:pb-4 md:border-b border-white/5 md:flex md:overflow-x-auto md:gap-3 no-scrollbar">
                         {DRONE_CATEGORIES_V15.map((cat) => (
                             <button
                                 key={cat.id}
                                 onClick={() => setActiveTab(cat.id)}
-                                className={`px-2.5 py-3 md:px-5 md:py-2.5 rounded-xl md:rounded-full text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center leading-tight min-h-[48px] md:min-h-0 ${
+                                className={`px-2.5 py-1.5 md:px-5 md:py-2.5 rounded-xl md:rounded-full text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center text-center leading-tight min-h-[34px] md:min-h-0 ${
                                     activeTab === cat.id
                                         ? 'bg-[#D4A017] text-black shadow-[0_0_20px_rgba(212,160,23,0.3)]'
                                         : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
@@ -371,9 +371,9 @@ export const DroneServicesCatalogV15 = () => {
 
                     {/* Mobile Answer Capsule (AEO) */}
                     {activeCategoryData && (
-                        <div className="md:hidden px-4 mt-2 mb-[-0.5rem]">
-                            <div className="bg-[#111] border border-white/10 rounded-xl p-3.5 shadow-lg">
-                                <p className="text-xs text-neutral-300 leading-relaxed">
+                        <div className="md:hidden mt-2">
+                            <div className="bg-[#111] border border-white/10 rounded-xl p-2.5 px-3 shadow-lg">
+                                <p className="text-xs text-neutral-300 leading-snug">
                                     {activeCategoryData.description}
                                 </p>
                             </div>
