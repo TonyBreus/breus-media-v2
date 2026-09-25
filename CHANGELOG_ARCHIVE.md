@@ -977,6 +977,13 @@ Append-only архив изменений. Старые записи не уда
 - note: изображения временно из `services-images/drone-restaurants/final/` (1–4.png) — заменить на `drone-real-estate/final/` когда будут готовы
 
 ---
+✅ Release Drone Service `/drone-service-v16` — Mobile UX Optimization & AEO Refactoring (2026-09-25):
+- feat(drone-v16-hero): Оптимизирована мобильная иерархия кнопок CTA (главная золотая `bg-[#D4A017]`, вторичная контурная `border-white/20`). Сокращен подзаголовок до 1 емкого предложения (Zero Fluff).
+- feat(drone-v16-catalog): Устранено пустое пространство (удален `min-h-[48px]`) в описаниях карточек. Скрыта серая заглушка «В разработке», заменена на полноразмерную кнопку WhatsApp. Статус-бейдж «Готово к просмотру» заменен на строгий «• Страница услуги».
+- refactor(drone-v16-aeo): AEO-тексты категорий сжаты до 2 предложений. Слово «визуал» повсеместно заменено на «материалы для публикации» согласно редполитике.
+- fix(drone-v16-header): Обеспечено наличие ссылки «Тарифы» (`#pricing`) в мобильном бургер-меню.
+- chore(drone-v16-isolation): Созданы изолированные компоненты (`DroneHeroV16.tsx`, `DroneServicesCatalogV16.tsx`, `DroneHeaderV16.tsx`) и страница `app/drone-service-v16/page.tsx` для A/B тестирования без затрагивания `v15`. Настроен `FloatingWhatsAppButton.tsx` для скрытия на `/drone-service-v16`.
+
 
 ## 2026-04-19 — /360-tour-hotels полная перезапись, эталон кластера 360° туров
 - feat(360-tour-hotels): перезаписан `app/360-tour-hotels/page.tsx` (919 строк) — монолитная архитектура по образцу drone-hotels-tourism
