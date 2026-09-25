@@ -16,7 +16,7 @@ export function FloatingWhatsAppButton({ lang, text, href }: FloatingWhatsAppBut
     const pathname = usePathname();
     
     // Hide this global button on V3-V15 where we have the specific A/B widget
-    if (pathname?.includes('/drone-service-v3') || pathname?.includes('/drone-service-v4') || pathname?.includes('/drone-service-v5') || pathname?.includes('/drone-service-v6') || pathname?.includes('/drone-service-v7') || pathname?.includes('/drone-service-v8') || pathname?.includes('/drone-service-v9') || pathname?.includes('/drone-service-v10') || pathname?.includes('/drone-service-v11') || pathname?.includes('/drone-service-v12') || pathname?.includes('/drone-service-v13') || pathname?.includes('/drone-service-v14') || pathname?.includes('/drone-service-v15')) return null;
+    if (pathname?.includes('/drone-service-v3') || pathname?.includes('/drone-service-v4') || pathname?.includes('/drone-service-v5') || pathname?.includes('/drone-service-v6') || pathname?.includes('/drone-service-v7') || pathname?.includes('/drone-service-v8') || pathname?.includes('/drone-service-v9') || pathname?.includes('/drone-service-v10') || pathname?.includes('/drone-service-v11') || pathname?.includes('/drone-service-v12') || pathname?.includes('/drone-service-v13') || pathname?.includes('/drone-service-v14') || pathname?.includes('/drone-service-v15') || pathname?.includes('/drone-service-v16')) return null;
 
     const isEn = lang ? lang === "en" : pathname?.endsWith("/en") || pathname?.includes("/en/");
     const isDrone = pathname?.includes("/drone");
