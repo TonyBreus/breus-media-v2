@@ -4522,6 +4522,14 @@
   * Плашка описания (AEO) сжата до `p-2.5 px-3` с `leading-snug`.
   * Первая карточка услуги теперь сразу видна в первом экране раздела.
 
+
+## UPDATE — 2026-09-24 (drone-service-v15 Clean Cards & WA Fix)
+- **Фикс двойного значка WhatsApp**: Глобальный `FloatingWhatsAppButton` отключён на V14 и V15 (а теперь и на V16) через `pathname.includes`.
+- **Clean Card 2026 (V15)**: 
+  * Убраны `priceAnchor` (цены) и нижние теги.
+  * `lsiSubtitle` заменён на матрицу LSI-сущностей (MYHOME.GE, BOOKING и т.д.).
+  * Кнопки «Открыть» / «Обсудить» прижаты сразу под описание карточки.
+
 ## UPDATE — 2026-09-25 (drone-service-v16 Release & Mobile Conversions)
 - Создана изолированная страница `/drone-service-v16` для А/В-теста (V15 нетронут).
 - **Hero-секция (`DroneHeroV16.tsx`)**:
