@@ -2,6 +2,7 @@ import { AboutSection } from "@/components/gazeta/AboutSection";
 import { GazetaMinimalFooter } from "@/components/gazeta/GazetaMinimalFooter";
 import { GazetaMobileStepChooser } from "@/components/gazeta/GazetaMobileStepChooser";
 import { GazetaFaqSection } from "@/components/gazeta/GazetaFaqSection";
+import { GazetaStatsStrip } from "@/components/gazeta/GazetaStatsStrip";
 import { HeroSection } from "@/components/gazeta/HeroSection";
 import { NichesStack } from "@/components/gazeta/NichesStack";
 import { SmartHeader } from "@/components/gazeta/SmartHeader";
@@ -38,6 +39,8 @@ export function GazetaLandingPage({ lang = "ru" }: { lang?: GazetaLandingLang })
                 <div className="relative z-10">
                     <HeroSection lang={lang} />
                 </div>
+
+                <GazetaStatsStrip />
 
                 {/* Лист 2 (Сетка 6×6: Услуги / Ваш бизнес) - Mobile only скролл-трек 140vh со sticky-фиксацией */}
                 <div className="block md:hidden relative h-[140vh] z-20">

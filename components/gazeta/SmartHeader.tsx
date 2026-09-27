@@ -785,13 +785,6 @@ export function SmartHeader({
                                         <span className="text-base">⚡</span>
                                     </Link>
                                     <a
-                                        href="#faq"
-                                        onClick={(e) => handleAnchorClick(e, "#faq", true)}
-                                        className="block text-lg font-bold text-white/90 hover:text-[#FFD23F] transition-colors"
-                                    >
-                                        {routeLanguage === "EN" ? "FAQ" : "Вопрос-ответ"}
-                                    </a>
-                                    <a
                                         href="#contact"
                                         onClick={(e) => handleAnchorClick(e, "#contact", true)}
                                         className="block text-lg font-bold text-white/90 hover:text-[#FFD23F] transition-colors"
