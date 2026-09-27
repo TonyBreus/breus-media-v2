@@ -694,7 +694,12 @@ export function SmartHeader({
                         )}
 
                         {/* 4. Menu Icon (Mobile & Tablet) */}
-                        <button className="lg:hidden text-white ml-1" onClick={() => setIsMobileMenuOpen(true)}>
+                        <button
+                            className="lg:hidden text-white ml-1"
+                            onClick={() => setIsMobileMenuOpen(true)}
+                            aria-label={isMobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
+                            aria-expanded={isMobileMenuOpen}
+                        >
                             <Menu className={isMobileCompactTop ? "w-5 h-5" : "w-6 h-6"} />
                         </button>
                     </div>

@@ -249,10 +249,11 @@ export function GazetaMobileStepChooser({ lang = "ru" }: GazetaMobileStepChooser
                             className="grid grid-cols-2 gap-2 sm:gap-2.5"
                         >
                             {currentCards.map((card) => (
-                                <div
+                                <button
+                                    type="button"
                                     key={card.key}
                                     onClick={() => handleCardClick(card.key)}
-                                    className="group cursor-pointer flex flex-col transition-transform duration-300 hover:scale-[1.02] active:scale-[0.97]"
+                                    className="group cursor-pointer flex flex-col transition-transform duration-300 hover:scale-[1.02] active:scale-[0.97] text-left"
                                 >
                                     {/* Full-bleed Photo with Title Inside */}
                                     <div className="relative h-[110px] sm:h-[120px] w-full overflow-hidden rounded-[14px] bg-[#121216]">
@@ -271,7 +272,7 @@ export function GazetaMobileStepChooser({ lang = "ru" }: GazetaMobileStepChooser
                                                 {card.title}
                                             </h3>
                                             {card.price && (
-                                                <span className="shrink-0 rounded-[5px] bg-black/75 border border-[#FFD23F]/40 px-1.5 py-0.5 text-[9px] font-bold text-[#FFD23F]">
+                                                <span className="shrink-0 rounded-[5px] bg-black/75 border border-[#FFD23F]/40 px-1.5 py-0.5 text-[11px] font-bold text-[#FFD23F]">
                                                     {card.price}
                                                 </span>
                                             )}
@@ -282,7 +283,7 @@ export function GazetaMobileStepChooser({ lang = "ru" }: GazetaMobileStepChooser
                                     <p className="text-[10.5px] leading-tight text-white/80 mt-1 line-clamp-2 h-[28px] overflow-hidden">
                                         {card.desc}
                                     </p>
-                                </div>
+                                </button>
                             ))}
                         </motion.div>
                     </AnimatePresence>

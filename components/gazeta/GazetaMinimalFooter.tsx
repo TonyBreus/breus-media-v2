@@ -80,10 +80,10 @@ export function GazetaMinimalFooter({ lang }: { lang?: GazetaLang }) {
                     </div>
                     <p className="w-full text-center text-xs md:text-[13px] leading-relaxed text-white/70 md:w-[45%] md:text-left">
                         {isEn
-                            ? "Visual production and digital solutions for business in Georgia: creating brand stories from the capital to the coast."
-                            : "Визуальный контент и digital-решения для бизнеса в Грузии: создаем историю бренда от столицы до побережья."}
+                            ? "Tbilisi · Mon–Sat 10:00–19:00 · On-location across Georgia"
+                            : "Тбилиси · Пн–Сб 10:00–19:00 · Выезд по всей Грузии"}
                     </p>
-                    <div className="flex w-full items-center justify-center gap-2.5 md:w-[30%] md:justify-end pr-0 sm:pr-16 md:pr-20">
+                    <div className="flex w-full items-center justify-center gap-2.5 md:w-[30%] md:justify-end pr-14 sm:pr-16 md:pr-20">
                         {socials.map((social) => (
                             <a
                                 key={social.label}

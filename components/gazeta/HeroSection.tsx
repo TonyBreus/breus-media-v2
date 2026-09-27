@@ -19,22 +19,17 @@ const heroCopy: Record<GazetaLang, {
     whatsAppHref: string;
 }> = {
     ru: {
-        headline: ["АГЕНТСТВО ВИЗУАЛЬНОГО", "ПРОДАКШЕНА", "И DIGITAL-РЕШЕНИЙ"],
+        headline: ["ВИДЕО, ФОТО И AI-КОНТЕНТ", "ДЛЯ ВАШЕГО БИЗНЕСА", "В ГРУЗИИ"],
         location: "В ТБИЛИСИ И ПО ВСЕЙ ГРУЗИИ",
         lead: (
             <>
-                Снимаем и упаковываем бизнес в 4K: аэросъёмка с дрона,<br />
-                интерактивные 360° туры и видео для продвижения.
+                4K-видео, аэросъёмка, 360° туры и AI-контент для бизнеса<br />
+                в Тбилиси и по всей Грузии.
             </>
         ),
         sublead: (
             <>
-                Создаём современные сайты, оцифровываем бизнес на картах Google{" "}
-                <br className="hidden sm:block" />
-                и внедряем AI-решения для роста продаж.<br className="hidden sm:block" />
-                <span className="text-[#F5F4F0] font-medium block mt-1 text-xs md:text-[13.5px]">
-                    Показываем ваши объекты так, чтобы клиенты и инвесторы выбирали вас ещё до первого звонка.
-                </span>
+                Готовые материалы от 24 часов. Официальный B2B-договор.
             </>
         ),
         scrollLabel: "ВЫБЕРИТЕ НАПРАВЛЕНИЕ",
@@ -43,21 +38,17 @@ const heroCopy: Record<GazetaLang, {
         whatsAppHref: "https://wa.me/995501103183?text=Здравствуйте!%20Хочу%20обсудить%20проект%20по%20визуальному%20продакшну%20или%20digital-решениям%20в%20Грузии",
     },
     en: {
-        headline: ["VISUAL PRODUCTION", "AND DIGITAL SOLUTIONS", "AGENCY"],
+        headline: ["VIDEO, PHOTO & AI CONTENT", "FOR YOUR BUSINESS", "IN GEORGIA"],
         location: "IN TBILISI & ACROSS GEORGIA",
         lead: (
             <>
-                Filming and packaging business in 4K: aerial drone cinematography,<br />
-                interactive 360° virtual tours, and growth-driven video.
+                4K video, aerial filming, 360° tours, and AI content<br />
+                for business in Tbilisi and across Georgia.
             </>
         ),
         sublead: (
             <>
-                We build modern websites, optimize Google Maps profiles,<br className="hidden sm:block" />
-                and integrate AI solutions to scale your bookings and sales.<br className="hidden sm:block" />
-                <span className="text-[#F5F4F0] font-medium block mt-1 text-xs md:text-[13.5px]">
-                    Presenting your business so clients and investors choose you before the very first call.
-                </span>
+                Ready-to-use materials from 24 hours. Official B2B contract.
             </>
         ),
         scrollLabel: "CHOOSE A DIRECTION",
@@ -108,7 +99,7 @@ export function HeroSection({ lang = "ru" }: { lang?: GazetaLang }) {
     );
 
     // Watermark opacity on start screen (0.25) smoothly increasing to 1 as it scrolls and scales into the logo
-    const kineticOpacity = useTransform(scrollYProgress, [0, 0.3], [0.25, 1]);
+    const kineticOpacity = useTransform(scrollYProgress, [0, 0.3], [0.12, 1]);
 
     // Fade out original opacity ONLY for the scroll indicator down arrow
     const indicatorOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
@@ -257,14 +248,6 @@ export function HeroSection({ lang = "ru" }: { lang?: GazetaLang }) {
 
                             {/* Actions & Scroll Indicator anchored directly beneath copy (gap 1-2cm) */}
                             <DebugWrapper id={14} label="Scroll Indicator" className="mt-3 sm:mt-3.5 flex flex-col items-center gap-1.5 z-20">
-                                <a
-                                    href={copy.whatsAppHref}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center border border-[#D4AF37]/70 bg-[#D4AF37]/20 text-[#F0C85C] rounded-full px-6 py-2.5 text-xs sm:text-sm font-bold shadow-lg backdrop-blur-md hover:bg-[#D4AF37] hover:text-black transition-all whitespace-nowrap"
-                                >
-                                    {copy.whatsAppLabel}
-                                </a>
 
                                 <button
                                     type="button"
