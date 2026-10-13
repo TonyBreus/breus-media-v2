@@ -1,3 +1,11 @@
+✅ Release Drone Real Estate V3 (`/drone-services/drone-real-estate-v3`) — Portfolio Swipe, 5-Tab Niche Scenarios, 3 Clear Packages & Full SSR FAQ (2026-10-14):
+- feat(drone-real-estate-v3): создан изолированный роут `app/drone-services/drone-real-estate-v3/page.tsx` с `robots: { index: false, follow: false }` для A/B тестирования.
+- feat(drone-real-estate-v3-portfolio): внедрен блок `DroneRealEstatePortfolioV3` с 6 реальными кадрами объектов (ЖК, фасады, стройка, 360°) и горизонтальным свайпом `snap-x` на мобильных.
+- feat(drone-real-estate-v3-niches): создан интерактивный компонент `DroneRealEstateNichesV3` с 5 сценариями (риелтор, застройщик, инвестор, земля, апарт-отель) по связке «Боль ➔ Решение ➔ Результат ➔ WhatsApp».
+- feat(drone-real-estate-v3-pricing): оптимизированы 3 тарифа (250 ₾ / 500 ₾ / от 900 ₾), устранен паралич выбора.
+- feat(drone-real-estate-v3-faq): внедрен B2B FAQ со снятием возражений (GCAA, погода, монтаж) и разметкой `FAQPage` + `Service` JSON-LD.
+- fix(floating-wa): добавлен роут `/drone-services/drone-real-estate-v3` в список исключений `FloatingWhatsAppButton.tsx`.
+
 ✅ Release Drone Service `/drone-service-v13` — 6 Categories Catalog Refactoring & AEO Answer Capsules (2026-09-16):
 - feat(drone-v13-catalog): создан изолированный компонент `DroneServicesCatalogV13.tsx` с 6 отраслевыми категориями: `real-estate-land` (Недвижимость и участки), `horeca` (Отели и рестораны), `construction-inspection` (Стройка и инспекции), `brands-fpv` (Бренды и FPV), `events-tourism` (События и туризм), `pilot-rental` (Аренда с пилотом).
 - feat(drone-v13-capsules): внедрены десктопные Answer Capsules с утвержденной AEO-фактурой без цен, появляющиеся при выборе соответствующей категории.
