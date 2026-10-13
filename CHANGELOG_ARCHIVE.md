@@ -1,3 +1,13 @@
+✅ Release Drone Real Estate V4 (`/drone-services/drone-real-estate-v4`) — Visual Comparison, 4-Fact Trust Strip, 100% SSR Tabs, Native Details FAQ & Sticky CTA Fix (2026-10-14):
+- feat(drone-real-estate-v4): создан изолированный роут `app/drone-services/drone-real-estate-v4/page.tsx` с `robots: { index: false, follow: false }` для A/B тестирования.
+- feat(drone-real-estate-v4-trust): внедрён блок `DroneRealEstateTrustStripV4` (4 ключевых факта: 24ч сдача, официальный B2B договор, DJI Air 3S + Avata 2, полёты по всей Грузии).
+- feat(drone-real-estate-v4-comparison): внедрён блок визуального контраста `DroneRealEstateComparisonV4` («Обычные фото с земли ✕» vs «4K-съёмка дроном Breus Media ✓»).
+- feat(drone-real-estate-v4-niches): компонент `DroneRealEstateNichesV4` переведён на 100% SSR рендеринг всех 5 таб-панелей в начальный DOM (доступно для краулеров SearchGPT и Googlebot) с полной доступностью (`role="tablist"`, `aria-selected`, `aria-controls`, `aria-labelledby`).
+- feat(drone-real-estate-v4-faq): интерактивный FAQ на нативных тегах HTML `<details>` и `<summary>` (нулевой Layout Shift, компактность, 100% индексация текста в DOM).
+- fix(drone-real-estate-v4-schema): 100% паритет между видимым FAQ и `FAQPage` JSON-LD (все 7 вопросов вместо 4).
+- fix(drone-real-estate-v4-sticky): добавлен `id="drone-real-estate-hero"` на Hero секцию и `id="contact"` на форму для восстановления работы `DroneStickyCta`.
+- fix(floating-wa): добавлен роут `/drone-services/drone-real-estate-v4` в список исключений `FloatingWhatsAppButton.tsx`.
+
 ✅ Release Drone Real Estate V3 (`/drone-services/drone-real-estate-v3`) — Portfolio Swipe, 5-Tab Niche Scenarios, 3 Clear Packages & Full SSR FAQ (2026-10-14):
 - feat(drone-real-estate-v3): создан изолированный роут `app/drone-services/drone-real-estate-v3/page.tsx` с `robots: { index: false, follow: false }` для A/B тестирования.
 - feat(drone-real-estate-v3-portfolio): внедрен блок `DroneRealEstatePortfolioV3` с 6 реальными кадрами объектов (ЖК, фасады, стройка, 360°) и горизонтальным свайпом `snap-x` на мобильных.
